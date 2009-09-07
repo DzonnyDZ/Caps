@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="ColorPicker" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Tools="clr-namespace:Tools.WindowsT.WPF.ControlsT;assembly=Tools.Windows"
+             xmlns:res="clr-namespace:Caps.Console.My.Resources"
+             MinWidth="50" >
+    <ComboBox Name="cmbColors"
+                    Background="{Binding ElementName=cmbColors, Path=SelectedItem.Background, Mode=OneWay}"
+                    Foreground="{Binding ElementName=cmbColors, Path=SelectedItem.Foreground, Mode=OneWay}">
+        <ComboBox.Items>
+            <ComboBoxItem Background="White">
+                <x:StaticExtension Member="res:Resources.clr_White"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Black">
+                <x:StaticExtension Member="res:Resources.clr_Black"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Gray">
+                <x:StaticExtension Member="res:Resources.clr_Gray"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Blue">
+                <x:StaticExtension Member="res:Resources.clr_Blue"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Red">
+                <x:StaticExtension Member="res:Resources.clr_Red"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Yellow">
+                <x:StaticExtension Member="res:Resources.clr_Yellow"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Orange">
+                <x:StaticExtension Member="res:Resources.clr_Orange"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Green">
+                <x:StaticExtension Member="res:Resources.clr_Green"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Pink">
+                <x:StaticExtension Member="res:Resources.clr_Pink"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Brown">
+                <x:StaticExtension Member="res:Resources.clr_Brown"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Magenta">
+                <x:StaticExtension Member="res:Resources.clr_Magenta"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Silver">
+                <x:StaticExtension Member="res:Resources.clr_Silver"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="LightBlue">
+                <x:StaticExtension Member="res:Resources.clr_LightBlue"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Gold">
+                <x:StaticExtension Member="res:Resources.clr_Gold"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Transparent">
+                <x:StaticExtension Member="res:Resources.clr_Transparent"/>
+            </ComboBoxItem>
+            <ComboBoxItem Background="Lime">
+                <x:StaticExtension Member="res:Resources.clr_Lime"/>
+            </ComboBoxItem>
+            <ComboBoxItem Name="cmiMoreColors" FontWeight="Bold">
+                <x:StaticExtension Member="res:Resources.mni_More"/>
+            </ComboBoxItem>
+            <ComboBoxItem Name="cmiNull" ToolTip="{x:Static res:Resources.tot_NoColor}" MinHeight="12pt" MinWidth="12pt"/>
+        </ComboBox.Items>
+    </ComboBox>
+</UserControl>

@@ -1,0 +1,23 @@
+﻿<Window x:Class="winSelectDatabase"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:res="clr-namespace:Caps.Console.My.Resources"
+    Title="{x:Static res:Resources.txt_SelectDatabase}" Height="385" Width="294" Icon="/CapsConsole;component/Resources/Cap.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <wfi:WindowsFormsHost Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+            <wf:PropertyGrid Name="prgProperties" Dock="Fill" x:Name="prgProperties"/>
+        </wfi:WindowsFormsHost>
+        <Button Grid.Column="0" Grid.Row="1" Padding="3,0,3,0" HorizontalAlignment="Center" Name="btnOK" IsDefault="True" Content="{x:Static res:Resources.cmd_OK}"/>
+        <Button Grid.Column="1" Grid.Row="1" Padding="3,0,3,0" HorizontalAlignment="Center" Name="btnCancel" IsCancel="True" Content="{x:Static res:Resources.cmd_Cancel}"/>
+    </Grid>
+</Window>

@@ -1,0 +1,863 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="clr_Black" xml:space="preserve">
+    <value>Black</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Blue" xml:space="preserve">
+    <value>Blue</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Brown" xml:space="preserve">
+    <value>Brown</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Gold" xml:space="preserve">
+    <value>Gold</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Gray" xml:space="preserve">
+    <value>Gray</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Green" xml:space="preserve">
+    <value>Green</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_LightBlue" xml:space="preserve">
+    <value>LightBlue</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Lime" xml:space="preserve">
+    <value>Lime</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Magenta" xml:space="preserve">
+    <value>Magenta</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Orange" xml:space="preserve">
+    <value>Orange</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Pink" xml:space="preserve">
+    <value>Pink</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Red" xml:space="preserve">
+    <value>Red</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Silver" xml:space="preserve">
+    <value>Silver</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Transparent" xml:space="preserve">
+    <value>Transparent</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_White" xml:space="preserve">
+    <value>White</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="clr_Yellow" xml:space="preserve">
+    <value>Yellow</value>
+    <comment>Color name</comment>
+  </data>
+  <data name="cmd_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="cmd_OK" xml:space="preserve">
+    <value>OK</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="mni_Configuration" xml:space="preserve">
+    <value>_Configuration</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_EditLists" xml:space="preserve">
+    <value>Edit _lists ...</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_Exit" xml:space="preserve">
+    <value>_Exit</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_File" xml:space="preserve">
+    <value>_File</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_More" xml:space="preserve">
+    <value>More ...</value>
+    <comment>Clickable combo box item</comment>
+  </data>
+  <data name="mni_NewCap" xml:space="preserve">
+    <value>_New cap ...</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_Settings" xml:space="preserve">
+    <value>_Settings ...</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="tot_NoColor" xml:space="preserve">
+    <value>No color selected</value>
+    <comment>Combo box item</comment>
+  </data>
+  <data name="txt_Caps" xml:space="preserve">
+    <value>Caps</value>
+    <comment>Main window title (localized application name)</comment>
+  </data>
+  <data name="txt_SelectDatabase" xml:space="preserve">
+    <value>Select database</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="ex_UnsupportedDataType" xml:space="preserve">
+    <value>Unsupported data type {0}</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="ex_ConvertsOnlyToBool" xml:space="preserve">
+    <value>{0} converts only to boolean.</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="ex_CanConvertBackOnlyFromFalse" xml:space="preserve">
+    <value>{0} can convert back only from False.</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="ex_CannotConvertBack" xml:space="preserve">
+    <value>{0} cannot convert back.</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="cmd_Apply" xml:space="preserve">
+    <value>Apply</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="coh_Company" xml:space="preserve">
+    <value>Company</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Height" xml:space="preserve">
+    <value>Height</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_ID" xml:space="preserve">
+    <value>ID</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_MainType" xml:space="preserve">
+    <value>Main type</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Material" xml:space="preserve">
+    <value>Material</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Number" xml:space="preserve">
+    <value>Number</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_ProductType" xml:space="preserve">
+    <value>Product type</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Shape" xml:space="preserve">
+    <value>Shape</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Size1" xml:space="preserve">
+    <value>Size 1</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Size1Name" xml:space="preserve">
+    <value>Size 1 name</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Size2" xml:space="preserve">
+    <value>Size 2</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Size2Name" xml:space="preserve">
+    <value>Size 2 name</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Type" xml:space="preserve">
+    <value>Type</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="txt_Categories" xml:space="preserve">
+    <value>Categories</value>
+    <comment>Tab page title</comment>
+  </data>
+  <data name="txt_Companies" xml:space="preserve">
+    <value>Companies</value>
+    <comment>Tab page title</comment>
+  </data>
+  <data name="txt_ListEditors" xml:space="preserve">
+    <value>List editors</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="txt_MainTypes" xml:space="preserve">
+    <value>Main types</value>
+    <comment>Tab page title</comment>
+  </data>
+  <data name="txt_Materials" xml:space="preserve">
+    <value>Materials</value>
+    <comment>Tab page title</comment>
+  </data>
+  <data name="txt_Products" xml:space="preserve">
+    <value>Products</value>
+    <comment>Tab page title</comment>
+  </data>
+  <data name="txt_ProductTypes" xml:space="preserve">
+    <value>Product types</value>
+    <comment>Tab page title</comment>
+  </data>
+  <data name="txt_Shapes" xml:space="preserve">
+    <value>Shapes</value>
+    <comment>Tab page title</comment>
+  </data>
+  <data name="txt_Storages" xml:space="preserve">
+    <value>Storages</value>
+    <comment>Tab page title</comment>
+  </data>
+  <data name="txt_StorageTypes" xml:space="preserve">
+    <value>Storage types</value>
+    <comment>Tab page title</comment>
+  </data>
+  <data name="txt_Types" xml:space="preserve">
+    <value>Types</value>
+    <comment>Tab page title</comment>
+  </data>
+  <data name="des_SelectImagesRootDirectory" xml:space="preserve">
+    <value>Root directory for images is not set. Select one, please.</value>
+    <comment>Folder browse dialog sescription</comment>
+  </data>
+  <data name="lbl_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Image" xml:space="preserve">
+    <value>Image</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Name" xml:space="preserve">
+    <value>Name</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="txt_NewMainType" xml:space="preserve">
+    <value>New Main type</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="msg_FileNotExists_ContinueWOImage" xml:space="preserve">
+    <value>The file {0} does not exist. Continue without image?</value>
+    <comment>Message box text</comment>
+  </data>
+  <data name="txt_MainTypeImage" xml:space="preserve">
+    <value>Main type image</value>
+    <comment>Message box title</comment>
+  </data>
+  <data name="msg_OnlyPNG" xml:space="preserve">
+    <value>Only images of PNG type are allowed.</value>
+    <comment>Message box text</comment>
+  </data>
+  <data name="fil_PNG" xml:space="preserve">
+    <value>PNG images (*.png)|*.png</value>
+    <comment>PNG images filter</comment>
+  </data>
+  <data name="lbl_Size1Name" xml:space="preserve">
+    <value>Size 1 name</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Size2Name" xml:space="preserve">
+    <value>Size 2 name</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="txt_NewShape" xml:space="preserve">
+    <value>New Shape</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="txt_ShapeImage" xml:space="preserve">
+    <value>Shape image</value>
+    <comment>Message box title</comment>
+  </data>
+  <data name="txt_FileSystemError" xml:space="preserve">
+    <value>File system error</value>
+    <comment>Message box title</comment>
+  </data>
+  <data name="msg_CopyMainTypeImageError" xml:space="preserve">
+    <value>Failed to copy main type image. Main type created without image.</value>
+    <comment>Error message box text</comment>
+  </data>
+  <data name="msg_CopyShapeImageError" xml:space="preserve">
+    <value>Failed to copy shape image. Shape created without image.</value>
+    <comment>Error message box text</comment>
+  </data>
+  <data name="txt_NewObject" xml:space="preserve">
+    <value>New object</value>
+    <comment>Window title (unused)</comment>
+  </data>
+  <data name="txt_NewCategory" xml:space="preserve">
+    <value>New Category</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="txt_NewCompany" xml:space="preserve">
+    <value>New Company</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="txt_NewMaterial" xml:space="preserve">
+    <value>New Material</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="txt_NewProductType" xml:space="preserve">
+    <value>New Product type</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="txt_NewStorageType" xml:space="preserve">
+    <value>New Storage type</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="err_UnknownSimpleObject" xml:space="preserve">
+    <value>Unknown simple object: {0}</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="cmd_New" xml:space="preserve">
+    <value>New ...</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="lbl_ImageRoot" xml:space="preserve">
+    <value>Image root</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Number" xml:space="preserve">
+    <value>Number</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Type" xml:space="preserve">
+    <value>Type</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="txt_NewStorage" xml:space="preserve">
+    <value>New Storage</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="txt_Settings" xml:space="preserve">
+    <value>Settings</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="txt_ImageRoot" xml:space="preserve">
+    <value>Image root</value>
+    <comment>Message box title</comment>
+  </data>
+  <data name="msg_ImageRootPathError" xml:space="preserve">
+    <value>Image directory must be set to an existing directory.</value>
+    <comment>Error message box text</comment>
+  </data>
+  <data name="abb_Millimeters" xml:space="preserve">
+    <value>mm</value>
+    <comment>Millimeters abbreviation</comment>
+  </data>
+  <data name="cmd_Add" xml:space="preserve">
+    <value>Add ...</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="cmd_CapsSearchSimilar" xml:space="preserve">
+    <value>Search for similar caps ...</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="cmd_NewCategory" xml:space="preserve">
+    <value>New category ...</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="cmd_SaveCap" xml:space="preserve">
+    <value>Save cap</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="lbl_3D" xml:space="preserve">
+    <value>_3D</value>
+    <comment>Check box text (surface/writing)</comment>
+  </data>
+  <data name="lbl_AnonymousProduct" xml:space="preserve">
+    <value>Anonymous product</value>
+    <comment>Radio button text</comment>
+  </data>
+  <data name="lbl_AnonymousType" xml:space="preserve">
+    <value>Anonymous type</value>
+    <comment>Radio button text</comment>
+  </data>
+  <data name="lbl_Background" xml:space="preserve">
+    <value>Background</value>
+    <comment>Label text (color)</comment>
+  </data>
+  <data name="lbl_BottomText" xml:space="preserve">
+    <value>Bottom text</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Company" xml:space="preserve">
+    <value>Company</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Country" xml:space="preserve">
+    <value>Country</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Foreground" xml:space="preserve">
+    <value>Foreground</value>
+    <comment>Label text (color)</comment>
+  </data>
+  <data name="lbl_Glossy" xml:space="preserve">
+    <value>_Glossy</value>
+    <comment>Radio button text (surface)</comment>
+  </data>
+  <data name="lbl_Height" xml:space="preserve">
+    <value>Height</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_ID" xml:space="preserve">
+    <value>ID</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_MainPicture" xml:space="preserve">
+    <value>Main picture</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_MainType" xml:space="preserve">
+    <value>Main type</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Material" xml:space="preserve">
+    <value>Material</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Matting" xml:space="preserve">
+    <value>M_atting</value>
+    <comment>Radio button text (surface)</comment>
+  </data>
+  <data name="lbl_NewProduct" xml:space="preserve">
+    <value>New product</value>
+    <comment>Radio button text</comment>
+  </data>
+  <data name="lbl_NewType" xml:space="preserve">
+    <value>New type</value>
+    <comment>Radio button text</comment>
+  </data>
+  <data name="lbl_Note" xml:space="preserve">
+    <value>Note</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_ProductType" xml:space="preserve">
+    <value>Product type</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_SecondaryBackground" xml:space="preserve">
+    <value>Secondary background</value>
+    <comment>Label text (color)</comment>
+  </data>
+  <data name="lbl_SelectProduct" xml:space="preserve">
+    <value>Select product</value>
+    <comment>Radio button text</comment>
+  </data>
+  <data name="lbl_SelectType" xml:space="preserve">
+    <value>Select type</value>
+    <comment>Radio button text</comment>
+  </data>
+  <data name="lbl_Shape" xml:space="preserve">
+    <value>Shape</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_SideText" xml:space="preserve">
+    <value>Side text</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Storage" xml:space="preserve">
+    <value>Storage</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_SubtitleText" xml:space="preserve">
+    <value>Sub-title text</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_TitleText" xml:space="preserve">
+    <value>Title text</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_TopText" xml:space="preserve">
+    <value>Top text</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Year" xml:space="preserve">
+    <value>Year</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="tot_0NotSet" xml:space="preserve">
+    <value>0 - not set</value>
+    <comment>Tool tip text</comment>
+  </data>
+  <data name="tot_ISO3" xml:space="preserve">
+    <value>ISO 3 code</value>
+    <comment>Tool tip text</comment>
+  </data>
+  <data name="txt_CapType" xml:space="preserve">
+    <value>Type of cap</value>
+    <comment>Frame title</comment>
+  </data>
+  <data name="txt_CategoriesKeywords" xml:space="preserve">
+    <value>Categories &amp; Keywords</value>
+    <comment>Frame header</comment>
+  </data>
+  <data name="txt_Colors" xml:space="preserve">
+    <value>Colors</value>
+    <comment>Frame title</comment>
+  </data>
+  <data name="txt_CompanyProduct" xml:space="preserve">
+    <value>Company &amp; product</value>
+    <comment>Frame header</comment>
+  </data>
+  <data name="txt_Images" xml:space="preserve">
+    <value>Images</value>
+    <comment>Frame header</comment>
+  </data>
+  <data name="txt_Miscellaneous" xml:space="preserve">
+    <value>Miscellaneous</value>
+    <comment>Frame header</comment>
+  </data>
+  <data name="txt_Naming" xml:space="preserve">
+    <value>Naming and descriptions</value>
+    <comment>Frame title</comment>
+  </data>
+  <data name="txt_NewCap" xml:space="preserve">
+    <value>New Cap</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="txt_ProductSelection" xml:space="preserve">
+    <value>Product selection</value>
+    <comment>Frame header</comment>
+  </data>
+  <data name="txt_Texts" xml:space="preserve">
+    <value>Texts</value>
+    <comment>Frame header</comment>
+  </data>
+  <data name="txt_TypeInformation" xml:space="preserve">
+    <value>Type information</value>
+    <comment>Frame title</comment>
+  </data>
+  <data name="fil_ImageTypes" xml:space="preserve">
+    <value>All image types (*.jpg, *.png, *.bmp, *.gif, *.wmf, *.emf, *.tif, *.hdp)|*.jpg;*.jpeg;*.png;*.bmp;*.dib;*.gif;*.tif;*.tiff;*.hdp;*.wdp|JPEG images (*.jpg, *.jpeg)|*.jpg;*.jpeg|PNG images (*.png)|*.png|BMP images (*.bmp, *.dib)|*.bmp;*.dib|GIF images (*.gif)|*.gif|TIFF images (*.tif, *.tiff)|*.tiff;*.tif|HD Photo (*.hdp, *.wdp)|*.hdp;*.wdp|All files (*.*)|*.*</value>
+    <comment>All supported image types</comment>
+  </data>
+  <data name="txt_CapTypeImage" xml:space="preserve">
+    <value>Cap type image</value>
+    <comment>Message bo title</comment>
+  </data>
+  <data name="err_IconHasAlreadyBeenEncoded" xml:space="preserve">
+    <value>Icon has already been encoded.</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="err_ValueCannotBeNull" xml:space="preserve">
+    <value>{0} cannot be null.</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="err_ValueMustBeGreaterThanZero" xml:space="preserve">
+    <value>{0} must be greater than zero.</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="msg_ErrorCopyingFile" xml:space="preserve">
+    <value>Error copying file {0} to image directory ({1}).</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="txt_ImageCopyError" xml:space="preserve">
+    <value>Image copy error</value>
+    <comment>Error message box title</comment>
+  </data>
+  <data name="msg_ErrorCreatingResizedFile" xml:space="preserve">
+    <value>Error creating resized file {0}px.</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="txt_ImageResizeError" xml:space="preserve">
+    <value>Image resize error</value>
+    <comment>Error message box title</comment>
+  </data>
+  <data name="msg_CreatedFileWasNotDeleted" xml:space="preserve">
+    <value>Previusly created file {0} was not deleted. Orphaned file was left in image directory.</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="txt_ErrorRemovingFile" xml:space="preserve">
+    <value>Error removing file</value>
+    <comment>Error message box title</comment>
+  </data>
+  <data name="err_UnknownImageExtension" xml:space="preserve">
+    <value>Unknown image extension {0}.</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="CapKeywords" xml:space="preserve">
+    <value>cap</value>
+    <comment>Comma-separated (no space) list of keywords to write to IPTC metadata keywords for each image</comment>
+  </data>
+  <data name="msg_IPTCError" xml:space="preserve">
+    <value>Error writing IPTC to image file metadata.</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="txt_IPTC" xml:space="preserve">
+    <value>IPTC</value>
+    <comment>Message boxtitle</comment>
+  </data>
+  <data name="msg_MainTypeMustBeSelected" xml:space="preserve">
+    <value>Main type must be selected.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="txt_IncompleteEntry" xml:space="preserve">
+    <value>Incomplete entry</value>
+    <comment>Error message box title</comment>
+  </data>
+  <data name="msg_ShapeMustBeSelected" xml:space="preserve">
+    <value>Shape must be selected.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="msg_MaterialMustBeSelected" xml:space="preserve">
+    <value>Material must be selected.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="msg_StorageMustBeSelected" xml:space="preserve">
+    <value>Storage must be selected.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="msg_CapNameMustBeEntered" xml:space="preserve">
+    <value>Cap name must be entered.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="msg_AtLeastOneImageMustBeSelected" xml:space="preserve">
+    <value>At least one image must be selected.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="msg_CapTypeNameMustBeEntered" xml:space="preserve">
+    <value>Cap type name must be entered.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="msg_CapTypeAreadyExists" xml:space="preserve">
+    <value>Cap type with this name aready exists.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="txt_DuplicateEntry" xml:space="preserve">
+    <value>Duplicate entry</value>
+    <comment>Error message box title</comment>
+  </data>
+  <data name="msg_ProductNameMustBeEntered" xml:space="preserve">
+    <value>Product name must be entered.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="msg_ProductWithAreadyExists" xml:space="preserve">
+    <value>Product with this name aready exists.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="msg_CountryCodeMustBeISO3Code" xml:space="preserve">
+    <value>Country code, when set, must be ISO-3 code (3 letters).</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="txt_InvalidInput" xml:space="preserve">
+    <value>Invalid input</value>
+    <comment>Error message box title</comment>
+  </data>
+  <data name="msg_ErrorCommittingChangesToDatabase" xml:space="preserve">
+    <value>Error committing changes to database.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="txt_DatabaseError" xml:space="preserve">
+    <value>Database error</value>
+    <comment>Error message box title</comment>
+  </data>
+  <data name="mni_About" xml:space="preserve">
+    <value>_About ...</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_Help" xml:space="preserve">
+    <value>_Help</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="lbl_AnotherPictures" xml:space="preserve">
+    <value>Another pictures</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Foreground2" xml:space="preserve">
+    <value>Foreground 2</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_HasBottom" xml:space="preserve">
+    <value>Has bottom</value>
+    <comment>CheckBox text</comment>
+  </data>
+  <data name="lbl_HasSide" xml:space="preserve">
+    <value>Has side</value>
+    <comment>CheckBox text</comment>
+  </data>
+  <data name="lbl_PictureType" xml:space="preserve">
+    <value>Picture type</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="msg_AnotherPictures_MainPicture" xml:space="preserve">
+    <value>When another pictures description is provided, main picture description must be provided as well.</value>
+    <comment>Invalid user input message</comment>
+  </data>
+  <data name="msg_BottomText_HasBottom" xml:space="preserve">
+    <value>When bottom text is set, has bottom must be checked.</value>
+    <comment>Invalid user input message</comment>
+  </data>
+  <data name="msg_MainPicture_PictureType" xml:space="preserve">
+    <value>When main picture description is provided picture type must be set.</value>
+    <comment>Invalid user input message</comment>
+  </data>
+  <data name="msg_SideText_HasSide" xml:space="preserve">
+    <value>When side text is set, has side must be checked.</value>
+    <comment>Invalid user input message</comment>
+  </data>
+  <data name="txt_ImageDrawing" xml:space="preserve">
+    <value>Drawing</value>
+    <comment>ComboBox item</comment>
+  </data>
+  <data name="txt_ImageGeometry" xml:space="preserve">
+    <value>Geometry</value>
+    <comment>ComboBox item</comment>
+  </data>
+  <data name="txt_ImageLogo" xml:space="preserve">
+    <value>Logo</value>
+    <comment>ComboBox item</comment>
+  </data>
+  <data name="txt_ImageNo" xml:space="preserve">
+    <value>&lt;no image&gt;</value>
+    <comment>ComboBox item</comment>
+  </data>
+  <data name="txt_ImagePhoto" xml:space="preserve">
+    <value>Photo</value>
+    <comment>ComboBox item</comment>
+  </data>
+  <data name="msg_ForeColor_ForeColor2" xml:space="preserve">
+    <value>When foreground color 2 is set, foreground color 1 must be set ase well.</value>
+    <comment>Invalid user input message</comment>
+  </data>
+  <data name="ex_CapImageConverterParameter" xml:space="preserve">
+    <value>Converter parameter must be null or integer 64 or 256.</value>
+  </data>
+</root>

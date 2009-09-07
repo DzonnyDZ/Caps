@@ -1,0 +1,675 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="txt_Caps" xml:space="preserve">
+    <value>Víčka</value>
+  </data>
+  <data name="clr_Black" xml:space="preserve">
+    <value>Černá</value>
+  </data>
+  <data name="clr_Blue" xml:space="preserve">
+    <value>Modrá</value>
+  </data>
+  <data name="clr_Brown" xml:space="preserve">
+    <value>Hnědá</value>
+  </data>
+  <data name="clr_Gold" xml:space="preserve">
+    <value>Zlatá</value>
+  </data>
+  <data name="clr_Gray" xml:space="preserve">
+    <value>Šedivá</value>
+  </data>
+  <data name="clr_Green" xml:space="preserve">
+    <value>Zelená</value>
+  </data>
+  <data name="clr_LightBlue" xml:space="preserve">
+    <value>Světle modrá</value>
+  </data>
+  <data name="clr_Lime" xml:space="preserve">
+    <value>Světle zelená</value>
+  </data>
+  <data name="clr_Magenta" xml:space="preserve">
+    <value>Fialová</value>
+  </data>
+  <data name="clr_Orange" xml:space="preserve">
+    <value>Oranžová</value>
+  </data>
+  <data name="clr_Pink" xml:space="preserve">
+    <value>Růžová</value>
+  </data>
+  <data name="clr_Red" xml:space="preserve">
+    <value>Červená</value>
+  </data>
+  <data name="clr_Silver" xml:space="preserve">
+    <value>Stříbrná</value>
+  </data>
+  <data name="clr_Transparent" xml:space="preserve">
+    <value>Průhledná</value>
+  </data>
+  <data name="clr_White" xml:space="preserve">
+    <value>Bílá</value>
+  </data>
+  <data name="clr_Yellow" xml:space="preserve">
+    <value>Žlutá</value>
+  </data>
+  <data name="cmd_Cancel" xml:space="preserve">
+    <value>Strono</value>
+  </data>
+  <data name="cmd_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="mni_Configuration" xml:space="preserve">
+    <value>_Nastavení</value>
+  </data>
+  <data name="mni_EditLists" xml:space="preserve">
+    <value>Upravovat _číselníky ...</value>
+  </data>
+  <data name="mni_Exit" xml:space="preserve">
+    <value>_Konec</value>
+  </data>
+  <data name="mni_File" xml:space="preserve">
+    <value>_Soubor</value>
+  </data>
+  <data name="mni_More" xml:space="preserve">
+    <value>Více ...</value>
+  </data>
+  <data name="mni_NewCap" xml:space="preserve">
+    <value>_Nové víčko</value>
+  </data>
+  <data name="mni_Settings" xml:space="preserve">
+    <value>_Předvolby ...</value>
+  </data>
+  <data name="tot_NoColor" xml:space="preserve">
+    <value>Žádná barva nezvolena</value>
+  </data>
+  <data name="txt_SelectDatabase" xml:space="preserve">
+    <value>Výběr databáze</value>
+  </data>
+  <data name="ex_UnsupportedDataType" xml:space="preserve">
+    <value>Nepodporovaný datový typ {0}</value>
+  </data>
+  <data name="ex_ConvertsOnlyToBool" xml:space="preserve">
+    <value>{0} převádí jen na boolean.</value>
+  </data>
+  <data name="ex_CanConvertBackOnlyFromFalse" xml:space="preserve">
+    <value>{0} může převést zpět jen z false.</value>
+  </data>
+  <data name="ex_CannotConvertBack" xml:space="preserve">
+    <value>{0} namůže převádět zpět.</value>
+  </data>
+  <data name="cmd_Apply" xml:space="preserve">
+    <value>Použít</value>
+  </data>
+  <data name="coh_Company" xml:space="preserve">
+    <value>Firma</value>
+  </data>
+  <data name="coh_Description" xml:space="preserve">
+    <value>Popis</value>
+  </data>
+  <data name="coh_Height" xml:space="preserve">
+    <value>Výška</value>
+  </data>
+  <data name="coh_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="coh_MainType" xml:space="preserve">
+    <value>Hlavní typ</value>
+  </data>
+  <data name="coh_Material" xml:space="preserve">
+    <value>Materiál</value>
+  </data>
+  <data name="coh_Name" xml:space="preserve">
+    <value>Název</value>
+  </data>
+  <data name="coh_Number" xml:space="preserve">
+    <value>Číslo</value>
+  </data>
+  <data name="coh_ProductType" xml:space="preserve">
+    <value>Typ produktu</value>
+  </data>
+  <data name="coh_Shape" xml:space="preserve">
+    <value>Tvar</value>
+  </data>
+  <data name="coh_Size1" xml:space="preserve">
+    <value>Velikost 1</value>
+  </data>
+  <data name="coh_Size1Name" xml:space="preserve">
+    <value>Název velikosti 1</value>
+  </data>
+  <data name="coh_Size2" xml:space="preserve">
+    <value>Velikost 2</value>
+  </data>
+  <data name="coh_Size2Name" xml:space="preserve">
+    <value>Název velikosti 2</value>
+  </data>
+  <data name="coh_Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="txt_Categories" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="txt_Companies" xml:space="preserve">
+    <value>Firmy</value>
+  </data>
+  <data name="txt_ListEditors" xml:space="preserve">
+    <value>Editor číselníků</value>
+  </data>
+  <data name="txt_MainTypes" xml:space="preserve">
+    <value>Hlavní typy</value>
+  </data>
+  <data name="txt_Materials" xml:space="preserve">
+    <value>Materiály</value>
+  </data>
+  <data name="txt_Products" xml:space="preserve">
+    <value>Produkty</value>
+  </data>
+  <data name="txt_ProductTypes" xml:space="preserve">
+    <value>Typy produktů</value>
+  </data>
+  <data name="txt_Shapes" xml:space="preserve">
+    <value>Tvary</value>
+  </data>
+  <data name="txt_Storages" xml:space="preserve">
+    <value>Úožiště</value>
+  </data>
+  <data name="txt_StorageTypes" xml:space="preserve">
+    <value>Typy úložišť</value>
+  </data>
+  <data name="txt_Types" xml:space="preserve">
+    <value>Typy</value>
+  </data>
+  <data name="des_SelectImagesRootDirectory" xml:space="preserve">
+    <value>Kořenová složka pro obrázky není nastavena. Vyberte, prosím, nějakou.</value>
+  </data>
+  <data name="lbl_Description" xml:space="preserve">
+    <value>Popis</value>
+  </data>
+  <data name="lbl_Image" xml:space="preserve">
+    <value>Obrázek</value>
+  </data>
+  <data name="lbl_Name" xml:space="preserve">
+    <value>Název</value>
+  </data>
+  <data name="txt_NewMainType" xml:space="preserve">
+    <value>Nový hlavní typ</value>
+  </data>
+  <data name="msg_FileNotExists_ContinueWOImage" xml:space="preserve">
+    <value>Soubor {0} neexistuje. Pokračovat bet obrázku?</value>
+  </data>
+  <data name="txt_MainTypeImage" xml:space="preserve">
+    <value>Obrázek hlavního typu</value>
+  </data>
+  <data name="msg_OnlyPNG" xml:space="preserve">
+    <value>Povoleny jsou jen obrázky typu PNG.</value>
+  </data>
+  <data name="fil_PNG" xml:space="preserve">
+    <value>PNG obrázky (*.png)|*.png</value>
+  </data>
+  <data name="lbl_Size1Name" xml:space="preserve">
+    <value>Název velikosti 1</value>
+  </data>
+  <data name="lbl_Size2Name" xml:space="preserve">
+    <value>Název velikosti 2</value>
+  </data>
+  <data name="txt_NewShape" xml:space="preserve">
+    <value>Nový tvar</value>
+  </data>
+  <data name="txt_ShapeImage" xml:space="preserve">
+    <value>Obrázek tvaru</value>
+  </data>
+  <data name="txt_FileSystemError" xml:space="preserve">
+    <value>Chyba souborového systému</value>
+  </data>
+  <data name="msg_CopyMainTypeImageError" xml:space="preserve">
+    <value>Nepodařilo se zkopírovat obrázek hlavního typu. Hlavní typ byl vytvořen bez obrázku.</value>
+  </data>
+  <data name="msg_CopyShapeImageError" xml:space="preserve">
+    <value>Nepodařilo se zkopírovat obrázek tvaru. Tvar byl vytvořen bez obrázku.</value>
+  </data>
+  <data name="txt_NewObject" xml:space="preserve">
+    <value>Nový objekt</value>
+  </data>
+  <data name="txt_NewCategory" xml:space="preserve">
+    <value>Nová kategorie</value>
+  </data>
+  <data name="txt_NewCompany" xml:space="preserve">
+    <value>Nová firmy</value>
+  </data>
+  <data name="txt_NewMaterial" xml:space="preserve">
+    <value>Nový materiál</value>
+  </data>
+  <data name="txt_NewProductType" xml:space="preserve">
+    <value>Nový typ produktu</value>
+  </data>
+  <data name="txt_NewStorageType" xml:space="preserve">
+    <value>Nový typ úložiště</value>
+  </data>
+  <data name="err_UnknownSimpleObject" xml:space="preserve">
+    <value>Neznámý jednoduchý objekt: {0}</value>
+  </data>
+  <data name="cmd_New" xml:space="preserve">
+    <value>Nový ...</value>
+  </data>
+  <data name="lbl_ImageRoot" xml:space="preserve">
+    <value>Kořen obrázků</value>
+  </data>
+  <data name="lbl_Number" xml:space="preserve">
+    <value>Číso</value>
+  </data>
+  <data name="lbl_Type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="txt_NewStorage" xml:space="preserve">
+    <value>Nové úložiště</value>
+  </data>
+  <data name="txt_Settings" xml:space="preserve">
+    <value>Nastavení</value>
+  </data>
+  <data name="txt_ImageRoot" xml:space="preserve">
+    <value>Kořen obrázků</value>
+  </data>
+  <data name="msg_ImageRootPathError" xml:space="preserve">
+    <value>Složka pro obrázky musí být nastavena na existující složku.</value>
+  </data>
+  <data name="abb_Millimeters" xml:space="preserve">
+    <value>mm</value>
+  </data>
+  <data name="cmd_Add" xml:space="preserve">
+    <value>Přidat ...</value>
+  </data>
+  <data name="cmd_CapsSearchSimilar" xml:space="preserve">
+    <value>Hledat podobná víčka ...</value>
+  </data>
+  <data name="cmd_NewCategory" xml:space="preserve">
+    <value>Nová kategorie ...</value>
+  </data>
+  <data name="cmd_SaveCap" xml:space="preserve">
+    <value>Uložit víčko</value>
+  </data>
+  <data name="lbl_3D" xml:space="preserve">
+    <value>_3D</value>
+  </data>
+  <data name="lbl_AnonymousProduct" xml:space="preserve">
+    <value>Anonymní produkt</value>
+  </data>
+  <data name="lbl_AnonymousType" xml:space="preserve">
+    <value>Anonymní typ</value>
+  </data>
+  <data name="lbl_Background" xml:space="preserve">
+    <value>Pozadí</value>
+  </data>
+  <data name="lbl_BottomText" xml:space="preserve">
+    <value>Text zespoda</value>
+  </data>
+  <data name="lbl_Company" xml:space="preserve">
+    <value>Firma</value>
+  </data>
+  <data name="lbl_Country" xml:space="preserve">
+    <value>Stát</value>
+  </data>
+  <data name="lbl_Foreground" xml:space="preserve">
+    <value>Popředí</value>
+  </data>
+  <data name="lbl_Glossy" xml:space="preserve">
+    <value>_Lesklý</value>
+  </data>
+  <data name="lbl_Height" xml:space="preserve">
+    <value>Výška</value>
+  </data>
+  <data name="lbl_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="lbl_MainPicture" xml:space="preserve">
+    <value>Hlavní obrázek</value>
+  </data>
+  <data name="lbl_MainType" xml:space="preserve">
+    <value>Hlavní typ</value>
+  </data>
+  <data name="lbl_Material" xml:space="preserve">
+    <value>Materál</value>
+  </data>
+  <data name="lbl_Matting" xml:space="preserve">
+    <value>_Matný</value>
+  </data>
+  <data name="lbl_NewProduct" xml:space="preserve">
+    <value>Nový produkt</value>
+  </data>
+  <data name="lbl_NewType" xml:space="preserve">
+    <value>Nový typ</value>
+  </data>
+  <data name="lbl_Note" xml:space="preserve">
+    <value>Poznámka</value>
+  </data>
+  <data name="lbl_ProductType" xml:space="preserve">
+    <value>Typ produktu</value>
+  </data>
+  <data name="lbl_SecondaryBackground" xml:space="preserve">
+    <value>2. pozadí</value>
+  </data>
+  <data name="lbl_SelectProduct" xml:space="preserve">
+    <value>Vybrat produkt</value>
+  </data>
+  <data name="lbl_SelectType" xml:space="preserve">
+    <value>Vybrat typ</value>
+  </data>
+  <data name="lbl_Shape" xml:space="preserve">
+    <value>Tvar</value>
+  </data>
+  <data name="lbl_SideText" xml:space="preserve">
+    <value>Text zboku</value>
+  </data>
+  <data name="lbl_Storage" xml:space="preserve">
+    <value>Úložiště</value>
+  </data>
+  <data name="lbl_SubtitleText" xml:space="preserve">
+    <value>Podtitul</value>
+  </data>
+  <data name="lbl_TitleText" xml:space="preserve">
+    <value>Titulní text</value>
+  </data>
+  <data name="lbl_TopText" xml:space="preserve">
+    <value>Text zvrchu</value>
+  </data>
+  <data name="lbl_Year" xml:space="preserve">
+    <value>Rok</value>
+  </data>
+  <data name="tot_0NotSet" xml:space="preserve">
+    <value>0 - nenastaveno</value>
+  </data>
+  <data name="tot_ISO3" xml:space="preserve">
+    <value>ISO 3 kód</value>
+  </data>
+  <data name="txt_CapType" xml:space="preserve">
+    <value>Typ víčka</value>
+  </data>
+  <data name="txt_CategoriesKeywords" xml:space="preserve">
+    <value>Kategorie a klíčová slova</value>
+  </data>
+  <data name="txt_Colors" xml:space="preserve">
+    <value>Barvy</value>
+  </data>
+  <data name="txt_CompanyProduct" xml:space="preserve">
+    <value>Firma a produkt</value>
+  </data>
+  <data name="txt_Images" xml:space="preserve">
+    <value>Obrázky</value>
+  </data>
+  <data name="txt_Miscellaneous" xml:space="preserve">
+    <value>Různé</value>
+  </data>
+  <data name="txt_Naming" xml:space="preserve">
+    <value>Pojmenování a popis</value>
+  </data>
+  <data name="txt_NewCap" xml:space="preserve">
+    <value>Nové víčko</value>
+  </data>
+  <data name="txt_ProductSelection" xml:space="preserve">
+    <value>Výběr produktu</value>
+  </data>
+  <data name="txt_Texts" xml:space="preserve">
+    <value>Texty</value>
+  </data>
+  <data name="txt_TypeInformation" xml:space="preserve">
+    <value>Informace o typu</value>
+  </data>
+  <data name="fil_ImageTypes" xml:space="preserve">
+    <value>Všechny typy obrázků (*.jpg, *.png, *.bmp, *.gif, *.wmf, *.emf, *.tif, *.hdp)|*.jpg;*.jpeg;*.png;*.bmp;*.dib;*.gif;*.tif;*.tiff;*.hdp;*.wdp|JPEG obrázky (*.jpg, *.jpeg)|*.jpg;*.jpeg|PNG obrázky (*.png)|*.png|BMP obrázky (*.bmp, *.dib)|*.bmp;*.dib|GIF obrázky (*.gif)|*.gif|TIFF obrázky (*.tif, *.tiff)|*.tiff;*.tif|HD Photo (*.hdp, *.wdp)|*.hdp;*.wdp|Všechny soubory (*.*)|*.*</value>
+  </data>
+  <data name="txt_CapTypeImage" xml:space="preserve">
+    <value>Obrázek typu víčka</value>
+  </data>
+  <data name="err_IconHasAlreadyBeenEncoded" xml:space="preserve">
+    <value>Ikona již byla zakódována.</value>
+  </data>
+  <data name="err_ValueCannotBeNull" xml:space="preserve">
+    <value>{0} nesmí být null.</value>
+  </data>
+  <data name="err_ValueMustBeGreaterThanZero" xml:space="preserve">
+    <value>{0} musí být větší než nula.</value>
+  </data>
+  <data name="msg_ErrorCopyingFile" xml:space="preserve">
+    <value>Chyba při kopírování souboru {0} do složky obrázků ({1}).</value>
+  </data>
+  <data name="txt_ImageCopyError" xml:space="preserve">
+    <value>Chyba kopírování obrázku</value>
+  </data>
+  <data name="msg_ErrorCreatingResizedFile" xml:space="preserve">
+    <value>Chyba při vytváření obrázku se změněnou velikostí {0}px.</value>
+  </data>
+  <data name="txt_ImageResizeError" xml:space="preserve">
+    <value>Chyba změny velikosti obrázku</value>
+  </data>
+  <data name="msg_CreatedFileWasNotDeleted" xml:space="preserve">
+    <value>Dříve vytvořený soubor {0} se nepodařilo smazat. Ve složce obrázků zůstal osiřelý soubor.</value>
+  </data>
+  <data name="txt_ErrorRemovingFile" xml:space="preserve">
+    <value>Chyba při odstraňování souboru</value>
+  </data>
+  <data name="err_UnknownImageExtension" xml:space="preserve">
+    <value>Neznámá přípona souboru {0}.</value>
+  </data>
+  <data name="CapKeywords" xml:space="preserve">
+    <value>víčko,zátka</value>
+  </data>
+  <data name="msg_IPTCError" xml:space="preserve">
+    <value>Chyba při zápisu IPTC do metadat obrázku.</value>
+  </data>
+  <data name="txt_IPTC" xml:space="preserve">
+    <value>IPTC</value>
+  </data>
+  <data name="msg_MainTypeMustBeSelected" xml:space="preserve">
+    <value>Hlavní typ musí být vybrán.</value>
+  </data>
+  <data name="txt_IncompleteEntry" xml:space="preserve">
+    <value>Nekompletní zadání</value>
+  </data>
+  <data name="msg_ShapeMustBeSelected" xml:space="preserve">
+    <value>Tvar musí bát vybrán.</value>
+  </data>
+  <data name="msg_MaterialMustBeSelected" xml:space="preserve">
+    <value>Materiál musí být vybrán.</value>
+  </data>
+  <data name="msg_StorageMustBeSelected" xml:space="preserve">
+    <value>Úložiště musí být vybráno.</value>
+  </data>
+  <data name="msg_CapNameMustBeEntered" xml:space="preserve">
+    <value>Název víčka musí být zadán.</value>
+  </data>
+  <data name="msg_AtLeastOneImageMustBeSelected" xml:space="preserve">
+    <value>Musí být zvolen alespoň jeden obrázek.</value>
+  </data>
+  <data name="msg_CapTypeNameMustBeEntered" xml:space="preserve">
+    <value>Název typu víčka musí být zadán.</value>
+  </data>
+  <data name="msg_CapTypeAreadyExists" xml:space="preserve">
+    <value>Typ víčka s tímto názvem již existuje.</value>
+  </data>
+  <data name="txt_DuplicateEntry" xml:space="preserve">
+    <value>Duplicitní položka</value>
+  </data>
+  <data name="msg_ProductNameMustBeEntered" xml:space="preserve">
+    <value>Název produktu musí být zadán.</value>
+  </data>
+  <data name="msg_ProductWithAreadyExists" xml:space="preserve">
+    <value>Produkt s tímto názvem již existuje.</value>
+  </data>
+  <data name="msg_CountryCodeMustBeISO3Code" xml:space="preserve">
+    <value>Kód státu musí, pokud je zadán, být ISO-3 kód (3 znakový).</value>
+  </data>
+  <data name="txt_InvalidInput" xml:space="preserve">
+    <value>Neplatný vstup</value>
+  </data>
+  <data name="msg_ErrorCommittingChangesToDatabase" xml:space="preserve">
+    <value>Chyba při potvrzování změn do databáze.</value>
+  </data>
+  <data name="txt_DatabaseError" xml:space="preserve">
+    <value>Chyba databáze</value>
+  </data>
+  <data name="mni_About" xml:space="preserve">
+    <value>_O ...</value>
+  </data>
+  <data name="mni_Help" xml:space="preserve">
+    <value>_Nápověda</value>
+  </data>
+  <data name="lbl_AnotherPictures" xml:space="preserve">
+    <value>Další obrázky</value>
+  </data>
+  <data name="lbl_Foreground2" xml:space="preserve">
+    <value>Popředí 2</value>
+  </data>
+  <data name="lbl_HasBottom" xml:space="preserve">
+    <value>Má spodek</value>
+  </data>
+  <data name="lbl_HasSide" xml:space="preserve">
+    <value>Má bok</value>
+  </data>
+  <data name="lbl_PictureType" xml:space="preserve">
+    <value>Typ obrázku</value>
+  </data>
+  <data name="msg_AnotherPictures_MainPicture" xml:space="preserve">
+    <value>Když je zadán popis dalšách obrázků, musí být uršen popis hlavního obrázku.</value>
+  </data>
+  <data name="msg_BottomText_HasBottom" xml:space="preserve">
+    <value>Když je zadán text spodku, má spodek musí být zaškrtnuto.</value>
+  </data>
+  <data name="msg_MainPicture_PictureType" xml:space="preserve">
+    <value>Když je zadán popis hlavního obrázku, musí být určen typ obrázku.</value>
+  </data>
+  <data name="msg_SideText_HasSide" xml:space="preserve">
+    <value>Když je zadán boční text, má bok musí být zaškrtnuto.</value>
+  </data>
+  <data name="txt_ImageDrawing" xml:space="preserve">
+    <value>Kresba</value>
+  </data>
+  <data name="txt_ImageGeometry" xml:space="preserve">
+    <value>Geometrie</value>
+  </data>
+  <data name="txt_ImageLogo" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="txt_ImageNo" xml:space="preserve">
+    <value>&lt;bez obrázku&gt;</value>
+  </data>
+  <data name="txt_ImagePhoto" xml:space="preserve">
+    <value>Fotka</value>
+  </data>
+  <data name="msg_ForeColor_ForeColor2" xml:space="preserve">
+    <value>Když je zadána barva pozadí 2, musí být zadána i barva pozadí 1.</value>
+  </data>
+</root>

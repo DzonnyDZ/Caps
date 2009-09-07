@@ -1,0 +1,26 @@
+﻿<Window x:Class="winMain"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:res="clr-namespace:Caps.Console.My.Resources"
+    Title="{x:Static res:Resources.txt_Caps}" Height="300" Width="300" Icon="/CapsConsole;component/Resources/Cap.ico" Name="winMain">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close" x:Name="cmdClose"/>
+        <CommandBinding Command="ApplicationCommands.New" x:Name="cmdNew"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Menu Height="22" Margin="0" Name="mnuMainMenu" VerticalAlignment="Top" >
+            <MenuItem Header="{x:Static res:Resources.mni_File}" Name="mniFIle">
+                <MenuItem Header="{x:Static res:Resources.mni_NewCap}" Name="mniNewCap" Command="ApplicationCommands.New"/>
+                <Separator/>
+                <MenuItem Header="{x:Static res:Resources.mni_Exit}" Name="mniFileExit" Command="ApplicationCommands.Close" InputGestureText="Alt+F4"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static res:Resources.mni_Configuration}" Name="mniConfiguration">
+                <MenuItem Header="{x:Static res:Resources.mni_EditLists}" Name="mniEditLists" />
+                <MenuItem Header="{x:Static res:Resources.mni_Settings}" Name="mniSettings" />
+            </MenuItem>
+            <MenuItem Header="{x:Static res:Resources.mni_Help}"  Name="mniHelp">
+                <MenuItem Header="{x:Static res:Resources.mni_About}" Name="mniAbout"/>
+            </MenuItem> 
+        </Menu>
+    </Grid>
+</Window>

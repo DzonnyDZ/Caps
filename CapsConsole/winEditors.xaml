@@ -1,0 +1,133 @@
+﻿<Window x:Class="winEditors"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:my="clr-namespace:Caps.Console" 
+        xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
+        xmlns:res="clr-namespace:Caps.Console.My.Resources"
+    Title="{x:Static res:Resources.txt_ListEditors}" Height="336" Width="813" ShowInTaskbar="False" Icon="/CapsConsole;component/Resources/Cap.ico">
+    <Window.Resources>
+        <Style TargetType="TextBox" x:Key="MultilineInGrid">
+            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="AcceptsReturn" Value="True"/>
+            <Setter Property="MinLines" Value="2"/>
+        </Style>
+        <my:Converters x:Key="NullConverter"/>
+    </Window.Resources>
+    <Grid  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="25" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl Height="auto" Width="auto" Name="tabEditors" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch">
+            <TabItem Header="{x:Static res:Resources.txt_Materials}" Name="tapMaterials">
+                <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrMaterials" >
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding MaterialID, Mode=OneWay}"  />
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding Name, Mode=TwoWay}"  />
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
+            <TabItem Header="{x:Static res:Resources.txt_Shapes}" Name="tapShapes">
+                <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrShapes">
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding ShapeID, Mode=OneWay}"  />
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding Name, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Size1Name}" Binding="{Binding Size1Name, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Size2Name}" Binding="{Binding Size2Name, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
+            <TabItem Header="{x:Static res:Resources.txt_MainTypes}" Name="tapMainTypes">
+                <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrMainTypes" >
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding MainTypeID, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding TypeName, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding TypeName, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
+            <TabItem Header="{x:Static res:Resources.txt_Categories}" Name="tapCategories">
+                <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrCategories" >
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding CategoryID, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding CategoryName, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
+            <TabItem Header="{x:Static res:Resources.txt_Types}" Name="tapTypes">
+                <toolkit:DataGrid AutoGenerateColumns="False"  Name="dgrTypes" >
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding CapTypeID, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding TypeName, Mode=TwoWay}"/>
+                        <toolkit:DataGridComboBoxColumn Header="{x:Static res:Resources.coh_Shape}" DisplayMemberPath="Name" SelectedItemBinding="{Binding Shape, Mode=TwoWay, Converter={StaticResource NullConverter}}" x:Name="cmcTypes_Shape" SortMemberPath="Name" />
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Size1}" Binding="{Binding Size, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Size2}" Binding="{Binding Size2, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Height}" Binding="{Binding Height, Mode=TwoWay}"/>
+                        <toolkit:DataGridComboBoxColumn Header="{x:Static res:Resources.coh_Material}" DisplayMemberPath="Name" SelectedItemBinding="{Binding Material, Mode=TwoWay, Converter={StaticResource NullConverter}}" x:Name="cmcTypes_Material" SortMemberPath="Name" />
+                        <toolkit:DataGridComboBoxColumn Header="{x:Static res:Resources.coh_MainType}" DisplayMemberPath="TypeName" SelectedItemBinding="{Binding MainType, Mode=TwoWay, Converter={StaticResource NullConverter}}" x:Name="cmcTypes_MainType" SortMemberPath="TypeName" />
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
+            <TabItem Header="{x:Static res:Resources.txt_Companies}" Name="tapCompanies">
+                <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrCompanies" >
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding CompanyID, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding CompanyName, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
+            <TabItem Header="{x:Static res:Resources.txt_ProductTypes}" Name="tapProductTypes">
+                <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrProductTypes" >
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding ProductTypeID, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding ProductTypeName, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
+            <TabItem Header="{x:Static res:Resources.txt_Products}" Name="tapProducts">
+                <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrProducts" >
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding ProductD, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding ProductName, Mode=TwoWay}"/>
+                        <toolkit:DataGridComboBoxColumn Header="{x:Static res:Resources.coh_Company}" DisplayMemberPath="CompanyName" SelectedItemBinding="{Binding Company, Mode=TwoWay, Converter={StaticResource NullConverter}}" x:Name="cmcProduct_Company" SortMemberPath="CompanyName"/>
+                        <toolkit:DataGridComboBoxColumn Header="{x:Static res:Resources.coh_ProductType}" DisplayMemberPath="ProductTypeName" SelectedItemBinding="{Binding ProductType, Mode=TwoWay, Converter={StaticResource NullConverter}}" x:Name="cmcProduct_ProductType" SortMemberPath="ProductTypeName" />
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
+            <TabItem Header="{x:Static res:Resources.txt_Storages}" Name="tapStorages">
+                <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrStorages">
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding StorageID, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Number}" Binding="{Binding StorageNumber, Mode=TwoWay}"/>
+                        <toolkit:DataGridComboBoxColumn Header="{x:Static res:Resources.coh_Type}" DisplayMemberPath="Name"  SelectedItemBinding="{Binding StorageType, Mode=TwoWay, Converter={StaticResource NullConverter}}" x:Name="cmcStorage_StorageType" SortMemberPath="Name"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
+            <TabItem Header="{x:Static res:Resources.txt_StorageTypes}" Name="tapStorageTypes">
+                <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrStorageTypes">
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding StorageTypeID, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding Name, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
+        </TabControl>
+        <UniformGrid Columns="3" Rows="1"  Height="25" Width="Auto" Grid.Row="1">
+            <Button Name="btnOK" Width="auto" HorizontalAlignment="Center" Padding="3,0,3,0" Content="{x:Static res:Resources.cmd_OK}" />
+            <Button Name="btnApply" Width="auto" HorizontalAlignment="Center" Padding="3,0,3,0" Content="{x:Static res:Resources.cmd_Apply}"/>
+            <Button Name="btnCancel" Width="auto" HorizontalAlignment="Center"  Padding="3,0,3,0" IsCancel="True" Content="{x:Static res:Resources.cmd_Cancel}"/>
+        </UniformGrid>
+    </Grid>
+</Window>

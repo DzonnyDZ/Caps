@@ -1,0 +1,38 @@
+﻿<Window x:Class="winSettings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:Caps.Console"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:res="clr-namespace:Caps.Console.My.Resources"
+    Title="{x:Static res:Resources.txt_Settings}" Height="250" Width="409" Icon="/CapsConsole;component/Resources/Cap.ico" ShowInTaskbar="False" MinWidth="400" MinHeight="250" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <!--<my:PlusConverter x:Key="PlusConverter"/>
+        <sys:Int32 x:Key="Minus1">-1</sys:Int32>-->
+    </Window.Resources>
+    <Grid Name="grdMain">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Height="auto" HorizontalAlignment="Right" Name="lblImageRoot" VerticalAlignment="Center" Width="auto" Content="{x:Static res:Resources.lbl_ImageRoot}"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Height="21.96" Name="txtImageRoot" VerticalAlignment="Center" />
+        <Button Grid.Column="2" Grid.Row="0" Height="auto" HorizontalAlignment="Center"  Name="btnImageRoot" VerticalAlignment="Center" Width="auto" Padding="3,0">...</Button>
+        <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions >
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Button Grid.Column="0" Name="btnOK" Width="auto" Padding="3,0" HorizontalAlignment="Center" IsDefault="True" Content="{x:Static res:Resources.cmd_OK}"/>
+            <Button Grid.Column="2" Name="btnCancel" Width="auto" Padding="3,0" HorizontalAlignment="Center" IsCancel="True" Content="{x:Static res:Resources.cmd_Cancel}"/>
+        </Grid>
+    </Grid>
+</Window>
+                       
