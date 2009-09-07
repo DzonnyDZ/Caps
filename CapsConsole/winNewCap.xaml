@@ -219,8 +219,8 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                 <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtSubTitle" />
                 <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_MainPicture}"/>
                 <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtMainPicture" />
-                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_AnotherPictures}"/>
-                <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtAnotherPictures" />
+                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_AnotherPictures}"/>
+                <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtAnotherPictures" AcceptsReturn="True" MinLines="2" TextWrapping="WrapWithOverflow"/>
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_PictureType}"/>
                 <ComboBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="cmbPictureType">
                     <ComboBox.Items>

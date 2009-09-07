@@ -10,6 +10,7 @@
         <my:NullFalseConverter x:Key="NullFalseConverter"/>
         <my:RelativePathConverter x:Key="RelativePathConverter"/>
         <my:CapImageConverter x:Key="CapImageConverter"/>
+        <my:PictureTypeConverter x:Key="PictureTypeConverter"/>
     </Window.Resources>
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> 
         <Grid.ColumnDefinitions>
@@ -31,12 +32,12 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <Image
-                            Source="{Binding Path='Images[1]/RelativePath',
+                        <Image MaxWidth="150" MaxHeight="150"
+                            Source="{Binding Path=Images[0].RelativePath,
                                              Converter={StaticResource CapImageConverter},
                                              Mode=OneWay}"
                             HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0"/>
-                        <Label Content=" " HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                        <Label Content="{Binding CapName, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -69,25 +70,16 @@
                     </Grid.RowDefinitions>
                     <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Name}"/>
                     <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding CapName, Mode=OneWay}"/>
-                    <!--<TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtCapName" />-->
                     <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_TitleText}"/>
-                    <!--<TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtMainText" />-->
+                    <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding MainText, Mode=OneWay}"/>
                     <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_SubtitleText}"/>
-                    <!--<TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtSubTitle" />-->
+                    <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding SubTitle, Mode=OneWay}"/>
                     <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_MainPicture}"/>
-                    <!--<TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtMainPicture" />-->
+                    <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding MainPicture, Mode=OneWay}"/>
                     <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_AnotherPictures}"/>
-                    <!--<TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtAnotherPictures" />-->
+                    <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding AnotherPictres, Mode=OneWay}"/>
                     <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_PictureType}"/>
-                    <!--<ComboBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="cmbPictureType">
-                        <ComboBox.Items>
-                            <ComboBoxItem Content="{x:Static res:Resources.txt_ImageNo}" Name="cmiImageNo"/>
-                            <ComboBoxItem Content="{x:Static res:Resources.txt_ImageGeometry}" Name="cmiImageGeometry"/>
-                            <ComboBoxItem Content="{x:Static res:Resources.txt_ImageLogo}" Name="cmiImageLogo"/>
-                            <ComboBoxItem Content="{x:Static res:Resources.txt_ImageDrawing}" Name="cmiImageDrawing"/>
-                            <ComboBoxItem Content="{x:Static res:Resources.txt_ImagePhoto}" Name="cmiImagePhoto"/>
-                        </ComboBox.Items>
-                    </ComboBox>-->
+                    <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding PictureType, Converter={StaticResource PictureTypeConverter}, Mode=OneWay}"/>    
                 </Grid>
             </GroupBox>
             <GroupBox Header="{x:Static res:Resources.txt_Colors}" Grid.Column="1" Grid.Row="0">

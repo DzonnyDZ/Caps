@@ -520,6 +520,33 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to {0} expects value of type {1} or {2}.
+        '''</summary>
+        Public ReadOnly Property ex_ExpectedValueOfType1Or2() As String
+            Get
+                Return ResourceManager.GetString("ex_ExpectedValueOfType1Or2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Image type code cannot be an empty string.
+        '''</summary>
+        Public ReadOnly Property ex_ImgTypeCodeEmpty() As String
+            Get
+                Return ResourceManager.GetString("ex_ImgTypeCodeEmpty", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Unknown image type {0}.
+        '''</summary>
+        Public ReadOnly Property ex_UnknownImageType() As String
+            Get
+                Return ResourceManager.GetString("ex_UnknownImageType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Unsupported data type {0}.
         '''</summary>
         Public ReadOnly Property ex_UnsupportedDataType() As String

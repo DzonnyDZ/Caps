@@ -860,4 +860,13 @@
   <data name="ex_CapImageConverterParameter" xml:space="preserve">
     <value>Converter parameter must be null or integer 64 or 256.</value>
   </data>
+  <data name="ex_ExpectedValueOfType1Or2" xml:space="preserve">
+    <value>{0} expects value of type {1} or {2}</value>
+  </data>
+  <data name="ex_UnknownImageType" xml:space="preserve">
+    <value>Unknown image type {0}</value>
+  </data>
+  <data name="ex_ImgTypeCodeEmpty" xml:space="preserve">
+    <value>Image type code cannot be an empty string</value>
+  </data>
 </root>

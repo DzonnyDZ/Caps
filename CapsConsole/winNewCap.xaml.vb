@@ -320,6 +320,12 @@ CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
                     Exception = ex
                     Return Nothing
                 End Try
+                Dim OrigFileInfo As New IO.FileInfo(OrigFilePath)
+                With OrigFileInfo 'If file is readonly, make it RW
+                    If (OrigFileInfo.Attributes And IO.FileAttributes.ReadOnly) = IO.FileAttributes.ReadOnly Then _
+                                        .Attributes = .Attributes And Not IO.FileAttributes.ReadOnly
+                End With
+
                 CreatedFiles.Add(OrigFilePath)
                 'Write metadata
                 Dim IPTC As Tools.MetadataT.IptcT.Iptc = Nothing

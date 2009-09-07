@@ -116,7 +116,7 @@
     </Type>
   </Table>
   <Table Name="dbo.Cap" Member="Caps">
-    <Type Name="Cap" IsInheritanceDefault="true">
+    <Type Name="Cap" Id="ID1">
       <Column Name="CapID" Modifier="Virtual" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CapTypeID" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MainTypeID" Modifier="Virtual" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -161,42 +161,6 @@
       <Association Name="ProductType_Cap" Member="ProductType" ThisKey="ProductTypeID" OtherKey="ProductTypeID" Type="ProductType" IsForeignKey="true" />
       <Association Name="Storage_Cap" Member="Storage" ThisKey="StorageID" OtherKey="StorageID" Type="Storage" IsForeignKey="true" />
       <Association Name="Shape_Cap" Member="Shape" ThisKey="ShapeID" OtherKey="ShapeID" Type="Shape" IsForeignKey="true" />
-      <Type Name="CapsSearchResult" Id="ID1">
-        <Column Name="Score" Type="System.Int32" DbType="Int" IsReadOnly="true" CanBeNull="false" />
-        <Column Name="CapTypeID" Modifier="Override" Type="System.Int32" DbType="Int" CanBeNull="true" />
-        <Column Name="MainTypeID" Modifier="Override" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-        <Column Name="ShapeID" Modifier="Override" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-        <Column Name="CapName" Modifier="Override" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-        <Column Name="MainText" Modifier="Override" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-        <Column Name="SubTitle" Modifier="Override" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-        <Column Name="BackColor1" Modifier="Override" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-        <Column Name="BackColor2" Modifier="Override" Type="System.Int32" DbType="Int" CanBeNull="true" />
-        <Column Name="ForeColor" Modifier="Override" Type="System.Int32" DbType="Int" CanBeNull="true" />
-        <Column Name="MainPicture" Modifier="Override" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-        <Column Name="TopText" Modifier="Override" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-        <Column Name="SideText" Modifier="Override" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-        <Column Name="BottomText" Modifier="Override" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-        <Column Name="MaterialID" Modifier="Override" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-        <Column Name="Surface" Modifier="Override" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
-        <Column Name="Size" Modifier="Override" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-        <Column Name="Size2" Modifier="Override" Type="System.Int32" DbType="Int" CanBeNull="true" />
-        <Column Name="Height" Modifier="Override" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-        <Column Name="Is3D" Modifier="Override" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-        <Column Name="Year" Modifier="Override" Type="System.Int32" DbType="Int" CanBeNull="true" />
-        <Column Name="CountryCode" Modifier="Override" Type="System.String" DbType="Char(3)" CanBeNull="true" />
-        <Column Name="DateCreated" Modifier="Override" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-        <Column Name="Note" Modifier="Override" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-        <Column Name="CompanyID" Modifier="Override" Type="System.Int32" DbType="Int" CanBeNull="true" />
-        <Column Name="ProductID" Modifier="Override" Type="System.Int32" DbType="Int" CanBeNull="true" />
-        <Column Name="ProductTypeID" Modifier="Override" Type="System.Int32" DbType="Int" CanBeNull="true" />
-        <Column Name="StorageID" Modifier="Override" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-        <Column Name="ForeColor2" Modifier="Override" Type="System.Int32" DbType="Int" CanBeNull="true" />
-        <Column Name="PictureType" Modifier="Override" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
-        <Column Name="HasBottom" Modifier="Override" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-        <Column Name="HasSide" Modifier="Override" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-        <Column Name="AnotherPictures" Modifier="Override" Type="System.String" DbType="Varchar(MAX)" CanBeNull="true" />
-        <Column Name="CapID" Modifier="Override" AutoSync="OnInsert" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsDbGenerated="true" CanBeNull="false" />
-      </Type>
     </Type>
   </Table>
   <Table Name="dbo.Shape" Member="Shapes">

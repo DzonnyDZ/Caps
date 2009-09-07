@@ -225,17 +225,5 @@
         <classShapeMoniker Id="c27318f4-1fba-43ce-8393-db1a40db2c9d" />
       </nodes>
     </associationConnector>
-    <classShape Id="640d5b57-2a1e-4c8b-a700-3e997f66a821" absoluteBounds="1.375, 4.375, 2, 7.3476383463541648">
-      <DataClassMoniker Name="/CapsDataDataContext/CapsSearchResult" />
-      <nestedChildShapes>
-        <elementListCompartment Id="815dc7a2-dbce-463a-87f4-13c732211887" absoluteBounds="1.3900000000000001, 4.835, 1.9700000000000002, 6.7876383463541661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <inheritanceConnector edgePoints="[(6.25 : 5.42708333333333); (3.375 : 5.42708333333333)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Caller" TargetRelationshipDomainClassId="7a7fe09e-e9ef-4b01-9ff3-bde95e827b62">
-      <nodes>
-        <classShapeMoniker Id="5bbd4caa-2af5-4d2c-8323-bc08f37a56c6" />
-        <classShapeMoniker Id="640d5b57-2a1e-4c8b-a700-3e997f66a821" />
-      </nodes>
-    </inheritanceConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
