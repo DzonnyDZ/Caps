@@ -60,12 +60,16 @@ Public Class PlusConverter
     End Function
 End Class
 
+''' <summary>Converter that converts null values to false and non-null values to true.</summary>
+''' <remarks>Additionally if targetType is <see cref="Visibility"/> it converts null to <see cref="Visibility.Collapsed"/> and non-null to <see cref="Visibility.Visible"/>.</remarks>
 Public Class NullFalseConverter
     Implements IValueConverter
 
     Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
         If targetType.IsAssignableFrom(GetType(Boolean)) Then
             Return value IsNot Nothing
+        ElseIf targetType.IsAssignableFrom(GetType(Visibility)) Then
+            Return If(value Is Nothing, Visibility.Collapsed, Visibility.Visible)
         Else
             Throw New NotSupportedException(My.Resources.ex_ConvertsOnlyToBool.f(Me.GetType.Name))
         End If
@@ -148,7 +152,7 @@ Public Class MyImageIDConverter
     End Function
 End Class
 
-''' <summary>COnverts picture type code to description</summary>
+''' <summary>Converts picture type code to description</summary>
 Public Class PictureTypeConverter
     Implements IValueConverter
 
@@ -169,6 +173,73 @@ Public Class PictureTypeConverter
             End Select
         End If
         Throw New TypeMismatchException("value", value, GetType(Char), My.Resources.ex_ExpectedValueOfType1Or2.f(GetType(PictureTypeConverter), GetType(Char).Name, GetType(String).Name))
+    End Function
+
+    Public Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
+        Throw New NotSupportedException(My.Resources.ex_CannotConvertBack.f(Me.GetType.Name))
+    End Function
+End Class
+
+''' <summary>Converts value of type <see cref="Int32"/> to <see cref="Color"/></summary>
+Public Class IntColorConverter
+    Implements IValueConverter
+
+    ''' <summary>Converts a value.</summary>
+    ''' <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+    ''' <param name="value">The value produced by the binding source.</param>
+    ''' <param name="targetType">The type of the binding target property.</param>
+    ''' <param name="parameter">The converter parameter to use.</param>
+    ''' <param name="culture">The culture to use in the converter.</param>
+    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
+        If value Is Nothing Then Return Nothing
+        Dim val As Int32
+        If TypeOf value Is Int32 Then : val = DirectCast(value, Int32)
+        ElseIf TypeOf value Is Int16 Then : val = DirectCast(value, Int16)
+        ElseIf TypeOf value Is Int64 Then : val = DirectCast(value, Int64)
+        ElseIf TypeOf value Is UInt32 Then : val = DirectCast(value, UInt32)
+        ElseIf TypeOf value Is UInt16 Then : val = DirectCast(value, UInt16)
+        ElseIf TypeOf value Is UInt64 Then : val = DirectCast(value, UInt64)
+        ElseIf TypeOf value Is Byte Then : val = DirectCast(value, Byte)
+        ElseIf TypeOf value Is SByte Then : val = DirectCast(value, SByte)
+        ElseIf TypeOf value Is Decimal Then : val = DirectCast(value, Decimal)
+        ElseIf TypeOf value Is Double Then : val = DirectCast(value, Double)
+        ElseIf TypeOf value Is Single Then : val = DirectCast(value, Single)
+        ElseIf TypeOf value Is System.Drawing.Color Then : val = DirectCast(value, System.Drawing.Color).ToArgb
+        ElseIf TypeOf value Is Color Then : val = DirectCast(value, Color).ToArgb
+        Else : Throw New ArgumentNullException(My.Resources.ex_ConvertOnlyFromNumericAndColors)
+        End If
+        If targetType.Equals(GetType(System.Drawing.Color)) Then Return System.Drawing.Color.FromArgb(val)
+        Return System.Drawing.Color.FromArgb(val).ToColor
+    End Function
+
+    ''' <summary>Converts a value.</summary>
+    ''' <returns>A converted value. If the method returns null, the valid null value is used.</returns>
+    ''' <param name="value">The value that is produced by the binding target.</param>
+    ''' <param name="targetType">The type to convert to.</param>
+    ''' <param name="parameter">The converter parameter to use.</param>
+    ''' <param name="culture">The culture to use in the converter.</param>
+    Public Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
+        If value Is Nothing Then Return Nothing
+        Dim val As Color
+        If TypeOf value Is Color Then : value = DirectCast(val, Color)
+        ElseIf TypeOf value Is System.Drawing.Color Then : value = DirectCast(value, System.Drawing.Color).ToColor
+        Else : Throw New TypeMismatchException("value", value, GetType(Color), My.Resources.ex_CamConvertBackOnlyFromColors.f(Me.GetType.Name, GetType(Color).FullName, GetType(System.Drawing.Color).FullName))
+        End If
+        If targetType.Equals(GetType(Color)) Then : Return val
+        ElseIf targetType.Equals(GetType(System.Drawing.Color)) Then : Return val.ToColor
+        Else : Return val.ToArgb
+        End If
+    End Function
+
+End Class
+''' <summary>Converter that test if value being converter equals to parameter</summary>
+Public Class CompareConverter
+    Implements IValueConverter
+
+    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
+        If value Is Nothing Then Return parameter Is Nothing
+        If parameter Is Nothing Then Return value Is Nothing
+        Return value.Equals(parameter)
     End Function
 
     Public Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack

@@ -484,6 +484,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to {0} can convert back only from {1} and {2}..
+        '''</summary>
+        Public ReadOnly Property ex_CamConvertBackOnlyFromColors() As String
+            Get
+                Return ResourceManager.GetString("ex_CamConvertBackOnlyFromColors", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to {0} can convert back only from False..
         '''</summary>
         Public ReadOnly Property ex_CanConvertBackOnlyFromFalse() As String
@@ -507,6 +516,15 @@ Namespace My.Resources
         Public ReadOnly Property ex_CapImageConverterParameter() As String
             Get
                 Return ResourceManager.GetString("ex_CapImageConverterParameter", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to {0} can convert only from numeric and color types..
+        '''</summary>
+        Public ReadOnly Property ex_ConvertOnlyFromNumericAndColors() As String
+            Get
+                Return ResourceManager.GetString("ex_ConvertOnlyFromNumericAndColors", resourceCulture)
             End Get
         End Property
         
@@ -583,6 +601,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to 3D.
+        '''</summary>
+        Public ReadOnly Property lbl_3D2() As String
+            Get
+                Return ResourceManager.GetString("lbl_3D2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Anonymous product.
         '''</summary>
         Public ReadOnly Property lbl_AnonymousProduct() As String
@@ -628,6 +655,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Type of cap.
+        '''</summary>
+        Public ReadOnly Property lbl_CapType() As String
+            Get
+                Return ResourceManager.GetString("lbl_CapType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Company.
         '''</summary>
         Public ReadOnly Property lbl_Company() As String
@@ -642,6 +678,15 @@ Namespace My.Resources
         Public ReadOnly Property lbl_Country() As String
             Get
                 Return ResourceManager.GetString("lbl_Country", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Date created.
+        '''</summary>
+        Public ReadOnly Property lbl_DateCreated() As String
+            Get
+                Return ResourceManager.GetString("lbl_DateCreated", resourceCulture)
             End Get
         End Property
         
@@ -678,6 +723,15 @@ Namespace My.Resources
         Public ReadOnly Property lbl_Glossy() As String
             Get
                 Return ResourceManager.GetString("lbl_Glossy", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Glossy.
+        '''</summary>
+        Public ReadOnly Property lbl_Glossy2() As String
+            Get
+                Return ResourceManager.GetString("lbl_Glossy2", resourceCulture)
             End Get
         End Property
         
@@ -772,6 +826,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Matting.
+        '''</summary>
+        Public ReadOnly Property lbl_Matting2() As String
+            Get
+                Return ResourceManager.GetString("lbl_Matting2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Name.
         '''</summary>
         Public ReadOnly Property lbl_Name() As String
@@ -822,6 +885,15 @@ Namespace My.Resources
         Public ReadOnly Property lbl_PictureType() As String
             Get
                 Return ResourceManager.GetString("lbl_PictureType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Product.
+        '''</summary>
+        Public ReadOnly Property lbl_Product() As String
+            Get
+                Return ResourceManager.GetString("lbl_Product", resourceCulture)
             End Get
         End Property
         
@@ -1506,6 +1578,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_IPTC() As String
             Get
                 Return ResourceManager.GetString("txt_IPTC", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Keywords.
+        '''</summary>
+        Public ReadOnly Property txt_Keywords() As String
+            Get
+                Return ResourceManager.GetString("txt_Keywords", resourceCulture)
             End Get
         End Property
         

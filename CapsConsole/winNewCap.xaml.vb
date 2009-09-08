@@ -364,7 +364,7 @@ CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
                         If nudYear.Value > 0 Then IPTC.DateCreated = New Tools.MetadataT.IptcT.IptcDataTypes.OmmitableDate(nudYear.Value)
                         IPTC.ReleaseDate = Now.ToUniversalTime.Date
                         IPTC.ReleaseTime = New Tools.MetadataT.IptcT.IptcDataTypes.Time(Now.ToUniversalTime.Date.TimeOfDay)
-                        If txtNote.Text <> "" Then IPTC.SpecialInstructions = txtNote.Text
+                        If txtNote.Text <> "" Then IPTC.SpecialInstructions = txtNote.Text.Replace(vbCrLf, " ").Replace(vbCr, " ").Replace(vbLf, " ")
                         Using JPEG As New Tools.DrawingT.DrawingIOt.JPEG.JPEGReader(OrigFilePath, True)
                             JPEG.IPTCEmbed(IPTC.GetBytes)
                         End Using
@@ -532,7 +532,7 @@ Resize256:      Try
         Dim SearchResults = Context.GetSimilarCaps( _
                If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
                If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
-               If(cmbShape.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, Shape).ShapeID, Nothing), _
+               If(cmbShape.SelectedItem IsNot Nothing, DirectCast(cmbShape.SelectedItem, Shape).ShapeID, Nothing), _
                txtCapName.Text, _
                txtMainText.Text, _
                txtSubTitle.Text, _

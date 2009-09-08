@@ -311,7 +311,7 @@
   </data>
   <data name="txt_Categories" xml:space="preserve">
     <value>Categories</value>
-    <comment>Tab page title</comment>
+    <comment>Tab page title / Group box text</comment>
   </data>
   <data name="txt_Companies" xml:space="preserve">
     <value>Companies</value>
@@ -497,10 +497,6 @@
     <value>Save cap</value>
     <comment>Button text</comment>
   </data>
-  <data name="lbl_3D" xml:space="preserve">
-    <value>_3D</value>
-    <comment>Check box text (surface/writing)</comment>
-  </data>
   <data name="lbl_AnonymousProduct" xml:space="preserve">
     <value>Anonymous product</value>
     <comment>Radio button text</comment>
@@ -531,7 +527,7 @@
   </data>
   <data name="lbl_Glossy" xml:space="preserve">
     <value>_Glossy</value>
-    <comment>Radio button text (surface)</comment>
+    <comment>Radio button text (surface)  (with accesschar)</comment>
   </data>
   <data name="lbl_Height" xml:space="preserve">
     <value>Height</value>
@@ -555,7 +551,7 @@
   </data>
   <data name="lbl_Matting" xml:space="preserve">
     <value>M_atting</value>
-    <comment>Radio button text (surface)</comment>
+    <comment>Radio button text (surface) (with accesschar)</comment>
   </data>
   <data name="lbl_NewProduct" xml:space="preserve">
     <value>New product</value>
@@ -868,5 +864,43 @@
   </data>
   <data name="ex_ImgTypeCodeEmpty" xml:space="preserve">
     <value>Image type code cannot be an empty string</value>
+  </data>
+  <data name="lbl_CapType" xml:space="preserve">
+    <value>Type of cap</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="ex_ConvertOnlyFromNumericAndColors" xml:space="preserve">
+    <value>{0} can convert only from numeric and color types.</value>
+  </data>
+  <data name="ex_CamConvertBackOnlyFromColors" xml:space="preserve">
+    <value>{0} can convert back only from {1} and {2}.</value>
+  </data>
+  <data name="lbl_3D" xml:space="preserve">
+    <value>_3D</value>
+    <comment>Check box text (surface/writing) (with accesschar)</comment>
+  </data>
+  <data name="lbl_3D2" xml:space="preserve">
+    <value>3D</value>
+    <comment>Check box text (surface/writing) (w/o accesschar)</comment>
+  </data>
+  <data name="lbl_DateCreated" xml:space="preserve">
+    <value>Date created</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_Glossy2" xml:space="preserve">
+    <value>Glossy</value>
+    <comment>Radio button text (surface) (w/o accesschar)</comment>
+  </data>
+  <data name="lbl_Matting2" xml:space="preserve">
+    <value>Matting</value>
+    <comment>Radio button text (surface) (w/o accesschar)</comment>
+  </data>
+  <data name="lbl_Product" xml:space="preserve">
+    <value>Product</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="txt_Keywords" xml:space="preserve">
+    <value>Keywords</value>
+    <comment>Gropup box text</comment>
   </data>
 </root>
