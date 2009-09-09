@@ -442,7 +442,7 @@
     <value>Hlavní typ</value>
   </data>
   <data name="lbl_Material" xml:space="preserve">
-    <value>Materál</value>
+    <value>Materiál</value>
   </data>
   <data name="lbl_Matting" xml:space="preserve">
     <value>_Matný</value>
@@ -671,5 +671,59 @@
   </data>
   <data name="msg_ForeColor_ForeColor2" xml:space="preserve">
     <value>Když je zadána barva pozadí 2, musí být zadána i barva pozadí 1.</value>
+  </data>
+  <data name="ex_CapImageConverterParameter" xml:space="preserve">
+    <value>Parametr převodníku musí být null nebo integer 64 či 256.</value>
+  </data>
+  <data name="ex_ExpectedValueOfType1Or2" xml:space="preserve">
+    <value>{0} očekává hodnoty typu {1} nebo {2}</value>
+  </data>
+  <data name="ex_UnknownImageType" xml:space="preserve">
+    <value>Neznámý typ obrázku {0}</value>
+  </data>
+  <data name="ex_ImgTypeCodeEmpty" xml:space="preserve">
+    <value>Kód typu obrázku nemůže být prázdný řetězec</value>
+  </data>
+  <data name="lbl_CapType" xml:space="preserve">
+    <value>Typ víčka</value>
+  </data>
+  <data name="ex_ConvertOnlyFromNumericAndColors" xml:space="preserve">
+    <value>{0} může převádět jen z numerických typů a typů reprezentujících barvy.</value>
+  </data>
+  <data name="ex_CamConvertBackOnlyFromColors" xml:space="preserve">
+    <value>{0} může převádět zpět jen z {1} a {2}.</value>
+  </data>
+  <data name="lbl_3D2" xml:space="preserve">
+    <value>3D</value>
+  </data>
+  <data name="lbl_DateCreated" xml:space="preserve">
+    <value>Datum vytvoření</value>
+  </data>
+  <data name="lbl_Glossy2" xml:space="preserve">
+    <value>Lesklý</value>
+  </data>
+  <data name="lbl_Matting2" xml:space="preserve">
+    <value>Matný</value>
+  </data>
+  <data name="lbl_Product" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="txt_Keywords" xml:space="preserve">
+    <value>Klíčová slova</value>
+  </data>
+  <data name="ex_ValueMustBeSetPriorCalling" xml:space="preserve">
+    <value>Hodnota vlastnosti {0} musí být nastavena před voláním {1}</value>
+  </data>
+  <data name="ex_ConverterCanConvertOnlyFromTo" xml:space="preserve">
+    <value>{0} může převádět jen z {1} do {2}.</value>
+  </data>
+  <data name="ex_ConverterCanConvertBackOnlyFromTo" xml:space="preserve">
+    <value>{0} může převádět zpět jen z {1} do {2}.</value>
+  </data>
+  <data name="ex_ConverterCannotConvertValueBack" xml:space="preserve">
+    <value>{0} nemůže převést zpět hodnotu {1}.</value>
+  </data>
+  <data name="txt_CapDetails" xml:space="preserve">
+    <value>Detaily víčka</value>
   </data>
 </root>

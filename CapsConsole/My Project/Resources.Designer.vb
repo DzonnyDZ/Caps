@@ -259,6 +259,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to _Delete.
+        '''</summary>
+        Public ReadOnly Property cmd_Delete() As String
+            Get
+                Return ResourceManager.GetString("cmd_Delete", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to _Edit.
+        '''</summary>
+        Public ReadOnly Property cmd_Edit() As String
+            Get
+                Return ResourceManager.GetString("cmd_Edit", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to New ....
         '''</summary>
         Public ReadOnly Property cmd_New() As String
@@ -520,6 +538,33 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to {0} can convert back only from {1} to {2}..
+        '''</summary>
+        Public ReadOnly Property ex_ConverterCanConvertBackOnlyFromTo() As String
+            Get
+                Return ResourceManager.GetString("ex_ConverterCanConvertBackOnlyFromTo", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to {0} can convert only from {1} to {2}..
+        '''</summary>
+        Public ReadOnly Property ex_ConverterCanConvertOnlyFromTo() As String
+            Get
+                Return ResourceManager.GetString("ex_ConverterCanConvertOnlyFromTo", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to {0} cannot convert back value {1}..
+        '''</summary>
+        Public ReadOnly Property ex_ConverterCannotConvertValueBack() As String
+            Get
+                Return ResourceManager.GetString("ex_ConverterCannotConvertValueBack", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to {0} can convert only from numeric and color types..
         '''</summary>
         Public ReadOnly Property ex_ConvertOnlyFromNumericAndColors() As String
@@ -570,6 +615,15 @@ Namespace My.Resources
         Public ReadOnly Property ex_UnsupportedDataType() As String
             Get
                 Return ResourceManager.GetString("ex_UnsupportedDataType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Value of the {0} property mus be set prior to calling {1}.
+        '''</summary>
+        Public ReadOnly Property ex_ValueMustBeSetPriorCalling() As String
+            Get
+                Return ResourceManager.GetString("ex_ValueMustBeSetPriorCalling", resourceCulture)
             End Get
         End Property
         
@@ -1105,6 +1159,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to All shown caps have been deleted. The window will be closed..
+        '''</summary>
+        Public ReadOnly Property msg_AllCapsDeletedClose() As String
+            Get
+                Return ResourceManager.GetString("msg_AllCapsDeletedClose", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to When another pictures description is provided, main picture description must be provided as well..
         '''</summary>
         Public ReadOnly Property msg_AnotherPictures_MainPicture() As String
@@ -1222,6 +1285,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Error deleting caps.
+        '''</summary>
+        Public ReadOnly Property msg_ErrorDeletingCaps() As String
+            Get
+                Return ResourceManager.GetString("msg_ErrorDeletingCaps", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to The file {0} does not exist. Continue without image?.
         '''</summary>
         Public ReadOnly Property msg_FileNotExists_ContinueWOImage() As String
@@ -1285,6 +1357,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to You have chosen to select one of existing cap types but you have selected none..
+        '''</summary>
+        Public ReadOnly Property msg_NoCapTypeSelected() As String
+            Get
+                Return ResourceManager.GetString("msg_NoCapTypeSelected", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to You have chosen to select one of existing products but you have selected none..
+        '''</summary>
+        Public ReadOnly Property msg_NoProductSelected() As String
+            Get
+                Return ResourceManager.GetString("msg_NoProductSelected", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Only images of PNG type are allowed..
         '''</summary>
         Public ReadOnly Property msg_OnlyPNG() As String
@@ -1308,6 +1398,15 @@ Namespace My.Resources
         Public ReadOnly Property msg_ProductWithAreadyExists() As String
             Get
                 Return ResourceManager.GetString("msg_ProductWithAreadyExists", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Do you really want to delete selected cap?.
+        '''</summary>
+        Public ReadOnly Property msg_q_DelCap() As String
+            Get
+                Return ResourceManager.GetString("msg_q_DelCap", resourceCulture)
             End Get
         End Property
         
@@ -1362,6 +1461,24 @@ Namespace My.Resources
         Public ReadOnly Property tot_NoColor() As String
             Get
                 Return ResourceManager.GetString("tot_NoColor", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Cap details.
+        '''</summary>
+        Public ReadOnly Property txt_CapDetails() As String
+            Get
+                Return ResourceManager.GetString("txt_CapDetails", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Cap details ({0}).
+        '''</summary>
+        Public ReadOnly Property txt_CapDetailsFormat() As String
+            Get
+                Return ResourceManager.GetString("txt_CapDetailsFormat", resourceCulture)
             End Get
         End Property
         
@@ -1443,6 +1560,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_DatabaseError() As String
             Get
                 Return ResourceManager.GetString("txt_DatabaseError", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Delete cap.
+        '''</summary>
+        Public ReadOnly Property txt_DeleteCap() As String
+            Get
+                Return ResourceManager.GetString("txt_DeleteCap", resourceCulture)
             End Get
         End Property
         

@@ -305,5 +305,9 @@
   <ItemGroup>
     <Resource Include="Resources\Cap.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DeleteHS.png" />
+    <Resource Include="Resources\EditInformationHS.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

@@ -855,15 +855,19 @@
   </data>
   <data name="ex_CapImageConverterParameter" xml:space="preserve">
     <value>Converter parameter must be null or integer 64 or 256.</value>
+    <comment>Internal error message</comment>
   </data>
   <data name="ex_ExpectedValueOfType1Or2" xml:space="preserve">
     <value>{0} expects value of type {1} or {2}</value>
+    <comment>Internal error message</comment>
   </data>
   <data name="ex_UnknownImageType" xml:space="preserve">
     <value>Unknown image type {0}</value>
+    <comment>Internal error message</comment>
   </data>
   <data name="ex_ImgTypeCodeEmpty" xml:space="preserve">
     <value>Image type code cannot be an empty string</value>
+    <comment>Internal error message</comment>
   </data>
   <data name="lbl_CapType" xml:space="preserve">
     <value>Type of cap</value>
@@ -871,9 +875,11 @@
   </data>
   <data name="ex_ConvertOnlyFromNumericAndColors" xml:space="preserve">
     <value>{0} can convert only from numeric and color types.</value>
+    <comment>Internal error message</comment>
   </data>
   <data name="ex_CamConvertBackOnlyFromColors" xml:space="preserve">
     <value>{0} can convert back only from {1} and {2}.</value>
+    <comment>Internal error message</comment>
   </data>
   <data name="lbl_3D" xml:space="preserve">
     <value>_3D</value>
@@ -902,5 +908,55 @@
   <data name="txt_Keywords" xml:space="preserve">
     <value>Keywords</value>
     <comment>Gropup box text</comment>
+  </data>
+  <data name="ex_ValueMustBeSetPriorCalling" xml:space="preserve">
+    <value>Value of the {0} property mus be set prior to calling {1}</value>
+    <comment>Inner exception message</comment>
+  </data>
+  <data name="ex_ConverterCanConvertOnlyFromTo" xml:space="preserve">
+    <value>{0} can convert only from {1} to {2}.</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="ex_ConverterCanConvertBackOnlyFromTo" xml:space="preserve">
+    <value>{0} can convert back only from {1} to {2}.</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="ex_ConverterCannotConvertValueBack" xml:space="preserve">
+    <value>{0} cannot convert back value {1}.</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="cmd_Delete" xml:space="preserve">
+    <value>_Delete</value>
+    <comment>Button text / menu item</comment>
+  </data>
+  <data name="cmd_Edit" xml:space="preserve">
+    <value>_Edit</value>
+    <comment>Button text / menu item</comment>
+  </data>
+  <data name="txt_CapDetails" xml:space="preserve">
+    <value>Cap details</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="txt_CapDetailsFormat" xml:space="preserve">
+    <value>Cap details ({0})</value>
+    <comment>Window title with formatting</comment>
+  </data>
+  <data name="msg_ErrorDeletingCaps" xml:space="preserve">
+    <value>Error deleting caps</value>
+  </data>
+  <data name="msg_AllCapsDeletedClose" xml:space="preserve">
+    <value>All shown caps have been deleted. The window will be closed.</value>
+  </data>
+  <data name="txt_DeleteCap" xml:space="preserve">
+    <value>Delete cap</value>
+  </data>
+  <data name="msg_q_DelCap" xml:space="preserve">
+    <value>Do you really want to delete selected cap?</value>
+  </data>
+  <data name="msg_NoCapTypeSelected" xml:space="preserve">
+    <value>You have chosen to select one of existing cap types but you have selected none.</value>
+  </data>
+  <data name="msg_NoProductSelected" xml:space="preserve">
+    <value>You have chosen to select one of existing products but you have selected none.</value>
   </data>
 </root>

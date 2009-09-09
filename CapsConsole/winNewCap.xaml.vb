@@ -182,6 +182,8 @@ Partial Public Class winNewCap
         If txtMainPicture.Text <> "" AndAlso (cmbPictureType.SelectedItem Is cmiImageNo OrElse cmbPictureType.SelectedItem Is Nothing) Then mBox.Modal_PTI(My.Resources.msg_MainPicture_PictureType, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbPictureType.Focus() : Exit Sub
         If txtAnotherPictures.Text <> "" AndAlso txtMainPicture.Text = "" Then mBox.Modal_PTI(My.Resources.msg_AnotherPictures_MainPicture, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : txtMainPicture.Focus() : Exit Sub
         If copForeground2.Color.HasValue AndAlso Not copForeground.Color.HasValue Then mBox.Modal_PTI(My.Resources.msg_ForeColor_ForeColor2, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : copForeground.Focus() : Exit Sub
+        If optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_NoProductSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbProduct.Focus() : Exit Sub
+        If optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_NoCapTypeSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbCapType.Focus() : Exit Sub
         'New cap type
         If optCapTypeNew.IsChecked Then
             If Not IO.File.Exists(txtCapTypeImagePath.Text) Then
@@ -205,6 +207,8 @@ Partial Public Class winNewCap
                                         .Height = nudHeight.Value, _
                                         .Material = cmbMaterial.SelectedItem}
             Cap.CapType = NewType
+        ElseIf optCapTypeSelect.IsChecked Then
+            Cap.CapType = cmbCapType.SelectedItem
         End If
         'New product
         If optProductNew.IsChecked Then
@@ -216,6 +220,8 @@ Partial Public Class winNewCap
                                            .Company = cmbCompany.SelectedItem, _
                                            .ProductType = cmbProductType.SelectedItem}
             Cap.Product = NewProduct
+        ElseIf optProductSelected.IsChecked Then
+            Cap.Product = cmbProduct.SelectedItem
         End If
         'Cap values
         Cap.CapName = txtCapName.Text
@@ -306,11 +312,12 @@ Partial Public Class winNewCap
             For Each Item As NewImage In lvwImages.ItemsSource
                 'Copy original size file
 CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
+                Dim newName1 = newName
                 Dim i As Integer = 0
                 While IO.File.Exists(IO.Path.Combine(folOrig, newName)) OrElse IO.File.Exists(IO.Path.Combine(fol64, newName)) OrElse IO.File.Exists(IO.Path.Combine(fol256, newName))
                     i += 1
                     newName = String.Format(System.Globalization.CultureInfo.InvariantCulture, _
-                                            "{0}_{1}{2}", IO.Path.GetFileNameWithoutExtension(newName), i, IO.Path.GetExtension(newName))
+                                            "{0}_{1}{2}", IO.Path.GetFileNameWithoutExtension(newName1), i, IO.Path.GetExtension(newName1))
                 End While
                 Dim OrigFilePath As String = IO.Path.Combine(folOrig, newName)
                 Try
@@ -485,7 +492,7 @@ Resize256:      Try
                     'Case ".png" : encoder = New PngBitmapEncoder()
                     Case ".wmp", ".hdp" : encoder = New WmpBitmapEncoder()
                         'Case ".ico" : encoder = New IconBitmapEncoder
-                        'Case Else : Throw New InvalidOperationException(My.Resources.err_UnknownImageExtension.f(IO.Path.GetExtension(OrigFilePath)))
+                    Case Else : Throw New InvalidOperationException(My.Resources.err_UnknownImageExtension.f(IO.Path.GetExtension(OrigFilePath)))
                 End Select
                 encoder.Frames.Add(BitmapFrame.Create(img))
                 Using ostream = IO.File.Open(TargetFilePath, IO.FileMode.Create, IO.FileAccess.ReadWrite)

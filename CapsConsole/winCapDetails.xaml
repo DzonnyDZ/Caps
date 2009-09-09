@@ -4,8 +4,9 @@
     xmlns:res="clr-namespace:Caps.Console.My.Resources"
     xmlns:my="clr-namespace:Caps.Console"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
-    Title="winCapDetails" Height="660" Width="1000"
-        DataContext="{Binding SelectedItem, ElementName=lstCaps, Mode=OneWay}"
+    xmlns:t.c="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
+    Title="{x:Static res:Resources.txt_CapDetails}" Height="770" Width="1000"
+        DataContext="{Binding SelectedItem, ElementName=lstCaps, Mode=OneWay}" SizeToContent="Height"
         >
     <Window.Resources>
         <my:NullFalseConverter x:Key="NullFalseConverter"/>
@@ -17,7 +18,29 @@
         <my:CompareConverter x:Key="CompareConverter"/>
         <sys:Char x:Key="charM">M</sys:Char>
         <sys:Char x:Key="charG">G</sys:Char>
+        <sys:Int32 x:Key="iOne">1</sys:Int32>
+        <my:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
+        <my:NestedConverter x:Key="Count1HiddenConverter"
+            Inner="{StaticResource CompareConverter}"
+            Outer="{StaticResource BooleanVisibilityConverter}"
+            InnerParam="{StaticResource iOne}"
+            OuterParam="!"/>
+        <!--<my:StringFormatConverter x:Key="StringFormatConverter"/>-->
+        <my:NotVisibilityConverter x:Key="NotVisibilityConverter"/>
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" x:Name="cmdEdit"/>
+        <CommandBinding Command="ApplicationCommands.Delete" x:Name="cmdDelete"/>
+    </Window.CommandBindings>
+    <!--<Window.Style>
+        <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=lstCaps, Path=ItemsSource.Count}" Value="3">
+                    <Setter Property="Title" Value="{Binding ElementName=lstCaps, Path=ItemsSource[0].CapName, Converter={StaticResource StringFormatConverter}, ConverterParameter={x:Static res:Resources.txt_CapDetailsFormat}}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>-->
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" Name="cdLeft"/>
@@ -27,7 +50,24 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ListBox Grid.Column="0" Grid.Row="0" Name="lstCaps" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                 Width="auto" MinWidth="150">
+                 Width="auto" MinWidth="150" SelectedIndex="0"
+                 Visibility="{Binding ElementName=lstCaps, Path=ItemsSource.Count, Converter={StaticResource Count1HiddenConverter}}">
+            <ListBox.ContextMenu>
+                <ContextMenu Name="cmnCaps" >
+                    <ContextMenu.Items>
+                        <MenuItem Header="{x:Static res:Resources.cmd_Edit}" Command="ApplicationCommands.Open" >
+                            <MenuItem.Icon>
+                                <Image Source="Resources/EditInformationHS.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="{x:Static res:Resources.cmd_Delete}" Grid.Row="1" Command="ApplicationCommands.Delete" >
+                            <MenuItem.Icon>
+                                <Image Source="Resources/DeleteHS.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu.Items>
+                </ContextMenu>
+            </ListBox.ContextMenu>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch">
@@ -43,7 +83,7 @@
                                              Converter={StaticResource CapImageConverter},
                                              Mode=OneWay}"
                             HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0"/>
-                        <Label Content="{Binding CapName, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                        <TextBlock Text="{Binding CapName, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -83,7 +123,7 @@
                     <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_MainPicture}"/>
                     <Label Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding MainPicture, Mode=OneWay}"/>
                     <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_AnotherPictures}"/>
-                    <Label Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding AnotherPictures, Mode=OneWay}"/>
+                    <TextBox MinLines="2" Grid.Column="1" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding AnotherPictures, Mode=OneWay}" IsReadOnly="True" TextWrapping="WrapWithOverflow" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" MaxLines="2" />
                     <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_PictureType}"/>
                     <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding PictureType, Converter={StaticResource PictureTypeConverter}, Mode=OneWay}"/>    
                 </Grid>
@@ -115,7 +155,7 @@
                     <RadioButton Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" IsChecked="{Binding Surface, Mode=OneWay, Converter={StaticResource CompareConverter}, ConverterParameter={StaticResource charG}}" Name="optGlossy" Content="{x:Static res:Resources.lbl_Glossy2}" IsEnabled="False"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Header="{x:Static res:Resources.txt_TypeInformation}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2">
+            <GroupBox Header="{x:Static res:Resources.txt_TypeInformation}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
@@ -196,6 +236,18 @@
                     </Grid>
                 </Grid>
             </GroupBox>
+            <Grid Grid.Column="0" Grid.Row="2" Width="auto" Height="auto" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding ElementName=lstCaps, Path=Visibility, Mode=OneWay, Converter={StaticResource NotVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="18*"/>
+                    <ColumnDefinition Width="22.217*" />
+                </Grid.ColumnDefinitions>
+                <Button Content="{x:Static res:Resources.cmd_Edit}" Command="ApplicationCommands.Open" />
+                <Button Content="{x:Static res:Resources.cmd_Delete}" Grid.Row="1" Command="ApplicationCommands.Delete"/>
+            </Grid>
             <GroupBox Grid.Row="1" Grid.Column="1" Header="{x:Static res:Resources.txt_Texts}" Grid.RowSpan="2" >
                 <Grid>
                     <Grid.RowDefinitions >
@@ -212,13 +264,13 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Content="{x:Static res:Resources.lbl_TopText}"/>
-                    <TextBox Grid.Row="1" MinLines="2" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding TopText, Mode=OneWay}" HorizontalAlignment="Stretch"/>
+                    <TextBox Grid.Row="1" MinLines="4" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding TopText, Mode=OneWay}" HorizontalAlignment="Stretch"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxLines="4" />
                     <Label Grid.Row="2" Content="{x:Static res:Resources.lbl_SideText}"/>
-                    <TextBox Grid.Row="3" MinLines="2" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding SideText, Mode=OneWay}" HorizontalAlignment="Stretch"/>
+                    <TextBox Grid.Row="3" MinLines="4" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding SideText, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" MaxLines="4" />
                     <Label Grid.Row="4" Content="{x:Static res:Resources.lbl_BottomText}"/>
-                    <TextBox Grid.Row="5" MinLines="2" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding BottomText, Mode=OneWay}" HorizontalAlignment="Stretch"/>
+                    <TextBox Grid.Row="5" MinLines="4" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding BottomText, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" MaxLines="4" />
                     <Label Grid.Row="6" Content="{x:Static res:Resources.lbl_Note}"/>
-                    <TextBox Grid.Row="7" MinLines="2" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding Note, Mode=OneWay}" HorizontalAlignment="Stretch"/>
+                    <TextBox Grid.Row="7" MinLines="4" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding Note, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" MaxLines="4" />
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Column="2" Grid.Row="0" Header="{x:Static res:Resources.txt_Miscellaneous}">
@@ -366,8 +418,8 @@
                     </GroupBox>
                 </Grid>
             </GroupBox>
-            <GroupBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Header="{x:Static res:Resources.txt_Images}">
-                <Grid>
+            <GroupBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Header="{x:Static res:Resources.txt_Images}" MinHeight="100">
+                <Grid MinHeight="100">
                     <Grid.ColumnDefinitions >
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="auto"/>
@@ -387,7 +439,7 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <Image Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}}" MaxWidth="64" MaxHeight="64" Width="auto" Height="auto"/>
-                                    <Label HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Content="{Binding RelativePath, Mode=OneWay}" Width="auto" Height="auto"/>
+                                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Text="{Binding RelativePath, Mode=OneWay}" Width="auto" Height="auto" TextWrapping="Wrap" TextAlignment="Center"/>
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
