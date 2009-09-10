@@ -1,0 +1,1999 @@
+﻿Imports Tools.CollectionsT.GenericT, Tools.ExtensionsT
+Imports Tools.DrawingT.ImageTools
+Imports mBox = Tools.WindowsT.IndependentT.MessageBox
+Imports System.ComponentModel
+Imports Tools.ComponentModelT
+Imports Tools
+
+''' <summary>Creates a new cap</summary>
+Partial Public Class CapEditor
+    ''' <summary>Context to be used when <see cref="Context"/> is not set</summary>
+    Private OriginalContext As New CapsDataDataContext(Main.Connection)
+    Private _Context As CapsDataDataContext = OriginalContext
+    ''' <summary>Database context</summary>
+    ''' <exception cref="ArgumentNullException">Value being set is null</exception>
+    Public Property Context() As CapsDataDataContext
+        <DebuggerStepThrough()> Get
+            Return _Context
+        End Get
+        Set(ByVal value As CapsDataDataContext)
+            If value Is Nothing Then Throw New ArgumentNullException("value")
+            If value IsNot OriginalContext AndAlso OriginalContext IsNot Nothing Then
+                OriginalContext.Dispose()
+                OriginalContext = Nothing
+            End If
+            _Context = value
+        End Set
+    End Property
+
+    Private Sub winNewCap_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
+        cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
+        cmbMainType.ItemsSource = New ListWithEvents(Of MainType)(From item In Context.MainTypes Order By item.TypeName)
+        cmbShape.ItemsSource = New ListWithEvents(Of Shape)(From item In Context.Shapes Order By item.Name)
+        cmbMaterial.ItemsSource = New ListWithEvents(Of Material)(From item In Context.Materials Order By item.Name)
+        cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Order By item.StorageNumber)
+        cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
+        Dim ProductTypesList As ListWithEvents(Of ProductType) = New ListWithEvents(Of ProductType)(From item In Context.ProductTypes Order By item.ProductTypeName)
+        ProductTypesList.Add(Nothing)
+        cmbProductType.ItemsSource = ProductTypesList
+        Dim CompaniesList As ListWithEvents(Of Company) = New ListWithEvents(Of Company)(From item In Context.Companies Order By item.CompanyName)
+        CompaniesList.Add(Nothing)
+        cmbCompany.ItemsSource = CompaniesList
+        lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item))
+        kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
+        lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
+        lvwImages.ItemsSource = New ListWithEvents(Of Image)()
+    End Sub
+
+#Region "CancelClicked"
+    ''' <summary>Raised when user clicks the Cancel button</summary>
+    Public Custom Event CancelClicked As RoutedEventHandler
+
+        AddHandler(ByVal value As RoutedEventHandler)
+            Me.AddHandler(CancelClickedEvent, value)
+        End AddHandler
+
+        RemoveHandler(ByVal value As RoutedEventHandler)
+            Me.RemoveHandler(CancelClickedEvent, value)
+        End RemoveHandler
+
+        RaiseEvent(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs)
+            Me.RaiseEvent(e)
+        End RaiseEvent
+    End Event
+    ''' <summary>Raises the <see cref="CancelClicked"/> event</summary>
+    Protected Overridable Sub OnCancelClick(ByVal e As RoutedEventArgs)
+        RaiseEvent CancelClicked(Me, New RoutedEventArgs(CancelClickedEvent, Me))
+    End Sub
+    ''' <summary>Metadata of the <see cref="CancelClicked"/> event</summary>
+    Public Shared ReadOnly CancelClickedEvent As RoutedEvent = _
+                      EventManager.RegisterRoutedEvent("CancelClicked", _
+                      RoutingStrategy.Bubble, _
+                      GetType(RoutedEventHandler), GetType(CapEditor))
+
+    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnCancel.Click
+        OnCancelClick(e)
+    End Sub
+#End Region
+#Region "New"
+    Private Sub btnNewMainType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMainType.Click
+        Dim win As New winNewMainType
+        If win.ShowDialog Then
+            DirectCast(cmbMainType.ItemsSource, ListWithEvents(Of MainType)).Add(win.NewObject)
+            cmbMainType.SelectedItem = win.NewObject
+        End If
+    End Sub
+
+    Private Sub cmbNewShape_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmbNewShape.Click
+        Dim win As New winNewShape
+        If win.ShowDialog Then
+            DirectCast(cmbShape.ItemsSource, ListWithEvents(Of Shape)).Add(win.NewObject)
+            cmbShape.SelectedItem = win.NewObject
+        End If
+    End Sub
+
+    Private Sub btnNewMaterial_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMaterial.Click
+        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Material)
+        If win.ShowDialog Then
+            DirectCast(cmbMaterial.ItemsSource, ListWithEvents(Of Material)).Add(DirectCast(win.NewObject, Material))
+            cmbMaterial.SelectedItem = win.NewObject
+        End If
+    End Sub
+
+    Private Sub btnNewStorage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewStorage.Click
+        Dim win As New winNewStorage
+        If win.ShowDialog Then
+            DirectCast(cmbStorage.ItemsSource, ListWithEvents(Of Storage)).Add(win.NewObject)
+            cmbStorage.SelectedItem = win.NewObject
+        End If
+    End Sub
+
+    Private Sub btnNewProductType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewProductType.Click
+        Dim win As New winNewSimple(winNewSimple.SimpleTypes.ProductType)
+        If win.ShowDialog Then
+            DirectCast(cmbProductType.ItemsSource, ListWithEvents(Of ProductType)).Add(DirectCast(win.NewObject, ProductType))
+            cmbProductType.SelectedItem = win.NewObject
+        End If
+    End Sub
+
+    Private Sub btnNewCompany_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCompany.Click
+        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Company)
+        If win.ShowDialog Then
+            DirectCast(cmbCompany.ItemsSource, ListWithEvents(Of Company)).Add(DirectCast(win.NewObject, Company))
+            cmbCompany.SelectedItem = win.NewObject
+        End If
+    End Sub
+
+    Private Sub btnNewCategory_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCategory.Click
+        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Category)
+        If win.ShowDialog Then
+            DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(New CategoryProxy(win.NewObject, True))
+        End If
+    End Sub
+#End Region
+    ''' <summary>Category proxy that adds <see cref="CategoryProxy.Checked"/> property</summary>
+    Private Class CategoryProxy
+        ''' <summary>Contains value of the <see cref="Category"/> property</summary>
+        Private ReadOnly _Category As Category
+        ''' <summary>Contains value of the <see cref="Checked"/> property</summary>
+        Private _Checked As Boolean
+        ''' <summary>Gets category</summary>
+        Public ReadOnly Property Category() As Category
+            Get
+                Return _Category
+            End Get
+        End Property
+        ''' <summary>Gets value indicating if the category is selected (checked)</summary>
+        Public Property Checked() As Boolean
+            Get
+                Return _Checked
+            End Get
+            Set(ByVal value As Boolean)
+                _Checked = value
+            End Set
+        End Property
+        ''' <summary>CTor</summary>
+        ''' <param name="Category">A category</param>
+        ''' <param name="Checked">Indicates if category is selected (checked)</param>
+        ''' <exception cref="ArgumentNullException"><paramref name="Category"/> is null</exception>
+        Public Sub New(ByVal Category As Category, Optional ByVal Checked As Boolean = False)
+            If Category Is Nothing Then Throw New ArgumentNullException("Category")
+            _Category = Category
+            _Checked = Checked
+        End Sub
+    End Class
+
+    ''' <summary>Regulare expression for image name. It parses out 4 numbers from image name.</summary>
+    Private Shared ImageNameRegExp As New System.Text.RegularExpressions.Regex( _
+        "(?<Before>.*)(?<Number>[0-9]{4})(\.?<After>.*)", Text.RegularExpressions.RegexOptions.Compiled Or Text.RegularExpressions.RegexOptions.CultureInvariant Or Text.RegularExpressions.RegexOptions.ExplicitCapture)
+
+    Private Sub btnAddImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnAddImage.Click
+        Dim dlg As New Forms.OpenFileDialog With {.Multiselect = True, .DefaultExt = "jpg", .Filter = My.Resources.fil_ImageTypes}
+        If My.Settings.LastImageName <> "" Then
+            Dim match = ImageNameRegExp.Match(My.Settings.LastImageName)
+            If match.Success Then
+                Dim Number As Integer = Integer.Parse(match.Groups!Number.Value, System.Globalization.CultureInfo.InvariantCulture)
+                Dim NewNumber As String = (Number + 1).ToString("0000")
+                Dim NewPath = match.Groups!Before.Value & NewNumber & match.Groups!After.Value
+                Try
+                    dlg.FileName = NewPath
+                Catch : End Try
+            End If
+        End If
+        If dlg.ShowDialog() Then
+            If dlg.FileNames.Length > 0 Then
+                DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).AddRange( _
+                    From path In dlg.FileNames Select DirectCast(New NewImage(path), Image))
+                My.Settings.LastImageName = dlg.FileNames(dlg.FileNames.Length - 1)
+            End If
+        End If
+    End Sub
+    ''' <summary>Allows to distinguish image already in database and a new image</summary>
+    ''' <remarks><see cref="NewImage.RelativePath"/> does not store relative path, but absolute path.</remarks>
+    Private Class NewImage : Inherits Image
+        ''' <summary>CTor with path</summary>
+        ''' <param name="Path">Path to image</param>
+        Public Sub New(ByVal Path As String)
+            MyBase.New()
+            Me.RelativePath = Path
+        End Sub
+    End Class
+
+    Private Sub btnBrowseForCapTypeImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnBrowseForCapTypeImage.Click
+        Dim dlg As New Forms.OpenFileDialog With {.DefaultExt = "png", .Filter = My.Resources.fil_PNG}
+        Try
+            If txtCapTypeImagePath.Text <> "" Then dlg.FileName = txtCapTypeImagePath.Text
+        Catch : End Try
+        If dlg.ShowDialog Then
+            txtCapTypeImagePath.Text = dlg.FileName
+        End If
+    End Sub
+
+#Region "SaveClicked"
+    ''' <summary>Raised when user clicks the save button</summary>
+    Public Custom Event SaveClicked As RoutedEventHandler
+
+        AddHandler(ByVal value As RoutedEventHandler)
+            Me.AddHandler(SaveClickedEvent, value)
+        End AddHandler
+
+        RemoveHandler(ByVal value As RoutedEventHandler)
+            Me.RemoveHandler(SaveClickedEvent, value)
+        End RemoveHandler
+
+        RaiseEvent(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs)
+            Me.RaiseEvent(e)
+        End RaiseEvent
+    End Event
+    ''' <summary>Raises the <see cref="SaveClicked"/> event</summary>
+    Protected Overridable Sub OnSaveClick(ByVal e As RoutedEventArgs)
+        RaiseEvent SaveClicked(Me, New RoutedEventArgs(SaveClickedEvent, Me))
+    End Sub
+    ''' <summary>Metadata of the <see cref="SaveClicked"/> event</summary>
+    Public Shared ReadOnly SaveClickedEvent As RoutedEvent = _
+                      EventManager.RegisterRoutedEvent("SaveClicked", _
+                      RoutingStrategy.Bubble, _
+                      GetType(RoutedEventHandler), GetType(CapEditor))
+
+    Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnSave.Click
+        OnSaveClick(e)
+    End Sub
+#End Region
+
+#Region "Select / new / anonymous selection"
+    Private Sub cmbCapType_SelectionChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs) Handles cmbCapType.SelectionChanged
+        If cmbCapType.SelectedItem IsNot Nothing Then
+            With DirectCast(cmbCapType.SelectedItem, CapType)
+                cmbMainType.SelectedItem = .MainType
+                cmbShape.SelectedItem = .Shape
+                nudSize1.Value = .Size
+                If .Size2.HasValue Then nudSize2.Value = .Size2
+                nudHeight.Value = .Height
+                cmbMaterial.SelectedItem = .Material
+            End With
+        End If
+    End Sub
+
+    Private Sub cmbProduct_SelectionChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs) Handles cmbProduct.SelectionChanged
+        If cmbProduct.SelectedItem IsNot Nothing Then
+            With DirectCast(cmbProduct.SelectedItem, Product)
+                cmbProductType.SelectedItem = .ProductType
+                cmbCompany.SelectedItem = .Company
+            End With
+        End If
+    End Sub
+#End Region
+
+    Private Sub txtSideText_TextChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtSideText.TextChanged
+        If txtSideText.Text <> "" Then chkHasSide.IsChecked = True
+    End Sub
+
+    Private Sub txtBottomText_TextChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtBottomText.TextChanged
+        If txtBottomText.Text <> "" Then chkHasBottom.IsChecked = True
+    End Sub
+
+    Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnSearch.Click
+        Dim SearchResults = Context.GetSimilarCaps( _
+               If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
+               If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
+               If(cmbShape.SelectedItem IsNot Nothing, DirectCast(cmbShape.SelectedItem, Shape).ShapeID, Nothing), _
+               txtCapName.Text, _
+               txtMainText.Text, _
+               txtSubTitle.Text, _
+               copBackground.Color.ToArgb, _
+               copSecondaryBackground.Color.ToArgb, _
+               copForeground.Color.ToArgb, _
+               txtMainPicture.Text, _
+               txtTopText.Text, _
+               txtSideText.Text, _
+               txtBottomText.Text, _
+               If(cmbMaterial.SelectedItem IsNot Nothing, DirectCast(cmbMaterial.SelectedItem, Material).MaterialID, Nothing), _
+               If(optMatting.IsChecked, "M"c, If(optGlossy.IsChecked, "G"c, Nothing)), _
+               nudSize1.Value, _
+               If(cmbShape.SelectedItem IsNot Nothing AndAlso DirectCast(cmbShape.SelectedItem, Shape).Size2Name IsNot Nothing, nudSize2.Value, Nothing), _
+               nudHeight.Value, _
+               chk3D.IsChecked, _
+               If(nudYear.Value = 0, Nothing, nudYear.Value), _
+               If(txtCountryCode.Text <> "", txtCountryCode.Text, Nothing), _
+               txtNote.Text, _
+               If(cmbCompany.SelectedItem IsNot Nothing, DirectCast(cmbCompany.SelectedItem, Company).CompanyID, Nothing), _
+               If(optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem IsNot Nothing, DirectCast(cmbProduct.SelectedItem, Product).ProductID, Nothing), _
+               If(cmbProductType.SelectedItem IsNot Nothing, DirectCast(cmbProductType.SelectedItem, ProductType).ProductTypeID, Nothing), _
+               If(cmbStorage.SelectedItem IsNot Nothing, DirectCast(cmbStorage.SelectedItem, Storage).StorageID, Nothing), _
+               copForeground2.Color.ToArgb, _
+               If(cmbPictureType.SelectedItem Is cmiImageGeometry, "G"c, If(cmbPictureType.SelectedItem Is cmiImageLogo, "L"c, If(cmbPictureType.SelectedItem Is cmiImageDrawing, "D"c, If(cmbPictureType.SelectedItem Is cmiImagePhoto, "P"c, Nothing)))), _
+               chkHasBottom.IsChecked, _
+               chkHasSide.IsChecked, _
+               txtAnotherPictures.Text _
+        )
+        Dim win As New winCapDetails(From result In SearchResults Select DirectCast(result, Cap))
+        win.Owner = Me.FindAncestor(Of Window)()
+        win.Title = My.Resources.txt_SearchResults
+        win.Show()
+    End Sub
+
+    Private Sub CapEditor_Unloaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Unloaded
+        Context.Dispose()
+    End Sub
+
+#Region "Cap properties"
+#Region "CapName"
+    ''' <summary>Gets or sets name of cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapName() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapNameProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(CapNameProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapName"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapNameProperty As DependencyProperty = DependencyProperty.Register("CapName", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapNameChanged))
+    ''' <summary>Called when value of the property <see cref="CapName"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapNameChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapNameChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapName"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapNameChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If CapName <> txtCapName.Text Then txtCapName.Text = CapName
+    End Sub
+    Private Sub txtCapName_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtCapName.TextChanged
+        If CapName <> txtCapName.Text Then CapName = txtCapName.Text
+    End Sub
+#End Region
+#Region "MainText"
+    ''' <summary>Gets or sets main (title) text of cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property MainText() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(MainTextProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(MainTextProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="MainText"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly MainTextProperty As DependencyProperty = DependencyProperty.Register("MainText", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnMainTextChanged))
+    ''' <summary>Called when value of the property <see cref="MainText"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnMainTextChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnMainTextChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="MainText"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnMainTextChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If MainText <> txtMainText.Text Then txtMainText.Text = MainText
+    End Sub
+    Private Sub txtMainText_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtMainText.TextChanged
+        If MainText <> txtMainText.Text Then MainText = txtMainText.Text
+    End Sub
+#End Region
+#Region "SubTitle"
+    ''' <summary>Gets or sets name cap subtitle (2nd main) text</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property SubTitle() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(SubTitleProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(SubTitleProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="SubTitle"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly SubTitleProperty As DependencyProperty = DependencyProperty.Register("SubTitle", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnSubTitleChanged))
+    ''' <summary>Called when value of the property <see cref="SubTitle"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnSubTitleChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnSubTitleChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="SubTitle"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnSubTitleChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If SubTitle <> txtSubTitle.Text Then txtSubTitle.Text = SubTitle
+    End Sub
+    Private Sub txtSubTitle_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtSubTitle.TextChanged
+        If SubTitle <> txtSubTitle.Text Then SubTitle = txtSubTitle.Text
+    End Sub
+#End Region
+#Region "MainPicture"
+    ''' <summary>Gets or sets description of main picture on cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property MainPicture() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(MainPictureProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(MainPictureProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="MainPicture"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly MainPictureProperty As DependencyProperty = DependencyProperty.Register("MainPicture", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnMainPictureChanged))
+    ''' <summary>Called when value of the property <see cref="MainPicture"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnMainPictureChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnMainPictureChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="MainPicture"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnMainPictureChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If MainPicture <> txtMainPicture.Text Then txtMainPicture.Text = MainPicture
+    End Sub
+    Private Sub txtMainPicture_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtMainPicture.TextChanged
+        If MainPicture <> txtMainPicture.Text Then MainPicture = txtMainPicture.Text
+    End Sub
+#End Region
+#Region "AnotherPictures"
+    ''' <summary>Gets or sets descriptions of another pictures on cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property AnotherPictures() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(AnotherPicturesProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(AnotherPicturesProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="AnotherPictures"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly AnotherPicturesProperty As DependencyProperty = DependencyProperty.Register("AnotherPictures", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnAnotherPicturesChanged))
+    ''' <summary>Called when value of the property <see cref="AnotherPictures"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnAnotherPicturesChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnAnotherPicturesChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="AnotherPictures"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnAnotherPicturesChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If AnotherPictures <> txtAnotherPictures.Text Then txtAnotherPictures.Text = AnotherPictures
+    End Sub
+    Private Sub txtAnotherPictures_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtAnotherPictures.TextChanged
+        If AnotherPictures <> txtAnotherPictures.Text Then AnotherPictures = txtAnotherPictures.Text
+    End Sub
+#End Region
+#Region "PictureType"
+    ''' <summary>Gets or sets type of picture (if any) on cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property PictureType() As Char?
+        <DebuggerStepThrough()> Get
+            Return GetValue(PictureTypeProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Char?)
+            SetValue(PictureTypeProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="PictureType"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly PictureTypeProperty As DependencyProperty = DependencyProperty.Register("PictureType", GetType(Char?), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnPictureTypeChanged, AddressOf CoercePictureType))
+    ''' <summary>Coerces value of the <see cref="PictureType"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><paramref name="baseValue"/> if value is OK (otherwise exception is thrown).</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null, <see cref="Char"/> nor <see cref="Nullable(Of Char)"/> of <see cref="Char"/>.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is <see cref="Char"/> or non-null <see cref="Nullable(Of Char)"/> of <see cref="Char"/> but it is neither G, L, D nor P character.</exception>
+    Private Shared Function CoercePictureType(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is Char AndAlso Not TypeOf baseValue Is Char? Then Throw New TypeMismatchException("baseValue", baseValue, GetType(Char?), My.Resources.ex_ValueOfPropertyMustBeNullOrXOrNullableOfX.f("PictureType", GetType(Char).Name, GetType(Nullable(Of )).Name))
+        If baseValue IsNot Nothing Then
+            Select Case If(TypeOf baseValue Is Char, DirectCast(baseValue, Char), DirectCast(baseValue, Char?).Value)
+                Case "G"c, "L"c, "O"c, "P"c 'OK - do nothing
+                Case Else : Throw New ArgumentException(My.Resources.ex_ValueOfPropertyMustBeOneOfFollowingValues, "PictureType".f(New String() {"G", "L", "D", "P"}.Join(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ListSeparator)))
+            End Select
+        End If
+        Return baseValue
+    End Function
+    ''' <summary>Called when value of the property <see cref="PictureType"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnPictureTypeChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnPictureTypeChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="PictureType"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnPictureTypeChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If PictureType Is Nothing Then
+            cmbPictureType.SelectedItem = cmiImageNo
+        Else
+            Select Case PictureType.Value
+                Case "G"c : cmbPictureType.SelectedItem = cmiImageGeometry
+                Case "L"c : cmbPictureType.SelectedItem = cmiImageLogo
+                Case "D"c : cmbPictureType.SelectedItem = cmiImageDrawing
+                Case "P"c : cmbPictureType.SelectedItem = cmiImagePhoto
+            End Select
+        End If
+    End Sub
+    Private Sub cmbPictureType_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbPictureType.SelectionChanged
+        If cmbPictureType.SelectedItem Is cmiImageNo Then : PictureType = Nothing
+        ElseIf cmbPictureType.SelectedItem Is cmiImageGeometry Then : PictureType = "G"c
+        ElseIf cmbPictureType.SelectedItem Is cmiImageLogo Then : PictureType = "L"c
+        ElseIf cmbPictureType.SelectedItem Is cmiImageDrawing Then : PictureType = "D"c
+        ElseIf cmbPictureType.SelectedItem Is cmiImagePhoto Then : PictureType = "P"c
+        End If
+    End Sub
+#End Region
+#Region "CapTypeSelection"
+    ''' <summary>Gets or sets way in which type of cap is set</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapTypeSelection() As CreatableItemSelection
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapTypeSelectionProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As CreatableItemSelection)
+            SetValue(CapTypeSelectionProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapTypeSelection"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapTypeSelectionProperty As DependencyProperty = DependencyProperty.Register("CapTypeSelection", GetType(CreatableItemSelection), GetType(CapEditor), New FrameworkPropertyMetadata(CreatableItemSelection.AnonymousItem, AddressOf OnCapTypeSelectionChanged, AddressOf CoerceCapTypeSelection))
+    ''' <summary>Coereces value of the <see cref="CapTypeSelection"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><paramref name="baseValue"/> if value is OK (otherwise exception is thrown).</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither <see cref="CreatableItemSelection"/> nor <see cref="String"/></exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is <see cref="String"/> but it is not name of one of <see cref="CreatableItemSelection"/> members</exception>
+    ''' <exception cref="InvalidEnumArgumentException"><paramref name="baseValue"/> is <see cref="CreatableItemSelection"/> but it is not one of <see cref="CreatableItemSelection"/> enumerated constants.</exception>
+    Private Shared Function CoerceCapTypeSelection(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If TypeOf baseValue Is String Then
+            Return [Enum].Parse(GetType(CreatableItemSelection), baseValue)
+        ElseIf TypeOf baseValue Is CreatableItemSelection Then
+            If Not DirectCast(baseValue, CreatableItemSelection).IsDefined Then Throw New InvalidEnumArgumentException("baseValue", baseValue, GetType(CreatableItemSelection))
+        Else : Throw New TypeMismatchException("baseValue", baseValue, GetType(CreatableItemSelection), "Property {0} can be set only by types {1} and {2}.".f("CapTypeSelection", GetType(CreatableItemSelection), GetType(String)))
+        End If
+        Return baseValue
+    End Function
+    ''' <summary>Called when value of the property <see cref="CapTypeSelection"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapTypeSelectionChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapTypeSelectionChanged(e)
+    End Sub
+    ''' <summary>True when <see cref="OnCapNameChanged"/> or <see cref="optCapType_Checked"/> is currently on callstach and thus should not proceed again</summary>
+    Private Setting_CapTypeSelection As Boolean = False
+    ''' <summary>Called when value of the <see cref="CapTypeSelection"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapTypeSelectionChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If Setting_CapTypeSelection Then Exit Sub
+        Setting_CapTypeSelection = True
+        Try
+            Select Case CapTypeSelection
+                Case CreatableItemSelection.NewItem : optCapTypeNew.IsChecked = True
+                Case CreatableItemSelection.SelectedItem : optCapTypeSelect.IsChecked = True
+                Case Else : optCapTypeAnonymous.IsChecked = True
+            End Select
+        Finally
+            Setting_CapTypeSelection = False
+        End Try
+    End Sub
+    Private Sub optCapType_Checked(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles optCapTypeAnonymous.Checked, optCapTypeNew.Checked, optCapTypeSelect.Checked
+        If Setting_CapTypeSelection Then Exit Sub
+        Setting_CapTypeSelection = True
+        Try
+            If optCapTypeSelect.IsChecked Then : CapTypeSelection = CreatableItemSelection.SelectedItem
+            ElseIf optCapTypeNew.IsChecked Then : CapTypeSelection = CreatableItemSelection.NewItem
+            ElseIf optCapTypeAnonymous.IsChecked Then : CapTypeSelection = CreatableItemSelection.AnonymousItem
+            End If
+        Finally
+            Setting_CapTypeSelection = False
+        End Try
+    End Sub
+#End Region
+#Region "CapType"
+    ''' <summary>Gets or sets sepected cap type. Valid when <see cref="CapTypeSelection"/> is <see cref="CreatableItemSelection.SelectedItem"/></summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapType() As CapType
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapTypeProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As CapType)
+            SetValue(CapTypeProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapType"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapTypeProperty As DependencyProperty = DependencyProperty.Register("CapType", GetType(CapType), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapTypeChanged, AddressOf CoerceCapType))
+    ''' <summary>Coerces value of the <see cref="CapType"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapType"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="CapType"/>.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="CapType.CapTypeID"/> in combobox</exception>
+    Private Shared Function CoerceCapType(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is CapType Then Throw New TypeMismatchException("baseValue", baseValue, GetType(CapType))
+        Return DirectCast(d, CapEditor).CoerceCapType(baseValue)
+    End Function
+    ''' <summary>COerces value of the <see cref="CapType"/> property</summary>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapType"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="CapType.CapTypeID"/> in combobox</exception>
+    Protected Overridable Function CoerceCapType(ByVal baseValue As CapType) As CapType
+        If baseValue Is Nothing Then cmbCapType.SelectedIndex = -1 : Return Nothing
+        For Each item As CapType In cmbCapType.Items
+            If item Is baseValue Then Return baseValue
+        Next
+        For Each item As CapType In cmbCapType.Items
+            If item.CapTypeID = baseValue.CapTypeID Then Return item
+        Next
+        Throw New ArgumentException(My.Resources.ex_SetUnknownCapType)
+    End Function
+    ''' <summary>Called when value of the property <see cref="CapType"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapTypeChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapTypeChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapType"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapTypeChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        cmbCapType.SelectedItem = CapType
+    End Sub
+    Private Sub cmbCapType_SelectionChanged2(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbCapType.SelectionChanged
+        CapType = cmbCapType.SelectedItem
+    End Sub
+#End Region
+#Region "CapTypeName"
+    ''' <summary>Gets or sets name of cap type when <see cref="CapTypeSelection"/> is <see cref="CreatableItemSelection.NewItem"/></summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapTypeName() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapTypeNameProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(CapTypeNameProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapTypeName"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapTypeNameProperty As DependencyProperty = DependencyProperty.Register("CapTypeName", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapTypeNameChanged))
+    ''' <summary>Called when value of the property <see cref="CapTypeName"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapTypeNameChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapTypeNameChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapTypeName"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapTypeNameChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If CapTypeName <> txtCapTypeName.Text Then txtCapTypeName.Text = CapTypeName
+    End Sub
+    Private Sub txtCapTypeName_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtCapTypeName.TextChanged
+        If CapTypeName <> txtCapTypeName.Text Then CapTypeName = txtCapTypeName.Text
+    End Sub
+#End Region
+#Region "CapTypeDescription"
+    ''' <summary>Gets or sets description of cap type when <see cref="CapTypeSelection"/> is <see cref="CreatableItemSelection.NewItem"/></summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapTypeDescription() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapTypeDescriptionProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(CapTypeDescriptionProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapTypeDescription"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapTypeDescriptionProperty As DependencyProperty = DependencyProperty.Register("CapTypeDescription", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapTypeDescriptionChanged))
+    ''' <summary>Called when value of the property <see cref="CapTypeDescription"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapTypeDescriptionChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapTypeDescriptionChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapTypeDescription"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapTypeDescriptionChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If CapTypeDescription <> txtCapTypeDesc.Text Then txtCapTypeDesc.Text = CapTypeDescription
+    End Sub
+    Private Sub txtCapTypeDescription_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtCapTypeDesc.TextChanged
+        If CapTypeDescription <> txtCapTypeDesc.Text Then CapTypeDescription = txtCapTypeDesc.Text
+    End Sub
+#End Region
+#Region "CapTypeImagePath"
+    ''' <summary>Gets or sets path to image of cap type when <see cref="CapTypeSelection"/> is <see cref="CreatableItemSelection.NewItem"/></summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapTypeImagePath() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapTypeImagePathProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(CapTypeImagePathProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapTypeImagePath"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapTypeImagePathProperty As DependencyProperty = DependencyProperty.Register("CapTypeImagePath", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapTypeImagePathChanged))
+    ''' <summary>Called when value of the property <see cref="CapTypeImagePath"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapTypeImagePathChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapTypeImagePathChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapTypeImagePath"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapTypeImagePathChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If CapTypeImagePath <> txtCapTypeImagePath.Text Then txtCapTypeImagePath.Text = CapTypeImagePath
+    End Sub
+    Private Sub txtCapTypeImagePath_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtCapTypeDesc.TextChanged
+        If CapTypeImagePath <> txtCapTypeImagePath.Text Then CapTypeImagePath = txtCapTypeImagePath.Text
+    End Sub
+#End Region
+#Region "CapMainType"
+    ''' <summary>Gets or sets main cap type.</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapMainType() As MainType
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapMainTypeProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As MainType)
+            SetValue(CapMainTypeProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapMainType"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapMainTypeProperty As DependencyProperty = DependencyProperty.Register("CapMainType", GetType(MainType), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapMainTypeChanged, AddressOf CoerceCapMainType))
+    ''' <summary>Coerces value of the <see cref="CapMainType"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapMainType"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="CapMainType"/>.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="MainType.MainTypeID"/> in combobox</exception>
+    Private Shared Function CoerceCapMainType(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is MainType Then Throw New TypeMismatchException("baseValue", baseValue, GetType(MainType))
+        Return DirectCast(d, CapEditor).CoerceCapMainType(baseValue)
+    End Function
+    ''' <summary>COerces value of the <see cref="CapMainType"/> property</summary>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapMainType"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="MainType.MainTypeID"/> in combobox</exception>
+    Protected Overridable Function CoerceCapMainType(ByVal baseValue As MainType) As MainType
+        If baseValue Is Nothing Then cmbMainType.SelectedIndex = -1 : Return Nothing
+        For Each item As MainType In cmbMainType.Items
+            If item Is baseValue Then Return baseValue
+        Next
+        For Each item As MainType In cmbMainType.Items
+            If item.MainTypeID = baseValue.MainTypeID Then Return item
+        Next
+        Throw New ArgumentException(My.Resources.ex_SetUnknownCapMainType)
+    End Function
+    ''' <summary>Called when value of the property <see cref="CapMainType"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapMainTypeChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapMainTypeChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapMainType"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapMainTypeChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        cmbMainType.SelectedItem = CapMainType
+    End Sub
+    Private Sub cmbCapMainType_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbMainType.SelectionChanged
+        CapMainType = cmbMainType.SelectedItem
+    End Sub
+#End Region
+#Region "CapShape"
+    ''' <summary>Gets or sets cap shape.</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapShape() As Shape
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapShapeProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Shape)
+            SetValue(CapShapeProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapShape"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapShapeProperty As DependencyProperty = DependencyProperty.Register("CapShape", GetType(Shape), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapShapeChanged, AddressOf CoerceCapShape))
+    ''' <summary>Coerces value of the <see cref="CapShape"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapShape"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="CapShape"/>.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="Shape.ShapeID"/> in combobox</exception>
+    Private Shared Function CoerceCapShape(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is Shape Then Throw New TypeMismatchException("baseValue", baseValue, GetType(Shape))
+        Return DirectCast(d, CapEditor).CoerceCapShape(baseValue)
+    End Function
+    ''' <summary>COerces value of the <see cref="CapShape"/> property</summary>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapShape"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="Shape.ShapeID"/> in combobox</exception>
+    Protected Overridable Function CoerceCapShape(ByVal baseValue As Shape) As Shape
+        If baseValue Is Nothing Then cmbShape.SelectedIndex = -1 : Return Nothing
+        For Each item As Shape In cmbShape.Items
+            If item Is baseValue Then Return baseValue
+        Next
+        For Each item As Shape In cmbShape.Items
+            If item.ShapeID = baseValue.ShapeID Then Return item
+        Next
+        Throw New ArgumentException(My.Resources.ex_SetUnknownShape)
+    End Function
+    ''' <summary>Called when value of the property <see cref="CapShape"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapShapeChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapShapeChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapShape"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapShapeChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        cmbShape.SelectedItem = CapShape
+    End Sub
+    Private Sub cmbCapShape_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbShape.SelectionChanged
+        CapShape = cmbShape.SelectedItem
+    End Sub
+#End Region
+#Region "Size1"
+    ''' <summary>Gets or sets cap size (i.e. diameter or width)</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property Size1() As Integer
+        <DebuggerStepThrough()> Get
+            Return GetValue(Size1Property)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Integer)
+            SetValue(Size1Property, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="Size1"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly Size1Property As DependencyProperty = DependencyProperty.Register("Size1", GetType(Integer), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnSize1Changed))
+    ''' <summary>Called when value of the property <see cref="Size1"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnSize1Changed(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnSize1Changed(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="Size1"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnSize1Changed(ByVal e As DependencyPropertyChangedEventArgs)
+        If Size1 <> nudSize1.Value Then nudSize1.Value = Size1
+    End Sub
+    Private Sub txtSize1_TextChanged(ByVal sender As Object, ByVal e As RoutedPropertyChangedEventArgs(Of Decimal)) Handles nudSize1.ValueChanged
+        If Size1 <> nudSize1.Value Then Size1 = nudSize1.Value
+    End Sub
+#End Region
+#Region "Size2"
+    ''' <summary>Gets or sets caps size 2 (i.e. y-width)</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property Size2() As Integer
+        <DebuggerStepThrough()> Get
+            Return GetValue(Size2Property)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Integer)
+            SetValue(Size2Property, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="Size2"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly Size2Property As DependencyProperty = DependencyProperty.Register("Size2", GetType(Integer), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnSize2Changed))
+    ''' <summary>Called when value of the property <see cref="Size2"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnSize2Changed(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnSize2Changed(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="Size2"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnSize2Changed(ByVal e As DependencyPropertyChangedEventArgs)
+        If Size2 <> nudSize2.Value Then nudSize2.Value = Size2
+    End Sub
+    Private Sub txtSize2_TextChanged(ByVal sender As Object, ByVal e As RoutedPropertyChangedEventArgs(Of Decimal)) Handles nudSize2.ValueChanged
+        If Size2 <> nudSize2.Value Then Size2 = nudSize2.Value
+    End Sub
+#End Region
+#Region "CapHeight"
+    ''' <summary>Gets or sets cap height in mms</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapHeight() As Integer
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapHeightProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Integer)
+            SetValue(CapHeightProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapHeight"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapHeightProperty As DependencyProperty = DependencyProperty.Register("CapHeight", GetType(Integer), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapHeightChanged))
+    ''' <summary>Called when value of the property <see cref="CapHeight"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapHeightChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapHeightChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapHeight"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapHeightChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If CapHeight <> nudHeight.Value Then nudHeight.Value = CapHeight
+    End Sub
+    Private Sub txtCapHeight_TextChanged(ByVal sender As Object, ByVal e As RoutedPropertyChangedEventArgs(Of Decimal)) Handles nudHeight.ValueChanged
+        If CapHeight <> nudHeight.Value Then CapHeight = nudHeight.Value
+    End Sub
+#End Region
+#Region "Material"
+    ''' <summary>Gets or sets cap material.</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property Material() As Material
+        <DebuggerStepThrough()> Get
+            Return GetValue(MaterialProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Material)
+            SetValue(MaterialProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="Material"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly MaterialProperty As DependencyProperty = DependencyProperty.Register("Material", GetType(Material), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnMaterialChanged, AddressOf CoerceMaterial))
+    ''' <summary>Coerces value of the <see cref="Material"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="Material"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="Material"/>.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="Material.MaterialID"/> in combobox</exception>
+    Private Shared Function CoerceMaterial(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is Material Then Throw New TypeMismatchException("baseValue", baseValue, GetType(Material))
+        Return DirectCast(d, CapEditor).CoerceMaterial(baseValue)
+    End Function
+    ''' <summary>COerces value of the <see cref="Material"/> property</summary>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="Material"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="Material.MaterialID"/> in combobox</exception>
+    Protected Overridable Function CoerceMaterial(ByVal baseValue As Material) As Material
+        If baseValue Is Nothing Then cmbMaterial.SelectedIndex = -1 : Return Nothing
+        For Each item As Material In cmbMaterial.Items
+            If item Is baseValue Then Return baseValue
+        Next
+        For Each item As Material In cmbMaterial.Items
+            If item.MaterialID = baseValue.MaterialID Then Return item
+        Next
+        Throw New ArgumentException(My.Resources.ex_SetUnknownMaterial)
+    End Function
+    ''' <summary>Called when value of the property <see cref="Material"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnMaterialChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnMaterialChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="Material"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnMaterialChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        cmbMaterial.SelectedItem = Material
+    End Sub
+    Private Sub cmbMaterial_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbMaterial.SelectionChanged
+        Material = cmbMaterial.SelectedItem
+    End Sub
+#End Region
+#Region "CapBackgroundColor1"
+    ''' <summary>Gets or sets cap primary background color</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapBackgroundColor1() As Color
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapBackgroundColor1Property)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Color)
+            SetValue(CapBackgroundColor1Property, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapBackgroundColor1"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapBackgroundColor1Property As DependencyProperty = DependencyProperty.Register("CapBackgroundColor1", GetType(Color), GetType(CapEditor), New FrameworkPropertyMetadata(Colors.Transparent, AddressOf OnCapBackgroundColor1Changed))
+    ''' <summary>Called when value of the property <see cref="CapBackgroundColor1"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapBackgroundColor1Changed(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapBackgroundColor1Changed(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapBackgroundColor1"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapBackgroundColor1Changed(ByVal e As DependencyPropertyChangedEventArgs)
+        If CapBackgroundColor1 <> copBackground.Color Then copBackground.Color = CapBackgroundColor1
+    End Sub
+    Private Sub txtCapBackgroundColor1_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copBackground.ColorChanged
+        If CapBackgroundColor1 <> copBackground.Color Then CapBackgroundColor1 = copBackground.Color
+    End Sub
+#End Region
+#Region "CapBackgroundColor2"
+    ''' <summary>Gets or sets cap secondary background</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapBackgroundColor2() As Color?
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapBackgroundColor2Property)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Color?)
+            SetValue(CapBackgroundColor2Property, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapBackgroundColor2"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapBackgroundColor2Property As DependencyProperty = DependencyProperty.Register("CapBackgroundColor2", GetType(Color?), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapBackgroundColor2Changed))
+    ''' <summary>Called when value of the property <see cref="CapBackgroundColor2"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapBackgroundColor2Changed(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapBackgroundColor2Changed(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapBackgroundColor2"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapBackgroundColor2Changed(ByVal e As DependencyPropertyChangedEventArgs)
+        If CapBackgroundColor2 <> copSecondaryBackground.Color Then copSecondaryBackground.Color = CapBackgroundColor2
+    End Sub
+    Private Sub txtCapBackgroundColor2_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copSecondaryBackground.ColorChanged
+        If CapBackgroundColor2 <> copSecondaryBackground.Color Then CapBackgroundColor2 = copSecondaryBackground.Color
+    End Sub
+#End Region
+#Region "CapForegroundColor1"
+    ''' <summary>Gets or sets cap primary foreground color</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapForegroundColor1() As Color?
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapForegroundColor1Property)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Color?)
+            SetValue(CapForegroundColor1Property, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapForegroundColor1"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapForegroundColor1Property As DependencyProperty = DependencyProperty.Register("CapForegroundColor1", GetType(Color?), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapForegroundColor1Changed))
+    ''' <summary>Called when value of the property <see cref="CapForegroundColor1"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapForegroundColor1Changed(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapForegroundColor1Changed(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapForegroundColor1"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapForegroundColor1Changed(ByVal e As DependencyPropertyChangedEventArgs)
+        If CapForegroundColor1 <> copForeground.Color Then copForeground.Color = CapForegroundColor1
+    End Sub
+    Private Sub txtCapForegroundColor1_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copForeground.ColorChanged
+        If CapForegroundColor1 <> copForeground.Color Then CapForegroundColor1 = copForeground.Color
+    End Sub
+#End Region
+#Region "CapForegroundColor2"
+    ''' <summary>Gets or sets cap secondary foreground color</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapForegroundColor2() As Color?
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapForegroundColor2Property)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Color?)
+            SetValue(CapForegroundColor2Property, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapForegroundColor2"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapForegroundColor2Property As DependencyProperty = DependencyProperty.Register("CapForegroundColor2", GetType(Color?), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapForegroundColor2Changed))
+    ''' <summary>Called when value of the property <see cref="CapForegroundColor2"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapForegroundColor2Changed(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapForegroundColor2Changed(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapForegroundColor2"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapForegroundColor2Changed(ByVal e As DependencyPropertyChangedEventArgs)
+        If CapForegroundColor2 <> copForeground2.Color Then copForeground2.Color = CapForegroundColor2
+    End Sub
+    Private Sub txtCapForegroundColor2_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copForeground2.ColorChanged
+        If CapForegroundColor2 <> copForeground2.Color Then CapForegroundColor2 = copForeground2.Color
+    End Sub
+#End Region
+#Region "IS3D"
+    ''' <summary>Gets or sets valkue indicating if cap has 3D surface</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property Is3D() As Boolean
+        <DebuggerStepThrough()> Get
+            Return GetValue(Is3DProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Boolean)
+            SetValue(Is3DProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="Is3D"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly Is3DProperty As DependencyProperty = DependencyProperty.Register("Is3D", GetType(Boolean), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnIs3DChanged))
+    ''' <summary>Called when value of the property <see cref="Is3D"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnIs3DChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnIS3DChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="Is3D"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnIs3DChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        chk3D.IsChecked = Is3D
+    End Sub
+    Private Sub txtIs3D_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles chk3D.Checked, chk3D.Unchecked
+        Is3D = chk3D.IsChecked
+    End Sub
+#End Region
+#Region "IsGlossy"
+    ''' <summary>Gets or sets value indicating if cap has glossy or matting surface</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property IsGlossy() As Boolean
+        <DebuggerStepThrough()> Get
+            Return GetValue(IsGlossyProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Boolean)
+            SetValue(IsGlossyProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="IsGlossy"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly IsGlossyProperty As DependencyProperty = DependencyProperty.Register("IsGlossy", GetType(Boolean), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnIsGlossyChanged))
+    ''' <summary>Called when value of the property <see cref="IsGlossy"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnIsGlossyChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnIsGlossyChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="IsGlossy"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnIsGlossyChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        optGlossy.IsChecked = IsGlossy
+        optMatting.IsChecked = Not IsGlossy
+    End Sub
+    Private Sub txtIsGlossy_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles optGlossy.Checked, optGlossy.Unchecked
+        IsGlossy = optGlossy.IsChecked
+    End Sub
+#End Region
+#Region "TopText"
+    ''' <summary>Gets or sets text of top side of cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property TopText() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(TopTextProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(TopTextProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="TopText"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly TopTextProperty As DependencyProperty = DependencyProperty.Register("TopText", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnTopTextChanged))
+    ''' <summary>Called when value of the property <see cref="TopText"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnTopTextChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnTopTextChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="TopText"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnTopTextChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If TopText <> txtTopText.Text Then txtTopText.Text = TopText
+    End Sub
+    Private Sub txtTopText_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtTopText.TextChanged
+        If TopText <> txtTopText.Text Then TopText = txtTopText.Text
+    End Sub
+#End Region
+#Region "SideText"
+    ''' <summary>Gets or sets text at side of cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property SideText() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(SideTextProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(SideTextProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="SideText"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly SideTextProperty As DependencyProperty = DependencyProperty.Register("SideText", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnSideTextChanged))
+    ''' <summary>Called when value of the property <see cref="SideText"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnSideTextChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnSideTextChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="SideText"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnSideTextChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If SideText <> txtSideText.Text Then txtSideText.Text = SideText
+    End Sub
+    Private Sub txtSideText_TextChanged2(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtSideText.TextChanged
+        If SideText <> txtSideText.Text Then SideText = txtSideText.Text
+    End Sub
+#End Region
+#Region "BottomText"
+    ''' <summary>Gets or sets text at bottom side of cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property BottomText() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(BottomTextProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(BottomTextProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="BottomText"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly BottomTextProperty As DependencyProperty = DependencyProperty.Register("BottomText", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnBottomTextChanged))
+    ''' <summary>Called when value of the property <see cref="BottomText"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnBottomTextChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnBottomTextChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="BottomText"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnBottomTextChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If BottomText <> txtBottomText.Text Then txtBottomText.Text = BottomText
+    End Sub
+    Private Sub txtBottomText_TextChanged2(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtBottomText.TextChanged
+        If BottomText <> txtBottomText.Text Then BottomText = txtBottomText.Text
+    End Sub
+#End Region
+#Region "CapNote"
+    ''' <summary>Gets or sets name of cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapNote() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapNoteProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(CapNoteProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapNote"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapNoteProperty As DependencyProperty = DependencyProperty.Register("CapNote", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapNoteChanged))
+    ''' <summary>Called when value of the property <see cref="CapNote"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapNoteChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapNoteChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapNote"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapNoteChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If CapNote <> txtNote.Text Then txtNote.Text = CapNote
+    End Sub
+    Private Sub txtNote_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtNote.TextChanged
+        If CapNote <> txtNote.Text Then CapNote = txtNote.Text
+    End Sub
+#End Region
+#Region "CapID"
+    ''' <summary>Gets or sets ID of displayed cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapID() As Integer
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapIDProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Integer)
+            SetValue(CapIDProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapID"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapIDProperty As DependencyProperty = DependencyProperty.Register("CapID", GetType(Integer), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapIDChanged))
+    ''' <summary>Called when value of the property <see cref="CapID"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapIDChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapIDChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapID"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapIDChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        lblID.Content = CapID.ToString
+    End Sub
+#End Region
+#Region "Year"
+    ''' <summary>Gets or sets year when cap was found</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property Year() As Integer?
+        <DebuggerStepThrough()> Get
+            Return GetValue(YearProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Integer?)
+            SetValue(YearProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="Year"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly YearProperty As DependencyProperty = DependencyProperty.Register("Year", GetType(Integer?), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnYearChanged))
+    ''' <summary>Called when value of the property <see cref="Year"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnYearChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnYearChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="Year"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnYearChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        Dim yr As Integer = If(Year, 0)
+        If If(Year, 0) <> nudYear.Value Then nudYear.Value = Year()
+    End Sub
+    Private Sub txtYear_TextChanged(ByVal sender As Object, ByVal e As RoutedPropertyChangedEventArgs(Of Decimal)) Handles nudYear.ValueChanged
+        If If(Year, 0) <> nudYear.Value Then Year = If(nudYear.Value = 0, Nothing, CInt(nudYear.Value))
+    End Sub
+#End Region
+#Region "Country"
+    ''' <summary>Gets or sets name of cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property Country() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(CountryProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(CountryProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="Country"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CountryProperty As DependencyProperty = DependencyProperty.Register("Country", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCountryChanged, AddressOf CoerceCountryCode))
+    ''' <summary>Coerces value of the <see cref="Country"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="BaseValueSource"/> is it is OK, otherwise an exception is throen</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> isnot <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither <see cref="String"/> not null.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is <see cref="String"/> and it is neither an empty string nor exactly 3 characters long string.</exception>
+    Private Shared Function CoerceCountryCode(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is String Then Throw New TypeMismatchException("baseValue", baseValue, GetType(String))
+        If baseValue IsNot Nothing AndAlso DirectCast(baseValue, String).Length <> 3 AndAlso DirectCast(baseValue, String) <> "" Then Throw New ArgumentException(My.Resources.ex_CountryCode3)
+        Return baseValue
+    End Function
+    ''' <summary>Called when value of the property <see cref="Country"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCountryChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCountryChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="Country"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCountryChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If Country <> txtCountryCode.Text Then txtCountryCode.Text = Country
+    End Sub
+    Private Sub txtCountry_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtCountryCode.TextChanged
+        If Country <> txtCountryCode.Text Then Country = txtCountryCode.Text
+    End Sub
+#End Region
+#Region "Storage"
+    ''' <summary>Gets or sets cap Storage.</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property Storage() As Storage
+        <DebuggerStepThrough()> Get
+            Return GetValue(StorageProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Storage)
+            SetValue(StorageProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="Storage"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly StorageProperty As DependencyProperty = DependencyProperty.Register("Storage", GetType(Storage), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnStorageChanged, AddressOf CoerceStorage))
+    ''' <summary>Coerces value of the <see cref="Storage"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="Storage"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="Storage"/>.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="Storage.StorageID"/> in combobox</exception>
+    Private Shared Function CoerceStorage(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is Storage Then Throw New TypeMismatchException("baseValue", baseValue, GetType(Storage))
+        Return DirectCast(d, CapEditor).CoerceStorage(baseValue)
+    End Function
+    ''' <summary>COerces value of the <see cref="Storage"/> property</summary>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="Storage"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="Storage.StorageID"/> in combobox</exception>
+    Protected Overridable Function CoerceStorage(ByVal baseValue As Storage) As Storage
+        If baseValue Is Nothing Then cmbStorage.SelectedIndex = -1 : Return Nothing
+        For Each item As Storage In cmbStorage.Items
+            If item Is baseValue Then Return baseValue
+        Next
+        For Each item As Storage In cmbStorage.Items
+            If item.StorageID = baseValue.StorageID Then Return item
+        Next
+        Throw New ArgumentException(My.Resources.ex_SetUnknownStorage)
+    End Function
+    ''' <summary>Called when value of the property <see cref="Storage"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnStorageChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnStorageChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="Storage"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnStorageChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        cmbStorage.SelectedItem = Storage
+    End Sub
+    Private Sub cmbStorage_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbStorage.SelectionChanged
+        Storage = cmbStorage.SelectedItem
+    End Sub
+#End Region
+#Region "HasBottom"
+    ''' <summary>Gets or sets valkue indicating if cap has somethign interesting at bottom side</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property HasBottom() As Boolean
+        <DebuggerStepThrough()> Get
+            Return GetValue(HasBottomProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Boolean)
+            SetValue(HasBottomProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="HasBottom"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly HasBottomProperty As DependencyProperty = DependencyProperty.Register("HasBottom", GetType(Boolean), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnHasBottomChanged))
+    ''' <summary>Called when value of the property <see cref="HasBottom"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnHasBottomChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnHasBottomChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="HasBottom"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnHasBottomChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        chkHasBottom.IsChecked = HasBottom
+    End Sub
+    Private Sub txtHasBottom_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles chkHasBottom.Checked, chkHasBottom.Unchecked
+        HasBottom = chkHasBottom.IsChecked
+    End Sub
+#End Region
+#Region "HasSide"
+    ''' <summary>Gets or sets valkue indicating if cap has somethign interesting at side</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property HasSide() As Boolean
+        <DebuggerStepThrough()> Get
+            Return GetValue(HasSideProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Boolean)
+            SetValue(HasSideProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="HasSide"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly HasSideProperty As DependencyProperty = DependencyProperty.Register("HasSide", GetType(Boolean), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnHasSideChanged))
+    ''' <summary>Called when value of the property <see cref="HasSide"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnHasSideChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnHasSideChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="HasSide"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnHasSideChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        chkHasSide.IsChecked = HasSide
+    End Sub
+    Private Sub txtHasSide_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles chkHasSide.Checked, chkHasSide.Unchecked
+        HasSide = chkHasSide.IsChecked
+    End Sub
+#End Region
+#Region "ProductSelection"
+    ''' <summary>Gets or sets way in which tproduct is set</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property ProductSelection() As CreatableItemSelection
+        <DebuggerStepThrough()> Get
+            Return GetValue(ProductSelectionProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As CreatableItemSelection)
+            SetValue(ProductSelectionProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="ProductSelection"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly ProductSelectionProperty As DependencyProperty = DependencyProperty.Register("ProductSelection", GetType(CreatableItemSelection), GetType(CapEditor), New FrameworkPropertyMetadata(CreatableItemSelection.AnonymousItem, AddressOf OnProductSelectionChanged, AddressOf CoerceProductSelection))
+    ''' <summary>Coereces value of the <see cref="ProductSelection"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><paramref name="baseValue"/> if value is OK (otherwise exception is thrown).</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither <see cref="CreatableItemSelection"/> nor <see cref="String"/></exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is <see cref="String"/> but it is not name of one of <see cref="CreatableItemSelection"/> members</exception>
+    ''' <exception cref="InvalidEnumArgumentException"><paramref name="baseValue"/> is <see cref="CreatableItemSelection"/> but it is not one of <see cref="CreatableItemSelection"/> enumerated constants.</exception>
+    Private Shared Function CoerceProductSelection(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If TypeOf baseValue Is String Then
+            Return [Enum].Parse(GetType(CreatableItemSelection), baseValue)
+        ElseIf TypeOf baseValue Is CreatableItemSelection Then
+            If Not DirectCast(baseValue, CreatableItemSelection).IsDefined Then Throw New InvalidEnumArgumentException("baseValue", baseValue, GetType(CreatableItemSelection))
+        Else : Throw New TypeMismatchException("baseValue", baseValue, GetType(CreatableItemSelection), "Property {0} can be set only by types {1} and {2}.".f("ProductSelection", GetType(CreatableItemSelection), GetType(String)))
+        End If
+        Return baseValue
+    End Function
+    ''' <summary>Called when value of the property <see cref="ProductSelection"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnProductSelectionChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnProductSelectionChanged(e)
+    End Sub
+    ''' <summary>True when <see cref="OnCapNameChanged"/> or <see cref="optProduct_Checked"/> is currently on callstach and thus should not proceed again</summary>
+    Private Setting_ProductSelection As Boolean = False
+    ''' <summary>Called when value of the <see cref="ProductSelection"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnProductSelectionChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If Setting_ProductSelection Then Exit Sub
+        Setting_ProductSelection = True
+        Try
+            Select Case ProductSelection
+                Case CreatableItemSelection.NewItem : optProductNew.IsChecked = True
+                Case CreatableItemSelection.SelectedItem : optProductSelected.IsChecked = True
+                Case Else : optProductAnonymous.IsChecked = True
+            End Select
+        Finally
+            Setting_ProductSelection = False
+        End Try
+    End Sub
+    Private Sub optProduct_Checked(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles optProductAnonymous.Checked, optProductNew.Checked, optProductSelected.Checked
+        If Setting_ProductSelection Then Exit Sub
+        Setting_ProductSelection = True
+        Try
+            If optProductSelected.IsChecked Then : ProductSelection = CreatableItemSelection.SelectedItem
+            ElseIf optProductNew.IsChecked Then : ProductSelection = CreatableItemSelection.NewItem
+            ElseIf optProductAnonymous.IsChecked Then : ProductSelection = CreatableItemSelection.AnonymousItem
+            End If
+        Finally
+            Setting_ProductSelection = False
+        End Try
+    End Sub
+#End Region
+#Region "Product"
+    ''' <summary>Gets or sets sepected product. Valid when <see cref="ProductSelection"/> is <see cref="CreatableItemSelection.SelectedItem"/></summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property Product() As Product
+        <DebuggerStepThrough()> Get
+            Return GetValue(ProductProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Product)
+            SetValue(ProductProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="Product"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly ProductProperty As DependencyProperty = DependencyProperty.Register("Product", GetType(Product), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnProductChanged, AddressOf CoerceProduct))
+    ''' <summary>Coerces value of the <see cref="Product"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="Product"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="Product"/>.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="Product.ProductID"/> in combobox</exception>
+    Private Shared Function CoerceProduct(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is Product Then Throw New TypeMismatchException("baseValue", baseValue, GetType(Product))
+        Return DirectCast(d, CapEditor).CoerceProduct(baseValue)
+    End Function
+    ''' <summary>COerces value of the <see cref="Product"/> property</summary>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="Product"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="Product.ProductID"/> in combobox</exception>
+    Protected Overridable Function CoerceProduct(ByVal baseValue As Product) As Product
+        If baseValue Is Nothing Then cmbProduct.SelectedIndex = -1 : Return Nothing
+        For Each item As Product In cmbProduct.Items
+            If item Is baseValue Then Return baseValue
+        Next
+        For Each item As Product In cmbProduct.Items
+            If item.ProductID = baseValue.ProductID Then Return item
+        Next
+        Throw New ArgumentException(My.Resources.ex_SetUnknownProduct)
+    End Function
+    ''' <summary>Called when value of the property <see cref="Product"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnProductChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnProductChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="Product"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnProductChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        cmbProduct.SelectedItem = Product
+    End Sub
+    Private Sub cmbProduct_SelectionChanged2(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbProduct.SelectionChanged
+        Product = cmbProduct.SelectedItem
+    End Sub
+#End Region
+#Region "ProducteName"
+    ''' <summary>Gets or sets name of product when <see cref="ProductSelection"/> is <see cref="CreatableItemSelection.NewItem"/></summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property ProductName() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(ProductNameProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(ProductNameProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="ProductName"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly ProductNameProperty As DependencyProperty = DependencyProperty.Register("ProductName", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnProductNameChanged))
+    ''' <summary>Called when value of the property <see cref="ProductName"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnProductNameChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnProductNameChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="ProductName"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnProductNameChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If ProductName <> txtProductName.Text Then txtProductName.Text = ProductName
+    End Sub
+    Private Sub txtProductName_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtProductName.TextChanged
+        If ProductName <> txtProductName.Text Then ProductName = txtProductName.Text
+    End Sub
+#End Region
+#Region "ProductDescription"
+    ''' <summary>Gets or sets description of cap type when <see cref="ProductSelection"/> is <see cref="CreatableItemSelection.NewItem"/></summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property ProductDescription() As String
+        <DebuggerStepThrough()> Get
+            Return GetValue(ProductDescriptionProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            SetValue(ProductDescriptionProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="ProductDescription"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly ProductDescriptionProperty As DependencyProperty = DependencyProperty.Register("ProductDescription", GetType(String), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnProductDescriptionChanged))
+    ''' <summary>Called when value of the property <see cref="ProductDescription"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnProductDescriptionChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnProductDescriptionChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="ProductDescription"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnProductDescriptionChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If ProductDescription <> txtProductDescription.Text Then txtProductDescription.Text = ProductDescription
+    End Sub
+    Private Sub txtProductDescription_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtProductDescription.TextChanged
+        If ProductDescription <> txtProductDescription.Text Then ProductDescription = txtProductDescription.Text
+    End Sub
+#End Region
+#Region "CapProductType"
+    ''' <summary>Gets or sets main cap type.</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapProductType() As ProductType
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapProductTypeProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As ProductType)
+            SetValue(CapProductTypeProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapProductType"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapProductTypeProperty As DependencyProperty = DependencyProperty.Register("CapProductType", GetType(ProductType), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapProductTypeChanged, AddressOf CoerceCapProductType))
+    ''' <summary>Coerces value of the <see cref="CapProductType"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapProductType"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="CapProductType"/>.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="ProductType.ProductTypeID"/> in combobox</exception>
+    Private Shared Function CoerceCapProductType(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is ProductType Then Throw New TypeMismatchException("baseValue", baseValue, GetType(ProductType))
+        Return DirectCast(d, CapEditor).CoerceCapProductType(baseValue)
+    End Function
+    ''' <summary>COerces value of the <see cref="CapProductType"/> property</summary>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapProductType"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="ProductType.ProductTypeID"/> in combobox</exception>
+    Protected Overridable Function CoerceCapProductType(ByVal baseValue As ProductType) As ProductType
+        If baseValue Is Nothing Then cmbProductType.SelectedIndex = -1 : Return Nothing
+        For Each item As ProductType In cmbProductType.Items
+            If item Is baseValue Then Return baseValue
+        Next
+        For Each item As ProductType In cmbProductType.Items
+            If item.ProductTypeID = baseValue.ProductTypeID Then Return item
+        Next
+        Throw New ArgumentException(My.Resources.ex_SetUnknownCapProductType)
+    End Function
+    ''' <summary>Called when value of the property <see cref="CapProductType"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapProductTypeChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapProductTypeChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapProductType"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapProductTypeChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        cmbProductType.SelectedItem = CapProductType
+    End Sub
+    Private Sub cmbCapProductType_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbProductType.SelectionChanged
+        CapProductType = cmbProductType.SelectedItem
+    End Sub
+#End Region
+#Region "CapProductType"
+    ''' <summary>Gets or sets main cap type.</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapCompany() As Company
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapCompanyProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Company)
+            SetValue(CapCompanyProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapCompany"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapCompanyProperty As DependencyProperty = DependencyProperty.Register("CapCompany", GetType(Company), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapCompanyChanged, AddressOf CoerceCapCompany))
+    ''' <summary>Coerces value of the <see cref="CapCompany"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapCompany"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="CapCompany"/>.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="Company.CompanyID"/> in combobox</exception>
+    Private Shared Function CoerceCapCompany(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is Company Then Throw New TypeMismatchException("baseValue", baseValue, GetType(Company))
+        Return DirectCast(d, CapEditor).CoerceCapCompany(baseValue)
+    End Function
+    ''' <summary>COerces value of the <see cref="CapCompany"/> property</summary>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapCompany"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="Company.CompanyID"/> in combobox</exception>
+    Protected Overridable Function CoerceCapCompany(ByVal baseValue As Company) As Company
+        If baseValue Is Nothing Then cmbCompany.SelectedIndex = -1 : Return Nothing
+        For Each item As Company In cmbCompany.Items
+            If item Is baseValue Then Return baseValue
+        Next
+        For Each item As Company In cmbCompany.Items
+            If item.CompanyID = baseValue.CompanyID Then Return item
+        Next
+        Throw New ArgumentException(My.Resources.ex_SetUnknownCapCompany)
+    End Function
+    ''' <summary>Called when value of the property <see cref="CapCompany"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapCompanyChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapCompanyChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapCompany"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapCompanyChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        cmbCompany.SelectedItem = CapCompany
+    End Sub
+    Private Sub cmbCapCompany_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbCompany.SelectionChanged
+        CapCompany = cmbCompany.SelectedItem
+    End Sub
+#End Region
+#Region "SelectedCategories"
+    ''' <summary>Gets or sets name of cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property SelectedCategories() As IEnumerable(Of Category)
+        <DebuggerStepThrough()> Get
+            Return GetValue(SelectedCategoriesProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As IEnumerable(Of Category))
+            SetValue(SelectedCategoriesProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="SelectedCategories"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly SelectedCategoriesProperty As DependencyProperty = DependencyProperty.Register("SelectedCategories", GetType(IEnumerable(Of Category)), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnSelectedCategoriesChanged, AddressOf CoerceSelectedCategories))
+    ''' <summary>COerces value of the <see cref="SelectedCategories"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="IEnumerable(Of Category)"/> of <see cref="Category"/></exception> 
+    ''' <returns>Those of categories in <paramref name="baseValue"/> which are known to this control</returns>
+    Private Shared Function CoerceSelectedCategories(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is IEnumerable(Of Category) Then Throw New TypeMismatchException("baseValue", baseValue, GetType(IEnumerable(Of Category)))
+        Return DirectCast(d, CapEditor).CoerceSelectedCategories(baseValue)
+    End Function
+    ''' <summary>COerces value of the <see cref="SelectedCategories"/> property</summary>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns>Array of <see cref="Category"/>: Those of categories in <paramref name="baseValue"/> which are known to this control</returns>
+    Private Function CoerceSelectedCategories(ByVal baseValue As IEnumerable(Of Category)) As IEnumerable(Of CategoryProxy)
+        If baseValue Is Nothing Then Return Nothing
+        Return (From itm In baseValue Where (From cat As CategoryProxy In lstCategories.Items Select cat.Category.CategoryID).Contains(itm.CategoryID)).ToArray
+    End Function
+    ''' <summary>Called when value of the property <see cref="SelectedCategories"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnSelectedCategoriesChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnSelectedCategoriesChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="SelectedCategories"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnSelectedCategoriesChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        For Each item As CategoryProxy In lstCategories.Items
+            item.Checked = SelectedCategories IsNot Nothing AndAlso (From cat In SelectedCategories Select cat.CategoryID).Contains(item.Category.CategoryID)
+        Next
+    End Sub
+    Private Sub lstCategories_CheckedChanged(ByVal sender As Object, ByVal e As RoutedEventArgs)
+        SelectedCategories = (From item As CategoryProxy In lstCategories.Items Where item.Checked Select item.Category).ToArray
+    End Sub
+#End Region
+#Region "Keywords"
+    ''' <summary>Gets or sets name of cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property Keywords() As IEnumerable(Of String)
+        <DebuggerStepThrough()> Get
+            Return GetValue(KeywordsProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As IEnumerable(Of String))
+            SetValue(KeywordsProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="Keywords"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly KeywordsProperty As DependencyProperty = DependencyProperty.Register("Keywords", GetType(IEnumerable(Of String)), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnKeywordsChanged, AddressOf CoerceKeywords))
+    ''' <summary>COerces value of the <see cref="Keywords"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="IEnumerable(Of Category)"/> of <see cref="Category"/></exception> 
+    ''' <returns><paramref name="baseValue"/> as array</returns>
+    Private Shared Function CoerceKeywords(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is IEnumerable(Of String) Then Throw New TypeMismatchException("baseValue", baseValue, GetType(IEnumerable(Of String)))
+        If baseValue Is Nothing Then Return Nothing
+        Return DirectCast(baseValue, IEnumerable(Of String)).ToArray
+    End Function
+    ''' <summary>Called when value of the property <see cref="Keywords"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnKeywordsChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnKeywordsChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="Keywords"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnKeywordsChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        kweKeywords.KeyWords.Clear()
+        kweKeywords.KeyWords.AddRange(Keywords)
+    End Sub
+    Private Sub kweKeywords_Changed(ByVal sender As Object, ByVal e As EventArgs) Handles kweKeywords.KeywordAdded, kweKeywords.KeyWordRemoved
+        Keywords = kweKeywords.KeyWords
+    End Sub
+#End Region
+#Region "Images"
+    ''' <summary>Gets or sets name of cap</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property Images() As IEnumerable(Of Image)
+        <DebuggerStepThrough()> Get
+            Return GetValue(ImagesProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As IEnumerable(Of Image))
+            SetValue(ImagesProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="Images"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly ImagesProperty As DependencyProperty = DependencyProperty.Register("Images", GetType(IEnumerable(Of Image)), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnImagesChanged))
+
+    ''' <summary>Called when value of the property <see cref="Images"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnImagesChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnImagesChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="Images"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnImagesChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        lvwImages.ItemsSource = Images
+    End Sub
+#End Region
+#End Region
+
+    ''' <summary>Possible ways how to specifiy certain cap properties</summary>
+    Public Enum CreatableItemSelection
+        ''' <summary>No parent object is set</summary>
+        AnonymousItem
+        ''' <summary>Parent object is selected from list of exisitng ones</summary>
+        SelectedItem
+        ''' <summary>New parent object is to be created</summary>
+        NewItem
+    End Enum
+
+    ''' <summary>Does tests of values</summary>
+    Public Function Tests() As Boolean
+        Tests = False
+        If cmbMainType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_MainTypeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbMainType.Focus() : Tests = True : Exit Function
+        If cmbShape.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_ShapeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbShape.Focus() : Tests = True : Exit Function
+        If cmbMainType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_MaterialMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbMaterial.Focus() : Tests = True : Exit Function
+        If cmbStorage.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_StorageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbStorage.Focus() : Tests = True : Exit Function
+        If txtCapName.Text = "" Then mBox.Modal_PTI(My.Resources.msg_CapNameMustBeEntered, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : txtCapName.Focus() : Tests = True : Exit Function
+        If DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).Count = 0 Then mBox.Modal_PTI(My.Resources.msg_AtLeastOneImageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : btnAddImage.Focus() : Tests = True : Exit Function
+        If txtSideText.Text <> "" AndAlso Not chkHasSide.IsChecked Then mBox.Modal_PTI(My.Resources.msg_SideText_HasSide, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : chkHasSide.Focus() : Tests = True : Exit Function
+        If txtBottomText.Text <> "" AndAlso Not chkHasBottom.IsChecked Then mBox.Modal_PTI(My.Resources.msg_BottomText_HasBottom, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : chkHasBottom.Focus() : Tests = True : Exit Function
+        If txtMainPicture.Text <> "" AndAlso (cmbPictureType.SelectedItem Is cmiImageNo OrElse cmbPictureType.SelectedItem Is Nothing) Then mBox.Modal_PTI(My.Resources.msg_MainPicture_PictureType, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbPictureType.Focus() : Tests = True : Exit Function
+        If txtAnotherPictures.Text <> "" AndAlso txtMainPicture.Text = "" Then mBox.Modal_PTI(My.Resources.msg_AnotherPictures_MainPicture, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : txtMainPicture.Focus() : Tests = True : Exit Function
+        If copForeground2.Color.HasValue AndAlso Not copForeground.Color.HasValue Then mBox.Modal_PTI(My.Resources.msg_ForeColor_ForeColor2, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : copForeground.Focus() : Tests = True : Exit Function
+        If optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_NoProductSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbProduct.Focus() : Tests = True : Exit Function
+        If optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_NoCapTypeSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbCapType.Focus() : Tests = True : Exit Function
+        Tests = True
+    End Function
+End Class

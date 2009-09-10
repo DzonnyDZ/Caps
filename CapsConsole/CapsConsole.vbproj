@@ -112,7 +112,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CapEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="winCapDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="winCapEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,10 +200,16 @@
     <Compile Include="ColorPicker.xaml.vb">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CapEditor.xaml.vb">
+      <DependentUpon>CapEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Misc.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="winCapDetails.xaml.vb">
       <DependentUpon>winCapDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="winCapEditor.xaml.vb">
+      <DependentUpon>winCapEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="winNewMainType.xaml.vb">
       <DependentUpon>winNewMainType.xaml</DependentUpon>

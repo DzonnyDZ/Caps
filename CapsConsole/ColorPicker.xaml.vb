@@ -126,7 +126,31 @@ Partial Public Class ColorPicker
                                                         Not DirectCast(.Background, SolidColorBrush).Color.G, _
                                                         Not DirectCast(.Background, SolidColorBrush).Color.B))})
         End If
+        RaiseEvent ColorChanged(Me, New RoutedEventArgs(ColorChangedEvent, Me)) ' New Tools.WindowsT.InteropT.DependencyPropertyChangedEventArgsEventArgs(e))
     End Sub
+
+
+    ''' <summary>Raised when calue of the <see cref="Color"/> property changes</summary>
+    Public Custom Event ColorChanged As RoutedEventHandler
+
+        AddHandler(ByVal value As RoutedEventHandler)
+            Me.AddHandler(ColorChangedEvent, value)
+        End AddHandler
+
+        RemoveHandler(ByVal value As RoutedEventHandler)
+            Me.RemoveHandler(ColorChangedEvent, value)
+        End RemoveHandler
+
+        RaiseEvent(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs)
+            Me.RaiseEvent(e)
+        End RaiseEvent
+    End Event
+    ''' <summary>Metadata of the <see cref="ColorChanged"/> routed event</summary>
+    Public Shared ReadOnly ColorChangedEvent As RoutedEvent = _
+                      EventManager.RegisterRoutedEvent("ColorChanged", _
+                      RoutingStrategy.Bubble, _
+                      GetType(RoutedEventHandler), GetType(ColorPicker))
+
 
     Private Sub cmbColors_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Input.KeyEventArgs) Handles cmbColors.KeyDown
         If e.Key = Key.Delete AndAlso AllowNull Then Color = Nothing

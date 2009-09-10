@@ -959,4 +959,45 @@
   <data name="msg_NoProductSelected" xml:space="preserve">
     <value>You have chosen to select one of existing products but you have selected none.</value>
   </data>
+  <data name="txt_SearchResults" xml:space="preserve">
+    <value>Search results</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="cat_CapProperties" xml:space="preserve">
+    <value>Cap properties</value>
+    <comment>Property grid category</comment>
+  </data>
+  <data name="ex_ValueOfPropertyMustBeNullOrXOrNullableOfX" xml:space="preserve">
+    <value>Value of property {0} must be null, {1} or {2} of {1}</value>
+  </data>
+  <data name="ex_ValueOfPropertyMustBeOneOfFollowingValues" xml:space="preserve">
+    <value>Value of property {0} must be one of following values: {1}</value>
+  </data>
+  <data name="ex_SetUnknownCapType" xml:space="preserve">
+    <value>Attempt to set cap type that is not in combo box.</value>
+  </data>
+  <data name="ex_SetUnknownCapMainType" xml:space="preserve">
+    <value>Attempt to set cap main type that is not in combo box.</value>
+  </data>
+  <data name="ex_SetUnknownMaterial" xml:space="preserve">
+    <value>Attempt to set material that is not in combo box.</value>
+  </data>
+  <data name="ex_SetUnknownShape" xml:space="preserve">
+    <value>Attempt to set shape that is not in combo box.</value>
+  </data>
+  <data name="ex_CountryCode3" xml:space="preserve">
+    <value>Country code must have exactly 3 letters.</value>
+  </data>
+  <data name="ex_SetUnknownCapCompany" xml:space="preserve">
+    <value>Attempt to set company type that is not in combo box.</value>
+  </data>
+  <data name="ex_SetUnknownCapProductType" xml:space="preserve">
+    <value>Attempt to set product type that is not in combo box.</value>
+  </data>
+  <data name="ex_SetUnknownProduct" xml:space="preserve">
+    <value>Attempt to set product that is not in combo box.</value>
+  </data>
+  <data name="ex_SetUnknownStorage" xml:space="preserve">
+    <value>Attempt to set storage that is not in combo box.</value>
+  </data>
 </root>

@@ -79,6 +79,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Cap properties.
+        '''</summary>
+        Public ReadOnly Property cat_CapProperties() As String
+            Get
+                Return ResourceManager.GetString("cat_CapProperties", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Black.
         '''</summary>
         Public ReadOnly Property clr_Black() As String
@@ -583,6 +592,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Country code must have exactly 3 letters..
+        '''</summary>
+        Public ReadOnly Property ex_CountryCode3() As String
+            Get
+                Return ResourceManager.GetString("ex_CountryCode3", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to {0} expects value of type {1} or {2}.
         '''</summary>
         Public ReadOnly Property ex_ExpectedValueOfType1Or2() As String
@@ -597,6 +615,78 @@ Namespace My.Resources
         Public ReadOnly Property ex_ImgTypeCodeEmpty() As String
             Get
                 Return ResourceManager.GetString("ex_ImgTypeCodeEmpty", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Attempt to set company type that is not in combo box..
+        '''</summary>
+        Public ReadOnly Property ex_SetUnknownCapCompany() As String
+            Get
+                Return ResourceManager.GetString("ex_SetUnknownCapCompany", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Attempt to set cap main type that is not in combo box..
+        '''</summary>
+        Public ReadOnly Property ex_SetUnknownCapMainType() As String
+            Get
+                Return ResourceManager.GetString("ex_SetUnknownCapMainType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Attempt to set product type that is not in combo box..
+        '''</summary>
+        Public ReadOnly Property ex_SetUnknownCapProductType() As String
+            Get
+                Return ResourceManager.GetString("ex_SetUnknownCapProductType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Attempt to set cap type that is not in combo box..
+        '''</summary>
+        Public ReadOnly Property ex_SetUnknownCapType() As String
+            Get
+                Return ResourceManager.GetString("ex_SetUnknownCapType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Attempt to set material that is not in combo box..
+        '''</summary>
+        Public ReadOnly Property ex_SetUnknownMaterial() As String
+            Get
+                Return ResourceManager.GetString("ex_SetUnknownMaterial", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Attempt to set product that is not in combo box..
+        '''</summary>
+        Public ReadOnly Property ex_SetUnknownProduct() As String
+            Get
+                Return ResourceManager.GetString("ex_SetUnknownProduct", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Attempt to set shape that is not in combo box..
+        '''</summary>
+        Public ReadOnly Property ex_SetUnknownShape() As String
+            Get
+                Return ResourceManager.GetString("ex_SetUnknownShape", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Attempt to set storage that is not in combo box..
+        '''</summary>
+        Public ReadOnly Property ex_SetUnknownStorage() As String
+            Get
+                Return ResourceManager.GetString("ex_SetUnknownStorage", resourceCulture)
             End Get
         End Property
         
@@ -624,6 +714,24 @@ Namespace My.Resources
         Public ReadOnly Property ex_ValueMustBeSetPriorCalling() As String
             Get
                 Return ResourceManager.GetString("ex_ValueMustBeSetPriorCalling", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Value of property {0} must be null, {1} or {2} of {1}.
+        '''</summary>
+        Public ReadOnly Property ex_ValueOfPropertyMustBeNullOrXOrNullableOfX() As String
+            Get
+                Return ResourceManager.GetString("ex_ValueOfPropertyMustBeNullOrXOrNullableOfX", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Value of property {0} must be one of following values: {1}.
+        '''</summary>
+        Public ReadOnly Property ex_ValueOfPropertyMustBeOneOfFollowingValues() As String
+            Get
+                Return ResourceManager.GetString("ex_ValueOfPropertyMustBeOneOfFollowingValues", resourceCulture)
             End Get
         End Property
         
@@ -1884,6 +1992,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_ProductTypes() As String
             Get
                 Return ResourceManager.GetString("txt_ProductTypes", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Search results.
+        '''</summary>
+        Public ReadOnly Property txt_SearchResults() As String
+            Get
+                Return ResourceManager.GetString("txt_SearchResults", resourceCulture)
             End Get
         End Property
         
