@@ -136,7 +136,7 @@
         <classShapeMoniker Id="b37eda21-737b-4dbc-858c-5312a1824b3d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 9.65625); (9.3125 : 9.65625); (9.3125 : 10.9588727458932); (9.75 : 10.9588727458932)]" manuallyRouted="true" fixedFrom="Caller" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 9.65625); (9.3125 : 9.65625); (9.3125 : 10.9588727458932); (9.75 : 10.9588727458932)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CapsDataDataContext/Cap/Cap_Cap_Keyword_Int" />
       <nodes>
         <classShapeMoniker Id="5bbd4caa-2af5-4d2c-8323-bc08f37a56c6" />
@@ -178,7 +178,7 @@
         <classShapeMoniker Id="5bbd4caa-2af5-4d2c-8323-bc08f37a56c6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9.0625 : 13.25); (9.0625 : 10.0625); (8.25 : 10.0625)]" fixedFrom="Algorithm" fixedTo="Caller">
+    <associationConnector edgePoints="[(9.0625 : 13.25); (9.0625 : 10.0625); (8.25 : 10.0625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CapsDataDataContext/ProductType/ProductType_Cap" />
       <nodes>
         <classShapeMoniker Id="562ad9d7-0019-4018-b2d2-ba06079162e3" />

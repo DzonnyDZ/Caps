@@ -37,7 +37,7 @@ Partial Public Class winNewCap
                                             .Shape = caeEditor.CapShape, _
                                             .Size = caeEditor.Size1, _
                                             .Size2 = If(caeEditor.CapShape.Size2Name Is Nothing, New Integer?, caeEditor.Size2), _
-                                            .Height = caeEditor.Height, _
+                                            .Height = caeEditor.CapHeight, _
                                             .Material = caeEditor.Material}
                 Cap.CapType = NewType
             ElseIf .CapTypeSelection = CapEditor.CreatableItemSelection.SelectedItem Then
@@ -80,7 +80,7 @@ Partial Public Class winNewCap
             Cap.Year = .Year
             If .Country <> "" AndAlso Not .Country Like "[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]" Then _
                 mBox.Modal_PTI(My.Resources.msg_CountryCodeMustBeISO3Code, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : .txtCountryCode.SelectAll() : .txtCountryCode.Focus() : Exit Sub
-            Cap.CountryCode = .Country.ToUpperInvariant
+            If Cap.CountryCode <> "" Then Cap.CountryCode = .Country
             Cap.Storage = .Storage
             Cap.ProductType = .CapProductType
             Cap.Company = .CapCompany
@@ -90,22 +90,31 @@ Partial Public Class winNewCap
             Cap.PictureType = .PictureType
             'Categories
             Dim CreatedDBCatInts As New List(Of Cap_Category_Int)
-            For Each Category In .SelectedCategories
-                CreatedDBCatInts.Add(New Cap_Category_Int(Cap, Category))
-            Next
+            If .SelectedCategories IsNot Nothing Then
+                For Each Category In .SelectedCategories
+                    CreatedDBCatInts.Add(New Cap_Category_Int(Cap, Category))
+                Next
+            End If
             'Images
             Dim IntroducedImages As List(Of String) = CopyImages()
             If IntroducedImages Is Nothing Then Exit Sub
             'Prepare for commit
             Dim CreatedDBImages = (From item In IntroducedImages Select New Image() With {.Cap = Cap, .RelativePath = item}).ToArray
             .Context.Images.InsertAllOnSubmit(CreatedDBImages)
-            Dim AllCapKeywords = (From kw In .Keywords Select If( _
-                                    (From InDbKw In .Context.Keywords Where InDbKw.Keyword = kw Select New With {.Keyword = InDbKw, .IsNew = False}).FirstOrDefault, _
-                                    New With {.Keyword = New Keyword(kw), .IsNew = True})).ToArray
-            Dim CreatedDBKeywords = (From kw In AllCapKeywords Where kw.IsNew Select kw.Keyword).ToArray
-            .Context.Keywords.InsertAllOnSubmit(CreatedDBKeywords)
-            Dim CreatedDBKwInts = (From kw In AllCapKeywords Select New Cap_Keyword_Int(Cap, kw.Keyword)).ToArray
-            .Context.Cap_Keyword_Ints.InsertAllOnSubmit(CreatedDBKwInts)
+            Dim CreatedDBKeywords As Keyword()
+            Dim CreatedDBKwInts As Cap_Keyword_Int()
+            If .Keywords IsNot Nothing Then
+                Dim AllCapKeywords = (From kw In .Keywords Select If( _
+                                        (From InDbKw In .Context.Keywords Where InDbKw.Keyword = kw Select New With {.Keyword = InDbKw, .IsNew = False}).FirstOrDefault, _
+                                        New With {.Keyword = New Keyword(kw), .IsNew = True})).ToArray
+                CreatedDBKeywords = (From kw In AllCapKeywords Where kw.IsNew Select kw.Keyword).ToArray
+                .Context.Keywords.InsertAllOnSubmit(CreatedDBKeywords)
+                CreatedDBKwInts = (From kw In AllCapKeywords Select New Cap_Keyword_Int(Cap, kw.Keyword)).ToArray
+                .Context.Cap_Keyword_Ints.InsertAllOnSubmit(CreatedDBKwInts)
+            Else
+                CreatedDBKeywords = New Keyword() {}
+                CreatedDBKwInts = New Cap_Keyword_Int() {}
+            End If
             .Context.Cap_Category_Ints.InsertAllOnSubmit(CreatedDBCatInts)
             If NewType IsNot Nothing Then .Context.CapTypes.InsertOnSubmit(NewType)
             If NewProduct IsNot Nothing Then .Context.Products.InsertOnSubmit(NewProduct)
@@ -116,31 +125,59 @@ Partial Public Class winNewCap
             Catch ex As Exception
                 mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCommittingChangesToDatabase, My.Resources.txt_DatabaseError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.OK)
                 'Undo
-                .Context.Cap_Category_Ints.DeleteAllOnSubmit(CreatedDBCatInts)
-                .Context.Images.DeleteAllOnSubmit(CreatedDBImages)
-                .Context.Keywords.DeleteAllOnSubmit(CreatedDBKeywords)
-                .Context.Cap_Keyword_Ints.DeleteAllOnSubmit(CreatedDBKwInts)
-                If NewType IsNot Nothing Then .Context.CapTypes.DeleteOnSubmit(NewType)
-                If NewProduct IsNot Nothing Then .Context.Products.DeleteOnSubmit(NewProduct)
-                .Context.Caps.DeleteOnSubmit(Cap)
+                .Context.Cap_Category_Ints.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Cap_Category_Int))
+                .Context.Images.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Image))
+                .Context.Keywords.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Keyword))
+                .Context.Cap_Keyword_Ints.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Cap_Keyword_Int))
+                .Context.CapTypes.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of CapType))
+                .Context.Products.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Product))
+                .Context.Caps.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Cap))
+                Dim FaildedDeletes As New System.Text.StringBuilder
+                For Each img In IntroducedImages
+                    For Each folder In New String() {"original", "64_64", "256_256"}
+                        Dim imgpath = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, folder), img)
+                        If IO.File.Exists(imgpath) Then
+                            Try
+                                IO.File.Delete(imgpath)
+                            Catch delex As Exception
+                                FaildedDeletes.AppendLine(String.Format("{0}{1}{2}{1}({3})", img, vbTab, ex.Message, imgpath))
+                            End Try
+                        End If
+                    Next
+                Next
+                If FaildedDeletes.Length > 0 Then
+                    mBox.Modal_PTI(My.Resources.err_DeleteingOfSomeImagesFailed & vbCrLf & FaildedDeletes.ToString & vbCrLf & My.Resources.msg_ThereAreImagesThatDoNotBelongToAnyCap, My.Resources.txt_Error, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Error)
+                End If
                 Exit Sub
             End Try
+            'For newly introduced cap type copy image
+            If .CapTypeSelection = CapEditor.CreatableItemSelection.NewItem AndAlso IO.File.Exists(.CapTypeImagePath) Then
+                Dim targpath = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "CapType"), NewType.CapTypeID.ToString(System.Globalization.CultureInfo.InvariantCulture) & ".png")
+                If Not IO.File.Exists(targpath) OrElse mBox.MsgBox(My.Resources.msg_CapImageExistsOverwrite.f(.CapTypeImagePath), MsgBoxStyle.Question Or MsgBoxStyle.YesNo, My.Resources.txt_OwervriteFile) = MsgBoxResult.Yes Then
+                    Try
+                        IO.File.Copy(.CapTypeImagePath, targpath)
+                    Catch ex As Exception
+                        mBox.MsgBox(My.Resources.err_CopyCapTypeImageFailed.f(vbCrLf, ex.Message), MsgBoxStyle.Exclamation, My.Resources.txt_CopyFile)
+                    End Try
+                End If
+            End If
             Me.Close()
         End With
     End Sub
 #Region "Copy images"
-    ''' <summary>Copies images from <see cref="lvwImages"/> to image directory and creates resized images</summary>
+    ''' <summary>Copies images from <see cref="caeEditor"/>.<see cref="CapEditor.Images">Images</see> to image directory and creates resized images</summary>
     ''' <returns>List of names of copied images; null on error</returns>
     Private Function CopyImages() As List(Of String)
         Dim Imgs = New List(Of String)
         CopyImages = Imgs
+        If caeEditor.Images Is Nothing Then Exit Function
         Dim folOrig = IO.Path.Combine(My.Settings.ImageRoot, "original")
         Dim fol64 = IO.Path.Combine(My.Settings.ImageRoot, "64_64")
         Dim fol256 = IO.Path.Combine(My.Settings.ImageRoot, "256_256")
         Dim CreatedFiles As New List(Of String)
         Dim Exception As Exception = Nothing
         Try
-            For Each Item As NewImage In lvwImages.ItemsSource
+            For Each Item As NewImage In caeEditor.Images
                 'Copy original size file
 CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
                 Dim newName1 = newName
@@ -180,29 +217,27 @@ CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
                         For Each NewKw In My.Resources.CapKeywords.Split(","c)
                             If Not keywords.Contains(NewKw) Then keywords.Add(NewKw)
                         Next
-                        For Each NewKw In kweKeywords.KeyWords
+                        For Each NewKw In caeEditor.Keywords
                             If Not keywords.Contains(NewKw) Then keywords.Add(NewKw)
                         Next
-                        For Each cat As CategoryProxy In lstCategories.ItemsSource
-                            If cat.Checked Then
-                                keywords.Add(cat.Category.CategoryName)
-                            End If
+                        For Each cat As Category In caeEditor.SelectedCategories
+                            keywords.Add(cat.CategoryName)
                         Next
                         IPTC.Keywords = keywords.ToArray
-                        If txtCountryCode.Text <> "" Then IPTC.CountryPrimaryLocationCode = txtCountryCode.Text
-                        IPTC.ObjectName = txtCapName.Text
-                        If txtMainText.Text <> "" Then IPTC.Headline = txtMainText.Text
-                        If txtTopText.Text <> "" OrElse txtSideText.Text <> "" OrElse txtBottomText.Text <> "" Then
+                        If caeEditor.Country <> "" Then IPTC.CountryPrimaryLocationCode = caeEditor.Country
+                        IPTC.ObjectName = caeEditor.CapName
+                        If caeEditor.MainText <> "" Then IPTC.Headline = caeEditor.MainText
+                        If caeEditor.TopText <> "" OrElse caeEditor.SideText <> "" OrElse caeEditor.BottomText <> "" Then
                             Dim strlist As New List(Of String)
-                            If txtTopText.Text <> "" Then strlist.Add(txtTopText.Text)
-                            If txtSideText.Text <> "" Then strlist.Add(txtSideText.Text)
-                            If txtSubTitle.Text <> "" Then strlist.Add(txtSubTitle.Text)
+                            If caeEditor.TopText <> "" Then strlist.Add(caeEditor.TopText)
+                            If caeEditor.SideText <> "" Then strlist.Add(caeEditor.SideText)
+                            If caeEditor.BottomText <> "" Then strlist.Add(caeEditor.BottomText)
                             IPTC.CaptionAbstract = strlist.Join(vbCrLf)
                         End If
-                        If nudYear.Value > 0 Then IPTC.DateCreated = New Tools.MetadataT.IptcT.IptcDataTypes.OmmitableDate(nudYear.Value)
+                        If caeEditor.Year.HasValue > 0 Then IPTC.DateCreated = New Tools.MetadataT.IptcT.IptcDataTypes.OmmitableDate(caeEditor.Year)
                         IPTC.ReleaseDate = Now.ToUniversalTime.Date
                         IPTC.ReleaseTime = New Tools.MetadataT.IptcT.IptcDataTypes.Time(Now.ToUniversalTime.Date.TimeOfDay)
-                        If txtNote.Text <> "" Then IPTC.SpecialInstructions = txtNote.Text.Replace(vbCrLf, " ").Replace(vbCr, " ").Replace(vbLf, " ")
+                        If caeEditor.CapNote <> "" Then IPTC.SpecialInstructions = caeEditor.CapNote.Replace(vbCrLf, " ").Replace(vbCr, " ").Replace(vbLf, " ")
                         Using JPEG As New Tools.DrawingT.DrawingIOt.JPEG.JPEGReader(OrigFilePath, True)
                             JPEG.IPTCEmbed(IPTC.GetBytes)
                         End Using

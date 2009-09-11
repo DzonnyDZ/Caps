@@ -1,4 +1,4 @@
-﻿Imports System.Runtime.CompilerServices
+﻿Imports System.Runtime.CompilerServices, Tools.ExtensionsT
 ''' <summary>Miscelaneous functions</summary>
 Friend Module Misc
     ''' <summary>Gets the 32-bit ARGB value of given <see cref="Color"/> structure.</summary>
@@ -56,10 +56,24 @@ Friend Module Misc
         If obj Is Nothing Then Throw New ArgumentNullException("obj")
         Dim currobj As DependencyObject = obj
         Do
-            currobj = ContentOperations.GetParent(currobj)
+            currobj = LogicalTreeHelper.GetParent(obj)
             If currobj Is Nothing Then Return Nothing
             If TypeOf currobj Is TAncestor Then Return currobj
         Loop
         Return Nothing
     End Function
+
+    ''' <summary>Undos all INSERTs performed with <see cref="System.Data.Linq.Table(Of TEntity)"/></summary>
+    ''' <param name="Table">Table to deleted all inserted not commited items of coresponding type from</param>
+    ''' <typeparam name="TEntity">Type of items in table</typeparam>
+    ''' <remarks>This methods delets all items in <paramref name="Table"/>.<see cref="System.Data.Linq.Table.Context">Context</see>.<see cref="System.Data.Linq.DataContext.GetChangeSet">GetChangeSet</see>.<see cref="System.Data.Linq.ChangeSet.Inserts">Inserts</see> which are of type <typeparamref name="TEntity"/>.</remarks>
+    ''' <exception cref="ArgumentNullException"><paramref name="Table"/> is null</exception>
+    ''' <exception cref="ArgumentException"><paramref name="Table"/>.<see cref="System.Data.Linq.Table.Context">Context</see> is null</exception>
+    <Extension()> Public Sub DeleteAllNew(Of TEntity As Class)(ByVal Table As System.Data.Linq.Table(Of TEntity))
+        If Table Is Nothing Then Throw New ArgumentNullException("Table")
+        If Table.Context Is Nothing Then Throw New ArgumentException(My.Resources.ex_MustNotBeNull.f("Table.Context"))
+        Table.DeleteAllOnSubmit(Table.Context.GetChangeSet.Inserts.OfType(Of TEntity))
+    End Sub
+
+
 End Module

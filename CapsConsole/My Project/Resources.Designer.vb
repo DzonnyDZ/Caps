@@ -466,6 +466,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Copy cap type image file failed.{0}{1}{0}New cap type is without image!.
+        '''</summary>
+        Public ReadOnly Property err_CopyCapTypeImageFailed() As String
+            Get
+                Return ResourceManager.GetString("err_CopyCapTypeImageFailed", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Deleteing of some images failed:.
+        '''</summary>
+        Public ReadOnly Property err_DeleteingOfSomeImagesFailed() As String
+            Get
+                Return ResourceManager.GetString("err_DeleteingOfSomeImagesFailed", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Icon has already been encoded..
         '''</summary>
         Public ReadOnly Property err_IconHasAlreadyBeenEncoded() As String
@@ -615,6 +633,15 @@ Namespace My.Resources
         Public ReadOnly Property ex_ImgTypeCodeEmpty() As String
             Get
                 Return ResourceManager.GetString("ex_ImgTypeCodeEmpty", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to {0} must not be null.
+        '''</summary>
+        Public ReadOnly Property ex_MustNotBeNull() As String
+            Get
+                Return ResourceManager.GetString("ex_MustNotBeNull", resourceCulture)
             End Get
         End Property
         
@@ -1303,6 +1330,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Cap type image file {0} already exists. Overwrite?.
+        '''</summary>
+        Public ReadOnly Property msg_CapImageExistsOverwrite() As String
+            Get
+                Return ResourceManager.GetString("msg_CapImageExistsOverwrite", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Cap name must be entered..
         '''</summary>
         Public ReadOnly Property msg_CapNameMustBeEntered() As String
@@ -1546,6 +1582,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to There are images that do not belong to any cap!.
+        '''</summary>
+        Public ReadOnly Property msg_ThereAreImagesThatDoNotBelongToAnyCap() As String
+            Get
+                Return ResourceManager.GetString("msg_ThereAreImagesThatDoNotBelongToAnyCap", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to 0 - not set.
         '''</summary>
         Public ReadOnly Property tot_0NotSet() As String
@@ -1663,6 +1708,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Copy file.
+        '''</summary>
+        Public ReadOnly Property txt_CopyFile() As String
+            Get
+                Return ResourceManager.GetString("txt_CopyFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Database error.
         '''</summary>
         Public ReadOnly Property txt_DatabaseError() As String
@@ -1686,6 +1740,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_DuplicateEntry() As String
             Get
                 Return ResourceManager.GetString("txt_DuplicateEntry", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Error.
+        '''</summary>
+        Public ReadOnly Property txt_Error() As String
+            Get
+                Return ResourceManager.GetString("txt_Error", resourceCulture)
             End Get
         End Property
         
@@ -1965,6 +2028,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_NewStorageType() As String
             Get
                 Return ResourceManager.GetString("txt_NewStorageType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Owervrite file.
+        '''</summary>
+        Public ReadOnly Property txt_OwervriteFile() As String
+            Get
+                Return ResourceManager.GetString("txt_OwervriteFile", resourceCulture)
             End Get
         End Property
         

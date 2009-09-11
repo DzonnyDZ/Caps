@@ -5,9 +5,15 @@ Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Partial Public Class winNewSimple
 
     Private Type As SimpleTypes
-    Private Context As New CapsDataDataContext(Main.Connection)
-    Public Sub New(ByVal Type As SimpleTypes)
+    Private Context As CapsDataDataContext
+    ''' <summary>CTor</summary>
+    ''' <param name="Type">Type of item to add</param>
+    ''' <param name="Context">Data context</param>
+    ''' <exception cref="InvalidEnumArgumentException"><paramref name="Type"/> is not member of <see cref="SimpleTypes"/></exception>
+    ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
+    Public Sub New(ByVal Type As SimpleTypes, ByVal Context As CapsDataDataContext)
         If Not Type.IsDefined Then Throw New InvalidEnumArgumentException("Type", Type, Type.GetType)
+        If Context Is Nothing Then Throw New ArgumentNullException("Context")
         Me.Type = Type
         InitializeComponent()
         Select Case Type
@@ -17,6 +23,7 @@ Partial Public Class winNewSimple
             Case SimpleTypes.ProductType : Me.Title = My.Resources.txt_NewProductType
             Case SimpleTypes.StorageType : Me.Title = My.Resources.txt_NewStorageType
         End Select
+        Me.Context = Context
     End Sub
     Private _NewObject As Object
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click

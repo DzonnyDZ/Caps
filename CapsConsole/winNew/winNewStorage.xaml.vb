@@ -5,8 +5,16 @@ Imports Tools.CollectionsT.GenericT
 
 Partial Public Class winNewStorage
 
+    ''' <summary>CTor</summary>
+    ''' <param name="Context">Data context</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
+    Public Sub New(ByVal Context As CapsDataDataContext)
+        InitializeComponent()
+        If Context Is Nothing Then Throw New ArgumentNullException("Context")
+        Me.Context = Context
+    End Sub
 
-    Private Context As New CapsDataDataContext(Main.Connection)
+    Private Context As CapsDataDataContext
     Private _NewObject As Storage
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
         Try
@@ -19,7 +27,7 @@ Partial Public Class winNewStorage
         Try
             Context.SubmitChanges()
         Catch ex As Exception
-            Context.Storages.DeleteOnSubmit(_NewObject)
+            Context.Storages.DeleteAllNew()
             mBox.Error_X(ex)
             Exit Sub
         End Try
@@ -41,7 +49,7 @@ Partial Public Class winNewStorage
 
 
     Private Sub cmdNewType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmdNewType.Click
-        Dim win As New winNewSimple(winNewSimple.SimpleTypes.StorageType)
+        Dim win As New winNewSimple(winNewSimple.SimpleTypes.StorageType, Context)
         If win.ShowDialog Then
             DirectCast(cmbStorageType.ItemsSource, ListWithEvents(Of StorageType)).Add(DirectCast(win.NewObject, StorageType))
             cmbStorageType.SelectedItem = win.NewObject

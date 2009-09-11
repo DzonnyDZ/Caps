@@ -3,9 +3,16 @@ Imports System.ComponentModel
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 
 Partial Public Class winNewMainType
+    ''' <summary>CTor</summary>
+    ''' <param name="Context">Data context</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
+    Public Sub New(ByVal Context As CapsDataDataContext)
+        InitializeComponent()
+        If Context Is Nothing Then Throw New ArgumentNullException("Context")
+        Me.Context = Context
+    End Sub
 
-
-    Private Context As New CapsDataDataContext(Main.Connection)
+    Private Context As CapsDataDataContext
     Private _NewObject As MainType
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
         If Not IO.File.Exists(txtImagePath.Text) Then
@@ -17,11 +24,9 @@ Partial Public Class winNewMainType
             mBox.Modal_PTI(My.Resources.msg_OnlyPNG, My.Resources.txt_MainTypeImage, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation)
             Exit Sub
         End If
-        Dim tbl As System.Data.Linq.ITable
+        _NewObject = New MainType With {.Description = txtDescription.Text, .TypeName = txtName.Text}
         Try
-            _NewObject = New MainType() With {.TypeName = txtName.Text, .Description = txtDescription.Text}
-            tbl = Context.MainTypes
-            tbl.InsertOnSubmit(_NewObject)
+            Context.MainTypes.InsertOnSubmit(_NewObject)
         Catch ex As Exception
             mBox.Error_X(ex)
             Exit Sub
@@ -30,7 +35,7 @@ Partial Public Class winNewMainType
             Context.SubmitChanges()
         Catch ex As Exception
             mBox.Error_X(ex)
-            tbl.DeleteOnSubmit(_NewObject)
+            Context.MainTypes.DeleteAllNew()
             Exit Sub
         End Try
         If IO.File.Exists(txtImagePath.Text) Then

@@ -1000,4 +1000,28 @@
   <data name="ex_SetUnknownStorage" xml:space="preserve">
     <value>Attempt to set storage that is not in combo box.</value>
   </data>
+  <data name="ex_MustNotBeNull" xml:space="preserve">
+    <value>{0} must not be null</value>
+  </data>
+  <data name="err_DeleteingOfSomeImagesFailed" xml:space="preserve">
+    <value>Deleteing of some images failed:</value>
+  </data>
+  <data name="msg_ThereAreImagesThatDoNotBelongToAnyCap" xml:space="preserve">
+    <value>There are images that do not belong to any cap!</value>
+  </data>
+  <data name="txt_Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="msg_CapImageExistsOverwrite" xml:space="preserve">
+    <value>Cap type image file {0} already exists. Overwrite?</value>
+  </data>
+  <data name="txt_OwervriteFile" xml:space="preserve">
+    <value>Owervrite file</value>
+  </data>
+  <data name="err_CopyCapTypeImageFailed" xml:space="preserve">
+    <value>Copy cap type image file failed.{0}{1}{0}New cap type is without image!</value>
+  </data>
+  <data name="txt_CopyFile" xml:space="preserve">
+    <value>Copy file</value>
+  </data>
 </root>

@@ -3,9 +3,16 @@ Imports System.ComponentModel
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 
 Partial Public Class winNewShape
+    ''' <summary>CTor</summary>
+    ''' <param name="Context">Data context</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
+    Public Sub New(ByVal Context As CapsDataDataContext)
+        InitializeComponent()
+        If Context Is Nothing Then Throw New ArgumentNullException("Context")
+        Me.Context = Context
+    End Sub
 
-
-    Private Context As New CapsDataDataContext(Main.Connection)
+    Private Context As CapsDataDataContext
     Private _NewObject As Shape
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
         If Not IO.File.Exists(txtImagePath.Text) Then
@@ -27,7 +34,7 @@ Partial Public Class winNewShape
         Try
             Context.SubmitChanges()
         Catch ex As Exception
-            Context.Shapes.DeleteOnSubmit(_NewObject)
+            Context.Shapes.DeleteAllNew()
             mBox.Error_X(ex)
             Exit Sub
         End Try

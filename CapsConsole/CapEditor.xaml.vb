@@ -9,7 +9,13 @@ Imports Tools
 Partial Public Class CapEditor
     ''' <summary>Context to be used when <see cref="Context"/> is not set</summary>
     Private OriginalContext As New CapsDataDataContext(Main.Connection)
+    ''' <summary>Contains value of the <see cref="Context"/> proeprty</summary>
     Private _Context As CapsDataDataContext = OriginalContext
+    ''' <summary>CTor</summary>
+    Public Sub New()
+        InitializeComponent()
+        Images = New ListWithEvents(Of Image)()
+    End Sub
     ''' <summary>Database context</summary>
     ''' <exception cref="ArgumentNullException">Value being set is null</exception>
     Public Property Context() As CapsDataDataContext
@@ -42,7 +48,6 @@ Partial Public Class CapEditor
         lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item))
         kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
         lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
-        lvwImages.ItemsSource = New ListWithEvents(Of Image)()
     End Sub
 
 #Region "CancelClicked"
@@ -77,7 +82,7 @@ Partial Public Class CapEditor
 #End Region
 #Region "New"
     Private Sub btnNewMainType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMainType.Click
-        Dim win As New winNewMainType
+        Dim win As New winNewMainType(Context)
         If win.ShowDialog Then
             DirectCast(cmbMainType.ItemsSource, ListWithEvents(Of MainType)).Add(win.NewObject)
             cmbMainType.SelectedItem = win.NewObject
@@ -85,7 +90,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub cmbNewShape_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmbNewShape.Click
-        Dim win As New winNewShape
+        Dim win As New winNewShape(Context)
         If win.ShowDialog Then
             DirectCast(cmbShape.ItemsSource, ListWithEvents(Of Shape)).Add(win.NewObject)
             cmbShape.SelectedItem = win.NewObject
@@ -93,7 +98,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewMaterial_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMaterial.Click
-        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Material)
+        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Material, Context)
         If win.ShowDialog Then
             DirectCast(cmbMaterial.ItemsSource, ListWithEvents(Of Material)).Add(DirectCast(win.NewObject, Material))
             cmbMaterial.SelectedItem = win.NewObject
@@ -101,7 +106,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewStorage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewStorage.Click
-        Dim win As New winNewStorage
+        Dim win As New winNewStorage(Context)
         If win.ShowDialog Then
             DirectCast(cmbStorage.ItemsSource, ListWithEvents(Of Storage)).Add(win.NewObject)
             cmbStorage.SelectedItem = win.NewObject
@@ -109,7 +114,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewProductType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewProductType.Click
-        Dim win As New winNewSimple(winNewSimple.SimpleTypes.ProductType)
+        Dim win As New winNewSimple(winNewSimple.SimpleTypes.ProductType, Context)
         If win.ShowDialog Then
             DirectCast(cmbProductType.ItemsSource, ListWithEvents(Of ProductType)).Add(DirectCast(win.NewObject, ProductType))
             cmbProductType.SelectedItem = win.NewObject
@@ -117,7 +122,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewCompany_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCompany.Click
-        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Company)
+        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Company, Context)
         If win.ShowDialog Then
             DirectCast(cmbCompany.ItemsSource, ListWithEvents(Of Company)).Add(DirectCast(win.NewObject, Company))
             cmbCompany.SelectedItem = win.NewObject
@@ -125,7 +130,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewCategory_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCategory.Click
-        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Category)
+        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Category, Context)
         If win.ShowDialog Then
             DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(New CategoryProxy(win.NewObject, True))
         End If
@@ -188,16 +193,7 @@ Partial Public Class CapEditor
             End If
         End If
     End Sub
-    ''' <summary>Allows to distinguish image already in database and a new image</summary>
-    ''' <remarks><see cref="NewImage.RelativePath"/> does not store relative path, but absolute path.</remarks>
-    Private Class NewImage : Inherits Image
-        ''' <summary>CTor with path</summary>
-        ''' <param name="Path">Path to image</param>
-        Public Sub New(ByVal Path As String)
-            MyBase.New()
-            Me.RelativePath = Path
-        End Sub
-    End Class
+
 
     Private Sub btnBrowseForCapTypeImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnBrowseForCapTypeImage.Click
         Dim dlg As New Forms.OpenFileDialog With {.DefaultExt = "png", .Filter = My.Resources.fil_PNG}
@@ -497,8 +493,8 @@ Partial Public Class CapEditor
         If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is Char AndAlso Not TypeOf baseValue Is Char? Then Throw New TypeMismatchException("baseValue", baseValue, GetType(Char?), My.Resources.ex_ValueOfPropertyMustBeNullOrXOrNullableOfX.f("PictureType", GetType(Char).Name, GetType(Nullable(Of )).Name))
         If baseValue IsNot Nothing Then
             Select Case If(TypeOf baseValue Is Char, DirectCast(baseValue, Char), DirectCast(baseValue, Char?).Value)
-                Case "G"c, "L"c, "O"c, "P"c 'OK - do nothing
-                Case Else : Throw New ArgumentException(My.Resources.ex_ValueOfPropertyMustBeOneOfFollowingValues, "PictureType".f(New String() {"G", "L", "D", "P"}.Join(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ListSeparator)))
+                Case "G"c, "L"c, "D"c, "P"c 'OK - do nothing
+                Case Else : Throw New ArgumentException(My.Resources.ex_ValueOfPropertyMustBeOneOfFollowingValues.f("PictureType", New String() {"G", "L", "D", "P"}.Join(System.Globalization.CultureInfo.CurrentCulture.TextInfo.ListSeparator)))
             End Select
         End If
         Return baseValue
@@ -748,7 +744,7 @@ Partial Public Class CapEditor
     Protected Overridable Sub OnCapTypeImagePathChanged(ByVal e As DependencyPropertyChangedEventArgs)
         If CapTypeImagePath <> txtCapTypeImagePath.Text Then txtCapTypeImagePath.Text = CapTypeImagePath
     End Sub
-    Private Sub txtCapTypeImagePath_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtCapTypeDesc.TextChanged
+    Private Sub txtCapTypeImagePath_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtCapTypeImagePath.TextChanged
         If CapTypeImagePath <> txtCapTypeImagePath.Text Then CapTypeImagePath = txtCapTypeImagePath.Text
     End Sub
 #End Region
@@ -863,6 +859,7 @@ Partial Public Class CapEditor
     Private Sub cmbCapShape_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbShape.SelectionChanged
         CapShape = cmbShape.SelectedItem
     End Sub
+
 #End Region
 #Region "Size1"
     ''' <summary>Gets or sets cap size (i.e. diameter or width)</summary>
@@ -1157,7 +1154,7 @@ Partial Public Class CapEditor
     ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
     Private Shared Sub OnIs3DChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
         If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
-        DirectCast(d, CapEditor).OnIS3DChanged(e)
+        DirectCast(d, CapEditor).OnIs3DChanged(e)
     End Sub
     ''' <summary>Called when value of the <see cref="Is3D"/> property changes</summary>
     ''' <param name="e">Event arguments</param>
@@ -1403,11 +1400,10 @@ Partial Public Class CapEditor
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
     ''' <returns><see cref="BaseValueSource"/> is it is OK, otherwise an exception is throen</returns>
     ''' <exception cref="TypeMismatchException"><paramref name="d"/> isnot <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither <see cref="String"/> not null.</exception>
-    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is <see cref="String"/> and it is neither an empty string nor exactly 3 characters long string.</exception>
     Private Shared Function CoerceCountryCode(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
         If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
         If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is String Then Throw New TypeMismatchException("baseValue", baseValue, GetType(String))
-        If baseValue IsNot Nothing AndAlso DirectCast(baseValue, String).Length <> 3 AndAlso DirectCast(baseValue, String) <> "" Then Throw New ArgumentException(My.Resources.ex_CountryCode3)
+        'If baseValue IsNot Nothing AndAlso DirectCast(baseValue, String).Length <> 3 AndAlso DirectCast(baseValue, String) <> "" Then Throw New ArgumentException(My.Resources.ex_CountryCode3)
         Return baseValue
     End Function
     ''' <summary>Called when value of the property <see cref="Country"/> is changed</summary>
@@ -1871,7 +1867,7 @@ Partial Public Class CapEditor
     ''' <summary>COerces value of the <see cref="SelectedCategories"/> property</summary>
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
     ''' <returns>Array of <see cref="Category"/>: Those of categories in <paramref name="baseValue"/> which are known to this control</returns>
-    Private Function CoerceSelectedCategories(ByVal baseValue As IEnumerable(Of Category)) As IEnumerable(Of CategoryProxy)
+    Private Function CoerceSelectedCategories(ByVal baseValue As IEnumerable(Of Category)) As IEnumerable(Of Category)
         If baseValue Is Nothing Then Return Nothing
         Return (From itm In baseValue Where (From cat As CategoryProxy In lstCategories.Items Select cat.Category.CategoryID).Contains(itm.CategoryID)).ToArray
     End Function
@@ -1940,17 +1936,17 @@ Partial Public Class CapEditor
 #Region "Images"
     ''' <summary>Gets or sets name of cap</summary>
     <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
-    Public Property Images() As IEnumerable(Of Image)
+    Public Property Images() As ListWithEvents(Of Image)
         <DebuggerStepThrough()> Get
             Return GetValue(ImagesProperty)
         End Get
-        <DebuggerStepThrough()> Set(ByVal value As IEnumerable(Of Image))
+        <DebuggerStepThrough()> Set(ByVal value As ListWithEvents(Of Image))
             SetValue(ImagesProperty, value)
         End Set
     End Property
     ''' <summary>Metadata of the <see cref="Images"/> property</summary>
     <EditorBrowsable(EditorBrowsableState.Advanced)> _
-    Public Shared ReadOnly ImagesProperty As DependencyProperty = DependencyProperty.Register("Images", GetType(IEnumerable(Of Image)), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnImagesChanged))
+    Public Shared ReadOnly ImagesProperty As DependencyProperty = DependencyProperty.Register("Images", GetType(ListWithEvents(Of Image)), GetType(CapEditor), New FrameworkPropertyMetadata(new ListWithEvents(Of Image  )(),  AddressOf OnImagesChanged))
 
     ''' <summary>Called when value of the property <see cref="Images"/> is changed</summary>
     ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
@@ -1965,6 +1961,7 @@ Partial Public Class CapEditor
     Protected Overridable Sub OnImagesChanged(ByVal e As DependencyPropertyChangedEventArgs)
         lvwImages.ItemsSource = Images
     End Sub
+
 #End Region
 #End Region
 
@@ -1981,19 +1978,37 @@ Partial Public Class CapEditor
     ''' <summary>Does tests of values</summary>
     Public Function Tests() As Boolean
         Tests = False
-        If cmbMainType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_MainTypeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbMainType.Focus() : Tests = True : Exit Function
-        If cmbShape.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_ShapeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbShape.Focus() : Tests = True : Exit Function
-        If cmbMainType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_MaterialMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbMaterial.Focus() : Tests = True : Exit Function
-        If cmbStorage.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_StorageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbStorage.Focus() : Tests = True : Exit Function
-        If txtCapName.Text = "" Then mBox.Modal_PTI(My.Resources.msg_CapNameMustBeEntered, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : txtCapName.Focus() : Tests = True : Exit Function
-        If DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).Count = 0 Then mBox.Modal_PTI(My.Resources.msg_AtLeastOneImageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : btnAddImage.Focus() : Tests = True : Exit Function
-        If txtSideText.Text <> "" AndAlso Not chkHasSide.IsChecked Then mBox.Modal_PTI(My.Resources.msg_SideText_HasSide, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : chkHasSide.Focus() : Tests = True : Exit Function
-        If txtBottomText.Text <> "" AndAlso Not chkHasBottom.IsChecked Then mBox.Modal_PTI(My.Resources.msg_BottomText_HasBottom, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : chkHasBottom.Focus() : Tests = True : Exit Function
-        If txtMainPicture.Text <> "" AndAlso (cmbPictureType.SelectedItem Is cmiImageNo OrElse cmbPictureType.SelectedItem Is Nothing) Then mBox.Modal_PTI(My.Resources.msg_MainPicture_PictureType, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbPictureType.Focus() : Tests = True : Exit Function
-        If txtAnotherPictures.Text <> "" AndAlso txtMainPicture.Text = "" Then mBox.Modal_PTI(My.Resources.msg_AnotherPictures_MainPicture, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : txtMainPicture.Focus() : Tests = True : Exit Function
-        If copForeground2.Color.HasValue AndAlso Not copForeground.Color.HasValue Then mBox.Modal_PTI(My.Resources.msg_ForeColor_ForeColor2, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : copForeground.Focus() : Tests = True : Exit Function
-        If optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_NoProductSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbProduct.Focus() : Tests = True : Exit Function
-        If optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_NoCapTypeSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbCapType.Focus() : Tests = True : Exit Function
+        If cmbMainType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_MainTypeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbMainType.Focus() : Exit Function
+        If cmbShape.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_ShapeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbShape.Focus() : Exit Function
+        If cmbMainType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_MaterialMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbMaterial.Focus() : Exit Function
+        If cmbStorage.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_StorageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbStorage.Focus() : Exit Function
+        If txtCapName.Text = "" Then mBox.Modal_PTI(My.Resources.msg_CapNameMustBeEntered, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : txtCapName.Focus() : Exit Function
+        If DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).Count = 0 Then mBox.Modal_PTI(My.Resources.msg_AtLeastOneImageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : btnAddImage.Focus() : Exit Function
+        If txtSideText.Text <> "" AndAlso Not chkHasSide.IsChecked Then mBox.Modal_PTI(My.Resources.msg_SideText_HasSide, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : chkHasSide.Focus() : Exit Function
+        If txtBottomText.Text <> "" AndAlso Not chkHasBottom.IsChecked Then mBox.Modal_PTI(My.Resources.msg_BottomText_HasBottom, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : chkHasBottom.Focus() : Exit Function
+        If txtMainPicture.Text <> "" AndAlso (cmbPictureType.SelectedItem Is cmiImageNo OrElse cmbPictureType.SelectedItem Is Nothing) Then mBox.Modal_PTI(My.Resources.msg_MainPicture_PictureType, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbPictureType.Focus() : Exit Function
+        If txtAnotherPictures.Text <> "" AndAlso txtMainPicture.Text = "" Then mBox.Modal_PTI(My.Resources.msg_AnotherPictures_MainPicture, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : txtMainPicture.Focus() : Exit Function
+        If copForeground2.Color.HasValue AndAlso Not copForeground.Color.HasValue Then mBox.Modal_PTI(My.Resources.msg_ForeColor_ForeColor2, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : copForeground.Focus() : Exit Function
+        If optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_NoProductSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbProduct.Focus() : Exit Function
+        If optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_NoCapTypeSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbCapType.Focus() : Exit Function
         Tests = True
     End Function
+
+    Private Sub lvwImages_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Input.KeyEventArgs) Handles lvwImages.KeyDown
+        If e.Key = Key.Delete AndAlso lvwImages.SelectedItems.Count <> 0 Then
+            Dim todel As New List(Of Image)(From img As Image In lvwImages.SelectedItems)
+            DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).RemoveAll(Function(img) todel.Contains(img))
+        End If
+    End Sub
+End Class
+
+''' <summary>Allows to distinguish image already in database and a new image</summary>
+''' <remarks><see cref="NewImage.RelativePath"/> does not store relative path, but absolute path.</remarks>
+Public Class NewImage : Inherits Image
+    ''' <summary>CTor with path</summary>
+    ''' <param name="Path">Path to image</param>
+    Public Sub New(ByVal Path As String)
+        MyBase.New()
+        Me.RelativePath = Path
+    End Sub
 End Class

@@ -124,11 +124,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="winNewMainType.xaml">
+    <Page Include="winNew\winNewMainType.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="winNewStorage.xaml">
+    <Page Include="winNew\winNewStorage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -144,11 +144,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="winNewShape.xaml">
+    <Page Include="winNew\winNewShape.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="winNewSimple.xaml">
+    <Page Include="winNew\winNewSimple.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,11 +211,11 @@
     <Compile Include="winCapEditor.xaml.vb">
       <DependentUpon>winCapEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="winNewMainType.xaml.vb">
+    <Compile Include="winNew\winNewMainType.xaml.vb">
       <DependentUpon>winNewMainType.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImageView.vb" />
-    <Compile Include="winNewStorage.xaml.vb">
+    <Compile Include="winNew\winNewStorage.xaml.vb">
       <DependentUpon>winNewStorage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main.vb" />
@@ -243,10 +243,10 @@
     <Compile Include="winNewCap.xaml.vb">
       <DependentUpon>winNewCap.xaml</DependentUpon>
     </Compile>
-    <Compile Include="winNewShape.xaml.vb">
+    <Compile Include="winNew\winNewShape.xaml.vb">
       <DependentUpon>winNewShape.xaml</DependentUpon>
     </Compile>
-    <Compile Include="winNewSimple.xaml.vb">
+    <Compile Include="winNew\winNewSimple.xaml.vb">
       <DependentUpon>winNewSimple.xaml</DependentUpon>
     </Compile>
     <Compile Include="winSelectDatabase.xaml.vb">

@@ -169,7 +169,7 @@ Public Class PictureTypeConverter
             Select Case DirectCast(value, Char)
                 Case "G"c : Return My.Resources.txt_ImageGeometry
                 Case "L"c : Return My.Resources.txt_ImageLogo
-                Case "O"c : Return My.Resources.txt_ImageDrawing
+                Case "D"c : Return My.Resources.txt_ImageDrawing
                 Case "P"c : Return My.Resources.txt_ImagePhoto
                 Case Else : Throw New ArgumentException(My.Resources.ex_UnknownImageType.f(value), "value")
             End Select
