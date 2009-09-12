@@ -493,6 +493,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Select exactly one cap, please..
+        '''</summary>
+        Public ReadOnly Property err_SelectExactlyOneCap() As String
+            Get
+                Return ResourceManager.GetString("err_SelectExactlyOneCap", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Unknown image extension {0}..
         '''</summary>
         Public ReadOnly Property err_UnknownImageExtension() As String
@@ -547,11 +556,29 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to {0} cannot be an empty string..
+        '''</summary>
+        Public ReadOnly Property ex_CannotBeAnEmptyString() As String
+            Get
+                Return ResourceManager.GetString("ex_CannotBeAnEmptyString", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to {0} cannot convert back..
         '''</summary>
         Public ReadOnly Property ex_CannotConvertBack() As String
             Get
                 Return ResourceManager.GetString("ex_CannotConvertBack", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Cap ID {0} not found.
+        '''</summary>
+        Public ReadOnly Property ex_CapIDNotFound() As String
+            Get
+                Return ResourceManager.GetString("ex_CapIDNotFound", resourceCulture)
             End Get
         End Property
         
@@ -619,11 +646,38 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to {0} does not contain member name part..
+        '''</summary>
+        Public ReadOnly Property ex_DoesNotContainMemberNamePart() As String
+            Get
+                Return ResourceManager.GetString("ex_DoesNotContainMemberNamePart", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to {0} expects value of type {1} or {2}.
         '''</summary>
         Public ReadOnly Property ex_ExpectedValueOfType1Or2() As String
             Get
                 Return ResourceManager.GetString("ex_ExpectedValueOfType1Or2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Function for backward conversion has not been set..
+        '''</summary>
+        Public ReadOnly Property ex_FunctionForBackwardConversionHasNotBeenSet() As String
+            Get
+                Return ResourceManager.GetString("ex_FunctionForBackwardConversionHasNotBeenSet", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Function for forward conversion have not been set..
+        '''</summary>
+        Public ReadOnly Property ex_FunctionForForwardConversionHaveNotBeenSet() As String
+            Get
+                Return ResourceManager.GetString("ex_FunctionForForwardConversionHaveNotBeenSet", resourceCulture)
             End Get
         End Property
         
@@ -637,11 +691,56 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to {0} is assignable from neither {1} nor {2}.
+        '''</summary>
+        Public ReadOnly Property ex_IsAssignableFromNeither() As String
+            Get
+                Return ResourceManager.GetString("ex_IsAssignableFromNeither", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to {0} is not assignable from {1}.
+        '''</summary>
+        Public ReadOnly Property ex_IsNotAssignableFrom() As String
+            Get
+                Return ResourceManager.GetString("ex_IsNotAssignableFrom", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to {0} is null..
+        '''</summary>
+        Public ReadOnly Property ex_IsNull() As String
+            Get
+                Return ResourceManager.GetString("ex_IsNull", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Member {0} has value null..
+        '''</summary>
+        Public ReadOnly Property ex_MemberHasValueNull() As String
+            Get
+                Return ResourceManager.GetString("ex_MemberHasValueNull", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to {0} must not be null.
         '''</summary>
         Public ReadOnly Property ex_MustNotBeNull() As String
             Get
                 Return ResourceManager.GetString("ex_MustNotBeNull", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Service provider doesn&apos;t provide {0}.
+        '''</summary>
+        Public ReadOnly Property ex_ServiceProviderDoesntProvide() As String
+            Get
+                Return ResourceManager.GetString("ex_ServiceProviderDoesntProvide", resourceCulture)
             End Get
         End Property
         
@@ -1762,6 +1861,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Error updating cap.
+        '''</summary>
+        Public ReadOnly Property txt_ErrorUpdatingCap() As String
+            Get
+                Return ResourceManager.GetString("txt_ErrorUpdatingCap", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to File system error.
         '''</summary>
         Public ReadOnly Property txt_FileSystemError() As String
@@ -1866,6 +1974,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_InvalidInput() As String
             Get
                 Return ResourceManager.GetString("txt_InvalidInput", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Invalid selection.
+        '''</summary>
+        Public ReadOnly Property txt_InvalidSelection() As String
+            Get
+                Return ResourceManager.GetString("txt_InvalidSelection", resourceCulture)
             End Get
         End Property
         

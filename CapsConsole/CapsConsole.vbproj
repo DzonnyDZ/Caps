@@ -203,6 +203,7 @@
     <Compile Include="CapEditor.xaml.vb">
       <DependentUpon>CapEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MarkupExtensions.vb" />
     <Compile Include="Misc.vb" />
     <Compile Include="Settings.vb" />
     <Compile Include="winCapDetails.xaml.vb">
@@ -270,6 +271,7 @@
       <LastGenOutput>CapsData1.designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <Compile Include="Converters.Specialized.vb" />
     <None Include="My Project\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>

@@ -11,7 +11,7 @@
             <Setter Property="AcceptsReturn" Value="True"/>
             <Setter Property="MinLines" Value="2"/>
         </Style>
-        <my:Converters x:Key="NullConverter"/>
+        <my:SameTypeOrNullConverter x:Key="NullConverter"/>
     </Window.Resources>
     <Grid  >
         <Grid.RowDefinitions>

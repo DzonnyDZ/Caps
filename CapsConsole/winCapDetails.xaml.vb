@@ -1,9 +1,14 @@
 ﻿Imports mBox = Tools.WindowsT.IndependentT.MessageBox
+Imports Tools.CollectionsT.GenericT
 
 Partial Public Class winCapDetails
-    Public Sub New(ByVal Caps As IEnumerable(Of Cap))
+    '''' <summary>Data context</summary>
+    'Private Context As CapsDataDataContext
+    ''' <summary>CTor to show preselected caps</summary>
+    ''' <param name="Caps">Caps to show</param>
+    Public Sub New(ByVal Caps As IEnumerable(Of Cap)) ', Optional ByVal Context As CapsDataDataContext = Nothing)
         InitializeComponent()
-        lstCaps.ItemsSource = Caps
+        lstCaps.ItemsSource = New ListWithEvents(Of Cap)(Caps)
     End Sub
 
     Private Sub cmdDelete_CanExecute(ByVal sender As Object, ByVal e As System.Windows.Input.CanExecuteRoutedEventArgs) Handles cmdDelete.CanExecute
@@ -11,7 +16,7 @@ Partial Public Class winCapDetails
     End Sub
 
     Private Sub cmdEdit_CanExecute(ByVal sender As Object, ByVal e As System.Windows.Input.CanExecuteRoutedEventArgs) Handles cmdEdit.CanExecute
-        e.CanExecute = lstCaps.SelectedItems.Count = 1
+        e.CanExecute = lstCaps.SelectedItems.Count = 1 'AndAlso Context IsNot Nothing
     End Sub
 
     Private Sub cmdDelete_Executed(ByVal sender As Object, ByVal e As System.Windows.Input.ExecutedRoutedEventArgs) Handles cmdDelete.Executed
@@ -19,7 +24,7 @@ Partial Public Class winCapDetails
         If mBox.Modal_PTIB(My.Resources.msg_q_DelCap, My.Resources.txt_DeleteCap, mBox.GetIconDelegate(mBox.MessageBoxIcons.Question), mBox.MessageBoxButton.Yes, mBox.MessageBoxButton.No) <> Forms.DialogResult.Yes Then Exit Sub
 
         Dim osi As Integer = lstCaps.SelectedIndex
-        Dim Context As New CapsDataDataContext
+        Dim Context As New CapsDataDataContext(Main.Connection)
         Dim CapsToDel = (From ccap In Context.Caps Where (From cap As Cap In lstCaps.SelectedItems Select cap.CapID).Contains(ccap.CapID)).ToArray
         Context.Caps.DeleteAllOnSubmit(CapsToDel)
         Try
@@ -38,8 +43,19 @@ Partial Public Class winCapDetails
     End Sub
 
     Private Sub cmdEdit_Executed(ByVal sender As Object, ByVal e As System.Windows.Input.ExecutedRoutedEventArgs) Handles cmdEdit.Executed
-        'TODO: Implement editor
-        mBox.Modal_PTI("This functionality is not implemented yet.", "Not implemented", Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Stop)
+        If lstCaps.SelectedItems.Count <> 1 Then
+            mBox.Modal_PTI(My.Resources.err_SelectExactlyOneCap, My.Resources.txt_InvalidSelection, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Information)
+            Exit Sub
+        End If
+        Dim Cap As Cap = DirectCast(lstCaps.SelectedItem, Cap)
+        Dim win = New winCapEditor(Cap.CapID)
+        win.Owner = Me
         e.Handled = True
+        If win.ShowDialog() Then
+            Dim context As New CapsDataDataContext(Main.Connection)
+            With DirectCast(lstCaps.ItemsSource, ListWithEvents(Of Cap))
+                .Item(lstCaps.SelectedIndex) = context.Caps.First(Function(newcap) newcap.CapID = Cap.CapID)
+            End With
+        End If
     End Sub
 End Class

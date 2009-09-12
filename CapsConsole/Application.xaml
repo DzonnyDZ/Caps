@@ -4,6 +4,7 @@
              xmlns:my="clr-namespace:Caps.Console"
         xmlns:MyMy="clr-namespace:Caps.Console.My"
     StartupUri="winMain.xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              >
     <Application.Resources>
         <my:RelativePathConverter x:Key="RelativePathConverter"/>
@@ -17,10 +18,20 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Column="0" Grid.Row="0" Source="{Binding RelativePath, Converter={StaticResource RelativePathConverter}, Mode=OneWay}">
-                    <!--<Image.Source>
-                        <BitmapImage UriSource="{Binding RelativePath, Converter={StaticResource RelativePathConverter}, Mode=OneWay}"/>
-                    </Image.Source>-->
+                <Image Grid.Column="0" Grid.Row="0" >
+                    <!--Source="{Binding RelativePath,
+Converter={StaticResource RelativePathConverter},
+ConverterParameter={x:Array {x:Type sys:String} {my:StaticEx my:MySettings.Default.ImageRoot}, 'original'},-->
+                    <Image.Source>
+                        <Binding Converter="{StaticResource RelativePathConverter}" Path="RelativePath">
+                            <Binding.ConverterParameter>
+                                <x:Array Type="{x:Type sys:String}">
+                                    <my:StaticExExtension Member="my:MySettings.Default.ImageRoot"/>
+                                    <sys:String>original</sys:String>
+                                </x:Array>
+                            </Binding.ConverterParameter>
+                        </Binding>
+                    </Image.Source> 
                 </Image>
                 <Label Grid.Column="0" Grid.Row="1" Content="{Binding RelativePath, Converter={StaticResource FileNameConverter}, Mode=OneWay}"/>
             </Grid>

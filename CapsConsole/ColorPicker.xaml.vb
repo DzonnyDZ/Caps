@@ -118,13 +118,15 @@ Partial Public Class ColorPicker
                     Exit Sub
                 End If
             Next
-            cmbColors.Items.Insert(cmbColors.Items.IndexOf(cmiMoreColors), New ComboBoxItem With { _
-                                          .Background = New SolidColorBrush(Color), _
-                                          .Content = Color.ToString, _
-                                          .Foreground = New SolidColorBrush(System.Windows.Media.Color.FromRgb( _
-                                                        Not DirectCast(.Background, SolidColorBrush).Color.R, _
-                                                        Not DirectCast(.Background, SolidColorBrush).Color.G, _
-                                                        Not DirectCast(.Background, SolidColorBrush).Color.B))})
+            Dim NewItem As ComboBoxItem = New ComboBoxItem With { _
+                                                      .Background = New SolidColorBrush(Color), _
+                                                      .Content = Color.ToString, _
+                                                      .Foreground = New SolidColorBrush(System.Windows.Media.Color.FromRgb( _
+                                                                    Not DirectCast(.Background, SolidColorBrush).Color.R, _
+                                                                    Not DirectCast(.Background, SolidColorBrush).Color.G, _
+                                                                    Not DirectCast(.Background, SolidColorBrush).Color.B))}
+            cmbColors.Items.Insert(cmbColors.Items.IndexOf(cmiMoreColors), NewItem)
+            cmbColors.SelectedItem = NewItem
         End If
         RaiseEvent ColorChanged(Me, New RoutedEventArgs(ColorChangedEvent, Me)) ' New Tools.WindowsT.InteropT.DependencyPropertyChangedEventArgsEventArgs(e))
     End Sub
