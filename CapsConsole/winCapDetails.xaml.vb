@@ -6,9 +6,9 @@ Partial Public Class winCapDetails
     'Private Context As CapsDataDataContext
     ''' <summary>CTor to show preselected caps</summary>
     ''' <param name="Caps">Caps to show</param>
-    Public Sub New(ByVal Caps As IEnumerable(Of Cap)) ', Optional ByVal Context As CapsDataDataContext = Nothing)
+    Public Sub New(ByVal Caps As IEnumerable(Of DataAccess.Cap)) ', Optional ByVal Context As CapsDataDataContext = Nothing)
         InitializeComponent()
-        lstCaps.ItemsSource = New ListWithEvents(Of Cap)(Caps)
+        lstCaps.ItemsSource = New ListWithEvents(Of DataAccess.Cap)(Caps)
     End Sub
 
     Private Sub cmdDelete_CanExecute(ByVal sender As Object, ByVal e As System.Windows.Input.CanExecuteRoutedEventArgs) Handles cmdDelete.CanExecute
@@ -24,16 +24,19 @@ Partial Public Class winCapDetails
         If mBox.Modal_PTIB(My.Resources.msg_q_DelCap, My.Resources.txt_DeleteCap, mBox.GetIconDelegate(mBox.MessageBoxIcons.Question), mBox.MessageBoxButton.Yes, mBox.MessageBoxButton.No) <> Forms.DialogResult.Yes Then Exit Sub
 
         Dim osi As Integer = lstCaps.SelectedIndex
-        Dim Context As New CapsDataDataContext(Main.Connection)
-        Dim CapsToDel = (From ccap In Context.Caps Where (From cap As Cap In lstCaps.SelectedItems Select cap.CapID).Contains(ccap.CapID)).ToArray
-        Context.Caps.DeleteAllOnSubmit(CapsToDel)
+        Dim Context As New DataAccess.Entities(Main.EntityConnection)
+        Dim CapsToDel = (From ccap In Context.Caps Where (From cap As DataAccess.Cap In lstCaps.SelectedItems Select cap.CapID).Contains(ccap.CapID)).ToArray
+        For Each CapToDel In CapsToDel
+            Context.DeleteObject(CapsToDel)
+        Next
         Try
-            Context.SubmitChanges()
+            Context.SaveChanges()
         Catch ex As Exception
+            Context.Refresh(System.Data.Objects.RefreshMode.StoreWins, CapsToDel)
             mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorDeletingCaps, My.Resources.txt_DatabaseError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.OK)
             Exit Sub
         End Try
-        Dim OriginalCaps = (From itm As Cap In lstCaps.Items).ToArray
+        Dim OriginalCaps = (From itm As DataAccess.Cap In lstCaps.Items).ToArray
         lstCaps.ItemsSource = From cap In OriginalCaps Where Not (From ctd In CapsToDel Select ctd.CapID).Contains(cap.CapID)
         lstCaps.SelectedIndex = If(lstCaps.Items.Count > osi, osi, lstCaps.Items.Count - 1)
         If lstCaps.Items.Count = 0 Then
@@ -47,13 +50,13 @@ Partial Public Class winCapDetails
             mBox.Modal_PTI(My.Resources.err_SelectExactlyOneCap, My.Resources.txt_InvalidSelection, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Information)
             Exit Sub
         End If
-        Dim Cap As Cap = DirectCast(lstCaps.SelectedItem, Cap)
+        Dim Cap As DataAccess.Cap = DirectCast(lstCaps.SelectedItem, DataAccess.Cap)
         Dim win = New winCapEditor(Cap.CapID)
         win.Owner = Me
         e.Handled = True
         If win.ShowDialog() Then
-            Dim context As New CapsDataDataContext(Main.Connection)
-            With DirectCast(lstCaps.ItemsSource, ListWithEvents(Of Cap))
+            Dim context As New DataAccess.Entities(Main.EntityConnection)
+            With DirectCast(lstCaps.ItemsSource, ListWithEvents(Of DataAccess.Cap))
                 .Item(lstCaps.SelectedIndex) = context.Caps.First(Function(newcap) newcap.CapID = Cap.CapID)
             End With
         End If

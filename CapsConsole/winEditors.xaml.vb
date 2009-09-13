@@ -2,7 +2,7 @@
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 
 Partial Public Class winEditors
-    Private CapsContext As New CapsDataDataContext(Main.Connection)
+    Private CapsContext As New DataAccess.Entities(Main.EntityConnection)
 
     Private Sub winEditors_Closed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Closed
         CapsContext.Dispose()
@@ -29,7 +29,7 @@ Partial Public Class winEditors
 
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
         Try
-            CapsContext.SubmitChanges()
+            CapsContext.SaveChanges()
         Catch ex As Exception
             mBox.Error_X(ex)
             Exit Sub
@@ -43,7 +43,7 @@ Partial Public Class winEditors
 
     Private Sub btnApply_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnApply.Click
         Try
-            CapsContext.SubmitChanges()
+            CapsContext.SaveChanges()
         Catch ex As Exception
             mBox.Error_X(ex)
         End Try

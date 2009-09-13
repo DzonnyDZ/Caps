@@ -58,11 +58,18 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
@@ -71,17 +78,17 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Tools, Version=1.5.2.33531, Culture=neutral, PublicKeyToken=373c02ac923768e6, processorArchitecture=MSIL">
+    <Reference Include="Tools, Version=1.5.2.41175, Culture=neutral, PublicKeyToken=373c02ac923768e6, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ĐTools\bin\Latest\Tools.dll</HintPath>
+      <HintPath>..\DLL\Tools.dll</HintPath>
     </Reference>
-    <Reference Include="Tools.Metadata, Version=1.5.2.33562, Culture=neutral, PublicKeyToken=373c02ac923768e6, processorArchitecture=MSIL">
+    <Reference Include="Tools.Metadata, Version=1.5.2.41876, Culture=neutral, PublicKeyToken=373c02ac923768e6, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ĐTools\bin\Latest\Tools.Metadata.dll</HintPath>
+      <HintPath>..\DLL\Tools.Metadata.dll</HintPath>
     </Reference>
-    <Reference Include="Tools.Windows, Version=1.5.2.33556, Culture=neutral, PublicKeyToken=373c02ac923768e6, processorArchitecture=MSIL">
+    <Reference Include="Tools.Windows, Version=1.5.2.41872, Culture=neutral, PublicKeyToken=373c02ac923768e6, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ĐTools\bin\Latest\Tools.Windows.dll</HintPath>
+      <HintPath>..\DLL\Tools.Windows.dll</HintPath>
     </Reference>
     <Reference Include="UIAutomationProvider">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -188,13 +195,10 @@
     <Import Include="System.Windows.Navigation" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CapsData.vb">
-      <DependentUpon>CapsData.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="CapsData1.designer.vb">
+    <Compile Include="CapsData.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CapsData.dbml</DependentUpon>
+      <DependentUpon>CapsData.edmx</DependentUpon>
     </Compile>
     <Compile Include="!version!.vb" />
     <Compile Include="ColorPicker.xaml.vb">
@@ -256,9 +260,6 @@
     <Compile Include="winSettings.xaml.vb">
       <DependentUpon>winSettings.xaml</DependentUpon>
     </Compile>
-    <None Include="CapsData.dbml.layout">
-      <DependentUpon>CapsData.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="My Project\Resources.cs.resx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
@@ -266,12 +267,12 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="CapsData.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>CapsData1.designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <Compile Include="Converters.Specialized.vb" />
+    <EntityDeploy Include="CapsData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CapsData.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>DataAccess</CustomToolNamespace>
+    </EntityDeploy>
     <None Include="My Project\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>

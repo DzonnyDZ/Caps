@@ -8,6 +8,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		CapsData.mdf = CapsData.mdf
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLL", "DLL", "{E5E3F6DB-D55E-47C2-9105-6FA26BAEA9A2}"
+	ProjectSection(SolutionItems) = preProject
+		DLL\ReadMe.txt = DLL\ReadMe.txt
+		DLL\Tools.dll = DLL\Tools.dll
+		DLL\Tools.Metadata.dll = DLL\Tools.Metadata.dll
+		DLL\Tools.Metadata.xml = DLL\Tools.Metadata.xml
+		DLL\Tools.Windows.dll = DLL\Tools.Windows.dll
+		DLL\Tools.Windows.xml = DLL\Tools.Windows.xml
+		DLL\Tools.xml = DLL\Tools.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 2

@@ -1,17 +1,17 @@
 ﻿Imports Tools, Tools.TypeTools, Tools.ExtensionsT
-Imports System.ComponentModel
+Imports System.ComponentModel, Caps.Console.DataAccess
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 
 Partial Public Class winNewSimple
 
     Private Type As SimpleTypes
-    Private Context As CapsDataDataContext
+    Private Context As DataAccess.Entities
     ''' <summary>CTor</summary>
     ''' <param name="Type">Type of item to add</param>
     ''' <param name="Context">Data context</param>
     ''' <exception cref="InvalidEnumArgumentException"><paramref name="Type"/> is not member of <see cref="SimpleTypes"/></exception>
     ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
-    Public Sub New(ByVal Type As SimpleTypes, ByVal Context As CapsDataDataContext)
+    Public Sub New(ByVal Type As SimpleTypes, ByVal Context As DataAccess.Entities)
         If Not Type.IsDefined Then Throw New InvalidEnumArgumentException("Type", Type, Type.GetType)
         If Context Is Nothing Then Throw New ArgumentNullException("Context")
         Me.Type = Type
@@ -25,46 +25,46 @@ Partial Public Class winNewSimple
         End Select
         Me.Context = Context
     End Sub
-    Private _NewObject As Object
+    Private _NewObject As Global.System.Data.Objects.DataClasses.EntityObject
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
-        Dim tbl As System.Data.Linq.ITable
+        'Dim tbl As System.Data.Linq.ITable
         Try
             Select Case Type
                 Case SimpleTypes.Material
                     _NewObject = New Material() With {.Name = txtName.Text, .Description = txtDescription.Text}
-                    tbl = Context.Materials
+                    Context.AddToMaterials(_NewObject)
                 Case SimpleTypes.Category
                     _NewObject = New Category() With {.CategoryName = txtName.Text, .Description = txtDescription.Text}
-                    tbl = Context.Categories
+                    Context.AddToCategories(_NewObject)
                 Case SimpleTypes.Company
                     _NewObject = New Company() With {.CompanyName = txtName.Text, .Description = txtDescription.Text}
-                    tbl = Context.Companies
+                    Context.AddToCompanies(_NewObject)
                 Case SimpleTypes.ProductType
                     _NewObject = New ProductType() With {.ProductTypeName = txtName.Text, .Description = txtDescription.Text}
-                    tbl = Context.ProductTypes
+                    Context.AddToProductTypes(_NewObject)
                 Case SimpleTypes.StorageType
                     _NewObject = New StorageType() With {.Name = txtName.Text, .Description = txtDescription.Text}
-                    tbl = Context.StorageTypes
+                    Context.AddToStorages(_NewObject)
                 Case Else
                     Throw New InvalidOperationException(My.Resources.err_UnknownSimpleObject.f(Type))
             End Select
-            tbl.InsertOnSubmit(_NewObject)
+            'tbl.InsertOnSubmit(_NewObject)
         Catch ex As Exception
             mBox.Error_X(ex)
             Exit Sub
         End Try
         Try
-            Context.SubmitChanges()
+            Context.SaveChanges()
         Catch ex As Exception
             mBox.Error_X(ex)
-            tbl.DeleteOnSubmit(_NewObject)
+            Context.Detach(_NewObject)
             Exit Sub
         End Try
         Me.DialogResult = True
         Me.Close()
     End Sub
 
-    Public ReadOnly Property NewObject() As Object
+    Public ReadOnly Property NewObject() As Global.System.Data.Objects.DataClasses.EntityObject
         Get
             Return _NewObject
         End Get

@@ -3,14 +3,15 @@ Imports Tools.DrawingT.ImageTools
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports System.ComponentModel
 Imports Tools.ComponentModelT
-Imports Tools
+Imports Tools, Caps.Console.DataAccess
+Imports System.Data.EntityClient
 
 ''' <summary>Creates a new cap</summary>
 Partial Public Class CapEditor
     ''' <summary>Context to be used when <see cref="Context"/> is not set</summary>
-    Private OriginalContext As New CapsDataDataContext(Main.Connection)
+    Private OriginalContext As New Entities(Main.EntityConnection)
     ''' <summary>Contains value of the <see cref="Context"/> proeprty</summary>
-    Private _Context As CapsDataDataContext = OriginalContext
+    Private _Context As Entities = OriginalContext
     ''' <summary>CTor</summary>
     Public Sub New()
         InitializeComponent()
@@ -18,11 +19,11 @@ Partial Public Class CapEditor
     End Sub
     ''' <summary>Database context</summary>
     ''' <exception cref="ArgumentNullException">Value being set is null</exception>
-    Public Property Context() As CapsDataDataContext
+    Public Property Context() As DataAccess.Entities
         <DebuggerStepThrough()> Get
             Return _Context
         End Get
-        Set(ByVal value As CapsDataDataContext)
+        Set(ByVal value As DataAccess.Entities)
             If value Is Nothing Then Throw New ArgumentNullException("value")
             If value IsNot OriginalContext AndAlso OriginalContext IsNot Nothing Then
                 OriginalContext.Dispose()
@@ -50,7 +51,7 @@ Partial Public Class CapEditor
             CompaniesList.Add(Nothing)
             cmbCompany.ItemsSource = CompaniesList
             lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item))
-            kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
+            kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.KeywordName Select item.KeywordName)
             lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
         Finally
             initializing = False
@@ -1958,7 +1959,7 @@ Partial Public Class CapEditor
     End Property
     ''' <summary>Metadata of the <see cref="Images"/> property</summary>
     <EditorBrowsable(EditorBrowsableState.Advanced)> _
-    Public Shared ReadOnly ImagesProperty As DependencyProperty = DependencyProperty.Register("Images", GetType(ListWithEvents(Of Image)), GetType(CapEditor), New FrameworkPropertyMetadata(new ListWithEvents(Of Image  )(),  AddressOf OnImagesChanged))
+    Public Shared ReadOnly ImagesProperty As DependencyProperty = DependencyProperty.Register("Images", GetType(ListWithEvents(Of Image)), GetType(CapEditor), New FrameworkPropertyMetadata(New ListWithEvents(Of Image)(), AddressOf OnImagesChanged))
 
     ''' <summary>Called when value of the property <see cref="Images"/> is changed</summary>
     ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
@@ -1995,66 +1996,66 @@ Partial Public Class CapEditor
         End If
     End Sub
 
-    ''' <summary>Resets datacontext of this instance</summary>
-    Public Function ResetContext(Optional ByRef Context As CapsDataDataContext = Nothing) As CapsDataDataContext
-        Dim OldSelectedIds = New With { _
-            .CapType = If(CapType IsNot Nothing, CapType.CapTypeID, New Integer?), _
-            .MainType = If(CapMainType IsNot Nothing, CapMainType.MainTypeID, New Integer?), _
-            .Shape = If(CapShape IsNot Nothing, CapShape.ShapeID, New Integer?), _
-            .Material = If(Material IsNot Nothing, Material.MaterialID, New Integer?), _
-            .Storage = If(Storage IsNot Nothing, Storage.StorageID, New Integer?), _
-            .ProductType = If(CapProductType IsNot Nothing, CapProductType.ProductTypeID, New Integer?), _
-            .Product = If(Product IsNot Nothing, Product.ProductID, New Integer?), _
-            .Company = If(CapCompany IsNot Nothing, CapCompany.CompanyID, New Integer?), _
-            .Categories = (From cat As Category In SelectedCategories Select cat.CategoryID).ToArray}
-        If OriginalContext IsNot Nothing Then OriginalContext.Dispose()
-        If Context Is Nothing Then
-            OriginalContext = New CapsDataDataContext(Main.Connection)
-            Context = New CapsDataDataContext
-        End If
-        
-        Me.Context = Context
-        With OldSelectedIds
-            'CapType
-            cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
-            If .CapType.HasValue Then cmbCapType.SelectedItem = (From itm As CapType In cmbCapType.ItemsSource Where itm.CapTypeID = .CapType).FirstOrDefault
-            'MainType
-            cmbMainType.ItemsSource = New ListWithEvents(Of MainType)(From item In Context.MainTypes Order By item.TypeName)
-            If .MainType.HasValue Then cmbMainType.SelectedItem = (From itm As MainType In cmbMainType.ItemsSource Where itm.MainTypeID = .MainType).FirstOrDefault
-            'Shape
-            cmbShape.ItemsSource = New ListWithEvents(Of Shape)(From item In Context.Shapes Order By item.Name)
-            If .Shape.HasValue Then cmbShape.SelectedItem = (From itm As Shape In cmbShape.ItemsSource Where itm.ShapeID = .Shape).FirstOrDefault
-            'Material
-            cmbMaterial.ItemsSource = New ListWithEvents(Of Material)(From item In Context.Materials Order By item.Name)
-            If .Material.HasValue Then cmbMaterial.SelectedItem = (From itm As Material In cmbMaterial.ItemsSource Where itm.MaterialID = .Material).FirstOrDefault
-            'Storage
-            cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Order By item.StorageNumber)
-            If .Storage.HasValue Then cmbStorage.SelectedItem = (From itm As Storage In cmbStorage.ItemsSource Where itm.StorageID = .Storage).FirstOrDefault
-            'Product
-            cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
-            If .Product.HasValue Then cmbProduct.SelectedItem = (From itm As Product In cmbProduct.ItemsSource Where itm.ProductID = .Product).FirstOrDefault
-            'ProductType
-            Dim ProductTypesList As ListWithEvents(Of ProductType) = New ListWithEvents(Of ProductType)(From item In Context.ProductTypes Order By item.ProductTypeName)
-            ProductTypesList.Add(Nothing)
-            cmbProductType.ItemsSource = ProductTypesList
-            If .ProductType.HasValue Then cmbProductType.SelectedItem = (From itm As ProductType In cmbProductType.ItemsSource Where itm.ProductTypeID = .ProductType).FirstOrDefault Else cmbProductType.SelectedItem = Nothing
-            'Company
-            Dim CompaniesList As ListWithEvents(Of Company) = New ListWithEvents(Of Company)(From item In Context.Companies Order By item.CompanyName)
-            CompaniesList.Add(Nothing)
-            cmbCompany.ItemsSource = CompaniesList
-            If .Company.HasValue Then cmbCompany.SelectedItem = (From itm As Company In cmbCompany.ItemsSource Where itm.CompanyID = .Company).FirstOrDefault Else cmbCompany.SelectedItem = Nothing
-            lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item, .Categories.Contains(item.CategoryID)))
-        End With
-        With DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image))
-            .RemoveAll(Function(img) Not TypeOf img Is NewImage)
-            Dim i As Integer = 0
-            For Each img In From imgx In Context.Images Where imgx.CapID = Me.CapID
-                .Insert(i, img)
-                i += 1
-            Next
-        End With
-        Return Context
-    End Function
+    '''' <summary>Resets datacontext of this instance</summary>
+    'Public Function ResetContext(Optional ByRef Context As CapsDataDataContext = Nothing) As CapsDataDataContext
+    '    Dim OldSelectedIds = New With { _
+    '        .CapType = If(CapType IsNot Nothing, CapType.CapTypeID, New Integer?), _
+    '        .MainType = If(CapMainType IsNot Nothing, CapMainType.MainTypeID, New Integer?), _
+    '        .Shape = If(CapShape IsNot Nothing, CapShape.ShapeID, New Integer?), _
+    '        .Material = If(Material IsNot Nothing, Material.MaterialID, New Integer?), _
+    '        .Storage = If(Storage IsNot Nothing, Storage.StorageID, New Integer?), _
+    '        .ProductType = If(CapProductType IsNot Nothing, CapProductType.ProductTypeID, New Integer?), _
+    '        .Product = If(Product IsNot Nothing, Product.ProductID, New Integer?), _
+    '        .Company = If(CapCompany IsNot Nothing, CapCompany.CompanyID, New Integer?), _
+    '        .Categories = (From cat As Category In SelectedCategories Select cat.CategoryID).ToArray}
+    '    If OriginalContext IsNot Nothing Then OriginalContext.Dispose()
+    '    If Context Is Nothing Then
+    '        OriginalContext = New CapsDataDataContext(Main.Connection)
+    '        Context = New CapsDataDataContext
+    '    End If
+
+    '    Me.Context = Context
+    '    With OldSelectedIds
+    '        'CapType
+    '        cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
+    '        If .CapType.HasValue Then cmbCapType.SelectedItem = (From itm As CapType In cmbCapType.ItemsSource Where itm.CapTypeID = .CapType).FirstOrDefault
+    '        'MainType
+    '        cmbMainType.ItemsSource = New ListWithEvents(Of MainType)(From item In Context.MainTypes Order By item.TypeName)
+    '        If .MainType.HasValue Then cmbMainType.SelectedItem = (From itm As MainType In cmbMainType.ItemsSource Where itm.MainTypeID = .MainType).FirstOrDefault
+    '        'Shape
+    '        cmbShape.ItemsSource = New ListWithEvents(Of Shape)(From item In Context.Shapes Order By item.Name)
+    '        If .Shape.HasValue Then cmbShape.SelectedItem = (From itm As Shape In cmbShape.ItemsSource Where itm.ShapeID = .Shape).FirstOrDefault
+    '        'Material
+    '        cmbMaterial.ItemsSource = New ListWithEvents(Of Material)(From item In Context.Materials Order By item.Name)
+    '        If .Material.HasValue Then cmbMaterial.SelectedItem = (From itm As Material In cmbMaterial.ItemsSource Where itm.MaterialID = .Material).FirstOrDefault
+    '        'Storage
+    '        cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Order By item.StorageNumber)
+    '        If .Storage.HasValue Then cmbStorage.SelectedItem = (From itm As Storage In cmbStorage.ItemsSource Where itm.StorageID = .Storage).FirstOrDefault
+    '        'Product
+    '        cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
+    '        If .Product.HasValue Then cmbProduct.SelectedItem = (From itm As Product In cmbProduct.ItemsSource Where itm.ProductID = .Product).FirstOrDefault
+    '        'ProductType
+    '        Dim ProductTypesList As ListWithEvents(Of ProductType) = New ListWithEvents(Of ProductType)(From item In Context.ProductTypes Order By item.ProductTypeName)
+    '        ProductTypesList.Add(Nothing)
+    '        cmbProductType.ItemsSource = ProductTypesList
+    '        If .ProductType.HasValue Then cmbProductType.SelectedItem = (From itm As ProductType In cmbProductType.ItemsSource Where itm.ProductTypeID = .ProductType).FirstOrDefault Else cmbProductType.SelectedItem = Nothing
+    '        'Company
+    '        Dim CompaniesList As ListWithEvents(Of Company) = New ListWithEvents(Of Company)(From item In Context.Companies Order By item.CompanyName)
+    '        CompaniesList.Add(Nothing)
+    '        cmbCompany.ItemsSource = CompaniesList
+    '        If .Company.HasValue Then cmbCompany.SelectedItem = (From itm As Company In cmbCompany.ItemsSource Where itm.CompanyID = .Company).FirstOrDefault Else cmbCompany.SelectedItem = Nothing
+    '        lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item, .Categories.Contains(item.CategoryID)))
+    '    End With
+    '    With DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image))
+    '        .RemoveAll(Function(img) Not TypeOf img Is NewImage)
+    '        Dim i As Integer = 0
+    '        For Each img In From imgx In Context.Images Where imgx.CapID = Me.CapID
+    '            .Insert(i, img)
+    '            i += 1
+    '        Next
+    '    End With
+    '    Return Context
+    'End Function
 
 
 #Region "Services"

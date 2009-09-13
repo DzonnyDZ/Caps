@@ -2,7 +2,7 @@
 
     Private Sub Application_Exit(ByVal sender As Object, ByVal e As System.Windows.ExitEventArgs) Handles Me.Exit
         My.Settings.Save()
-        If Connection IsNot Nothing Then Connection.Close()
+        If EntityConnection IsNot Nothing Then EntityConnection.Close()
     End Sub
 
     ' Application-level events, such as Startup, Exit, and DispatcherUnhandledException

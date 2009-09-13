@@ -1,5 +1,5 @@
 ﻿Imports Tools.CollectionsT.GenericT, Tools.ExtensionsT
-Imports Tools.DrawingT.ImageTools
+Imports Tools.DrawingT.ImageTools, Caps.Console.DataAccess
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 ''' <summary>Creates a new cap</summary>
 Partial Public Class winNewCap
@@ -74,39 +74,28 @@ Partial Public Class winNewCap
             Cap.HasSide = .HasSide
             Cap.PictureType = .PictureType
             'Categories
-            Dim CreatedDBCatInts As New List(Of Cap_Category_Int)
             If .SelectedCategories IsNot Nothing Then
-                For Each Category In .SelectedCategories
-                    CreatedDBCatInts.Add(New Cap_Category_Int(Cap, Category))
-                Next
+                Cap.Categories.AddRange(.SelectedCategories)
             End If
             'Images
             Dim IntroducedImages As List(Of String) = .CopyImages()
             If IntroducedImages Is Nothing Then Exit Sub
             'Prepare for commit
             Dim CreatedDBImages = (From item In IntroducedImages Select New Image() With {.Cap = Cap, .RelativePath = item}).ToArray
-            .Context.Images.InsertAllOnSubmit(CreatedDBImages)
+            Cap.Images.AddRange(CreatedDBImages)
             Dim CreatedDBKeywords As Keyword()
-            Dim CreatedDBKwInts As Cap_Keyword_Int()
             If .Keywords IsNot Nothing Then
                 Dim AllCapKeywords = (From kw In .Keywords Select If( _
-                                        (From InDbKw In .Context.Keywords Where InDbKw.Keyword = kw Select New With {.Keyword = InDbKw, .IsNew = False}).FirstOrDefault, _
-                                        New With {.Keyword = New Keyword(kw), .IsNew = True})).ToArray
-                CreatedDBKeywords = (From kw In AllCapKeywords Where kw.IsNew Select kw.Keyword).ToArray
-                .Context.Keywords.InsertAllOnSubmit(CreatedDBKeywords)
-                CreatedDBKwInts = (From kw In AllCapKeywords Select New Cap_Keyword_Int(Cap, kw.Keyword)).ToArray
-                .Context.Cap_Keyword_Ints.InsertAllOnSubmit(CreatedDBKwInts)
+                                        (From InDbKw In .Context.Keywords Where InDbKw.KeywordName = kw Select New With {.Keyword = InDbKw, .IsNew = False}).FirstOrDefault, _
+                                        New With {.Keyword = New Keyword With {.KeywordName = kw}, .IsNew = True})).ToArray
+                Cap.Keywords.AddRange(AllCapKeywords)
             Else
                 CreatedDBKeywords = New Keyword() {}
-                CreatedDBKwInts = New Cap_Keyword_Int() {}
             End If
-            .Context.Cap_Category_Ints.InsertAllOnSubmit(CreatedDBCatInts)
-            If NewType IsNot Nothing Then .Context.CapTypes.InsertOnSubmit(NewType)
-            If NewProduct IsNot Nothing Then .Context.Products.InsertOnSubmit(NewProduct)
-            .Context.Caps.InsertOnSubmit(Cap)
+            .Context.AddToCaps(Cap)
             'Commit
             Try
-                .Context.SubmitChanges()
+                .Context.SaveChanges(True)
             Catch ex As Exception
                 mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCommittingChangesToDatabase, My.Resources.txt_DatabaseError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.OK)
                 'Undo
@@ -117,7 +106,8 @@ Partial Public Class winNewCap
                 '.Context.CapTypes.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of CapType))
                 '.Context.Products.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Product))
                 '.Context.Caps.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Cap))
-                .ResetContext()
+                '.ResetContext()
+                'TODO: Undo changes
                 CapEditor.UndoCopyImages(IntroducedImages)
                 Exit Sub
             End Try

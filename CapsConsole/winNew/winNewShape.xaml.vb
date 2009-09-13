@@ -6,14 +6,14 @@ Partial Public Class winNewShape
     ''' <summary>CTor</summary>
     ''' <param name="Context">Data context</param>
     ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
-    Public Sub New(ByVal Context As CapsDataDataContext)
+    Public Sub New(ByVal Context As DataAccess.Entities)
         InitializeComponent()
         If Context Is Nothing Then Throw New ArgumentNullException("Context")
         Me.Context = Context
     End Sub
 
-    Private Context As CapsDataDataContext
-    Private _NewObject As Shape
+    Private Context As DataAccess.Entities
+    Private _NewObject As DataAccess.Shape
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
         If Not IO.File.Exists(txtImagePath.Text) Then
             Select Case mBox.ModalF_PTBIa(My.Resources.msg_FileNotExists_ContinueWOImage, My.Resources.txt_ShapeImage, WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Yes Or WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.No, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Question, txtImagePath.Text)
@@ -25,16 +25,16 @@ Partial Public Class winNewShape
             Exit Sub
         End If
         Try
-            _NewObject = New Shape() With {.Name = txtName.Text, .Description = txtDescription.Text, .Size1Name = txtSize1Name.Text, .Size2Name = txtSize2Name.Text}
-            Context.Shapes.InsertOnSubmit(_NewObject)
+            _NewObject = New DataAccess.Shape() With {.Name = txtName.Text, .Description = txtDescription.Text, .Size1Name = txtSize1Name.Text, .Size2Name = txtSize2Name.Text}
+            Context.AddToShapes(_NewObject)
         Catch ex As Exception
             mBox.Error_X(ex)
             Exit Sub
         End Try
         Try
-            Context.SubmitChanges()
+            Context.SaveChanges()
         Catch ex As Exception
-            Context.Shapes.DeleteAllNew()
+            Context.Detach(_NewObject)
             mBox.Error_X(ex)
             Exit Sub
         End Try
@@ -49,7 +49,7 @@ Partial Public Class winNewShape
         Me.Close()
     End Sub
 
-    Public ReadOnly Property NewObject() As Shape
+    Public ReadOnly Property NewObject() As DataAccess.Shape
         Get
             Return _NewObject
         End Get
