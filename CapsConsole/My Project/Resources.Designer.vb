@@ -322,6 +322,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Use wizard....
+        '''</summary>
+        Public ReadOnly Property cmd_UseWizard() As String
+            Get
+                Return ResourceManager.GetString("cmd_UseWizard", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Company.
         '''</summary>
         Public ReadOnly Property coh_Company() As String

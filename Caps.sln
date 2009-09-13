@@ -19,15 +19,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLL", "DLL", "{E5E3F6DB-D55
 		DLL\Tools.xml = DLL\Tools.xml
 	EndProjectSection
 EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "CapsData", "CapsData\CapsData.dbp", "{8E128257-AC1E-46E1-88D8-0CD330761731}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
+		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs10.codeplex.com/
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = CapsConsole\\CapsConsole.vbproj
 		SccProjectName1 = CapsConsole
 		SccLocalPath1 = CapsConsole
+		SccProjectUniqueName2 = CapsData\\CapsData.dbp
+		SccProjectName2 = CapsData
+		SccLocalPath2 = CapsData
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

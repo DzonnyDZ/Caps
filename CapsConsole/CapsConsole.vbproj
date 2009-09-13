@@ -112,23 +112,39 @@
     <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="Application.xaml">
+    <ApplicationDefinition Include="XAML helpers\Application.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ColorPicker.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CapEditor.xaml">
+    <Page Include="Config\Database wizard\1-pgServerOrFile.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="winCapDetails.xaml">
+    <Page Include="Config\Database wizard\2-pgNewOrExisting.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Config\Database wizard\3-pgDatabaseAndFileInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="XAML helpers\ColorPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="winCapEditor.xaml">
+    <Page Include="Cap editing\CapEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Cap editing\winCapDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Cap editing\winCapEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Config\Database wizard\winDatabaseWizard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,7 +156,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="winEditors.xaml">
+    <Page Include="Cap editing\winEditors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,7 +164,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="winNewCap.xaml">
+    <Page Include="Cap editing\winNewCap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -160,15 +176,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="winSelectDatabase.xaml">
+    <Page Include="Config\winSelectDatabase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="winSettings.xaml">
+    <Page Include="Config\winSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="Application.xaml.vb">
+    <Compile Include="XAML helpers\Application.xaml.vb">
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -197,46 +213,58 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="!version!.vb" />
-    <Compile Include="CapsData.vb">
+    <Compile Include="Config\Database wizard\1-pgServerOrFile.xaml.vb">
+      <DependentUpon>1-pgServerOrFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Database wizard\2-pgNewOrExisting.xaml.vb">
+      <DependentUpon>2-pgNewOrExisting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Database wizard\3-pgDatabaseAndFileInfo.xaml.vb">
+      <DependentUpon>3-pgDatabaseAndFileInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\CapsData.vb">
       <DependentUpon>CapsData.dbml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CapsData1.designer.vb">
+    <Compile Include="DAL\CapsData1.designer.vb">
       <DependentUpon>CapsData.dbml</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="ColorPicker.xaml.vb">
+    <Compile Include="XAML helpers\ColorPicker.xaml.vb">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CapEditor.xaml.vb">
+    <Compile Include="Cap editing\CapEditor.xaml.vb">
       <DependentUpon>CapEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HelperDataSet.Designer.vb">
+    <Compile Include="DAL\HelperDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HelperDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="HelperDataSet.vb">
+    <Compile Include="DAL\HelperDataSet.vb">
       <DependentUpon>HelperDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="MarkupExtensions.vb" />
+    <Compile Include="XAML helpers\MarkupExtensions.vb" />
     <Compile Include="Misc.vb" />
-    <Compile Include="Settings.vb" />
-    <Compile Include="winCapDetails.xaml.vb">
+    <Compile Include="Config\Settings.vb" />
+    <Compile Include="Cap editing\winCapDetails.xaml.vb">
       <DependentUpon>winCapDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="winCapEditor.xaml.vb">
+    <Compile Include="Cap editing\winCapEditor.xaml.vb">
       <DependentUpon>winCapEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Database wizard\winDatabaseWizard.xaml.vb">
+      <DependentUpon>winDatabaseWizard.xaml</DependentUpon>
     </Compile>
     <Compile Include="winNew\winNewMainType.xaml.vb">
       <DependentUpon>winNewMainType.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ImageView.vb" />
+    <Compile Include="XAML helpers\ImageView.vb" />
     <Compile Include="winNew\winNewStorage.xaml.vb">
       <DependentUpon>winNewStorage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Main.vb" />
+    <Compile Include="DAL\Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -254,11 +282,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Converters.vb" />
-    <Compile Include="winEditors.xaml.vb">
+    <Compile Include="XAML helpers\Converters.vb" />
+    <Compile Include="Cap editing\winEditors.xaml.vb">
       <DependentUpon>winEditors.xaml</DependentUpon>
     </Compile>
-    <Compile Include="winNewCap.xaml.vb">
+    <Compile Include="Cap editing\winNewCap.xaml.vb">
       <DependentUpon>winNewCap.xaml</DependentUpon>
     </Compile>
     <Compile Include="winNew\winNewShape.xaml.vb">
@@ -267,10 +295,10 @@
     <Compile Include="winNew\winNewSimple.xaml.vb">
       <DependentUpon>winNewSimple.xaml</DependentUpon>
     </Compile>
-    <Compile Include="winSelectDatabase.xaml.vb">
+    <Compile Include="Config\winSelectDatabase.xaml.vb">
       <DependentUpon>winSelectDatabase.xaml</DependentUpon>
     </Compile>
-    <Compile Include="winSettings.xaml.vb">
+    <Compile Include="Config\winSettings.xaml.vb">
       <DependentUpon>winSettings.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="My Project\Resources.cs.resx" />
@@ -280,24 +308,24 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
     </EmbeddedResource>
     <None Include="app.config" />
-    <Compile Include="Converters.Specialized.vb" />
-    <None Include="CapsData.dbml">
+    <Compile Include="XAML helpers\Converters.Specialized.vb" />
+    <None Include="DAL\CapsData.dbml">
       <SubType>Designer</SubType>
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>CapsData1.designer.vb</LastGenOutput>
     </None>
-    <None Include="CapsData.dbml.layout">
+    <None Include="DAL\CapsData.dbml.layout">
       <DependentUpon>CapsData.dbml</DependentUpon>
     </None>
-    <None Include="HelperDataSet.xsc">
+    <None Include="DAL\HelperDataSet.xsc">
       <DependentUpon>HelperDataSet.xsd</DependentUpon>
     </None>
-    <None Include="HelperDataSet.xsd">
+    <None Include="DAL\HelperDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>HelperDataSet.Designer.vb</LastGenOutput>
     </None>
-    <None Include="HelperDataSet.xss">
+    <None Include="DAL\HelperDataSet.xss">
       <DependentUpon>HelperDataSet.xsd</DependentUpon>
     </None>
     <None Include="My Project\Settings.settings">

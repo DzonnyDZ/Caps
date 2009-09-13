@@ -1063,4 +1063,8 @@
   <data name="ex_MemberHasValueNull" xml:space="preserve">
     <value>Member {0} has value null.</value>
   </data>
+  <data name="cmd_UseWizard" xml:space="preserve">
+    <value>Use wizard...</value>
+    <comment>Button text</comment>
+  </data>
 </root>

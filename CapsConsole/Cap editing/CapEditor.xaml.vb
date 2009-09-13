@@ -300,6 +300,41 @@ Partial Public Class CapEditor
             Next
         End If
         Dim ta As New HelperDataSetTableAdapters.GetSimilarCapsTableAdapter With {.Connection = Main.Connection}
+        Dim DELETEASAP = ta.GetSimilarCaps( _
+               If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
+               If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
+               If(cmbShape.SelectedItem IsNot Nothing, DirectCast(cmbShape.SelectedItem, Shape).ShapeID, Nothing), _
+               txtCapName.Text, _
+               txtMainText.Text, _
+               txtSubTitle.Text, _
+               copBackground.Color.ToArgb, _
+               copSecondaryBackground.Color.ToArgb, _
+               copForeground.Color.ToArgb, _
+               txtMainPicture.Text, _
+               txtTopText.Text, _
+               txtSideText.Text, _
+               txtBottomText.Text, _
+               If(cmbMaterial.SelectedItem IsNot Nothing, DirectCast(cmbMaterial.SelectedItem, Material).MaterialID, Nothing), _
+               If(optMatting.IsChecked, "M"c, If(optGlossy.IsChecked, "G"c, Nothing)), _
+               nudSize1.Value, _
+               If(cmbShape.SelectedItem IsNot Nothing AndAlso DirectCast(cmbShape.SelectedItem, Shape).Size2Name IsNot Nothing, nudSize2.Value, Nothing), _
+               nudHeight.Value, _
+               chk3D.IsChecked, _
+               If(nudYear.Value = 0, Nothing, nudYear.Value), _
+               If(txtCountryCode.Text <> "", txtCountryCode.Text, Nothing), _
+               txtNote.Text, _
+               If(cmbCompany.SelectedItem IsNot Nothing, DirectCast(cmbCompany.SelectedItem, Company).CompanyID, Nothing), _
+               If(optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem IsNot Nothing, DirectCast(cmbProduct.SelectedItem, Product).ProductID, Nothing), _
+               If(cmbProductType.SelectedItem IsNot Nothing, DirectCast(cmbProductType.SelectedItem, ProductType).ProductTypeID, Nothing), _
+               If(cmbStorage.SelectedItem IsNot Nothing, DirectCast(cmbStorage.SelectedItem, Storage).StorageID, Nothing), _
+               copForeground2.Color.ToArgb, _
+               If(cmbPictureType.SelectedItem Is cmiImageGeometry, "G"c, If(cmbPictureType.SelectedItem Is cmiImageLogo, "L"c, If(cmbPictureType.SelectedItem Is cmiImageDrawing, "D"c, If(cmbPictureType.SelectedItem Is cmiImagePhoto, "P"c, Nothing)))), _
+               chkHasBottom.IsChecked, _
+               chkHasSide.IsChecked, _
+               txtAnotherPictures.Text, _
+               srchCategories, _
+               srchKeywords _
+        )
         Dim SearchResults = ta.ReadSimilarCaps( _
                If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
                If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
@@ -335,41 +370,7 @@ Partial Public Class CapEditor
                srchCategories, _
                srchKeywords _
         )
-        'Dim SearchResults = Context.GetSimilarCaps( _
-        '       If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
-        '       If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
-        '       If(cmbShape.SelectedItem IsNot Nothing, DirectCast(cmbShape.SelectedItem, Shape).ShapeID, Nothing), _
-        '       txtCapName.Text, _
-        '       txtMainText.Text, _
-        '       txtSubTitle.Text, _
-        '       copBackground.Color.ToArgb, _
-        '       copSecondaryBackground.Color.ToArgb, _
-        '       copForeground.Color.ToArgb, _
-        '       txtMainPicture.Text, _
-        '       txtTopText.Text, _
-        '       txtSideText.Text, _
-        '       txtBottomText.Text, _
-        '       If(cmbMaterial.SelectedItem IsNot Nothing, DirectCast(cmbMaterial.SelectedItem, Material).MaterialID, Nothing), _
-        '       If(optMatting.IsChecked, "M"c, If(optGlossy.IsChecked, "G"c, Nothing)), _
-        '       nudSize1.Value, _
-        '       If(cmbShape.SelectedItem IsNot Nothing AndAlso DirectCast(cmbShape.SelectedItem, Shape).Size2Name IsNot Nothing, nudSize2.Value, Nothing), _
-        '       nudHeight.Value, _
-        '       chk3D.IsChecked, _
-        '       If(nudYear.Value = 0, Nothing, nudYear.Value), _
-        '       If(txtCountryCode.Text <> "", txtCountryCode.Text, Nothing), _
-        '       txtNote.Text, _
-        '       If(cmbCompany.SelectedItem IsNot Nothing, DirectCast(cmbCompany.SelectedItem, Company).CompanyID, Nothing), _
-        '       If(optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem IsNot Nothing, DirectCast(cmbProduct.SelectedItem, Product).ProductID, Nothing), _
-        '       If(cmbProductType.SelectedItem IsNot Nothing, DirectCast(cmbProductType.SelectedItem, ProductType).ProductTypeID, Nothing), _
-        '       If(cmbStorage.SelectedItem IsNot Nothing, DirectCast(cmbStorage.SelectedItem, Storage).StorageID, Nothing), _
-        '       copForeground2.Color.ToArgb, _
-        '       If(cmbPictureType.SelectedItem Is cmiImageGeometry, "G"c, If(cmbPictureType.SelectedItem Is cmiImageLogo, "L"c, If(cmbPictureType.SelectedItem Is cmiImageDrawing, "D"c, If(cmbPictureType.SelectedItem Is cmiImagePhoto, "P"c, Nothing)))), _
-        '       chkHasBottom.IsChecked, _
-        '       chkHasSide.IsChecked, _
-        '       txtAnotherPictures.Text, _
-        '       srchCategories, _
-        '       srchKeywords _
-        ')
+        
         Dim caps = Context.Translate(Of Cap)(SearchResults)
         Dim win As New winCapDetails(caps)
         win.Owner = Me.FindAncestor(Of Window)()

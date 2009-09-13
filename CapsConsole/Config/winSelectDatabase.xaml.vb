@@ -22,4 +22,11 @@ Partial Public Class winSelectDatabase
             _ConnectionString = value
         End Set
     End Property
+
+    Private Sub btnWizard_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnWizard.Click
+        Dim wiz As New winDatabaseWizard
+        wiz.Owner = Me
+        wiz.ShowDialog()
+        'TODO: Read connection string
+    End Sub
 End Class

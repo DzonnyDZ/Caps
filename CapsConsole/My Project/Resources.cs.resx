@@ -310,7 +310,7 @@
     <value>Nový hlavní typ</value>
   </data>
   <data name="msg_FileNotExists_ContinueWOImage" xml:space="preserve">
-    <value>Soubor {0} neexistuje. Pokračovat bet obrázku?</value>
+    <value>Soubor {0} neexistuje. Pokračovat bez obrázku?</value>
   </data>
   <data name="txt_MainTypeImage" xml:space="preserve">
     <value>Obrázek hlavního typu</value>
@@ -725,5 +725,137 @@
   </data>
   <data name="txt_CapDetails" xml:space="preserve">
     <value>Detaily víčka</value>
+  </data>
+  <data name="cmd_Delete" xml:space="preserve">
+    <value>_Smazat</value>
+  </data>
+  <data name="cmd_Edit" xml:space="preserve">
+    <value>_Upravit</value>
+  </data>
+  <data name="txt_CapDetailsFormat" xml:space="preserve">
+    <value>Detaily víčka ({0})</value>
+  </data>
+  <data name="msg_ErrorDeletingCaps" xml:space="preserve">
+    <value>Chyba při mazání víček</value>
+  </data>
+  <data name="msg_AllCapsDeletedClose" xml:space="preserve">
+    <value>Všechna zobrazená víčka byla smazána, okno se nyní zavře.</value>
+  </data>
+  <data name="txt_DeleteCap" xml:space="preserve">
+    <value>Smazat víčko</value>
+  </data>
+  <data name="msg_q_DelCap" xml:space="preserve">
+    <value>Opravdu si přejete smazat vybarné víčko?</value>
+  </data>
+  <data name="msg_NoCapTypeSelected" xml:space="preserve">
+    <value>Zvolili jste výběr z existujících typů víček, ale žádný jste nevybrali.</value>
+  </data>
+  <data name="msg_NoProductSelected" xml:space="preserve">
+    <value>Zvolili jste výběr z existujících produktů, ale žádný jste nevybrali.</value>
+  </data>
+  <data name="txt_SearchResults" xml:space="preserve">
+    <value>Výsledky vyhledávání</value>
+  </data>
+  <data name="cat_CapProperties" xml:space="preserve">
+    <value>Vlastnosti víčka</value>
+  </data>
+  <data name="ex_ValueOfPropertyMustBeNullOrXOrNullableOfX" xml:space="preserve">
+    <value>Hodnota vlastnosti {0} musí být null, {1} nebo {2} {1}.</value>
+  </data>
+  <data name="ex_ValueOfPropertyMustBeOneOfFollowingValues" xml:space="preserve">
+    <value>Hodnota vlastnosti {0} musí být jedna z následujících hodnot: {1}</value>
+  </data>
+  <data name="ex_SetUnknownCapType" xml:space="preserve">
+    <value>Pokus o nastavení typu víčka, který není v combo boxu.</value>
+  </data>
+  <data name="ex_SetUnknownCapMainType" xml:space="preserve">
+    <value>Pokus o nastavení hlavního typu víčka, který není v combo boxu.</value>
+  </data>
+  <data name="ex_SetUnknownMaterial" xml:space="preserve">
+    <value>Pokus o nastavení materiálu, který není v combo boxu.</value>
+  </data>
+  <data name="ex_SetUnknownShape" xml:space="preserve">
+    <value>Pokus o nastavení tvaru, který není v combo boxu.</value>
+  </data>
+  <data name="ex_CountryCode3" xml:space="preserve">
+    <value>Kód státu musí mít přesně 3 znaky,</value>
+  </data>
+  <data name="ex_SetUnknownCapCompany" xml:space="preserve">
+    <value>Pokus o nastavení firmy, který není v combo boxu.</value>
+  </data>
+  <data name="ex_SetUnknownCapProductType" xml:space="preserve">
+    <value>Pokus o nastavení typu produktu, který není v combo boxu.</value>
+  </data>
+  <data name="ex_SetUnknownProduct" xml:space="preserve">
+    <value>Pokus o nastavení produktu, který není v combo boxu.</value>
+  </data>
+  <data name="ex_SetUnknownStorage" xml:space="preserve">
+    <value>Pokus o nastavení úložiště, který není v combo boxu.</value>
+  </data>
+  <data name="ex_MustNotBeNull" xml:space="preserve">
+    <value>{0} nesmí být null</value>
+  </data>
+  <data name="err_DeleteingOfSomeImagesFailed" xml:space="preserve">
+    <value>Mazání některých obrázků selhalo:</value>
+  </data>
+  <data name="msg_ThereAreImagesThatDoNotBelongToAnyCap" xml:space="preserve">
+    <value>Existují obrázky, které nepatří k žádnému víčku!</value>
+  </data>
+  <data name="txt_Error" xml:space="preserve">
+    <value>Chyba</value>
+  </data>
+  <data name="msg_CapImageExistsOverwrite" xml:space="preserve">
+    <value>Obrázek typu víčka {0} již existuje. Přepsat?</value>
+  </data>
+  <data name="txt_OwervriteFile" xml:space="preserve">
+    <value>Přepsat soubor</value>
+  </data>
+  <data name="err_CopyCapTypeImageFailed" xml:space="preserve">
+    <value>Kopírování souboru s obrázkem typu víčka selhalo.{0}{1}{0}Nový typ víčka je bez obrázku!</value>
+  </data>
+  <data name="txt_CopyFile" xml:space="preserve">
+    <value>Kopírvat soubor</value>
+  </data>
+  <data name="txt_ErrorUpdatingCap" xml:space="preserve">
+    <value>Chyba při aktualizaci víčka</value>
+  </data>
+  <data name="txt_InvalidSelection" xml:space="preserve">
+    <value>Neplatný výběr</value>
+  </data>
+  <data name="err_SelectExactlyOneCap" xml:space="preserve">
+    <value>Vyberte právě jedno víčko, prosím.</value>
+  </data>
+  <data name="ex_IsNotAssignableFrom" xml:space="preserve">
+    <value>{0} není přiřaditelné z {1}</value>
+  </data>
+  <data name="ex_IsAssignableFromNeither" xml:space="preserve">
+    <value>{0} není přiřaditelné z {1} ani z {2}</value>
+  </data>
+  <data name="ex_FunctionForForwardConversionHaveNotBeenSet" xml:space="preserve">
+    <value>Funkce pro dopředný převod nebyla nastavena.</value>
+  </data>
+  <data name="ex_FunctionForBackwardConversionHasNotBeenSet" xml:space="preserve">
+    <value>Fonkce pro zpětný převod nebyla nastavena.</value>
+  </data>
+  <data name="ex_IsNull" xml:space="preserve">
+    <value>{0} je null.</value>
+  </data>
+  <data name="ex_CapIDNotFound" xml:space="preserve">
+    <value>Víčko ID {0} nenalezeno</value>
+  </data>
+  <data name="ex_ServiceProviderDoesntProvide" xml:space="preserve">
+    <value>Poskytovatel služeb neposkytl službu {0}</value>
+  </data>
+  <data name="ex_CannotBeAnEmptyString" xml:space="preserve">
+    <value>{0} nemůže být prázdný řetězec.</value>
+  </data>
+  <data name="ex_DoesNotContainMemberNamePart" xml:space="preserve">
+    <value>{0} neobsahuje část se jménem člena.</value>
+  </data>
+  <data name="ex_MemberHasValueNull" xml:space="preserve">
+    <value>Člen {0} má hodnotu null.</value>
+  </data>
+  <data name="cmd_UseWizard" xml:space="preserve">
+    <value>Použít průvodce...</value>
   </data>
 </root>
