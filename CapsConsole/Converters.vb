@@ -343,9 +343,9 @@ Public Class IntColorConverter
     Public Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
         If value Is Nothing Then Return Nothing
         Dim val As Color
-        If TypeOf value Is Color Then : value = DirectCast(value, Color)
-        ElseIf TypeOf value Is SolidColorBrush Then : value = DirectCast(value, SolidColorBrush).Color
-        ElseIf TypeOf value Is System.Drawing.Color Then : value = DirectCast(value, System.Drawing.Color).ToColor
+        If TypeOf value Is Color Then : val = DirectCast(value, Color)
+        ElseIf TypeOf value Is SolidColorBrush Then : val = DirectCast(value, SolidColorBrush).Color
+        ElseIf TypeOf value Is System.Drawing.Color Then : val = DirectCast(value, System.Drawing.Color).ToColor
         Else : Throw New TypeMismatchException("value", value, GetType(Color), My.Resources.ex_CamConvertBackOnlyFromColors.f(Me.GetType.Name, GetType(Color).FullName, GetType(System.Drawing.Color).FullName))
         End If
         If targetType.IsAssignableFrom(GetType(Color)) OrElse targetType.IsAssignableFrom(GetType(Color?)) Then : Return val

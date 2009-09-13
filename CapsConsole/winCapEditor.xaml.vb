@@ -1,7 +1,7 @@
 ﻿Imports mBox = Tools.WindowsT.IndependentT.MessageBox, Tools.ExtensionsT
 Partial Public Class winCapEditor
-    Private Cap As DataAccess.Cap
-    Private Context As DataAccess.Entities
+    Private Cap As Cap
+    Private Context As CapsDataDataContext
     ''' <summary>CTor</summary>
     ''' <param name="CapID">ID of Cap to edit</param>
     ''' <exception cref="ArgumentNullException"><paramref name="Cap"/> is null -or- <paramref name="Context"/> is null</exception>
@@ -15,16 +15,16 @@ Partial Public Class winCapEditor
         'Me.Context = New CapsDataDataContext(Main.Connection)
         caeEditor.Initialize()
         Me.DataContext = Cap
-        caeEditor.Keywords = From kw In Cap.Keywords Select kw.KeywordName
-        OldKeywords = Cap.Keywords.ToArray
-        caeEditor.SelectedCategories = Cap.Categories
-        OldCategories = Cap.Categories.ToArray
+        caeEditor.Keywords = From kw In Cap.Cap_Keyword_Ints Select kw.Keyword.Keyword
+        OldKeywords = Cap.Cap_Keyword_Ints.ToArray
+        caeEditor.SelectedCategories = From cat In Cap.Cap_Category_Ints Select cat.Category
+        OldCategories = Cap.Cap_Category_Ints.ToArray
         caeEditor.Images.AddRange(Cap.Images)
         OldImages = Cap.Images.ToArray
     End Sub
-    Private OldCategories As DataAccess.Category()
-    Private OldKeywords As DataAccess.Keyword()
-    Private OldImages As DataAccess.Image()
+    Private OldCategories As Cap_Category_Int()
+    Private OldKeywords As Cap_Keyword_Int()
+    Private OldImages As Image()
     ''' <summary>True when <see cref="winCapEditor_Closing"/> shall do nothing</summary>
     Private IsClosing As Boolean = False
 
@@ -32,100 +32,97 @@ Partial Public Class winCapEditor
         Me.Close()
     End Sub
 
-    'Private Sub caeEditor_SaveClicked(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles caeEditor.SaveClicked
-    '    If Not caeEditor.Tests Then Exit Sub
-    '    'Introduce new CapType
-    '    Dim NewType As DataAccess.CapType = Nothing
-    '    If caeEditor.CapTypeSelection = CapEditor.CreatableItemSelection.NewItem Then
-    '        If Not caeEditor.TestNewCapType Then Exit Sub
-    '        NewType = New DataAccess.CapType With {.TypeName = caeEditor.CapTypeName, _
-    '                                         .Description = caeEditor.CapTypeDescription, _
-    '                                         .MainType = caeEditor.CapMainType, _
-    '                                         .Height = caeEditor.CapHeight, _
-    '                                         .Material = caeEditor.Material, _
-    '                                         .Size = caeEditor.Size1, _
-    '                                         .Size2 = caeEditor.Size2}
-    '    End If
-    '    'Introduce product
-    '    Dim NewProduct As DataAccess.Product = Nothing
-    '    If caeEditor.ProductSelection = CapEditor.CreatableItemSelection.NewItem Then
-    '        caeEditor.TestNewProduct()
-    '        NewProduct = New DataAccess.Product With {.ProductName = caeEditor.ProductName, _
-    '                                       .Description = caeEditor.ProductDescription, _
-    '                                       .Company = caeEditor.CapCompany, _
-    '                                       .ProductType = caeEditor.CapProductType}
-    '    End If
-    '    'Image files
-    '    Dim IntroducedImages As List(Of String) = caeEditor.CopyImages()
-    '    If IntroducedImages Is Nothing Then Exit Sub
-    '    'Categories
-    '    Context.Cap_Category_Ints.DeleteAllOnSubmit(From cat In OldCategories Where Not caeEditor.SelectedCategories.Contains(cat.Category))
-    '    Context.Cap_Category_Ints.InsertAllOnSubmit(From cat In caeEditor.SelectedCategories Where Not (From ci In OldCategories Select ci.Category).Contains(cat) Select New Cap_Category_Int(Cap, cat))
-    '    'Keywords
-    '    Context.Cap_Keyword_Ints.DeleteAllOnSubmit(From kw In OldKeywords Where Not caeEditor.Keywords.Contains(kw.Keyword.Keyword))
-    '    Dim KeywordsToAssociate = From kw In caeEditor.Keywords Where Not (From oldk In OldKeywords Select oldk.Keyword.Keyword).Contains(kw) Select kw, DbKw = (From kwdb In Context.Keywords Where kwdb.Keyword = kw).FirstOrDefault
-    '    Context.Cap_Keyword_Ints.InsertAllOnSubmit(From kw In KeywordsToAssociate Where kw.DbKw IsNot Nothing Select New Cap_Keyword_Int(Cap, kw.DbKw))
-    '    Dim NewKeywords = From kw In KeywordsToAssociate Select New Keyword(kw.kw)
-    '    Context.Keywords.InsertAllOnSubmit(NewKeywords)
-    '    Context.Cap_Keyword_Ints.InsertAllOnSubmit(From kw In NewKeywords Select New Cap_Keyword_Int(Cap, kw))
-    '    'Images
-    '    Context.Images.InsertAllOnSubmit(From img In caeEditor.Images.OfType(Of NewImage)())
-    '    Context.Images.DeleteAllOnSubmit(From img In OldImages Where Not caeEditor.Images.Contains(img))
-    '    For Each NewImage In caeEditor.Images.OfType(Of NewImage)()
-    '        NewImage.Cap = Cap
-    '    Next
-    '    'Prepare for commit
-    '    If NewType IsNot Nothing Then Cap.CapType = NewType : Context.CapTypes.InsertOnSubmit(NewType)
-    '    If NewProduct IsNot Nothing Then Cap.Product = NewProduct : Context.Products.InsertOnSubmit(NewProduct)
-    '    Try
-    '        Context.SubmitChanges()
-    '    Catch ex As Exception
-    '        mBox.Error_XT(ex, My.Resources.txt_ErrorUpdatingCap)
-    '        'Undo
-    '        Context = caeEditor.ResetContext
-    '        Dim OldCap = Cap
-    '        Cap = Context.Caps.FirstOrDefault(Function(cap) cap.CapID = OldCap.CapID)
-    '        Cap.CapName = OldCap.CapName
-    '        Cap.MainText = OldCap.MainText
-    '        Cap.SubTitle = OldCap.SubTitle
-    '        Cap.MainPicture = OldCap.MainPicture
-    '        Cap.AnotherPictures = OldCap.AnotherPictures
-    '        Cap.PictureType = OldCap.PictureType
-    '        Cap.CapType = Context.CapTypes.FirstOrDefault(Function(itm) itm.CapTypeID = OldCap.CapTypeID)
-    '        Cap.MainType = Context.MainTypes.FirstOrDefault(Function(itm) itm.MainTypeID = OldCap.MainTypeID)
-    '        Cap.Shape = Context.Shapes.FirstOrDefault(Function(itm) itm.ShapeID = OldCap.ShapeID)
-    '        Cap.Size = OldCap.Size
-    '        Cap.Size2 = OldCap.Size2
-    '        Cap.Height = OldCap.Height
-    '        Cap.Material = Context.Materials.FirstOrDefault(Function(itm) itm.MaterialID = OldCap.MaterialID)
-    '        Cap.BackColor1 = OldCap.BackColor1
-    '        Cap.BackColor2 = OldCap.BackColor2
-    '        Cap.ForeColor = Cap.ForeColor
-    '        Cap.ForeColor2 = Cap.ForeColor2
-    '        Cap.Is3D = OldCap.Is3D
-    '        Cap.Surface = OldCap.Surface
-    '        Cap.TopText = OldCap.TopText
-    '        Cap.SideText = OldCap.Size2
-    '        Cap.BottomText = OldCap.BottomText
-    '        Cap.Note = OldCap.Note
-    '        Cap.Year = OldCap.Year
-    '        Cap.CountryCode = OldCap.CountryCode
-    '        Cap.Storage = Context.Storages.FirstOrDefault(Function(itm) itm.StorageID = OldCap.StorageID)
-    '        Cap.HasBottom = OldCap.HasBottom
-    '        Cap.HasSide = OldCap.HasSide
-    '        Cap.Product = Context.Products.FirstOrDefault(Function(itm) itm.ProductID = OldCap.ProductID)
-    '        Cap.ProductType = Context.ProductTypes.FirstOrDefault(Function(itm) itm.ProductTypeID = OldCap.ProductTypeID)
-    '        Cap.Company = Context.Companies.FirstOrDefault(Function(itm) itm.CompanyID = OldCap.CompanyID)
-    '        Me.DataContext = Cap
-    '        Exit Sub
-    '    End Try
-    '    If NewType IsNot Nothing Then
-    '        caeEditor.CopyTypeImage(NewType)
-    '    End If
-    '    IsClosing = True
-    '    Me.DialogResult = True
-    '    Me.Close()
-    'End Sub
+    Private Sub caeEditor_SaveClicked(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles caeEditor.SaveClicked
+        If Not caeEditor.Tests Then Exit Sub
+        'Introduce new CapType
+        Dim NewType As CapType = Nothing
+        If caeEditor.CapTypeSelection = CapEditor.CreatableItemSelection.NewItem Then
+            If Not caeEditor.TestNewCapType Then Exit Sub
+            NewType = New CapType With {.TypeName = caeEditor.CapTypeName, _
+                                             .Description = caeEditor.CapTypeDescription, _
+                                             .MainType = caeEditor.CapMainType, _
+                                             .Height = caeEditor.CapHeight, _
+                                             .Material = caeEditor.Material, _
+                                             .Size = caeEditor.Size1, _
+                                             .Size2 = caeEditor.Size2}
+        End If
+        'Introduce product
+        Dim NewProduct As Product = Nothing
+        If caeEditor.ProductSelection = CapEditor.CreatableItemSelection.NewItem Then
+            caeEditor.TestNewProduct()
+            NewProduct = New Product With {.ProductName = caeEditor.ProductName, _
+                                           .Description = caeEditor.ProductDescription, _
+                                           .Company = caeEditor.CapCompany, _
+                                           .ProductType = caeEditor.CapProductType}
+        End If
+        'Image files
+        Dim IntroducedImages As List(Of String) = caeEditor.CopyImages()
+        If IntroducedImages Is Nothing Then Exit Sub
+        'Categories
+        Context.Cap_Category_Ints.DeleteAllOnSubmit((From cat In OldCategories Where Not caeEditor.SelectedCategories.Contains(cat.Category)).ToArray)
+        Context.Cap_Category_Ints.InsertAllOnSubmit((From cat In caeEditor.SelectedCategories Where Not (From ci In OldCategories Select ci.Category).Contains(cat) Select New Cap_Category_Int(Cap, cat)).ToArray)
+        'Keywords
+        Context.Cap_Keyword_Ints.DeleteAllOnSubmit((From kw In OldKeywords Where Not caeEditor.Keywords.Contains(kw.Keyword.Keyword)).ToArray)
+        Dim KeywordsToAssociate = From kw In caeEditor.Keywords Where Not (From oldk In OldKeywords Select oldk.Keyword.Keyword).Contains(kw) Select kw, DbKw = (From kwdb In Context.Keywords Where kwdb.Keyword = kw).FirstOrDefault
+        Context.Cap_Keyword_Ints.InsertAllOnSubmit((From kw In KeywordsToAssociate Where kw.DbKw IsNot Nothing Select New Cap_Keyword_Int(Cap, kw.DbKw)).ToArray)
+        Dim NewKeywords = (From kw In KeywordsToAssociate Where kw.DbKw Is Nothing Select New Keyword(kw.kw)).ToArray
+        Context.Keywords.InsertAllOnSubmit(NewKeywords)
+        Context.Cap_Keyword_Ints.InsertAllOnSubmit((From kw In NewKeywords Select New Cap_Keyword_Int(Cap, kw)).ToArray)
+        'Images
+        Context.Images.InsertAllOnSubmit((From imgname In IntroducedImages Select New Image With {.RelativePath = imgname, .Cap = Cap}).ToArray)
+        Context.Images.DeleteAllOnSubmit((From img In OldImages Where Not caeEditor.Images.Contains(img)).ToArray)
+        'Prepare for commit                                                                                      
+        If NewType IsNot Nothing Then Cap.CapType = NewType : Context.CapTypes.InsertOnSubmit(NewType)
+        If NewProduct IsNot Nothing Then Cap.Product = NewProduct : Context.Products.InsertOnSubmit(NewProduct)
+        Try
+            Context.SubmitChanges()
+        Catch ex As Exception
+            mBox.Error_XT(ex, My.Resources.txt_ErrorUpdatingCap)
+            'Undo
+            Context = caeEditor.ResetContext
+            Dim OldCap = Cap
+            Cap = Context.Caps.FirstOrDefault(Function(cap) cap.CapID = OldCap.CapID)
+            Cap.CapName = OldCap.CapName
+            Cap.MainText = OldCap.MainText
+            Cap.SubTitle = OldCap.SubTitle
+            Cap.MainPicture = OldCap.MainPicture
+            Cap.AnotherPictures = OldCap.AnotherPictures
+            Cap.PictureType = OldCap.PictureType
+            Cap.CapType = Context.CapTypes.FirstOrDefault(Function(itm) itm.CapTypeID = OldCap.CapTypeID)
+            Cap.MainType = Context.MainTypes.FirstOrDefault(Function(itm) itm.MainTypeID = OldCap.MainTypeID)
+            Cap.Shape = Context.Shapes.FirstOrDefault(Function(itm) itm.ShapeID = OldCap.ShapeID)
+            Cap.Size = OldCap.Size
+            Cap.Size2 = OldCap.Size2
+            Cap.Height = OldCap.Height
+            Cap.Material = Context.Materials.FirstOrDefault(Function(itm) itm.MaterialID = OldCap.MaterialID)
+            Cap.BackColor1 = OldCap.BackColor1
+            Cap.BackColor2 = OldCap.BackColor2
+            Cap.ForeColor = Cap.ForeColor
+            Cap.ForeColor2 = Cap.ForeColor2
+            Cap.Is3D = OldCap.Is3D
+            Cap.Surface = OldCap.Surface
+            Cap.TopText = OldCap.TopText
+            Cap.SideText = OldCap.SideText
+            Cap.BottomText = OldCap.BottomText
+            Cap.Note = OldCap.Note
+            Cap.Year = OldCap.Year
+            Cap.CountryCode = OldCap.CountryCode
+            Cap.Storage = Context.Storages.FirstOrDefault(Function(itm) itm.StorageID = OldCap.StorageID)
+            Cap.HasBottom = OldCap.HasBottom
+            Cap.HasSide = OldCap.HasSide
+            Cap.Product = Context.Products.FirstOrDefault(Function(itm) itm.ProductID = OldCap.ProductID)
+            Cap.ProductType = Context.ProductTypes.FirstOrDefault(Function(itm) itm.ProductTypeID = OldCap.ProductTypeID)
+            Cap.Company = Context.Companies.FirstOrDefault(Function(itm) itm.CompanyID = OldCap.CompanyID)
+            Me.DataContext = Cap
+            Exit Sub
+        End Try
+        If NewType IsNot Nothing Then
+            caeEditor.CopyTypeImage(NewType)
+        End If
+        IsClosing = True
+        Me.DialogResult = True
+        Me.Close()
+    End Sub
 
     Private Sub winCapEditor_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles Me.Closing
         If Not IsClosing Then
@@ -146,4 +143,10 @@ Partial Public Class winCapEditor
             Return "M"c
         End If
     End Function
+
+
+
+
+
+
 End Class

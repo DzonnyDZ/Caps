@@ -313,7 +313,7 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                 <Button Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="btnNewMainType" Content="{x:Static res:Resources.cmd_New}"/>
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Shape}"/>
                 <ComboBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbShape" SelectedValuePath="ShapeID" Style="{StaticResource ShapeTemplate}"/>
-                <Button Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="cmbNewShape" Content="{x:Static res:Resources.cmd_New}"/>
+                <Button Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="cmdNewShape" Content="{x:Static res:Resources.cmd_New}"/>
                 <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto"
                        Content="{Binding ElementName=cmbShape, Path=SelectedItem.Size1Name, Mode=OneWay}"/>
                 <Tools:NumericUpDown Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Maximum="1000000" Name="nudSize1" />

@@ -116,7 +116,7 @@
     </Type>
   </Table>
   <Table Name="dbo.Cap" Member="Caps">
-    <Type Name="Cap" Id="ID1">
+    <Type Name="Cap">
       <Column Name="CapID" Modifier="Virtual" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CapTypeID" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MainTypeID" Modifier="Virtual" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -182,38 +182,4 @@
       <Association Name="Cap_Image" Member="Cap" ThisKey="CapID" OtherKey="CapID" Type="Cap" IsForeignKey="true" />
     </Type>
   </Table>
-  <Function Name="dbo.GetSimilarCaps" Method="GetSimilarCaps">
-    <Parameter Name="CapTypeID" Parameter="capTypeID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="MainTypeID" Parameter="mainTypeID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ShapeID" Parameter="shapeID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CapName" Parameter="capName" Type="System.String" DbType="VarChar(255)" />
-    <Parameter Name="MainText" Parameter="mainText" Type="System.String" DbType="VarChar(255)" />
-    <Parameter Name="SubTitle" Parameter="subTitle" Type="System.String" DbType="VarChar(255)" />
-    <Parameter Name="BackColor1" Parameter="backColor1" Type="System.Int32" DbType="Int" />
-    <Parameter Name="BackColor2" Parameter="backColor2" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ForeColor" Parameter="foreColor" Type="System.Int32" DbType="Int" />
-    <Parameter Name="MainPicture" Parameter="mainPicture" Type="System.String" DbType="VarChar(255)" />
-    <Parameter Name="TopText" Parameter="topText" Type="System.String" DbType="VarChar(MAX)" />
-    <Parameter Name="SideText" Parameter="sideText" Type="System.String" DbType="VarChar(MAX)" />
-    <Parameter Name="BottomText" Parameter="bottomText" Type="System.String" DbType="VarChar(MAX)" />
-    <Parameter Name="MaterialID" Parameter="materialID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Surface" Parameter="surface" Type="System.Char" DbType="Char(1)" />
-    <Parameter Name="Size" Parameter="size" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Size2" Parameter="size2" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Height" Parameter="height" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Is3D" Parameter="is3D" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="Year" Parameter="year" Type="System.Int32" DbType="Int" />
-    <Parameter Name="CountryCode" Parameter="countryCode" Type="System.String" DbType="Char(3)" />
-    <Parameter Name="Note" Parameter="note" Type="System.String" DbType="VarChar(MAX)" />
-    <Parameter Name="CompanyID" Parameter="companyID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ProductID" Parameter="productID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ProductTypeID" Parameter="productTypeID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="StorageID" Parameter="storageID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="ForeColor2" Parameter="foreColor2" Type="System.Int32" DbType="Int" />
-    <Parameter Name="PictureType" Parameter="pictureType" Type="System.Char" DbType="Char(1)" />
-    <Parameter Name="HasBottom" Parameter="hasBottom" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="HasSide" Parameter="hasSide" Type="System.Boolean" DbType="Bit" />
-    <Parameter Name="AnotherPictures" Parameter="anotherPictures" Type="System.String" DbType="VarChar(MAX)" />
-    <ElementType IdRef="ID1" />
-  </Function>
 </Database>

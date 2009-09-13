@@ -71,6 +71,7 @@
     </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -195,17 +196,29 @@
     <Import Include="System.Windows.Navigation" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CapsData.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CapsData.edmx</DependentUpon>
-    </Compile>
     <Compile Include="!version!.vb" />
+    <Compile Include="CapsData.vb">
+      <DependentUpon>CapsData.dbml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CapsData1.designer.vb">
+      <DependentUpon>CapsData.dbml</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="ColorPicker.xaml.vb">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="CapEditor.xaml.vb">
       <DependentUpon>CapEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HelperDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HelperDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HelperDataSet.vb">
+      <DependentUpon>HelperDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="MarkupExtensions.vb" />
     <Compile Include="Misc.vb" />
@@ -268,11 +281,25 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <Compile Include="Converters.Specialized.vb" />
-    <EntityDeploy Include="CapsData.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CapsData.Designer.vb</LastGenOutput>
-      <CustomToolNamespace>DataAccess</CustomToolNamespace>
-    </EntityDeploy>
+    <None Include="CapsData.dbml">
+      <SubType>Designer</SubType>
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>CapsData1.designer.vb</LastGenOutput>
+    </None>
+    <None Include="CapsData.dbml.layout">
+      <DependentUpon>CapsData.dbml</DependentUpon>
+    </None>
+    <None Include="HelperDataSet.xsc">
+      <DependentUpon>HelperDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="HelperDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HelperDataSet.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="HelperDataSet.xss">
+      <DependentUpon>HelperDataSet.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>

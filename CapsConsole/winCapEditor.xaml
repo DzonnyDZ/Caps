@@ -48,6 +48,8 @@
                       ProductSelection="{Binding Product, Mode=OneWay, Converter={StaticResource SelectionTypeConverter}}"
                       CapProductType="{Binding ProductType, Mode=TwoWay}"
                       CapCompany="{Binding Company, Mode=TwoWay}"
+                      
+                      AllowSearch="False"
         />
     </Grid>
 </Window>

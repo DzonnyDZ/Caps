@@ -163,9 +163,11 @@ Partial Public Class ColorPicker
         If cmbColors.SelectedItem Is cmiNull Then
             OldSelectedIndex = cmbColors.SelectedIndex
             Color = Nothing
+            RaiseEvent ColorChanged(Me, New RoutedEventArgs(ColorChangedEvent, Me))
         ElseIf cmbColors.SelectedItem IsNot cmiMoreColors Then
             OldSelectedIndex = cmbColors.SelectedIndex
             Color = DirectCast(DirectCast(cmbColors.SelectedItem, ComboBoxItem).Background, SolidColorBrush).Color
+            RaiseEvent ColorChanged(Me, New RoutedEventArgs(ColorChangedEvent, Me))
         Else
             'Select color via dialog
             Dim cdl As New Forms.ColorDialog

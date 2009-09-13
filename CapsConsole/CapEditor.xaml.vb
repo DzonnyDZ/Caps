@@ -3,15 +3,14 @@ Imports Tools.DrawingT.ImageTools
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports System.ComponentModel
 Imports Tools.ComponentModelT
-Imports Tools, Caps.Console.DataAccess
-Imports System.Data.EntityClient
+Imports Tools
 
 ''' <summary>Creates a new cap</summary>
 Partial Public Class CapEditor
     ''' <summary>Context to be used when <see cref="Context"/> is not set</summary>
-    Private OriginalContext As New Entities(Main.EntityConnection)
+    Private OriginalContext As New CapsDataDataContext(Main.Connection)
     ''' <summary>Contains value of the <see cref="Context"/> proeprty</summary>
-    Private _Context As Entities = OriginalContext
+    Private _Context As CapsDataDataContext = OriginalContext
     ''' <summary>CTor</summary>
     Public Sub New()
         InitializeComponent()
@@ -19,11 +18,11 @@ Partial Public Class CapEditor
     End Sub
     ''' <summary>Database context</summary>
     ''' <exception cref="ArgumentNullException">Value being set is null</exception>
-    Public Property Context() As DataAccess.Entities
+    Public Property Context() As CapsDataDataContext
         <DebuggerStepThrough()> Get
             Return _Context
         End Get
-        Set(ByVal value As DataAccess.Entities)
+        Set(ByVal value As CapsDataDataContext)
             If value Is Nothing Then Throw New ArgumentNullException("value")
             If value IsNot OriginalContext AndAlso OriginalContext IsNot Nothing Then
                 OriginalContext.Dispose()
@@ -51,7 +50,7 @@ Partial Public Class CapEditor
             CompaniesList.Add(Nothing)
             cmbCompany.ItemsSource = CompaniesList
             lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item))
-            kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.KeywordName Select item.KeywordName)
+            kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
             lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
         Finally
             initializing = False
@@ -97,14 +96,16 @@ Partial Public Class CapEditor
         Dim win As New winNewMainType(Context)
         If win.ShowDialog Then
             DirectCast(cmbMainType.ItemsSource, ListWithEvents(Of MainType)).Add(win.NewObject)
+            cmbMainType.Items.Refresh()
             cmbMainType.SelectedItem = win.NewObject
         End If
     End Sub
 
-    Private Sub cmbNewShape_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmbNewShape.Click
+    Private Sub cmbNewShape_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmdNewShape.Click
         Dim win As New winNewShape(Context)
         If win.ShowDialog Then
             DirectCast(cmbShape.ItemsSource, ListWithEvents(Of Shape)).Add(win.NewObject)
+            cmbShape.Items.Refresh()
             cmbShape.SelectedItem = win.NewObject
         End If
     End Sub
@@ -113,6 +114,7 @@ Partial Public Class CapEditor
         Dim win As New winNewSimple(winNewSimple.SimpleTypes.Material, Context)
         If win.ShowDialog Then
             DirectCast(cmbMaterial.ItemsSource, ListWithEvents(Of Material)).Add(DirectCast(win.NewObject, Material))
+            cmbMaterial.Items.Refresh()
             cmbMaterial.SelectedItem = win.NewObject
         End If
     End Sub
@@ -121,6 +123,7 @@ Partial Public Class CapEditor
         Dim win As New winNewStorage(Context)
         If win.ShowDialog Then
             DirectCast(cmbStorage.ItemsSource, ListWithEvents(Of Storage)).Add(win.NewObject)
+            cmbStorage.Items.Refresh()
             cmbStorage.SelectedItem = win.NewObject
         End If
     End Sub
@@ -129,6 +132,7 @@ Partial Public Class CapEditor
         Dim win As New winNewSimple(winNewSimple.SimpleTypes.ProductType, Context)
         If win.ShowDialog Then
             DirectCast(cmbProductType.ItemsSource, ListWithEvents(Of ProductType)).Add(DirectCast(win.NewObject, ProductType))
+            cmbProductType.Items.Refresh()
             cmbProductType.SelectedItem = win.NewObject
         End If
     End Sub
@@ -137,6 +141,7 @@ Partial Public Class CapEditor
         Dim win As New winNewSimple(winNewSimple.SimpleTypes.Company, Context)
         If win.ShowDialog Then
             DirectCast(cmbCompany.ItemsSource, ListWithEvents(Of Company)).Add(DirectCast(win.NewObject, Company))
+            cmbCompany.Items.Refresh()
             cmbCompany.SelectedItem = win.NewObject
         End If
     End Sub
@@ -145,10 +150,12 @@ Partial Public Class CapEditor
         Dim win As New winNewSimple(winNewSimple.SimpleTypes.Category, Context)
         If win.ShowDialog Then
             DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(New CategoryProxy(win.NewObject, True))
+            lstCategories.Items.Refresh()
         End If
     End Sub
 #End Region
     ''' <summary>Category proxy that adds <see cref="CategoryProxy.Checked"/> property</summary>
+    <DebuggerDisplay("{Category.CategoryName}")> _
     Private Class CategoryProxy
         ''' <summary>Contains value of the <see cref="Category"/> property</summary>
         Private ReadOnly _Category As Category
@@ -202,6 +209,7 @@ Partial Public Class CapEditor
                 DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).AddRange( _
                     From path In dlg.FileNames Select DirectCast(New NewImage(path), Image))
                 My.Settings.LastImageName = dlg.FileNames(dlg.FileNames.Length - 1)
+                lvwImages.Items.Refresh()
             End If
         End If
     End Sub
@@ -281,7 +289,18 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnSearch.Click
-        Dim SearchResults = Context.GetSimilarCaps( _
+        Dim srchKeywords As New HelperDataSet.VarCharTableDataTable
+        For Each kw In kweKeywords.KeyWords
+            srchKeywords.AddVarCharTableRow(kw)
+        Next
+        Dim srchCategories As New HelperDataSet.IntTableDataTable
+        If SelectedCategories IsNot Nothing Then
+            For Each cat In SelectedCategories
+                srchCategories.AddIntTableRow(cat.CategoryID)
+            Next
+        End If
+        Dim ta As New HelperDataSetTableAdapters.GetSimilarCapsTableAdapter With {.Connection = Main.Connection}
+        Dim SearchResults = ta.ReadSimilarCaps( _
                If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
                If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
                If(cmbShape.SelectedItem IsNot Nothing, DirectCast(cmbShape.SelectedItem, Shape).ShapeID, Nothing), _
@@ -312,9 +331,47 @@ Partial Public Class CapEditor
                If(cmbPictureType.SelectedItem Is cmiImageGeometry, "G"c, If(cmbPictureType.SelectedItem Is cmiImageLogo, "L"c, If(cmbPictureType.SelectedItem Is cmiImageDrawing, "D"c, If(cmbPictureType.SelectedItem Is cmiImagePhoto, "P"c, Nothing)))), _
                chkHasBottom.IsChecked, _
                chkHasSide.IsChecked, _
-               txtAnotherPictures.Text _
+               txtAnotherPictures.Text, _
+               srchCategories, _
+               srchKeywords _
         )
-        Dim win As New winCapDetails((From result In SearchResults Select DirectCast(result, Cap)))
+        'Dim SearchResults = Context.GetSimilarCaps( _
+        '       If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
+        '       If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
+        '       If(cmbShape.SelectedItem IsNot Nothing, DirectCast(cmbShape.SelectedItem, Shape).ShapeID, Nothing), _
+        '       txtCapName.Text, _
+        '       txtMainText.Text, _
+        '       txtSubTitle.Text, _
+        '       copBackground.Color.ToArgb, _
+        '       copSecondaryBackground.Color.ToArgb, _
+        '       copForeground.Color.ToArgb, _
+        '       txtMainPicture.Text, _
+        '       txtTopText.Text, _
+        '       txtSideText.Text, _
+        '       txtBottomText.Text, _
+        '       If(cmbMaterial.SelectedItem IsNot Nothing, DirectCast(cmbMaterial.SelectedItem, Material).MaterialID, Nothing), _
+        '       If(optMatting.IsChecked, "M"c, If(optGlossy.IsChecked, "G"c, Nothing)), _
+        '       nudSize1.Value, _
+        '       If(cmbShape.SelectedItem IsNot Nothing AndAlso DirectCast(cmbShape.SelectedItem, Shape).Size2Name IsNot Nothing, nudSize2.Value, Nothing), _
+        '       nudHeight.Value, _
+        '       chk3D.IsChecked, _
+        '       If(nudYear.Value = 0, Nothing, nudYear.Value), _
+        '       If(txtCountryCode.Text <> "", txtCountryCode.Text, Nothing), _
+        '       txtNote.Text, _
+        '       If(cmbCompany.SelectedItem IsNot Nothing, DirectCast(cmbCompany.SelectedItem, Company).CompanyID, Nothing), _
+        '       If(optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem IsNot Nothing, DirectCast(cmbProduct.SelectedItem, Product).ProductID, Nothing), _
+        '       If(cmbProductType.SelectedItem IsNot Nothing, DirectCast(cmbProductType.SelectedItem, ProductType).ProductTypeID, Nothing), _
+        '       If(cmbStorage.SelectedItem IsNot Nothing, DirectCast(cmbStorage.SelectedItem, Storage).StorageID, Nothing), _
+        '       copForeground2.Color.ToArgb, _
+        '       If(cmbPictureType.SelectedItem Is cmiImageGeometry, "G"c, If(cmbPictureType.SelectedItem Is cmiImageLogo, "L"c, If(cmbPictureType.SelectedItem Is cmiImageDrawing, "D"c, If(cmbPictureType.SelectedItem Is cmiImagePhoto, "P"c, Nothing)))), _
+        '       chkHasBottom.IsChecked, _
+        '       chkHasSide.IsChecked, _
+        '       txtAnotherPictures.Text, _
+        '       srchCategories, _
+        '       srchKeywords _
+        ')
+        Dim caps = Context.Translate(Of Cap)(SearchResults)
+        Dim win As New winCapDetails(caps)
         win.Owner = Me.FindAncestor(Of Window)()
         win.Title = My.Resources.txt_SearchResults
         win.ShowDialog()
@@ -1050,8 +1107,8 @@ Partial Public Class CapEditor
     Protected Overridable Sub OnCapBackgroundColor1Changed(ByVal e As DependencyPropertyChangedEventArgs)
         If If(CapBackgroundColor1 <> copBackground.Color, True) Then copBackground.Color = CapBackgroundColor1
     End Sub
-    Private Sub txtCapBackgroundColor1_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copBackground.ColorChanged
-        If CapBackgroundColor1 <> copBackground.Color Then CapBackgroundColor1 = copBackground.Color
+    Private Sub copCapBackgroundColor1_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copBackground.ColorChanged
+        If If(CapBackgroundColor1 <> copBackground.Color, True) Then CapBackgroundColor1 = copBackground.Color
     End Sub
 #End Region
 #Region "CapBackgroundColor2"
@@ -1081,7 +1138,7 @@ Partial Public Class CapEditor
     Protected Overridable Sub OnCapBackgroundColor2Changed(ByVal e As DependencyPropertyChangedEventArgs)
         If If(CapBackgroundColor2 <> copSecondaryBackground.Color, True) Then copSecondaryBackground.Color = CapBackgroundColor2
     End Sub
-    Private Sub txtCapBackgroundColor2_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copSecondaryBackground.ColorChanged
+    Private Sub copCapBackgroundColor2_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copSecondaryBackground.ColorChanged
         If If(CapBackgroundColor2 <> copSecondaryBackground.Color, True) Then CapBackgroundColor2 = copSecondaryBackground.Color
     End Sub
 #End Region
@@ -1112,8 +1169,8 @@ Partial Public Class CapEditor
     Protected Overridable Sub OnCapForegroundColor1Changed(ByVal e As DependencyPropertyChangedEventArgs)
         If If(CapForegroundColor1 <> copForeground.Color, True) Then copForeground.Color = CapForegroundColor1
     End Sub
-    Private Sub txtCapForegroundColor1_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copForeground.ColorChanged
-        If CapForegroundColor1 <> copForeground.Color Then CapForegroundColor1 = copForeground.Color
+    Private Sub copCapForegroundColor1_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copForeground.ColorChanged
+        If If(CapForegroundColor1 <> copForeground.Color, True) Then CapForegroundColor1 = copForeground.Color
     End Sub
 #End Region
 #Region "CapForegroundColor2"
@@ -1143,8 +1200,8 @@ Partial Public Class CapEditor
     Protected Overridable Sub OnCapForegroundColor2Changed(ByVal e As DependencyPropertyChangedEventArgs)
         If If(CapForegroundColor2 <> copForeground2.Color, True) Then copForeground2.Color = CapForegroundColor2
     End Sub
-    Private Sub txtCapForegroundColor2_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copForeground2.ColorChanged
-        If CapForegroundColor2 <> copForeground2.Color Then CapForegroundColor2 = copForeground2.Color
+    Private Sub copCapForegroundColor2_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles copForeground2.ColorChanged
+        If If(CapForegroundColor2 <> copForeground2.Color, True) Then CapForegroundColor2 = copForeground2.Color
     End Sub
 #End Region
 #Region "IS3D"
@@ -1959,7 +2016,7 @@ Partial Public Class CapEditor
     End Property
     ''' <summary>Metadata of the <see cref="Images"/> property</summary>
     <EditorBrowsable(EditorBrowsableState.Advanced)> _
-    Public Shared ReadOnly ImagesProperty As DependencyProperty = DependencyProperty.Register("Images", GetType(ListWithEvents(Of Image)), GetType(CapEditor), New FrameworkPropertyMetadata(New ListWithEvents(Of Image)(), AddressOf OnImagesChanged))
+    Public Shared ReadOnly ImagesProperty As DependencyProperty = DependencyProperty.Register("Images", GetType(ListWithEvents(Of Image)), GetType(CapEditor), New FrameworkPropertyMetadata(new ListWithEvents(Of Image  )(),  AddressOf OnImagesChanged))
 
     ''' <summary>Called when value of the property <see cref="Images"/> is changed</summary>
     ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
@@ -1996,66 +2053,66 @@ Partial Public Class CapEditor
         End If
     End Sub
 
-    '''' <summary>Resets datacontext of this instance</summary>
-    'Public Function ResetContext(Optional ByRef Context As CapsDataDataContext = Nothing) As CapsDataDataContext
-    '    Dim OldSelectedIds = New With { _
-    '        .CapType = If(CapType IsNot Nothing, CapType.CapTypeID, New Integer?), _
-    '        .MainType = If(CapMainType IsNot Nothing, CapMainType.MainTypeID, New Integer?), _
-    '        .Shape = If(CapShape IsNot Nothing, CapShape.ShapeID, New Integer?), _
-    '        .Material = If(Material IsNot Nothing, Material.MaterialID, New Integer?), _
-    '        .Storage = If(Storage IsNot Nothing, Storage.StorageID, New Integer?), _
-    '        .ProductType = If(CapProductType IsNot Nothing, CapProductType.ProductTypeID, New Integer?), _
-    '        .Product = If(Product IsNot Nothing, Product.ProductID, New Integer?), _
-    '        .Company = If(CapCompany IsNot Nothing, CapCompany.CompanyID, New Integer?), _
-    '        .Categories = (From cat As Category In SelectedCategories Select cat.CategoryID).ToArray}
-    '    If OriginalContext IsNot Nothing Then OriginalContext.Dispose()
-    '    If Context Is Nothing Then
-    '        OriginalContext = New CapsDataDataContext(Main.Connection)
-    '        Context = New CapsDataDataContext
-    '    End If
-
-    '    Me.Context = Context
-    '    With OldSelectedIds
-    '        'CapType
-    '        cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
-    '        If .CapType.HasValue Then cmbCapType.SelectedItem = (From itm As CapType In cmbCapType.ItemsSource Where itm.CapTypeID = .CapType).FirstOrDefault
-    '        'MainType
-    '        cmbMainType.ItemsSource = New ListWithEvents(Of MainType)(From item In Context.MainTypes Order By item.TypeName)
-    '        If .MainType.HasValue Then cmbMainType.SelectedItem = (From itm As MainType In cmbMainType.ItemsSource Where itm.MainTypeID = .MainType).FirstOrDefault
-    '        'Shape
-    '        cmbShape.ItemsSource = New ListWithEvents(Of Shape)(From item In Context.Shapes Order By item.Name)
-    '        If .Shape.HasValue Then cmbShape.SelectedItem = (From itm As Shape In cmbShape.ItemsSource Where itm.ShapeID = .Shape).FirstOrDefault
-    '        'Material
-    '        cmbMaterial.ItemsSource = New ListWithEvents(Of Material)(From item In Context.Materials Order By item.Name)
-    '        If .Material.HasValue Then cmbMaterial.SelectedItem = (From itm As Material In cmbMaterial.ItemsSource Where itm.MaterialID = .Material).FirstOrDefault
-    '        'Storage
-    '        cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Order By item.StorageNumber)
-    '        If .Storage.HasValue Then cmbStorage.SelectedItem = (From itm As Storage In cmbStorage.ItemsSource Where itm.StorageID = .Storage).FirstOrDefault
-    '        'Product
-    '        cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
-    '        If .Product.HasValue Then cmbProduct.SelectedItem = (From itm As Product In cmbProduct.ItemsSource Where itm.ProductID = .Product).FirstOrDefault
-    '        'ProductType
-    '        Dim ProductTypesList As ListWithEvents(Of ProductType) = New ListWithEvents(Of ProductType)(From item In Context.ProductTypes Order By item.ProductTypeName)
-    '        ProductTypesList.Add(Nothing)
-    '        cmbProductType.ItemsSource = ProductTypesList
-    '        If .ProductType.HasValue Then cmbProductType.SelectedItem = (From itm As ProductType In cmbProductType.ItemsSource Where itm.ProductTypeID = .ProductType).FirstOrDefault Else cmbProductType.SelectedItem = Nothing
-    '        'Company
-    '        Dim CompaniesList As ListWithEvents(Of Company) = New ListWithEvents(Of Company)(From item In Context.Companies Order By item.CompanyName)
-    '        CompaniesList.Add(Nothing)
-    '        cmbCompany.ItemsSource = CompaniesList
-    '        If .Company.HasValue Then cmbCompany.SelectedItem = (From itm As Company In cmbCompany.ItemsSource Where itm.CompanyID = .Company).FirstOrDefault Else cmbCompany.SelectedItem = Nothing
-    '        lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item, .Categories.Contains(item.CategoryID)))
-    '    End With
-    '    With DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image))
-    '        .RemoveAll(Function(img) Not TypeOf img Is NewImage)
-    '        Dim i As Integer = 0
-    '        For Each img In From imgx In Context.Images Where imgx.CapID = Me.CapID
-    '            .Insert(i, img)
-    '            i += 1
-    '        Next
-    '    End With
-    '    Return Context
-    'End Function
+    ''' <summary>Resets datacontext of this instance</summary>
+    Public Function ResetContext(Optional ByRef Context As CapsDataDataContext = Nothing) As CapsDataDataContext
+        Dim OldSelectedIds = New With { _
+            .CapType = If(CapType IsNot Nothing, CapType.CapTypeID, New Integer?), _
+            .MainType = If(CapMainType IsNot Nothing, CapMainType.MainTypeID, New Integer?), _
+            .Shape = If(CapShape IsNot Nothing, CapShape.ShapeID, New Integer?), _
+            .Material = If(Material IsNot Nothing, Material.MaterialID, New Integer?), _
+            .Storage = If(Storage IsNot Nothing, Storage.StorageID, New Integer?), _
+            .ProductType = If(CapProductType IsNot Nothing, CapProductType.ProductTypeID, New Integer?), _
+            .Product = If(Product IsNot Nothing, Product.ProductID, New Integer?), _
+            .Company = If(CapCompany IsNot Nothing, CapCompany.CompanyID, New Integer?), _
+            .Categories = (From cat As Category In SelectedCategories Select cat.CategoryID).ToArray}
+        If OriginalContext IsNot Nothing Then OriginalContext.Dispose()
+        If Context Is Nothing Then
+            OriginalContext = New CapsDataDataContext(Main.Connection)
+            Context = New CapsDataDataContext
+        End If
+        
+        Me.Context = Context
+        With OldSelectedIds
+            'CapType
+            cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
+            If .CapType.HasValue Then cmbCapType.SelectedItem = (From itm As CapType In cmbCapType.ItemsSource Where itm.CapTypeID = .CapType).FirstOrDefault
+            'MainType
+            cmbMainType.ItemsSource = New ListWithEvents(Of MainType)(From item In Context.MainTypes Order By item.TypeName)
+            If .MainType.HasValue Then cmbMainType.SelectedItem = (From itm As MainType In cmbMainType.ItemsSource Where itm.MainTypeID = .MainType).FirstOrDefault
+            'Shape
+            cmbShape.ItemsSource = New ListWithEvents(Of Shape)(From item In Context.Shapes Order By item.Name)
+            If .Shape.HasValue Then cmbShape.SelectedItem = (From itm As Shape In cmbShape.ItemsSource Where itm.ShapeID = .Shape).FirstOrDefault
+            'Material
+            cmbMaterial.ItemsSource = New ListWithEvents(Of Material)(From item In Context.Materials Order By item.Name)
+            If .Material.HasValue Then cmbMaterial.SelectedItem = (From itm As Material In cmbMaterial.ItemsSource Where itm.MaterialID = .Material).FirstOrDefault
+            'Storage
+            cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Order By item.StorageNumber)
+            If .Storage.HasValue Then cmbStorage.SelectedItem = (From itm As Storage In cmbStorage.ItemsSource Where itm.StorageID = .Storage).FirstOrDefault
+            'Product
+            cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
+            If .Product.HasValue Then cmbProduct.SelectedItem = (From itm As Product In cmbProduct.ItemsSource Where itm.ProductID = .Product).FirstOrDefault
+            'ProductType
+            Dim ProductTypesList As ListWithEvents(Of ProductType) = New ListWithEvents(Of ProductType)(From item In Context.ProductTypes Order By item.ProductTypeName)
+            ProductTypesList.Add(Nothing)
+            cmbProductType.ItemsSource = ProductTypesList
+            If .ProductType.HasValue Then cmbProductType.SelectedItem = (From itm As ProductType In cmbProductType.ItemsSource Where itm.ProductTypeID = .ProductType).FirstOrDefault Else cmbProductType.SelectedItem = Nothing
+            'Company
+            Dim CompaniesList As ListWithEvents(Of Company) = New ListWithEvents(Of Company)(From item In Context.Companies Order By item.CompanyName)
+            CompaniesList.Add(Nothing)
+            cmbCompany.ItemsSource = CompaniesList
+            If .Company.HasValue Then cmbCompany.SelectedItem = (From itm As Company In cmbCompany.ItemsSource Where itm.CompanyID = .Company).FirstOrDefault Else cmbCompany.SelectedItem = Nothing
+            lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item, .Categories.Contains(item.CategoryID)))
+        End With
+        With DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image))
+            .RemoveAll(Function(img) Not TypeOf img Is NewImage)
+            Dim i As Integer = 0
+            For Each img In From imgx In Context.Images Where imgx.CapID = Me.CapID
+                .Insert(i, img)
+                i += 1
+            Next
+        End With
+        Return Context
+    End Function
 
 
 #Region "Services"
@@ -2343,6 +2400,29 @@ Resize256:      Try
     End Sub
 #End Region
 #End Region
+
+
+    Public Property AllowSearch() As Boolean
+        Get
+            Return GetValue(AllowSearchProperty)
+        End Get
+
+        Set(ByVal value As Boolean)
+            SetValue(AllowSearchProperty, value)
+        End Set
+    End Property
+
+    Public Shared ReadOnly AllowSearchProperty As DependencyProperty = _
+                           DependencyProperty.Register("AllowSearch", _
+                           GetType(Boolean), GetType(CapEditor), _
+                           New FrameworkPropertyMetadata(True, AddressOf OnAllowSearchChanged))
+    Private Shared Sub OnAllowSearchChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnAllowSearchChanged(e)
+    End Sub
+    Protected Overridable Sub OnAllowSearchChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        btnSearch.IsEnabled = AllowSearch
+    End Sub
 End Class
 
 ''' <summary>Allows to distinguish image already in database and a new image</summary>

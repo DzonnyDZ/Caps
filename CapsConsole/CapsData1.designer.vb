@@ -237,43 +237,6 @@ Partial Public Class CapsDataDataContext
 			Return Me.GetTable(Of Image)
 		End Get
 	End Property
-	
-	<FunctionAttribute(Name:="dbo.GetSimilarCaps")>  _
-	Public Function GetSimilarCaps( _
-				<Parameter(Name:="CapTypeID", DbType:="Int")> ByVal capTypeID As System.Nullable(Of Integer),  _
-				<Parameter(Name:="MainTypeID", DbType:="Int")> ByVal mainTypeID As System.Nullable(Of Integer),  _
-				<Parameter(Name:="ShapeID", DbType:="Int")> ByVal shapeID As System.Nullable(Of Integer),  _
-				<Parameter(Name:="CapName", DbType:="VarChar(255)")> ByVal capName As String,  _
-				<Parameter(Name:="MainText", DbType:="VarChar(255)")> ByVal mainText As String,  _
-				<Parameter(Name:="SubTitle", DbType:="VarChar(255)")> ByVal subTitle As String,  _
-				<Parameter(Name:="BackColor1", DbType:="Int")> ByVal backColor1 As System.Nullable(Of Integer),  _
-				<Parameter(Name:="BackColor2", DbType:="Int")> ByVal backColor2 As System.Nullable(Of Integer),  _
-				<Parameter(Name:="ForeColor", DbType:="Int")> ByVal foreColor As System.Nullable(Of Integer),  _
-				<Parameter(Name:="MainPicture", DbType:="VarChar(255)")> ByVal mainPicture As String,  _
-				<Parameter(Name:="TopText", DbType:="VarChar(MAX)")> ByVal topText As String,  _
-				<Parameter(Name:="SideText", DbType:="VarChar(MAX)")> ByVal sideText As String,  _
-				<Parameter(Name:="BottomText", DbType:="VarChar(MAX)")> ByVal bottomText As String,  _
-				<Parameter(Name:="MaterialID", DbType:="Int")> ByVal materialID As System.Nullable(Of Integer),  _
-				<Parameter(Name:="Surface", DbType:="Char(1)")> ByVal surface As System.Nullable(Of Char),  _
-				<Parameter(Name:="Size", DbType:="Int")> ByVal size As System.Nullable(Of Integer),  _
-				<Parameter(Name:="Size2", DbType:="Int")> ByVal size2 As System.Nullable(Of Integer),  _
-				<Parameter(Name:="Height", DbType:="Int")> ByVal height As System.Nullable(Of Integer),  _
-				<Parameter(Name:="Is3D", DbType:="Bit")> ByVal is3D As System.Nullable(Of Boolean),  _
-				<Parameter(Name:="Year", DbType:="Int")> ByVal year As System.Nullable(Of Integer),  _
-				<Parameter(Name:="CountryCode", DbType:="Char(3)")> ByVal countryCode As String,  _
-				<Parameter(Name:="Note", DbType:="VarChar(MAX)")> ByVal note As String,  _
-				<Parameter(Name:="CompanyID", DbType:="Int")> ByVal companyID As System.Nullable(Of Integer),  _
-				<Parameter(Name:="ProductID", DbType:="Int")> ByVal productID As System.Nullable(Of Integer),  _
-				<Parameter(Name:="ProductTypeID", DbType:="Int")> ByVal productTypeID As System.Nullable(Of Integer),  _
-				<Parameter(Name:="StorageID", DbType:="Int")> ByVal storageID As System.Nullable(Of Integer),  _
-				<Parameter(Name:="ForeColor2", DbType:="Int")> ByVal foreColor2 As System.Nullable(Of Integer),  _
-				<Parameter(Name:="PictureType", DbType:="Char(1)")> ByVal pictureType As System.Nullable(Of Char),  _
-				<Parameter(Name:="HasBottom", DbType:="Bit")> ByVal hasBottom As System.Nullable(Of Boolean),  _
-				<Parameter(Name:="HasSide", DbType:="Bit")> ByVal hasSide As System.Nullable(Of Boolean),  _
-				<Parameter(Name:="AnotherPictures", DbType:="VarChar(MAX)")> ByVal anotherPictures As String) As ISingleResult(Of Cap)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), capTypeID, mainTypeID, shapeID, capName, mainText, subTitle, backColor1, backColor2, foreColor, mainPicture, topText, sideText, bottomText, materialID, surface, size, size2, height, is3D, year, countryCode, note, companyID, productID, productTypeID, storageID, foreColor2, pictureType, hasBottom, hasSide, anotherPictures)
-		Return CType(result.ReturnValue,ISingleResult(Of Cap))
-	End Function
 End Class
 
 <Table(Name:="dbo.Cap_Category_Int")>  _

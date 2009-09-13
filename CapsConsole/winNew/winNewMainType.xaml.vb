@@ -6,14 +6,14 @@ Partial Public Class winNewMainType
     ''' <summary>CTor</summary>
     ''' <param name="Context">Data context</param>
     ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
-    Public Sub New(ByVal Context As DataAccess.Entities)
+    Public Sub New(ByVal Context As CapsDataDataContext)
         InitializeComponent()
         If Context Is Nothing Then Throw New ArgumentNullException("Context")
         Me.Context = Context
     End Sub
 
-    Private Context As DataAccess.Entities
-    Private _NewObject As DataAccess.MainType
+    Private Context As CapsDataDataContext
+    Private _NewObject As MainType
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
         If Not IO.File.Exists(txtImagePath.Text) Then
             Select Case mBox.ModalF_PTBIa(My.Resources.msg_FileNotExists_ContinueWOImage, My.Resources.txt_MainTypeImage, WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Yes Or WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.No, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Question, txtImagePath.Text)
@@ -24,18 +24,18 @@ Partial Public Class winNewMainType
             mBox.Modal_PTI(My.Resources.msg_OnlyPNG, My.Resources.txt_MainTypeImage, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation)
             Exit Sub
         End If
-        _NewObject = New DataAccess.MainType With {.Description = txtDescription.Text, .TypeName = txtName.Text}
+        _NewObject = New MainType With {.Description = txtDescription.Text, .TypeName = txtName.Text}
         Try
-            Context.AddToMainTypes(_NewObject)
+            Context.MainTypes.InsertOnSubmit(_NewObject)
         Catch ex As Exception
             mBox.Error_X(ex)
             Exit Sub
         End Try
         Try
-            Context.SaveChanges()
+            Context.SubmitChanges()
         Catch ex As Exception
             mBox.Error_X(ex)
-            Context.Detach(_NewObject)
+            Context.MainTypes.DeleteAllNew()
             Exit Sub
         End Try
         If IO.File.Exists(txtImagePath.Text) Then
@@ -49,7 +49,7 @@ Partial Public Class winNewMainType
         Me.Close()
     End Sub
 
-    Public ReadOnly Property NewObject() As DataAccess.MainType
+    Public ReadOnly Property NewObject() As MainType
         Get
             Return _NewObject
         End Get

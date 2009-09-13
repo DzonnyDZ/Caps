@@ -16,9 +16,9 @@ Class winMain
     Private Sub winMain_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
 Connect: Dim win As New winSelectDatabase
         If win.ShowDialog Then
-            Main.DatabaseConnection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)
+            Connection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)
             Try
-                Main.DatabaseConnection.Open()
+                Connection.Open()
             Catch ex As Exception
                 If mBox.Error_XBI(ex, Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Retry Or Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Abort) = Forms.DialogResult.Retry Then
                     GoTo Connect
@@ -26,7 +26,6 @@ Connect: Dim win As New winSelectDatabase
                     Environment.Exit(2)
                 End If
             End Try
-            Main.EntityConnection = New System.Data.EntityClient.EntityConnection(Main.Workspace, Main.DatabaseConnection)
         Else
             Environment.Exit(1)
         End If
