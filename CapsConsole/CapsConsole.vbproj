@@ -128,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Config\Database wizard\4-pgSummary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="XAML helpers\ColorPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,6 +226,10 @@
     <Compile Include="Config\Database wizard\3-pgDatabaseAndFileInfo.xaml.vb">
       <DependentUpon>3-pgDatabaseAndFileInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Config\Database wizard\4-pgSummary.xaml.vb">
+      <DependentUpon>4-pgSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Config\Database wizard\Wizard helpers.vb" />
     <Compile Include="DAL\CapsData.vb">
       <DependentUpon>CapsData.dbml</DependentUpon>
       <SubType>Code</SubType>
