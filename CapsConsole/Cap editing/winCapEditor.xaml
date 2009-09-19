@@ -48,6 +48,10 @@
                       ProductSelection="{Binding Product, Mode=OneWay, Converter={StaticResource SelectionTypeConverter}}"
                       CapProductType="{Binding ProductType, Mode=TwoWay}"
                       CapCompany="{Binding Company, Mode=TwoWay}"
+                      CountryOfOrigin="{Binding CountryOfOrigin, Mode=TwoWay}"
+                      IsDrink="{Binding IsDrink, Mode=TwoWay}"
+                      State="{Binding State, Mode=TwoWays}"
+                      Target="{Binding Target, Mode=TwoWays}"
                       
                       AllowSearch="False"
         />

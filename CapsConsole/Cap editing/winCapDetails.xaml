@@ -170,6 +170,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_CapType}"/>
                     <Grid Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Grid.ColumnSpan="2" ToolTip="{Binding CapType.Description, Mode=OneWay}">
@@ -234,6 +235,18 @@
                         <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding Material.Name, Mode=OneWay}" Grid.Column="0" Grid.Row="0"/>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding Material.MaterialID, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
                     </Grid>
+                    <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Target}"/>
+                    <Grid Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Grid.ColumnSpan="2" ToolTip="{Binding Target.Description, Mode=OneWay}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding Target.Name, Mode=OneWay}" Grid.Column="0" Grid.Row="0"/>
+                        <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding Target.MaterialID, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
+                    </Grid>
                 </Grid>
             </GroupBox>
             <Grid Grid.Column="0" Grid.Row="2" Width="auto" Height="auto" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding ElementName=lstCaps, Path=Visibility, Mode=OneWay, Converter={StaticResource NotVisibilityConverter}}">
@@ -285,6 +298,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/><RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
@@ -294,8 +308,10 @@
                     <Label Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{Binding Year, Mode=OneWay}"/>
                     <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Country}"/>
                     <Label Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{Binding CountryCode, Mode=OneWay}"/>
-                    <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Storage}"/>
-                    <Grid Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" ToolTip="{Binding Storage.Description, Mode=OneWay}">
+                    <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_CountryOfOrigin}"/>
+                    <Label Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{Binding CountryOfOrigin, Mode=OneWay}"/>
+                    <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Storage}"/>
+                    <Grid Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" ToolTip="{Binding Storage.Description, Mode=OneWay}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="auto"/>
@@ -313,12 +329,14 @@
                         </Label>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding Storage.StorageID, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
                     </Grid>
-                    <StackPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="auto"  Orientation="Horizontal">
+                    <StackPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="auto"  Orientation="Horizontal">
                         <CheckBox Name="chkHasBottom" Content="{x:Static res:Resources.lbl_HasBottom}" Margin="0,0,5,0" IsEnabled="False" IsChecked="{Binding HasBottom, Mode=OneWay}"/>
                         <CheckBox Name="chkHasSide" Content="{x:Static res:Resources.lbl_HasSide}" Margin="5,0,0,0" IsEnabled="False" IsChecked="{Binding HasSide, Mode=OneWay}"/>
                     </StackPanel>
-                    <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_DateCreated}"/>
-                    <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{Binding DateCreated, Mode=OneWay}"/>
+                    <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_DateCreated}"/>
+                    <Label Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{Binding DateCreated, Mode=OneWay}"/>
+                    <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_State}"/>
+                    <Label Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{Binding State, Mode=OneWay}"/>                    
                 </Grid>
             </GroupBox>
             <GroupBox Grid.Column="2" Grid.Row="1" Header="{x:Static res:Resources.txt_CompanyProduct}">
@@ -329,6 +347,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
@@ -369,6 +388,7 @@
                         <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Grid.Column="0" Grid.Row="0" Content="{Binding Company.CompanyName, Mode=OneWay}"/>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding Company.CompanyID, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
                     </Grid>
+                    <CheckBox Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"  VerticalAlignment="Center" IsEnabled="False" Content="{x:Static res:Resources.lbl_IsDrink}" IsChecked="{Binding IsDrink, Mode=OneWay}" IsThreeState="True"/>
                 </Grid>
 
             </GroupBox>

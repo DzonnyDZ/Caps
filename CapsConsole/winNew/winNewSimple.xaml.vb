@@ -20,8 +20,9 @@ Partial Public Class winNewSimple
             Case SimpleTypes.Category : Me.Title = My.Resources.txt_NewCategory
             Case SimpleTypes.Company : Me.Title = My.Resources.txt_NewCompany
             Case SimpleTypes.Material : Me.Title = My.Resources.txt_NewMaterial
-            Case SimpleTypes.ProductType : Me.Title = My.Resources.txt_NewProductType
+            Case SimpleTypes.ProductType : Me.Title = My.Resources.txt_NewProductType : chkIsDrink.Visibility = Windows.Visibility.Visible
             Case SimpleTypes.StorageType : Me.Title = My.Resources.txt_NewStorageType
+            Case SimpleTypes.Target : Me.Title = My.Resources.txt_NewTarget
         End Select
         Me.Context = Context
     End Sub
@@ -40,11 +41,14 @@ Partial Public Class winNewSimple
                     _NewObject = New Company() With {.CompanyName = txtName.Text, .Description = txtDescription.Text}
                     tbl = Context.Companies
                 Case SimpleTypes.ProductType
-                    _NewObject = New ProductType() With {.ProductTypeName = txtName.Text, .Description = txtDescription.Text}
+                    _NewObject = New ProductType() With {.ProductTypeName = txtName.Text, .Description = txtDescription.Text, .IsDrink = chkIsDrink.IsChecked}
                     tbl = Context.ProductTypes
                 Case SimpleTypes.StorageType
                     _NewObject = New StorageType() With {.Name = txtName.Text, .Description = txtDescription.Text}
                     tbl = Context.StorageTypes
+                Case SimpleTypes.Target
+                    _NewObject = New Target() With {.Name = txtName.Text, .Description = txtDescription.Text}
+                    tbl = Context.Targets
                 Case Else
                     Throw New InvalidOperationException(My.Resources.err_UnknownSimpleObject.f(Type))
             End Select
@@ -82,5 +86,6 @@ Partial Public Class winNewSimple
         Company
         ProductType
         StorageType
+        Target
     End Enum
 End Class

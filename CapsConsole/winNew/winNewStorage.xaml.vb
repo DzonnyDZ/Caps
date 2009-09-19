@@ -18,7 +18,7 @@ Partial Public Class winNewStorage
     Private _NewObject As Storage
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
         Try
-            _NewObject = New Storage() With {.StorageNumber = nudNumber.Value, .Description = txtDescription.Text, .StorageTypeID = cmbStorageType.SelectedValue}
+            _NewObject = New Storage() With {.StorageNumber = txtNumber.Text, .Description = txtDescription.Text, .StorageTypeID = cmbStorageType.SelectedValue}
             Context.Storages.InsertOnSubmit(_NewObject)
         Catch ex As Exception
             mBox.Error_X(ex)

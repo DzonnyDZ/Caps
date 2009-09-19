@@ -25,7 +25,8 @@ Partial Public Class winNewCap
                                             .Size = caeEditor.Size1, _
                                             .Size2 = If(caeEditor.CapShape.Size2Name Is Nothing, New Integer?, caeEditor.Size2), _
                                             .Height = caeEditor.CapHeight, _
-                                            .Material = caeEditor.Material}
+                                            .Material = caeEditor.Material, _
+                                            .Target = caeEditor.Target}
                 Cap.CapType = NewType
             ElseIf .CapTypeSelection = CapEditor.CreatableItemSelection.SelectedItem Then
                 Cap.CapType = .CapType
@@ -73,6 +74,10 @@ Partial Public Class winNewCap
             Cap.HasBottom = .HasBottom
             Cap.HasSide = .HasSide
             Cap.PictureType = .PictureType
+            Cap.CountryOfOrigin = .CountryOfOrigin
+            Cap.IsDrink = .IsDrink
+            Cap.State = .State
+            Cap.Target = .Target
             'Categories
             Dim CreatedDBCatInts As New List(Of Cap_Category_Int)
             If .SelectedCategories IsNot Nothing Then

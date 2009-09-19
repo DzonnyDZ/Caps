@@ -18,6 +18,7 @@ Partial Public Class winEditors
         dgrTypes.ItemsSource = CapsContext.CapTypes
         dgrStorages.ItemsSource = CapsContext.Storages
         dgrStorageTypes.ItemsSource = CapsContext.StorageTypes
+        dgrTargets.ItemsSource = CapsContext.Targets
 
         cmcTypes_Shape.ItemsSource = CapsContext.Shapes
         cmcTypes_Material.ItemsSource = CapsContext.Materials

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="CapsData" Class="CapsDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS2008;AttachDbFilename=D:\Users\Honza\Documents\Programy\Caps\CapsData.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True" SettingsObjectName="Caps.Console.MySettings" SettingsPropertyName="CapsDataConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DZONNY\SQLEXPRESS;AttachDbFilename=&quot;C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf&quot;;Initial Catalog=CapsData;Integrated Security=True;User Instance=True" SettingsObjectName="Caps.Console.MySettings" SettingsPropertyName="CapsDataConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Cap_Category_Int" Member="Cap_Category_Ints">
     <Type Name="Cap_Category_Int">
       <Column Name="CapID" Type="System.Int32" DbType="Int NOT NULL" IsReadOnly="true" IsPrimaryKey="true" CanBeNull="false" />
@@ -20,33 +20,35 @@
   <Table Name="dbo.CapType" Member="CapTypes">
     <Type Name="CapType">
       <Column Name="CapTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TypeName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TypeName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ShapeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Size" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Size2" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Height" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MaterialID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MainTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TargetID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="CapType_Cap" Member="Caps" ThisKey="CapTypeID" OtherKey="CapTypeID" Type="Cap" />
       <Association Name="MainType_CapType" Member="MainType" ThisKey="MainTypeID" OtherKey="MainTypeID" Type="MainType" IsForeignKey="true" />
       <Association Name="Material_CapType" Member="Material" ThisKey="MaterialID" OtherKey="MaterialID" Type="Material" IsForeignKey="true" />
       <Association Name="Shape_CapType" Member="Shape" ThisKey="ShapeID" OtherKey="ShapeID" Type="Shape" IsForeignKey="true" />
+      <Association Name="Target_CapType" Member="Target" ThisKey="TargetID" OtherKey="TargetID" Type="Target" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Category" Member="Categories">
     <Type Name="Category">
       <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CategoryName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Category_Cap_Category_Int" Member="Cap_Category_Ints" ThisKey="CategoryID" OtherKey="CategoryID" Type="Cap_Category_Int" />
     </Type>
   </Table>
   <Table Name="dbo.Company" Member="Companies">
     <Type Name="Company">
       <Column Name="CompanyID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CompanyName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Company_Product" Member="Products" ThisKey="CompanyID" OtherKey="CompanyID" Type="Product" />
       <Association Name="Company_Cap" Member="Caps" ThisKey="CompanyID" OtherKey="CompanyID" Type="Cap" />
     </Type>
@@ -54,15 +56,15 @@
   <Table Name="dbo.Keyword" Member="Keywords">
     <Type Name="Keyword">
       <Column Name="KeywordID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Keyword" Type="System.String" DbType="VarChar(50) NOT NULL" IsReadOnly="true" CanBeNull="false" />
+      <Column Name="Keyword" Type="System.String" DbType="NVarChar(50) NOT NULL" IsReadOnly="true" CanBeNull="false" />
       <Association Name="Keyword_Cap_Keyword_Int" Member="Cap_Keyword_Ints" ThisKey="KeywordID" OtherKey="KeywordID" Type="Cap_Keyword_Int" />
     </Type>
   </Table>
   <Table Name="dbo.MainType" Member="MainTypes">
     <Type Name="MainType">
       <Column Name="MainTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TypeName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="TypeName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="MainType_CapType" Member="CapTypes" ThisKey="MainTypeID" OtherKey="MainTypeID" Type="CapType" />
       <Association Name="MainType_Cap" Member="Caps" ThisKey="MainTypeID" OtherKey="MainTypeID" Type="Cap" />
     </Type>
@@ -70,8 +72,8 @@
   <Table Name="dbo.Material" Member="Materials">
     <Type Name="Material">
       <Column Name="MaterialID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Material_CapType" Member="CapTypes" ThisKey="MaterialID" OtherKey="MaterialID" Type="CapType" />
       <Association Name="Material_Cap" Member="Caps" ThisKey="MaterialID" OtherKey="MaterialID" Type="Cap" />
     </Type>
@@ -79,10 +81,10 @@
   <Table Name="dbo.Product" Member="Products">
     <Type Name="Product">
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ProductName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CompanyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ProductTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Product_Cap" Member="Caps" ThisKey="ProductID" OtherKey="ProductID" Type="Cap" />
       <Association Name="Company_Product" Member="Company" ThisKey="CompanyID" OtherKey="CompanyID" Type="Company" IsForeignKey="true" />
       <Association Name="ProductType_Product" Member="ProductType" ThisKey="ProductTypeID" OtherKey="ProductTypeID" Type="ProductType" IsForeignKey="true" />
@@ -91,8 +93,9 @@
   <Table Name="dbo.ProductType" Member="ProductTypes">
     <Type Name="ProductType">
       <Column Name="ProductTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ProductTypeName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ProductTypeName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IsDrink" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="ProductType_Product" Member="Products" ThisKey="ProductTypeID" OtherKey="ProductTypeID" Type="Product" />
       <Association Name="ProductType_Cap" Member="Caps" ThisKey="ProductTypeID" OtherKey="ProductTypeID" Type="Cap" />
     </Type>
@@ -100,18 +103,19 @@
   <Table Name="dbo.Storage" Member="Storages">
     <Type Name="Storage">
       <Column Name="StorageID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="StorageNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="StorageNumber" Type="System.String" DbType="NvarChar (10) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="StorageTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Storage_Cap" Member="Caps" ThisKey="StorageID" OtherKey="StorageID" Type="Cap" />
+      <Association Name="Storage_CapInstance" Member="CapInstances" ThisKey="StorageID" OtherKey="StorageID" Type="CapInstance" />
       <Association Name="StorageType_Storage" Member="StorageType" ThisKey="StorageTypeID" OtherKey="StorageTypeID" Type="StorageType" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.StorageType" Member="StorageTypes">
     <Type Name="StorageType">
       <Column Name="StorageTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="StorageType_Storage" Member="Storages" ThisKey="StorageTypeID" OtherKey="StorageTypeID" Type="Storage" />
     </Type>
   </Table>
@@ -121,16 +125,16 @@
       <Column Name="CapTypeID" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MainTypeID" Modifier="Virtual" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ShapeID" Modifier="Virtual" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CapName" Modifier="Virtual" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="MainText" Modifier="Virtual" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="SubTitle" Modifier="Virtual" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="CapName" Modifier="Virtual" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MainText" Modifier="Virtual" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SubTitle" Modifier="Virtual" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="BackColor1" Modifier="Virtual" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="BackColor2" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ForeColor" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MainPicture" Modifier="Virtual" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="TopText" Modifier="Virtual" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="SideText" Modifier="Virtual" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="BottomText" Modifier="Virtual" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="MainPicture" Modifier="Virtual" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TopText" Modifier="Virtual" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SideText" Modifier="Virtual" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BottomText" Modifier="Virtual" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="MaterialID" Modifier="Virtual" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Surface" Modifier="Virtual" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Column Name="Size" Modifier="Virtual" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -138,9 +142,9 @@
       <Column Name="Height" Modifier="Virtual" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Is3D" Modifier="Virtual" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Year" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CountryCode" Modifier="Virtual" Type="System.String" DbType="Char(3)" CanBeNull="true" />
-      <Column Name="DateCreated" Modifier="Virtual" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Note" Modifier="Virtual" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="CountryCode" Modifier="Virtual" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="DateCreated" Modifier="Virtual" Type="System.DateTime" DbType="DateTime" IsReadOnly="true" CanBeNull="true" />
+      <Column Name="Note" Modifier="Virtual" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="CompanyID" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ProductID" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ProductTypeID" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -149,10 +153,15 @@
       <Column Name="PictureType" Modifier="Virtual" Type="System.Char" DbType="Char(1)" CanBeNull="true" />
       <Column Name="HasBottom" Modifier="Virtual" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="HasSide" Modifier="Virtual" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="AnotherPictures" Modifier="Virtual" Type="System.String" DbType="Varchar(MAX)" CanBeNull="true" />
+      <Column Name="AnotherPictures" Modifier="Virtual" Type="System.String" DbType="NVarchar(MAX)" CanBeNull="true" />
+      <Column Name="CountryOfOrigin" Modifier="Virtual" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="TargetID" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsDrink" Modifier="Virtual" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="State" Modifier="Virtual" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Association Name="Cap_Cap_Category_Int" Member="Cap_Category_Ints" ThisKey="CapID" OtherKey="CapID" Type="Cap_Category_Int" />
       <Association Name="Cap_Cap_Keyword_Int" Member="Cap_Keyword_Ints" ThisKey="CapID" OtherKey="CapID" Type="Cap_Keyword_Int" />
       <Association Name="Cap_Image" Member="Images" ThisKey="CapID" OtherKey="CapID" Type="Image" />
+      <Association Name="Cap_CapInstance" Member="CapInstances" ThisKey="CapID" OtherKey="CapID" Type="CapInstance" />
       <Association Name="CapType_Cap" Member="CapType" ThisKey="CapTypeID" OtherKey="CapTypeID" Type="CapType" IsForeignKey="true" />
       <Association Name="Company_Cap" Member="Company" ThisKey="CompanyID" OtherKey="CompanyID" Type="Company" IsForeignKey="true" />
       <Association Name="MainType_Cap" Member="MainType" ThisKey="MainTypeID" OtherKey="MainTypeID" Type="MainType" IsForeignKey="true" />
@@ -161,15 +170,16 @@
       <Association Name="ProductType_Cap" Member="ProductType" ThisKey="ProductTypeID" OtherKey="ProductTypeID" Type="ProductType" IsForeignKey="true" />
       <Association Name="Storage_Cap" Member="Storage" ThisKey="StorageID" OtherKey="StorageID" Type="Storage" IsForeignKey="true" />
       <Association Name="Shape_Cap" Member="Shape" ThisKey="ShapeID" OtherKey="ShapeID" Type="Shape" IsForeignKey="true" />
+      <Association Name="Target_Cap" Member="Target" ThisKey="TargetID" OtherKey="TargetID" Type="Target" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Shape" Member="Shapes">
     <Type Name="Shape">
       <Column Name="ShapeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Size1Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Size2Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Size1Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Size2Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Shape_CapType" Member="CapTypes" ThisKey="ShapeID" OtherKey="ShapeID" Type="CapType" />
       <Association Name="Shape_Cap" Member="Caps" ThisKey="ShapeID" OtherKey="ShapeID" Type="Cap" />
     </Type>
@@ -177,9 +187,32 @@
   <Table Name="dbo.Image" Member="Images">
     <Type Name="Image">
       <Column Name="ImageID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="RelativePath" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="RelativePath" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Column Name="CapID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Cap_Image" Member="Cap" ThisKey="CapID" OtherKey="CapID" Type="Cap" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Target" Member="Targets">
+    <Type Name="Target">
+      <Column Name="TargetID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Target_Cap" Member="Caps" ThisKey="TargetID" OtherKey="TargetID" Type="Cap" />
+      <Association Name="Target_CapType" Member="CapTypes" ThisKey="TargetID" OtherKey="TargetID" Type="CapType" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CapInstance" Member="CapInstances">
+    <Type Name="CapInstance">
+      <Column Name="CapInstanceID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CapID" Type="System.Int32" DbType="Int NOT NULL" IsReadOnly="true" CanBeNull="false" />
+      <Column Name="StorageID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="State" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Year" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CountryCode" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" IsReadOnly="true" CanBeNull="false" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Cap_CapInstance" Member="Cap" ThisKey="CapID" OtherKey="CapID" Type="Cap" IsForeignKey="true" />
+      <Association Name="Storage_CapInstance" Member="Storage" ThisKey="StorageID" OtherKey="StorageID" Type="Storage" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

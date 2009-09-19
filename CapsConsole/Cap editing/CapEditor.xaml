@@ -182,6 +182,26 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
             </Setter>
             <Setter Property="TextSearch.TextPath" Value="CompanyName"/>
         </Style>
+        <Style TargetType="ComboBox" x:Key="TargetTemplate" BasedOn="{StaticResource GenericComboBoxTemplate}">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch"  ToolTip="{Binding Description}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Text="{Binding Name, Mode=OneWay}" Grid.Column="0"/>
+                            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Text="{Binding targetID, Mode=OneWay}" Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="TextSearch.TextPath" Value="CompanyName"/>
+        </Style>
         
     </UserControl.Resources>
     <Grid >
@@ -274,6 +294,7 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <GroupBox Header="{x:Static res:Resources.txt_CapType}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
                     <Grid>
@@ -327,9 +348,14 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Height}"/>
                 <Tools:NumericUpDown Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Maximum="1000000" Name="nudHeight" />
                 <Label Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" Width="auto" HorizontalAlignment="Left" Content="{x:Static res:Resources.abb_Millimeters}"/>
+                
                 <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Material}"/>
                 <ComboBox Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbMaterial" Style="{StaticResource MaterialTemplate}" SelectedValuePath="MaterialID" />
                 <Button Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewMaterial" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
+                
+                <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Target}"/>
+                <ComboBox Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbTarget" Style="{StaticResource TargetTemplate}" SelectedValuePath="TargetID" />
+                <Button Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewTarget" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="1" Grid.Column="1" Header="{x:Static res:Resources.txt_Texts}" Grid.RowSpan="2" >
@@ -370,20 +396,28 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_ID}"/>
                 <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Name="lblID"/>
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Year}" />
                 <Tools:NumericUpDown Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Minimum="0" Maximum="9999" Value="0" ToolTip="{x:Static res:Resources.tot_0NotSet}" Grid.ColumnSpan="2" Name="nudYear"/>
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Country}"/>
-                <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" ToolTip="{x:Static res:Resources.tot_ISO3}" MaxLines="1" MaxLength="3" Grid.ColumnSpan="2" Name="txtCountryCode" />
-                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Storage}"/>
-                <ComboBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbStorage" Style="{StaticResource StorageTemplate}" SelectedValuePath="StorageID" />
-                <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="btnNewStorage" Content="{x:Static res:Resources.cmd_New}"/>
-                <StackPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="auto"  Orientation="Horizontal">
+                <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" ToolTip="{x:Static res:Resources.tot_ISO2}" MaxLines="1" MaxLength="3" Grid.ColumnSpan="2" Name="txtCountryCode" />
+
+                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_CountryOfOrigin}"/>
+                <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" ToolTip="{x:Static res:Resources.tot_ISO2}" MaxLines="1" MaxLength="3" Grid.ColumnSpan="2" Name="txtCountryOfOrigin" />
+
+                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Storage}"/>
+                <ComboBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbStorage" Style="{StaticResource StorageTemplate}" SelectedValuePath="StorageID" />
+                <Button Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="btnNewStorage" Content="{x:Static res:Resources.cmd_New}"/>
+                <StackPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="auto"  Orientation="Horizontal">
                     <CheckBox Name="chkHasBottom" Content="{x:Static res:Resources.lbl_HasBottom}" Margin="0,0,5,0"/>
                     <CheckBox Name="chkHasSide" Content="{x:Static res:Resources.lbl_HasSide}" Margin="5,0,0,0"/>
                 </StackPanel>
+                <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_CapState}" ToolTip="tot_CapState" />
+                <Tools:NumericUpDown Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Stretch" Minimum="1" Maximum="5" Value="1" ToolTip="{x:Static res:Resources.tot_CapState}" Grid.ColumnSpan="2" Name="nudCapState"/>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Column="2" Grid.Row="1" Header="{x:Static res:Resources.txt_CompanyProduct}">
@@ -394,6 +428,7 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -428,6 +463,7 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Company}"/>
                 <ComboBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbCompany" Style="{StaticResource CompanyTemplate}" SelectedValuePath="CompanyID" />
                 <Button Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="btnNewCompany" Content="{x:Static res:Resources.cmd_New}"/>
+                <CheckBox Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Name="chkIsDrink" IsThreeState="True" Content="{x:Static res:Resources.lbl_IsDrink}" Grid.Row="3" />
             </Grid>
 
         </GroupBox>

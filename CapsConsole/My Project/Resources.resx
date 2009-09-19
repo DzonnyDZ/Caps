@@ -613,8 +613,8 @@
     <value>0 - not set</value>
     <comment>Tool tip text</comment>
   </data>
-  <data name="tot_ISO3" xml:space="preserve">
-    <value>ISO 3 code</value>
+  <data name="tot_ISO2" xml:space="preserve">
+    <value>ISO 2 code</value>
     <comment>Tool tip text</comment>
   </data>
   <data name="txt_CapType" xml:space="preserve">
@@ -943,21 +943,27 @@
   </data>
   <data name="msg_ErrorDeletingCaps" xml:space="preserve">
     <value>Error deleting caps</value>
+    <comment>Error message text</comment>
   </data>
   <data name="msg_AllCapsDeletedClose" xml:space="preserve">
     <value>All shown caps have been deleted. The window will be closed.</value>
+    <comment>Message box text</comment>
   </data>
   <data name="txt_DeleteCap" xml:space="preserve">
     <value>Delete cap</value>
+    <comment>Message box title</comment>
   </data>
   <data name="msg_q_DelCap" xml:space="preserve">
     <value>Do you really want to delete selected cap?</value>
+    <comment>Error message text</comment>
   </data>
   <data name="msg_NoCapTypeSelected" xml:space="preserve">
     <value>You have chosen to select one of existing cap types but you have selected none.</value>
+    <comment>Error message text</comment>
   </data>
   <data name="msg_NoProductSelected" xml:space="preserve">
     <value>You have chosen to select one of existing products but you have selected none.</value>
+    <comment>Error message text</comment>
   </data>
   <data name="txt_SearchResults" xml:space="preserve">
     <value>Search results</value>
@@ -969,102 +975,178 @@
   </data>
   <data name="ex_ValueOfPropertyMustBeNullOrXOrNullableOfX" xml:space="preserve">
     <value>Value of property {0} must be null, {1} or {2} of {1}</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_ValueOfPropertyMustBeOneOfFollowingValues" xml:space="preserve">
     <value>Value of property {0} must be one of following values: {1}</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_SetUnknownCapType" xml:space="preserve">
     <value>Attempt to set cap type that is not in combo box.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_SetUnknownCapMainType" xml:space="preserve">
     <value>Attempt to set cap main type that is not in combo box.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_SetUnknownMaterial" xml:space="preserve">
     <value>Attempt to set material that is not in combo box.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_SetUnknownShape" xml:space="preserve">
     <value>Attempt to set shape that is not in combo box.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_CountryCode3" xml:space="preserve">
     <value>Country code must have exactly 3 letters.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_SetUnknownCapCompany" xml:space="preserve">
     <value>Attempt to set company type that is not in combo box.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_SetUnknownCapProductType" xml:space="preserve">
     <value>Attempt to set product type that is not in combo box.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_SetUnknownProduct" xml:space="preserve">
     <value>Attempt to set product that is not in combo box.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_SetUnknownStorage" xml:space="preserve">
     <value>Attempt to set storage that is not in combo box.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_MustNotBeNull" xml:space="preserve">
     <value>{0} must not be null</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="err_DeleteingOfSomeImagesFailed" xml:space="preserve">
     <value>Deleteing of some images failed:</value>
+    <comment>Error message</comment>
   </data>
   <data name="msg_ThereAreImagesThatDoNotBelongToAnyCap" xml:space="preserve">
     <value>There are images that do not belong to any cap!</value>
+    <comment>Error message text</comment>
   </data>
   <data name="txt_Error" xml:space="preserve">
     <value>Error</value>
+    <comment>Error message box title</comment>
   </data>
   <data name="msg_CapImageExistsOverwrite" xml:space="preserve">
     <value>Cap type image file {0} already exists. Overwrite?</value>
+    <comment>Error message text</comment>
   </data>
   <data name="txt_OwervriteFile" xml:space="preserve">
     <value>Owervrite file</value>
+    <comment>Message box title</comment>
   </data>
   <data name="err_CopyCapTypeImageFailed" xml:space="preserve">
     <value>Copy cap type image file failed.{0}{1}{0}New cap type is without image!</value>
+    <comment>Error message</comment>
   </data>
   <data name="txt_CopyFile" xml:space="preserve">
     <value>Copy file</value>
+    <comment>Message box title</comment>
   </data>
   <data name="txt_ErrorUpdatingCap" xml:space="preserve">
     <value>Error updating cap</value>
+    <comment>Message box title</comment>
   </data>
   <data name="txt_InvalidSelection" xml:space="preserve">
     <value>Invalid selection</value>
+    <comment>Message box title</comment>
   </data>
   <data name="err_SelectExactlyOneCap" xml:space="preserve">
     <value>Select exactly one cap, please.</value>
+    <comment>Error message</comment>
   </data>
   <data name="ex_IsNotAssignableFrom" xml:space="preserve">
     <value>{0} is not assignable from {1}</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_IsAssignableFromNeither" xml:space="preserve">
     <value>{0} is assignable from neither {1} nor {2}</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_FunctionForForwardConversionHaveNotBeenSet" xml:space="preserve">
     <value>Function for forward conversion have not been set.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_FunctionForBackwardConversionHasNotBeenSet" xml:space="preserve">
     <value>Function for backward conversion has not been set.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_IsNull" xml:space="preserve">
     <value>{0} is null.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_CapIDNotFound" xml:space="preserve">
     <value>Cap ID {0} not found</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_ServiceProviderDoesntProvide" xml:space="preserve">
     <value>Service provider doesn't provide {0}</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_CannotBeAnEmptyString" xml:space="preserve">
     <value>{0} cannot be an empty string.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_DoesNotContainMemberNamePart" xml:space="preserve">
     <value>{0} does not contain member name part.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="ex_MemberHasValueNull" xml:space="preserve">
     <value>Member {0} has value null.</value>
+    <comment>Inner exception message</comment>
   </data>
   <data name="cmd_UseWizard" xml:space="preserve">
     <value>Use wizard...</value>
     <comment>Button text</comment>
+  </data>
+  <data name="ex_SetUnknownTarget" xml:space="preserve">
+    <value>Attempt to set target that is not in combo box.</value>
+    <comment>Internal error message</comment>
+  </data>
+  <data name="lbl_CapState" xml:space="preserve">
+    <value>State</value>
+    <comment>Label text (meaning how much the cap is damaged 1-OK; 5-destroyed)</comment>
+  </data>
+  <data name="lbl_CountryOfOrigin" xml:space="preserve">
+    <value>Country of origin</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_IsDrink" xml:space="preserve">
+    <value>Drink</value>
+    <comment>Check box text</comment>
+  </data>
+  <data name="lbl_Target" xml:space="preserve">
+    <value>Target</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="tot_CapState" xml:space="preserve">
+    <value>1 - OK, 5 - destroyed</value>
+    <comment>Tool tip text</comment>
+  </data>
+  <data name="txt_InvalidCountryCode" xml:space="preserve">
+    <value>Invalid country code. Fill in 2-letters ISO code, please.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="txt_InvalidCountryOfOriginCode" xml:space="preserve">
+    <value>Invalid code of country of origin. Fill in 2-letters ISO code, please.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="txt_NewTarget" xml:space="preserve">
+    <value>New target</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="coh_IsDrink" xml:space="preserve">
+    <value>Drink</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="txt_Targets" xml:space="preserve">
+    <value>Targets</value>
+    <comment>Tab page header</comment>
   </data>
 </root>

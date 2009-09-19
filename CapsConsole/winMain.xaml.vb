@@ -26,6 +26,8 @@ Connect: Dim win As New winSelectDatabase
                     Environment.Exit(2)
                 End If
             End Try
+            My.Settings.CapsDataConnectionString = Connection.ConnectionString
+            My.Settings.Save()
         Else
             Environment.Exit(1)
         End If

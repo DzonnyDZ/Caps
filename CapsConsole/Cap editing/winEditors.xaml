@@ -89,6 +89,7 @@
                     <toolkit:DataGrid.Columns>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding ProductTypeID, Mode=OneWay}"/>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding ProductTypeName, Mode=TwoWay}"/>
+                        <toolkit:DataGridCheckBoxColumn Header="{x:Static res:Resources.coh_IsDrink}" Binding="{Binding IsDrink, Mode=TwoWay}"/>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
                     </toolkit:DataGrid.Columns>
                 </toolkit:DataGrid>
@@ -118,6 +119,15 @@
                 <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrStorageTypes">
                     <toolkit:DataGrid.Columns>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding StorageTypeID, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding Name, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
+            <TabItem Header="{x:Static res:Resources.txt_Targets}" Name="tapTargets">
+                <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrTargets">
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding targetID, Mode=OneWay}"/>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding Name, Mode=TwoWay}"/>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
                     </toolkit:DataGrid.Columns>
