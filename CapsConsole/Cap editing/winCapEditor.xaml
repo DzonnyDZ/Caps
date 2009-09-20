@@ -50,8 +50,9 @@
                       CapCompany="{Binding Company, Mode=TwoWay}"
                       CountryOfOrigin="{Binding CountryOfOrigin, Mode=TwoWay}"
                       IsDrink="{Binding IsDrink, Mode=TwoWay}"
-                      State="{Binding State, Mode=TwoWays}"
-                      Target="{Binding Target, Mode=TwoWays}"
+                      State="{Binding State, Mode=TwoWay}"
+                      Target="{Binding Target, Mode=TwoWay}"
+                      IsAlcoholic="{Binding IsAlcoholic, Mode=TwoWay}"                      
                       
                       AllowSearch="False"
         />

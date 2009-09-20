@@ -6,6 +6,7 @@ Partial Public Class winNewSimple
 
     Private Type As SimpleTypes
     Private Context As CapsDataDataContext
+    Private UnderConstruction As Boolean = True
     ''' <summary>CTor</summary>
     ''' <param name="Type">Type of item to add</param>
     ''' <param name="Context">Data context</param>
@@ -20,11 +21,13 @@ Partial Public Class winNewSimple
             Case SimpleTypes.Category : Me.Title = My.Resources.txt_NewCategory
             Case SimpleTypes.Company : Me.Title = My.Resources.txt_NewCompany
             Case SimpleTypes.Material : Me.Title = My.Resources.txt_NewMaterial
-            Case SimpleTypes.ProductType : Me.Title = My.Resources.txt_NewProductType : chkIsDrink.Visibility = Windows.Visibility.Visible
+            Case SimpleTypes.ProductType : Me.Title = My.Resources.txt_NewProductType : chkIsDrink.Visibility = Windows.Visibility.Visible : chkIsAlcoholic.Visibility = Windows.Visibility.Visible
             Case SimpleTypes.StorageType : Me.Title = My.Resources.txt_NewStorageType
             Case SimpleTypes.Target : Me.Title = My.Resources.txt_NewTarget
         End Select
         Me.Context = Context
+        UnderConstruction = False
+        chkIsDrink_Checked(chkIsDrink, New RoutedEventArgs)
     End Sub
     Private _NewObject As Object
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
@@ -41,7 +44,7 @@ Partial Public Class winNewSimple
                     _NewObject = New Company() With {.CompanyName = txtName.Text, .Description = txtDescription.Text}
                     tbl = Context.Companies
                 Case SimpleTypes.ProductType
-                    _NewObject = New ProductType() With {.ProductTypeName = txtName.Text, .Description = txtDescription.Text, .IsDrink = chkIsDrink.IsChecked}
+                    _NewObject = New ProductType() With {.ProductTypeName = txtName.Text, .Description = txtDescription.Text, .IsDrink = chkIsDrink.IsChecked, .IsAlcoholic = chkIsAlcoholic.IsChecked}
                     tbl = Context.ProductTypes
                 Case SimpleTypes.StorageType
                     _NewObject = New StorageType() With {.Name = txtName.Text, .Description = txtDescription.Text}
@@ -88,4 +91,17 @@ Partial Public Class winNewSimple
         StorageType
         Target
     End Enum
+
+    Private Sub chkIsDrink_Checked(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles chkIsDrink.Checked, chkIsDrink.Unchecked, chkIsDrink.Indeterminate
+        If UnderConstruction Then Exit Sub
+        If chkIsDrink.IsChecked.HasValue AndAlso chkIsDrink.IsChecked.Value Then
+            chkIsAlcoholic.IsEnabled = True
+        ElseIf chkIsDrink.IsChecked.HasValue Then
+            chkIsAlcoholic.IsEnabled = False
+            chkIsAlcoholic.IsChecked = False
+        Else
+            chkIsAlcoholic.IsEnabled = False
+            chkIsAlcoholic.IsChecked = New Boolean?
+        End If
+    End Sub
 End Class

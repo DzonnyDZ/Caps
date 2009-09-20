@@ -83,7 +83,7 @@
         <classShapeMoniker Id="2e494729-52b6-443e-8778-73bcdc46370d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.25 : 2.00525024414063); (9.75 : 2.00525024414063)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.25 : 2.00525024414063); (9.75 : 2.00525024414063)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CapsDataDataContext/Material/Material_CapType" />
       <nodes>
         <classShapeMoniker Id="e1b59061-7b00-4fa6-b13f-5d79e65a38d0" />
@@ -143,7 +143,7 @@
         <classShapeMoniker Id="f59c450a-7d70-4508-86e1-0f1268b2c5a8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9.75 : 3.46875); (8.25 : 3.46875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.75 : 3.46875); (8.25 : 3.46875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CapsDataDataContext/CapType/CapType_Cap" />
       <nodes>
         <classShapeMoniker Id="2e494729-52b6-443e-8778-73bcdc46370d" />
@@ -164,7 +164,7 @@
         <classShapeMoniker Id="5bbd4caa-2af5-4d2c-8323-bc08f37a56c6" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.25 : 2.51050048828125); (7.25 : 3.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.25 : 2.51050048828125); (7.25 : 3.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CapsDataDataContext/Material/Material_Cap" />
       <nodes>
         <classShapeMoniker Id="e1b59061-7b00-4fa6-b13f-5d79e65a38d0" />
@@ -198,14 +198,14 @@
         <elementListCompartment Id="c82703e5-231c-42a8-a0bb-f76d6f43b3ec" absoluteBounds="9.64, 5.21, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(10.84375 : 4.75); (10.84375 : 3.91093180338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10.84375 : 4.75); (10.84375 : 3.91093180338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CapsDataDataContext/Shape/Shape_CapType" />
       <nodes>
         <classShapeMoniker Id="f23ac44b-66e5-4ecc-a5b2-33a07e0e77c5" />
         <classShapeMoniker Id="2e494729-52b6-443e-8778-73bcdc46370d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9.625 : 5.60425048828125); (8.25 : 5.60425048828125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.625 : 5.60425048828125); (8.25 : 5.60425048828125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CapsDataDataContext/Shape/Shape_Cap" />
       <nodes>
         <classShapeMoniker Id="f23ac44b-66e5-4ecc-a5b2-33a07e0e77c5" />
@@ -258,12 +258,18 @@
         <classShapeMoniker Id="bd3c82b9-8735-40a0-b6bc-51fa99966b19" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.625 : 8.10416666666667); (2.96041666666667 : 8.10416666666667); (2.96041666666667 : 1.2); (10.625 : 1.2); (10.625 : 1.5)]" manuallyRouted="true" fixedFrom="Caller" fixedTo="Caller">
+    <associationConnector edgePoints="[(3.625 : 8.10416666666667); (2.96041666666667 : 8.10416666666667); (2.96041666666667 : 1.2); (10.625 : 1.2); (10.625 : 1.5)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CapsDataDataContext/Target/Target_CapType" />
       <nodes>
         <classShapeMoniker Id="52cd490b-897e-4e07-88bd-d4ad3afb0222" />
         <classShapeMoniker Id="2e494729-52b6-443e-8778-73bcdc46370d" />
       </nodes>
     </associationConnector>
+    <classShape Id="ec6e1236-9ece-4d8d-8f4c-fc210a145a8d" absoluteBounds="0.5, 1.875, 2, 1.0961531575520833">
+      <DataClassMoniker Name="/CapsDataDataContext/ISO_3166_1" />
+      <nestedChildShapes>
+        <elementListCompartment Id="38a81c5b-f65a-442d-8ddb-d5663e1ef8cd" absoluteBounds="0.515, 2.335, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

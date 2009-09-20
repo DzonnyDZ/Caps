@@ -64,9 +64,9 @@ Partial Public Class winNewCap
             Cap.BottomText = .BottomText
             Cap.Note = .CapNote
             Cap.Year = .Year
-            If .Country <> "" AndAlso Not .Country Like "[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]" Then _
-                mBox.Modal_PTI(My.Resources.msg_CountryCodeMustBeISO3Code, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : .txtCountryCode.SelectAll() : .txtCountryCode.Focus() : Exit Sub
-            If Cap.CountryCode <> "" Then Cap.CountryCode = .Country
+            'If .Country <> "" AndAlso Not .Country Like "[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]" Then _
+            '    mBox.Modal_PTI(My.Resources.msg_CountryCodeMustBeISO3Code, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : .txtCountryCode.SelectAll() : .txtCountryCode.Focus() : Exit Sub
+            If .Country <> "" Then Cap.CountryCode = .Country
             Cap.Storage = .Storage
             Cap.ProductType = .CapProductType
             Cap.Company = .CapCompany
@@ -74,10 +74,11 @@ Partial Public Class winNewCap
             Cap.HasBottom = .HasBottom
             Cap.HasSide = .HasSide
             Cap.PictureType = .PictureType
-            Cap.CountryOfOrigin = .CountryOfOrigin
+            If .CountryOfOrigin <> "" Then Cap.CountryOfOrigin = .CountryOfOrigin
             Cap.IsDrink = .IsDrink
             Cap.State = .State
             Cap.Target = .Target
+            Cap.IsAlcoholic = .IsAlcoholic
             'Categories
             Dim CreatedDBCatInts As New List(Of Cap_Category_Int)
             If .SelectedCategories IsNot Nothing Then

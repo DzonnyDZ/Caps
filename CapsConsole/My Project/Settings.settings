@@ -2,13 +2,13 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="" GeneratedClassName="MySettings" UseMySettingsClassName="true">
   <Profiles />
   <Settings>
-    <Setting Name="CapsDataConnectionString" Type="(Connection string)" Scope="User">
+    <Setting Name="CapsDataConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=.\SQLEXPRESS2008;AttachDbFilename=D:\Users\Honza\Documents\Programy\Caps\CapsData.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=.\SQLEXPRESS;AttachDbFilename="C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf";Integrated Security=True;Connect Timeout=30;User Instance=True&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=.\SQLEXPRESS2008;AttachDbFilename=D:\Users\Honza\Documents\Programy\Caps\CapsData.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True</Value>
+      <Value Profile="(Default)">Data Source=.\SQLEXPRESS;AttachDbFilename="C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf";Integrated Security=True;Connect Timeout=30;User Instance=True</Value>
     </Setting>
     <Setting Name="ImageRoot" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -19,13 +19,16 @@
     <Setting Name="Version" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="UserConnectionString" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
     <Setting Name="CapsDataConnectionString1" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=DZONNY\SQLEXPRESS;AttachDbFilename="C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf";Initial Catalog=CapsData;Integrated Security=True;User Instance=True&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=.\SQLEXPRESS;AttachDbFilename="C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf";Integrated Security=True&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=DZONNY\SQLEXPRESS;AttachDbFilename="C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf";Initial Catalog=CapsData;Integrated Security=True;User Instance=True</Value>
+      <Value Profile="(Default)">Data Source=.\SQLEXPRESS;AttachDbFilename="C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf";Integrated Security=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -53,18 +53,16 @@ Partial Public NotInheritable Class MySettings
         End Get
     End Property
     
-    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("Data Source=.\SQLEXPRESS2008;AttachDbFilename=D:\Users\Honza\Documents\Programy\C"& _ 
-        "aps\CapsData.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True")>  _
-    Public Property CapsDataConnectionString() As String
+     Global.System.Configuration.DefaultSettingValueAttribute("Data Source=.\SQLEXPRESS;AttachDbFilename=""C:\Documents and Settings\Honza\Dokume"& _ 
+        "nty\Programy\Caps\CapsData.mdf"";Integrated Security=True;Connect Timeout=30;User"& _ 
+        " Instance=True")>  _
+    Public ReadOnly Property CapsDataConnectionString() As String
         Get
             Return CType(Me("CapsDataConnectionString"),String)
         End Get
-        Set
-            Me("CapsDataConnectionString") = value
-        End Set
     End Property
     
     <Global.System.Configuration.UserScopedSettingAttribute(),  _
@@ -103,12 +101,23 @@ Partial Public NotInheritable Class MySettings
         End Set
     End Property
     
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+    Public Property UserConnectionString() As String
+        Get
+            Return CType(Me("UserConnectionString"),String)
+        End Get
+        Set
+            Me("UserConnectionString") = value
+        End Set
+    End Property
+    
     <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-     Global.System.Configuration.DefaultSettingValueAttribute("Data Source=DZONNY\SQLEXPRESS;AttachDbFilename=""C:\Documents and Settings\Honza\D"& _ 
-        "okumenty\Programy\Caps\CapsData.mdf"";Initial Catalog=CapsData;Integrated Securit"& _ 
-        "y=True;User Instance=True")>  _
+     Global.System.Configuration.DefaultSettingValueAttribute("Data Source=.\SQLEXPRESS;AttachDbFilename=""C:\Documents and Settings\Honza\Dokume"& _ 
+        "nty\Programy\Caps\CapsData.mdf"";Integrated Security=True")>  _
     Public ReadOnly Property CapsDataConnectionString1() As String
         Get
             Return CType(Me("CapsDataConnectionString1"),String)

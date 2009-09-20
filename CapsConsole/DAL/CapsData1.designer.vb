@@ -133,6 +133,12 @@ Partial Public Class CapsDataDataContext
     End Sub
   Partial Private Sub DeleteCapInstance(instance As CapInstance)
     End Sub
+  Partial Private Sub InsertISO_3166_1(instance As ISO_3166_1)
+    End Sub
+  Partial Private Sub UpdateISO_3166_1(instance As ISO_3166_1)
+    End Sub
+  Partial Private Sub DeleteISO_3166_1(instance As ISO_3166_1)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -261,6 +267,22 @@ Partial Public Class CapsDataDataContext
 			Return Me.GetTable(Of CapInstance)
 		End Get
 	End Property
+	
+	Public ReadOnly Property ISO_3166_1s() As System.Data.Linq.Table(Of ISO_3166_1)
+		Get
+			Return Me.GetTable(Of ISO_3166_1)
+		End Get
+	End Property
+	
+	<FunctionAttribute(Name:="dbo.GetDatabaseVersion", IsComposable:=true)>  _
+	Public Function GetDatabaseVersion() As String
+		Return CType(Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo)).ReturnValue,String)
+	End Function
+	
+	<FunctionAttribute(IsComposable:=true)>  _
+	Public Function NewID() As System.Nullable(Of System.Guid)
+		Return CType(Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo)).ReturnValue,System.Nullable(Of System.Guid))
+	End Function
 End Class
 
 <Table(Name:="dbo.Cap_Category_Int")>  _
@@ -1775,6 +1797,8 @@ Partial Public Class ProductType
 	
 	Private _IsDrink As System.Nullable(Of Boolean)
 	
+	Private _IsAlcoholic As System.Nullable(Of Boolean)
+	
 	Private _Products As EntitySet(Of Product)
 	
 	Private _Caps As EntitySet(Of Cap)
@@ -1797,6 +1821,10 @@ Partial Public Class ProductType
     Partial Private Sub OnIsDrinkChanging(value As System.Nullable(Of Boolean))
     End Sub
     Partial Private Sub OnIsDrinkChanged()
+    End Sub
+    Partial Private Sub OnIsAlcoholicChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnIsAlcoholicChanged()
     End Sub
     #End Region
 	
@@ -1858,6 +1886,22 @@ Partial Public Class ProductType
 				Me._IsDrink = value
 				Me.SendPropertyChanged("IsDrink")
 				Me.OnIsDrinkChanged
+			End If
+		End Set
+	End Property
+	
+	<Column(Storage:="_IsAlcoholic", DbType:="Bit")>  _
+	Public Property IsAlcoholic() As System.Nullable(Of Boolean)
+		Get
+			Return Me._IsAlcoholic
+		End Get
+		Set
+			If (Me._IsAlcoholic.Equals(value) = false) Then
+				Me.OnIsAlcoholicChanging(value)
+				Me.SendPropertyChanging
+				Me._IsAlcoholic = value
+				Me.SendPropertyChanged("IsAlcoholic")
+				Me.OnIsAlcoholicChanged
 			End If
 		End Set
 	End Property
@@ -2311,6 +2355,8 @@ Partial Public Class Cap
 	
 	Private _State As Short
 	
+	Private _IsAlcoholic As System.Nullable(Of Boolean)
+	
 	Private _Cap_Category_Ints As EntitySet(Of Cap_Category_Int)
 	
 	Private _Cap_Keyword_Ints As EntitySet(Of Cap_Keyword_Int)
@@ -2483,6 +2529,10 @@ Partial Public Class Cap
     Partial Private Sub OnStateChanging(value As Short)
     End Sub
     Partial Private Sub OnStateChanged()
+    End Sub
+    Partial Private Sub OnIsAlcoholicChanging(value As System.Nullable(Of Boolean))
+    End Sub
+    Partial Private Sub OnIsAlcoholicChanged()
     End Sub
     #End Region
 	
@@ -3113,6 +3163,22 @@ Partial Public Class Cap
 				Me._State = value
 				Me.SendPropertyChanged("State")
 				Me.OnStateChanged
+			End If
+		End Set
+	End Property
+	
+	<Column(Storage:="_IsAlcoholic", DbType:="Bit")>  _
+	Public Overridable Property IsAlcoholic() As System.Nullable(Of Boolean)
+		Get
+			Return Me._IsAlcoholic
+		End Get
+		Set
+			If (Me._IsAlcoholic.Equals(value) = false) Then
+				Me.OnIsAlcoholicChanging(value)
+				Me.SendPropertyChanging
+				Me._IsAlcoholic = value
+				Me.SendPropertyChanged("IsAlcoholic")
+				Me.OnIsAlcoholicChanged
 			End If
 		End Set
 	End Property
@@ -3789,9 +3855,9 @@ Partial Public Class Target
 	
 	Private _Description As String
 	
-	Private _Caps As EntitySet(Of Cap)
-	
 	Private _CapTypes As EntitySet(Of CapType)
+	
+	Private _Caps As EntitySet(Of Cap)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -3812,8 +3878,8 @@ Partial Public Class Target
 	
 	Public Sub New()
 		MyBase.New
-		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
 		Me._CapTypes = New EntitySet(Of CapType)(AddressOf Me.attach_CapTypes, AddressOf Me.detach_CapTypes)
+		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
 		OnCreated
 	End Sub
 	
@@ -3856,16 +3922,6 @@ Partial Public Class Target
 		End Set
 	End Property
 	
-	<Association(Name:="Target_Cap", Storage:="_Caps", ThisKey:="TargetID", OtherKey:="TargetID")>  _
-	Public Property Caps() As EntitySet(Of Cap)
-		Get
-			Return Me._Caps
-		End Get
-		Set
-			Me._Caps.Assign(value)
-		End Set
-	End Property
-	
 	<Association(Name:="Target_CapType", Storage:="_CapTypes", ThisKey:="TargetID", OtherKey:="TargetID")>  _
 	Public Property CapTypes() As EntitySet(Of CapType)
 		Get
@@ -3873,6 +3929,16 @@ Partial Public Class Target
 		End Get
 		Set
 			Me._CapTypes.Assign(value)
+		End Set
+	End Property
+	
+	<Association(Name:="Target_Cap", Storage:="_Caps", ThisKey:="TargetID", OtherKey:="TargetID")>  _
+	Public Property Caps() As EntitySet(Of Cap)
+		Get
+			Return Me._Caps
+		End Get
+		Set
+			Me._Caps.Assign(value)
 		End Set
 	End Property
 	
@@ -3894,22 +3960,22 @@ Partial Public Class Target
 		End If
 	End Sub
 	
-	Private Sub attach_Caps(ByVal entity As Cap)
-		Me.SendPropertyChanging
-		entity.Target = Me
-	End Sub
-	
-	Private Sub detach_Caps(ByVal entity As Cap)
-		Me.SendPropertyChanging
-		entity.Target = Nothing
-	End Sub
-	
 	Private Sub attach_CapTypes(ByVal entity As CapType)
 		Me.SendPropertyChanging
 		entity.Target = Me
 	End Sub
 	
 	Private Sub detach_CapTypes(ByVal entity As CapType)
+		Me.SendPropertyChanging
+		entity.Target = Nothing
+	End Sub
+	
+	Private Sub attach_Caps(ByVal entity As Cap)
+		Me.SendPropertyChanging
+		entity.Target = Me
+	End Sub
+	
+	Private Sub detach_Caps(ByVal entity As Cap)
 		Me.SendPropertyChanging
 		entity.Target = Nothing
 	End Sub
@@ -4135,6 +4201,89 @@ Partial Public Class CapInstance
 					Me._StorageID = CType(Nothing, Integer)
 				End If
 				Me.SendPropertyChanged("Storage")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Table(Name:="dbo.[ISO 3166-1]")>  _
+Partial Public Class ISO_3166_1
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _Alpha_2 As String
+	
+	Private _Alpha_3 As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnAlpha_2Changing(value As String)
+    End Sub
+    Partial Private Sub OnAlpha_2Changed()
+    End Sub
+    Partial Private Sub OnAlpha_3Changing(value As String)
+    End Sub
+    Partial Private Sub OnAlpha_3Changed()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Column(Name:="[Alpha-2]", Storage:="_Alpha_2", DbType:="Char(2) NOT NULL", CanBeNull:=false, IsPrimaryKey:=true)>  _
+	Public Property Alpha_2() As String
+		Get
+			Return Me._Alpha_2
+		End Get
+		Set
+			If (String.Equals(Me._Alpha_2, value) = false) Then
+				Me.OnAlpha_2Changing(value)
+				Me.SendPropertyChanging
+				Me._Alpha_2 = value
+				Me.SendPropertyChanged("Alpha_2")
+				Me.OnAlpha_2Changed
+			End If
+		End Set
+	End Property
+	
+	<Column(Name:="[Alpha-3]", Storage:="_Alpha_3", DbType:="Char(3) NOT NULL", CanBeNull:=false)>  _
+	Public Property Alpha_3() As String
+		Get
+			Return Me._Alpha_3
+		End Get
+		Set
+			If (String.Equals(Me._Alpha_3, value) = false) Then
+				Me.OnAlpha_3Changing(value)
+				Me.SendPropertyChanging
+				Me._Alpha_3 = value
+				Me.SendPropertyChanged("Alpha_3")
+				Me.OnAlpha_3Changed
 			End If
 		End Set
 	End Property

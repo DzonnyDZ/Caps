@@ -11,12 +11,48 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
     <UserControl.Resources>
         <my:NullFalseConverter x:Key="NullFalseConverter"/>
         <my:MyImageIDConverter x:Key="MyImageIDConverter"/>
+        <my:GetCapsOfConverter x:Key="GetCapsOfConverter"/>
+        <my:CapImageConverter x:Key="CapImageConverter"/>
+                  
+        <Style TargetType="ItemsControl" x:Key="ToolTipImageList">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" IsItemsHost="True"
+                                    ScrollViewer.CanContentScroll="False" Height="auto"
+                                    Width="auto" MaxHeight="72"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                                    ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Image Source="{Binding Path=Images[0].RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay}"
+                               MaxWidth="72" MaxHeight="72" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>    
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+                          
                   
         <Style TargetType="ComboBox" x:Key="ShapeTemplate" BasedOn="{StaticResource GenericComboBoxTemplate}">
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch" ToolTip="{Binding Description}">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ToolTip>
+                                <Grid ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="auto"/></Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions><RowDefinition Height="auto"/><RowDefinition Height="auto"/></Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Description, Mode=OneWay}" HorizontalAlignment="Left" TextAlignment="Left" Grid.Column="0" Grid.Row="0" Height="auto"/>
+                                    <ItemsControl  Style="{StaticResource ToolTipImageList}" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Converter={StaticResource GetCapsOfConverter}, ConverterParameter=6}"/>
+                                </Grid>
+                            </Grid.ToolTip>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="16" />
                                 <ColumnDefinition Width="*" />
@@ -38,7 +74,15 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch" ToolTip="{Binding Description}">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ToolTip>
+                                <Grid ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="auto"/></Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions><RowDefinition Height="auto"/><RowDefinition Height="auto"/></Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Description, Mode=OneWay}" HorizontalAlignment="Left" TextAlignment="Left" Grid.Column="0" Grid.Row="0" Height="auto"/>
+                                    <ItemsControl Style="{StaticResource ToolTipImageList}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Converter={StaticResource GetCapsOfConverter}, ConverterParameter=6}"/>
+                                </Grid>
+                            </Grid.ToolTip>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="16"/>
                                 <ColumnDefinition Width="*"/>
@@ -60,7 +104,15 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch"  ToolTip="{Binding Description}">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ToolTip>
+                                <Grid ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="auto"/></Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions><RowDefinition Height="auto"/><RowDefinition Height="auto"/></Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Description, Mode=OneWay}" HorizontalAlignment="Left" TextAlignment="Left" Grid.Column="0" Grid.Row="0" Height="auto"/>
+                                    <ItemsControl Style="{StaticResource ToolTipImageList}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Converter={StaticResource GetCapsOfConverter}, ConverterParameter=6}"/>
+                                </Grid>
+                            </Grid.ToolTip>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="16"/>
                                 <ColumnDefinition Width="*"/>
@@ -82,7 +134,15 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch"  ToolTip="{Binding Description}">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ToolTip>
+                               <Grid ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                    <Grid.ColumnDefinitions><ColumnDefinition Width="auto"/></Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions><RowDefinition Height="auto"/><RowDefinition Height="auto"/></Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Description, Mode=OneWay}" HorizontalAlignment="Left" TextAlignment="Left" Grid.Column="0" Grid.Row="0" Height="auto"/>
+                                    <ItemsControl Style="{StaticResource ToolTipImageList}" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" ItemsSource="{Binding Converter={StaticResource GetCapsOfConverter}, ConverterParameter=6}"/>
+                                </Grid>
+                            </Grid.ToolTip>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="auto"/>
@@ -416,7 +476,7 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                     <CheckBox Name="chkHasBottom" Content="{x:Static res:Resources.lbl_HasBottom}" Margin="0,0,5,0"/>
                     <CheckBox Name="chkHasSide" Content="{x:Static res:Resources.lbl_HasSide}" Margin="5,0,0,0"/>
                 </StackPanel>
-                <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_CapState}" ToolTip="tot_CapState" />
+                <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_CapState}" ToolTip="{x:Static res:Resources.tot_CapState}" />
                 <Tools:NumericUpDown Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Stretch" Minimum="1" Maximum="5" Value="1" ToolTip="{x:Static res:Resources.tot_CapState}" Grid.ColumnSpan="2" Name="nudCapState"/>
             </Grid>
         </GroupBox>
@@ -463,7 +523,10 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Company}"/>
                 <ComboBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbCompany" Style="{StaticResource CompanyTemplate}" SelectedValuePath="CompanyID" />
                 <Button Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="btnNewCompany" Content="{x:Static res:Resources.cmd_New}"/>
-                <CheckBox Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Name="chkIsDrink" IsThreeState="True" Content="{x:Static res:Resources.lbl_IsDrink}" Grid.Row="3" />
+                <StackPanel Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Orientation="Horizontal">
+                    <CheckBox VerticalAlignment="Center" Name="chkIsDrink" IsThreeState="True" Content="{x:Static res:Resources.lbl_IsDrink}" IsChecked="{x:Null}" />
+                    <CheckBox VerticalAlignment="Center" Name="chkIsAlcoholic" IsThreeState="True" Content="{x:Static res:Resources.lbl_IsAlcoholic}" IsChecked="{x:Null}" />
+               </StackPanel>
             </Grid>
 
         </GroupBox>
@@ -477,10 +540,10 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ListBox  Grid.Column="0" Grid.Row="0" Name="lstCategories" MinHeight="48pt" Height="auto" MaxHeight="96pt" TextSearch.TextPath="Category.CategoryName" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <ListBox.ItemTemplate>
+                <ItemsControl  Grid.Column="0" Grid.Row="0" Name="lstCategories" MinHeight="48pt" Height="auto" MaxHeight="96pt" TextSearch.TextPath="Category.CategoryName" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" IsTabStop="False" >
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding Checked, Mode=TwoWay}"  ToolTip="{Binding Category.Description}" Checked="lstCategories_CheckedChanged" Unchecked="lstCategories_CheckedChanged"  >
+                            <CheckBox IsChecked="{Binding Checked, Mode=TwoWay}"  ToolTip="{Binding Category.Description}" Checked="lstCategories_CheckedChanged" Unchecked="lstCategories_CheckedChanged" >
                                 <CheckBox.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding Category.CategoryName, Mode=OneWay}" Margin="0,0,3,0"/>
@@ -491,13 +554,13 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                                 </CheckBox.Content>
                             </CheckBox>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    <ListBox.ItemsPanel>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Horizontal" IsItemsHost="True" />
                         </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                </ListBox>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
                 <Button Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Name="btnNewCategory" Content="{x:Static res:Resources.cmd_NewCategory}"/>
                 <wfi:WindowsFormsHost Grid.Column="0" Grid.Row="2" Height="auto" HorizontalAlignment="Stretch" MinHeight="100">
                     <ToolsWF:KeyWordsEditor Dock="Fill" Name="kweKeywords" x:Name="kweKeywords" ThesaurusButtonState="Hidden" MergeButtonState="Hidden" StatusState="Hidden"/>

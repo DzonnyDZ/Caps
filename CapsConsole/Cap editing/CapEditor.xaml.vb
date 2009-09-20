@@ -11,10 +11,14 @@ Partial Public Class CapEditor
     Private OriginalContext As New CapsDataDataContext(Main.Connection)
     ''' <summary>Contains value of the <see cref="Context"/> proeprty</summary>
     Private _Context As CapsDataDataContext = OriginalContext
+    Private UnderConstruction As Boolean = True
     ''' <summary>CTor</summary>
     Public Sub New()
         InitializeComponent()
         Images = New ListWithEvents(Of Image)()
+        DirectCast(Me.Resources("GetCapsOfConverter"), GetCapsOfConverter).Context = OriginalContext
+        UnderConstruction = False
+        chkIsDrink_CheckedChanged(chkIsDrink, New RoutedEventArgs())
     End Sub
     ''' <summary>Database context</summary>
     ''' <exception cref="ArgumentNullException">Value being set is null</exception>
@@ -28,6 +32,7 @@ Partial Public Class CapEditor
                 OriginalContext.Dispose()
                 OriginalContext = Nothing
             End If
+            DirectCast(Me.Resources("GetCapsOfConverter"), GetCapsOfConverter).Context = value
             _Context = value
         End Set
     End Property
@@ -303,41 +308,45 @@ Partial Public Class CapEditor
             Next
         End If
         Dim ta As New HelperDataSetTableAdapters.GetSimilarCapsTableAdapter With {.Connection = Main.Connection}
-        Dim DELETEASAP = ta.GetSimilarCaps( _
-               If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
-               If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
-               If(cmbShape.SelectedItem IsNot Nothing, DirectCast(cmbShape.SelectedItem, Shape).ShapeID, Nothing), _
-               txtCapName.Text, _
-               txtMainText.Text, _
-               txtSubTitle.Text, _
-               copBackground.Color.ToArgb, _
-               copSecondaryBackground.Color.ToArgb, _
-               copForeground.Color.ToArgb, _
-               txtMainPicture.Text, _
-               txtTopText.Text, _
-               txtSideText.Text, _
-               txtBottomText.Text, _
-               If(cmbMaterial.SelectedItem IsNot Nothing, DirectCast(cmbMaterial.SelectedItem, Material).MaterialID, Nothing), _
-               If(optMatting.IsChecked, "M"c, If(optGlossy.IsChecked, "G"c, Nothing)), _
-               nudSize1.Value, _
-               If(cmbShape.SelectedItem IsNot Nothing AndAlso DirectCast(cmbShape.SelectedItem, Shape).Size2Name IsNot Nothing, nudSize2.Value, Nothing), _
-               nudHeight.Value, _
-               chk3D.IsChecked, _
-               If(nudYear.Value = 0, Nothing, nudYear.Value), _
-               If(txtCountryCode.Text <> "", txtCountryCode.Text, Nothing), _
-               txtNote.Text, _
-               If(cmbCompany.SelectedItem IsNot Nothing, DirectCast(cmbCompany.SelectedItem, Company).CompanyID, Nothing), _
-               If(optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem IsNot Nothing, DirectCast(cmbProduct.SelectedItem, Product).ProductID, Nothing), _
-               If(cmbProductType.SelectedItem IsNot Nothing, DirectCast(cmbProductType.SelectedItem, ProductType).ProductTypeID, Nothing), _
-               If(cmbStorage.SelectedItem IsNot Nothing, DirectCast(cmbStorage.SelectedItem, Storage).StorageID, Nothing), _
-               copForeground2.Color.ToArgb, _
-               If(cmbPictureType.SelectedItem Is cmiImageGeometry, "G"c, If(cmbPictureType.SelectedItem Is cmiImageLogo, "L"c, If(cmbPictureType.SelectedItem Is cmiImageDrawing, "D"c, If(cmbPictureType.SelectedItem Is cmiImagePhoto, "P"c, Nothing)))), _
-               chkHasBottom.IsChecked, _
-               chkHasSide.IsChecked, _
-               txtAnotherPictures.Text, _
-               srchCategories, _
-               srchKeywords _
-        )
+        'Dim DELETEASAP = ta.GetSimilarCaps( _
+        '       If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
+        '       If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
+        '       If(cmbShape.SelectedItem IsNot Nothing, DirectCast(cmbShape.SelectedItem, Shape).ShapeID, Nothing), _
+        '       txtCapName.Text, _
+        '       txtMainText.Text, _
+        '       txtSubTitle.Text, _
+        '       copBackground.Color.ToArgb, _
+        '       copSecondaryBackground.Color.ToArgb, _
+        '       copForeground.Color.ToArgb, _
+        '       txtMainPicture.Text, _
+        '       txtTopText.Text, _
+        '       txtSideText.Text, _
+        '       txtBottomText.Text, _
+        '       If(cmbMaterial.SelectedItem IsNot Nothing, DirectCast(cmbMaterial.SelectedItem, Material).MaterialID, Nothing), _
+        '       If(optMatting.IsChecked, "M"c, If(optGlossy.IsChecked, "G"c, Nothing)), _
+        '       nudSize1.Value, _
+        '       If(cmbShape.SelectedItem IsNot Nothing AndAlso DirectCast(cmbShape.SelectedItem, Shape).Size2Name IsNot Nothing, nudSize2.Value, Nothing), _
+        '       nudHeight.Value, _
+        '       chk3D.IsChecked, _
+        '       If(nudYear.Value = 0, Nothing, nudYear.Value), _
+        '       If(txtCountryCode.Text <> "", txtCountryCode.Text, Nothing), _
+        '       txtNote.Text, _
+        '       If(cmbCompany.SelectedItem IsNot Nothing, DirectCast(cmbCompany.SelectedItem, Company).CompanyID, Nothing), _
+        '       If(optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem IsNot Nothing, DirectCast(cmbProduct.SelectedItem, Product).ProductID, Nothing), _
+        '       If(cmbProductType.SelectedItem IsNot Nothing, DirectCast(cmbProductType.SelectedItem, ProductType).ProductTypeID, Nothing), _
+        '       If(cmbStorage.SelectedItem IsNot Nothing, DirectCast(cmbStorage.SelectedItem, Storage).StorageID, Nothing), _
+        '       copForeground2.Color.ToArgb, _
+        '       If(cmbPictureType.SelectedItem Is cmiImageGeometry, "G"c, If(cmbPictureType.SelectedItem Is cmiImageLogo, "L"c, If(cmbPictureType.SelectedItem Is cmiImageDrawing, "D"c, If(cmbPictureType.SelectedItem Is cmiImagePhoto, "P"c, Nothing)))), _
+        '       chkHasBottom.IsChecked, _
+        '       chkHasSide.IsChecked, _
+        '       txtAnotherPictures.Text, _
+        '       srchCategories, _
+        '       srchKeywords, _
+        '       txtCountryOfOrigin.Text, _
+        '       chkIsDrink.IsChecked, _
+        '       nudCapState.Value, _
+        '       If(cmbTarget.SelectedItem Is Nothing, New Integer?(), DirectCast(cmbTarget.SelectedItem, Target).TargetID) _
+        ')
         Dim SearchResults = ta.ReadSimilarCaps( _
                If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
                If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
@@ -371,7 +380,12 @@ Partial Public Class CapEditor
                chkHasSide.IsChecked, _
                txtAnotherPictures.Text, _
                srchCategories, _
-               srchKeywords _
+               srchKeywords, _
+               txtCountryOfOrigin.Text, _
+               chkIsDrink.IsChecked, _
+               nudCapState.Value, _
+               If(cmbTarget.SelectedItem Is Nothing, New Integer?(), DirectCast(cmbTarget.SelectedItem, Target).TargetID), _
+               chkIsAlcoholic.IsChecked _
         )
         
         Dim caps = Context.Translate(Of Cap)(SearchResults)
@@ -1024,7 +1038,8 @@ Partial Public Class CapEditor
         If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
         If value Is Nothing Then Return Nothing
         Dim val = TypeTools.DynamicCast(Of Short)(value)
-        If val < 1 OrElse val > 5 Then Throw New ArgumentOutOfRangeException("value")
+        If val < 1 Then Return 1S
+        If val > 5 Then Return 5S
         Return val
     End Function
     ''' <summary>Called when value of the property <see cref="State"/> is changed</summary>
@@ -1343,7 +1358,7 @@ Partial Public Class CapEditor
     End Sub
 #End Region
 #Region "IsDrink"
-    ''' <summary>Gets or sets valkue indicating if cap has 3D surface</summary>
+    ''' <summary>Gets or sets valkue indicating if product is drink</summary>
     <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
     Public Property IsDrink() As Boolean?
         <DebuggerStepThrough()> Get
@@ -1367,10 +1382,51 @@ Partial Public Class CapEditor
     ''' <summary>Called when value of the <see cref="IsDrink"/> property changes</summary>
     ''' <param name="e">Event arguments</param>
     Protected Overridable Sub OnIsDrinkChanged(ByVal e As DependencyPropertyChangedEventArgs)
-        chk3D.IsChecked = IsDrink
+        chkIsDrink.IsChecked = IsDrink
     End Sub
-    Private Sub txtIsDrink_TextChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles chk3D.Checked, chk3D.Unchecked
-        IsDrink = chk3D.IsChecked
+    Private Sub chkIsDrink_CheckedChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles chkIsDrink.Checked, chkIsDrink.Unchecked, chkIsDrink.Indeterminate
+        IsDrink = chkIsDrink.IsChecked
+        If UnderConstruction Then Exit Sub
+        If chkIsDrink.IsChecked.HasValue AndAlso chkIsDrink.IsChecked.Value Then
+            chkIsAlcoholic.IsEnabled = True
+        ElseIf chkIsDrink.IsChecked.HasValue AndAlso Not chkIsDrink.IsChecked.Value Then
+            chkIsAlcoholic.IsEnabled = False
+            chkIsAlcoholic.IsChecked = False
+        Else
+            chkIsAlcoholic.IsEnabled = False
+            chkIsAlcoholic.IsChecked = New Boolean?
+        End If
+    End Sub
+#End Region
+#Region "IsAlcoholic"
+    ''' <summary>Gets or sets valkue indicating if product is alcoholic drink</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property IsAlcoholic() As Boolean?
+        <DebuggerStepThrough()> Get
+            Return GetValue(IsAlcoholicProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As Boolean?)
+            SetValue(IsAlcoholicProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="IsAlcoholic"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly IsAlcoholicProperty As DependencyProperty = DependencyProperty.Register("IsAlcoholic", GetType(Boolean?), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnIsAlcoholicChanged))
+    ''' <summary>Called when value of the property <see cref="IsAlcoholic"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnIsAlcoholicChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnIsAlcoholicChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="IsAlcoholic"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnIsAlcoholicChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        chkIsAlcoholic.IsChecked = IsAlcoholic
+    End Sub
+    Private Sub chkIsAlcoholic_CheckedChanged(ByVal sender As Object, ByVal e As RoutedEventArgs) Handles chkIsAlcoholic.Checked, chkIsAlcoholic.Unchecked, chkIsAlcoholic.Indeterminate
+        IsAlcoholic = chkIsAlcoholic.IsChecked
     End Sub
 #End Region
 #Region "IsGlossy"
@@ -2031,7 +2087,12 @@ Partial Public Class CapEditor
         cmbProductType.SelectedItem = CapProductType
     End Sub
     Private Sub cmbCapProductType_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbProductType.SelectionChanged
-        If cmbProductType.SelectedItem IsNot Nothing Then chkIsDrink.IsChecked = DirectCast(cmbProduct.SelectedItem, ProductType).IsDrink
+        If cmbProductType.SelectedItem IsNot Nothing Then
+            With DirectCast(cmbProductType.SelectedItem, ProductType)
+                chkIsDrink.IsChecked = .IsDrink
+                chkIsAlcoholic.IsChecked = .IsAlcoholic
+            End With
+        End If
         CapProductType = cmbProductType.SelectedItem
     End Sub
 #End Region
@@ -2323,7 +2384,16 @@ Partial Public Class CapEditor
     ''' <param name="NewType">Newly created cap type</param>
     Public Sub CopyTypeImage(ByVal NewType As CapType)
         If IO.File.Exists(CapTypeImagePath) Then
-            Dim targpath = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "CapType"), NewType.CapTypeID.ToString(System.Globalization.CultureInfo.InvariantCulture) & ".png")
+            Dim CapTypeDir = IO.Path.Combine(My.Settings.ImageRoot, "CapType")
+            If Not IO.Directory.Exists(CapTypeDir) Then
+                Try
+                    IO.Directory.CreateDirectory(CapTypeDir)
+                Catch ex As Exception
+                    mBox.MsgBox(My.Resources.err_CreatingDirectoryCapType.f(CapTypeDir, vbCrLf, ex.Message), MsgBoxStyle.Exclamation, My.Resources.txt_CopyFile)
+                    Exit Sub
+                End Try
+            End If
+            Dim targpath = IO.Path.Combine(CapTypeDir, NewType.CapTypeID.ToString(System.Globalization.CultureInfo.InvariantCulture) & ".png")
             If Not IO.File.Exists(targpath) OrElse mBox.MsgBox(My.Resources.msg_CapImageExistsOverwrite.f(CapTypeImagePath), MsgBoxStyle.Question Or MsgBoxStyle.YesNo, My.Resources.txt_OwervriteFile) = MsgBoxResult.Yes Then
                 Try
                     IO.File.Copy(CapTypeImagePath, targpath)
@@ -2367,6 +2437,20 @@ Partial Public Class CapEditor
         Dim folOrig = IO.Path.Combine(My.Settings.ImageRoot, "original")
         Dim fol64 = IO.Path.Combine(My.Settings.ImageRoot, "64_64")
         Dim fol256 = IO.Path.Combine(My.Settings.ImageRoot, "256_256")
+        Dim FolTBC = folOrig
+TryCreateDirsIfNotExist: Try
+            If Not IO.Directory.Exists(folOrig) Then IO.Directory.CreateDirectory(folOrig)
+            FolTBC = fol64
+            If Not IO.Directory.Exists(fol64) Then IO.Directory.CreateDirectory(fol64)
+            FolTBC = fol256
+            If Not IO.Directory.Exists(fol256) Then IO.Directory.CreateDirectory(fol256)
+        Catch ex As Exception
+            If mBox.Error_XPTIBWO(ex, "Error creating folder {0}".f(FolTBC), ex.GetType.Name, , WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Retry Or WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Abort) = Forms.DialogResult.Retry Then
+                GoTo TryCreateDirsIfNotExist
+            Else
+                Return Nothing
+            End If
+        End Try
         Dim CreatedFiles As New List(Of String)
         Dim Exception As Exception = Nothing
         Try
@@ -2413,11 +2497,19 @@ CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
                         For Each NewKw In keywords
                             If Not keywords.Contains(NewKw) Then keywords.Add(NewKw)
                         Next
-                        For Each cat As Category In SelectedCategories
-                            keywords.Add(cat.CategoryName)
-                        Next
+                        If SelectedCategories IsNot Nothing Then
+                            For Each cat As Category In SelectedCategories
+                                keywords.Add(cat.CategoryName)
+                            Next
+                        End If
                         IPTC.Keywords = keywords.ToArray
-                        If Country <> "" Then IPTC.CountryPrimaryLocationCode = Country
+                        If Country <> "" Then
+                            Dim cox As New CapsDataDataContext(Main.Connection)
+                            Dim Code = (From c In cox.ISO_3166_1s Where c.Alpha_2 = Country Select c.Alpha_3).FirstOrDefault
+                            If Code IsNot Nothing Then
+                                IPTC.CountryPrimaryLocationCode = Code
+                            End If
+                        End If
                         IPTC.ObjectName = CapName
                         If MainText <> "" Then IPTC.Headline = MainText
                         If TopText <> "" OrElse SideText <> "" OrElse BottomText <> "" Then

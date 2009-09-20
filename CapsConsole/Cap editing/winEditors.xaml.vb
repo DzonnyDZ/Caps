@@ -26,9 +26,10 @@ Partial Public Class winEditors
         cmcProduct_Company.ItemsSource = CapsContext.Companies
         cmcProduct_ProductType.ItemsSource = CapsContext.ProductTypes
         cmcStorage_StorageType.ItemsSource = CapsContext.StorageTypes
+        cmcTypes_Target.ItemsSource = CapsContext.Targets
     End Sub
 
-    Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
+    Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
         Try
             CapsContext.SubmitChanges()
         Catch ex As Exception
@@ -49,4 +50,5 @@ Partial Public Class winEditors
             mBox.Error_X(ex)
         End Try
     End Sub
+
 End Class

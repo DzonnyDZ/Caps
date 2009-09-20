@@ -29,36 +29,55 @@ Public Class pgSummary
                     Select Case data.FileConnectionType
                         Case FileConnectionType.Existing 'Test connection to file
                             testOnly = True
-                            Using New SqlConnection(b.ToString)
+                            Using Connection As SqlConnection = New SqlConnection(b.ToString)
                                 Connection.Open()
+                                If Not VerifyDatabaseVersion(Connection) Then
+                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError)
+                                    'TODO: Upgrade?
+                                    Exit Sub
+                                End If
                             End Using
                         Case FileConnectionType.New 'Create new database file to attach
+                            'TODO: Create file and create database in there
                     End Select
                 Case DatabaseType.ServerDatabase
                     Select Case data.DatabaseConnectionType
                         Case DatabaseConnectionType.New 'Create a new database
+                            'TODO: Create database and create database in threre
                         Case DatabaseConnectionType.Empty  'Create structures in exisitng database
+                            'TODO: Create database inthere
                         Case DatabaseConnectionType.Existing  'Test connection to database
                             testOnly = True
-                            Using New SqlConnection(b.ToString)
+                            Using Connection As SqlConnection = New SqlConnection(b.ToString)
                                 Connection.Open()
+                                If Not VerifyDatabaseVersion(Connection) Then
+                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError)
+                                    'TODO: Upgrade?
+                                    Exit Sub
+                                End If
                             End Using
                     End Select
                 Case DatabaseType.UserInstance
                     Select Case data.FileConnectionType
                         Case FileConnectionType.New  'Create a new databse file using User Instance
+                            'TODO: Create file and create database there
                         Case FileConnectionType.Existing 'Test connection to user instance
                             testOnly = True
-                            Using New SqlConnection(b.ToString)
+                            Using Connection As SqlConnection = New SqlConnection(b.ToString)
                                 Connection.Open()
+                                If Not VerifyDatabaseVersion(Connection) Then
+                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError)
+                                    'TODO: Upgrade?
+                                    Exit Sub
+                                End If
                             End Using
                     End Select
             End Select
         Catch ex As Exception
             If testOnly Then
-                mBox.MsgBox(String.Format("Error while testing connection to database:{0}{1}{0}Please verify connection settings and try again.", vbCr, ex.Message), MsgBoxStyle.Critical, "Databse error")
+                mBox.MsgBox(String.Format(My.Resources.err_TestConnection, vbCr, ex.Message), MsgBoxStyle.Critical, My.Resources.txt_DatabaseError)
             Else
-                mBox.MsgBox(String.Format("Error setting up database:{0}{1}{0}Please verify connection settings and try again.", vbCr, ex.Message), MsgBoxStyle.Critical, "Databse error")
+                mBox.MsgBox(String.Format(My.Resources.err_SetupDatabase, vbCr, ex.Message), MsgBoxStyle.Critical, My.Resources.txt_DatabaseError)
             End If
             Exit Sub
         End Try

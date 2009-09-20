@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="CapsData" Class="CapsDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DZONNY\SQLEXPRESS;AttachDbFilename=&quot;C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf&quot;;Initial Catalog=CapsData;Integrated Security=True;User Instance=True" SettingsObjectName="Caps.Console.MySettings" SettingsPropertyName="CapsDataConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=&quot;C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf&quot;;Integrated Security=True" SettingsObjectName="Caps.Console.MySettings" SettingsPropertyName="CapsDataConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Cap_Category_Int" Member="Cap_Category_Ints">
     <Type Name="Cap_Category_Int">
       <Column Name="CapID" Type="System.Int32" DbType="Int NOT NULL" IsReadOnly="true" IsPrimaryKey="true" CanBeNull="false" />
@@ -96,6 +96,7 @@
       <Column Name="ProductTypeName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="IsDrink" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+        <Column Name="IsAlcoholic" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="ProductType_Product" Member="Products" ThisKey="ProductTypeID" OtherKey="ProductTypeID" Type="Product" />
       <Association Name="ProductType_Cap" Member="Caps" ThisKey="ProductTypeID" OtherKey="ProductTypeID" Type="Cap" />
     </Type>
@@ -158,6 +159,7 @@
       <Column Name="TargetID" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IsDrink" Modifier="Virtual" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="State" Modifier="Virtual" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+        <Column Name="IsAlcoholic" Modifier="Virtual" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="Cap_Cap_Category_Int" Member="Cap_Category_Ints" ThisKey="CapID" OtherKey="CapID" Type="Cap_Category_Int" />
       <Association Name="Cap_Cap_Keyword_Int" Member="Cap_Keyword_Ints" ThisKey="CapID" OtherKey="CapID" Type="Cap_Keyword_Int" />
       <Association Name="Cap_Image" Member="Images" ThisKey="CapID" OtherKey="CapID" Type="Image" />
@@ -197,8 +199,8 @@
       <Column Name="TargetID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="Target_Cap" Member="Caps" ThisKey="TargetID" OtherKey="TargetID" Type="Cap" />
       <Association Name="Target_CapType" Member="CapTypes" ThisKey="TargetID" OtherKey="TargetID" Type="CapType" />
+      <Association Name="Target_Cap" Member="Caps" ThisKey="TargetID" OtherKey="TargetID" Type="Cap" />
     </Type>
   </Table>
   <Table Name="dbo.CapInstance" Member="CapInstances">
@@ -215,4 +217,16 @@
       <Association Name="Storage_CapInstance" Member="Storage" ThisKey="StorageID" OtherKey="StorageID" Type="Storage" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.[ISO 3166-1]" Member="ISO_3166_1s">
+    <Type Name="ISO_3166_1">
+      <Column Name="[Alpha-2]" Member="Alpha_2" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="[Alpha-3]" Member="Alpha_3" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetDatabaseVersion" Method="GetDatabaseVersion" IsComposable="true">
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="NewID" IsComposable="true">
+    <Return Type="System.Guid" />
+  </Function>
 </Database>

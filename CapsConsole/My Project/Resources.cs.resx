@@ -492,9 +492,6 @@
   <data name="tot_0NotSet" xml:space="preserve">
     <value>0 - nenastaveno</value>
   </data>
-  <data name="tot_ISO3" xml:space="preserve">
-    <value>ISO 3 kód</value>
-  </data>
   <data name="txt_CapType" xml:space="preserve">
     <value>Typ víčka</value>
   </data>
@@ -608,9 +605,6 @@
   </data>
   <data name="msg_ProductWithAreadyExists" xml:space="preserve">
     <value>Produkt s tímto názvem již existuje.</value>
-  </data>
-  <data name="msg_CountryCodeMustBeISO3Code" xml:space="preserve">
-    <value>Kód státu musí, pokud je zadán, být ISO-3 kód (3 znakový).</value>
   </data>
   <data name="txt_InvalidInput" xml:space="preserve">
     <value>Neplatný vstup</value>
@@ -857,5 +851,62 @@
   </data>
   <data name="cmd_UseWizard" xml:space="preserve">
     <value>Použít průvodce...</value>
+  </data>
+  <data name="tot_ISO2" xml:space="preserve">
+    <value>Kód ISO 3166-1 alpha-2</value>
+  </data>
+  <data name="ex_SetUnknownTarget" xml:space="preserve">
+    <value>Pokus o nastavení cíle, který není v ComboBoxu.</value>
+  </data>
+  <data name="lbl_CapState" xml:space="preserve">
+    <value>Stav</value>
+  </data>
+  <data name="lbl_CountryOfOrigin" xml:space="preserve">
+    <value>Země původu</value>
+  </data>
+  <data name="lbl_IsDrink" xml:space="preserve">
+    <value>Nápoj</value>
+  </data>
+    <data name="lbl_IsAlcoholic" xml:space="preserve">
+    <value>Alkoholický</value>
+  </data>
+    <data name="lbl_Target" xml:space="preserve">
+    <value>Objekt</value>
+  </data>
+  <data name="tot_CapState" xml:space="preserve">
+    <value>1 - OK, 5 - zničené</value>
+  </data>
+  <data name="txt_InvalidCountryCode" xml:space="preserve">
+    <value>Neplatný kód státu. Vyplňte dvoupísmenný ISO 3166-1 alpha-2 kód, prosím.</value>
+  </data>
+  <data name="txt_InvalidCountryOfOriginCode" xml:space="preserve">
+    <value>Neplatný kód země původu. Vyplňte dvoupísmenný ISO 3166-1 alpha-2 kód, prosím.</value>
+  </data>
+  <data name="txt_NewTarget" xml:space="preserve">
+    <value>Nový objekt</value>
+  </data>
+  <data name="coh_IsDrink" xml:space="preserve">
+    <value>Nápoj</value>
+  </data>
+    <data name="coh_IsAlcoholic" xml:space="preserve">
+    <value>Alkoholický</value>
+  </data>
+  <data name="txt_Targets" xml:space="preserve">
+    <value>Objekty</value>
+  </data>
+  <data name="err_TestConnection" xml:space="preserve">
+    <value>Chyba při testování spojení s databází:{0}{1}{0}Prosím ověřtě připojovací řetězec a zkuste to znovu.</value>
+  </data>
+  <data name="err_SetupDatabase" xml:space="preserve">
+    <value>Chyba při nastavování databáze:{0}{1}{0}Prosím ověřtě připojovací řetězec a zkuste to znovu.</value>
+  </data>
+  <data name="err_IncorrectDatabaseVersion" xml:space="preserve">
+    <value>Databáze není databáze aplikace Caps nebo je určena pro jinou verzi této aplikace.</value>
+  </data>
+  <data name="lbl_State" xml:space="preserve">
+    <value>Stav</value>
+  </data>
+  <data name="ex_CanConvertOnlyFromValuesImplementingAndHaving" xml:space="preserve">
+    <value>{0} může konvertovat jen z hodnot implementujících {1} a {2} majících {2}.{3} {4}</value>
   </data>
 </root>

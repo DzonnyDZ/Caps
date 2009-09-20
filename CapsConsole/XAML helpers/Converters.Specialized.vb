@@ -9,6 +9,8 @@ Public Class CapImageConverter
 
     Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
         If value Is Nothing Then Return Nothing
+        'If Not TypeOf value Is String AndAlso TypeOf value Is IConvertible Then _
+        '    value = DirectCast(value, IConvertible).ToString(culture)
         If Not TypeOf value Is String Then Throw New TypeMismatchException("value", value, GetType(String))
         Dim folders$()
         If parameter Is Nothing Then
@@ -76,4 +78,78 @@ Public Class PictureTypeConverter
 End Class
 
 
+''' <summary>Gets random top X items from caps table</summary>
+Public Class TopRandomConverter
+    Implements IValueConverter
 
+    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
+        If TypeOf value Is IQueryable AndAlso TypeOf value Is System.Data.Linq.ITable AndAlso TypeOf DirectCast(value, System.Data.Linq.ITable).Context Is CapsDataDataContext Then
+            Dim context As CapsDataDataContext = DirectCast(value, System.Data.Linq.ITable).Context
+            Dim list = DirectCast(value, IQueryable)
+            Dim count As Integer
+            Dim oldc = System.Threading.Thread.CurrentThread.CurrentCulture
+            System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture
+            Try
+                count = TypeTools.DynamicCast(Of Integer)(parameter)
+            Finally
+                System.Threading.Thread.CurrentThread.CurrentCulture = oldc
+            End Try
+            Return From item In list Order By context.NewID Take count
+        Else : Throw New NotSupportedException(My.Resources.ex_CanConvertOnlyFromValuesImplementingAndHaving.f(Me.GetType.Name, GetType(IQueryable).Name, GetType(System.Data.Linq.ITable).Name, "Context", GetType(CapsDataDataContext).Name))
+        End If
+    End Function
+
+    Private Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
+        Throw New NotSupportedException(My.Resources.ex_CannotConvertBack.f(Me.GetType.Name))
+    End Function
+End Class
+
+Public Class GetCapsOfConverter
+    Implements IValueConverter
+
+    Public Sub New()
+    End Sub
+    Public Sub New(ByVal Context As CapsDataDataContext)
+        Me.Context = Context
+    End Sub
+    Private _Context As CapsDataDataContext
+    Public Property Context() As CapsDataDataContext
+        Get
+            Return _Context
+        End Get
+        Set(ByVal value As CapsDataDataContext)
+            If value Is Nothing Then Throw New ArgumentNullException("value")
+            _Context = value
+        End Set
+    End Property
+
+    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
+        If Context Is Nothing Then Throw New InvalidOperationException(My.Resources.err_ValueCannotBeNull.f("Context"))
+        Dim Count = TypeTools.DynamicCast(Of Integer)(parameter)
+        If TypeOf value Is Material Then
+            Return From item In Context.Caps Where item.MaterialID = DirectCast(value, Material).MaterialID Order By Context.NewID Take Count
+        ElseIf TypeOf value Is CapType Then
+            Return From item In Context.Caps Where item.captypeID = DirectCast(value, CapType).CapTypeID Order By Context.NewID Take Count
+        ElseIf TypeOf value Is Shape Then
+            Return From item In Context.Caps Where item.ShapeID = DirectCast(value, Shape).ShapeID Order By Context.NewID Take Count
+        ElseIf TypeOf value Is MainType Then
+            Return From item In Context.Caps Where item.MainTypeID = DirectCast(value, MainType).MainTypeID Order By Context.NewID Take Count
+        ElseIf TypeOf value Is Product Then
+            Return From item In Context.Caps Where item.ProductID = DirectCast(value, Product).ProductID Order By Context.NewID Take Count
+        ElseIf TypeOf value Is Company Then
+            Return From item In Context.Caps Where item.CompanyID = DirectCast(value, Company).CompanyID Order By Context.NewID Take Count
+        ElseIf TypeOf value Is ProductType Then
+            Return From item In Context.Caps Where item.ProductTypeID = DirectCast(value, ProductType).ProductTypeID Order By Context.NewID Take Count
+        ElseIf TypeOf value Is Storage Then
+            Return From item In Context.Caps Where item.StorageID = DirectCast(value, Storage).StorageID Order By Context.NewID Take Count
+        ElseIf value Is Nothing Then
+            Return Nothing
+        Else
+            Throw New TypeMismatchException(My.Resources.ex_UnsupportedTypeOfEntity, value)
+        End If
+    End Function
+
+    Private Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
+        Throw New NotSupportedException(My.Resources.ex_CannotConvertBack.f(Me.GetType.Name))
+    End Function
+End Class

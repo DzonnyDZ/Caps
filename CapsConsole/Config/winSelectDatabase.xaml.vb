@@ -1,6 +1,13 @@
 ﻿Imports System.Data.SqlClient
 Partial Public Class winSelectDatabase
-    Private _ConnectionString As New SqlConnectionStringBuilder(My.Settings.CapsDataConnectionString)
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+    Public Sub New(ByVal ConnectionString As String)
+        Me.New()
+        _ConnectionString = New SqlConnectionStringBuilder(ConnectionString)
+    End Sub
+    Private _ConnectionString As New SqlConnectionStringBuilder(My.Settings.UserConnectionString)
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnCancel.Click
         Me.DialogResult = False
         Me.Close()

@@ -71,6 +71,7 @@
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Height}" Binding="{Binding Height, Mode=TwoWay}"/>
                         <toolkit:DataGridComboBoxColumn Header="{x:Static res:Resources.coh_Material}" DisplayMemberPath="Name" SelectedItemBinding="{Binding Material, Mode=TwoWay, Converter={StaticResource NullConverter}}" x:Name="cmcTypes_Material" SortMemberPath="Name" />
                         <toolkit:DataGridComboBoxColumn Header="{x:Static res:Resources.coh_MainType}" DisplayMemberPath="TypeName" SelectedItemBinding="{Binding MainType, Mode=TwoWay, Converter={StaticResource NullConverter}}" x:Name="cmcTypes_MainType" SortMemberPath="TypeName" />
+                        <toolkit:DataGridComboBoxColumn Header="{x:Static res:Resources.coh_Target}" DisplayMemberPath="Name" SelectedItemBinding="{Binding Target, Mode=TwoWay, Converter={StaticResource NullConverter}}" x:Name="cmcTypes_Target" SortMemberPath="Name" />
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
                     </toolkit:DataGrid.Columns>
                 </toolkit:DataGrid>
@@ -89,7 +90,8 @@
                     <toolkit:DataGrid.Columns>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding ProductTypeID, Mode=OneWay}"/>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding ProductTypeName, Mode=TwoWay}"/>
-                        <toolkit:DataGridCheckBoxColumn Header="{x:Static res:Resources.coh_IsDrink}" Binding="{Binding IsDrink, Mode=TwoWay}"/>
+                        <toolkit:DataGridCheckBoxColumn Header="{x:Static res:Resources.coh_IsDrink}" Binding="{Binding IsDrink, Mode=TwoWay}" IsThreeState="True"/>
+                        <toolkit:DataGridCheckBoxColumn Header="{x:Static res:Resources.coh_IsAlcoholic}" Binding="{Binding IsAlcoholic, Mode=TwoWay}" IsThreeState="True"/>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
                     </toolkit:DataGrid.Columns>
                 </toolkit:DataGrid>
@@ -127,7 +129,7 @@
             <TabItem Header="{x:Static res:Resources.txt_Targets}" Name="tapTargets">
                 <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrTargets">
                     <toolkit:DataGrid.Columns>
-                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding targetID, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding TargetID, Mode=OneWay}"/>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding Name, Mode=TwoWay}"/>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
                     </toolkit:DataGrid.Columns>

@@ -367,6 +367,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Alcoholic.
+        '''</summary>
+        Public ReadOnly Property coh_IsAlcoholic() As String
+            Get
+                Return ResourceManager.GetString("coh_IsAlcoholic", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Drink.
         '''</summary>
         Public ReadOnly Property coh_IsDrink() As String
@@ -466,6 +475,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Target.
+        '''</summary>
+        Public ReadOnly Property coh_Target() As String
+            Get
+                Return ResourceManager.GetString("coh_Target", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Type.
         '''</summary>
         Public ReadOnly Property coh_Type() As String
@@ -493,6 +511,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Error creating directoty {0}:{1}{2}{1}Cap type will be imageless..
+        '''</summary>
+        Public ReadOnly Property err_CreatingDirectoryCapType() As String
+            Get
+                Return ResourceManager.GetString("err_CreatingDirectoryCapType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Deleteing of some images failed:.
         '''</summary>
         Public ReadOnly Property err_DeleteingOfSomeImagesFailed() As String
@@ -511,11 +538,38 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Database is not Caps database or database belongs other version of Caps application..
+        '''</summary>
+        Public ReadOnly Property err_IncorrectDatabaseVersion() As String
+            Get
+                Return ResourceManager.GetString("err_IncorrectDatabaseVersion", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Select exactly one cap, please..
         '''</summary>
         Public ReadOnly Property err_SelectExactlyOneCap() As String
             Get
                 Return ResourceManager.GetString("err_SelectExactlyOneCap", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Error setting up database:{0}{1}{0}Please verify connection settings and try again..
+        '''</summary>
+        Public ReadOnly Property err_SetupDatabase() As String
+            Get
+                Return ResourceManager.GetString("err_SetupDatabase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Error while testing connection to database:{0}{1}{0}Please verify connection settings and try again..
+        '''</summary>
+        Public ReadOnly Property err_TestConnection() As String
+            Get
+                Return ResourceManager.GetString("err_TestConnection", resourceCulture)
             End Get
         End Property
         
@@ -570,6 +624,15 @@ Namespace My.Resources
         Public ReadOnly Property ex_CanConvertBackOnlyFromFalse() As String
             Get
                 Return ResourceManager.GetString("ex_CanConvertBackOnlyFromFalse", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to {0} can convert only from values implementing {1} and {2} having {2}.{3} {4}.
+        '''</summary>
+        Public ReadOnly Property ex_CanConvertOnlyFromValuesImplementingAndHaving() As String
+            Get
+                Return ResourceManager.GetString("ex_CanConvertOnlyFromValuesImplementingAndHaving", resourceCulture)
             End Get
         End Property
         
@@ -862,6 +925,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Unsupported type of entity.
+        '''</summary>
+        Public ReadOnly Property ex_UnsupportedTypeOfEntity() As String
+            Get
+                Return ResourceManager.GetString("ex_UnsupportedTypeOfEntity", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Value of the {0} property mus be set prior to calling {1}.
         '''</summary>
         Public ReadOnly Property ex_ValueMustBeSetPriorCalling() As String
@@ -966,6 +1038,15 @@ Namespace My.Resources
         Public ReadOnly Property lbl_BottomText() As String
             Get
                 Return ResourceManager.GetString("lbl_BottomText", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Caps count.
+        '''</summary>
+        Public ReadOnly Property lbl_CapsCount() As String
+            Get
+                Return ResourceManager.GetString("lbl_CapsCount", resourceCulture)
             End Get
         End Property
         
@@ -1123,6 +1204,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Alcoholic.
+        '''</summary>
+        Public ReadOnly Property lbl_IsAlcoholic() As String
+            Get
+                Return ResourceManager.GetString("lbl_IsAlcoholic", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Drink.
         '''</summary>
         Public ReadOnly Property lbl_IsDrink() As String
@@ -1186,6 +1276,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Newest cap.
+        '''</summary>
+        Public ReadOnly Property lbl_NewestCap() As String
+            Get
+                Return ResourceManager.GetString("lbl_NewestCap", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to New product.
         '''</summary>
         Public ReadOnly Property lbl_NewProduct() As String
@@ -1218,6 +1317,15 @@ Namespace My.Resources
         Public ReadOnly Property lbl_Number() As String
             Get
                 Return ResourceManager.GetString("lbl_Number", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Oldest cap.
+        '''</summary>
+        Public ReadOnly Property lbl_OldestCap() As String
+            Get
+                Return ResourceManager.GetString("lbl_OldestCap", resourceCulture)
             End Get
         End Property
         
@@ -1308,6 +1416,15 @@ Namespace My.Resources
         Public ReadOnly Property lbl_Size2Name() As String
             Get
                 Return ResourceManager.GetString("lbl_Size2Name", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to State.
+        '''</summary>
+        Public ReadOnly Property lbl_State() As String
+            Get
+                Return ResourceManager.GetString("lbl_State", resourceCulture)
             End Get
         End Property
         
@@ -1546,15 +1663,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Country code, when set, must be ISO-3 code (3 letters)..
-        '''</summary>
-        Public ReadOnly Property msg_CountryCodeMustBeISO3Code() As String
-            Get
-                Return ResourceManager.GetString("msg_CountryCodeMustBeISO3Code", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to Previusly created file {0} was not deleted. Orphaned file was left in image directory..
         '''</summary>
         Public ReadOnly Property msg_CreatedFileWasNotDeleted() As String
@@ -1771,7 +1879,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to ISO 2 code.
+        '''  Looks up a localized string similar to ISO 3166-1 alpha-2 code.
         '''</summary>
         Public ReadOnly Property tot_ISO2() As String
             Get
@@ -2041,7 +2149,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Invalid country code. Fill in 2-letters ISO code, please..
+        '''  Looks up a localized string similar to Invalid country code. Fill in 2-letters ISO 3166-1 alpha-2 code, please..
         '''</summary>
         Public ReadOnly Property txt_InvalidCountryCode() As String
             Get
@@ -2050,7 +2158,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Invalid code of country of origin. Fill in 2-letters ISO code, please..
+        '''  Looks up a localized string similar to Invalid code of country of origin. Fill in 2-letters ISO 3166-1 alpha-2 code, please..
         '''</summary>
         Public ReadOnly Property txt_InvalidCountryOfOriginCode() As String
             Get
@@ -2176,6 +2284,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Newest.
+        '''</summary>
+        Public ReadOnly Property txt_Newest() As String
+            Get
+                Return ResourceManager.GetString("txt_Newest", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to New Main type.
         '''</summary>
         Public ReadOnly Property txt_NewMainType() As String
@@ -2284,6 +2401,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Random.
+        '''</summary>
+        Public ReadOnly Property txt_Random() As String
+            Get
+                Return ResourceManager.GetString("txt_Random", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Search results.
         '''</summary>
         Public ReadOnly Property txt_SearchResults() As String
@@ -2325,6 +2451,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_Shapes() As String
             Get
                 Return ResourceManager.GetString("txt_Shapes", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Statistic.
+        '''</summary>
+        Public ReadOnly Property txt_Statistic() As String
+            Get
+                Return ResourceManager.GetString("txt_Statistic", resourceCulture)
             End Get
         End Property
         

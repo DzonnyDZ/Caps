@@ -614,7 +614,7 @@
     <comment>Tool tip text</comment>
   </data>
   <data name="tot_ISO2" xml:space="preserve">
-    <value>ISO 2 code</value>
+    <value>ISO 3166-1 alpha-2 code</value>
     <comment>Tool tip text</comment>
   </data>
   <data name="txt_CapType" xml:space="preserve">
@@ -767,10 +767,6 @@
   </data>
   <data name="msg_ProductWithAreadyExists" xml:space="preserve">
     <value>Product with this name aready exists.</value>
-    <comment>Error message text</comment>
-  </data>
-  <data name="msg_CountryCodeMustBeISO3Code" xml:space="preserve">
-    <value>Country code, when set, must be ISO-3 code (3 letters).</value>
     <comment>Error message text</comment>
   </data>
   <data name="txt_InvalidInput" xml:space="preserve">
@@ -1121,6 +1117,10 @@
     <value>Drink</value>
     <comment>Check box text</comment>
   </data>
+  <data name="lbl_IsAlcoholic" xml:space="preserve">
+    <value>Alcoholic</value>
+    <comment>Check box text</comment>
+  </data>
   <data name="lbl_Target" xml:space="preserve">
     <value>Target</value>
     <comment>Label text</comment>
@@ -1130,11 +1130,11 @@
     <comment>Tool tip text</comment>
   </data>
   <data name="txt_InvalidCountryCode" xml:space="preserve">
-    <value>Invalid country code. Fill in 2-letters ISO code, please.</value>
+    <value>Invalid country code. Fill in 2-letters ISO 3166-1 alpha-2 code, please.</value>
     <comment>Error message text</comment>
   </data>
   <data name="txt_InvalidCountryOfOriginCode" xml:space="preserve">
-    <value>Invalid code of country of origin. Fill in 2-letters ISO code, please.</value>
+    <value>Invalid code of country of origin. Fill in 2-letters ISO 3166-1 alpha-2 code, please.</value>
     <comment>Error message text</comment>
   </data>
   <data name="txt_NewTarget" xml:space="preserve">
@@ -1145,8 +1145,63 @@
     <value>Drink</value>
     <comment>Column header</comment>
   </data>
+  <data name="coh_IsAlcoholic" xml:space="preserve">
+    <value>Alcoholic</value>
+    <comment>Column header</comment>
+  </data>
   <data name="txt_Targets" xml:space="preserve">
     <value>Targets</value>
     <comment>Tab page header</comment>
+  </data>
+  <data name="err_TestConnection" xml:space="preserve">
+    <value>Error while testing connection to database:{0}{1}{0}Please verify connection settings and try again.</value>
+  </data>
+  <data name="err_SetupDatabase" xml:space="preserve">
+    <value>Error setting up database:{0}{1}{0}Please verify connection settings and try again.</value>
+  </data>
+  <data name="err_IncorrectDatabaseVersion" xml:space="preserve">
+    <value>Database is not Caps database or database belongs other version of Caps application.</value>
+  </data>
+  <data name="lbl_State" xml:space="preserve">
+    <value>State</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="ex_CanConvertOnlyFromValuesImplementingAndHaving" xml:space="preserve">
+    <value>{0} can convert only from values implementing {1} and {2} having {2}.{3} {4}</value>
+  </data>
+  <data name="ex_UnsupportedTypeOfEntity" xml:space="preserve">
+    <value>Unsupported type of entity</value>
+  </data>
+  <data name="err_CreatingDirectoryCapType" xml:space="preserve">
+    <value>Error creating directoty {0}:{1}{2}{1}Cap type will be imageless.</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="coh_Target" xml:space="preserve">
+    <value>Target</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="lbl_CapsCount" xml:space="preserve">
+    <value>Caps count</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_NewestCap" xml:space="preserve">
+    <value>Newest cap</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_OldestCap" xml:space="preserve">
+    <value>Oldest cap</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="txt_Newest" xml:space="preserve">
+    <value>Newest</value>
+    <comment>Group box title</comment>
+  </data>
+  <data name="txt_Random" xml:space="preserve">
+    <value>Random</value>
+    <comment>Group box title</comment>
+  </data>
+  <data name="txt_Statistic" xml:space="preserve">
+    <value>Statistic</value>
+    <comment>Group box title</comment>
   </data>
 </root>

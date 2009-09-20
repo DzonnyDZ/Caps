@@ -21,6 +21,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLL", "DLL", "{E5E3F6DB-D55
 EndProject
 Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "CapsData", "CapsData\CapsData.dbp", "{8E128257-AC1E-46E1-88D8-0CD330761731}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cs", "cs", "{F31C57C1-3295-4A6D-AE54-6D385882F903}"
+	ProjectSection(SolutionItems) = preProject
+		DLL\cs\Tools.Metadata.resources.dll = DLL\cs\Tools.Metadata.resources.dll
+		DLL\cs\Tools.resources.dll = DLL\cs\Tools.resources.dll
+		DLL\cs\Tools.Windows.resources.dll = DLL\cs\Tools.Windows.resources.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 3
@@ -46,5 +53,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F31C57C1-3295-4A6D-AE54-6D385882F903} = {E5E3F6DB-D55E-47C2-9105-6FA26BAEA9A2}
 	EndGlobalSection
 EndGlobal

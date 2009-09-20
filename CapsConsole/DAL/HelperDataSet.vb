@@ -35,7 +35,12 @@ Namespace HelperDataSetTableAdapters
                     ByVal HasSide As Global.System.Nullable(Of Boolean), _
                     ByVal AnotherPictures As String, _
                     ByVal CategoryIDs As HelperDataSet.IntTableDataTable, _
-                    ByVal Keywords As HelperDataSet.VarCharTableDataTable) As SqlDataReader
+                    ByVal Keywords As HelperDataSet.VarCharTableDataTable, _
+                    ByVal CountryOfOrigin As String, _
+                    ByVal IsDrink As Global.System.Nullable(Of Boolean), _
+                    ByVal State As Global.System.Nullable(Of Short), _
+                    ByVal TargetID As Global.System.Nullable(Of Integer), _
+                    ByVal IsAlcoholic As Global.System.Nullable(Of Boolean)) As SqlDataReader
             Dim cmd = Me.CommandCollection(0)
             With cmd
                 If (CapTypeID.HasValue = True) Then
@@ -202,6 +207,31 @@ Namespace HelperDataSetTableAdapters
                     .Parameters(33).Value = Global.System.DBNull.Value
                 Else
                     .Parameters(33).Value = CType(Keywords, Object)
+                End If
+                If (CountryOfOrigin Is Nothing) Then
+                    .Parameters(34).Value = Global.System.DBNull.Value
+                Else
+                    .Parameters(34).Value = CType(CountryOfOrigin, String)
+                End If
+                If (IsDrink.HasValue = True) Then
+                    .Parameters(35).Value = CType(IsDrink.Value, Boolean)
+                Else
+                    .Parameters(35).Value = Global.System.DBNull.Value
+                End If
+                If (State.HasValue = True) Then
+                    .Parameters(36).Value = CType(State.Value, Short)
+                Else
+                    .Parameters(36).Value = Global.System.DBNull.Value
+                End If
+                If (TargetID.HasValue = True) Then
+                    .Parameters(37).Value = CType(TargetID.Value, Integer)
+                Else
+                    .Parameters(37).Value = Global.System.DBNull.Value
+                End If
+                If (IsAlcoholic.HasValue = True) Then
+                    .Parameters(38).Value = CType(IsAlcoholic.Value, Boolean)
+                Else
+                    .Parameters(38).Value = Global.System.DBNull.Value
                 End If
             End With
             Return cmd.ExecuteReader()
