@@ -6,7 +6,8 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:t.c="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
     Title="{x:Static res:Resources.txt_CapDetails}" Height="850" Width="1000"
-        DataContext="{Binding SelectedItem, ElementName=lstCaps, Mode=OneWay}" 
+        DataContext="{Binding SelectedItem, ElementName=lstCaps, Mode=OneWay}"
+        Icon="/CapsConsole;component/Resources/Cap.ico"
         >
     <Window.Resources>
         <my:NullFalseConverter x:Key="NullFalseConverter"/>
@@ -57,12 +58,12 @@
                     <ContextMenu.Items>
                         <MenuItem Header="{x:Static res:Resources.cmd_Edit}" Command="ApplicationCommands.Open" >
                             <MenuItem.Icon>
-                                <Image Source="Resources/EditInformationHS.png"/>
+                                <Image Source="/CapsConsole;component/Resources/EditInformationHS.png"/>
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="{x:Static res:Resources.cmd_Delete}" Grid.Row="1" Command="ApplicationCommands.Delete" >
                             <MenuItem.Icon>
-                                <Image Source="Resources/DeleteHS.png"/>
+                                <Image Source="/CapsConsole;component/Resources/DeleteHS.png"/>
                             </MenuItem.Icon>
                         </MenuItem>
                     </ContextMenu.Items>

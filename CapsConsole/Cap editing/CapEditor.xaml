@@ -540,7 +540,7 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ItemsControl  Grid.Column="0" Grid.Row="0" Name="lstCategories" MinHeight="48pt" Height="auto" MaxHeight="96pt" TextSearch.TextPath="Category.CategoryName" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" IsTabStop="False" >
+                <ItemsControl  Grid.Column="0" Grid.Row="0" Name="lstCategories" MinHeight="48pt" Height="auto" MaxHeight="96pt" TextSearch.TextPath="Category.CategoryName" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" IsTabStop="False" Template="{StaticResource ScrollableItemsControl}" >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <CheckBox IsChecked="{Binding Checked, Mode=TwoWay}"  ToolTip="{Binding Category.Description}" Checked="lstCategories_CheckedChanged" Unchecked="lstCategories_CheckedChanged" >

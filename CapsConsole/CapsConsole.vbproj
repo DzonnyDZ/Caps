@@ -389,5 +389,14 @@
     <Resource Include="Resources\DeleteHS.png" />
     <Resource Include="Resources\EditInformationHS.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\RefreshDocViewHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\NewCap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\EditTableHS.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

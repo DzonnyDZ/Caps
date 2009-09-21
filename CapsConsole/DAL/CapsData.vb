@@ -1,3 +1,4 @@
+
 <DebuggerDisplay("Image {RelativePath} ({ImageID})")> _
 Partial Class Image
 
@@ -82,3 +83,55 @@ Partial Class Keyword
     End Sub
 End Class
 
+Partial Class CapsDataDataContext
+#If DEBUG Then
+    Private Sub OnCreated()
+        MyBase.Log = New DebugLog
+    End Sub
+#End If
+End Class
+#If DEBUG Then
+''' <summary><see cref="IO.TextWriter"/> over <see cref="Debug"/></summary>
+Friend Class DebugLog
+    Inherits IO.TextWriter
+    ''' <summary>Contains value of the <see cref="Enabled"/> property</summary>
+    Private Shared _Enabled As Boolean = True
+    ''' <summary>Gets or sets value indicating if logging is enabled</summary>
+    ''' <value>Ture to enable logging (default); false to ignore all logging attempts</value>
+    Public Shared Property Enabled() As Boolean
+        Get
+            Return _Enabled
+        End Get
+        Set(ByVal value As Boolean)
+            _Enabled = value
+        End Set
+    End Property
+
+    ''' <summary>Clears all buffers for the current writer and causes any buffered data to be written to the underlying device.</summary>
+    Public Overrides Sub Flush()
+        If Enabled Then Debug.Flush()
+    End Sub
+    ''' <summary>When overridden in a derived class, returns the <see cref="T:System.Text.Encoding"></see> in which the output is written.</summary>
+    ''' <returns>The Encoding in which the output is written.</returns>
+    Public Overrides ReadOnly Property Encoding() As System.Text.Encoding
+        Get
+            Return System.Text.Encoding.UTF8
+        End Get
+    End Property
+    ''' <summary>Writes a subarray of characters to the text stream.</summary>
+    ''' <param name="count">The number of characters to write. </param>
+    ''' <param name="buffer">The character array to write data from. </param>
+    ''' <param name="index">Starting index in the buffer. </param>
+    ''' <exception cref="T:System.ArgumentOutOfRangeException">index or count is negative. </exception>
+    ''' <exception cref="T:System.ArgumentException">The buffer length minus index is less than count. </exception>
+    ''' <exception cref="T:System.ArgumentNullException">The buffer parameter is null. </exception>
+    Public Overrides Sub Write(ByVal buffer() As Char, ByVal index As Integer, ByVal count As Integer)
+        If Enabled Then Write(New String(buffer, index, count))
+    End Sub
+    ''' <summary>Writes a string followed by a line terminator to the text stream.</summary>
+    ''' <param name="value">The string to write. If value is null, only the line termination characters are written. </param>
+    Public Overrides Sub Write(ByVal value As String)
+        If Enabled Then Debug.Write(value)
+    End Sub
+End Class
+#End If

@@ -1204,4 +1204,12 @@
     <value>Statistic</value>
     <comment>Group box title</comment>
   </data>
+  <data name="mni_Refresh" xml:space="preserve">
+    <value>_Refresh</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_Tools" xml:space="preserve">
+    <value>_Tools</value>
+    <comment>Menu item</comment>
+  </data>
 </root>

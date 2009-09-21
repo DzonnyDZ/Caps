@@ -31,12 +31,12 @@ ConverterParameter={x:Array {x:Type sys:String} {my:StaticEx my:MySettings.Defau
                                 </x:Array>
                             </Binding.ConverterParameter>
                         </Binding>
-                    </Image.Source> 
+                    </Image.Source>
                 </Image>
                 <Label Grid.Column="0" Grid.Row="1" Content="{Binding RelativePath, Converter={StaticResource FileNameConverter}, Mode=OneWay}"/>
             </Grid>
         </DataTemplate>
-        
+
 
 
         <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListBox}}">
@@ -85,5 +85,12 @@ ConverterParameter={x:Array {x:Type sys:String} {my:StaticEx my:MySettings.Defau
             </Setter>
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         </Style>
+
+        
+        <ControlTemplate TargetType="{x:Type ItemsControl}" x:Key="ScrollableItemsControl">
+            <ScrollViewer CanContentScroll="True" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsTabStop="False" >
+                <ItemsPresenter/>
+            </ScrollViewer>
+        </ControlTemplate>
     </Application.Resources>
 </Application>

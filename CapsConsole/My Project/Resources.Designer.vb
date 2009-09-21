@@ -1564,11 +1564,29 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to _Refresh.
+        '''</summary>
+        Public ReadOnly Property mni_Refresh() As String
+            Get
+                Return ResourceManager.GetString("mni_Refresh", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to _Settings ....
         '''</summary>
         Public ReadOnly Property mni_Settings() As String
             Get
                 Return ResourceManager.GetString("mni_Settings", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to _Tools.
+        '''</summary>
+        Public ReadOnly Property mni_Tools() As String
+            Get
+                Return ResourceManager.GetString("mni_Tools", resourceCulture)
             End Get
         End Property
         
