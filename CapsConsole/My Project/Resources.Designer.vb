@@ -322,6 +322,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Save &amp; next.
+        '''</summary>
+        Public ReadOnly Property cmd_SaveNext() As String
+            Get
+                Return ResourceManager.GetString("cmd_SaveNext", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Use wizard....
         '''</summary>
         Public ReadOnly Property cmd_UseWizard() As String
@@ -516,6 +525,24 @@ Namespace My.Resources
         Public ReadOnly Property err_CreatingDirectoryCapType() As String
             Get
                 Return ResourceManager.GetString("err_CreatingDirectoryCapType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Error creating directoty {0}:{1}{2}{1}Main type will be imageless..
+        '''</summary>
+        Public ReadOnly Property err_CreatingDirectoryMainType() As String
+            Get
+                Return ResourceManager.GetString("err_CreatingDirectoryMainType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Error creating directoty {0}:{1}{2}{1}Shape type will be imageless..
+        '''</summary>
+        Public ReadOnly Property err_CreatingDirectoryShape() As String
+            Get
+                Return ResourceManager.GetString("err_CreatingDirectoryShape", resourceCulture)
             End Get
         End Property
         
@@ -1645,6 +1672,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Cap saved under ID {0}..
+        '''</summary>
+        Public ReadOnly Property msg_CapsSavedID() As String
+            Get
+                Return ResourceManager.GetString("msg_CapsSavedID", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Cap type with this name aready exists..
         '''</summary>
         Public ReadOnly Property msg_CapTypeAreadyExists() As String
@@ -1938,6 +1974,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_Caps() As String
             Get
                 Return ResourceManager.GetString("txt_Caps", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Cap saved.
+        '''</summary>
+        Public ReadOnly Property txt_CapSaved() As String
+            Get
+                Return ResourceManager.GetString("txt_CapSaved", resourceCulture)
             End Get
         End Property
         

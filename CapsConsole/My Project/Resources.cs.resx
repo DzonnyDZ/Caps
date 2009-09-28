@@ -867,10 +867,10 @@
   <data name="lbl_IsDrink" xml:space="preserve">
     <value>Nápoj</value>
   </data>
-    <data name="lbl_IsAlcoholic" xml:space="preserve">
+  <data name="lbl_IsAlcoholic" xml:space="preserve">
     <value>Alkoholický</value>
   </data>
-    <data name="lbl_Target" xml:space="preserve">
+  <data name="lbl_Target" xml:space="preserve">
     <value>Objekt</value>
   </data>
   <data name="tot_CapState" xml:space="preserve">
@@ -888,7 +888,7 @@
   <data name="coh_IsDrink" xml:space="preserve">
     <value>Nápoj</value>
   </data>
-    <data name="coh_IsAlcoholic" xml:space="preserve">
+  <data name="coh_IsAlcoholic" xml:space="preserve">
     <value>Alkoholický</value>
   </data>
   <data name="txt_Targets" xml:space="preserve">
@@ -908,5 +908,53 @@
   </data>
   <data name="ex_CanConvertOnlyFromValuesImplementingAndHaving" xml:space="preserve">
     <value>{0} může konvertovat jen z hodnot implementujících {1} a {2} majících {2}.{3} {4}</value>
+  </data>
+  <data name="ex_UnsupportedTypeOfEntity" xml:space="preserve">
+    <value>Nepodporovaný typ entity</value>
+  </data>
+  <data name="err_CreatingDirectoryCapType" xml:space="preserve">
+    <value>Chyba při vytváření složky {0}:{1}{2}{1}Typ víčka bude bez obrázku.</value>
+  </data>
+  <data name="coh_Target" xml:space="preserve">
+    <value>Objekt</value>
+  </data>
+  <data name="lbl_CapsCount" xml:space="preserve">
+    <value>Počet víček</value>
+  </data>
+  <data name="lbl_NewestCap" xml:space="preserve">
+    <value>Nejnovější</value>
+  </data>
+  <data name="lbl_OldestCap" xml:space="preserve">
+    <value>Nejstarší</value>
+  </data>
+  <data name="txt_Newest" xml:space="preserve">
+    <value>Nenjnovější víčka</value>
+  </data>
+  <data name="txt_Random" xml:space="preserve">
+    <value>Náhodná víčka</value>
+  </data>
+  <data name="txt_Statistic" xml:space="preserve">
+    <value>Statistika</value>
+  </data>
+  <data name="mni_Refresh" xml:space="preserve">
+    <value>_Obnovit</value>
+  </data>
+  <data name="mni_Tools" xml:space="preserve">
+    <value>Nástroje</value>
+  </data>
+  <data name="cmd_SaveNext" xml:space="preserve">
+    <value>Uložit a další</value>
+  </data>
+  <data name="err_CreatingDirectoryMainType" xml:space="preserve">
+    <value>Chyba při vytváření složky {0}:{1}{2}{1}Hlavní typ bude bez obrázku.</value>
+  </data>
+  <data name="err_CreatingDirectoryShape" xml:space="preserve">
+    <value>Chyba při vytváření složky {0}:{1}{2}{1}Tvar bude bez obrázku.</value>
+  </data>
+  <data name="msg_CapsSavedID" xml:space="preserve">
+    <value>Víčko uloženo pod ID {0}.</value>
+  </data>
+  <data name="txt_CapSaved" xml:space="preserve">
+    <value>Víčko uloženo</value>
   </data>
 </root>

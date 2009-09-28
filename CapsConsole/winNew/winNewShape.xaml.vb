@@ -39,6 +39,15 @@ Partial Public Class winNewShape
             Exit Sub
         End Try
         If IO.File.Exists(txtImagePath.Text) Then
+            If Not IO.Directory.Exists(IO.Path.Combine(My.Settings.ImageRoot, "Shape")) Then
+                Try
+                    IO.Directory.CreateDirectory(IO.Path.Combine(My.Settings.ImageRoot, "Shape"))
+                Catch ex As Exception
+                    mBox.Error_XPTIBWO(ex, My.Resources.err_CreatingDirectoryShape, My.Resources.txt_FileSystemError, mBox.MessageBoxIcons.Exclamation)
+                    Me.DialogResult = True
+                    Me.Close()
+                End Try
+            End If
             Try
                 IO.File.Copy(txtImagePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "Shape"), NewObject.ShapeID & ".png"))
             Catch ex As Exception

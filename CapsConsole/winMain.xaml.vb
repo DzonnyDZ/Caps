@@ -10,7 +10,7 @@ Class winMain
     '    Me.Close()
     'End Sub
 
-    Private Sub mniEditLists_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
+    Private Sub mniEditLists_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniEditLists.Click
         Dim win As New winEditors
         win.Owner = Me
         win.ShowDialog()
@@ -63,11 +63,13 @@ Connect: If win.ShowDialog Then
         Dim BiggestKeyword = (From itm In Context.Keywords Order By itm.Cap_Keyword_Ints.Count Descending Select New Integer?(itm.Cap_Keyword_Ints.Count)).FirstOrDefault
         Const FontMax% = 50
         Const FontMin% = 5
+        Dim mup As Double = If(Not BiggestCategory.HasValue OrElse BiggestCategory = 0, 0, (FontMax - FontMin) / BiggestCategory)
         itmCategories.ItemsSource = From itm In Context.Categories _
-                                    Select Count = itm.Cap_Category_Ints.Count, Name = itm.CategoryName, ID = itm.CategoryID, Size = (FontMax - FontMin) / BiggestCategory * itm.Cap_Category_Ints.Count + FontMin, Type = "C"c _
+                                    Select Count = itm.Cap_Category_Ints.Count, Name = itm.CategoryName, ID = itm.CategoryID, Size = mup * itm.Cap_Category_Ints.Count + FontMin, Type = "C"c _
                                     Order By Count Descending
+        mup = If(Not BiggestKeyword.HasValue OrElse BiggestKeyword = 0, 0, (FontMax - FontMin) / BiggestKeyword)
         itmKeywords.ItemsSource = From itm In Context.Keywords _
-                                   Select Count = itm.Cap_Keyword_Ints.Count, Name = itm.Keyword, ID = itm.KeywordID, Size = (FontMax - FontMin) / BiggestKeyword * itm.Cap_Keyword_Ints.Count + FontMin, Type = "K"c _
+                                   Select Count = itm.Cap_Keyword_Ints.Count, Name = itm.Keyword, ID = itm.KeywordID, Size = mup * itm.Cap_Keyword_Ints.Count + FontMin, Type = "K"c _
                                    Order By Count Descending
     End Sub
 
@@ -146,4 +148,5 @@ Connect: If win.ShowDialog Then
     End Sub
 
 
+  
 End Class

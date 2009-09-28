@@ -234,34 +234,93 @@ Partial Public Class CapEditor
 
 #Region "SaveClicked"
     ''' <summary>Raised when user clicks the save button</summary>
-    Public Custom Event SaveClicked As RoutedEventHandler
+    Public Custom Event SaveClicked As EventHandler(Of SaveClickedEventArgs)
 
-        AddHandler(ByVal value As RoutedEventHandler)
+        AddHandler(ByVal value As EventHandler(Of SaveClickedEventArgs))
             Me.AddHandler(SaveClickedEvent, value)
         End AddHandler
 
-        RemoveHandler(ByVal value As RoutedEventHandler)
+        RemoveHandler(ByVal value As EventHandler(Of SaveClickedEventArgs))
             Me.RemoveHandler(SaveClickedEvent, value)
         End RemoveHandler
 
-        RaiseEvent(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs)
+        RaiseEvent(ByVal sender As Object, ByVal e As SaveClickedEventArgs)
             Me.RaiseEvent(e)
         End RaiseEvent
     End Event
     ''' <summary>Raises the <see cref="SaveClicked"/> event</summary>
-    Protected Overridable Sub OnSaveClick(ByVal e As RoutedEventArgs)
-        RaiseEvent SaveClicked(Me, New RoutedEventArgs(SaveClickedEvent, Me))
+    Protected Overridable Sub OnSaveClick(ByVal e As SaveClickedEventArgs)
+        RaiseEvent SaveClicked(Me, e)
     End Sub
     ''' <summary>Metadata of the <see cref="SaveClicked"/> event</summary>
     Public Shared ReadOnly SaveClickedEvent As RoutedEvent = _
                       EventManager.RegisterRoutedEvent("SaveClicked", _
                       RoutingStrategy.Bubble, _
-                      GetType(RoutedEventHandler), GetType(CapEditor))
+                      GetType(EventHandler(Of SaveClickedEventArgs)), GetType(CapEditor))
 
-    Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnSave.Click
-        OnSaveClick(e)
+    Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnSave.Click, btnSaveNext.Click
+        OnSaveClick(New SaveClickedEventArgs(SaveClickedEvent, Me, sender Is btnSaveNext))
     End Sub
+    ''' <summary>argumnets of the <see cref="SaveClicked"/> event</summary>
+    Public Class SaveClickedEventArgs : Inherits RoutedEventArgs
+        ''' <summary>Contains value of the <see cref="IsSaveNext"/> property</summary>
+        Private ReadOnly _IsSaveNext As Boolean
+        ''' <summary>CTor</summary>
+        ''' <param name="IsSaveNext">True if user clicked "Save and Next" button; false otherwise</param>
+        ''' <param name="routedEvent">The routed event identifier for this instance of the <see cref="System.Windows.RoutedEventArgs"/> class.</param>
+        ''' <param name="source">An alternate source that will be reported when the event is handled. This pre-populates the <see cref="System.Windows.RoutedEventArgs.Source"/> property.</param>
+        Public Sub New(ByVal routedEvent As RoutedEvent, ByVal source As CapEditor, ByVal IsSaveNext As Boolean)
+            MyBase.New(RoutedEvent, Source)
+            _IsSaveNext = IsSaveNext
+        End Sub
+        ''' <summary>Gets value indicating wheather user clicked "Save" or "Save and next" button</summary>
+        ''' <returns>True if user clicked "Save and Next" button; false otherwise</returns>
+        Public ReadOnly Property IsSaveNext() As Boolean
+            Get
+                Return _IsSaveNext
+            End Get
+        End Property
+    End Class
+
 #End Region
+
+
+#Region "IsSaveNextVisible"
+    ''' <summary>Gtes or sets value indicating if "Save and next" button is visible or not</summary>
+    ''' <returns>True if "Save and Next" button is visible; false if it is not</returns>
+    ''' <value>True to make "Save and Next" button visible; false to hide it. Default value is false.</value>
+    <DefaultValue(False)> _
+    Public Property IsSaveNextVisible() As Boolean
+        Get
+            Return GetValue(IsSaveNextVisibleProperty)
+        End Get
+
+        Set(ByVal value As Boolean)
+            SetValue(IsSaveNextVisibleProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="IsSaveNextVisible"/> property</summary>
+    Public Shared ReadOnly IsSaveNextVisibleProperty As DependencyProperty = _
+                           DependencyProperty.Register("IsSaveNextVisible", _
+                           GetType(Boolean), GetType(CapEditor), _
+                           New FrameworkPropertyMetadata(False, AddressOf OnIsSaveNextVisibleChanged))
+    ''' <summary>Called when value of the <see cref="IsSaveNextVisible"/> property changes</summary>
+    ''' <param name="d">Instance of <see cref="CapEditor"/> ofr which the change have occured.</param>
+    ''' <param name="e">Event arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnIsSaveNextVisibleChanged(ByVal d As System.Windows.DependencyObject, ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnIsSaveNextVisibleChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="IsSaveNextVisible"/> property changes</summary>
+    ''' <param name="e">event arguments</param>
+    Protected Overridable Sub OnIsSaveNextVisibleChanged(ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+        btnSaveNext.Visibility = If(IsSaveNextVisible, Visibility.Visible, Visibility.Collapsed)
+    End Sub
+
+#End Region
+
+
 
 #Region "Select / new / anonymous selection"
     Private Sub cmbCapType_SelectionChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs) Handles cmbCapType.SelectionChanged
@@ -387,7 +446,7 @@ Partial Public Class CapEditor
                If(cmbTarget.SelectedItem Is Nothing, New Integer?(), DirectCast(cmbTarget.SelectedItem, Target).TargetID), _
                chkIsAlcoholic.IsChecked _
         )
-        
+
         Dim caps = Context.Translate(Of Cap)(SearchResults)
         Dim win As New winCapDetails(caps)
         win.Owner = Me.FindAncestor(Of Window)()
@@ -2258,7 +2317,7 @@ Partial Public Class CapEditor
     End Property
     ''' <summary>Metadata of the <see cref="Images"/> property</summary>
     <EditorBrowsable(EditorBrowsableState.Advanced)> _
-    Public Shared ReadOnly ImagesProperty As DependencyProperty = DependencyProperty.Register("Images", GetType(ListWithEvents(Of Image)), GetType(CapEditor), New FrameworkPropertyMetadata(new ListWithEvents(Of Image  )(),  AddressOf OnImagesChanged))
+    Public Shared ReadOnly ImagesProperty As DependencyProperty = DependencyProperty.Register("Images", GetType(ListWithEvents(Of Image)), GetType(CapEditor), New FrameworkPropertyMetadata(New ListWithEvents(Of Image)(), AddressOf OnImagesChanged))
 
     ''' <summary>Called when value of the property <see cref="Images"/> is changed</summary>
     ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
@@ -2312,7 +2371,7 @@ Partial Public Class CapEditor
             OriginalContext = New CapsDataDataContext(Main.Connection)
             Context = New CapsDataDataContext
         End If
-        
+
         Me.Context = Context
         With OldSelectedIds
             'CapType
@@ -2707,6 +2766,63 @@ Resize256:      Try
             cmbTarget.SelectedItem = win.NewObject
         End If
     End Sub
+    ''' <summary>Resets values of editor</summary>
+    Public Sub Reset()
+        txtCapName.Text = ""
+        txtMainText.Text = ""
+        txtSubTitle.Text = ""
+        txtMainPicture.Text = ""
+        txtAnotherPictures.Text = ""
+        cmbPictureType.SelectedIndex = -1
+
+        optCapTypeSelect.IsChecked = True
+        cmbCapType.SelectedIndex = -1
+        txtCapTypeName.Text = ""
+        txtCapTypeDesc.Text = ""
+        txtCapTypeImagePath.Text = ""
+        cmbMainType.SelectedIndex = -1
+        cmbShape.SelectedIndex = -1
+        nudSize1.Value = 0
+        nudSize2.Value = 0
+        nudHeight.Value = 0
+        cmbMaterial.SelectedIndex = -1
+        cmbTarget.SelectedIndex = -1
+
+        copBackground.Color = Colors.Transparent
+        copSecondaryBackground.Color = Nothing
+        copForeground.Color = Nothing
+        copForeground2.Color = Nothing
+        chk3D.IsChecked = False
+        optMatting.IsChecked = True
+
+        txtTopText.Text = ""
+        txtSideText.Text = ""
+        txtBottomText.Text = ""
+        txtNote.Text = ""
+
+        lblID.Content = ""
+        nudYear.Value = 0
+        txtCountryCode.Text = ""
+        txtCountryOfOrigin.Text = ""
+        cmbStorage.SelectedIndex = -1
+        chkHasBottom.IsChecked = False
+        chkHasSide.IsChecked = False
+        nudCapState.Value = 1
+
+        optProductAnonymous.IsChecked = True
+        cmbProduct.SelectedIndex = -1
+        txtProductName.Text = ""
+        txtProductDescription.Text = ""
+        cmbProductType.SelectedIndex = -1
+        cmbCompany.SelectedIndex = -1
+        chkIsDrink.IsChecked = Nothing
+        chkIsAlcoholic.IsChecked = Nothing
+
+        SelectedCategories = New Category() {}
+        Keywords = New String() {}
+
+        Images.Clear()
+    End Sub
 End Class
 
 ''' <summary>Allows to distinguish image already in database and a new image</summary>
@@ -2719,3 +2835,4 @@ Public Class NewImage : Inherits Image
         Me.RelativePath = Path
     End Sub
 End Class
+

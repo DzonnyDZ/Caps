@@ -39,6 +39,15 @@ Partial Public Class winNewMainType
             Exit Sub
         End Try
         If IO.File.Exists(txtImagePath.Text) Then
+            If Not IO.Directory.Exists(IO.Path.Combine(My.Settings.ImageRoot, "MainType")) Then
+                Try
+                    IO.Directory.CreateDirectory(IO.Path.Combine(My.Settings.ImageRoot, "MainType"))
+                Catch ex As Exception
+                    mBox.Error_XPTIBWO(ex, My.Resources.err_CreatingDirectoryMainType, My.Resources.txt_FileSystemError, mBox.MessageBoxIcons.Exclamation)
+                    Me.DialogResult = True
+                    Me.Close()
+                End Try
+            End If
             Try
                 IO.File.Copy(txtImagePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "MainType"), NewObject.MainTypeID & ".png"))
             Catch ex As Exception

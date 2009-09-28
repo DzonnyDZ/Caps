@@ -4,11 +4,11 @@ Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 ''' <summary>Creates a new cap</summary>
 Partial Public Class winNewCap
 
-    Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles caeEditor.CancelClicked
+    Private Sub caeEditor_CancelClicked(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles caeEditor.CancelClicked
         Me.Close()
     End Sub
 
-    Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles caeEditor.SaveClicked
+    Private Sub caeEditor_SaveClicked(ByVal sender As System.Object, ByVal e As CapEditor.SaveClickedEventArgs) Handles caeEditor.SaveClicked
         With caeEditor
             Dim Cap As New Cap
             Dim NewType As CapType = Nothing
@@ -131,7 +131,12 @@ Partial Public Class winNewCap
             If .CapTypeSelection = CapEditor.CreatableItemSelection.NewItem AndAlso IO.File.Exists(.CapTypeImagePath) Then
                 .CopyTypeImage(NewType)
             End If
-            Me.Close()
+            mBox.MsgBox(My.Resources.msg_CapsSavedID.f(Cap.CapID), MsgBoxStyle.Information, My.Resources.txt_CapSaved)
+            If e.IsSaveNext Then
+                caeEditor.Reset()
+            Else
+                Me.Close()
+            End If
         End With
     End Sub
 

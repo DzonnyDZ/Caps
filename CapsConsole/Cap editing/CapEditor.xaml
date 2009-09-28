@@ -592,10 +592,12 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Name="btnSearch" Content="{x:Static res:Resources.cmd_CapsSearchSimilar}"/>
             <Button Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" Name="btnSave" Content="{x:Static res:Resources.cmd_SaveCap}"/>
             <Button Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Name="btnCancel" Content="{x:Static res:Resources.cmd_Cancel}"/>
+            <Button Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Name="btnSaveNext" Content="{x:Static res:Resources.cmd_SaveNext}" Visibility="Collapsed" />
         </Grid>
     </Grid>
 </UserControl>

@@ -1212,4 +1212,22 @@
     <value>_Tools</value>
     <comment>Menu item</comment>
   </data>
+  <data name="cmd_SaveNext" xml:space="preserve">
+    <value>Save &amp; next</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="err_CreatingDirectoryMainType" xml:space="preserve">
+    <value>Error creating directoty {0}:{1}{2}{1}Main type will be imageless.</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="err_CreatingDirectoryShape" xml:space="preserve">
+    <value>Error creating directoty {0}:{1}{2}{1}Shape type will be imageless.</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="msg_CapsSavedID" xml:space="preserve">
+    <value>Cap saved under ID {0}.</value>
+  </data>
+  <data name="txt_CapSaved" xml:space="preserve">
+    <value>Cap saved</value>
+  </data>
 </root>
