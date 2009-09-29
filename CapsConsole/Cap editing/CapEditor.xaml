@@ -39,7 +39,6 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
                           
-                  
         <Style TargetType="ComboBox" x:Key="ShapeTemplate" BasedOn="{StaticResource GenericComboBoxTemplate}">
             <Setter Property="ItemTemplate">
                 <Setter.Value>
@@ -54,14 +53,14 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                                 </Grid>
                             </Grid.ToolTip>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="16" />
+                                <ColumnDefinition Width="19" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Image Width="16" Height="16" VerticalAlignment="Center" Source="{Binding ShapeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='Shape', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" />
+                            <Image Width="19" Height="16" VerticalAlignment="Center" Source="{Binding ShapeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='Shape', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" />
                             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Text="{Binding Name, Mode=OneWay}" Grid.Column="1"/>
                             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Text="{Binding ShapeID, Mode=OneWay}" Grid.Column="2"/>
                         </Grid>
@@ -84,14 +83,14 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                                 </Grid>
                             </Grid.ToolTip>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="19"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Image Width="16" Height="16" VerticalAlignment="Center" Source="{Binding CapTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapType', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" />
+                            <Image Width="19" Height="16" VerticalAlignment="Center" Source="{Binding CapTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapType', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" />
                             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Text="{Binding TypeName, Mode=OneWay}" Grid.Column="1"/>
                             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Text="{Binding CapTypeID, Mode=OneWay}" Grid.Column="2"/>
                         </Grid>
@@ -114,14 +113,14 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                                 </Grid>
                             </Grid.ToolTip>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="19"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Image Width="16" Height="16" VerticalAlignment="Center" Source="{Binding MainTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='MainType', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" />
+                            <Image Width="19" Height="16" VerticalAlignment="Center" Source="{Binding MainTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='MainType', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" />
                             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Text="{Binding TypeName, Mode=OneWay}" Grid.Column="1"/>
                             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Text="{Binding MainTypeID, Mode=OneWay}" Grid.Column="2"/>
                         </Grid>

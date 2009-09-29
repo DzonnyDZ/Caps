@@ -56,7 +56,7 @@ Partial Public Class winNewCap
             Cap.BackColor1 = System.Drawing.Color.FromArgb(.CapBackgroundColor1.A, .CapBackgroundColor1.R, .CapBackgroundColor1.G, .CapBackgroundColor1.B).ToArgb
             If .CapBackgroundColor2.HasValue Then Cap.BackColor2 = System.Drawing.Color.FromArgb(.CapBackgroundColor2.Value.A, .CapBackgroundColor2.Value.R, .CapBackgroundColor2.Value.G, .CapBackgroundColor2.Value.B).ToArgb()
             If .CapForegroundColor1.HasValue Then Cap.ForeColor = System.Drawing.Color.FromArgb(.CapForegroundColor1.Value.A, .CapForegroundColor1.Value.R, .CapForegroundColor1.Value.G, .CapForegroundColor1.Value.B).ToArgb()
-            If .CapForegroundColor1.HasValue Then Cap.ForeColor2 = System.Drawing.Color.FromArgb(.CapForegroundColor1.Value.A, .CapForegroundColor1.Value.R, .CapForegroundColor1.Value.G, .CapForegroundColor1.Value.B).ToArgb()
+            If .CapForegroundColor2.HasValue Then Cap.ForeColor2 = System.Drawing.Color.FromArgb(.CapForegroundColor2.Value.A, .CapForegroundColor2.Value.R, .CapForegroundColor2.Value.G, .CapForegroundColor2.Value.B).ToArgb()
             Cap.Is3D = .Is3D
             Cap.Surface = If(Not .IsGlossy, "M"c, "G"c)
             Cap.TopText = .TopText

@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:res="clr-namespace:Caps.Console.My.Resources"
     xmlns:my="clr-namespace:Caps.Console"
-    Title="{x:Static res:Resources.txt_Caps}" Height="500" Width="750" Icon="/CapsConsole;component/Resources/Cap.ico" Name="winMain">
+    Title="{x:Static res:Resources.txt_Caps}" Height="600" Width="850" Icon="/CapsConsole;component/Resources/Cap.ico" Name="winMain">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Close" x:Name="cmdClose"/>
         <CommandBinding Command="ApplicationCommands.New" x:Name="cmdNew"/>
@@ -104,30 +104,32 @@
                 </GroupBox.Header>
                 <ItemsControl Name="itmNewest" ItemsPanel="{StaticResource HorizontalCapsView}"
                               ItemTemplate="{StaticResource CapView}" HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch" Height="auto" MinHeight="72" IsTabStop="False" />
+                              VerticalAlignment="Stretch" Height="auto" MinHeight="75" IsTabStop="False" />
             </GroupBox>
-            <GroupBox Grid.Column="1" Grid.Row="1" Header="{x:Static res:Resources.txt_Random}">
+            <GroupBox  Grid.Column="1" Grid.Row="1" Header="{x:Static res:Resources.txt_Random}">
                 <ItemsControl Name="itmRandom" ItemsPanel="{StaticResource HorizontalCapsView}"
                               ItemTemplate="{StaticResource CapView}" HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch" Height="auto" MinHeight="72" IsTabStop="False"   />
+                              VerticalAlignment="Stretch" Height="auto" MinHeight="75" IsTabStop="False"   />
             </GroupBox>
-            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" MinHeight="72" MaxHeight="120" >
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" MinHeight="72" MaxHeight="300" Height="auto"  >
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions >
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <GroupBox Grid.Column="0" Grid.Row="0" Header="{x:Static res:Resources.txt_Categories}">
+                <GroupBox Grid.Column="0" Grid.Row="0" Header="{x:Static res:Resources.txt_Categories}" Height="auto" VerticalAlignment="Stretch" >
                     <ItemsControl Name="itmCategories" ItemsPanel="{StaticResource KwPanel}" ItemTemplate="{StaticResource KwItem}" IsTabStop="False"
                                   Template="{StaticResource ScrollableItemsControl}"
-                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  Height="auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
                 </GroupBox>
-                <GroupBox Grid.Column="1" Grid.Row="0" Header="{x:Static res:Resources.txt_Keywords}">
+                <GroupBox Grid.Column="1" Grid.Row="0" Header="{x:Static res:Resources.txt_Keywords}" Height="auto" VerticalAlignment="Stretch" >
                     <ItemsControl Name="itmKeywords" ItemsPanel="{StaticResource KwPanel}" ItemTemplate="{StaticResource KwItem}" IsTabStop="False"
                                   Template="{StaticResource ScrollableItemsControl}"
-                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto"/> 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  Height="auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/> 
                 </GroupBox>
             </Grid>
         </Grid>

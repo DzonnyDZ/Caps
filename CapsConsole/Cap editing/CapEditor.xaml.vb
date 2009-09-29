@@ -196,7 +196,7 @@ Partial Public Class CapEditor
 
     ''' <summary>Regulare expression for image name. It parses out 4 numbers from image name.</summary>
     Private Shared ImageNameRegExp As New System.Text.RegularExpressions.Regex( _
-        "(?<Before>.*)(?<Number>[0-9]{4})(\.?<After>.*)", Text.RegularExpressions.RegexOptions.Compiled Or Text.RegularExpressions.RegexOptions.CultureInvariant Or Text.RegularExpressions.RegexOptions.ExplicitCapture)
+        "(?<Before>.*)(?<Number>[0-9]{4,8})(?<After>\..{3,4})", Text.RegularExpressions.RegexOptions.Compiled Or Text.RegularExpressions.RegexOptions.CultureInvariant Or Text.RegularExpressions.RegexOptions.ExplicitCapture)
 
     Private Sub btnAddImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnAddImage.Click
         Dim dlg As New Forms.OpenFileDialog With {.Multiselect = True, .DefaultExt = "jpg", .Filter = My.Resources.fil_ImageTypes}
