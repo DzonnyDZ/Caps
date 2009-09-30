@@ -1,5 +1,7 @@
-﻿Imports System.Data
+﻿Imports System.Data, System.Reflection, Tools.ExtensionsT
 Imports System.Data.SqlClient
+Imports mBox = Tools.WindowsT.IndependentT.MessageBox
+Imports Microsoft.SqlServer.Management.Common
 
 Module Main
     ''' <summary>Current con nection to database</summary>
@@ -8,7 +10,7 @@ Module Main
     Public ReadOnly DatabaseGuid As New Guid("{DAFDAE3F-2F0A-4359-81D6-50BA394D72D9}")
     ''' <summary>Expected version of database returned by <c>dbo.GetDatabaseVersion</c></summary>
     ''' <remarks><see cref="Version.Revision"/> part is ignored</remarks>
-    Public ReadOnly DatabaseVersion As New Version(0, 0, 1, 0)
+    Public ReadOnly DatabaseVersion As New Version(0, 0, 2, 0)
     Private VersionRegEx As New System.Text.RegularExpressions.Regex("^(?<Guid>{[A-Fa-f0-9]{8}(-[A-Fa-f0-9]{4}){3}-[A-Fa-f0-9]{12}})(?<Version>[0-9]{1,2}(\.[0-9]{1,2}){2,3})$", Text.RegularExpressions.RegexOptions.Compiled Or Text.RegularExpressions.RegexOptions.CultureInvariant Or Text.RegularExpressions.RegexOptions.ExplicitCapture)
     ''' <summary>Verifies if database with given connection is caps database of expected version</summary>
     ''' <param name="Connection">Connection to the database</param>
@@ -29,6 +31,48 @@ Module Main
             Return New DatabaseVerificationResult
         End Try
     End Function
+    ''' <summary>Gets change script to alter database represent by connection to newer one</summary>
+    ''' <param name="Connection">Connection to database to alter</param>
+    ''' <returns>Change script wthich alters database to newer version. Null if script is not available or change is not necessary.</returns>
+    ''' <remarks>There is no guarantee that script will alter database to newest version (<see cref="DatabaseVersion"/>). It may be necessary to obtain another script for resulting database.</remarks>
+    ''' <exception cref="ArgumentNullException"><paramref name="Connection"/> is null</exception>
+    Public Function GetUpdateScript(ByVal Connection As SqlConnection) As String
+        Dim result = VerifyDatabaseVersion(Connection)
+        If result.IsOK OrElse result.DatabaseVersion Is Nothing OrElse result.DatabaseGuid <> DatabaseGuid Then Return Nothing
+        For Each resname In GetType(Main).Assembly.GetManifestResourceNames
+            If resname.StartsWith("ChangeScripts/{0}-to-".f(result.DatabaseVersion)) Then
+                Using resstream = GetType(Main).Assembly.GetManifestResourceStream(resname)
+                    Using r As New IO.StreamReader(resstream, System.Text.Encoding.UTF8)
+                        Return r.ReadToEnd
+                    End Using
+                End Using
+            End If
+        Next
+        Return Nothing
+    End Function
+    ''' <summary>Verifies if database with given connection is caps database of expected version</summary>
+    ''' <param name="Connection">Connection to the database</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="Connection"/> is null</exception>
+    ''' <exception cref="ApplicationException">Database version does not match <see cref="DatabaseVersion"/> and update script is not available or user opted not to upgrade.</exception>
+    ''' <exception cref="SqlException">Upgrade script failed</exception>
+    ''' <remarks>If database version matches, procedure just returns.
+    ''' <para>This procedure emits messageboxes to user</para></remarks>
+    Public Sub VerifyDatabaseVersionWithUpgrade(ByVal Connection As SqlConnection)
+        Dim checkResult = VerifyDatabaseVersion(Connection)
+        If checkResult.IsOK Then Return
+        Dim Script = GetUpdateScript(Connection)
+        If Script Is Nothing Then Throw New ApplicationException(My.Resources.err_IncorrectDatabaseVersion)
+        If mBox.MsgBox(My.Resources.msg_DatabaseVersionUpgrade.f( _
+                             checkResult.DatabaseVersion, My.Application.Info.Title, My.Application.Info.Version, DatabaseVersion, vbCrLf), _
+                             MsgBoxStyle.YesNo Or MsgBoxStyle.Question, My.Resources.txt_UpgradeDatabase) = MsgBoxResult.Yes Then
+            Dim cmd = Connection.CreateCommand
+            Dim Server = New Microsoft.SqlServer.Management.Smo.Server(New ServerConnection(Connection))
+            Server.ConnectionContext.ExecuteNonQuery(Script)
+            VerifyDatabaseVersion(Connection)
+        Else
+            Throw New ApplicationException(My.Resources.err_IncorrectDatabaseVersion)
+        End If
+    End Sub
 End Module
 ''' <summary>Result of <see cref="VerifyDatabaseVersion"/></summary>
 Public Structure DatabaseVerificationResult

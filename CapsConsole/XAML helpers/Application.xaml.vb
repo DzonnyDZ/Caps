@@ -12,4 +12,5 @@
         System.Windows.Forms.Application.EnableVisualStyles()
         Tools.WindowsT.IndependentT.MessageBox.DefaultImplementation = GetType(Tools.WindowsT.WPF.DialogsT.MessageBox)
     End Sub
+
 End Class

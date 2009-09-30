@@ -320,7 +320,8 @@ Partial Public Class CapEditor
 
 #End Region
 
-
+    Private txtTitleTextMatched As Boolean = True
+    Private txtTopTextMatched As Boolean = True
 
 #Region "Select / new / anonymous selection"
     Private Sub cmbCapType_SelectionChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs) Handles cmbCapType.SelectionChanged
@@ -488,6 +489,10 @@ Partial Public Class CapEditor
     End Sub
     Private Sub txtCapName_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtCapName.TextChanged
         If CapName <> txtCapName.Text Then CapName = txtCapName.Text
+        If txtCapName.IsFocused AndAlso txtTitleTextMatched Then
+            txtMainText.Text = txtCapName.Text
+        End If
+        txtTitleTextMatched = txtCapName.Text = txtMainText.Text
     End Sub
 #End Region
 #Region "MainText"
@@ -519,6 +524,11 @@ Partial Public Class CapEditor
     End Sub
     Private Sub txtMainText_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtMainText.TextChanged
         If MainText <> txtMainText.Text Then MainText = txtMainText.Text
+        txtTitleTextMatched = txtCapName.Text = txtMainText.Text
+        If txtTopTextMatched AndAlso txtMainText.IsFocused Then
+            txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
+        End If
+        txtTopTextMatched = txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
     End Sub
 #End Region
 #Region "SubTitle"
@@ -550,6 +560,10 @@ Partial Public Class CapEditor
     End Sub
     Private Sub txtSubTitle_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtSubTitle.TextChanged
         If SubTitle <> txtSubTitle.Text Then SubTitle = txtSubTitle.Text
+        If txtTopTextMatched AndAlso txtMainText.IsFocused Then
+            txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
+        End If
+        txtTopTextMatched = txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
     End Sub
 #End Region
 #Region "MainPicture"
@@ -1549,6 +1563,7 @@ Partial Public Class CapEditor
     End Sub
     Private Sub txtTopText_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtTopText.TextChanged
         If TopText <> txtTopText.Text Then TopText = txtTopText.Text
+        txtTopTextMatched = txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
     End Sub
 #End Region
 #Region "SideText"
@@ -2367,9 +2382,10 @@ Partial Public Class CapEditor
             .Company = If(CapCompany IsNot Nothing, CapCompany.CompanyID, New Integer?), _
             .Categories = (From cat As Category In SelectedCategories Select cat.CategoryID).ToArray}
         If OriginalContext IsNot Nothing Then OriginalContext.Dispose()
+        OriginalContext = Nothing
         If Context Is Nothing Then
             OriginalContext = New CapsDataDataContext(Main.Connection)
-            Context = New CapsDataDataContext
+            Context = OriginalContext
         End If
 
         Me.Context = Context
@@ -2820,6 +2836,7 @@ Resize256:      Try
 
         SelectedCategories = New Category() {}
         Keywords = New String() {}
+        kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
 
         Images.Clear()
     End Sub

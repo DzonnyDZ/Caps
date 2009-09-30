@@ -1230,4 +1230,10 @@
   <data name="txt_CapSaved" xml:space="preserve">
     <value>Cap saved</value>
   </data>
+  <data name="msg_DatabaseVersionUpgrade" xml:space="preserve">
+    <value>Version of database is {0}. Application {1} {2} requires database version {3}. Update script for version {0} is available. Do you want to upgrade the database?{4}Note: It is possible that after upgrade, the database version will still be incompatible with current version of application and it will be necessary to run another upgrade script. One upgraded, database cannot be used by older version of application.</value>
+  </data>
+  <data name="txt_UpgradeDatabase" xml:space="preserve">
+    <value>Upgrade database</value>
+  </data>
 </root>

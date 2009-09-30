@@ -290,15 +290,15 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Name}"/>
-                <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtCapName" />
+                <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtCapName" my:AttachedProperties.SelectAllOnFocus="true" />
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_TitleText}"/>
-                <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtMainText" />
+                <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtMainText" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_SubtitleText}"/>
-                <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtSubTitle" />
+                <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtSubTitle" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_MainPicture}"/>
-                <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtMainPicture" />
+                <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtMainPicture" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_AnotherPictures}"/>
-                <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtAnotherPictures" AcceptsReturn="True" MinLines="2" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" MaxLines="2" />
+                <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtAnotherPictures" AcceptsReturn="True" MinLines="2" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" MaxLines="2" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_PictureType}"/>
                 <ComboBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="cmbPictureType">
                     <ComboBox.Items>
@@ -374,13 +374,13 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                                   IsEnabled="{Binding ElementName=optCapTypeSelect, Path=IsChecked, Mode=OneWay}" SelectedValuePath="CapTypeID" Grid.ColumnSpan="2" />
                         <RadioButton Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Name="optCapTypeNew" Content="{x:Static res:Resources.lbl_NewType}"/>
                         <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  HorizontalAlignment="Stretch" Name="txtCapTypeName"
-                                 IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Grid.ColumnSpan="2" />
+                                 IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Grid.ColumnSpan="2" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="auto" IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.lbl_Description}"/>
                         <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AcceptsReturn="True" MinLines="2" TextWrapping="WrapWithOverflow" Name="txtCapTypeDesc"
-                                 IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Grid.ColumnSpan="2" />
+                                 IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Grid.ColumnSpan="2" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.lbl_Image}"/>
                         <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left"  Name="txtCapTypeImagePath"
-                                 IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Height="21.96" Width="204.267" />
+                                 IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Height="21.96" Width="204.267" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Name="btnBrowseForCapTypeImage" Padding="3,0"
                                 IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}">...</Button>
                         <RadioButton Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="auto" Name="optCapTypeAnonymous" Content="{x:Static res:Resources.lbl_AnonymousType}"/>
@@ -433,13 +433,13 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Content="{x:Static res:Resources.lbl_TopText}"/>
-                <TextBox Grid.Row="1" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtTopText" VerticalScrollBarVisibility="Auto" MaxLines="4" />
+                <TextBox Grid.Row="1" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtTopText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Row="2" Content="{x:Static res:Resources.lbl_SideText}"/>
-                <TextBox Grid.Row="3" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtSideText" VerticalScrollBarVisibility="Auto" MaxLines="4" />
+                <TextBox Grid.Row="3" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtSideText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Row="4" Content="{x:Static res:Resources.lbl_BottomText}"/>
-                <TextBox Grid.Row="5" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtBottomText" VerticalScrollBarVisibility="Auto" MaxLines="4" />
+                <TextBox Grid.Row="5" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtBottomText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Row="6" Content="{x:Static res:Resources.lbl_Note}"/>
-                <TextBox Grid.Row="7" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtNote" VerticalScrollBarVisibility="Auto" MaxLines="4" />
+                <TextBox Grid.Row="7" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtNote" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Column="2" Grid.Row="0" Header="{x:Static res:Resources.txt_Miscellaneous}">
@@ -463,10 +463,10 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Year}" />
                 <Tools:NumericUpDown Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Minimum="0" Maximum="9999" Value="0" ToolTip="{x:Static res:Resources.tot_0NotSet}" Grid.ColumnSpan="2" Name="nudYear"/>
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Country}"/>
-                <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" ToolTip="{x:Static res:Resources.tot_ISO2}" MaxLines="1" MaxLength="3" Grid.ColumnSpan="2" Name="txtCountryCode" />
+                <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" ToolTip="{x:Static res:Resources.tot_ISO2}" MaxLines="1" MaxLength="3" Grid.ColumnSpan="2" Name="txtCountryCode" my:AttachedProperties.SelectAllOnFocus="true"/>
 
                 <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_CountryOfOrigin}"/>
-                <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" ToolTip="{x:Static res:Resources.tot_ISO2}" MaxLines="1" MaxLength="3" Grid.ColumnSpan="2" Name="txtCountryOfOrigin" />
+                <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" ToolTip="{x:Static res:Resources.tot_ISO2}" MaxLines="1" MaxLength="3" Grid.ColumnSpan="2" Name="txtCountryOfOrigin" my:AttachedProperties.SelectAllOnFocus="true"/>
 
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Storage}"/>
                 <ComboBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbStorage" Style="{StaticResource StorageTemplate}" SelectedValuePath="StorageID" />
@@ -509,10 +509,10 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                                   IsEnabled="{Binding ElementName=optProductSelected, Path=IsChecked, Mode=OneWay}"/>
                         <RadioButton Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Name="optProductNew" Content="{x:Static res:Resources.lbl_NewProduct}"/>
                         <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="txtProductName" 
-                                 IsEnabled="{Binding ElementName=optProductNew, Path=IsChecked, Mode=OneWay}"/>
+                                 IsEnabled="{Binding ElementName=optProductNew, Path=IsChecked, Mode=OneWay}" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{x:Static res:Resources.lbl_Description}"/>
                         <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinLines="2" AcceptsReturn="True" TextWrapping="WrapWithOverflow" Name="txtProductDescription"
-                                 IsEnabled="{Binding ElementName=optProductNew, Path=IsChecked, Mode=OneWay}"/>
+                                 IsEnabled="{Binding ElementName=optProductNew, Path=IsChecked, Mode=OneWay}" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <RadioButton Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" IsChecked="True" Name="optProductAnonymous" Content="{x:Static res:Resources.lbl_AnonymousProduct}"/>
                     </Grid>
                 </GroupBox>

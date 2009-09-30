@@ -1726,6 +1726,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Version of database is {0}. Application {1} {2} requires database version {3}. Update script for version {0} is available. Do you want to upgrade the database?{4}Note: It is possible that after upgrade, the database version will still be incompatible with current version of application and it will be necessary to run another upgrade script. One upgraded, database cannot be used by older version of application..
+        '''</summary>
+        Public ReadOnly Property msg_DatabaseVersionUpgrade() As String
+            Get
+                Return ResourceManager.GetString("msg_DatabaseVersionUpgrade", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Error committing changes to database..
         '''</summary>
         Public ReadOnly Property msg_ErrorCommittingChangesToDatabase() As String
@@ -2577,6 +2586,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_Types() As String
             Get
                 Return ResourceManager.GetString("txt_Types", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Upgrade database.
+        '''</summary>
+        Public ReadOnly Property txt_UpgradeDatabase() As String
+            Get
+                Return ResourceManager.GetString("txt_UpgradeDatabase", resourceCulture)
             End Get
         End Property
     End Module

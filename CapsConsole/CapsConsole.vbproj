@@ -55,6 +55,9 @@
     <NoWarn>41999,42016</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -239,6 +242,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="XAML helpers\AttachedProperties.vb" />
     <Compile Include="XAML helpers\ColorPicker.xaml.vb">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
@@ -314,6 +318,10 @@
       <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\CapsData\Change Scripts\0.0.1.0-to-0.0.1.1.sql">
+      <Link>DAL\Change scripts\0.0.1.0-to-0.0.1.1.sql</Link>
+      <LogicalName>ChangeScripts/0.0.1.0-to-0.0.1.1.sql</LogicalName>
     </EmbeddedResource>
     <None Include="app.config" />
     <Compile Include="XAML helpers\Converters.Specialized.vb" />
@@ -397,6 +405,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\EditTableHS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="!version history!.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

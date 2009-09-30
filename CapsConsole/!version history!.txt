@@ -1,0 +1,19 @@
+﻿; TODO: Convert this file to XML, use EOS version history
+0.1.0.0
+    * Initial release
+    * Connect to database (wizard does not work)
+    * Check database version (no upgrade support)
+    * Main window (menu, newes, random, categories, keywords, statistic)
+    * New cap
+    * Edit cap
+    * Manage lists
+    * Settings (image root)
+    * Search similar caps
+0.1.1.0
+    * Fix: When Save & new is clicked, database connection changes
+    * Fix: When Save & new is used keywords autocomplete does not offer newly introduced keywords
+    * Minimal size of font for categories and keywords in main window increased from 5 to 8
+    * New cap/edit cap - tab navigation selects all text in text box
+    * Automatic generation of Title from Name and Top Text from Title and Subtitle
+    * Database upgrade via embdeded changescripts (upgrade database from previous to current version)    
+    * New database version 0.0.2.0

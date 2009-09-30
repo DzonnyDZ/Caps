@@ -23,9 +23,7 @@ Connect: If win.ShowDialog Then
             Main.Connection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)
             Try
                 Connection.Open()
-                If Not VerifyDatabaseVersion(Connection) Then
-                    Throw New ApplicationException(My.Resources.err_IncorrectDatabaseVersion)
-                End If
+                VerifyDatabaseVersionWithUpgrade(Connection)
             Catch ex As Exception
                 Connection.Close()
                 If mBox.Error_XBI(ex, Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Retry Or Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Abort) = Forms.DialogResult.Retry Then
@@ -62,7 +60,7 @@ Connect: If win.ShowDialog Then
         Dim BiggestCategory = (From itm In Context.Categories Order By itm.Cap_Category_Ints.Count Descending Select New Integer?(itm.Cap_Category_Ints.Count)).FirstOrDefault
         Dim BiggestKeyword = (From itm In Context.Keywords Order By itm.Cap_Keyword_Ints.Count Descending Select New Integer?(itm.Cap_Keyword_Ints.Count)).FirstOrDefault
         Const FontMax% = 50
-        Const FontMin% = 5
+        Const FontMin% = 8
         Dim mup As Double = If(Not BiggestCategory.HasValue OrElse BiggestCategory = 0, 0, (FontMax - FontMin) / BiggestCategory)
         itmCategories.ItemsSource = From itm In Context.Categories _
                                     Select Count = itm.Cap_Category_Ints.Count, Name = itm.CategoryName, ID = itm.CategoryID, Size = mup * itm.Cap_Category_Ints.Count + FontMin, Type = "C"c _
