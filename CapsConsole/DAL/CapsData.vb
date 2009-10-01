@@ -15,7 +15,13 @@ End Class
 
 <DebuggerDisplay("Cap {CapName} ({CapID})")> _
 Partial Class Cap
-
+    ''' <summary>Gets the <see cref="Images"/> collection ordered</summary>
+    ''' <returns>The <see cref="Images"/> collection ordered by <see cref="Image.IsMain"/> descending first and then by <see cref="Image.RelativePath"/> ascending</returns>
+    Public ReadOnly Property ImagesOrdered() As IOrderedEnumerable(Of Image)
+        Get
+            Return From img In Images Order By img.IsMain Descending, img.RelativePath Ascending
+        End Get
+    End Property
 End Class
 <DebuggerDisplay("Shape {Name} ({ShapeID})")> _
 Partial Class Shape
@@ -106,10 +112,17 @@ Friend Class DebugLog
             _Enabled = value
         End Set
     End Property
+    ''' <summary>Gtes value indicating if debuger is attached to this proces and logging is enabled</summary>
+    ''' <returns>True when <see cref="Enabled"/> is true and <see cref="Debugger.IsAttached"/> is true</returns>
+    Private ReadOnly Property EnabledInternal() As Boolean
+        Get
+            Return Enabled AndAlso Debugger.IsAttached
+        End Get
+    End Property
 
     ''' <summary>Clears all buffers for the current writer and causes any buffered data to be written to the underlying device.</summary>
     Public Overrides Sub Flush()
-        If Enabled Then Debug.Flush()
+        If EnabledInternal Then Debug.Flush()
     End Sub
     ''' <summary>When overridden in a derived class, returns the <see cref="T:System.Text.Encoding"></see> in which the output is written.</summary>
     ''' <returns>The Encoding in which the output is written.</returns>
@@ -126,12 +139,12 @@ Friend Class DebugLog
     ''' <exception cref="T:System.ArgumentException">The buffer length minus index is less than count. </exception>
     ''' <exception cref="T:System.ArgumentNullException">The buffer parameter is null. </exception>
     Public Overrides Sub Write(ByVal buffer() As Char, ByVal index As Integer, ByVal count As Integer)
-        If Enabled Then Write(New String(buffer, index, count))
+        If EnabledInternal Then Write(New String(buffer, index, count))
     End Sub
     ''' <summary>Writes a string followed by a line terminator to the text stream.</summary>
     ''' <param name="value">The string to write. If value is null, only the line termination characters are written. </param>
     Public Overrides Sub Write(ByVal value As String)
-        If Enabled Then Debug.Write(value)
+        If EnabledInternal Then Debug.Write(value)
     End Sub
 End Class
 #End If

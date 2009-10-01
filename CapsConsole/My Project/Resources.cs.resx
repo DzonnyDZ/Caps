@@ -957,4 +957,20 @@
   <data name="txt_CapSaved" xml:space="preserve">
     <value>Víčko uloženo</value>
   </data>
+  <data name="msg_DatabaseVersionUpgrade" xml:space="preserve">
+    <value>Verze databáze je {0}. Aplikace {1} {2} požaduje databázi verze {3}. K dispozici je aktualizační skript pro verzi {0}. Přejete si upgradovat databázi?{4}Poznámka: Je možné, že po provedení upgradu bude verze databáze stále nekompatibilní s aktuální verzí aplikace a bude potřeba spustit další aktualizašní skript. Po upgradu již nebude možné používat databázi se starší verzí aplikace.</value>
+  </data>
+  <data name="txt_UpgradeDatabase" xml:space="preserve">
+    <value>Upgrade databáze</value>
+  </data>
+  <data name="msg_DatabaseChangedSuccessfully" xml:space="preserve">
+    <value>Změny na databázi byly úspěšné</value>
+  </data>
+  <data name="tot_MainImage" xml:space="preserve">
+    <value>Hlavní obrázek
+K jednomu víčku byste měli mít maximálně jeden hlavní obrázek</value>
+  </data>
+  <data name="tot_ThisIsMainImage" xml:space="preserve">
+    <value>Toto je hlavní obrázek</value>
+  </data>
 </root>

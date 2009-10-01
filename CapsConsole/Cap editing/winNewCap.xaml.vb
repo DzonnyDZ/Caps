@@ -87,11 +87,13 @@ Partial Public Class winNewCap
                 Next
             End If
             'Images
-            Dim IntroducedImages As List(Of String) = .CopyImages()
+            Dim IntroducedImages = .CopyImages()
             If IntroducedImages Is Nothing Then Exit Sub
             'Prepare for commit
-            Dim CreatedDBImages = (From item In IntroducedImages Select New Image() With {.Cap = Cap, .RelativePath = item}).ToArray
-            .Context.Images.InsertAllOnSubmit(CreatedDBImages)
+            For Each img In IntroducedImages
+                img.Cap = Cap
+            Next
+            .Context.Images.InsertAllOnSubmit(IntroducedImages)
             Dim CreatedDBKeywords As Keyword()
             Dim CreatedDBKwInts As Cap_Keyword_Int()
             If .Keywords IsNot Nothing Then
@@ -124,7 +126,7 @@ Partial Public Class winNewCap
                 '.Context.Products.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Product))
                 '.Context.Caps.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Cap))
                 .ResetContext()
-                CapEditor.UndoCopyImages(IntroducedImages)
+                CapEditor.UndoCopyImages(From img In IntroducedImages Select img.RelativePath)
                 Exit Sub
             End Try
             'For newly introduced cap type copy image

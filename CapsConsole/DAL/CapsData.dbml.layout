@@ -56,10 +56,10 @@
         <elementListCompartment Id="af4293e2-d568-47cc-91b8-0b1ecef2c4a1" absoluteBounds="6.2650000000000006, 11.46, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="562ad9d7-0019-4018-b2d2-ba06079162e3" absoluteBounds="7.5, 13.25, 2, 1.4248478190104166">
+    <classShape Id="562ad9d7-0019-4018-b2d2-ba06079162e3" absoluteBounds="7.5, 13.25, 2, 1.5891951497395844">
       <DataClassMoniker Name="/CapsDataDataContext/ProductType" />
       <nestedChildShapes>
-        <elementListCompartment Id="772e7e11-6fc7-45d4-98ce-16f4e0be34a0" absoluteBounds="7.5150000000000006, 13.71, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="772e7e11-6fc7-45d4-98ce-16f4e0be34a0" absoluteBounds="7.5150000000000006, 13.71, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(12.875 : 9.22199625651042); (11.5 : 9.22199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
@@ -123,10 +123,10 @@
         <classShapeMoniker Id="c3486e04-5a9f-40a9-85bb-ab7aba9d699a" />
       </nodes>
     </associationConnector>
-    <classShape Id="5bbd4caa-2af5-4d2c-8323-bc08f37a56c6" absoluteBounds="6.25, 3.125, 2, 6.8483097330729148">
+    <classShape Id="5bbd4caa-2af5-4d2c-8323-bc08f37a56c6" absoluteBounds="6.25, 3.125, 2, 7.0126570638020826">
       <DataClassMoniker Name="/CapsDataDataContext/Cap" />
       <nestedChildShapes>
-        <elementListCompartment Id="2d69312a-3210-4eaf-8c66-b53d99b02a62" absoluteBounds="6.265, 3.585, 1.9700000000000002, 6.2883097330729161" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2d69312a-3210-4eaf-8c66-b53d99b02a62" absoluteBounds="6.265, 3.585, 1.9700000000000002, 6.452657063802083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(8.25 : 9.17307657877604); (9.5 : 9.17307657877604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
@@ -212,13 +212,13 @@
         <classShapeMoniker Id="5bbd4caa-2af5-4d2c-8323-bc08f37a56c6" />
       </nodes>
     </associationConnector>
-    <classShape Id="c27318f4-1fba-43ce-8393-db1a40db2c9d" absoluteBounds="3.25, 1.625, 2, 1.26050048828125">
+    <classShape Id="c27318f4-1fba-43ce-8393-db1a40db2c9d" absoluteBounds="3.25, 1.625, 2, 1.424847819010417">
       <DataClassMoniker Name="/CapsDataDataContext/Image" />
       <nestedChildShapes>
-        <elementListCompartment Id="8cc05497-8504-44bc-a38d-b7f520e7d8c9" absoluteBounds="3.265, 2.085, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8cc05497-8504-44bc-a38d-b7f520e7d8c9" absoluteBounds="3.265, 2.085, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.25 : 4.78125); (3.90625 : 4.78125); (3.90625 : 2.88550048828125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.25 : 5.28125); (3.40625 : 5.28125); (3.40625 : 3.04984781901042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/CapsDataDataContext/Cap/Cap_Image" />
       <nodes>
         <classShapeMoniker Id="5bbd4caa-2af5-4d2c-8323-bc08f37a56c6" />

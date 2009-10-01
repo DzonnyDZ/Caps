@@ -2,7 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:res="clr-namespace:Caps.Console.My.Resources"
-    Title="{x:Static res:Resources.txt_NewMainType}" Height="176" Width="375" SizeToContent="Height" MinWidth="300">
+    Title="{x:Static res:Resources.txt_NewMainType}" Height="176" Width="375" SizeToContent="Height" MinWidth="300"
+        ShowInTaskbar="False" Icon="{x:Null}">
     <Grid>
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="auto"/>

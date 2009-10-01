@@ -50,6 +50,8 @@ Module Main
         Next
         Return Nothing
     End Function
+    ''' <summary>True when <see cref="VerifyDatabaseVersionWithUpgrade"/> is currently on callstack</summary>
+    Private VerifyDatabaseVersionWithUpgradeOnStack As Boolean = False
     ''' <summary>Verifies if database with given connection is caps database of expected version</summary>
     ''' <param name="Connection">Connection to the database</param>
     ''' <exception cref="ArgumentNullException"><paramref name="Connection"/> is null</exception>
@@ -62,13 +64,21 @@ Module Main
         If checkResult.IsOK Then Return
         Dim Script = GetUpdateScript(Connection)
         If Script Is Nothing Then Throw New ApplicationException(My.Resources.err_IncorrectDatabaseVersion)
-        If mBox.MsgBox(My.Resources.msg_DatabaseVersionUpgrade.f( _
+        If VerifyDatabaseVersionWithUpgradeOnStack OrElse _
+            mBox.MsgBox(My.Resources.msg_DatabaseVersionUpgrade.f( _
                              checkResult.DatabaseVersion, My.Application.Info.Title, My.Application.Info.Version, DatabaseVersion, vbCrLf), _
                              MsgBoxStyle.YesNo Or MsgBoxStyle.Question, My.Resources.txt_UpgradeDatabase) = MsgBoxResult.Yes Then
             Dim cmd = Connection.CreateCommand
             Dim Server = New Microsoft.SqlServer.Management.Smo.Server(New ServerConnection(Connection))
             Server.ConnectionContext.ExecuteNonQuery(Script)
-            VerifyDatabaseVersion(Connection)
+            Dim WasOnStack = VerifyDatabaseVersionWithUpgradeOnStack
+            VerifyDatabaseVersionWithUpgradeOnStack = True
+            Try
+                VerifyDatabaseVersion(Connection)
+            Finally
+                VerifyDatabaseVersionWithUpgradeOnStack = WasOnStack
+            End Try
+            If Not VerifyDatabaseVersionWithUpgradeOnStack Then mBox.MsgBox(My.Resources.msg_DatabaseChangedSuccessfully, MsgBoxStyle.OkCancel Or MsgBoxStyle.Information, My.Resources.txt_UpgradeDatabase)
         Else
             Throw New ApplicationException(My.Resources.err_IncorrectDatabaseVersion)
         End If

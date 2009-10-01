@@ -39,7 +39,7 @@ ConverterParameter={x:Array {x:Type sys:String} {my:StaticEx my:MySettings.Defau
 
 
 
-        <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListBox}}">
+        <!--<Style TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListBox}}">
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="0.5"/>
             <Setter Property="Template">
@@ -73,7 +73,7 @@ ConverterParameter={x:Array {x:Type sys:String} {my:StaticEx my:MySettings.Defau
             </Setter>
         </Style>
         <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type my:ImageView},ResourceId=ImageView}"/>
-        <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type my:ImageView},ResourceId=ImageViewItem}"/>
+        <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type my:ImageView},ResourceId=ImageViewItem}"/>-->
 
         <Style TargetType="ComboBox" x:Key="GenericComboBoxTemplate">
             <Setter Property="ItemContainerStyle">

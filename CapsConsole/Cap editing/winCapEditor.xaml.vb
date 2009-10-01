@@ -56,7 +56,7 @@ Partial Public Class winCapEditor
                                            .ProductType = caeEditor.CapProductType}
         End If
         'Image files
-        Dim IntroducedImages As List(Of String) = caeEditor.CopyImages()
+        Dim IntroducedImages = caeEditor.CopyImages()
         If IntroducedImages Is Nothing Then Exit Sub
         'Categories
         Context.Cap_Category_Ints.DeleteAllOnSubmit((From cat In OldCategories Where Not caeEditor.SelectedCategories.Contains(cat.Category)).ToArray)
@@ -69,7 +69,10 @@ Partial Public Class winCapEditor
         Context.Keywords.InsertAllOnSubmit(NewKeywords)
         Context.Cap_Keyword_Ints.InsertAllOnSubmit((From kw In NewKeywords Select New Cap_Keyword_Int(Cap, kw)).ToArray)
         'Images
-        Context.Images.InsertAllOnSubmit((From imgname In IntroducedImages Select New Image With {.RelativePath = imgname, .Cap = Cap}).ToArray)
+        For Each img In IntroducedImages
+            img.Cap = Cap
+        Next
+        Context.Images.InsertAllOnSubmit(IntroducedImages)
         Context.Images.DeleteAllOnSubmit((From img In OldImages Where Not caeEditor.Images.Contains(img)).ToArray)
         'Prepare for commit                                                                                      
         If NewType IsNot Nothing Then Cap.CapType = NewType : Context.CapTypes.InsertOnSubmit(NewType)
@@ -114,6 +117,7 @@ Partial Public Class winCapEditor
             Cap.ProductType = Context.ProductTypes.FirstOrDefault(Function(itm) itm.ProductTypeID = OldCap.ProductTypeID)
             Cap.Company = Context.Companies.FirstOrDefault(Function(itm) itm.CompanyID = OldCap.CompanyID)
             Me.DataContext = Cap
+            CapEditor.UndoCopyImages(From img In IntroducedImages Select img.RelativePath)
             Exit Sub
         End Try
         If NewType IsNot Nothing Then

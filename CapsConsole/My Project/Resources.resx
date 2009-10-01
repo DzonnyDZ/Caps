@@ -1235,5 +1235,18 @@
   </data>
   <data name="txt_UpgradeDatabase" xml:space="preserve">
     <value>Upgrade database</value>
+    <comment>Message box title</comment>
+  </data>
+  <data name="msg_DatabaseChangedSuccessfully" xml:space="preserve">
+    <value>Database changes applied successfully</value>
+  </data>
+  <data name="tot_MainImage" xml:space="preserve">
+    <value>Main image
+You should have maximally one main image per cap.</value>
+    <comment>Tool tip text</comment>
+  </data>
+  <data name="tot_ThisIsMainImage" xml:space="preserve">
+    <value>This is main image</value>
+    <comment>Tool tip text</comment>
   </data>
 </root>

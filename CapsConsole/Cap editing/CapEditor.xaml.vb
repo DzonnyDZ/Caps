@@ -2504,9 +2504,9 @@ Partial Public Class CapEditor
     End Function
 #Region "Copy images"
     ''' <summary>Copies images from <see cref="CapEditor.Images">Images</see> to image directory and creates resized images</summary>
-    ''' <returns>List of names of copied images; null on error</returns>
-    Public Function CopyImages() As List(Of String)
-        Dim Imgs = New List(Of String)
+    ''' <returns>List of copied images; null on error</returns>
+    Public Function CopyImages() As List(Of Image)
+        Dim Imgs = New List(Of Image)
         CopyImages = Imgs
         If Images Is Nothing Then Exit Function
         Dim folOrig = IO.Path.Combine(My.Settings.ImageRoot, "original")
@@ -2648,7 +2648,7 @@ Resize256:      Try
                         Case Else : Exception = ex : Return Nothing
                     End Select
                 End Try
-                Imgs.Add(newName)
+                Imgs.Add(New Image With {.RelativePath = newName, .IsMain = Item.IsMain})
             Next
         Finally
             If Exception IsNot Nothing Then

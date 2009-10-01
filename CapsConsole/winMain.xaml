@@ -23,7 +23,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="72"/>
                 </Grid.ColumnDefinitions>
-                <Image MaxWidth="72" MaxHeight="72" Source="{Binding Path=Images[0].RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Height="auto"  Grid.Column="0" Grid.Row="0" />
+                <Image MaxWidth="72" MaxHeight="72" Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Height="auto"  Grid.Column="0" Grid.Row="0" />
                 <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Text="{Binding CapName, Mode=OneWay}" TextWrapping="WrapWithOverflow" MaxWidth="72" />                   
             </Grid>
         </DataTemplate>
@@ -57,7 +57,7 @@
                 <MenuItem Header="{x:Static res:Resources.mni_Settings}" Name="mniSettings" />
             </MenuItem>
             <MenuItem Name="mniTools" Header="{x:Static res:Resources.mni_Tools}">
-                <MenuItem Name="mniRefresh"  Header="{x:Static res:Resources.mni_Refresh}" Command="" >
+                <MenuItem Name="mniRefresh"  Header="{x:Static res:Resources.mni_Refresh}" Command="NavigationCommands.Refresh" >
                     <MenuItem.Icon>
                         <Image Source="/CapsConsole;component/Resources/RefreshDocViewHS.png"/>
                     </MenuItem.Icon>

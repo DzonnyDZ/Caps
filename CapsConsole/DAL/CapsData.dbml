@@ -96,7 +96,7 @@
       <Column Name="ProductTypeName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="IsDrink" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-        <Column Name="IsAlcoholic" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsAlcoholic" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="ProductType_Product" Member="Products" ThisKey="ProductTypeID" OtherKey="ProductTypeID" Type="Product" />
       <Association Name="ProductType_Cap" Member="Caps" ThisKey="ProductTypeID" OtherKey="ProductTypeID" Type="Cap" />
     </Type>
@@ -159,7 +159,7 @@
       <Column Name="TargetID" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="IsDrink" Modifier="Virtual" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="State" Modifier="Virtual" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-        <Column Name="IsAlcoholic" Modifier="Virtual" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="IsAlcoholic" Modifier="Virtual" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="Cap_Cap_Category_Int" Member="Cap_Category_Ints" ThisKey="CapID" OtherKey="CapID" Type="Cap_Category_Int" />
       <Association Name="Cap_Cap_Keyword_Int" Member="Cap_Keyword_Ints" ThisKey="CapID" OtherKey="CapID" Type="Cap_Keyword_Int" />
       <Association Name="Cap_Image" Member="Images" ThisKey="CapID" OtherKey="CapID" Type="Image" />
@@ -191,6 +191,7 @@
       <Column Name="ImageID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="RelativePath" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
       <Column Name="CapID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsMain" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Cap_Image" Member="Cap" ThisKey="CapID" OtherKey="CapID" Type="Cap" IsForeignKey="true" />
     </Type>
   </Table>

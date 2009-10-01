@@ -3728,6 +3728,8 @@ Partial Public Class Image
 	
 	Private _CapID As Integer
 	
+	Private _IsMain As Boolean
+	
 	Private _Cap As EntityRef(Of Cap)
 	
     #Region "Extensibility Method Definitions"
@@ -3744,6 +3746,10 @@ Partial Public Class Image
     Partial Private Sub OnCapIDChanging(value As Integer)
     End Sub
     Partial Private Sub OnCapIDChanged()
+    End Sub
+    Partial Private Sub OnIsMainChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnIsMainChanged()
     End Sub
     #End Region
 	
@@ -3792,6 +3798,23 @@ Partial Public Class Image
 				Me._CapID = value
 				Me.SendPropertyChanged("CapID")
 				Me.OnCapIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Column(Storage:="_IsMain", DbType:="Bit NOT NULL")>  _
+	Public Property IsMain() As Boolean
+		Get
+			Return Me._IsMain
+		End Get
+		Set
+			If ((Me._IsMain = value)  _
+						= false) Then
+				Me.OnIsMainChanging(value)
+				Me.SendPropertyChanging
+				Me._IsMain = value
+				Me.SendPropertyChanged("IsMain")
+				Me.OnIsMainChanged
 			End If
 		End Set
 	End Property

@@ -1726,6 +1726,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Database changes applied successfully.
+        '''</summary>
+        Public ReadOnly Property msg_DatabaseChangedSuccessfully() As String
+            Get
+                Return ResourceManager.GetString("msg_DatabaseChangedSuccessfully", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Version of database is {0}. Application {1} {2} requires database version {3}. Update script for version {0} is available. Do you want to upgrade the database?{4}Note: It is possible that after upgrade, the database version will still be incompatible with current version of application and it will be necessary to run another upgrade script. One upgraded, database cannot be used by older version of application..
         '''</summary>
         Public ReadOnly Property msg_DatabaseVersionUpgrade() As String
@@ -1951,11 +1960,30 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Main image
+        '''You should have maximally one main image per cap..
+        '''</summary>
+        Public ReadOnly Property tot_MainImage() As String
+            Get
+                Return ResourceManager.GetString("tot_MainImage", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to No color selected.
         '''</summary>
         Public ReadOnly Property tot_NoColor() As String
             Get
                 Return ResourceManager.GetString("tot_NoColor", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to This is main image.
+        '''</summary>
+        Public ReadOnly Property tot_ThisIsMainImage() As String
+            Get
+                Return ResourceManager.GetString("tot_ThisIsMainImage", resourceCulture)
             End Get
         End Property
         

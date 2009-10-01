@@ -29,7 +29,7 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Image Source="{Binding Path=Images[0].RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay}"
+                        <Image Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay}"
                                MaxWidth="72" MaxHeight="72" HorizontalAlignment="Center" VerticalAlignment="Center"
                                ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>    
                     </DataTemplate>
@@ -575,11 +575,39 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ListView  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="lvwImages" MinHeight="100" >
+                <ListBox Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="lvwImages" MinHeight="100">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" IsItemsHost="True" ItemHeight="100" ItemWidth="64"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Width="64" Height="100" ToolTip="{Binding RelativePath, Mode=OneWay}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="64"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="64"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Image Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}}" MaxWidth="64" MaxHeight="64" Width="auto" Height="auto"
+                                       Grid.ZIndex="0"/>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Text="{Binding RelativePath, Mode=OneWay}" Width="auto" Height="auto" TextWrapping="Wrap" TextAlignment="Center"/>
+                                <CheckBox Grid.Column="0" Grid.Row="0"
+                                          HorizontalAlignment="Right" VerticalAlignment="Top"
+                                          IsChecked="{Binding Path=IsMain, Mode=TwoWay}"
+                                          ToolTip="{x:Static res:Resources.tot_MainImage}"
+                                          Grid.ZIndex="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>    
+                </ListBox>
+                <!--<ListView  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="lvwImages" MinHeight="100" >
                     <ListView.View >
                         <my:ImageView />
                     </ListView.View>
-                </ListView>
+                </ListView>-->
                 <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="btnAddImage" Content="{x:Static res:Resources.cmd_Add}"/>
             </Grid>
         </GroupBox>
