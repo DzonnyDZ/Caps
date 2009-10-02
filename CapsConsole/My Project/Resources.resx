@@ -1249,4 +1249,45 @@ You should have maximally one main image per cap.</value>
     <value>This is main image</value>
     <comment>Tool tip text</comment>
   </data>
+  <data name="mni_ImagesClear" xml:space="preserve">
+    <value>Delete unused images</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="tot_ImagesClear" xml:space="preserve">
+    <value>When cap, image, shape cap type etc. is deleted, associated image from file system is not deleted. Use this command to remove images not referenced by any item in database.</value>
+    <comment>Menu item tool tip</comment>
+  </data>
+  <data name="txt_ImageCleanup" xml:space="preserve">
+    <value>Image cleanup</value>
+  </data>
+  <data name="msg_NoFilesToDelete" xml:space="preserve">
+    <value>No orphaned files to be deleted</value>
+  </data>
+  <data name="lbl_CapImagesOriginal" xml:space="preserve">
+    <value>Cap images (original size) ({0})</value>
+  </data>
+  <data name="lbl_CapImageThumbnails" xml:space="preserve">
+    <value>Cap image thumbnails ({0}px) ({1})</value>
+  </data>
+  <data name="lbl_CapTypeImages" xml:space="preserve">
+    <value>Cap type images ({0})</value>
+  </data>
+  <data name="lbl_MainTypeImages" xml:space="preserve">
+    <value>Main type images ({0})</value>
+  </data>
+  <data name="lbl_ShapeImages" xml:space="preserve">
+    <value>Shape images ({0})</value>
+  </data>
+  <data name="txt_ClearImagesNote" xml:space="preserve">
+    <value>Numbers above contain any possible non-image files in image directories. Sub directories are ignored.</value>
+  </data>
+  <data name="msg_AllFilesDeleted" xml:space="preserve">
+    <value>All files successfully deleted.</value>
+  </data>
+  <data name="err_UnableToDeleteFiles" xml:space="preserve">
+    <value>Unable to delete {0} files.</value>
+  </data>
+  <data name="msg_ImagesToDelete" xml:space="preserve">
+    <value>Images to be deleted:</value>
+  </data>
 </root>

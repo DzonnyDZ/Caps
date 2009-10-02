@@ -1,5 +1,5 @@
 ﻿Imports mBox = Tools.WindowsT.IndependentT.MessageBox
-Imports Tools.ExtensionsT
+Imports Tools.ExtensionsT, Tools.LinqT
 ''' <summary>Main application window</summary>
 Class winMain
     ''' <summary>CTor</summary>
@@ -47,11 +47,11 @@ Connect: If win.ShowDialog Then
             End If
         End If
         Me.Title = Me.Title & " - " & "{0} {1}".f(My.Application.Info.Title, My.Application.Info.Version)
-        Me.Context = New CapsDataDataContext(Main.Connection)
         Bind()
     End Sub
 
     Private Sub Bind()
+        Me.Context = New CapsDataDataContext(Main.Connection)
         lblCapsCount.Content = Context.Caps.Count
         lblNewestCap.Content = (From itm In Context.Caps Order By itm.DateCreated Descending Select New Date?(itm.DateCreated)).FirstOrDefault
         lblOldestcap.Content = (From itm In Context.Caps Order By itm.DateCreated Ascending Select New Date?(itm.DateCreated)).FirstOrDefault
@@ -147,4 +147,59 @@ Connect: If win.ShowDialog Then
 
 
   
+    Private Sub mniImagesClear_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniImagesClear.Click
+        Dim p256 = IO.Path.Combine(My.Settings.ImageRoot, "256_256")
+        Dim p64 = IO.Path.Combine(My.Settings.ImageRoot, "64_64")
+        Dim pOriginal = IO.Path.Combine(My.Settings.ImageRoot, "original")
+        Dim pCapType = IO.Path.Combine(My.Settings.ImageRoot, "CapType")
+        Dim pMainType = IO.Path.Combine(My.Settings.ImageRoot, "MainType")
+        Dim pShape = IO.Path.Combine(My.Settings.ImageRoot, "Shape")
+
+        Dim del256 = From file In IO.Directory.GetFiles(p256) Where (From img In Me.Context.Images Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0
+        Dim del64 = From file In IO.Directory.GetFiles(p64) Where (From img In Me.Context.Images Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0
+        Dim delOriginal = From file In IO.Directory.GetFiles(pOriginal) Where (From img In Me.Context.Images Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0
+        Dim delCapType = From file In IO.Directory.GetFiles(pCapType) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From ct In Me.Context.CapTypes Where ct.CapTypeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0
+        Dim delMainType = From file In IO.Directory.GetFiles(pMainType) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From mt In Me.Context.MainTypes Where mt.MainTypeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0
+        Dim delShape = From file In IO.Directory.GetFiles(pShape) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From sh In Me.Context.Shapes Where sh.ShapeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0
+
+        If del256.IsEmpty AndAlso del64.IsEmpty AndAlso delOriginal.IsEmpty AndAlso delCapType.IsEmpty AndAlso delMainType.IsEmpty AndAlso delShape.IsEmpty Then
+            mBox.MsgBox(My.Resources.msg_NoFilesToDelete, MsgBoxStyle.Information, My.Resources.txt_ImageCleanup)
+        Else
+            Dim msg = mBox.GetDefault()
+            msg.Prompt = My.Resources.msg_ImagesToDelete
+            Dim chkOriginal = New mBox.MessageBoxCheckBox(My.Resources.lbl_CapImagesOriginal.f(delOriginal.Count), If(delOriginal.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delOriginal.IsEmpty}
+            Dim chk256 = New mBox.MessageBoxCheckBox(My.Resources.lbl_CapImageThumbnails.f(256, del256.Count), If(del256.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not del256.IsEmpty}
+            Dim chk64 = New mBox.MessageBoxCheckBox(My.Resources.lbl_CapImageThumbnails.f(64, del64.Count), If(del64.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not del64.IsEmpty}
+            Dim chkCapType = New mBox.MessageBoxCheckBox(My.Resources.lbl_CapTypeImages.f(delCapType.Count), If(delCapType.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delCapType.IsEmpty}
+            Dim chkMainType = New mBox.MessageBoxCheckBox(My.Resources.lbl_MainTypeImages.f(delMainType.Count), If(delMainType.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delMainType.IsEmpty}
+            Dim chkShape = New mBox.MessageBoxCheckBox(My.Resources.lbl_ShapeImages.f(delShape.Count), If(delShape.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delShape.IsEmpty}
+            msg.CheckBoxes.AddRange(New mBox.MessageBoxCheckBox() {chkOriginal, chk256, chk64, chkCapType, chkMainType, chkShape})
+            msg.MidControl = New TextBlock() With {.Text = My.Resources.txt_ClearImagesNote, .TextWrapping = TextWrapping.WrapWithOverflow, .HorizontalAlignment = Windows.HorizontalAlignment.Stretch, .TextAlignment = TextAlignment.Left}
+            msg.SetButtons(mBox.MessageBoxButton.Buttons.OK Or mBox.MessageBoxButton.Buttons.Cancel)
+            msg.Title = My.Resources.txt_ImageCleanup
+            If msg.ShowDialog = Forms.DialogResult.OK Then
+                Dim todel As IEnumerable(Of String) = New String() {}
+                If chkOriginal.State = Forms.CheckState.Checked Then todel = todel.Union(delOriginal)
+                If chk256.State = Forms.CheckState.Checked Then todel = todel.Union(del256)
+                If chk64.State = Forms.CheckState.Checked Then todel = todel.Union(del64)
+                If chkCapType.State = Forms.CheckState.Checked Then todel = todel.Union(delCapType)
+                If chkMainType.State = Forms.CheckState.Checked Then todel = todel.Union(delMainType)
+                If chkShape.State = Forms.CheckState.Checked Then todel = todel.Union(delShape)
+                Dim ErrNo% = 0
+                For Each file In todel
+                    Try
+                        IO.File.Delete(file)
+                    Catch ex As Exception
+                        ErrNo += 1
+                    End Try
+                Next
+                If ErrNo = 0 Then
+                    mBox.MsgBox(My.Resources.msg_AllFilesDeleted, MsgBoxStyle.Information, My.Resources.txt_ImageCleanup)
+                Else
+                    mBox.MsgBox(My.Resources.err_UnableToDeleteFiles.f(ErrNo), MsgBoxStyle.Exclamation, My.Resources.txt_ImageCleanup)
+                End If
+            End If
+        End If
+    End Sub
+    
 End Class

@@ -601,6 +601,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Unable to delete {0} files..
+        '''</summary>
+        Public ReadOnly Property err_UnableToDeleteFiles() As String
+            Get
+                Return ResourceManager.GetString("err_UnableToDeleteFiles", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Unknown image extension {0}..
         '''</summary>
         Public ReadOnly Property err_UnknownImageExtension() As String
@@ -1069,6 +1078,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Cap images (original size) ({0}).
+        '''</summary>
+        Public ReadOnly Property lbl_CapImagesOriginal() As String
+            Get
+                Return ResourceManager.GetString("lbl_CapImagesOriginal", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Cap image thumbnails ({0}px) ({1}).
+        '''</summary>
+        Public ReadOnly Property lbl_CapImageThumbnails() As String
+            Get
+                Return ResourceManager.GetString("lbl_CapImageThumbnails", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Caps count.
         '''</summary>
         Public ReadOnly Property lbl_CapsCount() As String
@@ -1092,6 +1119,15 @@ Namespace My.Resources
         Public ReadOnly Property lbl_CapType() As String
             Get
                 Return ResourceManager.GetString("lbl_CapType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Cap type images ({0}).
+        '''</summary>
+        Public ReadOnly Property lbl_CapTypeImages() As String
+            Get
+                Return ResourceManager.GetString("lbl_CapTypeImages", resourceCulture)
             End Get
         End Property
         
@@ -1267,6 +1303,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Main type images ({0}).
+        '''</summary>
+        Public ReadOnly Property lbl_MainTypeImages() As String
+            Get
+                Return ResourceManager.GetString("lbl_MainTypeImages", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Material.
         '''</summary>
         Public ReadOnly Property lbl_Material() As String
@@ -1416,6 +1461,15 @@ Namespace My.Resources
         Public ReadOnly Property lbl_Shape() As String
             Get
                 Return ResourceManager.GetString("lbl_Shape", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Shape images ({0}).
+        '''</summary>
+        Public ReadOnly Property lbl_ShapeImages() As String
+            Get
+                Return ResourceManager.GetString("lbl_ShapeImages", resourceCulture)
             End Get
         End Property
         
@@ -1573,6 +1627,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Delete unused images.
+        '''</summary>
+        Public ReadOnly Property mni_ImagesClear() As String
+            Get
+                Return ResourceManager.GetString("mni_ImagesClear", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to More ....
         '''</summary>
         Public ReadOnly Property mni_More() As String
@@ -1623,6 +1686,15 @@ Namespace My.Resources
         Public ReadOnly Property msg_AllCapsDeletedClose() As String
             Get
                 Return ResourceManager.GetString("msg_AllCapsDeletedClose", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to All files successfully deleted..
+        '''</summary>
+        Public ReadOnly Property msg_AllFilesDeleted() As String
+            Get
+                Return ResourceManager.GetString("msg_AllFilesDeleted", resourceCulture)
             End Get
         End Property
         
@@ -1807,6 +1879,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Images to be deleted:.
+        '''</summary>
+        Public ReadOnly Property msg_ImagesToDelete() As String
+            Get
+                Return ResourceManager.GetString("msg_ImagesToDelete", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Error writing IPTC to image file metadata..
         '''</summary>
         Public ReadOnly Property msg_IPTCError() As String
@@ -1848,6 +1929,15 @@ Namespace My.Resources
         Public ReadOnly Property msg_NoCapTypeSelected() As String
             Get
                 Return ResourceManager.GetString("msg_NoCapTypeSelected", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to No orphaned files to be deleted.
+        '''</summary>
+        Public ReadOnly Property msg_NoFilesToDelete() As String
+            Get
+                Return ResourceManager.GetString("msg_NoFilesToDelete", resourceCulture)
             End Get
         End Property
         
@@ -1947,6 +2037,15 @@ Namespace My.Resources
         Public ReadOnly Property tot_CapState() As String
             Get
                 Return ResourceManager.GetString("tot_CapState", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to When cap, image, shape cap type etc. is deleted, associated image from file system is not deleted. Use this command to remove images not referenced by any item in database..
+        '''</summary>
+        Public ReadOnly Property tot_ImagesClear() As String
+            Get
+                Return ResourceManager.GetString("tot_ImagesClear", resourceCulture)
             End Get
         End Property
         
@@ -2060,6 +2159,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Numbers above contain any possible non-image files in image directories. Sub directories are ignored..
+        '''</summary>
+        Public ReadOnly Property txt_ClearImagesNote() As String
+            Get
+                Return ResourceManager.GetString("txt_ClearImagesNote", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Colors.
         '''</summary>
         Public ReadOnly Property txt_Colors() As String
@@ -2155,6 +2263,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_FileSystemError() As String
             Get
                 Return ResourceManager.GetString("txt_FileSystemError", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Image cleanup.
+        '''</summary>
+        Public ReadOnly Property txt_ImageCleanup() As String
+            Get
+                Return ResourceManager.GetString("txt_ImageCleanup", resourceCulture)
             End Get
         End Property
         

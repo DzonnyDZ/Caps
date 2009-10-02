@@ -28,9 +28,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cs", "cs", "{F31C57C1-3295-
 		DLL\cs\Tools.Windows.resources.dll = DLL\cs\Tools.Windows.resources.dll
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CapsConsole setup", "CapsConsole setup\CapsConsole setup.vdproj", "{225DF386-F844-4807-9ACB-B1CAE36598A7}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs10.codeplex.com/
 		SccLocalPath0 = .
@@ -40,6 +42,9 @@ Global
 		SccProjectUniqueName2 = CapsData\\CapsData.dbp
 		SccProjectName2 = CapsData
 		SccLocalPath2 = CapsData
+		SccProjectUniqueName3 = CapsConsole\u0020setup\\CapsConsole\u0020setup.vdproj
+		SccProjectName3 = CapsConsole\u0020setup
+		SccLocalPath3 = CapsConsole\u0020setup
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +55,8 @@ Global
 		{1F936FCC-85CA-4A63-AE42-1AD3A8E1B688}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F936FCC-85CA-4A63-AE42-1AD3A8E1B688}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F936FCC-85CA-4A63-AE42-1AD3A8E1B688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{225DF386-F844-4807-9ACB-B1CAE36598A7}.Debug|Any CPU.ActiveCfg = Debug
+		{225DF386-F844-4807-9ACB-B1CAE36598A7}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

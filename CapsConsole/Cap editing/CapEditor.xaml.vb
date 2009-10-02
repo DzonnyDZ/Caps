@@ -57,7 +57,7 @@ Partial Public Class CapEditor
             cmbCompany.ItemsSource = CompaniesList
             lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item))
             kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
-            lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
+            'lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
             DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(Nothing)
         Finally
             initializing = False
@@ -525,7 +525,7 @@ Partial Public Class CapEditor
     Private Sub txtMainText_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtMainText.TextChanged
         If MainText <> txtMainText.Text Then MainText = txtMainText.Text
         txtTitleTextMatched = txtCapName.Text = txtMainText.Text
-        If txtTopTextMatched AndAlso txtMainText.IsFocused Then
+        If txtTopTextMatched AndAlso (txtMainText.IsFocused OrElse txtCapName.IsFocused) Then
             txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
         End If
         txtTopTextMatched = txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
@@ -560,7 +560,7 @@ Partial Public Class CapEditor
     End Sub
     Private Sub txtSubTitle_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtSubTitle.TextChanged
         If SubTitle <> txtSubTitle.Text Then SubTitle = txtSubTitle.Text
-        If txtTopTextMatched AndAlso txtMainText.IsFocused Then
+        If txtTopTextMatched AndAlso txtSubTitle.IsFocused Then
             txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
         End If
         txtTopTextMatched = txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
@@ -2380,7 +2380,7 @@ Partial Public Class CapEditor
             .ProductType = If(CapProductType IsNot Nothing, CapProductType.ProductTypeID, New Integer?), _
             .Product = If(Product IsNot Nothing, Product.ProductID, New Integer?), _
             .Company = If(CapCompany IsNot Nothing, CapCompany.CompanyID, New Integer?), _
-            .Categories = (From cat As Category In SelectedCategories Select cat.CategoryID).ToArray}
+            .Categories = (From cat As Category In If(SelectedCategories, New Category() {}) Select cat.CategoryID).ToArray}
         If OriginalContext IsNot Nothing Then OriginalContext.Dispose()
         OriginalContext = Nothing
         If Context Is Nothing Then

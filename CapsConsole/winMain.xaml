@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:res="clr-namespace:Caps.Console.My.Resources"
     xmlns:my="clr-namespace:Caps.Console"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Title="{x:Static res:Resources.txt_Caps}" Height="600" Width="850" Icon="/CapsConsole;component/Resources/Cap.ico" Name="winMain">
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Close" x:Name="cmdClose"/>
@@ -10,20 +11,23 @@
         <CommandBinding Command="NavigationCommands.Refresh" x:Name="cmdRefresh"/> 
     </Window.CommandBindings>
     <Window.Resources>
+        <sys:Int32 x:Key="i64">64</sys:Int32>
         <my:CapImageConverter x:Key="CapImageConverter"/>
         <ItemsPanelTemplate x:Key="HorizontalCapsView">
             <StackPanel Orientation="Horizontal" Height="auto" IsItemsHost="True"  />
         </ItemsPanelTemplate>
         <DataTemplate x:Key="CapView">
-            <Grid Margin="3" Width="72" Height="108" MouseLeftButtonDown="Image_MouseLeftButtonDown" ToolTip="{Binding CapName, Mode=OneWay}" >
+            <Grid Margin="3" Width="64" Height="100" MouseLeftButtonDown="Image_MouseLeftButtonDown" ToolTip="{Binding CapName, Mode=OneWay}" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="72"/>
+                    <RowDefinition Height="64"/>
                     <RowDefinition Height="*"/> 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="72"/>
+                    <ColumnDefinition Width="64"/>
                 </Grid.ColumnDefinitions>
-                <Image MaxWidth="72" MaxHeight="72" Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Height="auto"  Grid.Column="0" Grid.Row="0" />
+                <Image MaxWidth="64" MaxHeight="64"
+                       Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i64}}"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Height="auto"  Grid.Column="0" Grid.Row="0" />
                 <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Text="{Binding CapName, Mode=OneWay}" TextWrapping="WrapWithOverflow" MaxWidth="72" />                   
             </Grid>
         </DataTemplate>
@@ -62,6 +66,7 @@
                         <Image Source="/CapsConsole;component/Resources/RefreshDocViewHS.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Name="mniImagesClear" Header="{x:Static res:Resources.mni_ImagesClear}" ToolTip="{x:Static res:Resources.tot_ImagesClear}" />
             </MenuItem>
             <MenuItem Header="{x:Static res:Resources.mni_Help}"  Name="mniHelp">
                 <MenuItem Header="{x:Static res:Resources.mni_About}" Name="mniAbout"/>

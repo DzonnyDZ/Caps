@@ -9,7 +9,7 @@
     <Application.Resources>
         <my:RelativePathConverter x:Key="RelativePathConverter"/>
         <my:FileNameConverter x:Key="FileNameConverter"/>
-        <DataTemplate x:Key="ImageListDataTemplate" >
+        <!--<DataTemplate x:Key="ImageListDataTemplate"  >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -19,9 +19,6 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Column="0" Grid.Row="0" >
-                    <!--Source="{Binding RelativePath,
-Converter={StaticResource RelativePathConverter},
-ConverterParameter={x:Array {x:Type sys:String} {my:StaticEx my:MySettings.Default.ImageRoot}, 'original'},-->
                     <Image.Source>
                         <Binding Converter="{StaticResource RelativePathConverter}" Path="RelativePath">
                             <Binding.ConverterParameter>
@@ -35,7 +32,7 @@ ConverterParameter={x:Array {x:Type sys:String} {my:StaticEx my:MySettings.Defau
                 </Image>
                 <Label Grid.Column="0" Grid.Row="1" Content="{Binding RelativePath, Converter={StaticResource FileNameConverter}, Mode=OneWay}"/>
             </Grid>
-        </DataTemplate>
+        </DataTemplate>-->
 
 
 

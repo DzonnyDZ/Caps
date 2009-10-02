@@ -7,12 +7,14 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
         xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
         xmlns:ToolsWF="clr-namespace:Tools.WindowsT.FormsT;assembly=Tools.Windows"
         xmlns:Toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
    >
     <UserControl.Resources>
         <my:NullFalseConverter x:Key="NullFalseConverter"/>
         <my:MyImageIDConverter x:Key="MyImageIDConverter"/>
         <my:GetCapsOfConverter x:Key="GetCapsOfConverter"/>
         <my:CapImageConverter x:Key="CapImageConverter"/>
+        <sys:Int32 x:Key="i64">64</sys:Int32>
                   
         <Style TargetType="ItemsControl" x:Key="ToolTipImageList">
             <Setter Property="ItemsPanel">
@@ -20,7 +22,7 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                     <ItemsPanelTemplate>
                         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" IsItemsHost="True"
                                     ScrollViewer.CanContentScroll="False" Height="auto"
-                                    Width="auto" MaxHeight="72"
+                                    Width="auto" MaxHeight="64"
                                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
                                     ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
                     </ItemsPanelTemplate>
@@ -29,8 +31,8 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Image Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay}"
-                               MaxWidth="72" MaxHeight="72" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        <Image Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i64}}"
+                               MaxWidth="64" MaxHeight="64" HorizontalAlignment="Center" VerticalAlignment="Center"
                                ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>    
                     </DataTemplate>
                 </Setter.Value>
@@ -591,7 +593,7 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                                     <RowDefinition Height="64"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <Image Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}}" MaxWidth="64" MaxHeight="64" Width="auto" Height="auto"
+                                <Image Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i64}}" MaxWidth="64" MaxHeight="64" Width="auto" Height="auto"
                                        Grid.ZIndex="0"/>
                                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Text="{Binding RelativePath, Mode=OneWay}" Width="auto" Height="auto" TextWrapping="Wrap" TextAlignment="Center"/>
                                 <CheckBox Grid.Column="0" Grid.Row="0"
@@ -599,9 +601,10 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                                           IsChecked="{Binding Path=IsMain, Mode=TwoWay}"
                                           ToolTip="{x:Static res:Resources.tot_MainImage}"
                                           Grid.ZIndex="1"/>
+                            
                             </Grid>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>    
+                    </ListBox.ItemTemplate>
                 </ListBox>
                 <!--<ListView  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="lvwImages" MinHeight="100" >
                     <ListView.View >
