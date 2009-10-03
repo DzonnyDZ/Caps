@@ -142,4 +142,11 @@ Partial Public Class winNewCap
         End With
     End Sub
 
+    Private Sub winNewCap_Closed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Closed
+        My.Settings.winNewCapLoc = Me.GetWindowPosition
+    End Sub
+
+    Private Sub winNewCap_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
+        Me.SetWindowPosition(My.Settings.winNewCapLoc)
+    End Sub
 End Class

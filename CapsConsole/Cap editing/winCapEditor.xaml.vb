@@ -128,6 +128,10 @@ Partial Public Class winCapEditor
         Me.Close()
     End Sub
 
+    Private Sub winCapEditor_Closed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Closed
+        My.Settings.winCapEditorLoc = Me.GetWindowPosition
+    End Sub
+
     Private Sub winCapEditor_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles Me.Closing
         If Not IsClosing Then
             Me.DialogResult = False
@@ -153,4 +157,7 @@ Partial Public Class winCapEditor
 
 
 
+    Private Sub winCapEditor_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
+        Me.SetWindowPosition(My.Settings.winCapEditorLoc)
+    End Sub
 End Class

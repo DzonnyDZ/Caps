@@ -17,7 +17,12 @@ Class winMain
     End Sub
 
     Private Context As CapsDataDataContext
+
+    Private Sub winMain_Closed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Closed
+        My.Settings.winMainLoc = Me.GetWindowPosition
+    End Sub
     Private Sub winMain_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
+        Me.SetWindowPosition(My.Settings.winMainLoc)
         Dim win As New winSelectDatabase
 Connect: If win.ShowDialog Then
             Main.Connection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)

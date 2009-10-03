@@ -7,8 +7,6 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              >
     <Application.Resources>
-        <my:RelativePathConverter x:Key="RelativePathConverter"/>
-        <my:FileNameConverter x:Key="FileNameConverter"/>
         <!--<DataTemplate x:Key="ImageListDataTemplate"  >
             <Grid>
                 <Grid.ColumnDefinitions>

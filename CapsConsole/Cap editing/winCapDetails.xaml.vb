@@ -68,4 +68,12 @@ Partial Public Class winCapDetails
             Next
         End If
     End Sub
+
+    Private Sub winCapDetails_Closed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Closed
+        My.Settings.winCapDetailsLoc = Me.GetWindowPosition
+    End Sub
+
+    Private Sub winCapDetails_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
+        Me.SetWindowPosition(My.Settings.winCapDetailsLoc)
+    End Sub
 End Class

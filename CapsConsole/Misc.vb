@@ -1,4 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices, Tools.ExtensionsT
+Imports System.ComponentModel
+
 ''' <summary>Miscelaneous functions</summary>
 Friend Module Misc
     ''' <summary>Gets the 32-bit ARGB value of given <see cref="Color"/> structure.</summary>
@@ -85,4 +87,95 @@ Friend Module Misc
         If Table.Context Is Nothing Then Throw New ArgumentException(My.Resources.ex_MustNotBeNull.f("Table.Context"))
         Table.InsertAllOnSubmit(Table.Context.GetChangeSet.Deletes.OfType(Of TEntity))
     End Sub
+    ''' <summary>Sets windows position and size. Prevents window from leaking out of screen.</summary>
+    ''' <param name="Window">Window to set position of</param>
+    ''' <param name="Position">Proposed position and size of <paramref name="Window"/> in window client coordinates</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="Window"/> is null</exception>
+    ''' <remarks>If <paramref name="Position"/> <see cref="System.Drawing.Rectangle.IsEmpty">is empty</see>, neither window position nor size is set, but off-screen prevention alghoritm is run for window current position.</remarks>
+    <Extension()> Public Sub SetWindowPosition(ByVal Window As Window, ByVal Position As System.Drawing.Rectangle)
+        If Window Is Nothing Then Throw New ArgumentNullException("Window")
+        If Not Position.IsEmpty Then
+            Window.Left = Position.Left
+            Window.Top = Position.Top
+            Window.Height = Position.Height
+            Window.Width = Position.Width
+        End If
+
+
+
+        Dim winTopLeft = PresentationSource.FromVisual(Window).CompositionTarget.TransformToDevice.Transform(New Point(Window.Left, Window.Top))
+        Dim winBottomRight = PresentationSource.FromVisual(Window).CompositionTarget.TransformToDevice.Transform(New Point(Window.Left + Window.ActualWidth, Window.Top + Window.ActualHeight))
+        Dim winRect = System.Drawing.Rectangle.FromLTRB(winTopLeft.X, winTopLeft.Y, winBottomRight.X, winBottomRight.Y)
+
+        Dim winScreen = Forms.Screen.FromRectangle(winRect)
+
+        If winScreen.WorkingArea.Contains(winRect) Then Exit Sub
+
+        Dim Left = winScreen.GetNeighbourScreen(Direction.Left)
+        Dim Right = winScreen.GetNeighbourScreen(Direction.Right)
+        Dim Top = winScreen.GetNeighbourScreen(Direction.Top)
+        Dim Bottom = winScreen.GetNeighbourScreen(Direction.Bottom)
+
+        Dim MoveRight = 0%
+        Dim MoveDown = 0%
+
+        If winRect.Left < winScreen.WorkingArea.Left AndAlso Left Is Nothing Then MoveRight = winScreen.WorkingArea.Left - winRect.Left
+        If winRect.Top < winScreen.WorkingArea.Top AndAlso Top Is Nothing Then MoveDown = winScreen.WorkingArea.Top - winRect.Top
+        If winRect.Bottom > winScreen.WorkingArea.Bottom AndAlso Bottom Is Nothing Then MoveDown = winScreen.WorkingArea.Bottom - winRect.Bottom
+        If winRect.Right > winScreen.WorkingArea.Right AndAlso Right Is Nothing Then MoveRight = winScreen.WorkingArea.Right - winRect.Right
+
+        If MoveRight <> 0 OrElse MoveDown <> 0 Then
+            Dim newloc = PresentationSource.FromVisual(Window).CompositionTarget.TransformFromDevice.Transform(New Point(winRect.Left + MoveRight, winRect.Top + MoveDown))
+            Window.Left = newloc.X
+            Window.Top = newloc.Y
+        End If
+    End Sub
+    ''' <summary>Gtes size and location of the <see cref="Window"/></summary>
+    ''' <param name="Window">A <see cref="Window"/> to get size and location of</param>
+    ''' <returns>Rectangle of <paramref name="Window"/> in window coordinates</returns>
+    ''' <exception cref="ArgumentNullException"><paramref name="Window"/> is null</exception>
+    <Extension()> Public Function GetWindowPosition(ByVal Window As Window) As System.Drawing.Rectangle
+        If Window Is Nothing Then Throw New ArgumentNullException("Window")
+        Return New System.Drawing.Rectangle(Window.Left, Window.Top, Window.ActualWidth, Window.ActualHeight)
+    End Function
+
+    ''' <summary>Gets neighbouring screen to given screen in given direction</summary>
+    ''' <param name="Screen">Screen to get neighbour of</param>
+    ''' <param name="Direction">Direction in which (on which side) get neighbour</param>
+    ''' <returns>Screen that directly neighbours with <paramref name="Screen"/> in given <paramref name="Direction"/>.</returns>
+    ''' <exception cref="ArgumentNullException"><paramref name="Screen"/> is null</exception>
+    ''' <exception cref="InvalidEnumArgumentException"><paramref name="Direction"/> is not one of <see cref="Direction"/> values</exception>
+    ''' <remarks>Maximal allowed gap or overlap between screens is 5px. For screen (B) to be considered neighbour with <paramref name="Screen"/> (A) screen edges must either share at least 25% of appropriate edge of <paramref name="Screen"/> (A) or screen (B) must share 100% of it's appropriate edge with <paramref name="Screen"/> (A).</remarks>
+    <Extension()> Public Function GetNeighbourScreen(ByVal Screen As Forms.Screen, ByVal Direction As Direction) As Forms.Screen
+        If Screen Is Nothing Then Throw New ArgumentNullException("Screen")
+        For Each scr In Forms.Screen.AllScreens
+            If Screen Is scr Then Continue For
+            Dim vDistance = If(scr.Bounds.Top < Screen.Bounds.Top, scr.Bounds.Bottom - scr.Bounds.Top, Screen.Bounds.Bottom - scr.Bounds.Top)
+            Dim hDistance = If(scr.Bounds.Left < Screen.Bounds.Left, scr.Bounds.Right - Screen.Bounds.Left, Screen.Bounds.Right - scr.Bounds.Left)
+            Select Case Direction
+                Case Misc.Direction.Left
+                    If Math.Abs(scr.Bounds.Right - Screen.Bounds.Left) < 5 AndAlso vDistance >= Screen.Bounds.Height / 4 Then Return scr
+                Case Misc.Direction.Right
+                    If Math.Abs(scr.Bounds.Left - Screen.Bounds.Right) < 5 AndAlso vDistance >= Screen.Bounds.Height / 4 Then Return scr
+                Case Misc.Direction.Top
+                    If Math.Abs(scr.Bounds.Bottom - Screen.Bounds.Top) < 5 AndAlso hDistance >= Screen.Bounds.Width / 4 Then Return scr
+                Case Misc.Direction.Bottom
+                    If Math.Abs(scr.Bounds.Top - Screen.Bounds.Bottom) < 5 AndAlso hDistance >= Screen.Bounds.Width / 4 Then Return scr
+                Case Else : Throw New InvalidEnumArgumentException("Direction", Direction, Direction.GetType)
+            End Select
+        Next
+        Return Nothing
+    End Function
+    ''' <summary>Neighbourhood directions</summary>
+    Public Enum Direction
+        ''' <summary>Left neighbour</summary>
+        Left
+        ''' <summary>Right neighbour</summary>
+        Right
+        ''' <summary>Top (front) neighbour</summary>
+        Top
+        ''' <summary>Bottom (back) neighbour</summary>
+        Bottom
+    End Enum
+
 End Module

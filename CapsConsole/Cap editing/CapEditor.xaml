@@ -14,6 +14,7 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
         <my:MyImageIDConverter x:Key="MyImageIDConverter"/>
         <my:GetCapsOfConverter x:Key="GetCapsOfConverter"/>
         <my:CapImageConverter x:Key="CapImageConverter"/>
+        <my:FileNameConverter x:Key="FileNameConverter"/>
         <sys:Int32 x:Key="i64">64</sys:Int32>
                   
         <Style TargetType="ItemsControl" x:Key="ToolTipImageList">
@@ -593,9 +594,12 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
                                     <RowDefinition Height="64"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                <Image Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i64}}" MaxWidth="64" MaxHeight="64" Width="auto" Height="auto"
+                                <Image Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i64}}"
+                                       MaxWidth="64" MaxHeight="64" Width="auto" Height="auto"
                                        Grid.ZIndex="0"/>
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Text="{Binding RelativePath, Mode=OneWay}" Width="auto" Height="auto" TextWrapping="Wrap" TextAlignment="Center"/>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0"
+                                           Text="{Binding RelativePath, Mode=OneWay, Converter={StaticResource FileNameConverter}}"
+                                           Width="auto" Height="auto" TextWrapping="Wrap" TextAlignment="Center"/>
                                 <CheckBox Grid.Column="0" Grid.Row="0"
                                           HorizontalAlignment="Right" VerticalAlignment="Top"
                                           IsChecked="{Binding Path=IsMain, Mode=TwoWay}"

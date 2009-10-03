@@ -123,6 +123,66 @@ Partial Public NotInheritable Class MySettings
             Return CType(Me("CapsDataConnectionString1"),String)
         End Get
     End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("0, 0, 0, 0")>  _
+    Public Property winMainLoc() As Global.System.Drawing.Rectangle
+        Get
+            Return CType(Me("winMainLoc"),Global.System.Drawing.Rectangle)
+        End Get
+        Set
+            Me("winMainLoc") = value
+        End Set
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("0, 0, 0, 0")>  _
+    Public Property winNewCapLoc() As Global.System.Drawing.Rectangle
+        Get
+            Return CType(Me("winNewCapLoc"),Global.System.Drawing.Rectangle)
+        End Get
+        Set
+            Me("winNewCapLoc") = value
+        End Set
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("0, 0, 0, 0")>  _
+    Public Property winCapDetailsLoc() As Global.System.Drawing.Rectangle
+        Get
+            Return CType(Me("winCapDetailsLoc"),Global.System.Drawing.Rectangle)
+        End Get
+        Set
+            Me("winCapDetailsLoc") = value
+        End Set
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("0, 0, 0, 0")>  _
+    Public Property winCapEditorLoc() As Global.System.Drawing.Rectangle
+        Get
+            Return CType(Me("winCapEditorLoc"),Global.System.Drawing.Rectangle)
+        End Get
+        Set
+            Me("winCapEditorLoc") = value
+        End Set
+    End Property
+    
+    <Global.System.Configuration.UserScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("0, 0, 0, 0")>  _
+    Public Property winEditorsLoc() As Global.System.Drawing.Rectangle
+        Get
+            Return CType(Me("winEditorsLoc"),Global.System.Drawing.Rectangle)
+        End Get
+        Set
+            Me("winEditorsLoc") = value
+        End Set
+    End Property
 End Class
 
 Namespace My

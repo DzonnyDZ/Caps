@@ -20,3 +20,6 @@
     * Introduced possibility to select main image of cap
     * Cap images displayed at many places set to max 64×64 and bound to 64_64 image directory
     * Small windows are not visible on taskbar
+0.1.2.0
+    * Remembers position and size of main windows and prevent out-of-screen.
+    * Fix: Images in cap editor shows full path instead of file name only.
