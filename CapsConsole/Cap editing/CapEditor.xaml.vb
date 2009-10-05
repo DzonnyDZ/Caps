@@ -2276,14 +2276,22 @@ Partial Public Class CapEditor
         If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
         DirectCast(d, CapEditor).OnSelectedCategoriesChanged(e)
     End Sub
+    ''' <summary>Indicates that <see cref="OnSelectedCategoriesChanged"/> is on call stack</summary>
+    Private OnSelectedCategoriesChangedOnStack As Boolean = False
     ''' <summary>Called when value of the <see cref="SelectedCategories"/> property changes</summary>
     ''' <param name="e">Event arguments</param>
     Protected Overridable Sub OnSelectedCategoriesChanged(ByVal e As DependencyPropertyChangedEventArgs)
-        For Each item As CategoryProxy In lstCategories.ItemsSource
-            item.Checked = SelectedCategories IsNot Nothing AndAlso (From cat In SelectedCategories Select cat.CategoryID).Contains(item.Category.CategoryID)
-        Next
+        OnSelectedCategoriesChangedOnStack = True
+        Try
+            For Each item As CategoryProxy In lstCategories.ItemsSource
+                item.Checked = SelectedCategories IsNot Nothing AndAlso (From cat In SelectedCategories Select cat.CategoryID).Contains(item.Category.CategoryID)
+            Next
+        Finally
+            OnSelectedCategoriesChangedOnStack = False
+        End Try
     End Sub
     Private Sub lstCategories_CheckedChanged(ByVal sender As Object, ByVal e As RoutedEventArgs)
+        If OnSelectedCategoriesChangedOnStack Then Exit Sub
         SelectedCategories = (From item As CategoryProxy In lstCategories.Items Where item.Checked Select item.Category).ToArray
     End Sub
 #End Region
