@@ -21,7 +21,8 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>
-                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Stretch" IsItemsHost="True"
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                                    IsItemsHost="True" Orientation="Horizontal" 
                                     ScrollViewer.CanContentScroll="False" Height="auto"
                                     Width="auto" MaxHeight="64"
                                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" 

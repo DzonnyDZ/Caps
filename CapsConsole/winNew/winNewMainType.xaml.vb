@@ -75,7 +75,7 @@ Partial Public Class winNewMainType
         Try
             If txtImagePath.Text <> "" Then dlg.FileName = txtImagePath.Text
         Catch : End Try
-        If dlg.ShowDialog Then
+        If dlg.ShowDialog = Forms.DialogResult.OK Then
             txtImagePath.Text = dlg.FileName
         End If
     End Sub

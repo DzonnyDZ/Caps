@@ -23,3 +23,10 @@
 0.1.2.0
     * Remembers position and size of main windows and prevent out-of-screen.
     * Fix: Images in cap editor shows full path instead of file name only.
+    * Fix: Categories are not unchecked when Save and next is clicked.
+    * Fix: Add image adds image even when dialog is canceled.
+    * Fix: Images in tooltip are organized verticaly instead of horizontally.
+    * Base for keywords and categories clouds is changed from 0÷max to min÷max.
+    * Fix: Newly created category is not written for cap
+    * Fix: When deleting image from list of cap images, more images can be deleted
+    * Fix: When creating new cap type or product it's not available after Save and next.

@@ -158,12 +158,13 @@ Partial Public Class CapEditor
         If win.ShowDialog Then
             DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(New CategoryProxy(win.NewObject, True))
             lstCategories.Items.Refresh()
+            lstCategories_CheckedChanged(lstCategories.Items(lstCategories.Items.Count - 1), New RoutedEventArgs(CheckBox.CheckedEvent, lstCategories.Items(lstCategories.Items.Count - 1)))
         End If
     End Sub
 #End Region
     ''' <summary>Category proxy that adds <see cref="CategoryProxy.Checked"/> property</summary>
     <DebuggerDisplay("{Category.CategoryName}")> _
-    Private Class CategoryProxy
+    Private Class CategoryProxy : Implements INotifyPropertyChanged
         ''' <summary>Contains value of the <see cref="Category"/> property</summary>
         Private ReadOnly _Category As Category
         ''' <summary>Contains value of the <see cref="Checked"/> property</summary>
@@ -180,7 +181,9 @@ Partial Public Class CapEditor
                 Return _Checked
             End Get
             Set(ByVal value As Boolean)
+                Dim old As Boolean = Checked
                 _Checked = value
+                If old <> Checked Then OnPropertyChanged(New PropertyChangedEventArgs("Checked"))
             End Set
         End Property
         ''' <summary>CTor</summary>
@@ -192,6 +195,13 @@ Partial Public Class CapEditor
             _Category = Category
             _Checked = Checked
         End Sub
+        ''' <summary>raises the <see cref="PropertyChanged"/> event</summary>
+        ''' <param name="e">Event arguments</param>
+        Protected Overridable Sub OnPropertyChanged(ByVal e As PropertyChangedEventArgs)
+            RaiseEvent PropertyChanged(Me, e)
+        End Sub
+        ''' <summary>Raised when value of a property changes</summary>
+        Public Event PropertyChanged As PropertyChangedEventHandler Implements INotifyPropertyChanged.PropertyChanged
     End Class
 
     ''' <summary>Regulare expression for image name. It parses out 4 numbers from image name.</summary>
@@ -211,11 +221,12 @@ Partial Public Class CapEditor
                 Catch : End Try
             End If
         End If
-        If dlg.ShowDialog() Then
+        If dlg.ShowDialog() = Forms.DialogResult.OK Then
             If dlg.FileNames.Length > 0 Then
-                DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).AddRange( _
-                    From path In dlg.FileNames Select DirectCast(New NewImage(path), Image))
-                My.Settings.LastImageName = dlg.FileNames(dlg.FileNames.Length - 1)
+                Dim ImagesToAdd = From path In dlg.FileNames Order By IO.Path.GetFileName(path) Ascending _
+                                         Select DirectCast(New NewImage(path), Image)
+                DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).AddRange(ImagesToAdd)
+                My.Settings.LastImageName = ImagesToAdd.Last.RelativePath 'Relative path is absolute
                 lvwImages.Items.Refresh()
             End If
         End If
@@ -1716,7 +1727,7 @@ Partial Public Class CapEditor
         If If(Year, 0) <> nudYear.Value Then nudYear.Value = Year()
     End Sub
     Private Sub txtYear_TextChanged(ByVal sender As Object, ByVal e As RoutedPropertyChangedEventArgs(Of Decimal)) Handles nudYear.ValueChanged
-        If If(Year, 0) <> nudYear.Value Then Year = If(nudYear.Value = 0, Nothing, CInt(nudYear.Value))
+        If If(Year, 0) <> nudYear.Value Then Year = If(nudYear.Value = 0, New Integer?, CInt(nudYear.Value))
     End Sub
 #End Region
 #Region "Country"
@@ -2268,7 +2279,7 @@ Partial Public Class CapEditor
     ''' <summary>Called when value of the <see cref="SelectedCategories"/> property changes</summary>
     ''' <param name="e">Event arguments</param>
     Protected Overridable Sub OnSelectedCategoriesChanged(ByVal e As DependencyPropertyChangedEventArgs)
-        For Each item As CategoryProxy In lstCategories.Items
+        For Each item As CategoryProxy In lstCategories.ItemsSource
             item.Checked = SelectedCategories IsNot Nothing AndAlso (From cat In SelectedCategories Select cat.CategoryID).Contains(item.Category.CategoryID)
         Next
     End Sub
@@ -2366,6 +2377,7 @@ Partial Public Class CapEditor
         If e.Key = Key.Delete AndAlso lvwImages.SelectedItems.Count <> 0 Then
             Dim todel As New List(Of Image)(From img As Image In lvwImages.SelectedItems)
             DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).RemoveAll(Function(img) todel.Contains(img))
+            lvwImages.Items.Refresh()
         End If
     End Sub
 
@@ -2730,7 +2742,7 @@ Resize256:      Try
     End Sub
     ''' <summary>Undos copying images</summary>
     ''' <param name="IntroducedImages">Images returned by <see cref="CopyImages"/></param>
-    Public Shared Sub UndoCopyImages(ByVal IntroducedImages As List(Of String))
+    Public Shared Sub UndoCopyImages(ByVal IntroducedImages As IEnumerable(Of String))
         Dim FaildedDeletes As New System.Text.StringBuilder
         For Each img In IntroducedImages
             For Each folder In New String() {"original", "64_64", "256_256"}
@@ -2789,7 +2801,7 @@ Resize256:      Try
         txtSubTitle.Text = ""
         txtMainPicture.Text = ""
         txtAnotherPictures.Text = ""
-        cmbPictureType.SelectedIndex = -1
+        PictureType = Nothing
 
         optCapTypeSelect.IsChecked = True
         cmbCapType.SelectedIndex = -1
@@ -2839,6 +2851,10 @@ Resize256:      Try
         kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
 
         Images.Clear()
+
+        cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
+        cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
+        DirectCast(cmbProduct.ItemsSource, ListWithEvents(Of Product)).Add(Nothing)
     End Sub
 End Class
 

@@ -63,16 +63,18 @@ Connect: If win.ShowDialog Then
         itmNewest.ItemsSource = From itm In Context.Caps Order By itm.DateCreated Descending Take 10
         itmRandom.ItemsSource = From itm In Context.Caps Order By Context.NewID Take 10
         Dim BiggestCategory = (From itm In Context.Categories Order By itm.Cap_Category_Ints.Count Descending Select New Integer?(itm.Cap_Category_Ints.Count)).FirstOrDefault
+        Dim SmallestCategory = If((From itm In Context.Categories Order By itm.Cap_Category_Ints.Count Ascending Select New Integer?(itm.Cap_Category_Ints.Count)).FirstOrDefault, 0)
         Dim BiggestKeyword = (From itm In Context.Keywords Order By itm.Cap_Keyword_Ints.Count Descending Select New Integer?(itm.Cap_Keyword_Ints.Count)).FirstOrDefault
+        Dim SmallestKeyword = If((From itm In Context.Keywords Order By itm.Cap_Keyword_Ints.Count Ascending Select New Integer?(itm.Cap_Keyword_Ints.Count)).FirstOrDefault, 0)
         Const FontMax% = 50
         Const FontMin% = 8
-        Dim mup As Double = If(Not BiggestCategory.HasValue OrElse BiggestCategory = 0, 0, (FontMax - FontMin) / BiggestCategory)
+        Dim mup As Double = If(Not BiggestCategory.HasValue OrElse BiggestCategory = 0, 0, (FontMax - FontMin) / (BiggestCategory - Smallestcategory))
         itmCategories.ItemsSource = From itm In Context.Categories _
-                                    Select Count = itm.Cap_Category_Ints.Count, Name = itm.CategoryName, ID = itm.CategoryID, Size = mup * itm.Cap_Category_Ints.Count + FontMin, Type = "C"c _
+                                    Select Count = itm.Cap_Category_Ints.Count, Name = itm.CategoryName, ID = itm.CategoryID, Size = mup * (itm.Cap_Category_Ints.Count - Smallestcategory) + FontMin, Type = "C"c _
                                     Order By Count Descending
-        mup = If(Not BiggestKeyword.HasValue OrElse BiggestKeyword = 0, 0, (FontMax - FontMin) / BiggestKeyword)
+        mup = If(Not BiggestKeyword.HasValue OrElse BiggestKeyword = 0, 0, (FontMax - FontMin) / (BiggestKeyword - SmallestKeyword))
         itmKeywords.ItemsSource = From itm In Context.Keywords _
-                                   Select Count = itm.Cap_Keyword_Ints.Count, Name = itm.Keyword, ID = itm.KeywordID, Size = mup * itm.Cap_Keyword_Ints.Count + FontMin, Type = "K"c _
+                                   Select Count = itm.Cap_Keyword_Ints.Count, Name = itm.Keyword, ID = itm.KeywordID, Size = mup * (itm.Cap_Keyword_Ints.Count - SmallestKeyword) + FontMin, Type = "K"c _
                                    Order By Count Descending
     End Sub
 
