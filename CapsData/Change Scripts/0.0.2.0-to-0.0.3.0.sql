@@ -1,11 +1,11 @@
 ﻿-- New table CapSign
 CREATE TABLE  [dbo].[CapSign](
-	[CapSignId] [int] IDENTITY(1,1) NOT NULL,
+	[CapSignID] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,
 	[Description] [nvarchar](max) NULL,
  CONSTRAINT [PK_CapSign] PRIMARY KEY CLUSTERED 
 (
-	[CapSignId] ASC
+	[CapSignID] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
@@ -105,7 +105,7 @@ GO
 ALTER TABLE dbo.Cap ADD CapSignID INT;
 GO
 ALTER TABLE [dbo].[Cap]  WITH CHECK ADD  CONSTRAINT [FK_Cap_CapSign] FOREIGN KEY([CapSignID])
-REFERENCES [dbo].[CapSign] ([CapSignId])
+REFERENCES [dbo].[CapSign] ([CapSignID])
 GO
 ALTER TABLE [dbo].[Cap] CHECK CONSTRAINT [FK_Cap_CapSign]
 GO
@@ -151,7 +151,7 @@ ALTER PROCEDURE [dbo].[GetSimilarCaps]
 	@State smallint = null,
 	@TargetID int = null,
 	@IsAlcoholic bit = null,
-	@CapSignId int = null
+	@CapSignID int = null
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -235,12 +235,141 @@ BEGIN
             +
             case when c.IsDrink = 1 and @IsDrink = 1 and @IsAlcoholic = c.IsAlcoholic and @IsAlcoholic = 1 then 3 when c.IsDrink = 1 and @IsDrink = 1 and @IsAlcoholic = c.IsAlcoholic then 1 else 0 end
             +
-            case when c.CapSignID = @CapSignId then 2 else 0 end
+            case when c.CapSignID = @CapSignID then 2 else 0 end
             as Score
 		from dbo.Cap c
         order by
             Score desc
             ;
+END
+GO
+
+--Alter triggers
+ALTER TRIGGER [dbo].[Cap_Instead_Ins] 
+   ON  dbo.Cap 
+   instead of INSERT
+AS 
+BEGIN
+	SET NOCOUNT ON;
+insert into dbo.cap 
+					 (	[CapTypeID]
+      ,[MainTypeID]
+      ,[ShapeID]
+      ,[CapName]
+      ,[MainText]
+      ,[SubTitle]
+      ,[BackColor1]
+      ,[BackColor2]
+      ,[ForeColor]
+      ,[MainPicture]
+      ,[TopText]
+      ,[SideText]
+      ,[BottomText]
+      ,[MaterialID]
+      ,[Surface]
+      ,[Size]
+      ,[Size2]
+      ,[Height]
+      ,[Is3D]
+      ,[Year]
+      ,[CountryCode]
+      ,[DateCreated]
+      ,[Note]
+      ,[CompanyID]
+      ,[ProductID]
+      ,[ProductTypeID]
+      ,[StorageID]
+      ,[ForeColor2]
+      ,[PictureType]
+      ,[HasBottom]
+      ,[HasSide]
+      ,[AnotherPictures],Countryoforigin,isdrink,[state],targetid,isalcoholic,capsignid)
+                   output INSERTED.*
+			 SELECT [CapTypeID]
+      ,[MainTypeID]
+      ,[ShapeID]
+      ,dbo.EmptyStrToNull([CapName])
+      ,dbo.EmptyStrToNull([MainText])
+      ,dbo.EmptyStrToNull([SubTitle])
+      ,[BackColor1]
+      ,[BackColor2]
+      ,[ForeColor]
+      ,dbo.EmptyStrToNull([MainPicture])
+      ,dbo.EmptyStrToNull([TopText])
+      ,dbo.EmptyStrToNull([SideText])
+      ,dbo.EmptyStrToNull([BottomText])
+      ,[MaterialID]
+      ,[Surface]
+      ,[Size]
+      ,[Size2]
+      ,[Height]
+      ,[Is3D]
+      ,[Year]
+      ,dbo.EmptyStrToNull([CountryCode])
+      ,isnull([DateCreated],getdate())
+      ,dbo.EmptyStrToNull([Note])
+      ,[CompanyID]
+      ,[ProductID]
+      ,[ProductTypeID]
+      ,[StorageID]
+      ,[ForeColor2]
+      ,dbo.EmptyStrToNull([PictureType])
+      ,[HasBottom]
+      ,[HasSide]
+      ,dbo.EmptyStrToNull([AnotherPictures]),
+      dbo.EmptyStrToNull(Countryoforigin),isdrink,[state],targetid, isalcoholic,capsignid
+  FROM inserted	 ;
+  
+END
+GO
+ALTER TRIGGER [dbo].[Cap_Instead_Upd] 
+   ON  dbo.Cap 
+   instead of update
+AS 
+BEGIN
+	SET NOCOUNT ON;
+	  UPDATE [dbo].[Cap]
+   SET [CapTypeID] = i.CapTypeID
+      ,[MainTypeID] = i.MainTypeID
+      ,[ShapeID] = i.ShapeID
+      ,[CapName] = dbo.EmptyStrToNull(i.CapName)
+      ,[MainText] = dbo.EmptyStrToNull(i.MainText)
+      ,[SubTitle] = dbo.EmptyStrToNull(i.SubTitle)
+      ,[BackColor1] = i.BackColor1
+      ,[BackColor2] = i.BackColor2
+      ,[ForeColor] = i.ForeColor
+      ,[MainPicture] = dbo.EmptyStrToNull(i.MainPicture)
+      ,[TopText] = dbo.EmptyStrToNull(i.TopText)
+      ,[SideText] = dbo.EmptyStrToNull(i.SideText)
+      ,[BottomText] = dbo.EmptyStrToNull(i.BottomText)
+      ,[MaterialID] = i.MaterialID
+      ,[Surface] = i.Surface
+      ,[Size] = i.Size
+      ,[Size2] = i.Size2
+      ,[Height] = i.Height
+      ,[Is3D] = i.Is3D
+      ,[Year] = i.Year
+      ,[CountryCode] = dbo.EmptyStrToNull(i.CountryCode)
+     -- ,[DateCreated] = i.DateCreated
+      ,[Note] = dbo.EmptyStrToNull(i.Note)
+      ,[CompanyID] = i.CompanyID
+      ,[ProductID] = i.ProductID
+      ,[ProductTypeID] = i.ProductTypeID
+      ,[StorageID] = i.StorageID
+      ,[ForeColor2] = i.ForeColor2
+      ,[PictureType] = i.PictureType
+      ,[HasBottom] = i.HasBottom
+      ,[HasSide] = i.HasSide
+      ,[AnotherPictures] = dbo.EmptyStrToNull(i.AnotherPictures),
+      countryoforigin=i.countryoforigin,
+      isdrink=i.isdrink,
+      [state]=i.[state],
+      targetid=i.targetid,
+      isalcoholic=i.isalcoholic,
+      capsignid=i.capsignid
+ from inserted	as i
+ WHERE cap.capid=i.capid;
+	 
 END
 GO
 

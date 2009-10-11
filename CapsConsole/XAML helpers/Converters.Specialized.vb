@@ -161,7 +161,7 @@ Public Class GetCapsOfConverter
         ElseIf TypeOf value Is Keyword Then
             Return From cap In Context.Caps Join c_k In Context.Cap_Keyword_Ints On Cap.CapID Equals c_k.capid Where c_k.KeywordID = DirectCast(value, Keyword).KeywordID Order By Context.NewID Take Count
         ElseIf TypeOf value Is CapSign Then
-            Return From item In Context.Caps Where item.CapSignID = DirectCast(value, CapSign).CapSignId Order By Context.NewID Take Count
+            Return From item In Context.Caps Where item.CapSignID = DirectCast(value, CapSign).CapSignID Order By Context.NewID Take Count
         ElseIf value Is Nothing Then
             Return Nothing
         Else
@@ -178,5 +178,25 @@ Public Class GetCapsOfConverter
     Private Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
         If value Is Nothing Then Return Nothing
         Throw New NotSupportedException(My.Resources.ex_CannotConvertBack.f(Me.GetType.Name))
+    End Function
+End Class
+
+Public Class CountryCodeFlagConverter
+    Implements IValueConverter
+
+    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
+        If value Is Nothing Then Return Nothing
+        Return String.Format("/CapsConsole;component/Resources/Flags/{0}.png", value)
+    End Function
+
+    Private Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
+        If value Is Nothing Then Return Nothing
+        Dim last = value.ToString.Split("/"c).Last
+        Dim li = last.LastIndexOf("."c)
+        If li >= 0 Then
+            Return last.Substring(0, li)
+        Else
+            Return last
+        End If
     End Function
 End Class

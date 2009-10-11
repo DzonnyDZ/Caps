@@ -3515,7 +3515,7 @@ Partial Public Class Cap
 		End Set
 	End Property
 	
-	<Association(Name:="CapSign_Cap", Storage:="_CapSign", ThisKey:="CapSignID", OtherKey:="CapSignId", IsForeignKey:=true)>  _
+	<Association(Name:="CapSign_Cap", Storage:="_CapSign", ThisKey:="CapSignID", OtherKey:="CapSignID", IsForeignKey:=true)>  _
 	Public Property CapSign() As CapSign
 		Get
 			Return Me._CapSign.Entity
@@ -3534,7 +3534,7 @@ Partial Public Class Cap
 				If ((value Is Nothing)  _
 							= false) Then
 					value.Caps.Add(Me)
-					Me._CapSignID = value.CapSignId
+					Me._CapSignID = value.CapSignID
 				Else
 					Me._CapSignID = CType(Nothing, Nullable(Of Integer))
 				End If
@@ -4404,7 +4404,7 @@ Partial Public Class CapSign
 	
 	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
 	
-	Private _CapSignId As Integer
+	Private _CapSignID As Integer
 	
 	Private _Name As String
 	
@@ -4419,9 +4419,9 @@ Partial Public Class CapSign
     End Sub
     Partial Private Sub OnCreated()
     End Sub
-    Partial Private Sub OnCapSignIdChanging(value As Integer)
+    Partial Private Sub OnCapSignIDChanging(value As Integer)
     End Sub
-    Partial Private Sub OnCapSignIdChanged()
+    Partial Private Sub OnCapSignIDChanged()
     End Sub
     Partial Private Sub OnNameChanging(value As String)
     End Sub
@@ -4439,19 +4439,19 @@ Partial Public Class CapSign
 		OnCreated
 	End Sub
 	
-	<Column(Storage:="_CapSignId", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property CapSignId() As Integer
+	<Column(Storage:="_CapSignID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property CapSignID() As Integer
 		Get
-			Return Me._CapSignId
+			Return Me._CapSignID
 		End Get
 		Set
-			If ((Me._CapSignId = value)  _
+			If ((Me._CapSignID = value)  _
 						= false) Then
-				Me.OnCapSignIdChanging(value)
+				Me.OnCapSignIDChanging(value)
 				Me.SendPropertyChanging
-				Me._CapSignId = value
-				Me.SendPropertyChanged("CapSignId")
-				Me.OnCapSignIdChanged
+				Me._CapSignID = value
+				Me.SendPropertyChanged("CapSignID")
+				Me.OnCapSignIDChanged
 			End If
 		End Set
 	End Property
@@ -4488,7 +4488,7 @@ Partial Public Class CapSign
 		End Set
 	End Property
 	
-	<Association(Name:="CapSign_Cap", Storage:="_Caps", ThisKey:="CapSignId", OtherKey:="CapSignID")>  _
+	<Association(Name:="CapSign_Cap", Storage:="_Caps", ThisKey:="CapSignID", OtherKey:="CapSignID")>  _
 	Public Property Caps() As EntitySet(Of Cap)
 		Get
 			Return Me._Caps

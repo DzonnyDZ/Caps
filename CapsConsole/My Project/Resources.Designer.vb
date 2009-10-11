@@ -511,6 +511,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Cap id {0} not found.
+        '''</summary>
+        Public ReadOnly Property err_CapIdNotFound() As String
+            Get
+                Return ResourceManager.GetString("err_CapIdNotFound", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Copy cap type image file failed.{0}{1}{0}New cap type is without image!.
         '''</summary>
         Public ReadOnly Property err_CopyCapTypeImageFailed() As String
@@ -1609,6 +1618,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Type cap ID.
+        '''</summary>
+        Public ReadOnly Property lbl_TypeCapID() As String
+            Get
+                Return ResourceManager.GetString("lbl_TypeCapID", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Year.
         '''</summary>
         Public ReadOnly Property lbl_Year() As String
@@ -1659,6 +1677,15 @@ Namespace My.Resources
         Public ReadOnly Property mni_File() As String
             Get
                 Return ResourceManager.GetString("mni_File", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Go to cap ....
+        '''</summary>
+        Public ReadOnly Property mni_Goto() As String
+            Get
+                Return ResourceManager.GetString("mni_Goto", resourceCulture)
             End Get
         End Property
         
@@ -2150,6 +2177,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Cap sign is small graphical or textual sign. Plastic caps usually have it at bottom while metallic (including crown caps) at side..
+        '''</summary>
+        Public ReadOnly Property tot_Sign() As String
+            Get
+                Return ResourceManager.GetString("tot_Sign", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to This is main image.
         '''</summary>
         Public ReadOnly Property tot_ThisIsMainImage() As String
@@ -2177,6 +2213,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Cap not found.
+        '''</summary>
+        Public ReadOnly Property txt_CapNotFound() As String
+            Get
+                Return ResourceManager.GetString("txt_CapNotFound", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Caps.
         '''</summary>
         Public ReadOnly Property txt_Caps() As String
@@ -2191,6 +2236,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_CapSaved() As String
             Get
                 Return ResourceManager.GetString("txt_CapSaved", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Cap signs.
+        '''</summary>
+        Public ReadOnly Property txt_CapSigns() As String
+            Get
+                Return ResourceManager.GetString("txt_CapSigns", resourceCulture)
             End Get
         End Property
         

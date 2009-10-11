@@ -135,6 +135,15 @@
                     </toolkit:DataGrid.Columns>
                 </toolkit:DataGrid>
             </TabItem>
+            <TabItem Header="{x:Static res:Resources.txt_CapSigns}" Name="tapSigns">
+                <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrSigns" >
+                    <toolkit:DataGrid.Columns>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding CapSignID, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding Name, Mode=TwoWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Description}" Binding="{Binding Description, Mode=TwoWay}" Width="*" EditingElementStyle="{StaticResource MultilineInGrid}"/>
+                    </toolkit:DataGrid.Columns>
+                </toolkit:DataGrid>
+            </TabItem>
         </TabControl>
         <UniformGrid Columns="3" Rows="1"  Height="25" Width="Auto" Grid.Row="1">
             <Button Name="btnOK" Width="auto" HorizontalAlignment="Center" Padding="3,0,3,0" Content="{x:Static res:Resources.cmd_OK}" />

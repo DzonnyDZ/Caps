@@ -174,7 +174,7 @@
       <Association Name="Storage_Cap" Member="Storage" ThisKey="StorageID" OtherKey="StorageID" Type="Storage" IsForeignKey="true" />
       <Association Name="Shape_Cap" Member="Shape" ThisKey="ShapeID" OtherKey="ShapeID" Type="Shape" IsForeignKey="true" />
       <Association Name="Target_Cap" Member="Target" ThisKey="TargetID" OtherKey="TargetID" Type="Target" IsForeignKey="true" />
-      <Association Name="CapSign_Cap" Member="CapSign" ThisKey="CapSignID" OtherKey="CapSignId" Type="CapSign" IsForeignKey="true" />
+      <Association Name="CapSign_Cap" Member="CapSign" ThisKey="CapSignID" OtherKey="CapSignID" Type="CapSign" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Shape" Member="Shapes">
@@ -228,10 +228,10 @@
   </Table>
   <Table Name="dbo.CapSign" Member="CapSigns">
     <Type Name="CapSign">
-      <Column Name="CapSignId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CapSignID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="CapSign_Cap" Member="Caps" ThisKey="CapSignId" OtherKey="CapSignID" Type="Cap" />
+      <Association Name="CapSign_Cap" Member="Caps" ThisKey="CapSignID" OtherKey="CapSignID" Type="Cap" />
     </Type>
   </Table>
   <Function Name="dbo.GetDatabaseVersion" Method="GetDatabaseVersion" IsComposable="true">

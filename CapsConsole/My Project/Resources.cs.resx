@@ -1042,4 +1042,22 @@ K jednomu víčku byste měli mít maximálně jeden hlavní obrázek</value>
   <data name="msg_NoMoreCaps" xml:space="preserve">
     <value>Žádná další víčka</value>
   </data>
+  <data name="mni_Goto" xml:space="preserve">
+    <value>Jít na víčko ...</value>
+  </data>
+  <data name="err_CapIdNotFound" xml:space="preserve">
+    <value>Víčko id {0} nenalezeno</value>
+  </data>
+  <data name="txt_CapNotFound" xml:space="preserve">
+    <value>Víčko nenalezeno</value>
+  </data>
+  <data name="lbl_TypeCapID" xml:space="preserve">
+    <value>Zadejte ID víčka</value>
+  </data>
+  <data name="txt_CapSigns" xml:space="preserve">
+    <value>Značky víček</value>
+  </data>
+  <data name="tot_Sign" xml:space="preserve">
+    <value>Značka víčka je malá grafická nebo textová značka. Platová víčka ji običejně mají zespodu a kovová (včetne korunkových) z boku.</value>
+  </data>
 </root>

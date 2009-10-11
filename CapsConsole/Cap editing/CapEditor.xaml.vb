@@ -38,7 +38,7 @@ Partial Public Class CapEditor
     End Property
     Private Shadows initialized As Boolean
     Private initializing As Boolean
-    Friend Sub Initialize()
+    Friend Sub Initialize(ByVal ForBinding As Boolean)
         If initializing Then Exit Sub
         initializing = True
         Try
@@ -61,13 +61,18 @@ Partial Public Class CapEditor
             'lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
             DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(Nothing)
             DirectCast(cmbSign.ItemsSource, ListWithEvents(Of CapSign)).Add(Nothing)
+
+            If ForBinding Then
+                optCapTypeAnonymous.IsChecked = True
+                optProductAnonymous.IsChecked = True
+            End If
         Finally
             initializing = False
         End Try
         initialized = True
     End Sub
     Private Sub winNewCap_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
-        If Not initialized Then Initialize()
+        If Not initialized Then Initialize(False)
     End Sub
 
 #Region "CancelClicked"
@@ -810,7 +815,7 @@ Partial Public Class CapEditor
     ''' <returns><see cref="CapType"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
     ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="CapType.CapTypeID"/> in combobox</exception>
     Protected Overridable Function CoerceCapType(ByVal baseValue As CapType) As CapType
-        If Not initialized Then Initialize()
+        If Not initialized Then Initialize(False)
         If baseValue Is Nothing Then cmbCapType.SelectedIndex = -1 : Return Nothing
         For Each item As CapType In cmbCapType.Items
             If item Is baseValue Then Return baseValue
@@ -832,6 +837,7 @@ Partial Public Class CapEditor
     ''' <param name="e">Event arguments</param>
     Protected Overridable Sub OnCapTypeChanged(ByVal e As DependencyPropertyChangedEventArgs)
         cmbCapType.SelectedItem = CapType
+        If CapType Is Nothing Then optCapTypeAnonymous.IsChecked = True Else optCapTypeSelect.IsChecked = True
     End Sub
     Private Sub cmbCapType_SelectionChanged2(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbCapType.SelectionChanged
         CapType = cmbCapType.SelectedItem
@@ -1734,7 +1740,7 @@ Partial Public Class CapEditor
     ''' <param name="e">Event arguments</param>
     Protected Overridable Sub OnYearChanged(ByVal e As DependencyPropertyChangedEventArgs)
         Dim yr As Integer = If(Year, 0)
-        If If(Year, 0) <> nudYear.Value Then nudYear.Value = Year()
+        If If(Year, 0) <> nudYear.Value Then nudYear.Value = If(Year, 0)
     End Sub
     Private Sub txtYear_TextChanged(ByVal sender As Object, ByVal e As RoutedPropertyChangedEventArgs(Of Decimal)) Handles nudYear.ValueChanged
         If If(Year, 0) <> nudYear.Value Then Year = If(nudYear.Value = 0, New Integer?, CInt(nudYear.Value))
@@ -2062,6 +2068,7 @@ Partial Public Class CapEditor
     ''' <param name="e">Event arguments</param>
     Protected Overridable Sub OnProductChanged(ByVal e As DependencyPropertyChangedEventArgs)
         cmbProduct.SelectedItem = Product
+        If Product IsNot Nothing Then optProductSelected.IsChecked = True Else optProductAnonymous.IsChecked = True
     End Sub
     Private Sub cmbProduct_SelectionChanged2(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbProduct.SelectionChanged
         Product = cmbProduct.SelectedItem
@@ -2413,7 +2420,7 @@ Partial Public Class CapEditor
             If item Is baseValue Then Return baseValue
         Next
         For Each item As CapSign In cmbSign.Items
-            If item.CapSignId = baseValue.CapSignId Then Return item
+            If item.CapSignID = baseValue.CapSignID Then Return item
         Next
         Throw New ArgumentException(My.Resources.ex_SetUnknownSign)
     End Function

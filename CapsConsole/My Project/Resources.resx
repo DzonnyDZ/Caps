@@ -1326,4 +1326,25 @@ You should have maximally one main image per cap.</value>
   <data name="msg_NoMoreCaps" xml:space="preserve">
     <value>No more caps</value>
   </data>
+  <data name="mni_Goto" xml:space="preserve">
+    <value>Go to cap ...</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="err_CapIdNotFound" xml:space="preserve">
+    <value>Cap id {0} not found</value>
+  </data>
+  <data name="txt_CapNotFound" xml:space="preserve">
+    <value>Cap not found</value>
+  </data>
+  <data name="lbl_TypeCapID" xml:space="preserve">
+    <value>Type cap ID</value>
+  </data>
+  <data name="tot_Sign" xml:space="preserve">
+    <value>Cap sign is small graphical or textual sign. Plastic caps usually have it at bottom while metallic (including crown caps) at side.</value>
+    <comment>Tool tip</comment>
+  </data>
+  <data name="txt_CapSigns" xml:space="preserve">
+    <value>Cap signs</value>
+    <comment>Tab page header</comment>
+  </data>
 </root>

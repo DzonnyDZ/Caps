@@ -13,7 +13,7 @@ Partial Public Class winCapEditor
         Me.Cap = Context.Caps.First(Function(cap) cap.CapID = CapID)
         If Cap Is Nothing Then Throw New ArgumentException(My.Resources.ex_CapIDNotFound.f(CapID))
         'Me.Context = New CapsDataDataContext(Main.Connection)
-        caeEditor.Initialize()
+        caeEditor.Initialize(True)
         Me.DataContext = Cap
         caeEditor.Keywords = From kw In Cap.Cap_Keyword_Ints Select kw.Keyword.Keyword
         OldKeywords = Cap.Cap_Keyword_Ints.ToArray
@@ -124,6 +124,9 @@ Partial Public Class winCapEditor
             caeEditor.CopyTypeImage(NewType)
         End If
         If e.IsSaveNext Then
+            Me.DataContext = Nothing
+            caeEditor.ResetContext()
+            Me.Context = caeEditor.Context
             Dim NextCap = (From item In Context.Caps Where item.CapID > Cap.CapID Order By item.CapID Ascending Take 1).FirstOrDefault
             If NextCap Is Nothing Then
                 mBox.MsgBox(My.Resources.msg_NoMoreCaps, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, My.Resources.cmd_SaveNext)
@@ -131,8 +134,9 @@ Partial Public Class winCapEditor
                 Me.DialogResult = True
                 Me.Close()
             Else
+                Me.Cap = NextCap
                 caeEditor.Reset()
-                caeEditor.Initialize()
+                caeEditor.Initialize(True)
                 Me.DataContext = Cap
                 caeEditor.Keywords = From kw In Cap.Cap_Keyword_Ints Select kw.Keyword.Keyword
                 OldKeywords = Cap.Cap_Keyword_Ints.ToArray

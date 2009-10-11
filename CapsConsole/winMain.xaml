@@ -14,6 +14,7 @@
         <sys:Int32 x:Key="i64">64</sys:Int32>
         <sys:Int32 x:Key="i256">256</sys:Int32>
         <my:CapImageConverter x:Key="CapImageConverter"/>
+        <my:MyImageIDConverter x:Key="MyImageIDConverter"/>
         <ItemsPanelTemplate x:Key="HorizontalCapsView">
             <StackPanel Orientation="Horizontal" Height="auto" IsItemsHost="True"  />
         </ItemsPanelTemplate>
@@ -45,6 +46,9 @@
                        Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i64}}"
                        HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Height="auto"  Grid.Column="0" Grid.Row="0" />
                 <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Text="{Binding CapName, Mode=OneWay}" TextWrapping="WrapWithOverflow" MaxWidth="72" />                   
+                <Image MaxWidth="18" MaxHeight="18" Width="auto" Height="auto"
+                       Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                       Source="{Binding Path=CapSign.CapSignID, Converter={StaticResource MyImageIDConverter}, Mode=OneWay, ConverterParameter='CapSign'}"/>
             </Grid>
         </DataTemplate>
         <ItemsPanelTemplate x:Key="KwPanel">
@@ -65,6 +69,8 @@
                         <Image Source="/CapsConsole;component/Resources/NewCap.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
+                <Separator />
+                <MenuItem Header="{x:Static res:Resources.mni_Goto}" Name="mniGoto"/>
                 <Separator/>
                 <MenuItem Header="{x:Static res:Resources.mni_Exit}" Name="mniFileExit" Command="ApplicationCommands.Close" InputGestureText="Alt+F4"/>
             </MenuItem>

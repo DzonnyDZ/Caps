@@ -209,4 +209,36 @@ Connect: If win.ShowDialog Then
         End If
     End Sub
     
+    Private Sub mniGoto_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniGoto.Click
+        Dim msg = mBox.GetDefault
+        msg.Prompt = My.Resources.lbl_TypeCapID
+        msg.Title = My.Resources.mni_Goto
+        Dim txt = New TextBox
+        msg.MidControl = txt
+        msg.Buttons.Clear()
+        msg.Buttons.AddRange(mBox.MessageBoxButton.GetButtons(Forms.MessageBoxButtons.OKCancel))
+        AddHandler msg.Shown, AddressOf msgCapID_Shown
+        If msg.ShowDialog() = Forms.DialogResult.OK Then
+            Dim ID%
+            Try
+                id = Integer.Parse(txt.Text)
+            Catch ex As Exception
+                mBox.Error_X(ex)
+                Exit Sub
+            End Try
+            Dim cap = (From item In Context.Caps Where item.CapID = ID).FirstOrDefault
+            If cap Is Nothing Then
+                mBox.MsgBox(My.Resources.err_CapIdNotFound.f(ID), MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, My.Resources.txt_CapNotFound)
+                Exit Sub
+            End If
+            Dim win As New winCapDetails(New Cap() {cap})
+            Me.Hide()
+            win.ShowDialog()
+            Me.Show()
+            Bind()
+        End If
+    End Sub
+    Private Sub msgCapID_Shown(ByVal sender As mBox, ByVal e As EventArgs)
+        DirectCast(sender.MidControl, TextBox).Focus()
+    End Sub
 End Class
