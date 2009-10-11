@@ -12,12 +12,13 @@
     </Window.CommandBindings>
     <Window.Resources>
         <sys:Int32 x:Key="i64">64</sys:Int32>
+        <sys:Int32 x:Key="i256">256</sys:Int32>
         <my:CapImageConverter x:Key="CapImageConverter"/>
         <ItemsPanelTemplate x:Key="HorizontalCapsView">
             <StackPanel Orientation="Horizontal" Height="auto" IsItemsHost="True"  />
         </ItemsPanelTemplate>
         <DataTemplate x:Key="CapView">
-            <Grid Margin="3" Width="64" Height="100" MouseLeftButtonDown="Image_MouseLeftButtonDown" ToolTip="{Binding CapName, Mode=OneWay}" >
+            <Grid Margin="3" Width="64" Height="100" MouseLeftButtonDown="Image_MouseLeftButtonDown">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="64"/>
                     <RowDefinition Height="*"/> 
@@ -25,6 +26,21 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="64"/>
                 </Grid.ColumnDefinitions>
+                <Grid.ToolTip>
+                    <Grid Width="256">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="256"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MaxHeight="256" Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Image MaxWidth="256" MaxHeight="256" Height="auto" Width="auto"
+                            Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i256}}"                               
+                            HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                        <TextBlock Text="{Binding Path=CapName, Mode=OneWay}" Grid.Column="0" Grid.Row="1"/>
+                    </Grid>
+                </Grid.ToolTip>
                 <Image MaxWidth="64" MaxHeight="64"
                        Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i64}}"
                        HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Height="auto"  Grid.Column="0" Grid.Row="0" />
@@ -72,7 +88,7 @@
                 <MenuItem Header="{x:Static res:Resources.mni_About}" Name="mniAbout"/>
             </MenuItem> 
         </Menu>
-        <Grid>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/> 
@@ -116,25 +132,25 @@
                               ItemTemplate="{StaticResource CapView}" HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch" Height="auto" MinHeight="75" IsTabStop="False"   />
             </GroupBox>
-            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" MinHeight="72" MaxHeight="300" Height="auto"  >
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Height="300">
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions >
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*" MaxHeight="300"/>
                 </Grid.RowDefinitions>
-                <GroupBox Grid.Column="0" Grid.Row="0" Header="{x:Static res:Resources.txt_Categories}" Height="auto" VerticalAlignment="Stretch" >
+                <GroupBox Grid.Column="0" Grid.Row="0" Header="{x:Static res:Resources.txt_Categories}" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch">
                     <ItemsControl Name="itmCategories" ItemsPanel="{StaticResource KwPanel}" ItemTemplate="{StaticResource KwItem}" IsTabStop="False"
                                   Template="{StaticResource ScrollableItemsControl}"
                                   ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                  Height="auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
                 </GroupBox>
-                <GroupBox Grid.Column="1" Grid.Row="0" Header="{x:Static res:Resources.txt_Keywords}" Height="auto" VerticalAlignment="Stretch" >
+                <GroupBox Grid.Column="1" Grid.Row="0" Header="{x:Static res:Resources.txt_Keywords}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
                     <ItemsControl Name="itmKeywords" ItemsPanel="{StaticResource KwPanel}" ItemTemplate="{StaticResource KwItem}" IsTabStop="False"
                                   Template="{StaticResource ScrollableItemsControl}"
                                   ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto"
-                                  Height="auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/> 
+                                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/> 
                 </GroupBox>
             </Grid>
         </Grid>

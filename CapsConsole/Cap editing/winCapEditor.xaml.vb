@@ -32,7 +32,7 @@ Partial Public Class winCapEditor
         Me.Close()
     End Sub
 
-    Private Sub caeEditor_SaveClicked(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles caeEditor.SaveClicked
+    Private Sub caeEditor_SaveClicked(ByVal sender As Object, ByVal e As CapEditor.SaveClickedEventArgs) Handles caeEditor.SaveClicked
         If Not caeEditor.Tests Then Exit Sub
         'Introduce new CapType
         Dim NewType As CapType = Nothing
@@ -123,9 +123,29 @@ Partial Public Class winCapEditor
         If NewType IsNot Nothing Then
             caeEditor.CopyTypeImage(NewType)
         End If
-        IsClosing = True
-        Me.DialogResult = True
-        Me.Close()
+        If e.IsSaveNext Then
+            Dim NextCap = (From item In Context.Caps Where item.CapID > Cap.CapID Order By item.CapID Ascending Take 1).FirstOrDefault
+            If NextCap Is Nothing Then
+                mBox.MsgBox(My.Resources.msg_NoMoreCaps, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, My.Resources.cmd_SaveNext)
+                IsClosing = True
+                Me.DialogResult = True
+                Me.Close()
+            Else
+                caeEditor.Reset()
+                caeEditor.Initialize()
+                Me.DataContext = Cap
+                caeEditor.Keywords = From kw In Cap.Cap_Keyword_Ints Select kw.Keyword.Keyword
+                OldKeywords = Cap.Cap_Keyword_Ints.ToArray
+                caeEditor.SelectedCategories = From cat In Cap.Cap_Category_Ints Select cat.Category
+                OldCategories = Cap.Cap_Category_Ints.ToArray
+                caeEditor.Images.AddRange(Cap.Images)
+                OldImages = Cap.Images.ToArray
+            End If
+        Else
+            IsClosing = True
+            Me.DialogResult = True
+            Me.Close()
+        End If
     End Sub
 
     Private Sub winCapEditor_Closed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Closed

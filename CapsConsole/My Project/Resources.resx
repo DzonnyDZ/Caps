@@ -850,7 +850,7 @@
     <comment>Invalid user input message</comment>
   </data>
   <data name="ex_CapImageConverterParameter" xml:space="preserve">
-    <value>Converter parameter must be null or integer 64 or 256.</value>
+    <value>Converter parameter must be null or integer.</value>
     <comment>Internal error message</comment>
   </data>
   <data name="ex_ExpectedValueOfType1Or2" xml:space="preserve">
@@ -1289,5 +1289,41 @@ You should have maximally one main image per cap.</value>
   </data>
   <data name="msg_ImagesToDelete" xml:space="preserve">
     <value>Images to be deleted:</value>
+  </data>
+  <data name="ex_UnsupportedTargetType" xml:space="preserve">
+    <value>Unsupported target type</value>
+  </data>
+  <data name="ex_UnsupportedSourceType" xml:space="preserve">
+    <value>Unsupported source type</value>
+  </data>
+  <data name="err_CreatingDirectorySign" xml:space="preserve">
+    <value>Error creating directoty {0}:{1}{2}{1}Cap sign will be imageless.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="lbl_Sign" xml:space="preserve">
+    <value>Sign</value>
+    <comment>Label</comment>
+  </data>
+  <data name="msg_CopyCapSignImageError" xml:space="preserve">
+    <value>Failed to copy cap sign image. Cap sign created without image.</value>
+    <comment>Error message text</comment>
+  </data>
+  <data name="tot_FavoriteCharacters" xml:space="preserve">
+    <value>Here you can paste characters that you often use in caps descriptions and that are not present on keyboard. Than you can Copy &amp; Paste or Drag &amp; Drop them to appropriate fields.</value>
+    <comment>Tooltip</comment>
+  </data>
+  <data name="txt_NewSign" xml:space="preserve">
+    <value>New sign</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="txt_SignImage" xml:space="preserve">
+    <value>Sign image</value>
+  </data>
+  <data name="ex_SetUnknownSign" xml:space="preserve">
+    <value>Attempt to set sign that is not in combo box.</value>
+    <comment>Error message</comment>
+  </data>
+  <data name="msg_NoMoreCaps" xml:space="preserve">
+    <value>No more caps</value>
   </data>
 </root>

@@ -45,6 +45,7 @@ Partial Public Class CapEditor
             cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
             cmbMainType.ItemsSource = New ListWithEvents(Of MainType)(From item In Context.MainTypes Order By item.TypeName)
             cmbShape.ItemsSource = New ListWithEvents(Of Shape)(From item In Context.Shapes Order By item.Name)
+            cmbSign.ItemsSource = New ListWithEvents(Of CapSign)(From item In Context.CapSigns Order By item.Name)
             cmbMaterial.ItemsSource = New ListWithEvents(Of Material)(From item In Context.Materials Order By item.Name)
             cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Order By item.StorageNumber)
             cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
@@ -59,6 +60,7 @@ Partial Public Class CapEditor
             kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
             'lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
             DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(Nothing)
+            DirectCast(cmbSign.ItemsSource, ListWithEvents(Of CapSign)).Add(Nothing)
         Finally
             initializing = False
         End Try
@@ -159,6 +161,14 @@ Partial Public Class CapEditor
             DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(New CategoryProxy(win.NewObject, True))
             lstCategories.Items.Refresh()
             lstCategories_CheckedChanged(lstCategories.Items(lstCategories.Items.Count - 1), New RoutedEventArgs(CheckBox.CheckedEvent, lstCategories.Items(lstCategories.Items.Count - 1)))
+        End If
+    End Sub
+    Private Sub btnNewSign_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewSign.Click
+        Dim win As New winNewSign(Context)
+        If win.ShowDialog Then
+            DirectCast(cmbSign.ItemsSource, ListWithEvents(Of CapSign)).Add(win.NewObject)
+            cmbSign.Items.Refresh()
+            cmbSign.SelectedItem = win.NewObject
         End If
     End Sub
 #End Region
@@ -2368,6 +2378,63 @@ Partial Public Class CapEditor
     End Sub
 
 #End Region
+#Region "CapSign"
+    ''' <summary>Gets or sets cap sign.</summary>
+    <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
+    Public Property CapSign() As CapSign
+        <DebuggerStepThrough()> Get
+            Return GetValue(CapSignProperty)
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As CapSign)
+            SetValue(CapSignProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="CapSign"/> property</summary>
+    <EditorBrowsable(EditorBrowsableState.Advanced)> _
+    Public Shared ReadOnly CapSignProperty As DependencyProperty = DependencyProperty.Register("CapSign", GetType(CapSign), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapSignChanged, AddressOf CoerceCapSign))
+    ''' <summary>Coerces value of the <see cref="CapSign"/> property</summary>
+    ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapSign"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="CapSign"/>.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="CapSign.CapSignID"/> in combobox</exception>
+    Private Shared Function CoerceCapSign(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is CapSign Then Throw New TypeMismatchException("baseValue", baseValue, GetType(CapSign))
+        Return DirectCast(d, CapEditor).CoerceCapSign(baseValue)
+    End Function
+    ''' <summary>COerces value of the <see cref="CapSign"/> property</summary>
+    ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+    ''' <returns><see cref="CapSign"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
+    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="CapSign.CapSignID"/> in combobox</exception>
+    Protected Overridable Function CoerceCapSign(ByVal baseValue As CapSign) As CapSign
+        If baseValue Is Nothing Then cmbSign.SelectedIndex = -1 : Return Nothing
+        For Each item As CapSign In cmbSign.Items
+            If item Is baseValue Then Return baseValue
+        Next
+        For Each item As CapSign In cmbSign.Items
+            If item.CapSignId = baseValue.CapSignId Then Return item
+        Next
+        Throw New ArgumentException(My.Resources.ex_SetUnknownSign)
+    End Function
+    ''' <summary>Called when value of the property <see cref="CapSign"/> is changed</summary>
+    ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
+    ''' <param name="e">Evcent arguments</param>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
+    Private Shared Sub OnCapSignChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnCapSignChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="CapSign"/> property changes</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnCapSignChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        cmbSign.SelectedItem = CapSign
+    End Sub
+    Private Sub cmbCapSign_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbSign.SelectionChanged
+        CapSign = cmbSign.SelectedItem
+    End Sub
+
+#End Region
 #End Region
 
     ''' <summary>Possible ways how to specifiy certain cap properties</summary>
@@ -2438,7 +2505,9 @@ Partial Public Class CapEditor
             CompaniesList.Add(Nothing)
             cmbCompany.ItemsSource = CompaniesList
             If .Company.HasValue Then cmbCompany.SelectedItem = (From itm As Company In cmbCompany.ItemsSource Where itm.CompanyID = .Company).FirstOrDefault Else cmbCompany.SelectedItem = Nothing
+            'Categories
             lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item, .Categories.Contains(item.CategoryID)))
+            lstCategories_CheckedChanged(Nothing, Nothing)
         End With
         With DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image))
             .RemoveAll(Function(img) Not TypeOf img Is NewImage)
@@ -2459,7 +2528,7 @@ Partial Public Class CapEditor
         Tests = False
         If cmbMainType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_MainTypeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbMainType.Focus() : Exit Function
         If cmbShape.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_ShapeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbShape.Focus() : Exit Function
-        If cmbMainType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_MaterialMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbMaterial.Focus() : Exit Function
+        If cmbMaterial.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_MaterialMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbMaterial.Focus() : Exit Function
         If cmbStorage.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_StorageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbStorage.Focus() : Exit Function
         If txtCapName.Text = "" Then mBox.Modal_PTI(My.Resources.msg_CapNameMustBeEntered, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : txtCapName.Focus() : Exit Function
         If DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).Count = 0 Then mBox.Modal_PTI(My.Resources.msg_AtLeastOneImageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : btnAddImage.Focus() : Exit Function
@@ -2863,6 +2932,45 @@ Resize256:      Try
         cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
         cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
         DirectCast(cmbProduct.ItemsSource, ListWithEvents(Of Product)).Add(Nothing)
+
+        txtCapName.Focus()
+    End Sub
+
+    Private Sub Image_MouseDown(ByVal sender As FrameworkElement, ByVal e As System.Windows.Input.MouseButtonEventArgs)
+        If e.ClickCount = 2 AndAlso e.ChangedButton = MouseButton.Left Then
+            e.Handled = True
+            Dim item As Image = sender.DataContext
+            Dim path$
+            If IO.Path.IsPathRooted(item.RelativePath) Then
+                path = item.RelativePath
+            Else
+                path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "original"), item.RelativePath)
+            End If
+            Try
+                Process.Start(path)
+            Catch ex As Exception
+                mBox.Error_X(ex)
+            End Try
+        End If
+
+    End Sub
+
+    
+    Private LastCountry As TextBox
+    Private Sub btnCCCountry_Click(ByVal sender As Button, ByVal e As System.Windows.RoutedEventArgs) Handles btnCCCountry.Click, btnCCCountryOfOrigin.Click
+        e.Handled = True
+        With DirectCast(Me.Resources("cmnCC"), ContextMenu)
+            sender.ContextMenu = .self
+            .IsOpen = True
+            If sender Is btnCCCountry Then : LastCountry = txtCountryCode
+            ElseIf sender Is btnCCCountryOfOrigin Then : LastCountry = txtCountryOfOrigin
+            Else : LastCountry = Nothing
+            End If
+        End With
+    End Sub
+
+    Private Sub mniCountry_Click(ByVal sender As MenuItem, ByVal e As System.Windows.RoutedEventArgs)
+        If LastCountry IsNot Nothing Then LastCountry.Text = DirectCast(sender.DataContext, Country).Code2
     End Sub
 End Class
 

@@ -547,6 +547,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Error creating directoty {0}:{1}{2}{1}Cap sign will be imageless..
+        '''</summary>
+        Public ReadOnly Property err_CreatingDirectorySign() As String
+            Get
+                Return ResourceManager.GetString("err_CreatingDirectorySign", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Deleteing of some images failed:.
         '''</summary>
         Public ReadOnly Property err_DeleteingOfSomeImagesFailed() As String
@@ -700,7 +709,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Converter parameter must be null or integer 64 or 256..
+        '''  Looks up a localized string similar to Converter parameter must be null or integer..
         '''</summary>
         Public ReadOnly Property ex_CapImageConverterParameter() As String
             Get
@@ -925,6 +934,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Attempt to set sign that is not in combo box..
+        '''</summary>
+        Public ReadOnly Property ex_SetUnknownSign() As String
+            Get
+                Return ResourceManager.GetString("ex_SetUnknownSign", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Attempt to set storage that is not in combo box..
         '''</summary>
         Public ReadOnly Property ex_SetUnknownStorage() As String
@@ -957,6 +975,24 @@ Namespace My.Resources
         Public ReadOnly Property ex_UnsupportedDataType() As String
             Get
                 Return ResourceManager.GetString("ex_UnsupportedDataType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Unsupported source type.
+        '''</summary>
+        Public ReadOnly Property ex_UnsupportedSourceType() As String
+            Get
+                Return ResourceManager.GetString("ex_UnsupportedSourceType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Unsupported target type.
+        '''</summary>
+        Public ReadOnly Property ex_UnsupportedTargetType() As String
+            Get
+                Return ResourceManager.GetString("ex_UnsupportedTargetType", resourceCulture)
             End Get
         End Property
         
@@ -1483,6 +1519,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Sign.
+        '''</summary>
+        Public ReadOnly Property lbl_Sign() As String
+            Get
+                Return ResourceManager.GetString("lbl_Sign", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Size 1 name.
         '''</summary>
         Public ReadOnly Property lbl_Size1Name() As String
@@ -1771,6 +1816,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Failed to copy cap sign image. Cap sign created without image..
+        '''</summary>
+        Public ReadOnly Property msg_CopyCapSignImageError() As String
+            Get
+                Return ResourceManager.GetString("msg_CopyCapSignImageError", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Failed to copy main type image. Main type created without image..
         '''</summary>
         Public ReadOnly Property msg_CopyMainTypeImageError() As String
@@ -1942,6 +1996,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to No more caps.
+        '''</summary>
+        Public ReadOnly Property msg_NoMoreCaps() As String
+            Get
+                Return ResourceManager.GetString("msg_NoMoreCaps", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to You have chosen to select one of existing products but you have selected none..
         '''</summary>
         Public ReadOnly Property msg_NoProductSelected() As String
@@ -2037,6 +2100,15 @@ Namespace My.Resources
         Public ReadOnly Property tot_CapState() As String
             Get
                 Return ResourceManager.GetString("tot_CapState", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Here you can paste characters that you often use in caps descriptions and that are not present on keyboard. Than you can Copy &amp; Paste or Drag &amp; Drop them to appropriate fields..
+        '''</summary>
+        Public ReadOnly Property tot_FavoriteCharacters() As String
+            Get
+                Return ResourceManager.GetString("tot_FavoriteCharacters", resourceCulture)
             End Get
         End Property
         
@@ -2555,6 +2627,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to New sign.
+        '''</summary>
+        Public ReadOnly Property txt_NewSign() As String
+            Get
+                Return ResourceManager.GetString("txt_NewSign", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to New Storage.
         '''</summary>
         Public ReadOnly Property txt_NewStorage() As String
@@ -2668,6 +2749,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_Shapes() As String
             Get
                 Return ResourceManager.GetString("txt_Shapes", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Sign image.
+        '''</summary>
+        Public ReadOnly Property txt_SignImage() As String
+            Get
+                Return ResourceManager.GetString("txt_SignImage", resourceCulture)
             End Get
         End Property
         

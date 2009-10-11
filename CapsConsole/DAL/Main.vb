@@ -10,7 +10,7 @@ Module Main
     Public ReadOnly DatabaseGuid As New Guid("{DAFDAE3F-2F0A-4359-81D6-50BA394D72D9}")
     ''' <summary>Expected version of database returned by <c>dbo.GetDatabaseVersion</c></summary>
     ''' <remarks><see cref="Version.Revision"/> part is ignored</remarks>
-    Public ReadOnly DatabaseVersion As New Version(0, 0, 2, 0)
+    Public ReadOnly DatabaseVersion As New Version(0, 0, 3, 0)
     Private VersionRegEx As New System.Text.RegularExpressions.Regex("^(?<Guid>{[A-Fa-f0-9]{8}(-[A-Fa-f0-9]{4}){3}-[A-Fa-f0-9]{12}})(?<Version>[0-9]{1,2}(\.[0-9]{1,2}){2,3})$", Text.RegularExpressions.RegexOptions.Compiled Or Text.RegularExpressions.RegexOptions.CultureInvariant Or Text.RegularExpressions.RegexOptions.ExplicitCapture)
     ''' <summary>Verifies if database with given connection is caps database of expected version</summary>
     ''' <param name="Connection">Connection to the database</param>

@@ -76,4 +76,22 @@ Partial Public Class winCapDetails
     Private Sub winCapDetails_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
         Me.SetWindowPosition(My.Settings.winCapDetailsLoc)
     End Sub
+
+    Private Sub Image_MouseDown(ByVal sender As FrameworkElement, ByVal e As System.Windows.Input.MouseButtonEventArgs)
+        If e.ClickCount = 2 AndAlso e.ChangedButton = MouseButton.Left Then
+            e.Handled = True
+            Dim item As Image = sender.DataContext
+            Dim path$
+            If IO.Path.IsPathRooted(item.RelativePath) Then
+                path = item.RelativePath
+            Else
+                path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "original"), item.RelativePath)
+            End If
+            Try
+                Process.Start(path)
+            Catch ex As Exception
+                mBox.Error_X(ex)
+            End Try
+        End If
+    End Sub
 End Class

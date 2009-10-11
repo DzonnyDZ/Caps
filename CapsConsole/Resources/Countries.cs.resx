@@ -1,0 +1,855 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cc_AD" xml:space="preserve">
+    <value>Andorra</value>
+  </data>
+  <data name="cc_AE" xml:space="preserve">
+    <value>Spojené arabské emiráty</value>
+  </data>
+  <data name="cc_AF" xml:space="preserve">
+    <value>Afghánistán</value>
+  </data>
+  <data name="cc_AG" xml:space="preserve">
+    <value>Antigua a barbuda</value>
+  </data>
+  <data name="cc_AI" xml:space="preserve">
+    <value>Anguilla</value>
+  </data>
+  <data name="cc_AL" xml:space="preserve">
+    <value>Albánie</value>
+  </data>
+  <data name="cc_AM" xml:space="preserve">
+    <value>Arménie</value>
+  </data>
+  <data name="cc_AN" xml:space="preserve">
+    <value>Nizozemské Antily</value>
+  </data>
+  <data name="cc_AO" xml:space="preserve">
+    <value>Angola</value>
+  </data>
+  <data name="cc_AQ" xml:space="preserve">
+    <value>Antarktida</value>
+  </data>
+  <data name="cc_AR" xml:space="preserve">
+    <value>Argentina</value>
+  </data>
+  <data name="cc_AS" xml:space="preserve">
+    <value>Americká Samoa</value>
+  </data>
+  <data name="cc_AT" xml:space="preserve">
+    <value>Rakousko</value>
+  </data>
+  <data name="cc_AU" xml:space="preserve">
+    <value>Austrálie</value>
+  </data>
+  <data name="cc_AW" xml:space="preserve">
+    <value>Aruba</value>
+  </data>
+  <data name="cc_AX" xml:space="preserve">
+    <value>Ålandy</value>
+  </data>
+  <data name="cc_AZ" xml:space="preserve">
+    <value>Ázerbájdžán</value>
+  </data>
+  <data name="cc_BA" xml:space="preserve">
+    <value>Bosna a Hercegovina</value>
+  </data>
+  <data name="cc_BB" xml:space="preserve">
+    <value>Barbados</value>
+  </data>
+  <data name="cc_BD" xml:space="preserve">
+    <value>Bangladéš</value>
+  </data>
+  <data name="cc_BE" xml:space="preserve">
+    <value>Balgie</value>
+  </data>
+  <data name="cc_BF" xml:space="preserve">
+    <value>Burkina Faso</value>
+  </data>
+  <data name="cc_BG" xml:space="preserve">
+    <value>Bulharsko</value>
+  </data>
+  <data name="cc_BH" xml:space="preserve">
+    <value>Bahrajn</value>
+  </data>
+  <data name="cc_BI" xml:space="preserve">
+    <value>Burundi</value>
+  </data>
+  <data name="cc_BJ" xml:space="preserve">
+    <value>Benin</value>
+  </data>
+  <data name="cc_BL" xml:space="preserve">
+    <value>Saint Barthélemy</value>
+  </data>
+  <data name="cc_BM" xml:space="preserve">
+    <value>Bermudy</value>
+  </data>
+  <data name="cc_BN" xml:space="preserve">
+    <value>Brunej</value>
+  </data>
+  <data name="cc_BO" xml:space="preserve">
+    <value>Bolívie</value>
+  </data>
+  <data name="cc_BR" xml:space="preserve">
+    <value>Brazílie</value>
+  </data>
+  <data name="cc_BS" xml:space="preserve">
+    <value>Bahamy</value>
+  </data>
+  <data name="cc_BT" xml:space="preserve">
+    <value>Bhútán</value>
+  </data>
+  <data name="cc_BV" xml:space="preserve">
+    <value>Bouvetův ostrov</value>
+  </data>
+  <data name="cc_BW" xml:space="preserve">
+    <value>Botswana</value>
+  </data>
+  <data name="cc_BY" xml:space="preserve">
+    <value>Bělorusko</value>
+  </data>
+  <data name="cc_BZ" xml:space="preserve">
+    <value>Belize</value>
+  </data>
+  <data name="cc_CA" xml:space="preserve">
+    <value>Kanada</value>
+  </data>
+  <data name="cc_CC" xml:space="preserve">
+    <value>Kokosové ostrovy</value>
+  </data>
+  <data name="cc_CD" xml:space="preserve">
+    <value>Kongo - Zair</value>
+  </data>
+  <data name="cc_CF" xml:space="preserve">
+    <value>Střední Afrika</value>
+  </data>
+  <data name="cc_CG" xml:space="preserve">
+    <value>Kongo</value>
+  </data>
+  <data name="cc_CH" xml:space="preserve">
+    <value>Švýcarsko</value>
+  </data>
+  <data name="cc_CI" xml:space="preserve">
+    <value>Pobřeží slonoviny</value>
+  </data>
+  <data name="cc_CK" xml:space="preserve">
+    <value>Cookovy ostrovy</value>
+  </data>
+  <data name="cc_CL" xml:space="preserve">
+    <value>Chile</value>
+  </data>
+  <data name="cc_CM" xml:space="preserve">
+    <value>Kamerun</value>
+  </data>
+  <data name="cc_CN" xml:space="preserve">
+    <value>Čína</value>
+  </data>
+  <data name="cc_CO" xml:space="preserve">
+    <value>Kolumbie</value>
+  </data>
+  <data name="cc_CR" xml:space="preserve">
+    <value>Kostarika</value>
+  </data>
+  <data name="cc_CU" xml:space="preserve">
+    <value>Kuba</value>
+  </data>
+  <data name="cc_CV" xml:space="preserve">
+    <value>Kapverdy</value>
+  </data>
+  <data name="cc_CX" xml:space="preserve">
+    <value>Vánoční ostrov</value>
+  </data>
+  <data name="cc_CY" xml:space="preserve">
+    <value>Kypr</value>
+  </data>
+  <data name="cc_CZ" xml:space="preserve">
+    <value>Česko</value>
+  </data>
+  <data name="cc_DE" xml:space="preserve">
+    <value>Německo</value>
+  </data>
+  <data name="cc_DJ" xml:space="preserve">
+    <value>Džibutsko</value>
+  </data>
+  <data name="cc_DK" xml:space="preserve">
+    <value>Dánsko</value>
+  </data>
+  <data name="cc_DM" xml:space="preserve">
+    <value>Dominika</value>
+  </data>
+  <data name="cc_DO" xml:space="preserve">
+    <value>Dominikánská republika</value>
+  </data>
+  <data name="cc_DZ" xml:space="preserve">
+    <value>Alžírsko</value>
+  </data>
+  <data name="cc_EC" xml:space="preserve">
+    <value>Ekvádor</value>
+  </data>
+  <data name="cc_EE" xml:space="preserve">
+    <value>Estonsko</value>
+  </data>
+  <data name="cc_EG" xml:space="preserve">
+    <value>Egypt</value>
+  </data>
+  <data name="cc_EH" xml:space="preserve">
+    <value>Západní Sahara</value>
+  </data>
+  <data name="cc_ER" xml:space="preserve">
+    <value>Eritrea</value>
+  </data>
+  <data name="cc_ES" xml:space="preserve">
+    <value>Španělsko</value>
+  </data>
+  <data name="cc_ET" xml:space="preserve">
+    <value>Etiopie</value>
+  </data>
+  <data name="cc_FI" xml:space="preserve">
+    <value>Finsko</value>
+  </data>
+  <data name="cc_FJ" xml:space="preserve">
+    <value>Fidži</value>
+  </data>
+  <data name="cc_FK" xml:space="preserve">
+    <value>Falklandy</value>
+  </data>
+  <data name="cc_FM" xml:space="preserve">
+    <value>Mikronésie</value>
+  </data>
+  <data name="cc_FO" xml:space="preserve">
+    <value>Faerské ostrovy</value>
+  </data>
+  <data name="cc_FR" xml:space="preserve">
+    <value>Francie</value>
+  </data>
+  <data name="cc_GA" xml:space="preserve">
+    <value>Gabon</value>
+  </data>
+  <data name="cc_GB" xml:space="preserve">
+    <value>Spojené království</value>
+  </data>
+  <data name="cc_GD" xml:space="preserve">
+    <value>Grenada</value>
+  </data>
+  <data name="cc_GE" xml:space="preserve">
+    <value>Gruzie</value>
+  </data>
+  <data name="cc_GF" xml:space="preserve">
+    <value>Franfouzská Guyana</value>
+  </data>
+  <data name="cc_GG" xml:space="preserve">
+    <value>Guernsey</value>
+  </data>
+  <data name="cc_GH" xml:space="preserve">
+    <value>Ghana</value>
+  </data>
+  <data name="cc_GI" xml:space="preserve">
+    <value>Gibraltar</value>
+  </data>
+  <data name="cc_GL" xml:space="preserve">
+    <value>Grónsko</value>
+  </data>
+  <data name="cc_GM" xml:space="preserve">
+    <value>Gambie</value>
+  </data>
+  <data name="cc_GN" xml:space="preserve">
+    <value>Guinea</value>
+  </data>
+  <data name="cc_GP" xml:space="preserve">
+    <value>Guadeloupe</value>
+  </data>
+  <data name="cc_GQ" xml:space="preserve">
+    <value>Rovníková Guinea</value>
+  </data>
+  <data name="cc_GR" xml:space="preserve">
+    <value>řecko</value>
+  </data>
+  <data name="cc_GS" xml:space="preserve">
+    <value>Jižní Georgie a Jižní Sandwichovy ostrovy</value>
+  </data>
+  <data name="cc_GT" xml:space="preserve">
+    <value>Guatemala</value>
+  </data>
+  <data name="cc_GU" xml:space="preserve">
+    <value>Guam</value>
+  </data>
+  <data name="cc_GW" xml:space="preserve">
+    <value>Guinea-Bissau</value>
+  </data>
+  <data name="cc_GY" xml:space="preserve">
+    <value>Guyana</value>
+  </data>
+  <data name="cc_HK" xml:space="preserve">
+    <value>Hong Kong</value>
+  </data>
+  <data name="cc_HM" xml:space="preserve">
+    <value>Ostrovy Heardův a McDonaldovy</value>
+  </data>
+  <data name="cc_HN" xml:space="preserve">
+    <value>Honduras</value>
+  </data>
+  <data name="cc_HR" xml:space="preserve">
+    <value>Chorvatsko</value>
+  </data>
+  <data name="cc_HT" xml:space="preserve">
+    <value>Haiti</value>
+  </data>
+  <data name="cc_HU" xml:space="preserve">
+    <value>Maďarsko</value>
+  </data>
+  <data name="cc_ID" xml:space="preserve">
+    <value>Indonésie</value>
+  </data>
+  <data name="cc_IE" xml:space="preserve">
+    <value>Irsko</value>
+  </data>
+  <data name="cc_IL" xml:space="preserve">
+    <value>Izrael</value>
+  </data>
+  <data name="cc_IM" xml:space="preserve">
+    <value>Ostrov man</value>
+  </data>
+  <data name="cc_IN" xml:space="preserve">
+    <value>Indie</value>
+  </data>
+  <data name="cc_IO" xml:space="preserve">
+    <value>Britské indickooceánské teritorium</value>
+  </data>
+  <data name="cc_IQ" xml:space="preserve">
+    <value>Irák</value>
+  </data>
+  <data name="cc_IR" xml:space="preserve">
+    <value>Írán</value>
+  </data>
+  <data name="cc_IS" xml:space="preserve">
+    <value>Island</value>
+  </data>
+  <data name="cc_IT" xml:space="preserve">
+    <value>Itálie</value>
+  </data>
+  <data name="cc_JE" xml:space="preserve">
+    <value>Jersey</value>
+  </data>
+  <data name="cc_JM" xml:space="preserve">
+    <value>Jamajka</value>
+  </data>
+  <data name="cc_JO" xml:space="preserve">
+    <value>Jordánsko</value>
+  </data>
+  <data name="cc_JP" xml:space="preserve">
+    <value>Japonsko</value>
+  </data>
+  <data name="cc_KE" xml:space="preserve">
+    <value>Keňa</value>
+  </data>
+  <data name="cc_KG" xml:space="preserve">
+    <value>Kyrgyzstán</value>
+  </data>
+  <data name="cc_KH" xml:space="preserve">
+    <value>Kambodža</value>
+  </data>
+  <data name="cc_KI" xml:space="preserve">
+    <value>Kiribati</value>
+  </data>
+  <data name="cc_KM" xml:space="preserve">
+    <value>Komory</value>
+  </data>
+  <data name="cc_KN" xml:space="preserve">
+    <value>Svatý Kryštof a Nevis</value>
+  </data>
+  <data name="cc_KP" xml:space="preserve">
+    <value>Severní Korea</value>
+  </data>
+  <data name="cc_KR" xml:space="preserve">
+    <value>Jižní Korea</value>
+  </data>
+  <data name="cc_KW" xml:space="preserve">
+    <value>Kowait</value>
+  </data>
+  <data name="cc_KY" xml:space="preserve">
+    <value>Kajmanské ostrovy</value>
+  </data>
+  <data name="cc_KZ" xml:space="preserve">
+    <value>Kazachstán</value>
+  </data>
+  <data name="cc_LA" xml:space="preserve">
+    <value>Laos</value>
+  </data>
+  <data name="cc_LB" xml:space="preserve">
+    <value>Libanon</value>
+  </data>
+  <data name="cc_LC" xml:space="preserve">
+    <value>Svatá Lucie</value>
+  </data>
+  <data name="cc_LI" xml:space="preserve">
+    <value>Lichtenštejnsko</value>
+  </data>
+  <data name="cc_LK" xml:space="preserve">
+    <value>Šrí lanka</value>
+  </data>
+  <data name="cc_LR" xml:space="preserve">
+    <value>Libérie</value>
+  </data>
+  <data name="cc_LS" xml:space="preserve">
+    <value>Leshoto</value>
+  </data>
+  <data name="cc_LT" xml:space="preserve">
+    <value>Litva</value>
+  </data>
+  <data name="cc_LU" xml:space="preserve">
+    <value>Lucembursko</value>
+  </data>
+  <data name="cc_LV" xml:space="preserve">
+    <value>Lotyšsko</value>
+  </data>
+  <data name="cc_LY" xml:space="preserve">
+    <value>Lýbie</value>
+  </data>
+  <data name="cc_MA" xml:space="preserve">
+    <value>Maroko</value>
+  </data>
+  <data name="cc_MC" xml:space="preserve">
+    <value>Monako</value>
+  </data>
+  <data name="cc_MD" xml:space="preserve">
+    <value>Moldavsko</value>
+  </data>
+  <data name="cc_ME" xml:space="preserve">
+    <value>Černá Hora</value>
+  </data>
+  <data name="cc_MF" xml:space="preserve">
+    <value>Svatý Martin</value>
+  </data>
+  <data name="cc_MG" xml:space="preserve">
+    <value>Madagaskar</value>
+  </data>
+  <data name="cc_MH" xml:space="preserve">
+    <value>Marshallovy ostrovy</value>
+  </data>
+  <data name="cc_MK" xml:space="preserve">
+    <value>Makedonie</value>
+  </data>
+  <data name="cc_ML" xml:space="preserve">
+    <value>Mali</value>
+  </data>
+  <data name="cc_MM" xml:space="preserve">
+    <value>Barma</value>
+  </data>
+  <data name="cc_MN" xml:space="preserve">
+    <value>Mongolsko</value>
+  </data>
+  <data name="cc_MO" xml:space="preserve">
+    <value>Macao</value>
+  </data>
+  <data name="cc_MP" xml:space="preserve">
+    <value>Severní Mariany</value>
+  </data>
+  <data name="cc_MQ" xml:space="preserve">
+    <value>Martinik</value>
+  </data>
+  <data name="cc_MR" xml:space="preserve">
+    <value>Mauritánie</value>
+  </data>
+  <data name="cc_MS" xml:space="preserve">
+    <value>Montserrat</value>
+  </data>
+  <data name="cc_MT" xml:space="preserve">
+    <value>Malta</value>
+  </data>
+  <data name="cc_MU" xml:space="preserve">
+    <value>Mauricius</value>
+  </data>
+  <data name="cc_MV" xml:space="preserve">
+    <value>Maledivy</value>
+  </data>
+  <data name="cc_MW" xml:space="preserve">
+    <value>Malawi</value>
+  </data>
+  <data name="cc_MX" xml:space="preserve">
+    <value>Mexiko</value>
+  </data>
+  <data name="cc_MY" xml:space="preserve">
+    <value>Malajsie</value>
+  </data>
+  <data name="cc_MZ" xml:space="preserve">
+    <value>Mozambik</value>
+  </data>
+  <data name="cc_NA" xml:space="preserve">
+    <value>namibie</value>
+  </data>
+  <data name="cc_NC" xml:space="preserve">
+    <value>Nová Kaledonie</value>
+  </data>
+  <data name="cc_NE" xml:space="preserve">
+    <value>Niger</value>
+  </data>
+  <data name="cc_NF" xml:space="preserve">
+    <value>Norfolk</value>
+  </data>
+  <data name="cc_NG" xml:space="preserve">
+    <value>Nigérie</value>
+  </data>
+  <data name="cc_NI" xml:space="preserve">
+    <value>Nikaragua</value>
+  </data>
+  <data name="cc_NL" xml:space="preserve">
+    <value>Nizozemsko</value>
+  </data>
+  <data name="cc_NO" xml:space="preserve">
+    <value>Norsko</value>
+  </data>
+  <data name="cc_NP" xml:space="preserve">
+    <value>Nepál</value>
+  </data>
+  <data name="cc_NR" xml:space="preserve">
+    <value>Nauru</value>
+  </data>
+  <data name="cc_NU" xml:space="preserve">
+    <value>Niue</value>
+  </data>
+  <data name="cc_NZ" xml:space="preserve">
+    <value>Nový Zéland</value>
+  </data>
+  <data name="cc_OM" xml:space="preserve">
+    <value>Omán</value>
+  </data>
+  <data name="cc_PA" xml:space="preserve">
+    <value>Panama</value>
+  </data>
+  <data name="cc_PE" xml:space="preserve">
+    <value>Peru</value>
+  </data>
+  <data name="cc_PF" xml:space="preserve">
+    <value>Francozská Polynésie</value>
+  </data>
+  <data name="cc_PG" xml:space="preserve">
+    <value>Papua - Nová Guinea</value>
+  </data>
+  <data name="cc_PH" xml:space="preserve">
+    <value>Filipíny</value>
+  </data>
+  <data name="cc_PK" xml:space="preserve">
+    <value>Pákistán</value>
+  </data>
+  <data name="cc_PL" xml:space="preserve">
+    <value>Polsko</value>
+  </data>
+  <data name="cc_PM" xml:space="preserve">
+    <value>Saint Pierre a Miquelon</value>
+  </data>
+  <data name="cc_PN" xml:space="preserve">
+    <value>Pitcairnovy ostrovy</value>
+  </data>
+  <data name="cc_PR" xml:space="preserve">
+    <value>Portoriko</value>
+  </data>
+  <data name="cc_PS" xml:space="preserve">
+    <value>Palestina</value>
+  </data>
+  <data name="cc_PT" xml:space="preserve">
+    <value>Portugalsko</value>
+  </data>
+  <data name="cc_PW" xml:space="preserve">
+    <value>Palau</value>
+  </data>
+  <data name="cc_PY" xml:space="preserve">
+    <value>Paraguay</value>
+  </data>
+  <data name="cc_QA" xml:space="preserve">
+    <value>Katar</value>
+  </data>
+  <data name="cc_RE" xml:space="preserve">
+    <value>Reunion</value>
+  </data>
+  <data name="cc_RO" xml:space="preserve">
+    <value>Rumunsko</value>
+  </data>
+  <data name="cc_RS" xml:space="preserve">
+    <value>Srbsko</value>
+  </data>
+  <data name="cc_RU" xml:space="preserve">
+    <value>Rusko</value>
+  </data>
+  <data name="cc_RW" xml:space="preserve">
+    <value>Rwanda</value>
+  </data>
+  <data name="cc_SA" xml:space="preserve">
+    <value>Saúdská arábie</value>
+  </data>
+  <data name="cc_SB" xml:space="preserve">
+    <value>Šalamounovy ostrovy</value>
+  </data>
+  <data name="cc_SC" xml:space="preserve">
+    <value>Seychelly</value>
+  </data>
+  <data name="cc_SD" xml:space="preserve">
+    <value>Súdán</value>
+  </data>
+  <data name="cc_SE" xml:space="preserve">
+    <value>Švédsko</value>
+  </data>
+  <data name="cc_SG" xml:space="preserve">
+    <value>Singapur</value>
+  </data>
+  <data name="cc_SH" xml:space="preserve">
+    <value>Svatá Helena</value>
+  </data>
+  <data name="cc_SI" xml:space="preserve">
+    <value>Slovinsko</value>
+  </data>
+  <data name="cc_SJ" xml:space="preserve">
+    <value>Svalbard a Jan Mayen</value>
+  </data>
+  <data name="cc_SK" xml:space="preserve">
+    <value>Slobensko</value>
+  </data>
+  <data name="cc_SL" xml:space="preserve">
+    <value>Sierra Leone</value>
+  </data>
+  <data name="cc_SM" xml:space="preserve">
+    <value>San Marino</value>
+  </data>
+  <data name="cc_SN" xml:space="preserve">
+    <value>Senegal</value>
+  </data>
+  <data name="cc_SO" xml:space="preserve">
+    <value>Somálsko</value>
+  </data>
+  <data name="cc_SR" xml:space="preserve">
+    <value>Surinam</value>
+  </data>
+  <data name="cc_ST" xml:space="preserve">
+    <value>Svatý Tomáš a Principe</value>
+  </data>
+  <data name="cc_SV" xml:space="preserve">
+    <value>Salvádor</value>
+  </data>
+  <data name="cc_SY" xml:space="preserve">
+    <value>Sýrie</value>
+  </data>
+  <data name="cc_SZ" xml:space="preserve">
+    <value>Svazijsko</value>
+  </data>
+  <data name="cc_TC" xml:space="preserve">
+    <value>Turks a Caicos</value>
+  </data>
+  <data name="cc_TD" xml:space="preserve">
+    <value>Čad</value>
+  </data>
+  <data name="cc_TF" xml:space="preserve">
+    <value>Francouzská jižní území</value>
+  </data>
+  <data name="cc_TG" xml:space="preserve">
+    <value>Togo</value>
+  </data>
+  <data name="cc_TH" xml:space="preserve">
+    <value>Thajsko</value>
+  </data>
+  <data name="cc_TJ" xml:space="preserve">
+    <value>Tádžikistán</value>
+  </data>
+  <data name="cc_TK" xml:space="preserve">
+    <value>Tokelau</value>
+  </data>
+  <data name="cc_TL" xml:space="preserve">
+    <value>Východní Timor</value>
+  </data>
+  <data name="cc_TM" xml:space="preserve">
+    <value>Turkmenistán</value>
+  </data>
+  <data name="cc_TN" xml:space="preserve">
+    <value>Tunisko</value>
+  </data>
+  <data name="cc_TO" xml:space="preserve">
+    <value>Tonga</value>
+  </data>
+  <data name="cc_TR" xml:space="preserve">
+    <value>Turecko</value>
+  </data>
+  <data name="cc_TT" xml:space="preserve">
+    <value>Trinidad a Tobago</value>
+  </data>
+  <data name="cc_TV" xml:space="preserve">
+    <value>Tuvalu</value>
+  </data>
+  <data name="cc_TW" xml:space="preserve">
+    <value>Taiwan</value>
+  </data>
+  <data name="cc_TZ" xml:space="preserve">
+    <value>Tanzánie</value>
+  </data>
+  <data name="cc_UA" xml:space="preserve">
+    <value>Ukrajina</value>
+  </data>
+  <data name="cc_UG" xml:space="preserve">
+    <value>Uganda</value>
+  </data>
+  <data name="cc_UM" xml:space="preserve">
+    <value>Americké bezvýznamné ostrovy</value>
+  </data>
+  <data name="cc_US" xml:space="preserve">
+    <value>USA</value>
+  </data>
+  <data name="cc_UY" xml:space="preserve">
+    <value>Uruguay</value>
+  </data>
+  <data name="cc_UZ" xml:space="preserve">
+    <value>Uzbekistán</value>
+  </data>
+  <data name="cc_VA" xml:space="preserve">
+    <value>Vatikán</value>
+  </data>
+  <data name="cc_VC" xml:space="preserve">
+    <value>Svatý Vincenc a Grenadiny</value>
+  </data>
+  <data name="cc_VE" xml:space="preserve">
+    <value>Venezuela</value>
+  </data>
+  <data name="cc_VG" xml:space="preserve">
+    <value>Brtiské Panenské ostrovy</value>
+  </data>
+  <data name="cc_VI" xml:space="preserve">
+    <value>Americké Panenské ostrovy</value>
+  </data>
+  <data name="cc_VN" xml:space="preserve">
+    <value>Vietnam</value>
+  </data>
+  <data name="cc_VU" xml:space="preserve">
+    <value>Vanuatu</value>
+  </data>
+  <data name="cc_WF" xml:space="preserve">
+    <value>Wallis a Futuna</value>
+  </data>
+  <data name="cc_WS" xml:space="preserve">
+    <value>Samoa</value>
+  </data>
+  <data name="cc_YE" xml:space="preserve">
+    <value>Jemen</value>
+  </data>
+  <data name="cc_YT" xml:space="preserve">
+    <value>Mahoré</value>
+  </data>
+  <data name="cc_ZA" xml:space="preserve">
+    <value>Jižní Afrika</value>
+  </data>
+  <data name="cc_ZM" xml:space="preserve">
+    <value>Zambie</value>
+  </data>
+</root>

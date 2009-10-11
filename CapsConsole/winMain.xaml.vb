@@ -30,7 +30,7 @@ Connect: If win.ShowDialog Then
                 Connection.Open()
                 VerifyDatabaseVersionWithUpgrade(Connection)
             Catch ex As Exception
-                Connection.Close()
+                Try : Connection.Close() : Catch : End Try
                 If mBox.Error_XBI(ex, Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Retry Or Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Abort) = Forms.DialogResult.Retry Then
                     win = New winSelectDatabase(win.ConnectionString.ToString)
                     GoTo Connect

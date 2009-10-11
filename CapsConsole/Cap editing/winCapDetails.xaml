@@ -11,6 +11,7 @@
         >
     <Window.Resources>
         <sys:Int32 x:Key="i64">64</sys:Int32>
+        <sys:Int32 x:Key="i256">256</sys:Int32>
         <my:NullFalseConverter x:Key="NullFalseConverter"/>
         <my:RelativePathConverter x:Key="RelativePathConverter"/>
         <my:CapImageConverter x:Key="CapImageConverter"/>
@@ -53,7 +54,7 @@
         </Grid.RowDefinitions>
         <ListBox Grid.Column="0" Grid.Row="0" Name="lstCaps"
                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                 Width="70" SelectedIndex="0"
+                 Width="auto" SelectedIndex="0"
                  Visibility="{Binding ElementName=lstCaps, Path=ItemsSource.Count, Converter={StaticResource Count1HiddenConverter}}">
             <ListBox.ContextMenu>
                 <ContextMenu Name="cmnCaps" >
@@ -104,6 +105,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <!--Names-->
             <GroupBox Header="{x:Static res:Resources.txt_Naming}"  Grid.Column="0" Grid.Row="0" >
                 <Grid >
                     <Grid.ColumnDefinitions>
@@ -132,6 +134,7 @@
                     <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding PictureType, Converter={StaticResource PictureTypeConverter}, Mode=OneWay}"/>    
                 </Grid>
             </GroupBox>
+            <!--Colors-->
             <GroupBox Header="{x:Static res:Resources.txt_Colors}" Grid.Column="1" Grid.Row="0">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -159,6 +162,7 @@
                     <RadioButton Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" IsChecked="{Binding Surface, Mode=OneWay, Converter={StaticResource CompareConverter}, ConverterParameter={StaticResource charG}}" Name="optGlossy" Content="{x:Static res:Resources.lbl_Glossy2}" IsEnabled="False"/>
                 </Grid>
             </GroupBox>
+            <!--Type and size-->
             <GroupBox Header="{x:Static res:Resources.txt_TypeInformation}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -167,6 +171,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
@@ -251,8 +256,23 @@
                         <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding Target.Name, Mode=OneWay}" Grid.Column="0" Grid.Row="0"/>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding Target.MaterialID, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
                     </Grid>
+                    <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Sign}"/>
+                    <Grid Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Grid.ColumnSpan="2" ToolTip="{Binding Shape.Description, Mode=OneWay}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" MaxWidth="16" />
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Width="auto" MaxWidth="16" Height="16" VerticalAlignment="Center" Source="{Binding Shape.CapSgnID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
+                        <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding CapSing.Name, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
+                        <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding CapSign.CapSignID, Mode=OneWay}" Grid.Column="2" Grid.Row="0"/>
+                    </Grid>
                 </Grid>
             </GroupBox>
+            <!--Buttons-->
             <Grid Grid.Column="0" Grid.Row="2" Width="auto" Height="auto" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding ElementName=lstCaps, Path=Visibility, Mode=OneWay, Converter={StaticResource NotVisibilityConverter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -265,6 +285,7 @@
                 <Button Content="{x:Static res:Resources.cmd_Edit}" Command="ApplicationCommands.Open" />
                 <Button Content="{x:Static res:Resources.cmd_Delete}" Grid.Row="1" Command="ApplicationCommands.Delete"/>
             </Grid>
+            <!--Texts-->
             <GroupBox Grid.Row="1" Grid.Column="1" Header="{x:Static res:Resources.txt_Texts}" Grid.RowSpan="2" >
                 <Grid>
                     <Grid.RowDefinitions >
@@ -290,6 +311,7 @@
                     <TextBox Grid.Row="7" MinLines="4" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding Note, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" MaxLines="4" />
                 </Grid>
             </GroupBox>
+            <!--Misc-->
             <GroupBox Grid.Column="2" Grid.Row="0" Header="{x:Static res:Resources.txt_Miscellaneous}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -343,6 +365,7 @@
                     <Label Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Left" Content="{Binding State, Mode=OneWay}"/>                    
                 </Grid>
             </GroupBox>
+            <!--Product and company-->
             <GroupBox Grid.Column="2" Grid.Row="1" Header="{x:Static res:Resources.txt_CompanyProduct}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -400,6 +423,7 @@
                 </Grid>
 
             </GroupBox>
+            <!--Categories and keywords-->
             <GroupBox Grid.Column="2" Grid.Row="2" Header="{x:Static res:Resources.txt_CategoriesKeywords}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -446,6 +470,7 @@
                     </GroupBox>
                 </Grid>
             </GroupBox>
+            <!--Images-->
             <GroupBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Header="{x:Static res:Resources.txt_Images}" MinHeight="100">
                 <Grid MinHeight="100">
                     <Grid.ColumnDefinitions >
@@ -458,7 +483,22 @@
                     <ListBox  Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="lvwImages" MinHeight="100" ItemsSource="{Binding ImagesOrdered, Mode=OneWay}" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid Width="64" Height="100" ToolTip="{Binding RelativePath, Mode=OneWay}">
+                                <Grid Width="64" Height="100" MouseDown="Image_MouseDown">
+                                    <Grid.ToolTip>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="256"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition MaxHeight="256" Height="auto" />
+                                                <RowDefinition Height="auto"/> 
+                                            </Grid.RowDefinitions>
+                                            <Image MaxWidth="256" MaxHeight="256" HorizontalAlignment="Center"  
+                                                Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i256}}"
+                                                Width="auto" Height="auto"/>
+                                            <TextBlock Text="{Binding RelativePath, Mode=OneWay}" Grid.Column="0" Grid.Row="1"/>
+                                        </Grid>
+                                    </Grid.ToolTip>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="64"/>
                                     </Grid.ColumnDefinitions>

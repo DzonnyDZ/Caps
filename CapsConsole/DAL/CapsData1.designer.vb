@@ -22,7 +22,7 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<System.Data.Linq.Mapping.DatabaseAttribute(Name:="CapsData")>  _
+<System.Data.Linq.Mapping.DatabaseAttribute(Name:="CapsDev")>  _
 Partial Public Class CapsDataDataContext
 	Inherits System.Data.Linq.DataContext
 	
@@ -139,10 +139,16 @@ Partial Public Class CapsDataDataContext
     End Sub
   Partial Private Sub DeleteISO_3166_1(instance As ISO_3166_1)
     End Sub
+  Partial Private Sub InsertCapSign(instance As CapSign)
+    End Sub
+  Partial Private Sub UpdateCapSign(instance As CapSign)
+    End Sub
+  Partial Private Sub DeleteCapSign(instance As CapSign)
+    End Sub
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.Caps.Console.MySettings.Default.CapsDataConnectionString1, mappingSource)
+		MyBase.New(Global.Caps.Console.MySettings.Default.CapsDevConnectionString, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -271,6 +277,12 @@ Partial Public Class CapsDataDataContext
 	Public ReadOnly Property ISO_3166_1s() As System.Data.Linq.Table(Of ISO_3166_1)
 		Get
 			Return Me.GetTable(Of ISO_3166_1)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CapSigns() As System.Data.Linq.Table(Of CapSign)
+		Get
+			Return Me.GetTable(Of CapSign)
 		End Get
 	End Property
 	
@@ -2357,6 +2369,8 @@ Partial Public Class Cap
 	
 	Private _IsAlcoholic As System.Nullable(Of Boolean)
 	
+	Private _CapSignID As System.Nullable(Of Integer)
+	
 	Private _Cap_Category_Ints As EntitySet(Of Cap_Category_Int)
 	
 	Private _Cap_Keyword_Ints As EntitySet(Of Cap_Keyword_Int)
@@ -2382,6 +2396,8 @@ Partial Public Class Cap
 	Private _Shape As EntityRef(Of Shape)
 	
 	Private _Target As EntityRef(Of Target)
+	
+	Private _CapSign As EntityRef(Of CapSign)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -2534,6 +2550,10 @@ Partial Public Class Cap
     End Sub
     Partial Private Sub OnIsAlcoholicChanged()
     End Sub
+    Partial Private Sub OnCapSignIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCapSignIDChanged()
+    End Sub
     #End Region
 	
 	Public Sub New()
@@ -2551,6 +2571,7 @@ Partial Public Class Cap
 		Me._Storage = CType(Nothing, EntityRef(Of Storage))
 		Me._Shape = CType(Nothing, EntityRef(Of Shape))
 		Me._Target = CType(Nothing, EntityRef(Of Target))
+		Me._CapSign = CType(Nothing, EntityRef(Of CapSign))
 		OnCreated
 	End Sub
 	
@@ -3183,6 +3204,25 @@ Partial Public Class Cap
 		End Set
 	End Property
 	
+	<Column(Storage:="_CapSignID", DbType:="Int")>  _
+	Public Overridable Property CapSignID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CapSignID
+		End Get
+		Set
+			If (Me._CapSignID.Equals(value) = false) Then
+				If Me._CapSign.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException
+				End If
+				Me.OnCapSignIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CapSignID = value
+				Me.SendPropertyChanged("CapSignID")
+				Me.OnCapSignIDChanged
+			End If
+		End Set
+	End Property
+	
 	<Association(Name:="Cap_Cap_Category_Int", Storage:="_Cap_Category_Ints", ThisKey:="CapID", OtherKey:="CapID")>  _
 	Public Property Cap_Category_Ints() As EntitySet(Of Cap_Category_Int)
 		Get
@@ -3471,6 +3511,34 @@ Partial Public Class Cap
 					Me._TargetID = CType(Nothing, Nullable(Of Integer))
 				End If
 				Me.SendPropertyChanged("Target")
+			End If
+		End Set
+	End Property
+	
+	<Association(Name:="CapSign_Cap", Storage:="_CapSign", ThisKey:="CapSignID", OtherKey:="CapSignId", IsForeignKey:=true)>  _
+	Public Property CapSign() As CapSign
+		Get
+			Return Me._CapSign.Entity
+		End Get
+		Set
+			Dim previousValue As CapSign = Me._CapSign.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._CapSign.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._CapSign.Entity = Nothing
+					previousValue.Caps.Remove(Me)
+				End If
+				Me._CapSign.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Caps.Add(Me)
+					Me._CapSignID = value.CapSignId
+				Else
+					Me._CapSignID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("CapSign")
 			End If
 		End Set
 	End Property
@@ -4327,5 +4395,134 @@ Partial Public Class ISO_3166_1
 					= false) Then
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
+	End Sub
+End Class
+
+<Table(Name:="dbo.CapSign")>  _
+Partial Public Class CapSign
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CapSignId As Integer
+	
+	Private _Name As String
+	
+	Private _Description As String
+	
+	Private _Caps As EntitySet(Of Cap)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCapSignIdChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCapSignIdChanged()
+    End Sub
+    Partial Private Sub OnNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnNameChanged()
+    End Sub
+    Partial Private Sub OnDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
+		OnCreated
+	End Sub
+	
+	<Column(Storage:="_CapSignId", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property CapSignId() As Integer
+		Get
+			Return Me._CapSignId
+		End Get
+		Set
+			If ((Me._CapSignId = value)  _
+						= false) Then
+				Me.OnCapSignIdChanging(value)
+				Me.SendPropertyChanging
+				Me._CapSignId = value
+				Me.SendPropertyChanged("CapSignId")
+				Me.OnCapSignIdChanged
+			End If
+		End Set
+	End Property
+	
+	<Column(Storage:="_Name", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false)>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me.OnNameChanging(value)
+				Me.SendPropertyChanging
+				Me._Name = value
+				Me.SendPropertyChanged("Name")
+				Me.OnNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Column(Storage:="_Description", DbType:="NVarChar(MAX)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me.OnDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._Description = value
+				Me.SendPropertyChanged("Description")
+				Me.OnDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Association(Name:="CapSign_Cap", Storage:="_Caps", ThisKey:="CapSignId", OtherKey:="CapSignID")>  _
+	Public Property Caps() As EntitySet(Of Cap)
+		Get
+			Return Me._Caps
+		End Get
+		Set
+			Me._Caps.Assign(value)
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+	
+	Private Sub attach_Caps(ByVal entity As Cap)
+		Me.SendPropertyChanging
+		entity.CapSign = Me
+	End Sub
+	
+	Private Sub detach_Caps(ByVal entity As Cap)
+		Me.SendPropertyChanging
+		entity.CapSign = Nothing
 	End Sub
 End Class

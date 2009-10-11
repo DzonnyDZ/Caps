@@ -1,5 +1,5 @@
 ﻿-- New table CapSign
-CREATE TABLE [dbo].[CapSign](
+CREATE TABLE  [dbo].[CapSign](
 	[CapSignId] [int] IDENTITY(1,1) NOT NULL,
 	[Name] [nvarchar](50) NOT NULL,
 	[Description] [nvarchar](max) NULL,
@@ -43,7 +43,7 @@ BEGIN
  from inserted	as i
  WHERE Capsign.targetid=i.targetid;
 END
-
+GO
 
 --Add missing foreign keys
 --it somehow happened that previous version was missing these relations
@@ -59,10 +59,10 @@ GO
 ALTER TABLE [dbo].[Cap] CHECK CONSTRAINT [FK_Cap_MainType]
 GO
 
-ALTER TABLE dbo.Cap ADD CONSTRAINT FK_Cap_Shape FOREIGN KEY ( ShapeID )
+ALTER TABLE dbo.Cap WITH CHECK ADD CONSTRAINT FK_Cap_Shape FOREIGN KEY ( ShapeID )
 REFERENCES dbo.Shape ( ShapeID )
 GO
-ALTER TABLE dbo.Cap SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE [dbo].[Cap] CHECK CONSTRAINT FK_Cap_Shape
 GO
 
 ALTER TABLE [dbo].[Cap]  WITH CHECK ADD  CONSTRAINT [FK_Cap_Material] FOREIGN KEY([MaterialID])
@@ -71,36 +71,39 @@ GO
 ALTER TABLE [dbo].[Cap] CHECK CONSTRAINT [FK_Cap_Material]
 GO
 
-ALTER TABLE dbo.Cap ADD CONSTRAINT FK_Cap_Product FOREIGN KEY ( ProductID )
+ALTER TABLE dbo.Cap WITH CHECK ADD CONSTRAINT FK_Cap_Product FOREIGN KEY ( ProductID )
 REFERENCES dbo.Product ( ProductID ) 
+GO
 ALTER TABLE [dbo].[Cap] CHECK CONSTRAINT [FK_Cap_Product]
 GO
 
-ALTER TABLE dbo.Cap ADD CONSTRAINT FK_Cap_ProductType FOREIGN KEY ( ProductTypeID )
+ALTER TABLE dbo.Cap WITH CHECK ADD CONSTRAINT FK_Cap_ProductType FOREIGN KEY ( ProductTypeID )
 REFERENCES dbo.ProductType ( ProductTypeID ) 
 GO
 ALTER TABLE [dbo].[Cap] CHECK CONSTRAINT [FK_Cap_ProductType]
 GO
 
-ALTER TABLE dbo.Cap ADD CONSTRAINT FK_Cap_Company FOREIGN KEY ( CompanyID )
+ALTER TABLE dbo.Cap WITH CHECK ADD CONSTRAINT FK_Cap_Company FOREIGN KEY ( CompanyID )
 REFERENCES dbo.Company ( CompanyID ) 
 GO
 ALTER TABLE [dbo].[Cap] CHECK CONSTRAINT [FK_Cap_Company]
 GO
 
-ALTER TABLE dbo.Cap ADD CONSTRAINT FK_Cap_Storage FOREIGN KEY ( StorageID )
+ALTER TABLE dbo.Cap WITH CHECK ADD CONSTRAINT FK_Cap_Storage FOREIGN KEY ( StorageID )
 REFERENCES dbo.Storage ( StorageID )
 GO
 ALTER TABLE [dbo].[Cap] CHECK CONSTRAINT [FK_Cap_Storage]
-
 GO
-ALTER TABLE dbo.Cap ADD CONSTRAINT FK_Cap_Target FOREIGN KEY ( TargetID )
+
+ALTER TABLE dbo.Cap WITH CHECK ADD CONSTRAINT FK_Cap_Target FOREIGN KEY ( TargetID )
 REFERENCES dbo.Target( TargetID ) 	
 GO
 ALTER TABLE [dbo].[Cap] CHECK CONSTRAINT [FK_Cap_Target]
 GO
 
 -- New relation Cap-CapSign
+ALTER TABLE dbo.Cap ADD CapSignID INT;
+GO
 ALTER TABLE [dbo].[Cap]  WITH CHECK ADD  CONSTRAINT [FK_Cap_CapSign] FOREIGN KEY([CapSignID])
 REFERENCES [dbo].[CapSign] ([CapSignId])
 GO

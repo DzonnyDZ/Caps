@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="CapsData" Class="CapsDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=&quot;C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf&quot;;Integrated Security=True" SettingsObjectName="Caps.Console.MySettings" SettingsPropertyName="CapsDataConnectionString1" Provider="System.Data.SqlClient" />
+<Database Name="CapsDev" Class="CapsDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=&quot;C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf&quot;;Initial Catalog=CapsDev;Integrated Security=True;User Instance=True" SettingsObjectName="Caps.Console.MySettings" SettingsPropertyName="CapsDevConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Cap_Category_Int" Member="Cap_Category_Ints">
     <Type Name="Cap_Category_Int">
       <Column Name="CapID" Type="System.Int32" DbType="Int NOT NULL" IsReadOnly="true" IsPrimaryKey="true" CanBeNull="false" />
@@ -160,6 +160,7 @@
       <Column Name="IsDrink" Modifier="Virtual" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="State" Modifier="Virtual" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="IsAlcoholic" Modifier="Virtual" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CapSignID" Modifier="Virtual" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Cap_Cap_Category_Int" Member="Cap_Category_Ints" ThisKey="CapID" OtherKey="CapID" Type="Cap_Category_Int" />
       <Association Name="Cap_Cap_Keyword_Int" Member="Cap_Keyword_Ints" ThisKey="CapID" OtherKey="CapID" Type="Cap_Keyword_Int" />
       <Association Name="Cap_Image" Member="Images" ThisKey="CapID" OtherKey="CapID" Type="Image" />
@@ -173,6 +174,7 @@
       <Association Name="Storage_Cap" Member="Storage" ThisKey="StorageID" OtherKey="StorageID" Type="Storage" IsForeignKey="true" />
       <Association Name="Shape_Cap" Member="Shape" ThisKey="ShapeID" OtherKey="ShapeID" Type="Shape" IsForeignKey="true" />
       <Association Name="Target_Cap" Member="Target" ThisKey="TargetID" OtherKey="TargetID" Type="Target" IsForeignKey="true" />
+      <Association Name="CapSign_Cap" Member="CapSign" ThisKey="CapSignID" OtherKey="CapSignId" Type="CapSign" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Shape" Member="Shapes">
@@ -222,6 +224,14 @@
     <Type Name="ISO_3166_1">
       <Column Name="[Alpha-2]" Member="Alpha_2" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="[Alpha-3]" Member="Alpha_3" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CapSign" Member="CapSigns">
+    <Type Name="CapSign">
+      <Column Name="CapSignId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="CapSign_Cap" Member="Caps" ThisKey="CapSignId" OtherKey="CapSignID" Type="Cap" />
     </Type>
   </Table>
   <Function Name="dbo.GetDatabaseVersion" Method="GetDatabaseVersion" IsComposable="true">

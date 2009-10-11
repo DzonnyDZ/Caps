@@ -49,6 +49,7 @@ Partial Public Class winNewCap
             Cap.MainPicture = .MainPicture
             Cap.MainType = .CapMainType
             Cap.Shape = .CapShape
+            Cap.CapSign = .CapSign
             Cap.Size = .Size1
             If .CapShape.Size2Name IsNot Nothing Then Cap.Size2 = .Size2
             Cap.Height = .CapHeight

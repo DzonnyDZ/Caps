@@ -13,11 +13,11 @@ Public Class CapImageConverter
         '    value = DirectCast(value, IConvertible).ToString(culture)
         If Not TypeOf value Is String Then Throw New TypeMismatchException("value", value, GetType(String))
         Dim folders$()
-        If parameter Is Nothing Then
+        If parameter Is Nothing OrElse (TypeOf parameter Is Integer AndAlso DirectCast(parameter, Integer) > 256) Then
             folders = New String() {"original", "256_256", "64_64"}
-        ElseIf TypeOf parameter Is Integer AndAlso DirectCast(parameter, Integer) = 64 Then
+        ElseIf TypeOf parameter Is Integer AndAlso DirectCast(parameter, Integer) <= 64 Then
             folders = New String() {"64_64", "256_256", "original"}
-        ElseIf TypeOf parameter Is Integer AndAlso DirectCast(parameter, Integer) = 256 Then
+        ElseIf TypeOf parameter Is Integer AndAlso DirectCast(parameter, Integer) <= 256 Then
             folders = New String() {"256_256", "64_64", "original"}
         Else
             Throw New ArgumentException(My.Resources.ex_CapImageConverterParameter, "parameter")
@@ -129,7 +129,7 @@ Public Class GetCapsOfConverter
         End Set
     End Property
     ''' <summary>Performs conversion from object to gets caps associated with it</summary>
-    ''' <param name="value">Objects to get caps for. It must be either <see cref="Material"/>, <see cref="CapType"/>, <see cref="Shape"/>, <see cref="MainType"/>, <see cref="Product"/>, <see cref="Company"/>, <see cref="ProductType"/>, <see cref="Storage"/> or <see cref="Target"/> or null.</param>
+    ''' <param name="value">Objects to get caps for. It must be either <see cref="Material"/>, <see cref="CapType"/>, <see cref="Shape"/>, <see cref="MainType"/>, <see cref="Product"/>, <see cref="Company"/>, <see cref="ProductType"/>, <see cref="Storage"/>, <see cref="Target"/> or <see cref="CapSign"/> or null.</param>
     ''' <param name="targetType">Ignored. Always returns <see cref="IEnumerable(Of Cap)"/>[<see cref="Cap"/>].</param>
     ''' <param name="parameter">Maximal count of items to be returned. Value must be <see cref="TypeTools.DynamicCast">dynamicly castable</see> to <see cref="Integer"/>.</param>
     ''' <param name="culture">Ignored.</param>
@@ -160,6 +160,8 @@ Public Class GetCapsOfConverter
             Return From cap In Context.Caps Join c_c In Context.Cap_Category_Ints On Cap.CapID Equals c_c.capid Where c_c.CategoryID = DirectCast(value, Category).CategoryID Order By Context.NewID Take Count
         ElseIf TypeOf value Is Keyword Then
             Return From cap In Context.Caps Join c_k In Context.Cap_Keyword_Ints On Cap.CapID Equals c_k.capid Where c_k.KeywordID = DirectCast(value, Keyword).KeywordID Order By Context.NewID Take Count
+        ElseIf TypeOf value Is CapSign Then
+            Return From item In Context.Caps Where item.CapSignID = DirectCast(value, CapSign).CapSignId Order By Context.NewID Take Count
         ElseIf value Is Nothing Then
             Return Nothing
         Else

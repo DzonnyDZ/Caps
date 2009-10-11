@@ -30,3 +30,17 @@
     * Fix: Newly created category is not written for cap
     * Fix: When deleting image from list of cap images, more images can be deleted
     * Fix: When creating new cap type or product it's not available after Save and next.
+    * Fix: Cannot search in target combobo box by typing.
+    * Fix: In cap detail window - list of caps is to narrow.
+    * Fix: Czech localization - fixed message text "Popis dalšách obrázků".
+    * Doubleclick on image in cap details or cap editor opens image in associated program.
+    * Hover over images in cap details (bottom), cap editor and main window shows tooltip with enlarged image.
+    * Fix: Keywords and categories list in main window does not have scrollbar.
+    * Added initial focuses in new... windows and cap editor.
+    * Added maximum lenght constraints to various textboxes.
+    * Fix: It is not checked if material is selected. Database error occurs when no material is selected.
+    * Improved behavior of numeric up-downs when navigating using Tab key.
+    * Added textbox with favorit characters to cap editor.
+    * Added property Sign to cap.
+    * Added list of countries to select country codes from.
+    * Save & next enabled for cap editor when editing existing cap.

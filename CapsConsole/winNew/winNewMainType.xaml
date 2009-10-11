@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:res="clr-namespace:Caps.Console.My.Resources"
     Title="{x:Static res:Resources.txt_NewMainType}" Height="176" Width="375" SizeToContent="Height" MinWidth="300"
-        ShowInTaskbar="False" Icon="{x:Null}">
+        ShowInTaskbar="False" Icon="{x:Null}"
+        FocusManager.FocusedElement="{Binding ElementName=txtName}">
     <Grid>
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="auto"/>
@@ -17,7 +18,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="{x:Static res:Resources.lbl_Name}"/>
-        <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="txtName" Grid.ColumnSpan="2" />
+        <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="txtName" Grid.ColumnSpan="2" MaxLength="50" />
         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{x:Static res:Resources.lbl_Description}"/>
         <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="WrapWithOverflow" AcceptsReturn="True" MinLines="3" Name="txtDescription" Grid.ColumnSpan="2" />
         <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="{x:Static res:Resources.lbl_Image}"/>

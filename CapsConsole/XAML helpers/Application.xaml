@@ -1,11 +1,13 @@
 ﻿<Application x:Class="Application"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:my="clr-namespace:Caps.Console"
-        xmlns:MyMy="clr-namespace:Caps.Console.My"
+    xmlns:my="clr-namespace:Caps.Console"
+    xmlns:MyMy="clr-namespace:Caps.Console.My"
     StartupUri="../winMain.xaml"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             >
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:conv="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
+    xmlns:controlsT="clr-namespace:Tools.WindowsT.WPF.ControlsT;assembly=Tools.Windows">
+    
     <Application.Resources>
         <!--<DataTemplate x:Key="ImageListDataTemplate"  >
             <Grid>
@@ -87,5 +89,41 @@
                 <ItemsPresenter/>
             </ScrollViewer>
         </ControlTemplate>
+
+
+        <conv:NotBooleanValueConverter x:Key="NotBooleanValueConverter"/>
+        <my:HalfConverter x:Key="HalfConverter"/>
+
+        <ControlTemplate TargetType="{x:Type controlsT:NumericUpDown}" x:Key="NumericUpDownDefaultTemplate">
+            <Grid Margin="0" Focusable="False" >
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Name="PART_EditableTextBox" IsReadOnly="{TemplateBinding IsEditable, Converter={StaticResource NotBooleanValueConverter}}" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ValueString}"  TextAlignment="Right" Padding="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" my:AttachedProperties.SelectAllOnFocus="true" IsTabStop="True" Focusable="True">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Up" Command="{x:Static controlsT:NumericUpDown.IncreaseCommand}"/>
+                        <KeyBinding Key="Down" Command="{x:Static controlsT:NumericUpDown.DecreaseCommand}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+                <RepeatButton Command="{x:Static controlsT:NumericUpDown.IncreaseCommand}"  Grid.Column="1" Grid.Row="0" Width="Auto" Height="Auto" FontSize="{TemplateBinding FontSize, Converter={StaticResource HalfConverter}}" Padding="0" Focusable="True" IsTabStop="False">▲</RepeatButton>
+                <RepeatButton Command="{x:Static controlsT:NumericUpDown.DecreaseCommand}"  Grid.Column="1" Grid.Row="1" Width="Auto" Height="Auto" FontSize="{TemplateBinding FontSize, Converter={StaticResource HalfConverter}}" Padding="0" Focusable="True" IsTabStop="False">▼</RepeatButton>
+            </Grid>
+        </ControlTemplate>
+
+        <Style TargetType="{x:Type controlsT:NumericUpDown}" x:Key="{x:Type controlsT:NumericUpDown}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template" Value="{StaticResource NumericUpDownDefaultTemplate}"/>
+            <Setter Property="FocusManager.FocusedElement" Value="{Binding ElementName=PART_EditableTextBox}"/> 
+            <Setter Property="Focusable" Value="False"/> 
+            <Setter Property="IsTabStop" Value="False"/>
+        </Style>
+
+
     </Application.Resources>
 </Application>

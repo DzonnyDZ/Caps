@@ -4,7 +4,8 @@
         xmlns:Tools="clr-namespace:Tools.WindowsT.WPF.ControlsT;assembly=Tools.Windows"
         xmlns:res="clr-namespace:Caps.Console.My.Resources"
     Title="{x:Static res:Resources.txt_NewStorage}" Height="188" Width="372" SizeToContent="Height" MinWidth="300"
-        ShowInTaskbar="False" Icon="{x:Null}">
+        ShowInTaskbar="False" Icon="{x:Null}"
+        FocusManager.FocusedElement="{Binding ElementName=txtNumber}">
     <Window.Resources>
         <Style TargetType="ComboBox" x:Key="StorageTypeTemplate" BasedOn="{StaticResource GenericComboBoxTemplate}">
             <Setter Property="ItemTemplate">
