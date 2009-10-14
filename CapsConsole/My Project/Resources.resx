@@ -630,7 +630,7 @@
     <comment>Frame title</comment>
   </data>
   <data name="txt_CompanyProduct" xml:space="preserve">
-    <value>Company &amp; product</value>
+    <value>Company _&amp; product</value>
     <comment>Frame header</comment>
   </data>
   <data name="txt_Images" xml:space="preserve">

@@ -622,7 +622,7 @@
     <value>_Nápověda</value>
   </data>
   <data name="lbl_AnotherPictures" xml:space="preserve">
-    <value>D&amp;alší obrázky</value>
+    <value>D_alší obrázky</value>
   </data>
   <data name="lbl_Foreground2" xml:space="preserve">
     <value>Popředí _2</value>
@@ -871,7 +871,7 @@
     <value>_Alkoholický</value>
   </data>
   <data name="lbl_Target" xml:space="preserve">
-    <value>Obje&amp;kt</value>
+    <value>Obje_kt</value>
   </data>
   <data name="tot_CapState" xml:space="preserve">
     <value>1 - OK, 5 - zničené</value>

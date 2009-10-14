@@ -2312,7 +2312,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Company &amp; product.
+        '''  Looks up a localized string similar to Company _&amp; product.
         '''</summary>
         Public ReadOnly Property txt_CompanyProduct() As String
             Get
