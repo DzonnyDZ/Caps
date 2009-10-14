@@ -250,7 +250,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Cancel.
+        '''  Looks up a localized string similar to _Cancel.
         '''</summary>
         Public ReadOnly Property cmd_Cancel() As String
             Get
@@ -259,7 +259,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Search for similar caps ....
+        '''  Looks up a localized string similar to Searc_h for similar caps ....
         '''</summary>
         Public ReadOnly Property cmd_CapsSearchSimilar() As String
             Get
@@ -295,7 +295,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to New category ....
+        '''  Looks up a localized string similar to New category _....
         '''</summary>
         Public ReadOnly Property cmd_NewCategory() As String
             Get
@@ -313,7 +313,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Save cap.
+        '''  Looks up a localized string similar to Sa_ve cap.
         '''</summary>
         Public ReadOnly Property cmd_SaveCap() As String
             Get
@@ -322,7 +322,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Save &amp; next.
+        '''  Looks up a localized string similar to Save_ &amp; next.
         '''</summary>
         Public ReadOnly Property cmd_SaveNext() As String
             Get
@@ -1078,7 +1078,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Anonymous product.
+        '''  Looks up a localized string similar to An_onymous product.
         '''</summary>
         Public ReadOnly Property lbl_AnonymousProduct() As String
             Get
@@ -1087,7 +1087,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Anonymous type.
+        '''  Looks up a localized string similar to An_onymous type.
         '''</summary>
         Public ReadOnly Property lbl_AnonymousType() As String
             Get
@@ -1096,7 +1096,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Another pictures.
+        '''  Looks up a localized string similar to _Another pictures.
         '''</summary>
         Public ReadOnly Property lbl_AnotherPictures() As String
             Get
@@ -1105,7 +1105,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Background.
+        '''  Looks up a localized string similar to _Background.
         '''</summary>
         Public ReadOnly Property lbl_Background() As String
             Get
@@ -1114,7 +1114,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Bottom text.
+        '''  Looks up a localized string similar to Bottom _text.
         '''</summary>
         Public ReadOnly Property lbl_BottomText() As String
             Get
@@ -1177,7 +1177,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Company.
+        '''  Looks up a localized string similar to Co_mpany.
         '''</summary>
         Public ReadOnly Property lbl_Company() As String
             Get
@@ -1186,7 +1186,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Country.
+        '''  Looks up a localized string similar to _Country.
         '''</summary>
         Public ReadOnly Property lbl_Country() As String
             Get
@@ -1195,7 +1195,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Country of origin.
+        '''  Looks up a localized string similar to Country o_f origin.
         '''</summary>
         Public ReadOnly Property lbl_CountryOfOrigin() As String
             Get
@@ -1213,7 +1213,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Description.
+        '''  Looks up a localized string similar to _Description.
         '''</summary>
         Public ReadOnly Property lbl_Description() As String
             Get
@@ -1222,7 +1222,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Foreground.
+        '''  Looks up a localized string similar to _Foreground.
         '''</summary>
         Public ReadOnly Property lbl_Foreground() As String
             Get
@@ -1231,7 +1231,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Foreground 2.
+        '''  Looks up a localized string similar to Foreground _2.
         '''</summary>
         Public ReadOnly Property lbl_Foreground2() As String
             Get
@@ -1258,7 +1258,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Has bottom.
+        '''  Looks up a localized string similar to Has _bottom.
         '''</summary>
         Public ReadOnly Property lbl_HasBottom() As String
             Get
@@ -1267,7 +1267,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Has side.
+        '''  Looks up a localized string similar to Has si_de.
         '''</summary>
         Public ReadOnly Property lbl_HasSide() As String
             Get
@@ -1276,7 +1276,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Height.
+        '''  Looks up a localized string similar to Height (_z).
         '''</summary>
         Public ReadOnly Property lbl_Height() As String
             Get
@@ -1294,7 +1294,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Image.
+        '''  Looks up a localized string similar to Imag_e.
         '''</summary>
         Public ReadOnly Property lbl_Image() As String
             Get
@@ -1312,7 +1312,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Alcoholic.
+        '''  Looks up a localized string similar to A_lcoholic.
         '''</summary>
         Public ReadOnly Property lbl_IsAlcoholic() As String
             Get
@@ -1321,7 +1321,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Drink.
+        '''  Looks up a localized string similar to D_rink.
         '''</summary>
         Public ReadOnly Property lbl_IsDrink() As String
             Get
@@ -1330,7 +1330,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Main picture.
+        '''  Looks up a localized string similar to Main _picture.
         '''</summary>
         Public ReadOnly Property lbl_MainPicture() As String
             Get
@@ -1339,7 +1339,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Main type.
+        '''  Looks up a localized string similar to Main _type.
         '''</summary>
         Public ReadOnly Property lbl_MainType() As String
             Get
@@ -1357,7 +1357,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Material.
+        '''  Looks up a localized string similar to Mate_rial.
         '''</summary>
         Public ReadOnly Property lbl_Material() As String
             Get
@@ -1384,7 +1384,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Name.
+        '''  Looks up a localized string similar to _Name.
         '''</summary>
         Public ReadOnly Property lbl_Name() As String
             Get
@@ -1402,7 +1402,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to New product.
+        '''  Looks up a localized string similar to Ne_w product.
         '''</summary>
         Public ReadOnly Property lbl_NewProduct() As String
             Get
@@ -1411,7 +1411,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to New type.
+        '''  Looks up a localized string similar to Ne_w type.
         '''</summary>
         Public ReadOnly Property lbl_NewType() As String
             Get
@@ -1420,7 +1420,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Note.
+        '''  Looks up a localized string similar to _Note.
         '''</summary>
         Public ReadOnly Property lbl_Note() As String
             Get
@@ -1447,7 +1447,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Picture type.
+        '''  Looks up a localized string similar to Pi_cture type.
         '''</summary>
         Public ReadOnly Property lbl_PictureType() As String
             Get
@@ -1465,7 +1465,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Product type.
+        '''  Looks up a localized string similar to _Product type.
         '''</summary>
         Public ReadOnly Property lbl_ProductType() As String
             Get
@@ -1474,7 +1474,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Secondary background.
+        '''  Looks up a localized string similar to Secondar_y background.
         '''</summary>
         Public ReadOnly Property lbl_SecondaryBackground() As String
             Get
@@ -1483,7 +1483,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Select product.
+        '''  Looks up a localized string similar to Se_lect product.
         '''</summary>
         Public ReadOnly Property lbl_SelectProduct() As String
             Get
@@ -1492,7 +1492,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Select type.
+        '''  Looks up a localized string similar to _Select type.
         '''</summary>
         Public ReadOnly Property lbl_SelectType() As String
             Get
@@ -1501,7 +1501,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Shape.
+        '''  Looks up a localized string similar to S_hape.
         '''</summary>
         Public ReadOnly Property lbl_Shape() As String
             Get
@@ -1519,7 +1519,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Side text.
+        '''  Looks up a localized string similar to Sid_e text.
         '''</summary>
         Public ReadOnly Property lbl_SideText() As String
             Get
@@ -1528,7 +1528,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Sign.
+        '''  Looks up a localized string similar to Sign mar_k.
         '''</summary>
         Public ReadOnly Property lbl_Sign() As String
             Get
@@ -1555,7 +1555,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to State.
+        '''  Looks up a localized string similar to State (_quality).
         '''</summary>
         Public ReadOnly Property lbl_State() As String
             Get
@@ -1564,7 +1564,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Storage.
+        '''  Looks up a localized string similar to Stor_age.
         '''</summary>
         Public ReadOnly Property lbl_Storage() As String
             Get
@@ -1573,7 +1573,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Sub-title text.
+        '''  Looks up a localized string similar to S_ub-title text.
         '''</summary>
         Public ReadOnly Property lbl_SubtitleText() As String
             Get
@@ -1582,7 +1582,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Target.
+        '''  Looks up a localized string similar to Target ob_ject.
         '''</summary>
         Public ReadOnly Property lbl_Target() As String
             Get
@@ -1591,7 +1591,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Title text.
+        '''  Looks up a localized string similar to T_itle text.
         '''</summary>
         Public ReadOnly Property lbl_TitleText() As String
             Get
@@ -1600,7 +1600,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Top text.
+        '''  Looks up a localized string similar to Top te_xt.
         '''</summary>
         Public ReadOnly Property lbl_TopText() As String
             Get
@@ -1627,7 +1627,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Year.
+        '''  Looks up a localized string similar to _Year.
         '''</summary>
         Public ReadOnly Property lbl_Year() As String
             Get
@@ -2276,7 +2276,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Categories &amp; Keywords.
+        '''  Looks up a localized string similar to Cate_gories &amp; Keywords.
         '''</summary>
         Public ReadOnly Property txt_CategoriesKeywords() As String
             Get

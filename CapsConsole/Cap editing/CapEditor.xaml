@@ -275,14 +275,14 @@
                     <DataTemplate>
                         <Grid HorizontalAlignment="Stretch" ToolTip="{Binding Description, Mode=OneWay}">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="19" />
+                                <ColumnDefinition Width="35" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Image Width="19" Height="16" VerticalAlignment="Center" Source="{Binding CapSignID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" />
+                            <Image Width="35" Height="32" VerticalAlignment="Center" Source="{Binding CapSignID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" />
                             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Text="{Binding Name, Mode=OneWay}" Grid.Column="1"/>
                             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Text="{Binding CapSignID, Mode=OneWay}" Grid.Column="2"/>
                         </Grid>
@@ -347,17 +347,17 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Name}"/>
+                <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Name}" Target="{Binding ElementName=txtCapName}" />
                 <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtCapName" my:AttachedProperties.SelectAllOnFocus="true" MaxLength="255" />
-                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_TitleText}"/>
+                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_TitleText}" Target="{Binding ElementName=txtMainText}"/>
                 <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtMainText" my:AttachedProperties.SelectAllOnFocus="true" MaxLength="255" />
-                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_SubtitleText}"/>
+                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_SubtitleText}" Target="{Binding ElementName=txtSubTitle}"/>
                 <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtSubTitle" my:AttachedProperties.SelectAllOnFocus="true" MaxLength="255" />
-                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_MainPicture}"/>
+                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_MainPicture}" Target="{Binding ElementName=txtMainPicture}"/>
                 <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtMainPicture" my:AttachedProperties.SelectAllOnFocus="true" MaxLength="255" />
-                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_AnotherPictures}"/>
+                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_AnotherPictures}" Target="{Binding ElementName=txtAnotherPictures}"/>
                 <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtAnotherPictures" AcceptsReturn="True" MinLines="2" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" MaxLines="2" my:AttachedProperties.SelectAllOnFocus="true"/>
-                <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_PictureType}"/>
+                <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_PictureType}" Target="{Binding ElementName=cmbPictureType}"/>
                 <ComboBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="cmbPictureType">
                     <ComboBox.Items>
                         <ComboBoxItem Content="{x:Static res:Resources.txt_ImageNo}" Name="cmiImageNo"/>                        
@@ -384,13 +384,13 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Background}"/>
+                <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Background}" Target="{Binding ElementName=copBackround}"/>
                 <my:ColorPicker Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" AllowNull="False" x:Name="copBackground" Grid.ColumnSpan="2" />
-                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_SecondaryBackground}"/>
+                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_SecondaryBackground}" Target="{Binding ElementName=copSecondaryBackground}"/>
                 <my:ColorPicker Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" AllowDrop="False" x:Name="copSecondaryBackground" Grid.ColumnSpan="2"/>
-                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Foreground}"/>
+                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Foreground}" Target="{Binding ElementName=copForeground}"/>
                 <my:ColorPicker Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" AllowNull="True" x:Name="copForeground" Grid.ColumnSpan="2" />
-                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Foreground2}"/>
+                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Foreground2}" Target="{Binding ElementName=copForeground2}"/>
                 <my:ColorPicker Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" AllowNull="True" x:Name="copForeground2" Grid.ColumnSpan="2" />
                 <CheckBox Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Name="chk3D" Content="{x:Static res:Resources.lbl_3D}"/>
                 <RadioButton Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" IsChecked="True" Name="optMatting" Content="{x:Static res:Resources.lbl_Matting}"/>
@@ -436,10 +436,10 @@
                         <RadioButton Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Name="optCapTypeNew" Content="{x:Static res:Resources.lbl_NewType}"/>
                         <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  HorizontalAlignment="Stretch" Name="txtCapTypeName" MaxLength="50"
                                  IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Grid.ColumnSpan="2" my:AttachedProperties.SelectAllOnFocus="true"/>
-                        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="auto" IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.lbl_Description}"/>
+                        <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="auto" IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.lbl_Description}" Target="{Binding ElementName=txtCapTypeDesc}"/>
                         <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AcceptsReturn="True" MinLines="2" TextWrapping="WrapWithOverflow" Name="txtCapTypeDesc"
                                  IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Grid.ColumnSpan="2" my:AttachedProperties.SelectAllOnFocus="true"/>
-                        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.lbl_Image}"/>
+                        <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.lbl_Image}" Target="{Binding ElementName=txtCapTypeImagePath}"/>
                         <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left"  Name="txtCapTypeImagePath"
                                  IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Height="21.96" Width="204.267" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Name="btnBrowseForCapTypeImage" Padding="3,0"
@@ -449,35 +449,35 @@
                     </Grid>
                 </GroupBox>
 
-                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_MainType}"/>
+                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_MainType}" Target="{Binding ElementName=cmbMainType}"/>
                 <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbMainType" Style="{StaticResource MainTypeTemplate}" SelectedValuePath="MainTypeID" />
                 <Button Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="btnNewMainType" Content="{x:Static res:Resources.cmd_New}"/>
-                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Shape}"/>
+                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Shape}" Target="{Binding ElementName=cmbShape}"/>
                 <ComboBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbShape" SelectedValuePath="ShapeID" Style="{StaticResource ShapeTemplate}"/>
                 <Button Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="cmdNewShape" Content="{x:Static res:Resources.cmd_New}"/>
-                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto"
+                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Target="{Binding ElementName=nudSize1}"
                        Content="{Binding ElementName=cmbShape, Path=SelectedItem.Size1Name, Mode=OneWay}"/>
                 <Tools:NumericUpDown Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Maximum="1000000" Name="nudSize1" />
                 <Label Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" Width="auto" HorizontalAlignment="Left" Content="{x:Static res:Resources.abb_Millimeters}"/>
-                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto"
+                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Target="{Binding ElementName=nudSize2}"
                        Content="{Binding ElementName=cmbShape, Path=SelectedItem.Size2Name, Mode=OneWay}"
                        IsEnabled="{Binding ElementName=cmbShape, Path=SelectedItem.Size2Name, Mode=OneWay, Converter={StaticResource NullFalseConverter}}"/>
                 <Tools:NumericUpDown Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Maximum="1000000" Name="nudSize2" 
                                      IsEnabled="{Binding ElementName=cmbShape, Path=SelectedItem.Size2Name, Mode=OneWay, Converter={StaticResource NullFalseConverter}}"/>
                 <Label Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" Width="auto" HorizontalAlignment="Left" IsEnabled="{Binding ElementName=cmbShape, Path=SelectedItem.Size2Name, Mode=OneWay, Converter={StaticResource NullFalseConverter}}" Content="{x:Static res:Resources.abb_Millimeters}"/>
-                <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Height}"/>
+                <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Height}" Target="{Binding ElementName=nudHeight}"/>
                 <Tools:NumericUpDown Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Maximum="1000000" Name="nudHeight" />
                 <Label Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" Width="auto" HorizontalAlignment="Left" Content="{x:Static res:Resources.abb_Millimeters}"/>
                 
-                <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Material}"/>
+                <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Material}" Target="{Binding ElementName=cmbMaterial}"/>
                 <ComboBox Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbMaterial" Style="{StaticResource MaterialTemplate}" SelectedValuePath="MaterialID" />
                 <Button Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewMaterial" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
                 
-                <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Target}"/>
+                <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Target}" Target="{Binding ElementName=cmbTarget}"/>
                 <ComboBox Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbTarget" Style="{StaticResource TargetTemplate}" SelectedValuePath="TargetID" />
                 <Button Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewTarget" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
                 
-                <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Sign}"/>
+                <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Sign}" Target="{Binding ElementName=cmbSign}"/>
                 <ComboBox Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbSign" Style="{StaticResource SignTemplate}" SelectedValuePath="CapSignID" />
                 <Button Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewSign" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
             </Grid>
@@ -498,13 +498,13 @@
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Content="{x:Static res:Resources.lbl_TopText}"/>
+                <Label Grid.Row="0" Content="{x:Static res:Resources.lbl_TopText}" Target="{Binding ElementName=txtTopText}"/>
                 <TextBox Grid.Row="1" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtTopText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
-                <Label Grid.Row="2" Content="{x:Static res:Resources.lbl_SideText}"/>
+                <Label Grid.Row="2" Content="{x:Static res:Resources.lbl_SideText}" Target="{Binding ElementName=txtSideText}"/>
                 <TextBox Grid.Row="3" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtSideText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
-                <Label Grid.Row="4" Content="{x:Static res:Resources.lbl_BottomText}"/>
+                <Label Grid.Row="4" Content="{x:Static res:Resources.lbl_BottomText}" Target="{Binding ElementName=txtBottomText}"/>
                 <TextBox Grid.Row="5" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtBottomText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
-                <Label Grid.Row="6" Content="{x:Static res:Resources.lbl_Note}"/>
+                <Label Grid.Row="6" Content="{x:Static res:Resources.lbl_Note}" Target="{Binding ElementName=txtNote}"/>
                 <TextBox Grid.Row="7" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtNote" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
             </Grid>
         </GroupBox>
@@ -525,32 +525,32 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_ID}"/>
+                <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_ID}" Target="{Binding ElementName=lblID}"/>
                 <Label Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Name="lblID"/>
-                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Year}" />
+                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Year}" Target="{Binding ElementName=nudYear}"/>
                 <Tools:NumericUpDown Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Minimum="0" Maximum="9999" Value="0" ToolTip="{x:Static res:Resources.tot_0NotSet}" Grid.ColumnSpan="2" Name="nudYear"/>
-                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Country}"/>
+                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Country}" Target="{Binding ElementName=txtCountryCode}"/>
                 <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" ToolTip="{x:Static res:Resources.tot_ISO2}" MaxLines="1" MaxLength="2" Name="txtCountryCode" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <StackPanel Width="auto" Height="auto"  Grid.Column="2" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image MaxHeight="16" MaxWidth="32" Width="auto" Height="auto" Source="{Binding ElementName=txtCountryCode, Path=Text, Mode=OneWay, Converter={StaticResource CountryCodeFlagConverter}}"  />
-                    <Button Name="btnCCCountry"  VerticalAlignment="Center" Width="auto" Content="..."/>
+                    <Button Name="btnCCCountry"  VerticalAlignment="Center" Width="auto" Content="..." IsTabStop="False" />
                 </StackPanel>
 
-                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_CountryOfOrigin}"/>
+                <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_CountryOfOrigin}" Target="{Binding ElementName=txtCountryOfOrigin}"/>
                 <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" ToolTip="{x:Static res:Resources.tot_ISO2}" MaxLines="1" MaxLength="2" Name="txtCountryOfOrigin" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <StackPanel Width="auto" Height="auto"  Grid.Column="2" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Image MaxHeight="16" MaxWidth="32" Width="auto" Height="auto" Source="{Binding ElementName=txtCountryOfOrigin, Path=Text, Mode=OneWay, Converter={StaticResource CountryCodeFlagConverter}}"  />
-                    <Button Name="btnCCCountryOfOrigin"  VerticalAlignment="Center" Width="auto" Content="..."/>
+                    <Button Name="btnCCCountryOfOrigin"  VerticalAlignment="Center" Width="auto" Content="..." IsTabStop="False" />
                 </StackPanel>
 
-                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Storage}"/>
+                <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Storage}" Target="{Binding ElementName=cmbStorage}"/>
                 <ComboBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbStorage" Style="{StaticResource StorageTemplate}" SelectedValuePath="StorageID" />
                 <Button Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="btnNewStorage" Content="{x:Static res:Resources.cmd_New}"/>
                 <StackPanel Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" Height="auto"  Orientation="Horizontal">
                     <CheckBox Name="chkHasBottom" Content="{x:Static res:Resources.lbl_HasBottom}" Margin="0,0,5,0"/>
                     <CheckBox Name="chkHasSide" Content="{x:Static res:Resources.lbl_HasSide}" Margin="5,0,0,0"/>
                 </StackPanel>
-                <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_CapState}" ToolTip="{x:Static res:Resources.tot_CapState}" />
+                <Label Grid.Column="0" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_CapState}" ToolTip="{x:Static res:Resources.tot_CapState}" Target="{Binding ElementName=nudCapState}"/>
                 <Tools:NumericUpDown Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Stretch" Minimum="1" Maximum="5" Value="1" ToolTip="{x:Static res:Resources.tot_CapState}" Grid.ColumnSpan="2" Name="nudCapState"/>
             </Grid>
         </GroupBox>
@@ -586,16 +586,16 @@
                         <RadioButton Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Name="optProductNew" Content="{x:Static res:Resources.lbl_NewProduct}"/>
                         <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="txtProductName"  MaxLength="50" 
                                  IsEnabled="{Binding ElementName=optProductNew, Path=IsChecked, Mode=OneWay}" my:AttachedProperties.SelectAllOnFocus="true"/>
-                        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{x:Static res:Resources.lbl_Description}"/>
+                        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{x:Static res:Resources.lbl_Description}" Target="{Binding ElementName=txtProductDescription}"/>
                         <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinLines="2" AcceptsReturn="True" TextWrapping="WrapWithOverflow" Name="txtProductDescription"
                                  IsEnabled="{Binding ElementName=optProductNew, Path=IsChecked, Mode=OneWay}" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <RadioButton Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" IsChecked="True" Name="optProductAnonymous" Content="{x:Static res:Resources.lbl_AnonymousProduct}"/>
                     </Grid>
                 </GroupBox>
-                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_ProductType}"/>
+                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_ProductType}" Target="{Binding ElementName=cmbProductType}"/>
                 <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbProductType" Style="{StaticResource ProductTypeTemplate}" SelectedValuePath="ProductTypeID" />
                 <Button Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="btnNewProductType" Content="{x:Static res:Resources.cmd_New}"/>
-                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Company}"/>
+                <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Company}" Target="{Binding ElementName=cmbCompany}"/>
                 <ComboBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbCompany" Style="{StaticResource CompanyTemplate}" SelectedValuePath="CompanyID" />
                 <Button Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="btnNewCompany" Content="{x:Static res:Resources.cmd_New}"/>
                 <StackPanel Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Orientation="Horizontal">

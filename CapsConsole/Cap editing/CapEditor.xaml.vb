@@ -2887,8 +2887,8 @@ Resize256:      Try
         txtAnotherPictures.Text = ""
         PictureType = Nothing
 
-        optCapTypeSelect.IsChecked = True
         cmbCapType.SelectedIndex = -1
+        optCapTypeSelect.IsChecked = True
         txtCapTypeName.Text = ""
         txtCapTypeDesc.Text = ""
         txtCapTypeImagePath.Text = ""
@@ -2899,6 +2899,7 @@ Resize256:      Try
         nudHeight.Value = 0
         cmbMaterial.SelectedIndex = -1
         cmbTarget.SelectedIndex = -1
+        cmbSign.SelectedIndex = -1
 
         copBackground.Color = Colors.Transparent
         copSecondaryBackground.Color = Nothing

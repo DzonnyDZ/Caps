@@ -182,7 +182,7 @@
     <comment>Color name</comment>
   </data>
   <data name="cmd_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>_Cancel</value>
     <comment>Button text</comment>
   </data>
   <data name="cmd_OK" xml:space="preserve">
@@ -358,15 +358,15 @@
     <comment>Folder browse dialog sescription</comment>
   </data>
   <data name="lbl_Description" xml:space="preserve">
-    <value>Description</value>
+    <value>_Description</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_Image" xml:space="preserve">
-    <value>Image</value>
+    <value>Imag_e</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>_Name</value>
     <comment>Label text</comment>
   </data>
   <data name="txt_NewMainType" xml:space="preserve">
@@ -486,43 +486,43 @@
     <comment>Button text</comment>
   </data>
   <data name="cmd_CapsSearchSimilar" xml:space="preserve">
-    <value>Search for similar caps ...</value>
+    <value>Searc_h for similar caps ...</value>
     <comment>Button text</comment>
   </data>
   <data name="cmd_NewCategory" xml:space="preserve">
-    <value>New category ...</value>
+    <value>New category _...</value>
     <comment>Button text</comment>
   </data>
   <data name="cmd_SaveCap" xml:space="preserve">
-    <value>Save cap</value>
+    <value>Sa_ve cap</value>
     <comment>Button text</comment>
   </data>
   <data name="lbl_AnonymousProduct" xml:space="preserve">
-    <value>Anonymous product</value>
+    <value>An_onymous product</value>
     <comment>Radio button text</comment>
   </data>
   <data name="lbl_AnonymousType" xml:space="preserve">
-    <value>Anonymous type</value>
+    <value>An_onymous type</value>
     <comment>Radio button text</comment>
   </data>
   <data name="lbl_Background" xml:space="preserve">
-    <value>Background</value>
+    <value>_Background</value>
     <comment>Label text (color)</comment>
   </data>
   <data name="lbl_BottomText" xml:space="preserve">
-    <value>Bottom text</value>
+    <value>Bottom _text</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_Company" xml:space="preserve">
-    <value>Company</value>
+    <value>Co_mpany</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_Country" xml:space="preserve">
-    <value>Country</value>
+    <value>_Country</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_Foreground" xml:space="preserve">
-    <value>Foreground</value>
+    <value>_Foreground</value>
     <comment>Label text (color)</comment>
   </data>
   <data name="lbl_Glossy" xml:space="preserve">
@@ -530,7 +530,7 @@
     <comment>Radio button text (surface)  (with accesschar)</comment>
   </data>
   <data name="lbl_Height" xml:space="preserve">
-    <value>Height</value>
+    <value>Height (_z)</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_ID" xml:space="preserve">
@@ -538,15 +538,15 @@
     <comment>Label text</comment>
   </data>
   <data name="lbl_MainPicture" xml:space="preserve">
-    <value>Main picture</value>
+    <value>Main _picture</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_MainType" xml:space="preserve">
-    <value>Main type</value>
+    <value>Main _type</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_Material" xml:space="preserve">
-    <value>Material</value>
+    <value>Mate_rial</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_Matting" xml:space="preserve">
@@ -554,59 +554,59 @@
     <comment>Radio button text (surface) (with accesschar)</comment>
   </data>
   <data name="lbl_NewProduct" xml:space="preserve">
-    <value>New product</value>
+    <value>Ne_w product</value>
     <comment>Radio button text</comment>
   </data>
   <data name="lbl_NewType" xml:space="preserve">
-    <value>New type</value>
+    <value>Ne_w type</value>
     <comment>Radio button text</comment>
   </data>
   <data name="lbl_Note" xml:space="preserve">
-    <value>Note</value>
+    <value>_Note</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_ProductType" xml:space="preserve">
-    <value>Product type</value>
+    <value>_Product type</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_SecondaryBackground" xml:space="preserve">
-    <value>Secondary background</value>
+    <value>Secondar_y background</value>
     <comment>Label text (color)</comment>
   </data>
   <data name="lbl_SelectProduct" xml:space="preserve">
-    <value>Select product</value>
+    <value>Se_lect product</value>
     <comment>Radio button text</comment>
   </data>
   <data name="lbl_SelectType" xml:space="preserve">
-    <value>Select type</value>
+    <value>_Select type</value>
     <comment>Radio button text</comment>
   </data>
   <data name="lbl_Shape" xml:space="preserve">
-    <value>Shape</value>
+    <value>S_hape</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_SideText" xml:space="preserve">
-    <value>Side text</value>
+    <value>Sid_e text</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_Storage" xml:space="preserve">
-    <value>Storage</value>
+    <value>Stor_age</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_SubtitleText" xml:space="preserve">
-    <value>Sub-title text</value>
+    <value>S_ub-title text</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_TitleText" xml:space="preserve">
-    <value>Title text</value>
+    <value>T_itle text</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_TopText" xml:space="preserve">
-    <value>Top text</value>
+    <value>Top te_xt</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_Year" xml:space="preserve">
-    <value>Year</value>
+    <value>_Year</value>
     <comment>Label text</comment>
   </data>
   <data name="tot_0NotSet" xml:space="preserve">
@@ -622,7 +622,7 @@
     <comment>Frame title</comment>
   </data>
   <data name="txt_CategoriesKeywords" xml:space="preserve">
-    <value>Categories &amp; Keywords</value>
+    <value>Cate_gories &amp; Keywords</value>
     <comment>Frame header</comment>
   </data>
   <data name="txt_Colors" xml:space="preserve">
@@ -790,23 +790,23 @@
     <comment>Menu item</comment>
   </data>
   <data name="lbl_AnotherPictures" xml:space="preserve">
-    <value>Another pictures</value>
+    <value>_Another pictures</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_Foreground2" xml:space="preserve">
-    <value>Foreground 2</value>
+    <value>Foreground _2</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_HasBottom" xml:space="preserve">
-    <value>Has bottom</value>
+    <value>Has _bottom</value>
     <comment>CheckBox text</comment>
   </data>
   <data name="lbl_HasSide" xml:space="preserve">
-    <value>Has side</value>
+    <value>Has si_de</value>
     <comment>CheckBox text</comment>
   </data>
   <data name="lbl_PictureType" xml:space="preserve">
-    <value>Picture type</value>
+    <value>Pi_cture type</value>
     <comment>Label text</comment>
   </data>
   <data name="msg_AnotherPictures_MainPicture" xml:space="preserve">
@@ -1110,19 +1110,19 @@
     <comment>Label text (meaning how much the cap is damaged 1-OK; 5-destroyed)</comment>
   </data>
   <data name="lbl_CountryOfOrigin" xml:space="preserve">
-    <value>Country of origin</value>
+    <value>Country o_f origin</value>
     <comment>Label text</comment>
   </data>
   <data name="lbl_IsDrink" xml:space="preserve">
-    <value>Drink</value>
+    <value>D_rink</value>
     <comment>Check box text</comment>
   </data>
   <data name="lbl_IsAlcoholic" xml:space="preserve">
-    <value>Alcoholic</value>
+    <value>A_lcoholic</value>
     <comment>Check box text</comment>
   </data>
   <data name="lbl_Target" xml:space="preserve">
-    <value>Target</value>
+    <value>Target ob_ject</value>
     <comment>Label text</comment>
   </data>
   <data name="tot_CapState" xml:space="preserve">
@@ -1163,7 +1163,7 @@
     <value>Database is not Caps database or database belongs other version of Caps application.</value>
   </data>
   <data name="lbl_State" xml:space="preserve">
-    <value>State</value>
+    <value>State (_quality)</value>
     <comment>Label text</comment>
   </data>
   <data name="ex_CanConvertOnlyFromValuesImplementingAndHaving" xml:space="preserve">
@@ -1213,7 +1213,7 @@
     <comment>Menu item</comment>
   </data>
   <data name="cmd_SaveNext" xml:space="preserve">
-    <value>Save &amp; next</value>
+    <value>Save_ &amp; next</value>
     <comment>Button text</comment>
   </data>
   <data name="err_CreatingDirectoryMainType" xml:space="preserve">
@@ -1301,7 +1301,7 @@ You should have maximally one main image per cap.</value>
     <comment>Error message text</comment>
   </data>
   <data name="lbl_Sign" xml:space="preserve">
-    <value>Sign</value>
+    <value>Sign mar_k</value>
     <comment>Label</comment>
   </data>
   <data name="msg_CopyCapSignImageError" xml:space="preserve">

@@ -36,12 +36,12 @@ create TRIGGER [dbo].[Capsign_Instead_Upd]
 AS 
 BEGIN
 	SET NOCOUNT ON;
-	  UPDATE [dbo].CapSing
+	  UPDATE [dbo].CapSign
    SET	
 			name=i.name,
       Description=dbo.EmptyStrToNull(i.description)
  from inserted	as i
- WHERE Capsign.targetid=i.targetid;
+ WHERE Capsign.capsignid=i.capsignid;
 END
 GO
 
@@ -371,6 +371,21 @@ BEGIN
  WHERE cap.capid=i.capid;
 	 
 END
+GO
+
+
+--Enforce sign name uniqueness
+BEGIN --This is only for development database (version w/o UNQ have not been published)
+    BEGIN TRANSACTION;
+    UPDATE dbo.CapSign SET [Name] = [Name] + ' (' + CAST(CapSignID AS VARCHAR) + ')'
+    WHERE EXISTS (SELECT * FROM dbo.CapSign t2 WHERE CapSign.Name = t2.Name AND CapSign.CapSignID <> t2.CapSignID);
+    COMMIT;
+END;  
+GO
+
+ALTER TABLE dbo.CapSign ADD CONSTRAINT
+	UNQ_CapSign_Name UNIQUE NONCLUSTERED  ( Name )
+	WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY];
 GO
 
 --Increase version

@@ -143,6 +143,7 @@ Partial Public Class winCapEditor
                 caeEditor.SelectedCategories = From cat In Cap.Cap_Category_Ints Select cat.Category
                 OldCategories = Cap.Cap_Category_Ints.ToArray
                 caeEditor.Images.AddRange(Cap.Images)
+                caeEditor.lvwImages.Items.Refresh() 'TODO: This is workaround, AddRange should work out-of-the-box
                 OldImages = Cap.Images.ToArray
             End If
         Else

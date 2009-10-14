@@ -45,3 +45,4 @@
     * Added list of countries to select country codes from.
     * Save & next enabled for cap editor when editing existing cap.
     * Fix: In editor, selection of Cap type radio button does not reflect actual state of cap.
+    * Accelerator keys in editor

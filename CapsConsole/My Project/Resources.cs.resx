@@ -169,7 +169,7 @@
     <value>Žlutá</value>
   </data>
   <data name="cmd_Cancel" xml:space="preserve">
-    <value>Strono</value>
+    <value>_Strono</value>
   </data>
   <data name="cmd_OK" xml:space="preserve">
     <value>OK</value>
@@ -298,13 +298,13 @@
     <value>Kořenová složka pro obrázky není nastavena. Vyberte, prosím, nějakou.</value>
   </data>
   <data name="lbl_Description" xml:space="preserve">
-    <value>Popis</value>
+    <value>_Popis</value>
   </data>
   <data name="lbl_Image" xml:space="preserve">
-    <value>Obrázek</value>
+    <value>Obrá_zek</value>
   </data>
   <data name="lbl_Name" xml:space="preserve">
-    <value>Název</value>
+    <value>_Název</value>
   </data>
   <data name="txt_NewMainType" xml:space="preserve">
     <value>Nový hlavní typ</value>
@@ -394,100 +394,100 @@
     <value>Přidat ...</value>
   </data>
   <data name="cmd_CapsSearchSimilar" xml:space="preserve">
-    <value>Hledat podobná víčka ...</value>
+    <value>_Hledat podobná víčka ...</value>
   </data>
   <data name="cmd_NewCategory" xml:space="preserve">
-    <value>Nová kategorie ...</value>
+    <value>Nová kate_gorie ...</value>
   </data>
   <data name="cmd_SaveCap" xml:space="preserve">
-    <value>Uložit víčko</value>
+    <value>Uložit ví_čko</value>
   </data>
   <data name="lbl_3D" xml:space="preserve">
     <value>_3D</value>
   </data>
   <data name="lbl_AnonymousProduct" xml:space="preserve">
-    <value>Anonymní produkt</value>
+    <value>Anonymn_í produkt</value>
   </data>
   <data name="lbl_AnonymousType" xml:space="preserve">
-    <value>Anonymní typ</value>
+    <value>Anonymn_í typ</value>
   </data>
   <data name="lbl_Background" xml:space="preserve">
-    <value>Pozadí</value>
+    <value>Poza_dí</value>
   </data>
   <data name="lbl_BottomText" xml:space="preserve">
-    <value>Text zespoda</value>
+    <value>Text ze_spoda</value>
   </data>
   <data name="lbl_Company" xml:space="preserve">
-    <value>Firma</value>
+    <value>_Firma</value>
   </data>
   <data name="lbl_Country" xml:space="preserve">
-    <value>Stát</value>
+    <value>_Stát</value>
   </data>
   <data name="lbl_Foreground" xml:space="preserve">
-    <value>Popředí</value>
+    <value>Popř_edí</value>
   </data>
   <data name="lbl_Glossy" xml:space="preserve">
     <value>_Lesklý</value>
   </data>
   <data name="lbl_Height" xml:space="preserve">
-    <value>Výška</value>
+    <value>Vý_ška (z)</value>
   </data>
   <data name="lbl_ID" xml:space="preserve">
     <value>ID</value>
   </data>
   <data name="lbl_MainPicture" xml:space="preserve">
-    <value>Hlavní obrázek</value>
+    <value>Hlavní _obrázek</value>
   </data>
   <data name="lbl_MainType" xml:space="preserve">
-    <value>Hlavní typ</value>
+    <value>_Hlavní typ</value>
   </data>
   <data name="lbl_Material" xml:space="preserve">
-    <value>Materiál</value>
+    <value>Materi_ál</value>
   </data>
   <data name="lbl_Matting" xml:space="preserve">
     <value>_Matný</value>
   </data>
   <data name="lbl_NewProduct" xml:space="preserve">
-    <value>Nový produkt</value>
+    <value>Nov_ý produkt</value>
   </data>
   <data name="lbl_NewType" xml:space="preserve">
-    <value>Nový typ</value>
+    <value>Nov_ý typ</value>
   </data>
   <data name="lbl_Note" xml:space="preserve">
-    <value>Poznámka</value>
+    <value>P_oznámka</value>
   </data>
   <data name="lbl_ProductType" xml:space="preserve">
-    <value>Typ produktu</value>
+    <value>Typ _produktu</value>
   </data>
   <data name="lbl_SecondaryBackground" xml:space="preserve">
-    <value>2. pozadí</value>
+    <value>2_. pozadí</value>
   </data>
   <data name="lbl_SelectProduct" xml:space="preserve">
-    <value>Vybrat produkt</value>
+    <value>Vybra_t produkt</value>
   </data>
   <data name="lbl_SelectType" xml:space="preserve">
-    <value>Vybrat typ</value>
+    <value>_Vybrat typ</value>
   </data>
   <data name="lbl_Shape" xml:space="preserve">
-    <value>Tvar</value>
+    <value>Tva_r</value>
   </data>
   <data name="lbl_SideText" xml:space="preserve">
-    <value>Text zboku</value>
+    <value>Text _zboku</value>
   </data>
   <data name="lbl_Storage" xml:space="preserve">
-    <value>Úložiště</value>
+    <value>Úlo_žiště</value>
   </data>
   <data name="lbl_SubtitleText" xml:space="preserve">
-    <value>Podtitul</value>
+    <value>Podtit_ul</value>
   </data>
   <data name="lbl_TitleText" xml:space="preserve">
-    <value>Titulní text</value>
+    <value>T_itulní text</value>
   </data>
   <data name="lbl_TopText" xml:space="preserve">
-    <value>Text zvrchu</value>
+    <value>Te_xt zvrchu</value>
   </data>
   <data name="lbl_Year" xml:space="preserve">
-    <value>Rok</value>
+    <value>Ro_k</value>
   </data>
   <data name="tot_0NotSet" xml:space="preserve">
     <value>0 - nenastaveno</value>
@@ -496,7 +496,7 @@
     <value>Typ víčka</value>
   </data>
   <data name="txt_CategoriesKeywords" xml:space="preserve">
-    <value>Kategorie a klíčová slova</value>
+    <value>Kate_gorie a klíčová slova</value>
   </data>
   <data name="txt_Colors" xml:space="preserve">
     <value>Barvy</value>
@@ -622,19 +622,19 @@
     <value>_Nápověda</value>
   </data>
   <data name="lbl_AnotherPictures" xml:space="preserve">
-    <value>Další obrázky</value>
+    <value>D&amp;alší obrázky</value>
   </data>
   <data name="lbl_Foreground2" xml:space="preserve">
-    <value>Popředí 2</value>
+    <value>Popředí _2</value>
   </data>
   <data name="lbl_HasBottom" xml:space="preserve">
-    <value>Má spodek</value>
+    <value>_Má spodek</value>
   </data>
   <data name="lbl_HasSide" xml:space="preserve">
-    <value>Má bok</value>
+    <value>Má _bok</value>
   </data>
   <data name="lbl_PictureType" xml:space="preserve">
-    <value>Typ obrázku</value>
+    <value>T_yp obrázku</value>
   </data>
   <data name="msg_AnotherPictures_MainPicture" xml:space="preserve">
     <value>Když je zadán popis dalších obrázků, musí být uršen popis hlavního obrázku.</value>
@@ -862,16 +862,16 @@
     <value>Stav</value>
   </data>
   <data name="lbl_CountryOfOrigin" xml:space="preserve">
-    <value>Země původu</value>
+    <value>Zem_ě původu</value>
   </data>
   <data name="lbl_IsDrink" xml:space="preserve">
-    <value>Nápoj</value>
+    <value>Nápo_j</value>
   </data>
   <data name="lbl_IsAlcoholic" xml:space="preserve">
-    <value>Alkoholický</value>
+    <value>_Alkoholický</value>
   </data>
   <data name="lbl_Target" xml:space="preserve">
-    <value>Objekt</value>
+    <value>Obje&amp;kt</value>
   </data>
   <data name="tot_CapState" xml:space="preserve">
     <value>1 - OK, 5 - zničené</value>
@@ -904,7 +904,7 @@
     <value>Databáze není databáze aplikace Caps nebo je určena pro jinou verzi této aplikace.</value>
   </data>
   <data name="lbl_State" xml:space="preserve">
-    <value>Stav</value>
+    <value>Stav (kvalita_)</value>
   </data>
   <data name="ex_CanConvertOnlyFromValuesImplementingAndHaving" xml:space="preserve">
     <value>{0} může konvertovat jen z hodnot implementujících {1} a {2} majících {2}.{3} {4}</value>
@@ -943,7 +943,7 @@
     <value>Nástroje</value>
   </data>
   <data name="cmd_SaveNext" xml:space="preserve">
-    <value>Uložit a další</value>
+    <value>Uložit_ a další</value>
   </data>
   <data name="err_CreatingDirectoryMainType" xml:space="preserve">
     <value>Chyba při vytváření složky {0}:{1}{2}{1}Hlavní typ bude bez obrázku.</value>
@@ -1022,7 +1022,7 @@ K jednomu víčku byste měli mít maximálně jeden hlavní obrázek</value>
     <value>Chyba při vytváření složky {0}:{1}{2}{1}Značka víčka bude bez obrázku.</value>
   </data>
   <data name="lbl_Sign" xml:space="preserve">
-    <value>Značka</value>
+    <value>Zna_čka</value>
   </data>
   <data name="msg_CopyCapSignImageError" xml:space="preserve">
     <value>Nepodařilo se zkopírovat obrázek značky víčka. Značka víčka byla vytvořena bez obrázku.</value>
