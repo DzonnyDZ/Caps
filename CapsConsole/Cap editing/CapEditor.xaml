@@ -614,9 +614,10 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/> 
                 </Grid.ColumnDefinitions>
-                <ItemsControl  Grid.Column="0" Grid.Row="0" Name="lstCategories" MinHeight="48pt" Height="auto" MaxHeight="96pt" TextSearch.TextPath="Category.CategoryName" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" IsTabStop="False" Template="{StaticResource ScrollableItemsControl}" >
+                <ItemsControl Grid.ColumnSpan="2"  Grid.Column="0" Grid.Row="0" Name="lstCategories" MinHeight="48pt" Height="auto" MaxHeight="96pt" TextSearch.TextPath="Category.CategoryName" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" IsTabStop="False" Template="{StaticResource ScrollableItemsControl}" >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <CheckBox IsChecked="{Binding Checked, Mode=TwoWay}"  ToolTip="{Binding Category.Description}" Checked="lstCategories_CheckedChanged" Unchecked="lstCategories_CheckedChanged" >
@@ -637,8 +638,9 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
-                <Button Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Name="btnNewCategory" Content="{x:Static res:Resources.cmd_NewCategory}"/>
-                <wfi:WindowsFormsHost Grid.Column="0" Grid.Row="2" Height="auto" HorizontalAlignment="Stretch" MinHeight="100">
+                <Button Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Name="btnNewCategory" Content="{x:Static res:Resources.cmd_NewCategory}"/>
+                <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="auto" Content="{x:Static res:Resources.lbl_Keywords}" Target="{Binding ElementName=wfhKeywords}"/>
+                <wfi:WindowsFormsHost Grid.Column="0" Grid.Row="2" Height="auto" HorizontalAlignment="Stretch" MinHeight="100" Name="wfhKeywords">
                     <ToolsWF:KeyWordsEditor Dock="Fill" Name="kweKeywords" x:Name="kweKeywords" ThesaurusButtonState="Hidden" MergeButtonState="Hidden" StatusState="Hidden"/>
                 </wfi:WindowsFormsHost>
             </Grid>

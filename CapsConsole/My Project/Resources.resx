@@ -1347,4 +1347,8 @@ You should have maximally one main image per cap.</value>
     <value>Cap signs</value>
     <comment>Tab page header</comment>
   </data>
+  <data name="lbl_Keywords" xml:space="preserve">
+    <value>_Keywords</value>
+    <comment>Label text</comment>
+  </data>
 </root>

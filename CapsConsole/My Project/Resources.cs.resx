@@ -1060,4 +1060,7 @@ K jednomu víčku byste měli mít maximálně jeden hlavní obrázek</value>
   <data name="tot_Sign" xml:space="preserve">
     <value>Značka víčka je malá grafická nebo textová značka. Platová víčka ji običejně mají zespodu a kovová (včetne korunkových) z boku.</value>
   </data>
+  <data name="lbl_Keywords" xml:space="preserve">
+    <value>K_líčová slova</value>
+  </data>
 </root>
