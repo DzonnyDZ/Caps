@@ -34,12 +34,6 @@
         "Entry"
         {
         "MsmKey" = "8:_4258863BF091C249B14A6AA54F175579"
-        "OwnerKey" = "8:_73D88143F710F82DD7F8B54FF9D85EDB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_4258863BF091C249B14A6AA54F175579"
         "OwnerKey" = "8:_C63CEC380D554D338675B57F37E8E311"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -53,6 +47,12 @@
         {
         "MsmKey" = "8:_4258863BF091C249B14A6AA54F175579"
         "OwnerKey" = "8:_A1F84B43DE2EEB4F205D08C68665E1C7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4258863BF091C249B14A6AA54F175579"
+        "OwnerKey" = "8:_73D88143F710F82DD7F8B54FF9D85EDB"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -208,7 +208,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C55010A2180150BD8B1985F308AE6B61"
+        "OwnerKey" = "8:_4258863BF091C249B14A6AA54F175579"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -262,12 +262,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4258863BF091C249B14A6AA54F175579"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_60532252BEEE2EB7B46AE0A08567DEE9"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -281,6 +275,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_7D897C2A66B6ED152857760D6C781A25"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C55010A2180150BD8B1985F308AE6B61"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -301,6 +301,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5.SP1"
+                    {
+                    "Name" = "8:.NET Framework 3.5 SP1"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5.SP1"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -317,6 +338,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -836,14 +865,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CapsConsole"
-        "ProductCode" = "8:{7916F1B2-AA5B-4E44-90DD-E6D0D60EA1C1}"
-        "PackageCode" = "8:{B484C900-6BD2-4B12-851A-1D087E67089A}"
+        "ProductCode" = "8:{AD370565-1E72-4169-9CDC-13A4FF817E43}"
+        "PackageCode" = "8:{C0D315CB-FAEE-4C6D-B2BA-F1B15800579B}"
         "UpgradeCode" = "8:{9422DC31-0426-4AD4-BF27-D9914FF89259}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.1.1"
+        "ProductVersion" = "8:0.1.2"
         "Manufacturer" = "8:Đonny"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:http://caps.codeplex.com"
