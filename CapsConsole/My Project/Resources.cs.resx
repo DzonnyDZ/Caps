@@ -1063,4 +1063,52 @@ K jednomu víčku byste měli mít maximálně jeden hlavní obrázek</value>
   <data name="lbl_Keywords" xml:space="preserve">
     <value>K_líčová slova</value>
   </data>
+  <data name="mni_NextNoSave" xml:space="preserve">
+    <value>Další (_bez uložení!)</value>
+  </data>
+  <data name="mni_PreviousNoSave" xml:space="preserve">
+    <value>_Zpět (bez uložení!)</value>
+  </data>
+  <data name="mni_Reset" xml:space="preserve">
+    <value>_Resetovat</value>
+  </data>
+  <data name="mni_SaveNew" xml:space="preserve">
+    <value>Uložit a _nové</value>
+  </data>
+  <data name="mni_SaveNext" xml:space="preserve">
+    <value>Uložit a _další</value>
+  </data>
+  <data name="mni_SaveNextNoClean" xml:space="preserve">
+    <value>Uložit a další (bez _vyčištění)</value>
+  </data>
+  <data name="mni_SavePrevious" xml:space="preserve">
+    <value>Uložit a _předchozí</value>
+  </data>
+  <data name="err_NoPrevItem" xml:space="preserve">
+    <value>Předchozí položka není k dispozici, Uložte nejprve víčko!</value>
+  </data>
+  <data name="txt_PreviousCap" xml:space="preserve">
+    <value>Předchozí víčko</value>
+  </data>
+  <data name="msg_ThisWasFirstCap" xml:space="preserve">
+    <value>Toto bylo první víčko</value>
+  </data>
+  <data name="msg_CapRemovedFormDatabase" xml:space="preserve">
+    <value>Víčko id {0} bylo odstraněno z databáze</value>
+  </data>
+  <data name="txt_SaveAndNext" xml:space="preserve">
+    <value>Uložit a další</value>
+  </data>
+  <data name="txt_GoToNextCap" xml:space="preserve">
+    <value>Jít k dalšímu víčku</value>
+  </data>
+  <data name="txt_GoToPreviousCap" xml:space="preserve">
+    <value>Jít k předchozímu víčku</value>
+  </data>
+  <data name="txt_SaveAndPrevious" xml:space="preserve">
+    <value>Uložit a předchozí</value>
+  </data>
+  <data name="txt_CapMissing" xml:space="preserve">
+    <value>Chybějící víčko</value>
+  </data>
 </root>

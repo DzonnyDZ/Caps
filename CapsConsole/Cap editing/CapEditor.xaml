@@ -9,6 +9,7 @@
     xmlns:Toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:MyMy="clr-namespace:Caps.Console.My"
+    xmlns:m="clr-namespace:Wpf.Controls;assembly=Wpf.SplitButton"
     FocusManager.FocusedElement="{Binding ElementName=txtCapName}"             
    >
     <UserControl.Resources>
@@ -725,7 +726,16 @@
             <Button Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Name="btnSearch" Content="{x:Static res:Resources.cmd_CapsSearchSimilar}"/>
             <Button Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" Name="btnSave" Content="{x:Static res:Resources.cmd_SaveCap}"/>
             <Button Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Name="btnCancel" Content="{x:Static res:Resources.cmd_Cancel}"/>
-            <Button Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Name="btnSaveNext" Content="{x:Static res:Resources.cmd_SaveNext}" Visibility="Collapsed" />
+            <!--<Button Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Name="btnSaveNext" Content="{x:Static res:Resources.cmd_SaveNext}" Visibility="Collapsed" />-->
+            <m:SplitButton Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="2" Name="btnSaveNext" Content="{x:Static res:Resources.cmd_SaveNext}" Visibility="Collapsed">
+                <MenuItem Name="mniSaveAndNext" Header="{x:Static res:Resources.mni_SaveNext}"/>
+                <MenuItem Name="mniSaveAndNextNoClean" Header="{x:Static res:Resources.mni_SaveNextNoClean}"/>
+                <MenuItem Name="mniSaveAndPrevious" Header="{x:Static res:Resources.mni_SavePrevious}"/>
+                <MenuItem Name="mniSaveAndNew" Header="{x:Static res:Resources.mni_SaveNew}"/>
+                <MenuItem Name="mniPreviousNoSave" Header="{x:Static res:Resources.mni_PreviousNoSave}"/>
+                <MenuItem Name="mniNextNoSave" Header="{x:Static res:Resources.mni_NextNoSave}"/>
+                <MenuItem Name="mniReset" Header="{x:Static res:Resources.mni_Reset}"/>
+            </m:SplitButton>
         </Grid>
         <TextBox Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" 
                  Text="{Binding Path=FavoriteCharacters, Mode=TwoWay, Source={x:Static my:MySettings.Default}}"

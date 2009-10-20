@@ -1351,4 +1351,59 @@ You should have maximally one main image per cap.</value>
     <value>_Keywords</value>
     <comment>Label text</comment>
   </data>
+  <data name="mni_NextNoSave" xml:space="preserve">
+    <value>Next (with_out saving!)</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_PreviousNoSave" xml:space="preserve">
+    <value>_Back (without saving!)</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_Reset" xml:space="preserve">
+    <value>_Reset</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_SaveNew" xml:space="preserve">
+    <value>Save &amp; ne_w</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_SaveNext" xml:space="preserve">
+    <value>Save &amp; _next</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_SaveNextNoClean" xml:space="preserve">
+    <value>Save &amp; next (_keep data)</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="mni_SavePrevious" xml:space="preserve">
+    <value>Save &amp; _previous</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="err_NoPrevItem" xml:space="preserve">
+    <value>Previous item is not available. Save cap first</value>
+  </data>
+  <data name="txt_PreviousCap" xml:space="preserve">
+    <value>Previous cap</value>
+  </data>
+  <data name="msg_ThisWasFirstCap" xml:space="preserve">
+    <value>This was first cap</value>
+  </data>
+  <data name="msg_CapRemovedFormDatabase" xml:space="preserve">
+    <value>Cap id {0} was removed form database</value>
+  </data>
+  <data name="txt_SaveAndNext" xml:space="preserve">
+    <value>Save &amp; next</value>
+  </data>
+  <data name="txt_GoToNextCap" xml:space="preserve">
+    <value>Go to next cap</value>
+  </data>
+  <data name="txt_GoToPreviousCap" xml:space="preserve">
+    <value>Go to previous cap</value>
+  </data>
+  <data name="txt_SaveAndPrevious" xml:space="preserve">
+    <value>Save &amp; previous</value>
+  </data>
+  <data name="txt_CapMissing" xml:space="preserve">
+    <value>Cap missing</value>
+  </data>
 </root>

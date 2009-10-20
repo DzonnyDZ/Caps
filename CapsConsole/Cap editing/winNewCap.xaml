@@ -10,5 +10,6 @@ xmlns:res="clr-namespace:Caps.Console.My.Resources"
     Title="{x:Static res:Resources.txt_NewCap}" Height="850" Width="1000" Icon="/CapsConsole;component/Resources/Cap.ico"
         FocusManager.FocusedElement="{Binding ElementName=caeEditor}">
     <my:CapEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="caeEditor"
-                  IsSaveNextVisible="True"/>
+                  IsSplitButtonVisible="True" SplitButtonCommand="SaveAndNext"
+                  EnabledCommands="SaveAndClose,SaveAndNext,SaveAndNextNoClean,SaveAndPrevious,PreviousNoSave,Reset"/>
 </Window>

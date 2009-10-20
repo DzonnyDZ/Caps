@@ -57,7 +57,8 @@
                       CapSign="{Binding CapSign, Mode=TwoWay}"
                       
                       AllowSearch="False"
-                      IsSaveNextVisible="True"
+                      IsSplitButtonVisible="True"
+                      EnabledCommands="SaveAndClose,SaveAndNext,SaveAndPrevious,SaveAndNew,PreviousNoSave,NextNoSave,Reset"
         />
     </Grid>
 </Window>

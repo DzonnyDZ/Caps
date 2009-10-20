@@ -682,5 +682,11 @@
   <ItemGroup>
     <Resource Include="Resources\Flags\HN.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SplitButton\SplitButton.csproj">
+      <Project>{A75FA431-B3D7-4AC6-8033-CDE76FA98C97}</Project>
+      <Name>SplitButton</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

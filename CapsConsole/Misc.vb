@@ -178,4 +178,11 @@ Friend Module Misc
         Bottom
     End Enum
 
+    <Extension()> Function IsSave(ByVal this As CapEditor.SaveMode) As Boolean
+        Select Case this
+            Case CapEditor.SaveMode.SaveAndClose, CapEditor.SaveMode.SaveAndNew, CapEditor.SaveMode.SaveAndNext, CapEditor.SaveMode.SaveAndNextNoClean, CapEditor.SaveMode.SaveAndPrevious : Return True
+            Case Else : Return False
+        End Select
+    End Function
+
 End Module

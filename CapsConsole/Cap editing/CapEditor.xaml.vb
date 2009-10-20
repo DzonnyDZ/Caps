@@ -284,67 +284,188 @@ Partial Public Class CapEditor
                       RoutingStrategy.Bubble, _
                       GetType(EventHandler(Of SaveClickedEventArgs)), GetType(CapEditor))
 
-    Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnSave.Click, btnSaveNext.Click
-        OnSaveClick(New SaveClickedEventArgs(SaveClickedEvent, Me, sender Is btnSaveNext))
+    Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnSave.Click, btnSaveNext.Click, mniNextNoSave.Click, mniPreviousNoSave.Click, mniReset.Click, mniSaveAndNew.Click, mniSaveAndNew.Click, mniSaveAndNext.Click, mniSaveAndNextNoClean.Click, mniSaveAndPrevious.Click
+        Dim mode As SaveMode
+        If sender Is btnSave Then : mode = SaveMode.SaveAndClose
+        ElseIf sender Is btnSaveNext Then : mode = Me.SplitButtonCommand
+        ElseIf sender Is mniNextNoSave Then : mode = SaveMode.NextNoSave
+        ElseIf sender Is mniPreviousNoSave Then : mode = SaveMode.PreviousNoSave
+        ElseIf sender Is mniReset Then : mode = SaveMode.Reset
+        ElseIf sender Is mniSaveAndNew Then : mode = SaveMode.SaveAndNew
+        ElseIf sender Is mniSaveAndNext Then : mode = SaveMode.SaveAndNext
+        ElseIf sender Is mniSaveAndNextNoClean Then : mode = SaveMode.SaveAndNextNoClean
+        ElseIf sender Is mniSaveAndPrevious Then : mode = SaveMode.SaveAndPrevious
+        End If
+        OnSaveClick(New SaveClickedEventArgs(SaveClickedEvent, Me, mode))
     End Sub
     ''' <summary>argumnets of the <see cref="SaveClicked"/> event</summary>
     Public Class SaveClickedEventArgs : Inherits RoutedEventArgs
-        ''' <summary>Contains value of the <see cref="IsSaveNext"/> property</summary>
-        Private ReadOnly _IsSaveNext As Boolean
+        ''' <summary>Contains value of the <see cref="SaveMode"/> property</summary>
+        Private ReadOnly _Mode As SaveMode
         ''' <summary>CTor</summary>
-        ''' <param name="IsSaveNext">True if user clicked "Save and Next" button; false otherwise</param>
+        ''' <param name="mode">Identifies save mode selected by user.</param>
         ''' <param name="routedEvent">The routed event identifier for this instance of the <see cref="System.Windows.RoutedEventArgs"/> class.</param>
         ''' <param name="source">An alternate source that will be reported when the event is handled. This pre-populates the <see cref="System.Windows.RoutedEventArgs.Source"/> property.</param>
-        Public Sub New(ByVal routedEvent As RoutedEvent, ByVal source As CapEditor, ByVal IsSaveNext As Boolean)
-            MyBase.New(RoutedEvent, Source)
-            _IsSaveNext = IsSaveNext
+        ''' <exception cref="InvalidEnumArgumentException"><paramref name="mode"/> is npot one of the <see cref="SaveMode"/> values</exception>
+        Public Sub New(ByVal routedEvent As RoutedEvent, ByVal source As CapEditor, ByVal mode As SaveMode)
+            MyBase.New(routedEvent, source)
+            If Not Tools.TypeTools.IsDefined(mode) Then Throw New InvalidEnumArgumentException("mode", mode, mode.GetType)
+            _Mode = mode
         End Sub
-        ''' <summary>Gets value indicating wheather user clicked "Save" or "Save and next" button</summary>
-        ''' <returns>True if user clicked "Save and Next" button; false otherwise</returns>
-        Public ReadOnly Property IsSaveNext() As Boolean
+        ''' <summary>Gets save mode being invoked by user</summary>
+        ''' <remarks>Value of this property is always one of the <see cref="SaveMode"/> values. This property does not treat <see cref="SaveMode"/> as flags.</remarks>
+        Public ReadOnly Property Mode() As SaveMode
             Get
-                Return _IsSaveNext
+                Return _Mode
             End Get
         End Property
     End Class
+    ''' <summary>Possible save modes for the <see cref="SaveClickedEventArgs"/> class</summary>
+    ''' <remarks>This enumeration can be used as flags or as normal enum depending on context</remarks>
+    <Flags()> _
+    Public Enum SaveMode
+        ''' <summary>Save current item and close dialog</summary>
+        ''' <remarks>This item acts on Save button rather than on split button menu item</remarks>
+        SaveAndClose = 1
+        ''' <summary>Save item and proceed to next one/new one (depending on dialog type)</summary>
+        SaveAndNext = 2
+        ''' <summary>Save item and proceed to next one without cleaning</summary>
+        SaveAndNextNoClean = 4
+        ''' <summary>Save item and go back to previous</summary>
+        SaveAndPrevious = 8
+        ''' <summary>Save item and go to new one</summary>
+        SaveAndNew = 16
+        ''' <summary>Do not save item and proceed to next</summary>
+        PreviousNoSave = 32
+        ''' <summary>Do not save item and go to previous</summary>
+        NextNoSave = 64
+        ''' <summary>Do not save item and reset dialog</summary>
+        Reset = 128
+    End Enum
 
 #End Region
 
 
-#Region "IsSaveNextVisible"
+#Region "IsSplitButtonVisible"
     ''' <summary>Gtes or sets value indicating if "Save and next" button is visible or not</summary>
     ''' <returns>True if "Save and Next" button is visible; false if it is not</returns>
     ''' <value>True to make "Save and Next" button visible; false to hide it. Default value is false.</value>
     <DefaultValue(False)> _
-    Public Property IsSaveNextVisible() As Boolean
+    Public Property IsSplitButtonVisible() As Boolean
         Get
-            Return GetValue(IsSaveNextVisibleProperty)
+            Return GetValue(IsSplitButtonVisibleProperty)
         End Get
 
         Set(ByVal value As Boolean)
-            SetValue(IsSaveNextVisibleProperty, value)
+            SetValue(IsSplitButtonVisibleProperty, value)
         End Set
     End Property
-    ''' <summary>Metadata of the <see cref="IsSaveNextVisible"/> property</summary>
-    Public Shared ReadOnly IsSaveNextVisibleProperty As DependencyProperty = _
-                           DependencyProperty.Register("IsSaveNextVisible", _
+    ''' <summary>Metadata of the <see cref="IsSplitButtonVisible"/> property</summary>
+    Public Shared ReadOnly IsSplitButtonVisibleProperty As DependencyProperty = _
+                           DependencyProperty.Register("IsSplitButtonVisible", _
                            GetType(Boolean), GetType(CapEditor), _
-                           New FrameworkPropertyMetadata(False, AddressOf OnIsSaveNextVisibleChanged))
-    ''' <summary>Called when value of the <see cref="IsSaveNextVisible"/> property changes</summary>
+                           New FrameworkPropertyMetadata(False, AddressOf OnIsSplitButtonVisibleChanged))
+    ''' <summary>Called when value of the <see cref="IsSplitButtonVisible"/> property changes</summary>
     ''' <param name="d">Instance of <see cref="CapEditor"/> ofr which the change have occured.</param>
     ''' <param name="e">Event arguments</param>
     ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
-    Private Shared Sub OnIsSaveNextVisibleChanged(ByVal d As System.Windows.DependencyObject, ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+    Private Shared Sub OnIsSplitButtonVisibleChanged(ByVal d As System.Windows.DependencyObject, ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
         If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
-        DirectCast(d, CapEditor).OnIsSaveNextVisibleChanged(e)
+        DirectCast(d, CapEditor).OnIsSplitButtonVisibleChanged(e)
     End Sub
-    ''' <summary>Called when value of the <see cref="IsSaveNextVisible"/> property changes</summary>
+    ''' <summary>Called when value of the <see cref="IsSplitButtonVisible"/> property changes</summary>
     ''' <param name="e">event arguments</param>
-    Protected Overridable Sub OnIsSaveNextVisibleChanged(ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
-        btnSaveNext.Visibility = If(IsSaveNextVisible, Visibility.Visible, Visibility.Collapsed)
+    Protected Overridable Sub OnIsSplitButtonVisibleChanged(ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+        btnSaveNext.Visibility = If(IsSplitButtonVisible, Visibility.Visible, Visibility.Collapsed)
     End Sub
 
 #End Region
+
+#Region "SplitButtonComamnd"
+
+    ''' <summary>Gets or sets defauklt command associated with additional button turned pon and off using <see cref="IsSplitButtonVisible"/></summary>
+    ''' <exception cref="InvalidEnumArgumentException">Value being set is not one of <see cref="SaveMode"/> values</exception>
+    ''' <remarks>This property does not treat <see cref="SaveMode"/> as flags.
+    ''' <para>Split button command can be set even on command that is disabled via <see cref="EnabledCommands"/> and the command will work.</para></remarks>
+    Public Property SplitButtonCommand() As SaveMode
+        Get
+            Return GetValue(SplitButtonCommandProperty)
+        End Get
+
+        Set(ByVal value As SaveMode)
+            SetValue(SplitButtonCommandProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="SplitButtonCommand"/> dependency property</summary>
+    Public Shared ReadOnly SplitButtonCommandProperty As DependencyProperty = _
+                           DependencyProperty.Register("SplitButtonCommand", _
+                           GetType(SaveMode), GetType(CapEditor), _
+                           New FrameworkPropertyMetadata(SaveMode.SaveAndNext, _
+                                                         AddressOf OnSplitButtonCommandChanged, _
+                                                         AddressOf CoerceSplitButtonCommandValue))
+    Private Shared Function CoerceSplitButtonCommandValue(ByVal d As System.Windows.DependencyObject, ByVal baseValue As Object) As Object
+        Dim bv = TypeTools.DynamicCast(Of SaveMode)(baseValue)
+        If Not TypeTools.IsDefined(bv) Then Throw New InvalidEnumArgumentException("baseValue", baseValue, bv.GetType)
+        Return bv
+    End Function
+    Private Shared Sub OnSplitButtonCommandChanged(ByVal d As System.Windows.DependencyObject, ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnSplitButtonCommandChanged(e)
+    End Sub
+    Protected Overridable Sub OnSplitButtonCommandChanged(ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+        Select Case SplitButtonCommand
+            Case SaveMode.NextNoSave : btnSaveNext.Content = My.Resources.mni_NextNoSave
+            Case SaveMode.PreviousNoSave : btnSaveNext.Content = My.Resources.mni_PreviousNoSave
+            Case SaveMode.Reset : btnSaveNext.Content = My.Resources.mni_Reset
+            Case SaveMode.SaveAndClose : btnSaveNext.Content = My.Resources.cmd_SaveCap
+            Case SaveMode.SaveAndNew : btnSaveNext.Content = My.Resources.mni_SaveNew
+            Case SaveMode.SaveAndNext : btnSaveNext.Content = My.Resources.cmd_SaveNext
+            Case SaveMode.SaveAndNextNoClean : btnSaveNext.Content = My.Resources.mni_SaveNextNoClean
+            Case SaveMode.SaveAndPrevious : btnSaveNext.Content = My.Resources.mni_SavePrevious
+            Case Else : btnSaveNext.Content = SplitButtonCommand.ToString
+        End Select
+    End Sub
+
+
+#End Region
+
+#Region "EnabledCommands"
+
+    ''' <summary>Gets or sets bitmaxk value indicationg which commands in dropdown part of split button enabled/disabled by <see cref="IsSplitButtonVisible"/> are available</summary>
+    ''' <remarks>Value of this property has no effect on command assigned to <see cref="SplitButtonCommand"/></remarks>
+    Public Property EnabledCommands() As SaveMode
+        Get
+            Return GetValue(EnabledCommandsProperty)
+        End Get
+
+        Set(ByVal value As SaveMode)
+            SetValue(EnabledCommandsProperty, value)
+        End Set
+    End Property
+    ''' <summary>Metadata of the <see cref="EnabledCommands"/> property</summary>
+    Public Shared ReadOnly EnabledCommandsProperty As DependencyProperty = _
+                           DependencyProperty.Register("EnabledCommands", _
+                           GetType(SaveMode), GetType(CapEditor), _
+                           New FrameworkPropertyMetadata(SaveMode.SaveAndClose Or SaveMode.SaveAndNext, _
+                                                         AddressOf OnEnabledCommandsChanged))
+    Private Shared Sub OnEnabledCommandsChanged(ByVal d As System.Windows.DependencyObject, ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+        If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
+        DirectCast(d, CapEditor).OnEnabledCommandsChanged(e)
+    End Sub
+    Protected Overridable Sub OnEnabledCommandsChanged(ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+        btnSave.IsEnabled = (EnabledCommands And SaveMode.SaveAndClose) = SaveMode.SaveAndClose
+        mniNextNoSave.Visibility = If((EnabledCommands And SaveMode.NextNoSave) = SaveMode.NextNoSave, Visibility.Visible, Visibility.Collapsed)
+        mniPreviousNoSave.Visibility = If((EnabledCommands And SaveMode.PreviousNoSave) = SaveMode.PreviousNoSave, Visibility.Visible, Visibility.Collapsed)
+        mniReset.Visibility = If((EnabledCommands And SaveMode.Reset) = SaveMode.Reset, Visibility.Visible, Visibility.Collapsed)
+        mniSaveAndNew.Visibility = If((EnabledCommands And SaveMode.SaveAndNew) = SaveMode.SaveAndNew, Visibility.Visible, Visibility.Collapsed)
+        mniSaveAndNext.Visibility = If((EnabledCommands And SaveMode.SaveAndNext) = SaveMode.SaveAndNext, Visibility.Visible, Visibility.Collapsed)
+        mniSaveAndNextNoClean.Visibility = If((EnabledCommands And SaveMode.SaveAndNextNoClean) = SaveMode.SaveAndNextNoClean, Visibility.Visible, Visibility.Collapsed)
+        mniSaveAndPrevious.Visibility = If((EnabledCommands And SaveMode.SaveAndPrevious) = SaveMode.SaveAndPrevious, Visibility.Visible, Visibility.Collapsed)
+    End Sub
+
+
+#End Region
+
 
     Private txtTitleTextMatched As Boolean = True
     Private txtTopTextMatched As Boolean = True
@@ -2878,6 +2999,19 @@ Resize256:      Try
             cmbTarget.SelectedItem = win.NewObject
         End If
     End Sub
+    ''' <summary>Actualizes lists</summary>
+    Public Sub Actualize()
+        kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
+
+        cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
+        cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
+        DirectCast(cmbProduct.ItemsSource, ListWithEvents(Of Product)).Add(Nothing)
+    End Sub
+    ''' <summary>Sets focus to first item in UI</summary>
+    Public Sub InitFocus()
+        txtCapName.Focus()
+    End Sub
+
     ''' <summary>Resets values of editor</summary>
     Public Sub Reset()
         txtCapName.Text = ""
@@ -2933,15 +3067,10 @@ Resize256:      Try
 
         SelectedCategories = New Category() {}
         Keywords = New String() {}
-        kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
-
         Images.Clear()
+        Actualize()
 
-        cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
-        cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
-        DirectCast(cmbProduct.ItemsSource, ListWithEvents(Of Product)).Add(Nothing)
-
-        txtCapName.Focus()
+        InitFocus()
     End Sub
 
     Private Sub Image_MouseDown(ByVal sender As FrameworkElement, ByVal e As System.Windows.Input.MouseButtonEventArgs)
@@ -2963,7 +3092,7 @@ Resize256:      Try
 
     End Sub
 
-    
+
     Private LastCountry As TextBox
     Private Sub btnCCCountry_Click(ByVal sender As Button, ByVal e As System.Windows.RoutedEventArgs) Handles btnCCCountry.Click, btnCCCountryOfOrigin.Click
         e.Handled = True
@@ -2980,6 +3109,8 @@ Resize256:      Try
     Private Sub mniCountry_Click(ByVal sender As MenuItem, ByVal e As System.Windows.RoutedEventArgs)
         If LastCountry IsNot Nothing Then LastCountry.Text = DirectCast(sender.DataContext, Country).Code2
     End Sub
+
+
 End Class
 
 ''' <summary>Allows to distinguish image already in database and a new image</summary>
