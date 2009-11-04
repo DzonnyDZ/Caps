@@ -141,9 +141,9 @@ GetNextCap:
                     Case CapEditor.SaveMode.SaveAndNext, CapEditor.SaveMode.NextNoSave
                         CapToLoad = (From item In Context.Caps Where item.CapID > Cap.CapID Order By item.CapID Ascending Take 1).FirstOrDefault
                     Case CapEditor.SaveMode.SaveAndPrevious, CapEditor.SaveMode.PreviousNoSave
-                        CapToLoad = (From item In Context.Caps Where item.CapID < Cap.CapID Order By item.CapID Ascending Take 1).FirstOrDefault
+                        CapToLoad = (From item In Context.Caps Where item.CapID < Cap.CapID Order By item.CapID Descending Take 1).FirstOrDefault
                     Case CapEditor.SaveMode.Reset
-                        CapToLoad = (From item In Context.Caps Where item.CapID = Cap.CapID Order By item.CapID Ascending Take 1).FirstOrDefault
+                        CapToLoad = (From item In Context.Caps Where item.CapID = Cap.CapID Take 1).FirstOrDefault
                 End Select
 
                 If CapToLoad Is Nothing Then

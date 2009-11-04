@@ -95,6 +95,14 @@ Partial Class CapsDataDataContext
         MyBase.Log = New DebugLog
     End Sub
 #End If
+    'TODO: Delete these subs
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        MyBase.Dispose(disposing)
+    End Sub
+
+    Protected Overrides Sub Finalize()
+        MyBase.Finalize()
+    End Sub
 End Class
 #If DEBUG Then
 ''' <summary><see cref="IO.TextWriter"/> over <see cref="Debug"/></summary>

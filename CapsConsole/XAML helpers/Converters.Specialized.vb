@@ -181,6 +181,7 @@ Public Class GetCapsOfConverter
     End Function
 End Class
 
+''' <summary>Converts ISO-2 country code to path of resource containing flag of that country.</summary>
 Public Class CountryCodeFlagConverter
     Implements IValueConverter
 
