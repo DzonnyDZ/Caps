@@ -33,6 +33,7 @@ Partial Public Class winCapEditor
     End Sub
 
     Private Sub caeEditor_SaveClicked(ByVal sender As Object, ByVal e As CapEditor.SaveClickedEventArgs) Handles caeEditor.SaveClicked
+        If Me.IsClosing Then Exit Sub 'TODO: This is workaround. Why event is raised one window is closed?
         If e.Mode.IsSave Then
             If Not caeEditor.Tests Then Exit Sub
             'Introduce new CapType

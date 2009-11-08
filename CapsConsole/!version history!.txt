@@ -77,4 +77,6 @@ Pending issues:
 * Image preview in newXxx dialogs
 * Modal message boxes not connected to window
 * Pseudocategories (defined in db)
-* Error when closing editor/new cap after edit/new was swapped several times
+* Search for similar caps - reckon with similar size
+* Localized state names in menu
+* Correct sign tooltip in Czech localization
