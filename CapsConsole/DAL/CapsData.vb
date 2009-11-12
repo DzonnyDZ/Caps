@@ -95,13 +95,28 @@ Partial Class CapsDataDataContext
         MyBase.Log = New DebugLog
     End Sub
 #End If
-    'TODO: Delete these subs
+    ''' <summary>Contains value of the <see cref="IsDisposed"/> property</summary>
+    Private _isDisposed As Boolean
+    ''' <summary>Raised whrn this instance is disposed of finalied</summary>
+    Public Event Disposed As EventHandler
+    ''' <summary>Gets or stets value indicating if this instance have already been disposed</summary>
+    Public ReadOnly Property IsDisposed() As Boolean
+        Get
+            Return _isDisposed
+        End Get
+    End Property
+    ''' <summary>Releases resources used by the System.Data.Linq.DataContext.</summary>
+    ''' <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         MyBase.Dispose(disposing)
+        _isDisposed = True
+        RaiseEvent Disposed(Me, EventArgs.Empty)
     End Sub
-
+    ''' <summary>Allows an System.Object to attempt to free resources and perform other cleanup operations before the System.Object is reclaimed by garbage collection.</summary>
     Protected Overrides Sub Finalize()
         MyBase.Finalize()
+        _isDisposed = True
+        RaiseEvent Disposed(Me, EventArgs.Empty)
     End Sub
 End Class
 #If DEBUG Then

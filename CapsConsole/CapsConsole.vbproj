@@ -116,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Cap editing\TypeSuggestor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Config\Database wizard\1-pgServerOrFile.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -221,6 +225,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="!version!.vb" />
+    <Compile Include="Cap editing\TypeSuggestor.xaml.vb">
+      <DependentUpon>TypeSuggestor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Config\Database wizard\1-pgServerOrFile.xaml.vb">
       <DependentUpon>1-pgServerOrFile.xaml</DependentUpon>
     </Compile>

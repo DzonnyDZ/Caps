@@ -1438,6 +1438,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to No suggestions.
+        '''</summary>
+        Public ReadOnly Property lbl_NoSuggestions() As String
+            Get
+                Return ResourceManager.GetString("lbl_NoSuggestions", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to _Note.
         '''</summary>
         Public ReadOnly Property lbl_Note() As String
@@ -1596,6 +1605,24 @@ Namespace My.Resources
         Public ReadOnly Property lbl_SubtitleText() As String
             Get
                 Return ResourceManager.GetString("lbl_SubtitleText", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Use existing type.
+        '''</summary>
+        Public ReadOnly Property lbl_SuggExTypes() As String
+            Get
+                Return ResourceManager.GetString("lbl_SuggExTypes", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Create new type.
+        '''</summary>
+        Public ReadOnly Property lbl_SuggNewTypes() As String
+            Get
+                Return ResourceManager.GetString("lbl_SuggNewTypes", resourceCulture)
             End Get
         End Property
         

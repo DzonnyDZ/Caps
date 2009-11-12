@@ -1406,4 +1406,16 @@ You should have maximally one main image per cap.</value>
   <data name="txt_CapMissing" xml:space="preserve">
     <value>Cap missing</value>
   </data>
+  <data name="lbl_NoSuggestions" xml:space="preserve">
+    <value>No suggestions</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_SuggExTypes" xml:space="preserve">
+    <value>Use existing type</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="lbl_SuggNewTypes" xml:space="preserve">
+    <value>Create new type</value>
+    <comment>Label text</comment>
+  </data>
 </root>

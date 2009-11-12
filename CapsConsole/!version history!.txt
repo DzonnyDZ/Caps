@@ -51,6 +51,7 @@
     * Fix: Keywords editor does not span whole available width
 0.1.3.0
     * Save & next button turned to split button with additional commands
+    * Fix: Typo in Czech localization cap sign tool tip
     
 Pending issues:
 ===============
@@ -79,4 +80,5 @@ Pending issues:
 * Pseudocategories (defined in db)
 * Search for similar caps - reckon with similar size
 * Localized state names in menu
-* Correct sign tooltip in Czech localization
+* Save and goto in editor window
+* Type suggestor in editor window
