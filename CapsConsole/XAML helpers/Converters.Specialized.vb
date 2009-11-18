@@ -94,7 +94,7 @@ Public Class TopRandomConverter
             Finally
                 System.Threading.Thread.CurrentThread.CurrentCulture = oldc
             End Try
-            Return From item In list Order By context.NewID Take count
+            Return From item As Object In list Order By context.NewID Take count
         Else : Throw New NotSupportedException(My.Resources.ex_CanConvertOnlyFromValuesImplementingAndHaving.f(Me.GetType.Name, GetType(IQueryable).Name, GetType(System.Data.Linq.ITable).Name, "Context", GetType(CapsDataDataContext).Name))
         End If
     End Function

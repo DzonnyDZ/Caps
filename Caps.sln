@@ -1,8 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CapsConsole", "CapsConsole\CapsConsole.vbproj", "{1F936FCC-85CA-4A63-AE42-1AD3A8E1B688}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{611821ED-AD4A-42A0-90A5-F7F347CBC73F}"
 	ProjectSection(SolutionItems) = preProject
 		CapsData.mdf = CapsData.mdf
@@ -19,8 +17,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLL", "DLL", "{E5E3F6DB-D55
 		DLL\Tools.xml = DLL\Tools.xml
 	EndProjectSection
 EndProject
-Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "CapsData", "CapsData\CapsData.dbp", "{8E128257-AC1E-46E1-88D8-0CD330761731}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cs", "cs", "{F31C57C1-3295-4A6D-AE54-6D385882F903}"
 	ProjectSection(SolutionItems) = preProject
 		DLL\cs\Tools.Metadata.resources.dll = DLL\cs\Tools.Metadata.resources.dll
@@ -28,9 +24,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "cs", "cs", "{F31C57C1-3295-
 		DLL\cs\Tools.Windows.resources.dll = DLL\cs\Tools.Windows.resources.dll
 	EndProjectSection
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CapsConsole setup", "CapsConsole setup\CapsConsole setup.vdproj", "{225DF386-F844-4807-9ACB-B1CAE36598A7}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd party", "3rd party", "{DA79B2EB-8B1D-401E-B0CE-74CEB594D574}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CapsConsole", "CapsConsole\CapsConsole.vbproj", "{1F936FCC-85CA-4A63-AE42-1AD3A8E1B688}"
+EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "CapsData", "CapsData\CapsData.dbp", "{8E128257-AC1E-46E1-88D8-0CD330761731}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CapsConsole setup", "CapsConsole setup\CapsConsole setup.vdproj", "{225DF386-F844-4807-9ACB-B1CAE36598A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SplitButton", "SplitButton\SplitButton.csproj", "{A75FA431-B3D7-4AC6-8033-CDE76FA98C97}"
 EndProject
