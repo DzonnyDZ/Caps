@@ -3059,6 +3059,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Type suggestor.
+        '''</summary>
+        Public ReadOnly Property txt_TypeSuggestor() As String
+            Get
+                Return ResourceManager.GetString("txt_TypeSuggestor", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Upgrade database.
         '''</summary>
         Public ReadOnly Property txt_UpgradeDatabase() As String

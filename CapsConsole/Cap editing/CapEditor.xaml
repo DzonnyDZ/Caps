@@ -21,33 +21,7 @@
         <my:CountryCodeFlagConverter x:Key="CountryCodeFlagConverter"/>
         <sys:Int32 x:Key="i64">64</sys:Int32>
         <sys:Int32 x:Key="i256">256</sys:Int32>
-                  
-        <Style TargetType="ItemsControl" x:Key="ToolTipImageList">
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Stretch"
-                                    IsItemsHost="True" Orientation="Horizontal" 
-                                    ScrollViewer.CanContentScroll="False" Height="auto"
-                                    Width="auto" MaxHeight="64"
-                                    ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
-                                    ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="ItemTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <Image Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i64}}"
-                               MaxWidth="64" MaxHeight="64" HorizontalAlignment="Center" VerticalAlignment="Center"
-                               ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>    
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-            <Setter Property="BorderThickness" Value="0"/>
-        </Style>
-                          
+                                 
         <Style TargetType="ComboBox" x:Key="ShapeTemplate" BasedOn="{StaticResource GenericComboBoxTemplate}">
             <Setter Property="ItemTemplate">
                 <Setter.Value>
@@ -416,6 +390,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <GroupBox Header="{x:Static res:Resources.txt_CapType}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
                     <Grid>
@@ -481,6 +456,17 @@
                 <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Sign}" Target="{Binding ElementName=cmbSign}"/>
                 <ComboBox Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbSign" Style="{StaticResource SignTemplate}" SelectedValuePath="CapSignID" />
                 <Button Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewSign" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
+                <GroupBox Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="auto" Header="{x:Static res:Resources.txt_TypeSuggestor}" IsEnabled="{Binding ElementName=optCapTypeAnonymous, Path=IsChecked}">
+                    <my:TypeSuggestor x:Name="tysSuggestor" HorizontalAlignment="Stretch" Height="auto" IsEnabled="{Binding ElementName=optCapTypeAnonymous, Path=IsChecked}"
+                                      MainType="{Binding ElementName=cmbMainType, Path=SelectedItem}"
+                                      Shape="{Binding ElementName=cmbShape, Path=SelectedItem}"
+                                      Size1="{Binding ElementName=nudSize1, Path=Value}"
+                                      Size2="{Binding ElementName=nudSize2, Path=Value}"
+                                      CapHeight="{Binding ElementName=nudHeight, Path=Value}"
+                                      Material="{Binding ElementName=cmbMaterial, Path=SelectedItem}"
+                                      TargetObject="{Binding ElementName=cmbTarget, Path=SelectedItem}"
+                                      />
+                </GroupBox>
             </Grid>
         </GroupBox>
         <!--Texts-->

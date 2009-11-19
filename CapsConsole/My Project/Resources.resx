@@ -1418,4 +1418,8 @@ You should have maximally one main image per cap.</value>
     <value>Create new type</value>
     <comment>Label text</comment>
   </data>
+  <data name="txt_TypeSuggestor" xml:space="preserve">
+    <value>Type suggestor</value>
+    <comment>Frame header</comment>
+  </data>
 </root>

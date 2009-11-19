@@ -124,6 +124,32 @@
             <Setter Property="IsTabStop" Value="False"/>
         </Style>
 
-
+        <sys:Int32 x:Key="i64">64</sys:Int32>
+        <my:CapImageConverter x:Key="CapImageConverter"/>
+        <Style TargetType="ItemsControl" x:Key="ToolTipImageList">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                                    IsItemsHost="True" Orientation="Horizontal" 
+                                    ScrollViewer.CanContentScroll="False" Height="auto"
+                                    Width="auto" MaxHeight="64"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                                    ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Image Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i64}}"
+                               MaxWidth="64" MaxHeight="64" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
     </Application.Resources>
 </Application>

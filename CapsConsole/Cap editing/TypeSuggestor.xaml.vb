@@ -1,4 +1,6 @@
-﻿''' <summary>Suggests cap types based on cap properties</summary>
+﻿Imports Tools
+
+''' <summary>Suggests cap types based on cap properties</summary>
 Partial Public Class TypeSuggestor
 
 #Region "Dependency properties"
@@ -79,7 +81,7 @@ Partial Public Class TypeSuggestor
     ''' <summary>Metadata of the <see cref="Size1"/> property</summary>
     Public Shared ReadOnly Size1Property As DependencyProperty = _
                            DependencyProperty.Register("Size1", GetType(Integer), GetType(TypeSuggestor), _
-                           New FrameworkPropertyMetadata(Nothing, AddressOf OnSize1Changed))
+                           New FrameworkPropertyMetadata(0, AddressOf OnSize1Changed))
     ''' <summary>Called when value of the <see cref="Size1"/> property changes for any <see cref="TypeSuggestor"/></summary>
     ''' <param name="d">A <see cref="TypeSuggestor"/> <see cref="Size1"/> has changed for</param>
     ''' <param name="e">Event arguments</param>
@@ -111,7 +113,7 @@ Partial Public Class TypeSuggestor
     ''' <summary>Metadata of the <see cref="Size2"/> property</summary>
     Public Shared ReadOnly Size2Property As DependencyProperty = _
                            DependencyProperty.Register("Size2", GetType(Integer), GetType(TypeSuggestor), _
-                           New FrameworkPropertyMetadata(Nothing, AddressOf OnSize2Changed))
+                           New FrameworkPropertyMetadata(0, AddressOf OnSize2Changed))
     ''' <summary>Called when value of the <see cref="Size2"/> property changes for any <see cref="TypeSuggestor"/></summary>
     ''' <param name="d">A <see cref="TypeSuggestor"/> <see cref="Size2"/> has changed for</param>
     ''' <param name="e">Event arguments</param>
@@ -143,7 +145,7 @@ Partial Public Class TypeSuggestor
     ''' <summary>Metadata of the <see cref="CapHeight"/> property</summary>
     Public Shared ReadOnly CapHeightProperty As DependencyProperty = _
                            DependencyProperty.Register("CapHeight", GetType(Integer), GetType(TypeSuggestor), _
-                           New FrameworkPropertyMetadata(Nothing, AddressOf OnCapHeightChanged))
+                           New FrameworkPropertyMetadata(0, AddressOf OnCapHeightChanged))
     ''' <summary>Called when value of the <see cref="CapHeight"/> property changes for any <see cref="TypeSuggestor"/></summary>
     ''' <param name="d">A <see cref="TypeSuggestor"/> <see cref="CapHeight"/> has changed for</param>
     ''' <param name="e">Event arguments</param>
@@ -226,7 +228,6 @@ Partial Public Class TypeSuggestor
     End Sub
 #End Region
 
-
 #Region "Context"
     ''' <summary>Gets or sets <see cref="CapsDataDataContext"/> to operate onto</summary>
     Public Property Context() As CapsDataDataContext
@@ -266,15 +267,22 @@ Partial Public Class TypeSuggestor
         MakeSuggestions()
     End Sub
 #End Region
-
-
-
 #End Region
+    ''' <summary>Type initializer</summary>
+    Shared Sub New()
+        TypeSuggestor.IsEnabledProperty.OverrideMetadata(GetType(TypeSuggestor), New FrameworkPropertyMetadata(AddressOf OnIsEnabledChanged))
+    End Sub
+
     ''' <summary>Makes the suggestions</summary>
+    ''' <threadsafety>This method is thread-safe</threadsafety>
     Protected Overridable Sub MakeSuggestions()
+        If Not Me.Dispatcher.CheckAccess Then 'Required, because this method gets called when context is disposed on application terminate on different thread
+            Me.Dispatcher.Invoke(New Action(AddressOf MakeSuggestions))
+            Exit Sub
+        End If
         Dim AnyExType As Boolean = False
         Dim AnyNewType As Boolean = False
-        If Context Is Nothing OrElse Context.IsDisposed Then
+        If Context Is Nothing OrElse Context.IsDisposed OrElse Not IsEnabled Then
             grMain.IsEnabled = False
         Else
             grMain.IsEnabled = True
@@ -296,7 +304,7 @@ Partial Public Class TypeSuggestor
                    Take 10
                 Dim exTypes = exTypesQ.ToList
                 AnyExType = exTypes.Count > 0
-                'TODO: To list view
+                lstExTypes.ItemsSource = exTypes
                 'Suggets new types
                 Dim newTypesCapsQ = From cap In Context.Caps _
                     Where cap.CapTypeID Is Nothing AndAlso _
@@ -321,16 +329,31 @@ Partial Public Class TypeSuggestor
                                         .MaterialID = agg.MaterialID, _
                                         .TargetID = If((From cap In agg.Caps Select cap.TargetID Distinct).Count = 1, agg.Caps.First.TargetID, New Integer?), _
                                         .TypeName = "Suggested type"}
-                    Dim suggTypes = suggTypesQ.tolist
-                    AnyNewType = suggTypesQ.count > 0
-                    'TODO: To list view
+                    Dim suggTypes = suggTypesQ.ToList
+                    AnyNewType = suggTypesQ.Count > 0
+                    lvwNewTypes.ItemsSource = lvwNewTypes
                 End If
             End If
         End If
-        lvwExTypes.Visibility = If(AnyExType, Visibility.Visible, Visibility.Collapsed)
+        lstExTypes.Visibility = If(AnyExType, Visibility.Visible, Visibility.Collapsed)
         lblNoExTypes.Visibility = If(AnyExType, Visibility.Collapsed, Visibility.Visible)
         lvwNewTypes.Visibility = If(AnyNewType, Visibility.Visible, Visibility.Collapsed)
         lblNoNewTypes.Visibility = If(AnyNewType, Visibility.Collapsed, Visibility.Visible)
     End Sub
 
+    ''' <summary>Called when value of the <see cref="IsEnabled"/> property changes for any instance of <see cref="TypeSuggestor"/></summary>
+    ''' <param name="d">Instance of <see cref="TypeSuggestor"/> <see cref="IsEnabled"/> has changed for</param>
+    ''' <param name="e">Event arguments</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="d"/> is null</exception>
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="TypeSuggestor"/></exception>
+    Private Shared Sub OnIsEnabledChanged(ByVal d As System.Windows.DependencyObject, ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+        If d Is Nothing Then Throw New ArgumentException("d")
+        If Not TypeOf d Is TypeSuggestor Then Throw New TypeMismatchException("d", d, GetType(TypeSuggestor))
+        DirectCast(d, TypeSuggestor).OnIsEnabledChanged(e)
+    End Sub
+    ''' <summary>Called when value of the <see cref="IsEnabled"/> property changes for current instance</summary>
+    ''' <param name="e">Event arguments</param>
+    Protected Overridable Sub OnIsEnabledChanged(ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+        If IsEnabled Then MakeSuggestions()
+    End Sub
 End Class

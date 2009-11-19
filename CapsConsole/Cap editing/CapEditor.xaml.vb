@@ -15,6 +15,7 @@ Partial Public Class CapEditor
     ''' <summary>CTor</summary>
     Public Sub New()
         InitializeComponent()
+        tysSuggestor.Context = Context
         Images = New ListWithEvents(Of Image)()
         DirectCast(Me.Resources("GetCapsOfConverter"), GetCapsOfConverter).Context = OriginalContext
         UnderConstruction = False
@@ -34,6 +35,7 @@ Partial Public Class CapEditor
             End If
             DirectCast(Me.Resources("GetCapsOfConverter"), GetCapsOfConverter).Context = value
             _Context = value
+            tysSuggestor.Context = value
         End Set
     End Property
     Private Shadows initialized As Boolean
