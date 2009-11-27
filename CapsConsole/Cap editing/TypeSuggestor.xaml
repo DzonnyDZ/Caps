@@ -3,12 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:res="clr-namespace:Caps.Console.My.Resources"
     xmlns:my="clr-namespace:Caps.Console"
-    Width="300" Height="300" BorderThickness="0">
+    xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    BorderThickness="0">
     <UserControl.Resources>
         <my:MyImageIDConverter x:Key="MyImageIDConverter"/>
         <my:GetCapsOfConverter x:Key="GetCapsOfConverter"/>
     </UserControl.Resources>
-    <Grid Name="grMain">
+    <Grid Name="grMain" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>        
@@ -16,12 +18,15 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="{x:Static res:Resources.lbl_SuggExTypes}" FontWeight="Bold" Grid.Row="0" Grid.Column="0" />
-        <Label Content="{x:Static res:Resources.lbl_NoSuggestions}" Grid.Row="1" Grid.Column="0" Name="lblNoExTypes"  />
-        <!--TODO: Commands-->
-        <ListBox Grid.Row="1" Grid.Column="0" Visibility="Collapsed" Name="lstExTypes">
+        <Label Content="{x:Static res:Resources.lbl_SuggExTypes}" FontWeight="Bold" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" />
+        <Label Content="{x:Static res:Resources.lbl_NoSuggestions}" Grid.Row="1" Grid.Column="0" Name="lblNoExTypes" HorizontalAlignment="Left"  />
+        <Label Grid.Row="2" Grid.Column="0" Name="lblExError" Visibility="Collapsed" Content="{x:Static Member=res:Resources.err_ErrorData}" HorizontalAlignment="Left"/>
+        <!--TODO: Commands - doubleclick to slect, select type, preserve values-->
+        <ListBox Grid.Row="1" Grid.Column="0" Visibility="Collapsed" Name="lstExTypes" HorizontalAlignment="Stretch">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" IsItemsHost="True"/>
@@ -29,7 +34,7 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="32" Height="64">
+                    <Grid MaxWidth="40" Width="auto" Height="64" ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -38,8 +43,8 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Image Source="{Binding Type.CapTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapType', Mode=OneWay}" MaxWidth="32" MaxHeight="32" Grid.Column="0" Grid.Row="0"/>
-                        <Label Grid.Column="0" Grid.Row="1" Content="{Binding Type.TypeName, Mode=OneWay}" TextBlock.TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top"
-                                  MaxWidth="32"/>
+                        <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Type.TypeName, Mode=OneWay}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                                  MaxWidth="32" FontSize="8" TextWrapping="Wrap"/>
                         <Grid.ToolTip>
                             <Grid Height="auto" Width="auto">
                                 <Grid.ColumnDefinitions>
@@ -51,45 +56,84 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
                                 
-                                <TextBlock Text="{Binding Description, Mode=OneWay}" HorizontalAlignment="Left" TextAlignment="Left" Grid.Column="0" Grid.Row="0" Height="auto"/>
+                                <TextBlock Text="{Binding Type.TypeName, Mode=OneWay}" HorizontalAlignment="Left" TextAlignment="Left" Grid.Column="0" Grid.Row="0" Height="auto" Grid.ColumnSpan="6" FontSize="14" FontWeight="Bold"/>
                                 
-                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Type.Shape.Size1Name}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
-                                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Type.Size, Mode=OneWay}" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Description, Mode=OneWay}" HorizontalAlignment="Left" TextAlignment="Left" Grid.Column="0" Grid.Row="1" Height="auto"/>
                                 
-                                <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Type.Shape.Size2Name}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
-                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Type.Size2, Mode=OneWay}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="{Binding Type.Shape.Size1Name}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
+                                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Type.Size, Mode=OneWay}" VerticalAlignment="Center"/>
                                 
-                                <Label Grid.Column="0" Grid.Row="3" Content="{x:Static res:Resources.lbl_Height}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
-                                <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Type.Height, Mode=OneWay}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="0" Grid.Row="3" Text="{Binding Type.Shape.Size2Name}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
+                                <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Type.Size2, Mode=OneWay}" VerticalAlignment="Center"/>
                                 
-                                <Label Grid.Column="3" Grid.Row="1" Content="{x:Static res:Resources.lbl_MainType}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
-                                <Image Grid.Column="4" Grid.Row="1" Source="{Binding Type.MainType.MainTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='MainType', Mode=OneWay}" MaxHeight="16" MaxWidth="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock Grid.Column="5" Grid.Row="1" Text="{Binding Type.MainType.TypeName, Mode=OneWay}" VerticalAlignment="Center"/>
+                                <Label Grid.Column="0" Grid.Row="4" Content="{x:Static res:Resources.lbl_Height}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
+                                <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Type.Height, Mode=OneWay}" VerticalAlignment="Center"/>
                                 
-                                <Label Grid.Column="3" Grid.Row="2" Content="{x:Static res:Resources.lbl_Shape}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
-                                <Image Grid.Column="4" Grid.Row="2" Source="{Binding Type.Shape.ShapeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='Shape', Mode=OneWay}" MaxHeight="16" MaxWidth="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding Type.Shape.Name}" VerticalAlignment="Center"/>
+                                <Label Grid.Column="3" Grid.Row="2" Content="{x:Static res:Resources.lbl_MainType}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
+                                <Image Grid.Column="4" Grid.Row="2" Source="{Binding Type.MainType.MainTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='MainType', Mode=OneWay}" MaxHeight="16" MaxWidth="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding Type.MainType.TypeName, Mode=OneWay}" VerticalAlignment="Center"/>
                                 
-                                <Label Grid.Column="3" Grid.Row="3" Content="{x:Static res:Resources.lbl_Material}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
-                                <TextBlock Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="3" Text="{Binding Type.Material.Name, Mode=OneWay}" VerticalAlignment="Center"/>
+                                <Label Grid.Column="3" Grid.Row="3" Content="{x:Static res:Resources.lbl_Shape}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
+                                <Image Grid.Column="4" Grid.Row="3" Source="{Binding Type.Shape.ShapeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='Shape', Mode=OneWay}" MaxHeight="16" MaxWidth="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="5" Grid.Row="3" Text="{Binding Type.Shape.Name}" VerticalAlignment="Center"/>
                                 
-                                <Label Grid.Column="3" Grid.Row="4" Content="{x:Static res:Resources.lbl_Target}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
-                                <TextBlock Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="4" Text="{Binding Type.Target.Name, Mode=OneWay}" VerticalAlignment="Center"/>
+                                <Label Grid.Column="3" Grid.Row="4" Content="{x:Static res:Resources.lbl_Material}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
+                                <TextBlock Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="4" Text="{Binding Type.Material.Name, Mode=OneWay}" VerticalAlignment="Center"/>
                                 
-                                <ItemsControl  Style="{StaticResource ToolTipImageList}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="6" ItemsSource="{Binding Type, Converter={StaticResource GetCapsOfConverter}, ConverterParameter=6}"/>
+                                <Label Grid.Column="3" Grid.Row="5" Content="{x:Static res:Resources.lbl_Target}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
+                                <TextBlock Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="5" Text="{Binding Type.Target.Name, Mode=OneWay}" VerticalAlignment="Center"/>
+                                
+                                <ItemsControl  Style="{StaticResource ToolTipImageList}" Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="6" ItemsSource="{Binding Type, Converter={StaticResource GetCapsOfConverter}, ConverterParameter=6}"/>
                             </Grid>
                         </Grid.ToolTip>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Label Content="{x:Static res:Resources.lbl_SuggNewTypes}" FontWeight="Bold" Grid.Row="2" Grid.Column="0" />
-        <Label Content="{x:Static res:Resources.lbl_NoSuggestions}" Grid.Row="3" Grid.Column="0" Name="lblNoNewTypes"  />
-        <!--TODO: New types-->
-        <!--TODO: Commands-->
-        <ListView Grid.Row="3" Grid.Column="0" Visibility="Collapsed" Name="lvwNewTypes"/>  
+        <Label Content="{x:Static res:Resources.lbl_SuggNewTypes}" FontWeight="Bold" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" />
+        <Label Content="{x:Static res:Resources.lbl_NoSuggestions}" Grid.Row="4" Grid.Column="0" Name="lblNoNewTypes" HorizontalAlignment="Left" />
+        <Label Grid.Row="4" Grid.Column="5" Name="lblNewError" Visibility="Collapsed" Content="{x:Static Member=res:Resources.err_ErrorData}" HorizontalAlignment="Left"/>
+        <!--TODO: Commands - right button, window to select caps, create new type, set type properties-->
+        <toolkit:DataGrid Grid.Row="5" Grid.Column="0" Visibility="Collapsed" Name="dgNewTypes" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+            <toolkit:DataGrid.Resources>
+               <ItemsControl x:Key="RowToolTip"  Style="{StaticResource ToolTipImageListEx}" ItemsSource="{Binding Caps}"/>
+            </toolkit:DataGrid.Resources>
+                <toolkit:DataGrid.Columns>
+                <toolkit:DataGridTemplateColumn Header="{x:Static res:Resources.coh_MainType}" >
+                    <toolkit:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="16" Height="16" Source="{Binding MainType.MainTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='MainType', Mode=OneWay}"/>
+                                <TextBlock Text="{Binding MainType.TypeName, Mode=OneWay}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:DataGridTemplateColumn.CellTemplate>
+                </toolkit:DataGridTemplateColumn>
+                <toolkit:DataGridTemplateColumn  Header="{x:Static res:Resources.coh_Shape}">
+                    <toolkit:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Width="16" Height="16" Source="{Binding Shape.ShapeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='Shape', Mode=OneWay}"/>
+                                <TextBlock Text="{Binding Shape.Name, Mode=OneWay}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:DataGridTemplateColumn.CellTemplate>
+                </toolkit:DataGridTemplateColumn>
+                <toolkit:DataGridTextColumn Binding="{Binding Size, Mode=OneWay}" Header="{x:Static res:Resources.coh_Size1}"/>
+                <toolkit:DataGridTextColumn Binding="{Binding Size2, Mode=OneWay}" Header="{x:Static res:Resources.coh_Size2}" />
+                <toolkit:DataGridTextColumn Binding="{Binding Height, Mode=OneWay}" Header="{x:Static res:Resources.coh_Height}"/>
+                <toolkit:DataGridTextColumn Binding="{Binding Material.Name, Mode=OneWay}" Header="{x:Static res:Resources.coh_Material}"/>
+                <toolkit:DataGridTextColumn Binding="{Binding Target.Name, Mode=OneWay}" Header="{x:Static res:Resources.coh_Target}"/>
+            </toolkit:DataGrid.Columns>
+            <toolkit:DataGrid.RowStyle>
+                <Style TargetType="{x:Type toolkit:DataGridRow}">
+                    <Setter Property="ToolTip" Value="{StaticResource RowToolTip}" />
+                    <Setter Property="ToolTipService.ShowDuration" Value="{x:Static sys:Int32.MaxValue}"/>
+                </Style>
+            </toolkit:DataGrid.RowStyle>
+        </toolkit:DataGrid>
     </Grid>
 </UserControl>

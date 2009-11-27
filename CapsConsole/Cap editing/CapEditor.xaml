@@ -9,6 +9,7 @@
     xmlns:Toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:MyMy="clr-namespace:Caps.Console.My"
+    xmlns:ToolsC="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
     xmlns:m="clr-namespace:Wpf.Controls;assembly=Wpf.SplitButton"
     FocusManager.FocusedElement="{Binding ElementName=txtCapName}"             
    >
@@ -21,12 +22,13 @@
         <my:CountryCodeFlagConverter x:Key="CountryCodeFlagConverter"/>
         <sys:Int32 x:Key="i64">64</sys:Int32>
         <sys:Int32 x:Key="i256">256</sys:Int32>
+        <ToolsC:NotBooleanValueConverter x:Key="NotBooleanValueConverter"/>
                                  
         <Style TargetType="ComboBox" x:Key="ShapeTemplate" BasedOn="{StaticResource GenericComboBoxTemplate}">
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch">
+                        <Grid HorizontalAlignment="Stretch" ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}">
                             <Grid.ToolTip>
                                 <Grid ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                     <Grid.ColumnDefinitions><ColumnDefinition Width="auto"/></Grid.ColumnDefinitions>
@@ -56,7 +58,7 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch">
+                        <Grid HorizontalAlignment="Stretch" ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}">
                             <Grid.ToolTip>
                                 <Grid ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                     <Grid.ColumnDefinitions><ColumnDefinition Width="auto"/></Grid.ColumnDefinitions>
@@ -86,7 +88,7 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch">
+                        <Grid HorizontalAlignment="Stretch" ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}">
                             <Grid.ToolTip>
                                 <Grid ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                     <Grid.ColumnDefinitions><ColumnDefinition Width="auto"/></Grid.ColumnDefinitions>
@@ -116,7 +118,7 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch">
+                        <Grid HorizontalAlignment="Stretch"  ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}">
                             <Grid.ToolTip>
                                <Grid ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden">
                                     <Grid.ColumnDefinitions><ColumnDefinition Width="auto"/></Grid.ColumnDefinitions>
@@ -331,7 +333,7 @@
                 <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_MainPicture}" Target="{Binding ElementName=txtMainPicture}"/>
                 <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtMainPicture" my:AttachedProperties.SelectAllOnFocus="true" MaxLength="255" />
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_AnotherPictures}" Target="{Binding ElementName=txtAnotherPictures}"/>
-                <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtAnotherPictures" AcceptsReturn="True" MinLines="2" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" MaxLines="2" my:AttachedProperties.SelectAllOnFocus="true"/>
+                <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtAnotherPictures" AcceptsReturn="True" MinLines="2" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" MaxLines="2" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_PictureType}" Target="{Binding ElementName=cmbPictureType}"/>
                 <ComboBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="cmbPictureType">
                     <ComboBox.Items>
@@ -413,7 +415,7 @@
                         <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  HorizontalAlignment="Stretch" Name="txtCapTypeName" MaxLength="50"
                                  IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Grid.ColumnSpan="2" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="auto" IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.lbl_Description}" Target="{Binding ElementName=txtCapTypeDesc}"/>
-                        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AcceptsReturn="True" MinLines="2" TextWrapping="WrapWithOverflow" Name="txtCapTypeDesc"
+                        <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AcceptsReturn="True" MinLines="2" TextWrapping="Wrap" Name="txtCapTypeDesc"
                                  IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Grid.ColumnSpan="2" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.lbl_Image}" Target="{Binding ElementName=txtCapTypeImagePath}"/>
                         <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left"  Name="txtCapTypeImagePath"
@@ -456,8 +458,8 @@
                 <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Sign}" Target="{Binding ElementName=cmbSign}"/>
                 <ComboBox Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbSign" Style="{StaticResource SignTemplate}" SelectedValuePath="CapSignID" />
                 <Button Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewSign" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
-                <GroupBox Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="auto" Header="{x:Static res:Resources.txt_TypeSuggestor}" IsEnabled="{Binding ElementName=optCapTypeAnonymous, Path=IsChecked}">
-                    <my:TypeSuggestor x:Name="tysSuggestor" HorizontalAlignment="Stretch" Height="auto" IsEnabled="{Binding ElementName=optCapTypeAnonymous, Path=IsChecked}"
+                <GroupBox Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="auto" Header="{x:Static res:Resources.txt_TypeSuggestor}" IsEnabled="{Binding ElementName=optCapTypeSelect, Path=IsChecked, Mode=OneWay, Converter={StaticResource NotBooleanValueConverter}}">
+                    <my:TypeSuggestor x:Name="tysSuggestor" HorizontalAlignment="Stretch" Height="auto" IsEnabled="{Binding ElementName=optCapTypeSelect, Path=IsChecked, Mode=OneWay, Converter={StaticResource NotBooleanValueConverter}}"
                                       MainType="{Binding ElementName=cmbMainType, Path=SelectedItem}"
                                       Shape="{Binding ElementName=cmbShape, Path=SelectedItem}"
                                       Size1="{Binding ElementName=nudSize1, Path=Value}"
@@ -486,13 +488,13 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Content="{x:Static res:Resources.lbl_TopText}" Target="{Binding ElementName=txtTopText}"/>
-                <TextBox Grid.Row="1" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtTopText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
+                <TextBox Grid.Row="1" AcceptsReturn="True" MinLines="4" TextWrapping="Wrap" Name="txtTopText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Row="2" Content="{x:Static res:Resources.lbl_SideText}" Target="{Binding ElementName=txtSideText}"/>
-                <TextBox Grid.Row="3" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtSideText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
+                <TextBox Grid.Row="3" AcceptsReturn="True" MinLines="4" TextWrapping="Wrap" Name="txtSideText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Row="4" Content="{x:Static res:Resources.lbl_BottomText}" Target="{Binding ElementName=txtBottomText}"/>
-                <TextBox Grid.Row="5" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtBottomText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
+                <TextBox Grid.Row="5" AcceptsReturn="True" MinLines="4" TextWrapping="Wrap" Name="txtBottomText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Row="6" Content="{x:Static res:Resources.lbl_Note}" Target="{Binding ElementName=txtNote}"/>
-                <TextBox Grid.Row="7" AcceptsReturn="True" MinLines="4" TextWrapping="WrapWithOverflow" Name="txtNote" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
+                <TextBox Grid.Row="7" AcceptsReturn="True" MinLines="4" TextWrapping="Wrap" Name="txtNote" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
             </Grid>
         </GroupBox>
         <!--Misc-->
@@ -574,7 +576,7 @@
                         <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="txtProductName"  MaxLength="50" 
                                  IsEnabled="{Binding ElementName=optProductNew, Path=IsChecked, Mode=OneWay}" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{x:Static res:Resources.lbl_Description}" Target="{Binding ElementName=txtProductDescription}"/>
-                        <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinLines="2" AcceptsReturn="True" TextWrapping="WrapWithOverflow" Name="txtProductDescription"
+                        <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinLines="2" AcceptsReturn="True" TextWrapping="Wrap" Name="txtProductDescription"
                                  IsEnabled="{Binding ElementName=optProductNew, Path=IsChecked, Mode=OneWay}" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <RadioButton Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" Grid.ColumnSpan="2" VerticalAlignment="Center" IsChecked="True" Name="optProductAnonymous" Content="{x:Static res:Resources.lbl_AnonymousProduct}"/>
                     </Grid>
@@ -650,7 +652,7 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Grid Width="64" Height="100" 
+                            <Grid Width="64" Height="100"  ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}"
                                   MouseDown="Image_MouseDown">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="64"/>

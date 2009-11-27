@@ -1,8 +1,6 @@
 ﻿Imports System.Globalization
 
 ''' <summary>Implements <see cref="IValueConverter"/> for converting numeric values to halfs of them</summary>
-''' <author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
-''' <version version="1.5.2" stage="Alpha"><see cref="VersionAttribute"/> and <see cref="AuthorAttribute"/> removed</version>
 Friend Class HalfConverter
     Implements IValueConverter
     ''' <summary>Converts a value. </summary>

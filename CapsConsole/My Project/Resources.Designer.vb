@@ -574,6 +574,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Error while obtaining data.
+        '''</summary>
+        Public ReadOnly Property err_ErrorData() As String
+            Get
+                Return ResourceManager.GetString("err_ErrorData", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Icon has already been encoded..
         '''</summary>
         Public ReadOnly Property err_IconHasAlreadyBeenEncoded() As String
@@ -1290,6 +1299,15 @@ Namespace My.Resources
         Public ReadOnly Property lbl_Height() As String
             Get
                 Return ResourceManager.GetString("lbl_Height", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Height.
+        '''</summary>
+        Public ReadOnly Property lbl_Height_Simple() As String
+            Get
+                Return ResourceManager.GetString("lbl_Height_Simple", resourceCulture)
             End Get
         End Property
         
@@ -3019,6 +3037,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_StorageTypes() As String
             Get
                 Return ResourceManager.GetString("txt_StorageTypes", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Suggested type.
+        '''</summary>
+        Public ReadOnly Property txt_SuggestedType() As String
+            Get
+                Return ResourceManager.GetString("txt_SuggestedType", resourceCulture)
             End Get
         End Property
         

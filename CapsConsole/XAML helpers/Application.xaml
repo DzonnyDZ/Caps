@@ -6,72 +6,13 @@
     StartupUri="../winMain.xaml"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:conv="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
-    xmlns:controlsT="clr-namespace:Tools.WindowsT.WPF.ControlsT;assembly=Tools.Windows">
+    xmlns:controlsT="clr-namespace:Tools.WindowsT.WPF.ControlsT;assembly=Tools.Windows"
+    xmlns:res="clr-namespace:Caps.Console.My.Resources"
+    xmlns:convertersT="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
+>
     
     <Application.Resources>
-        <!--<DataTemplate x:Key="ImageListDataTemplate"  >
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions >
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-                <Image Grid.Column="0" Grid.Row="0" >
-                    <Image.Source>
-                        <Binding Converter="{StaticResource RelativePathConverter}" Path="RelativePath">
-                            <Binding.ConverterParameter>
-                                <x:Array Type="{x:Type sys:String}">
-                                    <my:StaticExExtension Member="my:MySettings.Default.ImageRoot"/>
-                                    <sys:String>original</sys:String>
-                                </x:Array>
-                            </Binding.ConverterParameter>
-                        </Binding>
-                    </Image.Source>
-                </Image>
-                <Label Grid.Column="0" Grid.Row="1" Content="{Binding RelativePath, Converter={StaticResource FileNameConverter}, Mode=OneWay}"/>
-            </Grid>
-        </DataTemplate>-->
-
-
-
-        <!--<Style TargetType="{x:Type ListView}" BasedOn="{StaticResource {x:Type ListBox}}">
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="0.5"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <Border Name="bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                                      Background="{TemplateBinding Background}" Margin="{TemplateBinding Margin}">
-                            <ScrollViewer Margin="{TemplateBinding Padding}">
-                                <WrapPanel ItemWidth="150" IsItemsHost="True" MinWidth="100"
-                                             Width="{Binding ActualWidth,RelativeSource={RelativeSource AncestorType=ScrollContentPresenter}}">
-                                </WrapPanel>
-                            </ScrollViewer>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style TargetType='{x:Type ListViewItem}' BasedOn='{StaticResource {x:Type ListBoxItem}}'>
-            <Setter Property='Padding' Value='3'/>
-            <Setter Property='Margin' Value='5'/>
-            <Setter Property='HorizontalContentAlignment' Value='Center'/>
-            <Setter Property="ContentTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <Border Background="White">
-                            <Image Margin="3" Source="{Binding FullName}"/>
-                        </Border>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type my:ImageView},ResourceId=ImageView}"/>
-        <Style x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type my:ImageView},ResourceId=ImageViewItem}"/>-->
-
+       
         <Style TargetType="ComboBox" x:Key="GenericComboBoxTemplate">
             <Setter Property="ItemContainerStyle">
                 <Setter.Value>
@@ -145,6 +86,65 @@
                         <Image Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i64}}"
                                MaxWidth="64" MaxHeight="64" HorizontalAlignment="Center" VerticalAlignment="Center"
                                ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <convertersT:NullInvisibleConverter x:Key="NullInvisibleConverter"/>
+        <my:MyImageIDConverter x:Key="MyImageIDConverter"/>
+        <Style TargetType="ItemsControl" x:Key="ToolTipImageListEx">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                                    IsItemsHost="True" Orientation="Horizontal" 
+                                    ScrollViewer.CanContentScroll="False" Height="auto"
+                                    Width="auto"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                                    ScrollViewer.VerticalScrollBarVisibility="Hidden"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" MaxHeight="64"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/><RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i64}}"
+                                   Width="64" MaxHeight="64" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   ScrollViewer.CanContentScroll="False" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                   Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="0"/>
+                            <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Content="{Binding CapName, Mode=OneWay}" TextBlock.TextAlignment="Center" HorizontalAlignment="Center"/>
+                            <Label Grid.Row="2" Grid.Column="0" Content="{Binding Shape.Size1Name, Mode=OneWay}"/>
+                            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Content="{Binding Size, Mode=OneWay}"/>
+                            <Label Grid.Row="3" Grid.Column="0" Content="{Binding Shape.Size2Name, Mode=OneWay}" Visibility="{Binding Shape.Size2Name, Converter={StaticResource NullInvisibleConverter}}"/>
+                            <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="{Binding Size2, Mode=OneWay}" Visibility="{Binding Shape.Size2Name, Converter={StaticResource NullInvisibleConverter}}"/>
+                            <Label Grid.Row="4" Grid.Column="0" Content="{x:Static res:Resources.lbl_Height_Simple}"/>
+                            <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="{Binding Height, Mode=OneWay}"/>
+                            <Label Grid.Row="5" Grid.Column="0" Content="{x:Static res:Resources.lbl_Shape}"/>
+                            <Image Grid.Row="5" Grid.Column="1" Source="{Binding Shape.ShapeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='Shape'}"/>
+                            <Label Grid.Row="5" Grid.Column="2" Content="{Binding Shape.Name, Mode=OneWay}"/>
+                            <Label Grid.Row="6" Grid.Column="0" Content="{x:Static res:Resources.lbl_MainType}"/>
+                            <Image Grid.Row="6" Grid.Column="1" Source="{Binding MainTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='MainType'}"/>
+                            <Label Grid.Row="6" Grid.Column="2" Content="{Binding MainType.TypeName, Mode=OneWay}"/>
+                            <Label Grid.Row="7" Grid.Column="0" Content="{x:Static res:Resources.lbl_Material}"/>
+                            <Label Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Content="{Binding Material.Name, Mode=OneWay}"/>
+                            <Label Grid.Row="8" Grid.Column="0" Content="{x:Static res:Resources.lbl_Target}"/>
+                            <Label Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Content="{Binding Target.Name, Mode=OneWay}"/>
+                        </Grid>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>

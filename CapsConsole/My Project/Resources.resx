@@ -1422,4 +1422,16 @@ You should have maximally one main image per cap.</value>
     <value>Type suggestor</value>
     <comment>Frame header</comment>
   </data>
+  <data name="err_ErrorData" xml:space="preserve">
+    <value>Error while obtaining data</value>
+    <comment>Error label</comment>
+  </data>
+  <data name="txt_SuggestedType" xml:space="preserve">
+    <value>Suggested type</value>
+    <comment>Internal name of anonymous cap type</comment>
+  </data>
+  <data name="lbl_Height_Simple" xml:space="preserve">
+    <value>Height</value>
+    <comment>Label in tooltip</comment>
+  </data>
 </root>

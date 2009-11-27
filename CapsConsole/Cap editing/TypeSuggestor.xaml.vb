@@ -281,6 +281,8 @@ Partial Public Class TypeSuggestor
             Me.Dispatcher.Invoke(New Action(AddressOf MakeSuggestions))
             Exit Sub
         End If
+        lblNewError.Visibility = Windows.Visibility.Collapsed
+        lblExError.Visibility = Windows.Visibility.Collapsed
         Dim AnyExType As Boolean = False
         Dim AnyNewType As Boolean = False
         If Context Is Nothing OrElse Context.IsDisposed OrElse Not IsEnabled Then
@@ -299,13 +301,18 @@ Partial Public Class TypeSuggestor
                           Score = MaxSizeDiff - Math.Abs(type.Height - CapHeight) + _
                                   MaxSizeDiff - Math.Abs(type.Size - Size1) + _
                                   If(String.IsNullOrEmpty(Shape.Size2Name) OrElse Not type.Size2.HasValue, 0, MaxSizeDiff - Math.Abs(type.Size2.Value - Size2)) + _
-                                  If(Material IsNot Nothing AndAlso Material.MaterialID = type.MaterialID, MaxSizeDiff, 0) + _
-                                  If(TargetObject IsNot Nothing AndAlso TargetObject.TargetID = type.TargetID, MaxSizeDiff, 0) _
+                                  If(If(Material Is Nothing, New Integer?, Material.MaterialID) = type.MaterialID, MaxSizeDiff, 0) + _
+                                  If(If(TargetObject Is Nothing, New Integer?, TargetObject.TargetID) = type.TargetID, MaxSizeDiff, 0) _
                    Order By Score Descending _
-                   Take 10
-                Dim exTypes = exTypesQ.ToList
-                AnyExType = exTypes.Count > 0
-                lstExTypes.ItemsSource = exTypes
+                   Take 10      'TODO: There's probably bug in LINQ-to-SQL. If If(If( above is rewritten using single If(x IsNot Nothing AndAlso x.xID = type.xID ... it throws NullReferenceException upon ToList() call
+                Try
+                    Dim exTypes = exTypesQ.ToList
+                    AnyExType = exTypes.Count > 0
+                    lstExTypes.ItemsSource = exTypes
+                Catch ex As Exception
+                    lblExError.Visibility = Windows.Visibility.Visible
+                    lblExError.ToolTip = ex.GetType.Name & vbCrLf & ex.Message
+                End Try
                 'Suggets new types
                 Dim newTypesCapsQ = From cap In Context.Caps _
                     Where cap.CapTypeID Is Nothing AndAlso _
@@ -318,27 +325,35 @@ Partial Public Class TypeSuggestor
                                           Into Group, Size = Average(item.Size), Height = Average(item.Height), Size2 = Average(item.Size2), Count() _
                                           Where Count >= 3 _
                                           Select Caps = Group, _
-                                            Size1 = CInt(Math.Round(Size)), _
-                                            Size2 = If(Size2.hasvalue, New Integer?(Math.Round(Size2.value)), Nothing), _
-                                            Height = CInt(Math.Round(Height)), Count = Count, _
+                                            Size1 = CInt(Math.Round(Size, MidpointRounding.AwayFromZero)), _
+                                            Size2 = If(Size2.hasvalue, New Integer?(Math.Round(Size2.value, MidpointRounding.AwayFromZero)), Nothing), _
+                                            Height = CInt(Math.Round(Height, MidpointRounding.AwayFromZero)), Count = Count, _
                                             MaterialID, ShapeID = Group.First.ShapeID, MainTypeID = Group.First.MainTypeID _
                                           Order By Count Descending
                     Dim suggTypesQ = From agg In newAggregationsQ _
-                                    Select Type = New CapType() With { _
-                                        .MainTypeID = agg.MainTypeID, .ShapeID = agg.ShapeID, _
-                                        .Size = agg.Size1, .Size2 = agg.Size2, .Height = agg.Height, _
-                                        .MaterialID = agg.MaterialID, _
-                                        .TargetID = If((From cap In agg.Caps Select cap.TargetID Distinct).Count = 1, agg.Caps.First.TargetID, New Integer?), _
-                                        .TypeName = "Suggested type"}
-                    Dim suggTypes = suggTypesQ.ToList
-                    AnyNewType = suggTypesQ.Count > 0
-                    lvwNewTypes.ItemsSource = lvwNewTypes
+                                     Select MainTypeID = agg.MainTypeID, ShapeID = agg.ShapeID, _
+                                           Size = agg.Size1, Size2 = agg.Size2, Height = agg.Height, _
+                                           MaterialID = agg.MaterialID, _
+                                           TargetID = If((From cap In agg.Caps Select cap.TargetID Distinct).Count = 1, agg.Caps.First.TargetID, New Integer?), _
+                                           Caps = agg.Caps,
+                                           MainType = (From mt In Context.MainTypes Where mt.MainTypeID = agg.MainTypeID).FirstOrDefault,
+                                           Shape = (From sh In Context.Shapes Where sh.ShapeID = agg.ShapeID).FirstOrDefault,
+                                           Target = If((From cap In agg.Caps Select cap.TargetID Distinct).Count = 1, agg.Caps.First.Target, Nothing),
+                                           Material = (From mat In Context.Materials Where mat.MaterialID = agg.MaterialID).FirstOrDefault
+                    Try
+                        Dim suggTypes = suggTypesQ.ToList
+                        AnyNewType = suggTypesQ.Count > 0
+                        dgNewTypes.ItemsSource = suggTypes
+                    Catch ex As Exception
+                        lblNewError.Visibility = Windows.Visibility.Visible
+                        lblNewError.ToolTip = ex.GetType.Name & vbCrLf & ex.Message
+                    End Try
                 End If
             End If
         End If
         lstExTypes.Visibility = If(AnyExType, Visibility.Visible, Visibility.Collapsed)
         lblNoExTypes.Visibility = If(AnyExType, Visibility.Collapsed, Visibility.Visible)
-        lvwNewTypes.Visibility = If(AnyNewType, Visibility.Visible, Visibility.Collapsed)
+        dgNewTypes.Visibility = If(AnyNewType, Visibility.Visible, Visibility.Collapsed)
         lblNoNewTypes.Visibility = If(AnyNewType, Visibility.Collapsed, Visibility.Visible)
     End Sub
 

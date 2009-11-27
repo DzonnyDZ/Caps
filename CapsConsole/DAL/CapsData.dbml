@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="CapsDev" Class="CapsDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CapsDev" Class="CapsDataDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=&quot;C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf&quot;;Initial Catalog=CapsDev;Integrated Security=True;User Instance=True" SettingsObjectName="Caps.Console.MySettings" SettingsPropertyName="CapsDevConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Cap_Category_Int" Member="Cap_Category_Ints">
     <Type Name="Cap_Category_Int">

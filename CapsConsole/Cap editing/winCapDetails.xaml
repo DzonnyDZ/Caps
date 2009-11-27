@@ -89,7 +89,7 @@
                                              ConverterParameter={StaticResource i64},
                                              Mode=OneWay}"
                             HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0"/>
-                        <TextBlock Text="{Binding CapName, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" TextAlignment="Center" TextWrapping="WrapWithOverflow" MaxWidth="64" MaxHeight="36"  />
+                        <TextBlock Text="{Binding CapName, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" MaxWidth="64" MaxHeight="36"  />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -130,7 +130,7 @@
                     <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_MainPicture}"/>
                     <Label Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding MainPicture, Mode=OneWay}"/>
                     <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_AnotherPictures}"/>
-                    <TextBox MinLines="2" Grid.Column="1" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding AnotherPictures, Mode=OneWay}" IsReadOnly="True" TextWrapping="WrapWithOverflow" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" MaxLines="2" />
+                    <TextBox MinLines="2" Grid.Column="1" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding AnotherPictures, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" MaxLines="2" />
                     <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_PictureType}"/>
                     <Label Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding PictureType, Converter={StaticResource PictureTypeConverter}, Mode=OneWay}"/>    
                 </Grid>
@@ -303,13 +303,13 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Content="{x:Static res:Resources.lbl_TopText}"/>
-                    <TextBox Grid.Row="1" MinLines="4" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding TopText, Mode=OneWay}" HorizontalAlignment="Stretch"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxLines="4" />
+                    <TextBox Grid.Row="1" MinLines="4" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding TopText, Mode=OneWay}" HorizontalAlignment="Stretch"  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxLines="4" />
                     <Label Grid.Row="2" Content="{x:Static res:Resources.lbl_SideText}"/>
-                    <TextBox Grid.Row="3" MinLines="4" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding SideText, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" MaxLines="4" />
+                    <TextBox Grid.Row="3" MinLines="4" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding SideText, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" MaxLines="4" />
                     <Label Grid.Row="4" Content="{x:Static res:Resources.lbl_BottomText}"/>
-                    <TextBox Grid.Row="5" MinLines="4" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding BottomText, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" MaxLines="4" />
+                    <TextBox Grid.Row="5" MinLines="4" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding BottomText, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" MaxLines="4" />
                     <Label Grid.Row="6" Content="{x:Static res:Resources.lbl_Note}"/>
-                    <TextBox Grid.Row="7" MinLines="4" TextWrapping="WrapWithOverflow" IsReadOnly="True" Text="{Binding Note, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" MaxLines="4" />
+                    <TextBox Grid.Row="7" MinLines="4" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Note, Mode=OneWay}" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto" MaxLines="4" />
                 </Grid>
             </GroupBox>
             <!--Misc-->

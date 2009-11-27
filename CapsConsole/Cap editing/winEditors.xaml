@@ -7,7 +7,7 @@
     Title="{x:Static res:Resources.txt_ListEditors}" Height="336" Width="813" ShowInTaskbar="False" Icon="/CapsConsole;component/Resources/Cap.ico">
     <Window.Resources>
         <Style TargetType="TextBox" x:Key="MultilineInGrid">
-            <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="AcceptsReturn" Value="True"/>
             <Setter Property="MinLines" Value="2"/>
         </Style>

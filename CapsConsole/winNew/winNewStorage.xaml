@@ -48,7 +48,7 @@
         <ComboBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="cmbStorageType" Style="{StaticResource StorageTypeTemplate}" SelectedValuePath="StorageTypeID" />
         <Button Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="cmdNewType" Content="{x:Static res:Resources.cmd_New}"/>
         <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{x:Static res:Resources.lbl_Description}"/>
-        <TextBox  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="WrapWithOverflow" AcceptsReturn="True" MinLines="3" Name="txtDescription" />
+        <TextBox  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True" MinLines="3" Name="txtDescription" />
         <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>

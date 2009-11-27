@@ -45,7 +45,7 @@
                 <Image MaxWidth="64" MaxHeight="64"
                        Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i64}}"
                        HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Height="auto"  Grid.Column="0" Grid.Row="0" />
-                <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Text="{Binding CapName, Mode=OneWay}" TextWrapping="WrapWithOverflow" MaxWidth="72" />                   
+                <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Text="{Binding CapName, Mode=OneWay}" TextWrapping="Wrap" MaxWidth="72" />                   
                 <Image MaxWidth="18" MaxHeight="18" Width="auto" Height="auto"
                        Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                        Source="{Binding Path=CapSign.CapSignID, Converter={StaticResource MyImageIDConverter}, Mode=OneWay, ConverterParameter='CapSign'}"/>
