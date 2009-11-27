@@ -4,7 +4,8 @@
         xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
         xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:res="clr-namespace:Caps.Console.My.Resources"
-    Title="{x:Static res:Resources.txt_SelectDatabase}" Height="385" Width="294" Icon="/CapsConsole;component/Resources/Cap.ico">
+    Title="{x:Static res:Resources.txt_SelectDatabase}" Height="385" Width="294" Icon="/CapsConsole;component/Resources/Cap.ico"
+        >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

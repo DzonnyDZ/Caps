@@ -118,13 +118,11 @@ Public Class GetCapsOfConverter
     ''' <summary>Contains value of the <see cref="Context"/> property</summary>
     Private _Context As CapsDataDataContext
     ''' <summary>Gtes or sets data context used for querying for caps</summary>
-    ''' <exception cref="ArgumentNullException">Value is being set to null</exception>
-    Public Property Context() As CapsDataDataContext
-        Get
+      Public Property Context() As CapsDataDataContext
+        <DebuggerStepThrough()> Get
             Return _Context
         End Get
-        Set(ByVal value As CapsDataDataContext)
-            If value Is Nothing Then Throw New ArgumentNullException("value")
+        <DebuggerStepThrough()> Set(ByVal value As CapsDataDataContext)
             _Context = value
         End Set
     End Property

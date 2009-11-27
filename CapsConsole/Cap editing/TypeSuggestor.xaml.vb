@@ -258,6 +258,7 @@ Partial Public Class TypeSuggestor
     Protected Overridable Sub OnContextChanged(ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
         If e.OldValue IsNot Nothing Then RemoveHandler DirectCast(e.OldValue, CapsDataDataContext).Disposed, AddressOf Context_Disposed
         If e.NewValue IsNot Nothing Then AddHandler Context.Disposed, AddressOf Context_Disposed
+        CType(Resources("GetCapsOfConverter"), GetCapsOfConverter).Context = Me.Context
         MakeSuggestions()
     End Sub
     ''' <summary>Handles the <see cref="Context"/>.<see cref="CapsDataDataContext.Disposed">Disposed</see> event</summary>
@@ -357,3 +358,4 @@ Partial Public Class TypeSuggestor
         If IsEnabled Then MakeSuggestions()
     End Sub
 End Class
+

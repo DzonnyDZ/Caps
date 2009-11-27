@@ -24,6 +24,7 @@ Class winMain
     Private Sub winMain_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
         Me.SetWindowPosition(My.Settings.winMainLoc)
         Dim win As New winSelectDatabase
+        win.Owner = Me
 Connect: If win.ShowDialog Then
             Main.Connection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)
             Try
