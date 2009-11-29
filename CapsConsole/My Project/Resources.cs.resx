@@ -1028,7 +1028,8 @@ K jednomu víčku byste měli mít maximálně jeden hlavní obrázek</value>
     <value>Nepodařilo se zkopírovat obrázek značky víčka. Značka víčka byla vytvořena bez obrázku.</value>
   </data>
   <data name="tot_FavoriteCharacters" xml:space="preserve">
-    <value>Zde můžete vložit znaky, které často používáte v popiskách víček, ale nejsou na klávesnici. Pak je můžete kopírovat nebo přetahávat do příslušných políček.</value>
+    <value>Zde můžete vložit znaky, které často používáte v popiskách víček, ale nejsou na klávesnici. Pak je můžete kopírovat nebo přetahávat do příslušných políček.
+Dvakrát klikněte pro editaci.</value>
   </data>
   <data name="txt_NewSign" xml:space="preserve">
     <value>Nová značka</value>

@@ -54,12 +54,14 @@
     * Fix: Typo in Czech localization cap sign tool tip
     * All text overwlows changed to force wrap inside word if word is longer than line
     * Complex tooltip changet not to hide automatically
+    * Caps detail displays names of colors
+    * Fix: Automatic text does not work on drop
+    * Favorite characters box is now eidable only after double click, which prevents vanishing characters on drag & drop.
     
 Pending issues:
 ===============
 * ComboBox tooltip error
 * ComboBox: Press delete shall select null item    
-* Automatic text does not work pon drop
 * Accelerators for numeric up-downs and keywords editor don't work
 * Select language in options
 * Show cap IDs in main window
@@ -84,3 +86,4 @@ Pending issues:
 * Localized state names in menu
 * Save and goto in editor window
 * Type suggestor in editor window
+* When color is gray or transparent, color name is not visible

@@ -3,7 +3,7 @@ Imports Tools.DrawingT.ImageTools
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports System.ComponentModel
 Imports Tools.ComponentModelT
-Imports Tools
+Imports Tools, Tools.WindowsT.WPF.WpfExtensions
 
 ''' <summary>Creates a new cap</summary>
 Partial Public Class CapEditor
@@ -636,12 +636,19 @@ Partial Public Class CapEditor
     Protected Overridable Sub OnCapNameChanged(ByVal e As DependencyPropertyChangedEventArgs)
         If CapName <> txtCapName.Text Then txtCapName.Text = CapName
     End Sub
+    ''' <summary>Contains true when <see cref="txtCapName"/>.<see cref="TextBox.Drop">Drop</see> just occured</summary>
+    Private txtCapName_JustDrop As Boolean = False
+    Private Sub txtCapName_PreviewDrop(ByVal sender As Object, ByVal e As System.Windows.DragEventArgs) Handles txtCapName.PreviewDrop
+        txtCapName_JustDrop = True
+    End Sub
+
     Private Sub txtCapName_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtCapName.TextChanged
         If CapName <> txtCapName.Text Then CapName = txtCapName.Text
-        If txtCapName.IsFocused AndAlso txtTitleTextMatched Then
+        If (txtCapName.IsFocused OrElse txtCapName_JustDrop) AndAlso txtTitleTextMatched Then
             txtMainText.Text = txtCapName.Text
         End If
         txtTitleTextMatched = txtCapName.Text = txtMainText.Text
+        txtCapName_JustDrop = False
     End Sub
 #End Region
 #Region "MainText"
@@ -671,13 +678,19 @@ Partial Public Class CapEditor
     Protected Overridable Sub OnMainTextChanged(ByVal e As DependencyPropertyChangedEventArgs)
         If MainText <> txtMainText.Text Then txtMainText.Text = MainText
     End Sub
+    ''' <summary>Contains true when <see cref="txtMainText"/>.<see cref="TextBox.Drop">Drop</see> just occured</summary>
+    Private txtMainText_JustDrop As Boolean = False
+    Private Sub txtMainText_PreviewDrop(ByVal sender As Object, ByVal e As System.Windows.DragEventArgs) Handles txtMainText.PreviewDrop
+        txtMainText_JustDrop = True
+    End Sub
     Private Sub txtMainText_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtMainText.TextChanged
         If MainText <> txtMainText.Text Then MainText = txtMainText.Text
         txtTitleTextMatched = txtCapName.Text = txtMainText.Text
-        If txtTopTextMatched AndAlso (txtMainText.IsFocused OrElse txtCapName.IsFocused) Then
+        If txtTopTextMatched AndAlso (txtMainText.IsFocused OrElse txtCapName.IsFocused OrElse txtMainText_JustDrop OrElse txtCapName_JustDrop) Then
             txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
         End If
         txtTopTextMatched = txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
+        txtMainText_JustDrop = False
     End Sub
 #End Region
 #Region "SubTitle"
@@ -707,12 +720,18 @@ Partial Public Class CapEditor
     Protected Overridable Sub OnSubTitleChanged(ByVal e As DependencyPropertyChangedEventArgs)
         If SubTitle <> txtSubTitle.Text Then txtSubTitle.Text = SubTitle
     End Sub
+    ''' <summary>Contains true when <see cref="txtSubTitle"/>.<see cref="TextBox.Drop">Drop</see> just occured</summary>
+    Private txtSubTitle_JustDrop As Boolean
+    Private Sub txtSubTitle_PreviewDrop(ByVal sender As Object, ByVal e As System.Windows.DragEventArgs) Handles txtSubTitle.PreviewDrop
+        txtSubTitle_JustDrop = True
+    End Sub
     Private Sub txtSubTitle_TextChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.TextChangedEventArgs) Handles txtSubTitle.TextChanged
         If SubTitle <> txtSubTitle.Text Then SubTitle = txtSubTitle.Text
-        If txtTopTextMatched AndAlso txtSubTitle.IsFocused Then
+        If txtTopTextMatched AndAlso (txtSubTitle.IsFocused OrElse txtSubTitle_JustDrop) Then
             txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
         End If
         txtTopTextMatched = txtTopText.Text = txtMainText.Text & If(txtSubTitle.Text <> "" AndAlso txtMainText.Text <> "", vbCrLf, "") & txtSubTitle.Text
+        txtSubTitle_JustDrop = False
     End Sub
 #End Region
 #Region "MainPicture"
@@ -3112,7 +3131,48 @@ Resize256:      Try
         If LastCountry IsNot Nothing Then LastCountry.Text = DirectCast(sender.DataContext, Country).Code2
     End Sub
 
+#Region "TypeSuggestor"
+    Private Sub tysSuggestor_ApplyExistingType(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles tysSuggestor.ApplyExistingType
+        'Preserve values
+        Dim OldSize1 = Size1
+        Dim OldSize2 = Size2
+        Dim OldHeigh = CapHeight
+        Dim OldTarget = Target
+        Dim OldMaterial = Material
+        'Make selection
+        CapTypeSelection = CreatableItemSelection.SelectedItem
+        CapType = tysSuggestor.SelectedExistingType
+        'Preserved values
+        Size1 = OldSize1
+        Size2 = OldSize2
+        CapHeight = OldHeigh
+        Material = OldMaterial
+        Target = OldTarget
+    End Sub
 
+    Private Sub tysSuggestor_ApplyNewType(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles tysSuggestor.ApplyNewType
+        Dim win As New winCreateNewType
+        win.ShowDialog(Me)
+        ' <!--TODO: Commands - right button, window to select caps, create new type, set type properties-->
+    End Sub
+#End Region
+#Region "txtFavoriteCharacters"
+    Private Sub txtFavoriteCharacters_LostFocus(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles txtFavoriteCharacters.LostFocus
+        txtFavoriteCharacters.IsReadOnly = True
+    End Sub
+
+
+    Private Sub txtFavoriteCharacters_PreviewMouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Input.MouseButtonEventArgs) Handles txtFavoriteCharacters.PreviewMouseDown
+        If e.ChangedButton = MouseButton.Left AndAlso e.ClickCount = 2 Then
+            txtFavoriteCharacters.IsReadOnly = Not txtFavoriteCharacters.IsReadOnly
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtFavoriteCharacters_PreviewDragEnter(ByVal sender As Object, ByVal e As System.Windows.DragEventArgs) Handles txtFavoriteCharacters.PreviewDragEnter
+        txtFavoriteCharacters.IsReadOnly = False
+    End Sub
+#End Region
 End Class
 
 ''' <summary>Allows to distinguish image already in database and a new image</summary>

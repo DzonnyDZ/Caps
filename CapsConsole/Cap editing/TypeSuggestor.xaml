@@ -25,7 +25,6 @@
         <Label Content="{x:Static res:Resources.lbl_SuggExTypes}" FontWeight="Bold" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" />
         <Label Content="{x:Static res:Resources.lbl_NoSuggestions}" Grid.Row="1" Grid.Column="0" Name="lblNoExTypes" HorizontalAlignment="Left"  />
         <Label Grid.Row="2" Grid.Column="0" Name="lblExError" Visibility="Collapsed" Content="{x:Static Member=res:Resources.err_ErrorData}" HorizontalAlignment="Left"/>
-        <!--TODO: Commands - doubleclick to slect, select type, preserve values-->
         <ListBox Grid.Row="1" Grid.Column="0" Visibility="Collapsed" Name="lstExTypes" HorizontalAlignment="Stretch">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -34,7 +33,7 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid MaxWidth="40" Width="auto" Height="64" ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}">
+                    <Grid MaxWidth="40" Width="auto" Height="64" ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}" MouseDown="ExType_MouseDown">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
@@ -96,10 +95,12 @@
         <Label Content="{x:Static res:Resources.lbl_SuggNewTypes}" FontWeight="Bold" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" />
         <Label Content="{x:Static res:Resources.lbl_NoSuggestions}" Grid.Row="4" Grid.Column="0" Name="lblNoNewTypes" HorizontalAlignment="Left" />
         <Label Grid.Row="4" Grid.Column="5" Name="lblNewError" Visibility="Collapsed" Content="{x:Static Member=res:Resources.err_ErrorData}" HorizontalAlignment="Left"/>
-        <!--TODO: Commands - right button, window to select caps, create new type, set type properties-->
         <toolkit:DataGrid Grid.Row="5" Grid.Column="0" Visibility="Collapsed" Name="dgNewTypes" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
             <toolkit:DataGrid.Resources>
                <ItemsControl x:Key="RowToolTip"  Style="{StaticResource ToolTipImageListEx}" ItemsSource="{Binding Caps}"/>
+                <ContextMenu x:Key="RowContextMenu">
+                    <MenuItem Header="{x:Static res:Resources.mni_CreateType}" Click="mniCreateType_Click"/>
+                </ContextMenu>
             </toolkit:DataGrid.Resources>
                 <toolkit:DataGrid.Columns>
                 <toolkit:DataGridTemplateColumn Header="{x:Static res:Resources.coh_MainType}" >
@@ -132,6 +133,7 @@
                 <Style TargetType="{x:Type toolkit:DataGridRow}">
                     <Setter Property="ToolTip" Value="{StaticResource RowToolTip}" />
                     <Setter Property="ToolTipService.ShowDuration" Value="{x:Static sys:Int32.MaxValue}"/>
+                    <Setter Property="ContextMenu" Value="{StaticResource RowContextMenu}"/>
                 </Style>
             </toolkit:DataGrid.RowStyle>
         </toolkit:DataGrid>

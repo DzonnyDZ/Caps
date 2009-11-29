@@ -31,6 +31,8 @@
             OuterParam="!"/>
         <!--<my:StringFormatConverter x:Key="StringFormatConverter"/>-->
         <my:NotVisibilityConverter x:Key="NotVisibilityConverter"/>
+        <my:IntColorNameConverter x:Key="IntColorNameConverter"/>
+        <my:NotColorConverter x:Key="NotColorConverter"/>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" x:Name="cmdEdit"/>
@@ -151,13 +153,13 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Background}"/>
-                    <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{Binding BackColor1, Mode=OneWay, Converter={StaticResource IntColorConverter}}"/>
+                    <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{Binding BackColor1, Mode=OneWay, Converter={StaticResource IntColorConverter}}" Content="{Binding BackColor1, Mode=OneWay, Converter={StaticResource IntColorNameConverter}}" Foreground="{Binding BackColor1, Mode=OneWay, Converter={StaticResource NotColorConverter}}"/>
                     <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_SecondaryBackground}"/>
-                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{Binding BackColor2, Mode=OneWay, Converter={StaticResource IntColorConverter}}"/>
+                    <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{Binding BackColor2, Mode=OneWay, Converter={StaticResource IntColorConverter}}" Content="{Binding BackColor2, Mode=OneWay, Converter={StaticResource IntColorNameConverter}}" Foreground="{Binding BackColor2, Mode=OneWay, Converter={StaticResource NotColorConverter}}"/>
                     <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Foreground}"/>
-                    <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{Binding ForeColor, Mode=OneWay, Converter={StaticResource IntColorConverter}}"/>
+                    <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{Binding ForeColor, Mode=OneWay, Converter={StaticResource IntColorConverter}}" Content="{Binding ForeColor, Mode=OneWay, Converter={StaticResource IntColorNameConverter}}" Foreground="{Binding ForeColor, Mode=OneWay, Converter={StaticResource NotColorConverter}}"/>
                     <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Foreground2}"/>
-                    <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{Binding ForeColor2, Mode=OneWay, Converter={StaticResource IntColorConverter}}"/>
+                    <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{Binding ForeColor2, Mode=OneWay, Converter={StaticResource IntColorConverter}}" Content="{Binding ForeColor2, Mode=OneWay, Converter={StaticResource IntColorNameConverter}}" Foreground="{Binding ForeColor2, Mode=OneWay, Converter={StaticResource NotColorConverter}}"/>
                     <CheckBox Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Name="chk3D" Content="{x:Static res:Resources.lbl_3D2}" IsChecked="{Binding Is3D, Mode=OneWay}" IsEnabled="False" />
                     <RadioButton Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" IsChecked="{Binding Surface, Mode=OneWay, Converter={StaticResource CompareConverter}, ConverterParameter={StaticResource charM}}" Name="optMatting" Content="{x:Static res:Resources.lbl_Matting2}" IsEnabled="False"/>
                     <RadioButton Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" IsChecked="{Binding Surface, Mode=OneWay, Converter={StaticResource CompareConverter}, ConverterParameter={StaticResource charG}}" Name="optGlossy" Content="{x:Static res:Resources.lbl_Glossy2}" IsEnabled="False"/>

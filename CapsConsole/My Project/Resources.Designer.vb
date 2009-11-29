@@ -1645,6 +1645,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Surface.
+        '''</summary>
+        Public ReadOnly Property lbl_Surface() As String
+            Get
+                Return ResourceManager.GetString("lbl_Surface", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Target ob_ject.
         '''</summary>
         Public ReadOnly Property lbl_Target() As String
@@ -1713,6 +1722,15 @@ Namespace My.Resources
         Public ReadOnly Property mni_Configuration() As String
             Get
                 Return ResourceManager.GetString("mni_Configuration", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Create type ....
+        '''</summary>
+        Public ReadOnly Property mni_CreateType() As String
+            Get
+                Return ResourceManager.GetString("mni_CreateType", resourceCulture)
             End Get
         End Property
         
@@ -2275,7 +2293,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Here you can paste characters that you often use in caps descriptions and that are not present on keyboard. Than you can Copy &amp; Paste or Drag &amp; Drop them to appropriate fields..
+        '''  Looks up a localized string similar to Here you can paste characters that you often use in caps descriptions and that are not present on keyboard. Than you can Copy &amp; Paste or Drag &amp; Drop them to appropriate fields.
+        '''Doubleclick to edit..
         '''</summary>
         Public ReadOnly Property tot_FavoriteCharacters() As String
             Get
@@ -2479,6 +2498,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_CopyFile() As String
             Get
                 Return ResourceManager.GetString("txt_CopyFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Create new type.
+        '''</summary>
+        Public ReadOnly Property txt_CreateNewType() As String
+            Get
+                Return ResourceManager.GetString("txt_CreateNewType", resourceCulture)
             End Get
         End Property
         

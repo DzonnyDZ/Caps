@@ -199,3 +199,74 @@ Public Class CountryCodeFlagConverter
         End If
     End Function
 End Class
+
+Public Class IntColorNameConverter
+    Implements IValueConverter
+
+    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
+        If value Is Nothing Then Return Nothing
+        If TypeOf value Is Color Then
+            value = DirectCast(value, Color).ToColor
+        ElseIf Not TypeOf value Is System.Drawing.Color Then
+            value = System.Drawing.Color.FromArgb(TypeTools.DynamicCast(Of Integer)(value))
+        End If
+        Dim color As System.Drawing.Color = value
+        Select Case color.ToArgb
+            Case System.Drawing.Color.White.ToArgb : Return My.Resources.clr_White
+            Case System.Drawing.Color.Black.ToArgb : Return My.Resources.clr_Black
+            Case System.Drawing.Color.Gray.ToArgb : Return My.Resources.clr_Gray
+            Case System.Drawing.Color.Blue.ToArgb : Return My.Resources.clr_Blue
+            Case System.Drawing.Color.Red.ToArgb : Return My.Resources.clr_Red
+            Case System.Drawing.Color.Yellow.ToArgb : Return My.Resources.clr_Yellow
+            Case System.Drawing.Color.Orange.ToArgb : Return My.Resources.clr_Orange
+            Case System.Drawing.Color.Green.ToArgb : Return My.Resources.clr_Green
+            Case System.Drawing.Color.Pink.ToArgb : Return My.Resources.clr_Pink
+            Case System.Drawing.Color.Brown.ToArgb : Return My.Resources.clr_Brown
+            Case System.Drawing.Color.Magenta.ToArgb : Return My.Resources.clr_Magenta
+            Case System.Drawing.Color.Silver.ToArgb : Return My.Resources.clr_Silver
+            Case System.Drawing.Color.LightBlue.ToArgb : Return My.Resources.clr_LightBlue
+            Case System.Drawing.Color.Gold.ToArgb : Return My.Resources.clr_Gold
+            Case System.Drawing.Color.Transparent.ToArgb : Return My.Resources.clr_Transparent
+            Case System.Drawing.Color.Lime.ToArgb : Return My.Resources.clr_Lime
+            Case Else : Return color.Name
+        End Select
+    End Function
+
+
+    Private Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
+        If value Is Nothing Then Return System.Drawing.Color.Transparent.ToArgb
+        If Not TypeOf value Is String Then Throw New TypeMismatchException("value", value, GetType(String))
+        Select Case DirectCast(value, String)
+            Case My.Resources.clr_White : Return System.Drawing.Color.White.ToArgb
+            Case My.Resources.clr_Black : Return System.Drawing.Color.Black.ToArgb
+            Case My.Resources.clr_Gray : Return System.Drawing.Color.Gray.ToArgb
+            Case My.Resources.clr_Blue : Return System.Drawing.Color.Blue.ToArgb
+            Case My.Resources.clr_Red : Return System.Drawing.Color.Red.ToArgb
+            Case My.Resources.clr_Yellow : Return System.Drawing.Color.Yellow.ToArgb
+            Case My.Resources.clr_Orange : Return System.Drawing.Color.Orange.ToArgb
+            Case My.Resources.clr_Green : Return System.Drawing.Color.Green.ToArgb
+            Case My.Resources.clr_Pink : Return System.Drawing.Color.Pink.ToArgb
+            Case My.Resources.clr_Brown : Return System.Drawing.Color.Brown.ToArgb
+            Case My.Resources.clr_Magenta : Return System.Drawing.Color.Magenta.ToArgb
+            Case My.Resources.clr_Silver : Return System.Drawing.Color.Silver.ToArgb
+            Case My.Resources.clr_LightBlue : Return System.Drawing.Color.LightBlue.ToArgb
+            Case My.Resources.clr_Gold : Return System.Drawing.Color.Gold.ToArgb
+            Case My.Resources.clr_Transparent : Return System.Drawing.Color.Transparent.ToArgb
+            Case My.Resources.clr_Lime : Return System.Drawing.Color.Lime.ToArgb
+            Case Else : Return System.Drawing.Color.FromName(value).ToArgb
+        End Select
+    End Function
+End Class
+
+''' <summary>Converts 2-letters country code to localized country name</summary>
+Public Class CountryCodeNameConverter
+    Implements IValueConverter
+    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
+        Return Country.GetCountryNameFromCode(value)
+    End Function
+
+    Private Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
+        Throw New NotImplementedException("{0} cannot convert back".f(Me.GetType.Name))
+    End Function
+
+End Class

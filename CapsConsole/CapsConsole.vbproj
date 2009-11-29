@@ -145,11 +145,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Cap editing\CapDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Cap editing\TypeSuggestor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Cap editing\winCreateNewType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Config\Database wizard\1-pgServerOrFile.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -265,6 +273,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Cap editing\CapDetailsView.xaml.vb">
+      <DependentUpon>CapDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Cap editing\winCreateNewType.xaml.vb">
+      <DependentUpon>winCreateNewType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XAML helpers\Application.xaml.vb">
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>

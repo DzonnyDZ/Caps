@@ -1309,7 +1309,8 @@ You should have maximally one main image per cap.</value>
     <comment>Error message text</comment>
   </data>
   <data name="tot_FavoriteCharacters" xml:space="preserve">
-    <value>Here you can paste characters that you often use in caps descriptions and that are not present on keyboard. Than you can Copy &amp; Paste or Drag &amp; Drop them to appropriate fields.</value>
+    <value>Here you can paste characters that you often use in caps descriptions and that are not present on keyboard. Than you can Copy &amp; Paste or Drag &amp; Drop them to appropriate fields.
+Doubleclick to edit.</value>
     <comment>Tooltip</comment>
   </data>
   <data name="txt_NewSign" xml:space="preserve">
@@ -1433,5 +1434,17 @@ You should have maximally one main image per cap.</value>
   <data name="lbl_Height_Simple" xml:space="preserve">
     <value>Height</value>
     <comment>Label in tooltip</comment>
+  </data>
+  <data name="mni_CreateType" xml:space="preserve">
+    <value>Create type ...</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="lbl_Surface" xml:space="preserve">
+    <value>Surface</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="txt_CreateNewType" xml:space="preserve">
+    <value>Create new type</value>
+    <comment>Window title</comment>
   </data>
 </root>
