@@ -32,7 +32,7 @@ Public Class pgSummary
                             Using Connection As SqlConnection = New SqlConnection(b.ToString)
                                 Connection.Open()
                                 If Not VerifyDatabaseVersion(Connection) Then
-                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError)
+                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError, Me)
                                     'TODO: Upgrade?
                                     Exit Sub
                                 End If
@@ -51,7 +51,7 @@ Public Class pgSummary
                             Using Connection As SqlConnection = New SqlConnection(b.ToString)
                                 Connection.Open()
                                 If Not VerifyDatabaseVersion(Connection) Then
-                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError)
+                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError, Me)
                                     'TODO: Upgrade?
                                     Exit Sub
                                 End If
@@ -66,7 +66,7 @@ Public Class pgSummary
                             Using Connection As SqlConnection = New SqlConnection(b.ToString)
                                 Connection.Open()
                                 If Not VerifyDatabaseVersion(Connection) Then
-                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError)
+                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError, Me)
                                     'TODO: Upgrade?
                                     Exit Sub
                                 End If
@@ -75,9 +75,9 @@ Public Class pgSummary
             End Select
         Catch ex As Exception
             If testOnly Then
-                mBox.MsgBox(String.Format(My.Resources.err_TestConnection, vbCr, ex.Message), MsgBoxStyle.Critical, My.Resources.txt_DatabaseError)
+                mBox.MsgBox(String.Format(My.Resources.err_TestConnection, vbCr, ex.Message), MsgBoxStyle.Critical, My.Resources.txt_DatabaseError, Me)
             Else
-                mBox.MsgBox(String.Format(My.Resources.err_SetupDatabase, vbCr, ex.Message), MsgBoxStyle.Critical, My.Resources.txt_DatabaseError)
+                mBox.MsgBox(String.Format(My.Resources.err_SetupDatabase, vbCr, ex.Message), MsgBoxStyle.Critical, My.Resources.txt_DatabaseError, Me)
             End If
             Exit Sub
         End Try

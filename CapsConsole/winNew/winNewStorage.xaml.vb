@@ -21,14 +21,14 @@ Partial Public Class winNewStorage
             _NewObject = New Storage() With {.StorageNumber = txtNumber.Text, .Description = txtDescription.Text, .StorageTypeID = cmbStorageType.SelectedValue}
             Context.Storages.InsertOnSubmit(_NewObject)
         Catch ex As Exception
-            mBox.Error_X(ex)
+            mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Exit Sub
         End Try
         Try
             Context.SubmitChanges()
         Catch ex As Exception
             Context.Storages.DeleteAllNew()
-            mBox.Error_X(ex)
+            mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Exit Sub
         End Try
         Me.DialogResult = True

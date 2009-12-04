@@ -57,6 +57,7 @@
     * Caps detail displays names of colors
     * Fix: Automatic text does not work on drop
     * Favorite characters box is now eidable only after double click, which prevents vanishing characters on drag & drop.
+    * All messageboxes changed to behave modaly to ther respecive parent windows.
     
 Pending issues:
 ===============

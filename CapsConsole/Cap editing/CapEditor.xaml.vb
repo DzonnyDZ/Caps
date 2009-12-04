@@ -2675,21 +2675,21 @@ Partial Public Class CapEditor
     ''' <summary>Does tests of values</summary>
     Public Function Tests() As Boolean
         Tests = False
-        If cmbMainType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_MainTypeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbMainType.Focus() : Exit Function
-        If cmbShape.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_ShapeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbShape.Focus() : Exit Function
-        If cmbMaterial.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_MaterialMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbMaterial.Focus() : Exit Function
-        If cmbStorage.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_StorageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : cmbStorage.Focus() : Exit Function
-        If txtCapName.Text = "" Then mBox.Modal_PTI(My.Resources.msg_CapNameMustBeEntered, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : txtCapName.Focus() : Exit Function
-        If DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).Count = 0 Then mBox.Modal_PTI(My.Resources.msg_AtLeastOneImageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : btnAddImage.Focus() : Exit Function
-        If txtSideText.Text <> "" AndAlso Not chkHasSide.IsChecked Then mBox.Modal_PTI(My.Resources.msg_SideText_HasSide, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : chkHasSide.Focus() : Exit Function
-        If txtBottomText.Text <> "" AndAlso Not chkHasBottom.IsChecked Then mBox.Modal_PTI(My.Resources.msg_BottomText_HasBottom, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : chkHasBottom.Focus() : Exit Function
-        If txtMainPicture.Text <> "" AndAlso (cmbPictureType.SelectedItem Is cmiImageNo OrElse cmbPictureType.SelectedItem Is Nothing) Then mBox.Modal_PTI(My.Resources.msg_MainPicture_PictureType, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbPictureType.Focus() : Exit Function
-        If txtAnotherPictures.Text <> "" AndAlso txtMainPicture.Text = "" Then mBox.Modal_PTI(My.Resources.msg_AnotherPictures_MainPicture, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : txtMainPicture.Focus() : Exit Function
-        If copForeground2.Color.HasValue AndAlso Not copForeground.Color.HasValue Then mBox.Modal_PTI(My.Resources.msg_ForeColor_ForeColor2, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : copForeground.Focus() : Exit Function
-        If optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_NoProductSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbProduct.Focus() : Exit Function
-        If optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem Is Nothing Then mBox.Modal_PTI(My.Resources.msg_NoCapTypeSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : cmbCapType.Focus() : Exit Function
-        If txtCountryCode.Text <> "" AndAlso (txtCountryCode.Text.Length <> 2 OrElse Not txtCountryCode.Text Like "[A-Z][A-Z]") Then mBox.Modal_PTI(My.Resources.txt_InvalidCountryCode, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : txtCountryCode.Focus() : Exit Function
-        If txtCountryOfOrigin.Text <> "" AndAlso (txtCountryOfOrigin.Text.Length <> 2 OrElse Not txtCountryOfOrigin.Text Like "[A-Z][A-Z]") Then mBox.Modal_PTI(My.Resources.txt_InvalidCountryOfOriginCode, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : txtCountryOfOrigin.Focus() : Exit Function
+        If cmbMainType.SelectedItem Is Nothing Then mBox.Modal_PTIW(My.Resources.msg_MainTypeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation, Me) : cmbMainType.Focus() : Exit Function
+        If cmbShape.SelectedItem Is Nothing Then mBox.Modal_PTIW(My.Resources.msg_ShapeMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation, Me) : cmbShape.Focus() : Exit Function
+        If cmbMaterial.SelectedItem Is Nothing Then mBox.Modal_PTIW(My.Resources.msg_MaterialMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation, Me) : cmbMaterial.Focus() : Exit Function
+        If cmbStorage.SelectedItem Is Nothing Then mBox.Modal_PTIW(My.Resources.msg_StorageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation, Me) : cmbStorage.Focus() : Exit Function
+        If txtCapName.Text = "" Then mBox.Modal_PTIW(My.Resources.msg_CapNameMustBeEntered, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation, Me) : txtCapName.Focus() : Exit Function
+        If DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image)).Count = 0 Then mBox.Modal_PTIW(My.Resources.msg_AtLeastOneImageMustBeSelected, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation, Me) : btnAddImage.Focus() : Exit Function
+        If txtSideText.Text <> "" AndAlso Not chkHasSide.IsChecked Then mBox.Modal_PTIW(My.Resources.msg_SideText_HasSide, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : chkHasSide.Focus() : Exit Function
+        If txtBottomText.Text <> "" AndAlso Not chkHasBottom.IsChecked Then mBox.Modal_PTIW(My.Resources.msg_BottomText_HasBottom, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : chkHasBottom.Focus() : Exit Function
+        If txtMainPicture.Text <> "" AndAlso (cmbPictureType.SelectedItem Is cmiImageNo OrElse cmbPictureType.SelectedItem Is Nothing) Then mBox.Modal_PTIW(My.Resources.msg_MainPicture_PictureType, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : cmbPictureType.Focus() : Exit Function
+        If txtAnotherPictures.Text <> "" AndAlso txtMainPicture.Text = "" Then mBox.Modal_PTIW(My.Resources.msg_AnotherPictures_MainPicture, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : txtMainPicture.Focus() : Exit Function
+        If copForeground2.Color.HasValue AndAlso Not copForeground.Color.HasValue Then mBox.Modal_PTIW(My.Resources.msg_ForeColor_ForeColor2, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : copForeground.Focus() : Exit Function
+        If optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem Is Nothing Then mBox.Modal_PTIW(My.Resources.msg_NoProductSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : cmbProduct.Focus() : Exit Function
+        If optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem Is Nothing Then mBox.Modal_PTIW(My.Resources.msg_NoCapTypeSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : cmbCapType.Focus() : Exit Function
+        If txtCountryCode.Text <> "" AndAlso (txtCountryCode.Text.Length <> 2 OrElse Not txtCountryCode.Text Like "[A-Z][A-Z]") Then mBox.Modal_PTIW(My.Resources.txt_InvalidCountryCode, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : txtCountryCode.Focus() : Exit Function
+        If txtCountryOfOrigin.Text <> "" AndAlso (txtCountryOfOrigin.Text.Length <> 2 OrElse Not txtCountryOfOrigin.Text Like "[A-Z][A-Z]") Then mBox.Modal_PTIW(My.Resources.txt_InvalidCountryOfOriginCode, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : txtCountryOfOrigin.Focus() : Exit Function
         Tests = True
     End Function
 
@@ -2702,16 +2702,16 @@ Partial Public Class CapEditor
                 Try
                     IO.Directory.CreateDirectory(CapTypeDir)
                 Catch ex As Exception
-                    mBox.MsgBox(My.Resources.err_CreatingDirectoryCapType.f(CapTypeDir, vbCrLf, ex.Message), MsgBoxStyle.Exclamation, My.Resources.txt_CopyFile)
+                    mBox.MsgBox(My.Resources.err_CreatingDirectoryCapType.f(CapTypeDir, vbCrLf, ex.Message), MsgBoxStyle.Exclamation, My.Resources.txt_CopyFile, Me)
                     Exit Sub
                 End Try
             End If
             Dim targpath = IO.Path.Combine(CapTypeDir, NewType.CapTypeID.ToString(System.Globalization.CultureInfo.InvariantCulture) & ".png")
-            If Not IO.File.Exists(targpath) OrElse mBox.MsgBox(My.Resources.msg_CapImageExistsOverwrite.f(CapTypeImagePath), MsgBoxStyle.Question Or MsgBoxStyle.YesNo, My.Resources.txt_OwervriteFile) = MsgBoxResult.Yes Then
+            If Not IO.File.Exists(targpath) OrElse mBox.MsgBox(My.Resources.msg_CapImageExistsOverwrite.f(CapTypeImagePath), MsgBoxStyle.Question Or MsgBoxStyle.YesNo, My.Resources.txt_OwervriteFile, Me) = MsgBoxResult.Yes Then
                 Try
                     IO.File.Copy(CapTypeImagePath, targpath)
                 Catch ex As Exception
-                    mBox.MsgBox(My.Resources.err_CopyCapTypeImageFailed.f(vbCrLf, ex.Message), MsgBoxStyle.Exclamation, My.Resources.txt_CopyFile)
+                    mBox.MsgBox(My.Resources.err_CopyCapTypeImageFailed.f(vbCrLf, ex.Message), MsgBoxStyle.Exclamation, My.Resources.txt_CopyFile, Me)
                 End Try
             End If : End If
     End Sub
@@ -2719,25 +2719,25 @@ Partial Public Class CapEditor
     ''' <remarks>True if it is OK or user is OK with it not being OK</remarks>
     Public Function TestNewCapType() As Boolean
         If Not IO.File.Exists(CapTypeImagePath) Then
-            Select Case mBox.ModalF_PTBIa(My.Resources.msg_FileNotExists_ContinueWOImage, My.Resources.txt_CapTypeImage, mBox.MessageBoxButton.Buttons.Yes Or mBox.MessageBoxButton.Buttons.No, mBox.MessageBoxIcons.Question, CapTypeImagePath)
+            Select Case mBox.ModalF_PTWBIa(My.Resources.msg_FileNotExists_ContinueWOImage, My.Resources.txt_CapTypeImage, Me, mBox.MessageBoxButton.Buttons.Yes Or mBox.MessageBoxButton.Buttons.No, mBox.GetIcon(mBox.MessageBoxIcons.Question), CapTypeImagePath)
                 Case Forms.DialogResult.Yes
                 Case Else : Return False
             End Select
         ElseIf IO.Path.GetExtension(CapTypeImagePath).ToLower <> ".png" Then
-            mBox.Modal_PTI(My.Resources.msg_OnlyPNG, My.Resources.txt_CapTypeImage, mBox.MessageBoxIcons.Exclamation)
+            mBox.Modal_PTIW(My.Resources.msg_OnlyPNG, My.Resources.txt_CapTypeImage, mBox.MessageBoxIcons.Exclamation, Me)
             Return False
         End If
-        If CapTypeName = "" Then mBox.Modal_PTI(My.Resources.msg_CapTypeNameMustBeEntered, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : txtCapTypeName.Focus() : Return False
+        If CapTypeName = "" Then mBox.Modal_PTIW(My.Resources.msg_CapTypeNameMustBeEntered, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation, Me) : txtCapTypeName.Focus() : Return False
         If (From CapType In Context.CapTypes Where CapType.TypeName = CapTypeName).Any Then _
-            mBox.Modal_PTI(My.Resources.msg_CapTypeAreadyExists, My.Resources.txt_DuplicateEntry, mBox.MessageBoxIcons.Exclamation) : txtCapTypeName.SelectAll() : txtCapName.Focus() : Return False
+            mBox.Modal_PTIW(My.Resources.msg_CapTypeAreadyExists, My.Resources.txt_DuplicateEntry, mBox.MessageBoxIcons.Exclamation, Me) : txtCapTypeName.SelectAll() : txtCapName.Focus() : Return False
         Return True
     End Function
     ''' <summary>Tests newly introduced product</summary>
     ''' <returns>True if it is OK</returns>
     Public Function TestNewProduct() As Boolean
-        If ProductName = "" Then mBox.Modal_PTI(My.Resources.msg_ProductNameMustBeEntered, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation) : txtProductName.Focus() : Return False
+        If ProductName = "" Then mBox.Modal_PTIW(My.Resources.msg_ProductNameMustBeEntered, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation, Me) : txtProductName.Focus() : Return False
         If (From Product In Context.Products Where Product.ProductName = txtProductName.Text).Any Then _
-            mBox.Modal_PTI(My.Resources.msg_ProductWithAreadyExists, My.Resources.txt_DuplicateEntry, mBox.MessageBoxIcons.Exclamation) : txtProductName.SelectAll() : txtProductName.Focus() : Return False
+            mBox.Modal_PTIW(My.Resources.msg_ProductWithAreadyExists, My.Resources.txt_DuplicateEntry, mBox.MessageBoxIcons.Exclamation, Me) : txtProductName.SelectAll() : txtProductName.Focus() : Return False
         Return True
     End Function
 #Region "Copy images"
@@ -2758,7 +2758,7 @@ TryCreateDirsIfNotExist: Try
             FolTBC = fol256
             If Not IO.Directory.Exists(fol256) Then IO.Directory.CreateDirectory(fol256)
         Catch ex As Exception
-            If mBox.Error_XPTIBWO(ex, "Error creating folder {0}".f(FolTBC), ex.GetType.Name, , WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Retry Or WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Abort) = Forms.DialogResult.Retry Then
+            If mBox.Error_XPTIBWO(ex, "Error creating folder {0}".f(FolTBC), ex.GetType.Name, , mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Abort, Me) = Forms.DialogResult.Retry Then
                 GoTo TryCreateDirsIfNotExist
             Else
                 Return Nothing
@@ -2781,7 +2781,7 @@ CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
                 Try
                     IO.File.Copy(Item.RelativePath, OrigFilePath)
                 Catch ex As Exception
-                    If mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCopyingFile, My.Resources.txt_ImageCopyError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Abort) = Forms.DialogResult.Retry Then GoTo CopyFile
+                    If mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCopyingFile, My.Resources.txt_ImageCopyError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Abort, Me) = Forms.DialogResult.Retry Then GoTo CopyFile
                     Exception = ex
                     Return Nothing
                 End Try
@@ -2841,7 +2841,7 @@ CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
                         End Using
                     End If
                 Catch ex As Exception
-                    If mBox.Error_XPTIBWO(ex, My.Resources.msg_IPTCError, My.Resources.txt_IPTC, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore) <> Forms.DialogResult.Ignore Then
+                    If mBox.Error_XPTIBWO(ex, My.Resources.msg_IPTCError, My.Resources.txt_IPTC, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then
                         Exception = ex
                         Return Nothing
                     End If
@@ -2851,12 +2851,12 @@ CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
 Resize64:       Try
                     SaveResizedImage(OrigFilePath, File64, 64, CreatedFiles, IPTC)
                 Catch ex As Exception
-                    Dim result As System.Windows.Forms.DialogResult = mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCreatingResizedFile.f(64), My.Resources.txt_ImageResizeError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Ignore)
+                    Dim result As System.Windows.Forms.DialogResult = mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCreatingResizedFile.f(64), My.Resources.txt_ImageResizeError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Ignore, Me)
                     If result = Forms.DialogResult.Retry OrElse result = Forms.DialogResult.Ignore Then
                         Try
                             IO.File.Delete(File64)
                         Catch ex2 As Exception
-                            mBox.Error_XPTIBWO(ex2, My.Resources.msg_CreatedFileWasNotDeleted.f(File64), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore)
+                            mBox.Error_XPTIBWO(ex2, My.Resources.msg_CreatedFileWasNotDeleted.f(File64), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore, Me)
                         End Try
                         CreatedFiles.Remove(File64)
                     End If
@@ -2871,12 +2871,12 @@ Resize64:       Try
 Resize256:      Try
                     SaveResizedImage(OrigFilePath, File256, 256, CreatedFiles, IPTC)
                 Catch ex As Exception
-                    Dim result As System.Windows.Forms.DialogResult = mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCreatingResizedFile.f(256), My.Resources.txt_ImageResizeError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Ignore)
+                    Dim result As System.Windows.Forms.DialogResult = mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCreatingResizedFile.f(256), My.Resources.txt_ImageResizeError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Ignore, Me)
                     If result = Forms.DialogResult.Retry OrElse result = Forms.DialogResult.Ignore Then
                         Try
                             IO.File.Delete(File256)
                         Catch ex2 As Exception
-                            mBox.Error_XPTIBWO(ex2, My.Resources.msg_CreatedFileWasNotDeleted.f(File256), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore)
+                            mBox.Error_XPTIBWO(ex2, My.Resources.msg_CreatedFileWasNotDeleted.f(File256), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore, Me)
                         End Try
                         CreatedFiles.Remove(File256)
                     End If
@@ -2894,7 +2894,7 @@ Resize256:      Try
                     Try
                         IO.File.Delete(file)
                     Catch ex As Exception
-                        mBox.Error_XPTIBWO(ex, My.Resources.msg_CreatedFileWasNotDeleted.f(file), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore)
+                        mBox.Error_XPTIBWO(ex, My.Resources.msg_CreatedFileWasNotDeleted.f(file), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore, Me)
                     End Try
                 Next
             End If
@@ -2968,7 +2968,7 @@ Resize256:      Try
     End Sub
     ''' <summary>Undos copying images</summary>
     ''' <param name="IntroducedImages">Images returned by <see cref="CopyImages"/></param>
-    Public Shared Sub UndoCopyImages(ByVal IntroducedImages As IEnumerable(Of String))
+    Public Sub UndoCopyImages(ByVal IntroducedImages As IEnumerable(Of String))
         Dim FaildedDeletes As New System.Text.StringBuilder
         For Each img In IntroducedImages
             For Each folder In New String() {"original", "64_64", "256_256"}
@@ -2983,7 +2983,7 @@ Resize256:      Try
             Next
         Next
         If FaildedDeletes.Length > 0 Then
-            mBox.Modal_PTI(My.Resources.err_DeleteingOfSomeImagesFailed & vbCrLf & FaildedDeletes.ToString & vbCrLf & My.Resources.msg_ThereAreImagesThatDoNotBelongToAnyCap, My.Resources.txt_Error, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Error)
+            mBox.Modal_PTIW(My.Resources.err_DeleteingOfSomeImagesFailed & vbCrLf & FaildedDeletes.ToString & vbCrLf & My.Resources.msg_ThereAreImagesThatDoNotBelongToAnyCap, My.Resources.txt_Error, mBox.MessageBoxIcons.Error, Me)
         End If
     End Sub
 #End Region
@@ -3107,7 +3107,7 @@ Resize256:      Try
             Try
                 Process.Start(path)
             Catch ex As Exception
-                mBox.Error_X(ex)
+                mBox.Error_XTW(ex, ex.GetType.Name, Me)
             End Try
         End If
 

@@ -82,7 +82,7 @@ Partial Public Class winCapEditor
             Try
                 Context.SubmitChanges()
             Catch ex As Exception
-                mBox.Error_XT(ex, My.Resources.txt_ErrorUpdatingCap)
+                mBox.Error_XTW(ex, My.Resources.txt_ErrorUpdatingCap, Me)
                 'Undo
                 Context = caeEditor.ResetContext
                 Dim OldCap = Cap
@@ -157,7 +157,7 @@ GetNextCap:
                         Case CapEditor.SaveMode.SaveAndPrevious : msg = My.Resources.msg_ThisWasFirstCap : title = My.Resources.txt_SaveAndPrevious
                         Case CapEditor.SaveMode.Reset : msg = My.Resources.msg_CapRemovedFormDatabase.f(Cap.CapID) : title = My.Resources.txt_CapMissing
                     End Select
-                    mBox.MsgBox(msg, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, Title)
+                    mBox.MsgBox(msg, MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, title, Me)
                     If mode <> CapEditor.SaveMode.Reset Then
                         mode = CapEditor.SaveMode.Reset
                         GoTo GetNextCap

@@ -41,6 +41,939 @@ AddEventHandler
 GeneratedInternalTypeHelper
 </summary>
     </member>
+    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.#ctor">
+      <summary>Default CTor</summary>
+      <remarks>Value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> property is populated with new instance of <see cref="T:System.ComponentModel.BackgroundWorker" /></remarks>
+      <filterpriority>3</filterpriority>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.#ctor(System.ComponentModel.BackgroundWorker)">
+      <summary>CTor</summary>
+      <param name="bgw">
+        <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> this form will report progress for</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="bgw" /> is null</exception>
+      <filterpriority>1</filterpriority>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.#ctor(System.ComponentModel.BackgroundWorker,System.String,System.String)">
+      <summary>CTor with title text and prompt</summary>
+      <param name="bgw">
+        <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> this form will report progress for</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="bgw" /> is null</exception>
+      <param name="Text">Title text of window (see <see cref="P:System.Windows.Forms.Form.Text" />)</param>
+      <param name="Prompt">Prompt text (see <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Prompt" />)</param>
+      <filterpriority>2</filterpriority>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.Show(System.ComponentModel.BackgroundWorker,System.String,System.String,System.Windows.Forms.IWin32Window,System.Object)">
+      <summary>Shows progress form and runs worker</summary>
+      <param name="bgw">Worker to run</param>
+      <param name="Text">Title text of window (see <see cref="P:System.Windows.Forms.Form.Text" />)</param>
+      <param name="Prompt">Text prompt (see <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Prompt" />)</param>
+      <param name="Owner">Any object that implements <see cref="T:System.Windows.Forms.IWin32Window" /> that represents the top-level window that will own the modal dialog box.</param>
+      <param name="WorkerArgument">Optional parameter for background worker</param>
+      <returns>Result of work of <paramref name="bgw" /></returns>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.OnShown(System.EventArgs)">
+      <summary>Raises the <see cref="E:System.Windows.Forms.Form.Shown" /> event.</summary>
+      <param name="e">A <see cref="T:System.EventArgs" /> that contains the event data. </param>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor.bgw">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker">
+      <summary>Gets <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> this form repports progress of</summary>
+      <exception cref="T:System.ArgumentNullException">Value being set is null</exception>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.ProgressBarStyle">
+      <summary>Gets or sets style of <see cref="T:System.Windows.Forms.ProgressBar" /> that indicates progress of process</summary>
+      <seelaso cref="P:System.Windows.Forms.ProgressBar.Style" />
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.Progress">
+      <summary>Gets or sets current value of <see cref="T:System.Windows.Forms.ProgressBar" /> that reports progress</summary>
+      <exception cref="T:System.ArgumentException">Value being set is smaller than 0 or greater than 100.</exception>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor._CloseOnFinish">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CloseOnFinish" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.CloseOnFinish">
+      <summary>Gets or sets value indicating if form automatically closes when <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted">RunWorkerCompleted</see> event occures.</summary>
+      <value>New behavoir. Defalt value is true.</value>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)">
+      <summary>Handles <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="E:System.ComponentModel.BackgroundWorker.ProgressChanged">ProgressChanged</see> event</summary>
+      <param name="sender">
+        <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />
+      </param>
+      <param name="e">Event erguments</param>
+      <remarks>Default implementation works in following way:
+ <list type="bullet"><item>If <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than or equal to zero then sets this value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Progress" /> property. Values smaller than zero are ignored.</item><item>If <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Windows.Forms.ProgressBarStyle" /> passes that value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.ProgressBarStyle" /> property.</item><item>If <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.String" /> passes that value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Information" /> property.</item><item>If <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Boolean" /> passes that value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel" /> property.</item><item>If <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> (same instance) than <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.Reset" /> method is called.</item></list></remarks>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than 100.</exception>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.OnRunWorkerCompleted(System.ComponentModel.BackgroundWorker,System.ComponentModel.RunWorkerCompletedEventArgs)">
+      <summary>Handles <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted">RunWorkerCompleted</see> event.</summary>
+      <param name="sender">
+        <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />
+      </param>
+      <param name="e">event arguments</param>
+      <remarks>This implementation sets <see cref="P:System.Windows.Forms.Form.DialogResult" /> to <see cref="F:System.Windows.Forms.DialogResult.Cancel" /> when <paramref name="e" />.<see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled">Cancelled</see> is true; to <see cref="F:System.Windows.Forms.DialogResult.Abort" /> when <paramref name="e" />.<see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Error" /> isnot nothing and to <see cref="F:System.Windows.Forms.DialogResult.OK" /> in all other cases. Then sets <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerResult" />. If <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CloseOnFinish" /> is true, closes the form.</remarks>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor._WorkerResult">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerResult" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerResult">
+      <summary>Gets or sets result of <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> work</summary>
+      <returns>Null until <see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted" /> event occures. That returns its e parameter.</returns>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.Prompt">
+      <summary>Gets or sets prompt diaplyed in upper part of form</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.Information">
+      <summary>Gets or sets informative text displayed below the progress bar</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor._CanCancel">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel">
+      <summary>Gets or sets value indicationg if dialog supports cancelation</summary>
+      <value>Default value depends on <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="P:System.ComponentModel.BackgroundWorker.WorkerSupportsCancellation">WorkerSupportsCancellation</see> in time when it is passed to CTor.</value>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.ResetCanCancel">
+      <summary>Resets value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel" /> pproperty to its default value according to <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="P:System.ComponentModel.BackgroundWorker.WorkerSupportsCancellation">WorkerSupportsCancellation</see>.</summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.ShouldSerializeResetCancel">
+      <summary>Gets value indicationg if value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel" /> property should be serializes</summary>
+      <returns>True if value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel" /> property differs from <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="P:System.ComponentModel.BackgroundWorker.WorkerSupportsCancellation">WorkerSupportsCancellation</see>.</returns>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.OnCancel">
+      <summary>Performs cancellation. Called when the cancel button is clicked.</summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.Reset">
+      <summary>Resets the dialog</summary>
+      <remarks>In case you want to use the dialog from multiple runs of <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />, you should call this method before each (excluding first, but you can to) runs of <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />. Alternativly you can report new run using <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)" /> - see <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)" />.</remarks>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor._DoWorkOnShow">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.DoWorkOnShow" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.DoWorkOnShow">
+      <summary>Gets or sets value indicationg if form will call <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="M:System.ComponentModel.BackgroundWorker.RunWorkerAsync">RunWorkerAsync</see> when <see cref="E:System.Windows.Forms.Form.Shown" /> event occures.</summary>
+      <seelaso cref="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerArgument" />
+      <value>Default value is true</value>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor._WorkerArgument">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerArgument" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerArgument">
+      <summary>Gets or sets value of argument passed to <see cref="E:System.ComponentModel.BackgroundWorker.DoWork" /> when <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.DoWorkOnShow" /> is true</summary>
+    </member>
+    <member name="T:Tools.WindowsT.FormsT.ProgressMonitor">
+      <summary>This <see cref="T:System.Windows.Forms.Form" /> serves as predefined progress monitor with <see cref="T:System.Windows.Forms.ProgressBar" /> for <see cref="T:System.ComponentModel.BackgroundWorker" /></summary>
+      <remarks>See documentation of the <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)" /> method in order to see rich options for reporting progress.</remarks>
+    </member>
+    <member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.#ctor">
+      <summary>Default CTor</summary>
+    </member>
+    <member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.#ctor(Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions)">
+      <summary>CTor with value</summary>
+      <param name="Value">Initial value</param>
+    </member>
+    <member name="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Value">
+      <summary>Edited value</summary>
+    </member>
+    <member name="E:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.ValueChanged">
+      <summary>Raised ehan  value of the <see cref="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Value" /> property changes</summary>
+    </member>
+    <member name="F:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor._Context">
+      <summary>Contaisn value of the <see cref="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Context" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Context">
+      <summary>Stores context of current editing session</summary>
+      <remarks>This property is set by owner of the control and is valid between calls of <see cref="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnBeforeShow" /> and <see cref="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnClosed" />.</remarks>
+    </member>
+    <member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnBeforeShow">
+      <summary>Owner of control informs control that it is about to be shown by calling this methos. It is called just befiore the control is shown.</summary>
+    </member>
+    <member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnClosed">
+      <summary>Informs control that it was just hidden by calling this method.</summary>
+      <remarks>When implementing editor for reference type that is edited by changin its properties instead of changing its instance. Properties shouldbe changed in this method and onyl if <see cref="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Result" /> is true.</remarks>
+    </member>
+    <member name="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Result">
+      <summary>Stores editing result</summary>
+      <returns>True if editing was terminated with success, false if it was canceled</returns>
+      <remarks>This property is set by owner of the control and is valid when and after <see cref="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnClosed" /> is called</remarks>
+    </member>
+    <member name="F:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor._Service">
+      <summary>Contaisn value of the <see cref="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Service" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Service">
+      <summary>Stores <see cref="T:System.Windows.Forms.Design.IWindowsFormsEditorService" /> valid for current editing session</summary>
+      <remarks>This property is set by owner of the control and is valid between calls of <see cref="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnBeforeShow" /> and <see cref="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnClosed" />.</remarks>
+    </member>
+    <member name="T:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor">
+      <summary>Implements editor for <see cref="T:Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions" /></summary>
+    </member>
+    <member name="T:Tools.WindowsT.FormsT.TextBoxWithStatus">
+      <summary>Note: This control will be removed and replaced with attachable implementation of <see cref="T:Tools.WindowsT.FormsT.StatusMarker" /></summary>
+      <author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Normal">
+      <summary>Normal state (data are in sync)</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Null">
+      <summary>Null (data are not available)</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.New">
+      <summary>New (data was null and now it is not null)</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Changed">
+      <summary>Changed (data was changed since last save)</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Deleted">
+      <summary>Deleted (data was not null and now it is null)</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Error">
+      <summary>Data error</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.NA">
+      <summary>Data status unkown</summary>
+    </member>
+    <member name="T:Tools.WindowsT.FormsT.StatusMarker.Statuses">
+      <summary>Supported states of <see cref="T:Tools.WindowsT.FormsT.StatusMarker" /></summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.StatusMarker._Status">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.StatusMarker.Status" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.StatusMarker.Status">
+      <summary>Gets or sets shown status of the control</summary>
+      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Value being set is not member of <see cref="T:Tools.WindowsT.FormsT.StatusMarker.Statuses" /></exception>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.StatusMarker.StatusChanged">
+      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.StatusMarker.Status" /> changes</summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnStatusChanged(System.EventArgs)">
+      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.StatusMarker.StatusChanged" /> event</summary>
+      <param name="e">Event parameters (<see cref="F:System.EventArgs.Empty" />)</param>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.StatusMarker.DeleteMenuState">
+      <summary>Gets or set state of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiDelete" /></summary>
+      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Value being set is not member of <see cref="T:Tools.WindowsT.FormsT.UtilitiesT.ControlState" /></exception>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.StatusMarker.MarkAsChangedMenuState">
+      <summary>Gets or set state of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiMarkAsChanged" /></summary>
+      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Value being set is not member of <see cref="T:Tools.WindowsT.FormsT.UtilitiesT.ControlState" /></exception>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.StatusMarker.ResetMenuState">
+      <summary>Gets or set state of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiReset" /></summary>
+      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Value being set is not member of <see cref="T:Tools.WindowsT.FormsT.UtilitiesT.ControlState" /></exception>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.StatusMarker.MenuState(System.Windows.Forms.ToolStripMenuItem)">
+      <summary>Gets or sets state of menu item</summary>
+      <param name="Menu">Menu item to get or set state for</param>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.StatusMarker.AddMenuState">
+      <summary>Gets or set state of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiAdd" /></summary>
+      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Value being set is not member of <see cref="T:Tools.WindowsT.FormsT.UtilitiesT.ControlState" /></exception>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.StatusMarker._AutoChanged">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.StatusMarker.AutoChanged" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.StatusMarker.AutoChanged">
+      <summary>Gets or sets value indicating if <see cref="P:Tools.WindowsT.FormsT.StatusMarker.Status" /> automatically changes to <see cref="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Changed" /> when <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiMarkAsChanged" /> is clicked</summary>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.StatusMarker.Add">
+      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiAdd" /> is clicked</summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnAdd(System.EventArgs)">
+      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.StatusMarker.Add" /> event</summary>
+      <param name="e">Event parameters</param>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.StatusMarker.MarkAsChanged">
+      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiMarkAsChanged" /> is clicked</summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnMarkAsChanged(System.EventArgs)">
+      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.StatusMarker.MarkAsChanged" /> event</summary>
+      <param name="e">Event parameters</param>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.StatusMarker.Reset">
+      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiReset" /> is clicked</summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnReset(System.EventArgs)">
+      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.StatusMarker.Reset" /> event</summary>
+      <param name="e">Event parameters</param>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.StatusMarker.Delete">
+      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiDelete" /> is clicked</summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnDelete(System.EventArgs)">
+      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.StatusMarker.Delete" /> event</summary>
+      <param name="e">Event parameters</param>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnButtonClick">
+      <summary>Shows <see cref="P:Tools.WindowsT.FormsT.StatusMarker.cmsStatus" /></summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.StatusMarker.AutoSize">
+      <summary>Gets or sets if this control automatically sizes by its content</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl">
+      <summary>Control this instance reports status of</summary>
+      <value>Can be null if there is no auto-monitored control</value>
+      <returns>Auto-monitored control or null if there is no auto-monitored control</returns>
+      <remarks>
+        <para>Supported types of StatusedControls are (ordered by precedence - if component implements <see cref="T:Tools.IReportsChange" /> then <see cref="T:Tools.IReportsChange" /> is used, otherwise <see cref="T:System.Windows.Forms.TextBoxBase" /> is checked etc.):</para>
+        <list type="table">
+          <listheader>
+            <term>Type</term>
+            <description>Depends on event</description>
+          </listheader>
+          <item>
+            <term>
+              <see cref="T:Tools.IReportsChange" />
+            </term>
+            <description>
+              <see cref="E:Tools.IReportsChange.Changed" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.TextBoxBase" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.Control.TextChanged" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.NumericUpDown" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.NumericUpDown.ValueChanged" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.DomainUpDown" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.DomainUpDown.SelectedItemChanged" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.ComboBox" />
+            </term>
+            <description>If <see cref="P:System.Windows.Forms.ComboBox.DropDownStyle" /> is <see cref="F:System.Windows.Forms.ComboBoxStyle.DropDownList" /><see cref="E:System.Windows.Forms.ComboBox.SelectedIndexChanged" />; <see cref="E:System.Windows.Forms.Control.TextChanged" /> otherwise</description>. Note: Do not change <see cref="P:System.Windows.Forms.ComboBox.DropDownStyle" /> property after the <see cref="T:System.Windows.Forms.ComboBox" /> is assigned to <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /></item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.CheckBox" />
+            </term>
+            <description>If <see cref="P:System.Windows.Forms.CheckBox.ThreeState" /> is True <see cref="E:System.Windows.Forms.CheckBox.CheckStateChanged" />; <see cref="E:System.Windows.Forms.CheckBox.CheckedChanged" /> otherwise. Note: Do not change value of the <see cref="P:System.Windows.Forms.CheckBox.ThreeState" /> property after the <see cref="T:System.Windows.Forms.CheckBox" /> is assigned to <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /></description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.RadioButton" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.RadioButton.CheckedChanged" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.CheckedListBox" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.CheckedListBox.ItemCheck" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.MonthCalendar" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.MonthCalendar.DateChanged" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.DateTimePicker" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.DateTimePicker.ValueChanged" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.TrackBar" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.TrackBar.ValueChanged" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.ScrollBar" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.ScrollBar.ValueChanged" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.ToolStripTextBox" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.ToolStripItem.TextChanged" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.ToolStripComboBox" />
+            </term>
+            <description>If <see cref="P:System.Windows.Forms.ToolStripComboBox.DropDownStyle" /> is <see cref="F:System.Windows.Forms.ComboBoxStyle.DropDownList" /><see cref="E:System.Windows.Forms.ToolStripComboBox.SelectedIndexChanged" />; <see cref="E:System.Windows.Forms.ToolStripItem.TextChanged" /> otherwise</description>. Note: Do not change <see cref="P:System.Windows.Forms.ToolStripComboBox.DropDownStyle" /> property after the <see cref="T:System.Windows.Forms.ToolStripComboBox" /> is assigned to <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /></item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.ToolStripButton" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.ToolStripButton.CheckedChanged" />
+            </description>
+          </item>
+          <item>
+            <term>
+              <see cref="T:System.Windows.Forms.ToolStripMenuItem" />
+            </term>
+            <description>
+              <see cref="E:System.Windows.Forms.ToolStripMenuItem.CheckedChanged" />
+            </description>
+          </item>
+        </list>
+      </remarks>
+      <exception cref="T:System.NotSupportedException">Type of passed component is not supported</exception>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.StatusMarker.RemoveHandler">
+      <summary>Removes method <see cref="M:Tools.WindowsT.FormsT.StatusMarker.Handler``2(``0,``1)" /> as hendler of event of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /> where it was added in <see cref="M:Tools.WindowsT.FormsT.StatusMarker.AddHandler(System.ComponentModel.Component)" /> method</summary>
+      <exception cref="T:System.NotSupportedException">Type of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /> is not supported. See <seealso cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /> for list of supported types.</exception>
+      <remarks>Note for inheritors: You can extedn <see cref="T:Tools.WindowsT.FormsT.StatusMarker" />'s support of statused controls either by overriding <see cref="M:Tools.WindowsT.FormsT.StatusMarker.AddHandler(System.ComponentModel.Component)" /> and <see cref="M:Tools.WindowsT.FormsT.StatusMarker.RemoveHandler" /> methods or by implementing <see cref="T:Tools.IReportsChange" /> by the control that should be supported</remarks>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.StatusMarker.AddHandler(System.ComponentModel.Component)">
+      <summary>Adds method <see cref="M:Tools.WindowsT.FormsT.StatusMarker.Handler``2(``0,``1)" /> as handler of appropriate event of given component</summary>
+      <param name="Component">Component to add handler to</param>
+      <remarks>Note for inheritors: You can extedn <see cref="T:Tools.WindowsT.FormsT.StatusMarker" />'s support of statused controls either by overriding <see cref="M:Tools.WindowsT.FormsT.StatusMarker.AddHandler(System.ComponentModel.Component)" /> and <see cref="M:Tools.WindowsT.FormsT.StatusMarker.RemoveHandler" /> methods or by implementing <see cref="T:Tools.IReportsChange" /> by the control that should be supported</remarks>
+      <exception cref="T:System.NotSupportedException">Type of <paramref name="Component" /> is not supported. See <seealso cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /> for list of supported types.</exception>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.StatusMarker.Handler``2(``0,``1)">
+      <summary>Handles change of value of monitored control</summary>
+      <param name="sender">Source of event - should be same as <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /></param>
+      <param name="e">Event arguments repored by <paramref name="sender" /></param>
+      <typeparam name="TSender">Type of sender (typically <see cref="T:System.Object" />)</typeparam>
+      <typeparam name="TEventargs">Type of event arguments (typically <see cref="T:System.EventArgs" />)</typeparam>
+      <remarks>This method is generic because it is required for handlers to work. It does not rely on exact types of <paramref name="sender" /> amd <paramref name="e" />.</remarks>
+    </member>
+    <member name="T:Tools.WindowsT.FormsT.StatusMarker">
+      <summary>Marks state of data item</summary>
+      <author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.Status">
+      <summary>Current status of control</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.DeleteMenustate">
+      <summary>State of delete menu item</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.MarkAsChangedMenuState">
+      <summary>State of mar-as-changed menu item</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.ResetMenuState">
+      <summary>state of reset menu item</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.AddMenuState">
+      <summary>state of add menu item</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.AutoChanged">
+      <summary>Indicates if <see cref="P:Tools.WindowsT.FormsT.IControlWithStatus.Status" /> automatically chnages to <see cref="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Changed" /> and <see cref="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.New" /> if user takes appropriate action</summary>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.IControlWithStatus.Add">
+      <summary>Raised after add menu item is clicked</summary>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.IControlWithStatus.MarkAsChanged">
+      <summary>Raised after mark-as-changed menu item is clicked</summary>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.IControlWithStatus.Reset">
+      <summary>Raised after reset menu item is clicked</summary>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.IControlWithStatus.Delete">
+      <summary>Raised after delete menu item is clcked</summary>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.IControlWithStatus.StatusChanged">
+      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.IControlWithStatus.Status" /> is changed</summary>
+    </member>
+    <member name="T:Tools.WindowsT.FormsT.IControlWithStatus">
+      <summary>Provides common interface for controls that exposes its status</summary>
+      <author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
+      <version version="1.5.2" stage="Nightly">
+        <see cref="T:Tools.InternalT.VersionAttribute" /> and <see cref="T:Tools.InternalT.AuthorAttribute" /> removed</version>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.Assemblies">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.Objects" /> property</summary>
+      <remarks>Can be any object</remarks>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.Initializing">
+      <summary>Is set to true when component is being constructed</summary>
+      <remarks>It is used to stop some functionality during initialisation</remarks>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.#ctor">
+      <summary>CTor</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowInheritedMembers">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInheritedMembers" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInheritedMembers">
+      <summary>Gets or sets value indicating if inherited members are shown</summary>
+      <value>True to show inherited members, false to hide them</value>
+      <returns>Value indicating if inherited members are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowFlatNamespaces">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowFlatNamespaces" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowFlatNamespaces">
+      <summary>Gets or sets value indicating if namespaces are show flat or hierachically</summary>
+      <value>True to show flat namespaces, false to show hierarchic namespaces</value>
+      <returns>Value indicating if namespaces are shown flat or hierarchic</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowNestedTypes">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowNestedTypes" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowNestedTypes">
+      <summary>Gets or sets value indicating if nested types are shown</summary>
+      <value>True to show nested types, false to hide them</value>
+      <returns>Value indicating if nested types are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowPrivateMembers">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowPrivateMembers" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowPrivateMembers">
+      <summary>Gets or sets value indicating if private members are shown</summary>
+      <value>True to show private members, false to hide them</value>
+      <returns>Value indicating if private members are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowInternalMembers">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInternalMembers" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInternalMembers">
+      <summary>Gets or sets value indicating if internal members are shown</summary>
+      <value>True to show internal members, false to hide them</value>
+      <returns>Value indicating if internal members are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowProtectedMembers">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProtectedMembers" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProtectedMembers">
+      <summary>Gets or sets value indicating if protected members are shown</summary>
+      <value>True to show protected members, false to hide them</value>
+      <returns>Value indicating if protected members are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowInstanceMembers">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInstanceMembers" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInstanceMembers">
+      <summary>Gets or sets value indicating if instance members are shown</summary>
+      <value>True to show instance members, false to hide them</value>
+      <returns>Value indicating if instance members are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowStaticMembers">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowStaticMembers" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowStaticMembers">
+      <summary>Gets or sets value indicating if static members are shown</summary>
+      <value>True to show static members, false to hide them</value>
+      <returns>Value indicating if static members are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowSpecialMembers">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowSpecialMembers" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowSpecialMembers">
+      <summary>Gets or sets value indicating if special members (parts of properties and events) are shown</summary>
+      <value>True to show special members, false to hide them</value>
+      <returns>Value indicating if special members are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowGlobalMembers">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGlobalMembers" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGlobalMembers">
+      <summary>Gets or sets value indicating if Global members (parts of properties and events) are shown</summary>
+      <value>True to show Global members, false to hide them</value>
+      <returns>Value indicating if Global members are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowProperties">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProperties" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProperties">
+      <summary>Gets or sets value indicating if properties are shown</summary>
+      <value>True to show properties  false to hide them</value>
+      <returns>Value indicating if properties are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowEvents">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowEvents" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowEvents">
+      <summary>Gets or sets value indicating if Events are shown</summary>
+      <value>True to show Events  false to hide them</value>
+      <returns>Value indicating if Events are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowMethods">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowMethods" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowMethods">
+      <summary>Gets or sets value indicating if Methods are shown</summary>
+      <value>True to show Methods  false to hide them</value>
+      <returns>Value indicating if Methods are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowFields">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowFields" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowFields">
+      <summary>Gets or sets value indicating if Fields are shown</summary>
+      <value>True to show Fields  false to hide them</value>
+      <returns>Value indicating if Fields are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowCTors">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowCTors" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowCTors">
+      <summary>Gets or sets value indicating if CTors are shown</summary>
+      <value>True to show CTors  false to hide them</value>
+      <returns>Value indicating if CTors are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowInitializers">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInitializers" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInitializers">
+      <summary>Gets or sets value indicating if Initializers are shown</summary>
+      <value>True to show Initializers  false to hide them</value>
+      <returns>Value indicating if Initializers are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowgenericArguments">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGenericArguments" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGenericArguments">
+      <summary>Gets or sets value indicating if generic arguments (type parameters) are shown</summary>
+      <value>True to show generic arguments  false to hide them</value>
+      <returns>Value indicating if generic arguments are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowReferences">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowReferences" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowReferences">
+      <summary>Gets or sets value indicating if references are shown</summary>
+      <value>True to show references false to hide them</value>
+      <returns>Value indicating if references are shown</returns>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowBaseTypes">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowBaseTypes" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowBaseTypes">
+      <summary>Gets or sets value indicating if base types are shown</summary>
+      <value>True to show base types  false to hide them</value>
+      <returns>Value indicating if base types are shown</returns>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnShowChanged">
+      <summary>Called after value of property that controls which members are displayed in <see cref="T:System.Windows.Forms.ListView" /> is changed.</summary>
+      <remarks>Those properties are:
+ <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowCTors" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowEvents" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowFields" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGenericArguments" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGlobalMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInheritedMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInitializers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInstanceMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowMethods" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInternalMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowNestedTypes" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowPrivateMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProperties" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProtectedMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowSpecialMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowStaticMembers" /></remarks>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.ShowChanged">
+      <summary>Raised after property that controls which members are displayed in <see cref="T:System.Windows.Forms.ListView" /> was changed.</summary>
+      <remarks>See <seealso cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnShowChanged" /> for list of properties that causes this event to be raised.</remarks>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.ActualizeNode(System.Windows.Forms.TreeNode)">
+      <summary>Called recursivelly by <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnShowChanged" /> and itself in order to actualize content of each expanded node.</summary>
+      <param name="Node">Node to actualize content of</param>
+      <remarks>Note for inheritors: After actualizing content of this node, if there are any ünchanged nodes (that is your actualization logic is not delete all nodes and create them again) you should call this method on all the expanded nodes and replace content of all colapsed nodes by only tag-less node.</remarks>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._DisplayMemberList">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayMemberList" /> property</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._DisplayProperties">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayProperties" /> property</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._DisplayDescription">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayDescription" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayMemberList">
+      <summary>Gets or sets value indicationg if member list is shown</summary>
+      <returns>True if member list is show, false when it is hidden</returns>
+      <value>True to show member list; alse to hide it</value>
+      <version stage="1.5.2">Property added</version>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayProperties">
+      <summary>Gets or sets value indicationg if property grid is shown</summary>
+      <returns>True if property grid is show, false when it is hidden</returns>
+      <value>True to show ptoperty grid; alse to hide it</value>
+      <version stage="1.5.2">Property added</version>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayDescription">
+      <summary>Gets or sets value indicationg if description pane is shown</summary>
+      <returns>True if description pane is show, false when it is hidden</returns>
+      <value>True to show decription pane; alse to hide it</value>
+      <version stage="1.5.2">Property added</version>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnDisplayChanged">
+      <summary>Called when any of display properties changes</summary>
+      <remarks>Dsiplay properties are <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayMemberList" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayProperties" /> and <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayDescription" /></remarks>
+      <version version="1.5.2">Method added</version>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.DisplayChanged">
+      <summary>Raised when any of display properties changes</summary>
+      <remarks>Dsiplay properties are <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayMemberList" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayProperties" /> and <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayDescription" /></remarks>
+      <version version="1.5.2">Event added</version>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowShowMenu">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowShowMenu" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowShowMenu">
+      <summary>Gets or sets value indicating if the Show menu is shown</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowToolbar">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowToolbar" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowToolbar">
+      <summary>Gets or sets value indicating if the toolbar is shown</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.Objects">
+      <summary>List of assemblies or any other objects listed at top-level of tree-view</summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.ShouldSerializeObjects">
+      <summary>Gets value indicating if the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.Objects" /> property needs to be serialized</summary>
+      <returns>True if the is any item in the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.Objects" /> property</returns>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.ResetObjects">
+      <summary>Resets the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.Objects" /> property to it's initial state (empties it)</summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.GetNode(System.Object)">
+      <summary>Converts any object to <see cref="T:System.Windows.Forms.TreeNode" /></summary>
+      <param name="Obj">Object to convert</param>
+      <returns>
+        <see cref="T:System.Windows.Forms.TreeNode" /> to represent <paramref name="Obj" /></returns>
+      <remarks>Note to inheritors: Newly created node must have <paramref name="Obj" /> as its <see cref="P:System.Windows.Forms.TreeNode.Tag" />. If you call any of <see cref="M:Tools.ReflectionT.CodeImages.GetImage(Tools.ReflectionT.CodeImages.Objects)" /> methods that returns image with overlay the image is automatically added to <see cref="T:System.Windows.Forms.ImageList" /> used by <see cref="T:System.Windows.Forms.TreeView" /> and <see cref="T:System.Windows.Forms.ListView" />. You can then set <see cref="P:System.Windows.Forms.TreeNode.ImageKey" /> and <see cref="P:System.Windows.Forms.TreeNode.SelectedImageKey" /> to key in form "{0:d}_{1:d}" (see <see cref="T:System.String" />) where 0 is numeric representation of <see cref="T:Tools.ReflectionT.CodeImages.Objects" /> and 1 is numeric representation of <see cref="T:Tools.ReflectionT.CodeImages.ObjectModifiers" />. This key is produced by the <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.Key(Tools.ReflectionT.CodeImages.Objects,Tools.ReflectionT.CodeImages.ObjectModifiers)" /> function. If you want the node to be expandable, but you do not want to fill items right now, place only item without <see cref="P:System.Windows.Forms.TreeNode.Tag" /> into it.</remarks>
+      <exception cref="T:System.Exception">An error ocured during creating node (not thrown when <paramref name="Obj" /> is <see cref="T:System.Exception" />). Note to inheritors: Do not throw any exception when <paramref name="Obj" /> is <see cref="T:System.Exception" />!</exception>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.GetListItem(System.Object)">
+      <summary>Converts any object to <see cref="T:System.Windows.Forms.ListViewItem" /></summary>
+      <param name="obj">Object to converts</param>
+      <returns>
+        <see cref="T:System.Windows.Forms.ListViewItem" /> repersenting <paramref name="obj" /></returns>
+      <remarks>Note to inheritors: Newly created item must have <paramref name="Obj" /> as its <see cref="P:System.Windows.Forms.ListViewItem.Tag" />. If you call any of <see cref="M:Tools.ReflectionT.CodeImages.GetImage(Tools.ReflectionT.CodeImages.Objects)" /> methods that returns image with overlay the image is automatically added to <see cref="T:System.Windows.Forms.ImageList" /> used by <see cref="T:System.Windows.Forms.TreeView" /> and <see cref="T:System.Windows.Forms.ListView" />. You can then set <see cref="P:System.Windows.Forms.TreeNode.ImageKey" /> and <see cref="P:System.Windows.Forms.TreeNode.SelectedImageKey" /> to key in form "{0:d}_{1:d}" (see <see cref="T:System.String" />) where 0 is numeric representation of <see cref="T:Tools.ReflectionT.CodeImages.Objects" /> and 1 is numeric representation of <see cref="T:Tools.ReflectionT.CodeImages.ObjectModifiers" />. This key is produced by the <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.Key(Tools.ReflectionT.CodeImages.Objects,Tools.ReflectionT.CodeImages.ObjectModifiers)" /> function. If you want the node to be expandable, but you do not want to fill items right now, place only item without <see cref="P:System.Windows.Forms.TreeNode.Tag" /> into it.</remarks>
+      <exception cref="T:System.Exception">An error ocured during creating node (not thrown when <paramref name="Obj" /> is <see cref="T:System.Exception" />). Note to inheritors: Do not throw any exception when <paramref name="Obj" /> is <see cref="T:System.Exception" />!</exception>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.LastRequestedKey">
+      <summary>Holds key of image that was last passed to <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.ImageRequested(System.Drawing.Image,Tools.ReflectionT.CodeImages.Objects,Tools.ReflectionT.CodeImages.ObjectModifiers)" /></summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.ImageRequested(System.Drawing.Image,Tools.ReflectionT.CodeImages.Objects,Tools.ReflectionT.CodeImages.ObjectModifiers)">
+      <summary>Handles the <see cref="E:Tools.ReflectionT.CodeImages.ImageRequested" /> event</summary>
+      <param name="img">Image requaested</param>
+      <param name="ObjectType">Type of object for that request</param>
+      <param name="Modifiers">Object modifiers for that request</param>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.Key(Tools.ReflectionT.CodeImages.Objects,Tools.ReflectionT.CodeImages.ObjectModifiers)">
+      <summary>Converts object type and modifiers to string key</summary>
+      <param name="ObjectType">Type of object</param>
+      <param name="Modifiers">Ky modifiers</param>
+      <returns>String created using <see cref="T:System.String" />("{0:d}_{1:d}", <paramref name="ObjectType" />, <paramref name="Modifiers" />)</returns>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.Windows.Forms.Control,System.Object,System.Object)">
+      <summary>Called after selected item changes</summary>
+      <param name="Control">Control the item is member of (can be either <see cref="T:System.Windows.Forms.TreeView" /> or <see cref="T:System.Windows.Forms.ListView" />).</param>
+      <param name="Item">Item itself (can be <see cref="T:System.Windows.Forms.TreeNode" /> or <see cref="T:System.Windows.Forms.ListViewItem" />)</param>
+      <param name="ItemTag">Tag of item - selected object</param>
+      <remarks>Cals <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.EventArgs)" /> overload.
+ <note type="inherinfo">Always call <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.EventArgs)" /> or <see cref="E:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItemChanged" /> will not be raised.</note></remarks>
+      <version version="1.5.2">Added call to <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.EventArgs)" /></version>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._CurrentSelectedItem">
+      <summary>Contains value oft the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.CurrentSelectedItem" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.CurrentSelectedItem">
+      <summary>Contains item that is currently selected</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItem">
+      <summary>Gets item that is curently selected in object browser</summary>
+      <returns>Item curently selected in object browse</returns>
+      <value>Object to select</value>
+      <exception cref="T:System.ArgumentException">Value being set cannot be located</exception>
+      <version version="1.5.2">Property added</version>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.FindItem(System.Windows.Forms.TreeNodeCollection,System.Object)">
+      <summary>Finds item unsder given treenode</summary>
+      <param name="item">Item (type, method, namespace etc.) to be found</param>
+      <param name="Nodes">Nodes to search for item in.</param>
+      <returns>Item location - <see cref="T:System.Windows.Forms.TreeNode" /> and tag of <see cref="T:System.Windows.Forms.ListViewItem" /> (if applicable); null when item was not found.</returns>
+      <remarks>This function is used by setter of <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItem" />.</remarks>
+      <version version="1.5.2">Function added</version>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.EventArgs)">
+      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItemChanged" /> event</summary>
+      <param name="e">Event arguments</param>        4
+ <remarks><note type="inheritnfo">ALways call base class method in order the event to be raised.</note></remarks><version version="1.5.2">Method added</version></member>
+    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItemChanged">
+      <summary>Raised when value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItem" /> property changes</summary>
+      <version version="1.5.2">Event added</version>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChangedInternal(System.Windows.Forms.Control,System.Object,System.Object)">
+      <summary>Called after selected item changes or list-control changes. Reduse unnecesary calls of <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.Windows.Forms.Control,System.Object,System.Object)" /></summary>
+      <param name="Control">Control the item is member of (can be either <see cref="T:System.Windows.Forms.TreeView" /> or <see cref="T:System.Windows.Forms.ListView" />).</param>
+      <param name="Item">Item itself (can be <see cref="T:System.Windows.Forms.TreeNode" /> or <see cref="T:System.Windows.Forms.ListViewItem" />)</param>
+      <param name="ItemTag">Tag of item - selected object</param>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnAfterSelect(System.Windows.Forms.TreeViewEventArgs)">
+      <summary>selected node in <see cref="T:System.Windows.Forms.TreeView" /> changes</summary>
+      <param name="e">Arguments of the <see cref="E:System.Windows.Forms.TreeView.AfterSelect" /> event</param>
+      <remarks>
+        <see cref="T:System.Windows.Forms.ListView" /> is empty when this method is called</remarks>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.GetShortDesc(System.Object)">
+      <summary>Assigns short description of object selected in <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.tvwObjects" /> to <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.rtbShort" /></summary>
+      <param name="Obj">Object to get description of (it is <see cref="P:System.Windows.Forms.TreeNode.Tag" /> of selected <see cref="T:System.Windows.Forms.TreeNode" />)</param>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.GetItems(System.Object)">
+      <summary>Gets list of items to show in <see cref="T:System.Windows.Forms.ListView" />. Called after node in <see cref="T:System.Windows.Forms.TreeView" /> is selected</summary>
+      <param name="obj">
+        <see cref="P:System.Windows.Forms.TreeNode.Tag" /> of selected <see cref="T:System.Windows.Forms.TreeNode" /></param>
+      <returns>List of object to pas to <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.GetListItem(System.Object)" /> and show</returns>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnBeforeExpand(System.Windows.Forms.TreeViewCancelEventArgs)">
+      <summary>Called when node which contain only one sub-node with empty <see cref="P:System.Windows.Forms.TreeNode.Tag">Tag</see> is about to be expanded.</summary>
+      <param name="e">Arguments of <see cref="E:System.Windows.Forms.TreeView.BeforeExpand" /> event</param>
+      <remarks>
+        <para>The empty sub-node is removed from current node before this method is called.</para>
+        <para>The default implementation calls <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.GetChildren(System.Object)" /> and passes it's result to <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.GetNode(System.Object)" /> (if <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.FilterItem(System.Object)" /> succeeds for it) to obtain <see cref="T:System.Windows.Forms.TreeNode" /> which is added to node being expanded</para>
+      </remarks>
+      <version version="1.5.2">Added filtering of items by calling <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.FilterItem(System.Object)" />.</version>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.FilterItem(System.Object)">
+      <summary>Filters item obtained from <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.GetChildren(System.Object)" /></summary>
+      <param name="item">Item to filter</param>
+      <returns>True to add the item to tree; false to skip it</returns>
+      <remarks>This implementation performs filtering by raising the <see cref="E:Tools.WindowsT.FormsT.ObjectBrowser.ItemFiltering" /> event</remarks>
+      <version version="1.5.2">Function introduced</version>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.ItemFiltering">
+      <summary>Raised when item is about to be displayed to user. You can cancel the item.</summary>
+      <version version="1.5.2">Event introduced</version>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.kpBaseTypes">
+      <summary>Code for node representing all the base types</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.kpReferences">
+      <summary>Code for node representing all the references</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.kpBaseType">
+      <summary>Code for node representing single base type</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.kpReference">
+      <summary>Code for node representing single referenced assembly</summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.GetChildren(System.Object)">
+      <summary>This function is called by default implementation of <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnBeforeExpand(System.Windows.Forms.TreeViewCancelEventArgs)" /> to obtain childrens of node being expanded.</summary>
+      <param name="obj">
+        <see cref="P:System.Windows.Forms.TreeNode.Tag" /> of node being expanded</param>
+      <returns>Object to pass to <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.GetNode(System.Object)" /> in order to obtain node to add to current node. Can be null.</returns>
+      <remarks>Note to inheritors: Feel free to throw an exception from this function. Default implementation of <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnBeforeExpand(System.Windows.Forms.TreeViewCancelEventArgs)" /> catches it and adds exception to tree instead of list of items. Another possibility is to catch exception and add it to list being returned. This way allows you to denote exception but continue enumeration other children.</remarks>
+      <exception cref="T:System.Exception">An error ocured while getting children</exception>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.ShouldShowMember(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+      <summary>Gets value indicating if member with given accesibility and static/instance behavior should be shown</summary>
+      <param name="Private">Member is private</param>
+      <param name="Family">Member as family (protected)</param>
+      <param name="Assembly">Member is assembly (internal, friend)</param>
+      <param name="Public">Member is public</param>
+      <param name="FamAndAssem">Member is family-and-assembyl</param>
+      <param name="FamOrAssem">Member is family-or-assembyl (protected firend)</param>
+      <param name="Static">member is static</param>
+      <param name="SkipStaticTest">
+        <paramref name="Static" /> will not be tested</param>
+      <returns>True if member should be shown</returns>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
+      <summary>Raises the <see cref="E:System.Windows.Forms.Control.KeyDown" /> event. Processes key events.</summary>
+      <param name="e">A <see cref="T:System.Windows.Forms.KeyEventArgs" /> that contains the event data. </param>
+      <remarks>This implementation processes keyboard events for this control with <see cref="P:Tools.WindowsT.FormsT.UserControlExtended.KeyPreview" /> set to true. Processed keys are:
+ <list type="table"><listheader><term>Key</term><description>Action</description></listheader><item><term><see cref="F:System.Windows.Forms.Keys.BrowserBack">Browser back</see></term><description>Navigate backward, calls <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnNavigateBackward" />. </description></item><item><term><see cref="F:System.Windows.Forms.Keys.BrowserForward">Browser forward</see></term><description>Navigate forward, calls <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnNavigateForward" />. </description></item></list>
+ If the event is processed <paramref name="e" />.<see cref="P:System.Windows.Forms.KeyEventArgs.Handled">Handled</see> is set to true.
+ </remarks>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnNavigateForward">
+      <summary>Called whne forward navigation is requested. Performs navigation and raises the <see cref="F:Tools.WindowsT.FormsT.ObjectBrowser.NavigateForwardEvent" /></summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnNavigateBackward">
+      <summary>Called whne backward navigation is requested. Performs navigation and raises the <see cref="F:Tools.WindowsT.FormsT.ObjectBrowser.NavigateBackwardEvent" /></summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._Navigating">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.Navigating" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.Navigating">
+      <summary>Gets or sets value indicating if backward/forward navigation is pending</summary>
+      <returns>Value indicating if backward/forward navigation is pending</returns>
+      <value>True if backward/forward navigation is currently pending and navigation is not automatically tracked because of it</value>
+      <remarks>If this property is set to true the <see cref="E:System.Windows.Forms.TreeView.BeforeSelect" /> event of <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.tvwObjects" /> does not track change of node</remarks>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.ForwardStack">
+      <summary>Stack of points for forward navigation</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.BackwardStack">
+      <summary>Stack of points for backward navigation</summary>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.op_Implicit(System.Windows.Forms.TreeNode)~Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint">
+      <summary>Converts <see cref="T:System.Windows.Forms.TreeNode" /> to <see cref="T:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint" /></summary>
+      <param name="a">A <see cref="T:System.Windows.Forms.TreeNode" /></param>
+      <returns>INstance of <see cref="T:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint" /> populated with <paramref name="a" /></returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="a" /> is null</exception>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint._Tag">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.Tag" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.Tag">
+      <summary>Tag can contain any additional information for navigation point</summary>
+    </member>
+    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint._Node">
+      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.Node" /> property</summary>
+    </member>
+    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.Node">
+      <summary>
+        <see cref="T:System.Windows.Forms.TreeNode" /> that is point of navigation</summary>
+      <remarks>Node must be always set but more information can be provided in order to allow navigation whne the node was already removed form <see cref="T:System.Windows.Forms.TreeView" /></remarks>
+    </member>
+    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.#ctor(System.Windows.Forms.TreeNode)">
+      <summary>CTor from <see cref="T:System.Windows.Forms.TreeNode" /></summary>
+      <paramref name="Node">Node this navigation point points to. It cannot be null.</paramref>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="Node" /> is null</exception>
+    </member>
+    <member name="T:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint">
+      <summary>Represents point for forward/backward navigation</summary>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.NavigateForward">
+      <summary>Raised after forward navigation ocured</summary>
+      <param name="e">
+        <see cref="F:System.EventArgs.Empty" />
+      </param>
+      <version version="1.5.2">Added <see cref="T:Tools.ComponentModelT.KnownCategoryAttribute" /> and <see cref="T:Tools.ComponentModelT.LDescriptionAttribute" /></version>
+    </member>
+    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.NavigateBackward">
+      <summary>raised after backward navigation ocured</summary>
+      <param name="e">
+        <see cref="F:System.EventArgs.Empty" />
+      </param>
+      <version version="1.5.2">Added <see cref="T:Tools.ComponentModelT.KnownCategoryAttribute" /> and <see cref="T:Tools.ComponentModelT.LDescriptionAttribute" /></version>
+    </member>
+    <member name="T:Tools.WindowsT.FormsT.ObjectBrowser">
+      <summary>Control for browsing .NET assemblies</summary>
+      <author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
+      <version stage="Nightly" version="1.5.2">Fixed: Uncatchable <see cref="T:System.ArgumentNullException" /> in tvwObjects_BeforeSelect on show of object.</version>
+      <version version="1.5.2">Fixed: Resources-related errors</version>
+      <version version="1.5.2">Removed <see cref="T:Tools.InternalT.VersionAttribute" /> and <see cref="T:Tools.InternalT.FirstVersionAttribute" /></version>
+      <version version="1.5.2">Added property <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItem" /></version>
+      <version version="1.5.2">Added <see cref="T:System.ComponentModel.DefaultEventAttribute" />.</version>
+      <version version="1.5.2">Added <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItem" /> property</version>
+    </member>
     <member name="F:Tools.WindowsT.FormsT.ThesaurusForm.For">
       <summary>
         <see cref="T:Tools.WindowsT.FormsT.KeyWordsEditor" /> this instance is for</summary>
@@ -3481,7 +4414,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
       <exception cref="T:System.Reflection.TargetInvocationException">There was an error worink working with customized static properties such as <see cref="P:Tools.WindowsT.IndependentT.MessageBox.DefaultImplementation" /></exception>
       <version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner" /> changed from <see cref="T:System.Windows.Forms.IWin32Window" /> to <see cref="T:System.Object" /> to support both - <see cref="T:System.Windows.Forms.IWin32Window" /> and <see cref="T:System.Windows.Window" />.</version>
     </member>
-    <member name="M:Tools.WindowsT.IndependentT.MessageBox.MsgBox(System.Object,Microsoft.VisualBasic.MsgBoxStyle,System.Object)">
+    <member name="M:Tools.WindowsT.IndependentT.MessageBox.MsgBox(System.Object,Microsoft.VisualBasic.MsgBoxStyle,System.Object,System.Object)">
       <summary>Displays a message in a dialog box, waits for the user to click a button, and then returns an integer indicating which button the user clicked.</summary>
       <param name="Prompt">Required. String expression displayed as the message in the dialog box.</param>
       <param name="Buttons">Optional. Numeric expression that is the sum of values specifying the number and type of buttons to display, the icon style to use, the identity of the default button, and the modality of the message box. If you omit Buttons, the default value is zero. Values <see cref="F:Microsoft.VisualBasic.MsgBoxStyle.Critical" />, <see cref="F:Microsoft.VisualBasic.MsgBoxStyle.Exclamation" /> and <see cref="F:Microsoft.VisualBasic.MsgBoxStyle.Question" /> are associated with appropriate <see cref="T:System.Media.SystemSounds" />.</param>
@@ -3489,6 +4422,8 @@ A strongly-typed resource class, for looking up localized strings, formatting th
       <returns>The result of message box indicatin pressed button.</returns>
       <exception cref="T:System.Reflection.TargetInvocationException">There was an error working working with customized static properties such as <see cref="P:Tools.WindowsT.IndependentT.MessageBox.DefaultImplementation" /> or message box implementation failed.</exception>
       <remarks>This function mimisc behaviour of the <see cref="M:Microsoft.VisualBasic.Interaction.MsgBox(System.Object,Microsoft.VisualBasic.MsgBoxStyle,System.Object)" /> function</remarks>
+      <param name="Owner">Owner window (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window" /> and <see cref="T:System.Windows.Window" /> If implementation does not recognize type of owner it ignores it.</param>
+      <version version="1.5.3" stage="Beta">Added parameter <paramref name="owner" /> because using <see cref="M:Tools.WindowsT.IndependentT.MessageBox.MsgBox(System.Object,Microsoft.VisualBasic.MsgBoxStyle,System.Object,System.Object)" /> without pwner caused bad behavior in WPF applications.</version>
     </member>
     <member name="M:Tools.WindowsT.IndependentT.MessageBox.Modal_P(System.String)">
       <summary>Displays modal message box with given prompt</summary>
@@ -3698,6 +4633,24 @@ A strongly-typed resource class, for looking up localized strings, formatting th
       <param name="Title">Message box title</param>
       <param name="Icon">Icon that will be shown on messagebox. Default preffered size is 64×64 px (can be changed in derived class). <paramref name="Icon" /> can be null.</param>
       <returns>Indicates button clicked by user</returns>
+    </member>
+    <member name="M:Tools.WindowsT.IndependentT.MessageBox.Modal_PTIW(System.String,System.String,System.Drawing.Image,System.Object)">
+      <summary>Displays modal messagebox with given prompt, title and custom icon. Message box is modal to given owner.</summary>
+      <param name="Prompt">Prompt to be shown</param>
+      <param name="Title">Message box title</param>
+      <param name="Icon">Defines one of predefined icons to show to user. Actual image is obtained via <see cref="P:Tools.WindowsT.IndependentT.MessageBox.GetIconDelegate" /></param>
+      <param name="Owner">The window message box window will be modal to (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window" /> and <see cref="T:System.Windows.Window" /> If implementation does not recognize type of owner it ignores it.</param>
+      <returns>Indicates button clicked by user</returns>
+      <version version="1.5.3" stage="Beta">This function is new in 1.5.3</version>
+    </member>
+    <member name="M:Tools.WindowsT.IndependentT.MessageBox.Modal_PTIW(System.String,System.String,Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons,System.Object)">
+      <summary>Displays modal messagebox with given prompt, title and icon. Message box is modal to given owner.</summary>
+      <param name="Prompt">Prompt to be shown</param>
+      <param name="Title">Message box title</param>
+      <param name="Icon">Defines one of predefined icons to show to user. Actual image is obtained via <see cref="P:Tools.WindowsT.IndependentT.MessageBox.GetIconDelegate" /></param>
+      <param name="Owner">The window message box window will be modal to (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window" /> and <see cref="T:System.Windows.Window" /> If implementation does not recognize type of owner it ignores it.</param>
+      <returns>Indicates button clicked by user</returns>
+      <version version="1.5.3" stage="Beta">This function is new in 1.5.3</version>
     </member>
     <member name="M:Tools.WindowsT.IndependentT.MessageBox.Modal_PTIB(System.String,System.String,System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton[])">
       <summary>Displays modal message box with given prompt, title, custom icon and custom buttons</summary>
@@ -6162,135 +7115,6 @@ A strongly-typed resource class, for looking up localized strings, formatting th
     <member name="T:Tools.WindowsT.FormsT.UtilitiesT.WinFormsExtensions">
       <summary>Miscaleneous small Windows Forms realetd tools</summary>
     </member>
-    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.#ctor">
-      <summary>Default CTor</summary>
-      <remarks>Value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> property is populated with new instance of <see cref="T:System.ComponentModel.BackgroundWorker" /></remarks>
-      <filterpriority>3</filterpriority>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.#ctor(System.ComponentModel.BackgroundWorker)">
-      <summary>CTor</summary>
-      <param name="bgw">
-        <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> this form will report progress for</param>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="bgw" /> is null</exception>
-      <filterpriority>1</filterpriority>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.#ctor(System.ComponentModel.BackgroundWorker,System.String,System.String)">
-      <summary>CTor with title text and prompt</summary>
-      <param name="bgw">
-        <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> this form will report progress for</param>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="bgw" /> is null</exception>
-      <param name="Text">Title text of window (see <see cref="P:System.Windows.Forms.Form.Text" />)</param>
-      <param name="Prompt">Prompt text (see <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Prompt" />)</param>
-      <filterpriority>2</filterpriority>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.Show(System.ComponentModel.BackgroundWorker,System.String,System.String,System.Windows.Forms.IWin32Window,System.Object)">
-      <summary>Shows progress form and runs worker</summary>
-      <param name="bgw">Worker to run</param>
-      <param name="Text">Title text of window (see <see cref="P:System.Windows.Forms.Form.Text" />)</param>
-      <param name="Prompt">Text prompt (see <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Prompt" />)</param>
-      <param name="Owner">Any object that implements <see cref="T:System.Windows.Forms.IWin32Window" /> that represents the top-level window that will own the modal dialog box.</param>
-      <param name="WorkerArgument">Optional parameter for background worker</param>
-      <returns>Result of work of <paramref name="bgw" /></returns>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.OnShown(System.EventArgs)">
-      <summary>Raises the <see cref="E:System.Windows.Forms.Form.Shown" /> event.</summary>
-      <param name="e">A <see cref="T:System.EventArgs" /> that contains the event data. </param>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor.bgw">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker">
-      <summary>Gets <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> this form repports progress of</summary>
-      <exception cref="T:System.ArgumentNullException">Value being set is null</exception>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.ProgressBarStyle">
-      <summary>Gets or sets style of <see cref="T:System.Windows.Forms.ProgressBar" /> that indicates progress of process</summary>
-      <seelaso cref="P:System.Windows.Forms.ProgressBar.Style" />
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.Progress">
-      <summary>Gets or sets current value of <see cref="T:System.Windows.Forms.ProgressBar" /> that reports progress</summary>
-      <exception cref="T:System.ArgumentException">Value being set is smaller than 0 or greater than 100.</exception>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor._CloseOnFinish">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CloseOnFinish" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.CloseOnFinish">
-      <summary>Gets or sets value indicating if form automatically closes when <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted">RunWorkerCompleted</see> event occures.</summary>
-      <value>New behavoir. Defalt value is true.</value>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)">
-      <summary>Handles <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="E:System.ComponentModel.BackgroundWorker.ProgressChanged">ProgressChanged</see> event</summary>
-      <param name="sender">
-        <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />
-      </param>
-      <param name="e">Event erguments</param>
-      <remarks>Default implementation works in following way:
- <list type="bullet"><item>If <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than or equal to zero then sets this value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Progress" /> property. Values smaller than zero are ignored.</item><item>If <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Windows.Forms.ProgressBarStyle" /> passes that value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.ProgressBarStyle" /> property.</item><item>If <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.String" /> passes that value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Information" /> property.</item><item>If <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Boolean" /> passes that value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel" /> property.</item><item>If <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> (same instance) than <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.Reset" /> method is called.</item></list></remarks>
-      <exception cref="T:System.ArgumentException">
-        <paramref name="e" />.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than 100.</exception>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.OnRunWorkerCompleted(System.ComponentModel.BackgroundWorker,System.ComponentModel.RunWorkerCompletedEventArgs)">
-      <summary>Handles <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted">RunWorkerCompleted</see> event.</summary>
-      <param name="sender">
-        <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />
-      </param>
-      <param name="e">event arguments</param>
-      <remarks>This implementation sets <see cref="P:System.Windows.Forms.Form.DialogResult" /> to <see cref="F:System.Windows.Forms.DialogResult.Cancel" /> when <paramref name="e" />.<see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled">Cancelled</see> is true; to <see cref="F:System.Windows.Forms.DialogResult.Abort" /> when <paramref name="e" />.<see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Error" /> isnot nothing and to <see cref="F:System.Windows.Forms.DialogResult.OK" /> in all other cases. Then sets <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerResult" />. If <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CloseOnFinish" /> is true, closes the form.</remarks>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor._WorkerResult">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerResult" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerResult">
-      <summary>Gets or sets result of <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" /> work</summary>
-      <returns>Null until <see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted" /> event occures. That returns its e parameter.</returns>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.Prompt">
-      <summary>Gets or sets prompt diaplyed in upper part of form</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.Information">
-      <summary>Gets or sets informative text displayed below the progress bar</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor._CanCancel">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel">
-      <summary>Gets or sets value indicationg if dialog supports cancelation</summary>
-      <value>Default value depends on <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="P:System.ComponentModel.BackgroundWorker.WorkerSupportsCancellation">WorkerSupportsCancellation</see> in time when it is passed to CTor.</value>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.ResetCanCancel">
-      <summary>Resets value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel" /> pproperty to its default value according to <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="P:System.ComponentModel.BackgroundWorker.WorkerSupportsCancellation">WorkerSupportsCancellation</see>.</summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.ShouldSerializeResetCancel">
-      <summary>Gets value indicationg if value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel" /> property should be serializes</summary>
-      <returns>True if value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel" /> property differs from <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="P:System.ComponentModel.BackgroundWorker.WorkerSupportsCancellation">WorkerSupportsCancellation</see>.</returns>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.OnCancel">
-      <summary>Performs cancellation. Called when the cancel button is clicked.</summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ProgressMonitor.Reset">
-      <summary>Resets the dialog</summary>
-      <remarks>In case you want to use the dialog from multiple runs of <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />, you should call this method before each (excluding first, but you can to) runs of <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />. Alternativly you can report new run using <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)" /> - see <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)" />.</remarks>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor._DoWorkOnShow">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.DoWorkOnShow" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.DoWorkOnShow">
-      <summary>Gets or sets value indicationg if form will call <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker" />.<see cref="M:System.ComponentModel.BackgroundWorker.RunWorkerAsync">RunWorkerAsync</see> when <see cref="E:System.Windows.Forms.Form.Shown" /> event occures.</summary>
-      <seelaso cref="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerArgument" />
-      <value>Default value is true</value>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ProgressMonitor._WorkerArgument">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerArgument" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerArgument">
-      <summary>Gets or sets value of argument passed to <see cref="E:System.ComponentModel.BackgroundWorker.DoWork" /> when <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.DoWorkOnShow" /> is true</summary>
-    </member>
-    <member name="T:Tools.WindowsT.FormsT.ProgressMonitor">
-      <summary>This <see cref="T:System.Windows.Forms.Form" /> serves as predefined progress monitor with <see cref="T:System.Windows.Forms.ProgressBar" /> for <see cref="T:System.ComponentModel.BackgroundWorker" /></summary>
-      <remarks>See documentation of the <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)" /> method in order to see rich options for reporting progress.</remarks>
-    </member>
     <member name="F:Tools.WindowsT.FormsT.DataBoundToolStripLabel._context">
       <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.DataBoundToolStripLabel.BindingContext" /> property</summary>
     </member>
@@ -8164,347 +8988,6 @@ A strongly-typed resource class, for looking up localized strings, formatting th
       <summary>Window that impements WPF message box</summary>
       <version version="1.5.3." stage="Nightly">Added ability to copy all text of message box using Ctrl+C</version>
     </member>
-    <member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.#ctor">
-      <summary>Default CTor</summary>
-    </member>
-    <member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.#ctor(Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions)">
-      <summary>CTor with value</summary>
-      <param name="Value">Initial value</param>
-    </member>
-    <member name="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Value">
-      <summary>Edited value</summary>
-    </member>
-    <member name="E:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.ValueChanged">
-      <summary>Raised ehan  value of the <see cref="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Value" /> property changes</summary>
-    </member>
-    <member name="F:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor._Context">
-      <summary>Contaisn value of the <see cref="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Context" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Context">
-      <summary>Stores context of current editing session</summary>
-      <remarks>This property is set by owner of the control and is valid between calls of <see cref="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnBeforeShow" /> and <see cref="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnClosed" />.</remarks>
-    </member>
-    <member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnBeforeShow">
-      <summary>Owner of control informs control that it is about to be shown by calling this methos. It is called just befiore the control is shown.</summary>
-    </member>
-    <member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnClosed">
-      <summary>Informs control that it was just hidden by calling this method.</summary>
-      <remarks>When implementing editor for reference type that is edited by changin its properties instead of changing its instance. Properties shouldbe changed in this method and onyl if <see cref="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Result" /> is true.</remarks>
-    </member>
-    <member name="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Result">
-      <summary>Stores editing result</summary>
-      <returns>True if editing was terminated with success, false if it was canceled</returns>
-      <remarks>This property is set by owner of the control and is valid when and after <see cref="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnClosed" /> is called</remarks>
-    </member>
-    <member name="F:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor._Service">
-      <summary>Contaisn value of the <see cref="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Service" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.Service">
-      <summary>Stores <see cref="T:System.Windows.Forms.Design.IWindowsFormsEditorService" /> valid for current editing session</summary>
-      <remarks>This property is set by owner of the control and is valid between calls of <see cref="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnBeforeShow" /> and <see cref="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.OnClosed" />.</remarks>
-    </member>
-    <member name="T:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor">
-      <summary>Implements editor for <see cref="T:Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions" /></summary>
-    </member>
-    <member name="T:Tools.WindowsT.FormsT.TextBoxWithStatus">
-      <summary>Note: This control will be removed and replaced with attachable implementation of <see cref="T:Tools.WindowsT.FormsT.StatusMarker" /></summary>
-      <author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Normal">
-      <summary>Normal state (data are in sync)</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Null">
-      <summary>Null (data are not available)</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.New">
-      <summary>New (data was null and now it is not null)</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Changed">
-      <summary>Changed (data was changed since last save)</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Deleted">
-      <summary>Deleted (data was not null and now it is null)</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Error">
-      <summary>Data error</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.NA">
-      <summary>Data status unkown</summary>
-    </member>
-    <member name="T:Tools.WindowsT.FormsT.StatusMarker.Statuses">
-      <summary>Supported states of <see cref="T:Tools.WindowsT.FormsT.StatusMarker" /></summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.StatusMarker._Status">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.StatusMarker.Status" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.StatusMarker.Status">
-      <summary>Gets or sets shown status of the control</summary>
-      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Value being set is not member of <see cref="T:Tools.WindowsT.FormsT.StatusMarker.Statuses" /></exception>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.StatusMarker.StatusChanged">
-      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.StatusMarker.Status" /> changes</summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnStatusChanged(System.EventArgs)">
-      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.StatusMarker.StatusChanged" /> event</summary>
-      <param name="e">Event parameters (<see cref="F:System.EventArgs.Empty" />)</param>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.StatusMarker.DeleteMenuState">
-      <summary>Gets or set state of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiDelete" /></summary>
-      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Value being set is not member of <see cref="T:Tools.WindowsT.FormsT.UtilitiesT.ControlState" /></exception>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.StatusMarker.MarkAsChangedMenuState">
-      <summary>Gets or set state of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiMarkAsChanged" /></summary>
-      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Value being set is not member of <see cref="T:Tools.WindowsT.FormsT.UtilitiesT.ControlState" /></exception>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.StatusMarker.ResetMenuState">
-      <summary>Gets or set state of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiReset" /></summary>
-      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Value being set is not member of <see cref="T:Tools.WindowsT.FormsT.UtilitiesT.ControlState" /></exception>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.StatusMarker.MenuState(System.Windows.Forms.ToolStripMenuItem)">
-      <summary>Gets or sets state of menu item</summary>
-      <param name="Menu">Menu item to get or set state for</param>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.StatusMarker.AddMenuState">
-      <summary>Gets or set state of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiAdd" /></summary>
-      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Value being set is not member of <see cref="T:Tools.WindowsT.FormsT.UtilitiesT.ControlState" /></exception>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.StatusMarker._AutoChanged">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.StatusMarker.AutoChanged" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.StatusMarker.AutoChanged">
-      <summary>Gets or sets value indicating if <see cref="P:Tools.WindowsT.FormsT.StatusMarker.Status" /> automatically changes to <see cref="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Changed" /> when <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiMarkAsChanged" /> is clicked</summary>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.StatusMarker.Add">
-      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiAdd" /> is clicked</summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnAdd(System.EventArgs)">
-      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.StatusMarker.Add" /> event</summary>
-      <param name="e">Event parameters</param>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.StatusMarker.MarkAsChanged">
-      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiMarkAsChanged" /> is clicked</summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnMarkAsChanged(System.EventArgs)">
-      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.StatusMarker.MarkAsChanged" /> event</summary>
-      <param name="e">Event parameters</param>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.StatusMarker.Reset">
-      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiReset" /> is clicked</summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnReset(System.EventArgs)">
-      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.StatusMarker.Reset" /> event</summary>
-      <param name="e">Event parameters</param>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.StatusMarker.Delete">
-      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.StatusMarker.tmiDelete" /> is clicked</summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnDelete(System.EventArgs)">
-      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.StatusMarker.Delete" /> event</summary>
-      <param name="e">Event parameters</param>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.StatusMarker.OnButtonClick">
-      <summary>Shows <see cref="P:Tools.WindowsT.FormsT.StatusMarker.cmsStatus" /></summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.StatusMarker.AutoSize">
-      <summary>Gets or sets if this control automatically sizes by its content</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl">
-      <summary>Control this instance reports status of</summary>
-      <value>Can be null if there is no auto-monitored control</value>
-      <returns>Auto-monitored control or null if there is no auto-monitored control</returns>
-      <remarks>
-        <para>Supported types of StatusedControls are (ordered by precedence - if component implements <see cref="T:Tools.IReportsChange" /> then <see cref="T:Tools.IReportsChange" /> is used, otherwise <see cref="T:System.Windows.Forms.TextBoxBase" /> is checked etc.):</para>
-        <list type="table">
-          <listheader>
-            <term>Type</term>
-            <description>Depends on event</description>
-          </listheader>
-          <item>
-            <term>
-              <see cref="T:Tools.IReportsChange" />
-            </term>
-            <description>
-              <see cref="E:Tools.IReportsChange.Changed" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.TextBoxBase" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.Control.TextChanged" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.NumericUpDown" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.NumericUpDown.ValueChanged" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.DomainUpDown" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.DomainUpDown.SelectedItemChanged" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.ComboBox" />
-            </term>
-            <description>If <see cref="P:System.Windows.Forms.ComboBox.DropDownStyle" /> is <see cref="F:System.Windows.Forms.ComboBoxStyle.DropDownList" /><see cref="E:System.Windows.Forms.ComboBox.SelectedIndexChanged" />; <see cref="E:System.Windows.Forms.Control.TextChanged" /> otherwise</description>. Note: Do not change <see cref="P:System.Windows.Forms.ComboBox.DropDownStyle" /> property after the <see cref="T:System.Windows.Forms.ComboBox" /> is assigned to <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /></item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.CheckBox" />
-            </term>
-            <description>If <see cref="P:System.Windows.Forms.CheckBox.ThreeState" /> is True <see cref="E:System.Windows.Forms.CheckBox.CheckStateChanged" />; <see cref="E:System.Windows.Forms.CheckBox.CheckedChanged" /> otherwise. Note: Do not change value of the <see cref="P:System.Windows.Forms.CheckBox.ThreeState" /> property after the <see cref="T:System.Windows.Forms.CheckBox" /> is assigned to <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /></description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.RadioButton" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.RadioButton.CheckedChanged" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.CheckedListBox" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.CheckedListBox.ItemCheck" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.MonthCalendar" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.MonthCalendar.DateChanged" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.DateTimePicker" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.DateTimePicker.ValueChanged" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.TrackBar" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.TrackBar.ValueChanged" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.ScrollBar" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.ScrollBar.ValueChanged" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.ToolStripTextBox" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.ToolStripItem.TextChanged" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.ToolStripComboBox" />
-            </term>
-            <description>If <see cref="P:System.Windows.Forms.ToolStripComboBox.DropDownStyle" /> is <see cref="F:System.Windows.Forms.ComboBoxStyle.DropDownList" /><see cref="E:System.Windows.Forms.ToolStripComboBox.SelectedIndexChanged" />; <see cref="E:System.Windows.Forms.ToolStripItem.TextChanged" /> otherwise</description>. Note: Do not change <see cref="P:System.Windows.Forms.ToolStripComboBox.DropDownStyle" /> property after the <see cref="T:System.Windows.Forms.ToolStripComboBox" /> is assigned to <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /></item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.ToolStripButton" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.ToolStripButton.CheckedChanged" />
-            </description>
-          </item>
-          <item>
-            <term>
-              <see cref="T:System.Windows.Forms.ToolStripMenuItem" />
-            </term>
-            <description>
-              <see cref="E:System.Windows.Forms.ToolStripMenuItem.CheckedChanged" />
-            </description>
-          </item>
-        </list>
-      </remarks>
-      <exception cref="T:System.NotSupportedException">Type of passed component is not supported</exception>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.StatusMarker.RemoveHandler">
-      <summary>Removes method <see cref="M:Tools.WindowsT.FormsT.StatusMarker.Handler``2(``0,``1)" /> as hendler of event of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /> where it was added in <see cref="M:Tools.WindowsT.FormsT.StatusMarker.AddHandler(System.ComponentModel.Component)" /> method</summary>
-      <exception cref="T:System.NotSupportedException">Type of <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /> is not supported. See <seealso cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /> for list of supported types.</exception>
-      <remarks>Note for inheritors: You can extedn <see cref="T:Tools.WindowsT.FormsT.StatusMarker" />'s support of statused controls either by overriding <see cref="M:Tools.WindowsT.FormsT.StatusMarker.AddHandler(System.ComponentModel.Component)" /> and <see cref="M:Tools.WindowsT.FormsT.StatusMarker.RemoveHandler" /> methods or by implementing <see cref="T:Tools.IReportsChange" /> by the control that should be supported</remarks>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.StatusMarker.AddHandler(System.ComponentModel.Component)">
-      <summary>Adds method <see cref="M:Tools.WindowsT.FormsT.StatusMarker.Handler``2(``0,``1)" /> as handler of appropriate event of given component</summary>
-      <param name="Component">Component to add handler to</param>
-      <remarks>Note for inheritors: You can extedn <see cref="T:Tools.WindowsT.FormsT.StatusMarker" />'s support of statused controls either by overriding <see cref="M:Tools.WindowsT.FormsT.StatusMarker.AddHandler(System.ComponentModel.Component)" /> and <see cref="M:Tools.WindowsT.FormsT.StatusMarker.RemoveHandler" /> methods or by implementing <see cref="T:Tools.IReportsChange" /> by the control that should be supported</remarks>
-      <exception cref="T:System.NotSupportedException">Type of <paramref name="Component" /> is not supported. See <seealso cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /> for list of supported types.</exception>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.StatusMarker.Handler``2(``0,``1)">
-      <summary>Handles change of value of monitored control</summary>
-      <param name="sender">Source of event - should be same as <see cref="P:Tools.WindowsT.FormsT.StatusMarker.StatusedControl" /></param>
-      <param name="e">Event arguments repored by <paramref name="sender" /></param>
-      <typeparam name="TSender">Type of sender (typically <see cref="T:System.Object" />)</typeparam>
-      <typeparam name="TEventargs">Type of event arguments (typically <see cref="T:System.EventArgs" />)</typeparam>
-      <remarks>This method is generic because it is required for handlers to work. It does not rely on exact types of <paramref name="sender" /> amd <paramref name="e" />.</remarks>
-    </member>
-    <member name="T:Tools.WindowsT.FormsT.StatusMarker">
-      <summary>Marks state of data item</summary>
-      <author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.Status">
-      <summary>Current status of control</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.DeleteMenustate">
-      <summary>State of delete menu item</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.MarkAsChangedMenuState">
-      <summary>State of mar-as-changed menu item</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.ResetMenuState">
-      <summary>state of reset menu item</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.AddMenuState">
-      <summary>state of add menu item</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.IControlWithStatus.AutoChanged">
-      <summary>Indicates if <see cref="P:Tools.WindowsT.FormsT.IControlWithStatus.Status" /> automatically chnages to <see cref="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.Changed" /> and <see cref="F:Tools.WindowsT.FormsT.StatusMarker.Statuses.New" /> if user takes appropriate action</summary>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.IControlWithStatus.Add">
-      <summary>Raised after add menu item is clicked</summary>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.IControlWithStatus.MarkAsChanged">
-      <summary>Raised after mark-as-changed menu item is clicked</summary>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.IControlWithStatus.Reset">
-      <summary>Raised after reset menu item is clicked</summary>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.IControlWithStatus.Delete">
-      <summary>Raised after delete menu item is clcked</summary>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.IControlWithStatus.StatusChanged">
-      <summary>Raised after <see cref="P:Tools.WindowsT.FormsT.IControlWithStatus.Status" /> is changed</summary>
-    </member>
-    <member name="T:Tools.WindowsT.FormsT.IControlWithStatus">
-      <summary>Provides common interface for controls that exposes its status</summary>
-      <author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
-      <version version="1.5.2" stage="Nightly">
-        <see cref="T:Tools.InternalT.VersionAttribute" /> and <see cref="T:Tools.InternalT.AuthorAttribute" /> removed</version>
-    </member>
     <member name="M:Tools.WindowsT.InteropT.DependencyPropertyChangedEventArgsEventArgs.#ctor(System.Windows.DependencyPropertyChangedEventArgs)">
       <summary>CTor</summary>
       <param name="DependencyPropertyChangedEventArgs">Instance to be wraped</param>
@@ -8795,469 +9278,6 @@ A strongly-typed resource class, for looking up localized strings, formatting th
         <see cref="T:Tools.InternalT.VersionAttribute" /> and <see cref="T:Tools.InternalT.AuthorAttribute" /> removed</version>
       <version version="1.5.2">
         <see cref="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" /> and <see cref="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" /> now accepts <see langword="null" /> when <typeparamref name="TSource" /> or <typeparamref name="TTarget" /> respectivelly is not value type or is <see cref="T:System.Nullable`1" /></version>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.Assemblies">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.Objects" /> property</summary>
-      <remarks>Can be any object</remarks>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.Initializing">
-      <summary>Is set to true when component is being constructed</summary>
-      <remarks>It is used to stop some functionality during initialisation</remarks>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.#ctor">
-      <summary>CTor</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowInheritedMembers">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInheritedMembers" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInheritedMembers">
-      <summary>Gets or sets value indicating if inherited members are shown</summary>
-      <value>True to show inherited members, false to hide them</value>
-      <returns>Value indicating if inherited members are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowFlatNamespaces">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowFlatNamespaces" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowFlatNamespaces">
-      <summary>Gets or sets value indicating if namespaces are show flat or hierachically</summary>
-      <value>True to show flat namespaces, false to show hierarchic namespaces</value>
-      <returns>Value indicating if namespaces are shown flat or hierarchic</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowNestedTypes">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowNestedTypes" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowNestedTypes">
-      <summary>Gets or sets value indicating if nested types are shown</summary>
-      <value>True to show nested types, false to hide them</value>
-      <returns>Value indicating if nested types are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowPrivateMembers">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowPrivateMembers" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowPrivateMembers">
-      <summary>Gets or sets value indicating if private members are shown</summary>
-      <value>True to show private members, false to hide them</value>
-      <returns>Value indicating if private members are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowInternalMembers">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInternalMembers" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInternalMembers">
-      <summary>Gets or sets value indicating if internal members are shown</summary>
-      <value>True to show internal members, false to hide them</value>
-      <returns>Value indicating if internal members are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowProtectedMembers">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProtectedMembers" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProtectedMembers">
-      <summary>Gets or sets value indicating if protected members are shown</summary>
-      <value>True to show protected members, false to hide them</value>
-      <returns>Value indicating if protected members are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowInstanceMembers">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInstanceMembers" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInstanceMembers">
-      <summary>Gets or sets value indicating if instance members are shown</summary>
-      <value>True to show instance members, false to hide them</value>
-      <returns>Value indicating if instance members are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowStaticMembers">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowStaticMembers" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowStaticMembers">
-      <summary>Gets or sets value indicating if static members are shown</summary>
-      <value>True to show static members, false to hide them</value>
-      <returns>Value indicating if static members are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowSpecialMembers">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowSpecialMembers" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowSpecialMembers">
-      <summary>Gets or sets value indicating if special members (parts of properties and events) are shown</summary>
-      <value>True to show special members, false to hide them</value>
-      <returns>Value indicating if special members are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowGlobalMembers">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGlobalMembers" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGlobalMembers">
-      <summary>Gets or sets value indicating if Global members (parts of properties and events) are shown</summary>
-      <value>True to show Global members, false to hide them</value>
-      <returns>Value indicating if Global members are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowProperties">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProperties" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProperties">
-      <summary>Gets or sets value indicating if properties are shown</summary>
-      <value>True to show properties  false to hide them</value>
-      <returns>Value indicating if properties are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowEvents">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowEvents" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowEvents">
-      <summary>Gets or sets value indicating if Events are shown</summary>
-      <value>True to show Events  false to hide them</value>
-      <returns>Value indicating if Events are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowMethods">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowMethods" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowMethods">
-      <summary>Gets or sets value indicating if Methods are shown</summary>
-      <value>True to show Methods  false to hide them</value>
-      <returns>Value indicating if Methods are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowFields">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowFields" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowFields">
-      <summary>Gets or sets value indicating if Fields are shown</summary>
-      <value>True to show Fields  false to hide them</value>
-      <returns>Value indicating if Fields are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowCTors">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowCTors" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowCTors">
-      <summary>Gets or sets value indicating if CTors are shown</summary>
-      <value>True to show CTors  false to hide them</value>
-      <returns>Value indicating if CTors are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowInitializers">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInitializers" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInitializers">
-      <summary>Gets or sets value indicating if Initializers are shown</summary>
-      <value>True to show Initializers  false to hide them</value>
-      <returns>Value indicating if Initializers are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowgenericArguments">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGenericArguments" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGenericArguments">
-      <summary>Gets or sets value indicating if generic arguments (type parameters) are shown</summary>
-      <value>True to show generic arguments  false to hide them</value>
-      <returns>Value indicating if generic arguments are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowReferences">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowReferences" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowReferences">
-      <summary>Gets or sets value indicating if references are shown</summary>
-      <value>True to show references false to hide them</value>
-      <returns>Value indicating if references are shown</returns>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowBaseTypes">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowBaseTypes" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowBaseTypes">
-      <summary>Gets or sets value indicating if base types are shown</summary>
-      <value>True to show base types  false to hide them</value>
-      <returns>Value indicating if base types are shown</returns>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnShowChanged">
-      <summary>Called after value of property that controls which members are displayed in <see cref="T:System.Windows.Forms.ListView" /> is changed.</summary>
-      <remarks>Those properties are:
- <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowCTors" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowEvents" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowFields" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGenericArguments" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowGlobalMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInheritedMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInitializers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInstanceMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowMethods" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowInternalMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowNestedTypes" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowPrivateMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProperties" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowProtectedMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowSpecialMembers" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowStaticMembers" /></remarks>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.ShowChanged">
-      <summary>Raised after property that controls which members are displayed in <see cref="T:System.Windows.Forms.ListView" /> was changed.</summary>
-      <remarks>See <seealso cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnShowChanged" /> for list of properties that causes this event to be raised.</remarks>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.ActualizeNode(System.Windows.Forms.TreeNode)">
-      <summary>Called recursivelly by <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnShowChanged" /> and itself in order to actualize content of each expanded node.</summary>
-      <param name="Node">Node to actualize content of</param>
-      <remarks>Note for inheritors: After actualizing content of this node, if there are any ünchanged nodes (that is your actualization logic is not delete all nodes and create them again) you should call this method on all the expanded nodes and replace content of all colapsed nodes by only tag-less node.</remarks>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._DisplayMemberList">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayMemberList" /> property</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._DisplayProperties">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayProperties" /> property</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._DisplayDescription">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayDescription" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayMemberList">
-      <summary>Gets or sets value indicationg if member list is shown</summary>
-      <returns>True if member list is show, false when it is hidden</returns>
-      <value>True to show member list; alse to hide it</value>
-      <version stage="1.5.2">Property added</version>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayProperties">
-      <summary>Gets or sets value indicationg if property grid is shown</summary>
-      <returns>True if property grid is show, false when it is hidden</returns>
-      <value>True to show ptoperty grid; alse to hide it</value>
-      <version stage="1.5.2">Property added</version>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayDescription">
-      <summary>Gets or sets value indicationg if description pane is shown</summary>
-      <returns>True if description pane is show, false when it is hidden</returns>
-      <value>True to show decription pane; alse to hide it</value>
-      <version stage="1.5.2">Property added</version>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnDisplayChanged">
-      <summary>Called when any of display properties changes</summary>
-      <remarks>Dsiplay properties are <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayMemberList" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayProperties" /> and <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayDescription" /></remarks>
-      <version version="1.5.2">Method added</version>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.DisplayChanged">
-      <summary>Raised when any of display properties changes</summary>
-      <remarks>Dsiplay properties are <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayMemberList" />, <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayProperties" /> and <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.DisplayDescription" /></remarks>
-      <version version="1.5.2">Event added</version>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowShowMenu">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowShowMenu" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowShowMenu">
-      <summary>Gets or sets value indicating if the Show menu is shown</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._ShowToolbar">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowToolbar" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.ShowToolbar">
-      <summary>Gets or sets value indicating if the toolbar is shown</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.Objects">
-      <summary>List of assemblies or any other objects listed at top-level of tree-view</summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.ShouldSerializeObjects">
-      <summary>Gets value indicating if the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.Objects" /> property needs to be serialized</summary>
-      <returns>True if the is any item in the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.Objects" /> property</returns>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.ResetObjects">
-      <summary>Resets the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.Objects" /> property to it's initial state (empties it)</summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.GetNode(System.Object)">
-      <summary>Converts any object to <see cref="T:System.Windows.Forms.TreeNode" /></summary>
-      <param name="Obj">Object to convert</param>
-      <returns>
-        <see cref="T:System.Windows.Forms.TreeNode" /> to represent <paramref name="Obj" /></returns>
-      <remarks>Note to inheritors: Newly created node must have <paramref name="Obj" /> as its <see cref="P:System.Windows.Forms.TreeNode.Tag" />. If you call any of <see cref="M:Tools.ReflectionT.CodeImages.GetImage(Tools.ReflectionT.CodeImages.Objects)" /> methods that returns image with overlay the image is automatically added to <see cref="T:System.Windows.Forms.ImageList" /> used by <see cref="T:System.Windows.Forms.TreeView" /> and <see cref="T:System.Windows.Forms.ListView" />. You can then set <see cref="P:System.Windows.Forms.TreeNode.ImageKey" /> and <see cref="P:System.Windows.Forms.TreeNode.SelectedImageKey" /> to key in form "{0:d}_{1:d}" (see <see cref="T:System.String" />) where 0 is numeric representation of <see cref="T:Tools.ReflectionT.CodeImages.Objects" /> and 1 is numeric representation of <see cref="T:Tools.ReflectionT.CodeImages.ObjectModifiers" />. This key is produced by the <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.Key(Tools.ReflectionT.CodeImages.Objects,Tools.ReflectionT.CodeImages.ObjectModifiers)" /> function. If you want the node to be expandable, but you do not want to fill items right now, place only item without <see cref="P:System.Windows.Forms.TreeNode.Tag" /> into it.</remarks>
-      <exception cref="T:System.Exception">An error ocured during creating node (not thrown when <paramref name="Obj" /> is <see cref="T:System.Exception" />). Note to inheritors: Do not throw any exception when <paramref name="Obj" /> is <see cref="T:System.Exception" />!</exception>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.GetListItem(System.Object)">
-      <summary>Converts any object to <see cref="T:System.Windows.Forms.ListViewItem" /></summary>
-      <param name="obj">Object to converts</param>
-      <returns>
-        <see cref="T:System.Windows.Forms.ListViewItem" /> repersenting <paramref name="obj" /></returns>
-      <remarks>Note to inheritors: Newly created item must have <paramref name="Obj" /> as its <see cref="P:System.Windows.Forms.ListViewItem.Tag" />. If you call any of <see cref="M:Tools.ReflectionT.CodeImages.GetImage(Tools.ReflectionT.CodeImages.Objects)" /> methods that returns image with overlay the image is automatically added to <see cref="T:System.Windows.Forms.ImageList" /> used by <see cref="T:System.Windows.Forms.TreeView" /> and <see cref="T:System.Windows.Forms.ListView" />. You can then set <see cref="P:System.Windows.Forms.TreeNode.ImageKey" /> and <see cref="P:System.Windows.Forms.TreeNode.SelectedImageKey" /> to key in form "{0:d}_{1:d}" (see <see cref="T:System.String" />) where 0 is numeric representation of <see cref="T:Tools.ReflectionT.CodeImages.Objects" /> and 1 is numeric representation of <see cref="T:Tools.ReflectionT.CodeImages.ObjectModifiers" />. This key is produced by the <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.Key(Tools.ReflectionT.CodeImages.Objects,Tools.ReflectionT.CodeImages.ObjectModifiers)" /> function. If you want the node to be expandable, but you do not want to fill items right now, place only item without <see cref="P:System.Windows.Forms.TreeNode.Tag" /> into it.</remarks>
-      <exception cref="T:System.Exception">An error ocured during creating node (not thrown when <paramref name="Obj" /> is <see cref="T:System.Exception" />). Note to inheritors: Do not throw any exception when <paramref name="Obj" /> is <see cref="T:System.Exception" />!</exception>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.LastRequestedKey">
-      <summary>Holds key of image that was last passed to <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.ImageRequested(System.Drawing.Image,Tools.ReflectionT.CodeImages.Objects,Tools.ReflectionT.CodeImages.ObjectModifiers)" /></summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.ImageRequested(System.Drawing.Image,Tools.ReflectionT.CodeImages.Objects,Tools.ReflectionT.CodeImages.ObjectModifiers)">
-      <summary>Handles the <see cref="E:Tools.ReflectionT.CodeImages.ImageRequested" /> event</summary>
-      <param name="img">Image requaested</param>
-      <param name="ObjectType">Type of object for that request</param>
-      <param name="Modifiers">Object modifiers for that request</param>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.Key(Tools.ReflectionT.CodeImages.Objects,Tools.ReflectionT.CodeImages.ObjectModifiers)">
-      <summary>Converts object type and modifiers to string key</summary>
-      <param name="ObjectType">Type of object</param>
-      <param name="Modifiers">Ky modifiers</param>
-      <returns>String created using <see cref="T:System.String" />("{0:d}_{1:d}", <paramref name="ObjectType" />, <paramref name="Modifiers" />)</returns>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.Windows.Forms.Control,System.Object,System.Object)">
-      <summary>Called after selected item changes</summary>
-      <param name="Control">Control the item is member of (can be either <see cref="T:System.Windows.Forms.TreeView" /> or <see cref="T:System.Windows.Forms.ListView" />).</param>
-      <param name="Item">Item itself (can be <see cref="T:System.Windows.Forms.TreeNode" /> or <see cref="T:System.Windows.Forms.ListViewItem" />)</param>
-      <param name="ItemTag">Tag of item - selected object</param>
-      <remarks>Cals <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.EventArgs)" /> overload.
- <note type="inherinfo">Always call <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.EventArgs)" /> or <see cref="E:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItemChanged" /> will not be raised.</note></remarks>
-      <version version="1.5.2">Added call to <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.EventArgs)" /></version>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._CurrentSelectedItem">
-      <summary>Contains value oft the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.CurrentSelectedItem" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.CurrentSelectedItem">
-      <summary>Contains item that is currently selected</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItem">
-      <summary>Gets item that is curently selected in object browser</summary>
-      <returns>Item curently selected in object browse</returns>
-      <value>Object to select</value>
-      <exception cref="T:System.ArgumentException">Value being set cannot be located</exception>
-      <version version="1.5.2">Property added</version>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.FindItem(System.Windows.Forms.TreeNodeCollection,System.Object)">
-      <summary>Finds item unsder given treenode</summary>
-      <param name="item">Item (type, method, namespace etc.) to be found</param>
-      <param name="Nodes">Nodes to search for item in.</param>
-      <returns>Item location - <see cref="T:System.Windows.Forms.TreeNode" /> and tag of <see cref="T:System.Windows.Forms.ListViewItem" /> (if applicable); null when item was not found.</returns>
-      <remarks>This function is used by setter of <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItem" />.</remarks>
-      <version version="1.5.2">Function added</version>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.EventArgs)">
-      <summary>Raises the <see cref="E:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItemChanged" /> event</summary>
-      <param name="e">Event arguments</param>        4
- <remarks><note type="inheritnfo">ALways call base class method in order the event to be raised.</note></remarks><version version="1.5.2">Method added</version></member>
-    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItemChanged">
-      <summary>Raised when value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItem" /> property changes</summary>
-      <version version="1.5.2">Event added</version>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChangedInternal(System.Windows.Forms.Control,System.Object,System.Object)">
-      <summary>Called after selected item changes or list-control changes. Reduse unnecesary calls of <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnSelectedItemChanged(System.Windows.Forms.Control,System.Object,System.Object)" /></summary>
-      <param name="Control">Control the item is member of (can be either <see cref="T:System.Windows.Forms.TreeView" /> or <see cref="T:System.Windows.Forms.ListView" />).</param>
-      <param name="Item">Item itself (can be <see cref="T:System.Windows.Forms.TreeNode" /> or <see cref="T:System.Windows.Forms.ListViewItem" />)</param>
-      <param name="ItemTag">Tag of item - selected object</param>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnAfterSelect(System.Windows.Forms.TreeViewEventArgs)">
-      <summary>selected node in <see cref="T:System.Windows.Forms.TreeView" /> changes</summary>
-      <param name="e">Arguments of the <see cref="E:System.Windows.Forms.TreeView.AfterSelect" /> event</param>
-      <remarks>
-        <see cref="T:System.Windows.Forms.ListView" /> is empty when this method is called</remarks>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.GetShortDesc(System.Object)">
-      <summary>Assigns short description of object selected in <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.tvwObjects" /> to <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.rtbShort" /></summary>
-      <param name="Obj">Object to get description of (it is <see cref="P:System.Windows.Forms.TreeNode.Tag" /> of selected <see cref="T:System.Windows.Forms.TreeNode" />)</param>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.GetItems(System.Object)">
-      <summary>Gets list of items to show in <see cref="T:System.Windows.Forms.ListView" />. Called after node in <see cref="T:System.Windows.Forms.TreeView" /> is selected</summary>
-      <param name="obj">
-        <see cref="P:System.Windows.Forms.TreeNode.Tag" /> of selected <see cref="T:System.Windows.Forms.TreeNode" /></param>
-      <returns>List of object to pas to <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.GetListItem(System.Object)" /> and show</returns>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnBeforeExpand(System.Windows.Forms.TreeViewCancelEventArgs)">
-      <summary>Called when node which contain only one sub-node with empty <see cref="P:System.Windows.Forms.TreeNode.Tag">Tag</see> is about to be expanded.</summary>
-      <param name="e">Arguments of <see cref="E:System.Windows.Forms.TreeView.BeforeExpand" /> event</param>
-      <remarks>
-        <para>The empty sub-node is removed from current node before this method is called.</para>
-        <para>The default implementation calls <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.GetChildren(System.Object)" /> and passes it's result to <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.GetNode(System.Object)" /> (if <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.FilterItem(System.Object)" /> succeeds for it) to obtain <see cref="T:System.Windows.Forms.TreeNode" /> which is added to node being expanded</para>
-      </remarks>
-      <version version="1.5.2">Added filtering of items by calling <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.FilterItem(System.Object)" />.</version>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.FilterItem(System.Object)">
-      <summary>Filters item obtained from <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.GetChildren(System.Object)" /></summary>
-      <param name="item">Item to filter</param>
-      <returns>True to add the item to tree; false to skip it</returns>
-      <remarks>This implementation performs filtering by raising the <see cref="E:Tools.WindowsT.FormsT.ObjectBrowser.ItemFiltering" /> event</remarks>
-      <version version="1.5.2">Function introduced</version>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.ItemFiltering">
-      <summary>Raised when item is about to be displayed to user. You can cancel the item.</summary>
-      <version version="1.5.2">Event introduced</version>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.kpBaseTypes">
-      <summary>Code for node representing all the base types</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.kpReferences">
-      <summary>Code for node representing all the references</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.kpBaseType">
-      <summary>Code for node representing single base type</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.kpReference">
-      <summary>Code for node representing single referenced assembly</summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.GetChildren(System.Object)">
-      <summary>This function is called by default implementation of <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnBeforeExpand(System.Windows.Forms.TreeViewCancelEventArgs)" /> to obtain childrens of node being expanded.</summary>
-      <param name="obj">
-        <see cref="P:System.Windows.Forms.TreeNode.Tag" /> of node being expanded</param>
-      <returns>Object to pass to <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.GetNode(System.Object)" /> in order to obtain node to add to current node. Can be null.</returns>
-      <remarks>Note to inheritors: Feel free to throw an exception from this function. Default implementation of <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnBeforeExpand(System.Windows.Forms.TreeViewCancelEventArgs)" /> catches it and adds exception to tree instead of list of items. Another possibility is to catch exception and add it to list being returned. This way allows you to denote exception but continue enumeration other children.</remarks>
-      <exception cref="T:System.Exception">An error ocured while getting children</exception>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.ShouldShowMember(System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
-      <summary>Gets value indicating if member with given accesibility and static/instance behavior should be shown</summary>
-      <param name="Private">Member is private</param>
-      <param name="Family">Member as family (protected)</param>
-      <param name="Assembly">Member is assembly (internal, friend)</param>
-      <param name="Public">Member is public</param>
-      <param name="FamAndAssem">Member is family-and-assembyl</param>
-      <param name="FamOrAssem">Member is family-or-assembyl (protected firend)</param>
-      <param name="Static">member is static</param>
-      <param name="SkipStaticTest">
-        <paramref name="Static" /> will not be tested</param>
-      <returns>True if member should be shown</returns>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnKeyDown(System.Windows.Forms.KeyEventArgs)">
-      <summary>Raises the <see cref="E:System.Windows.Forms.Control.KeyDown" /> event. Processes key events.</summary>
-      <param name="e">A <see cref="T:System.Windows.Forms.KeyEventArgs" /> that contains the event data. </param>
-      <remarks>This implementation processes keyboard events for this control with <see cref="P:Tools.WindowsT.FormsT.UserControlExtended.KeyPreview" /> set to true. Processed keys are:
- <list type="table"><listheader><term>Key</term><description>Action</description></listheader><item><term><see cref="F:System.Windows.Forms.Keys.BrowserBack">Browser back</see></term><description>Navigate backward, calls <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnNavigateBackward" />. </description></item><item><term><see cref="F:System.Windows.Forms.Keys.BrowserForward">Browser forward</see></term><description>Navigate forward, calls <see cref="M:Tools.WindowsT.FormsT.ObjectBrowser.OnNavigateForward" />. </description></item></list>
- If the event is processed <paramref name="e" />.<see cref="P:System.Windows.Forms.KeyEventArgs.Handled">Handled</see> is set to true.
- </remarks>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnNavigateForward">
-      <summary>Called whne forward navigation is requested. Performs navigation and raises the <see cref="F:Tools.WindowsT.FormsT.ObjectBrowser.NavigateForwardEvent" /></summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.OnNavigateBackward">
-      <summary>Called whne backward navigation is requested. Performs navigation and raises the <see cref="F:Tools.WindowsT.FormsT.ObjectBrowser.NavigateBackwardEvent" /></summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser._Navigating">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.Navigating" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.Navigating">
-      <summary>Gets or sets value indicating if backward/forward navigation is pending</summary>
-      <returns>Value indicating if backward/forward navigation is pending</returns>
-      <value>True if backward/forward navigation is currently pending and navigation is not automatically tracked because of it</value>
-      <remarks>If this property is set to true the <see cref="E:System.Windows.Forms.TreeView.BeforeSelect" /> event of <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.tvwObjects" /> does not track change of node</remarks>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.ForwardStack">
-      <summary>Stack of points for forward navigation</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.BackwardStack">
-      <summary>Stack of points for backward navigation</summary>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.op_Implicit(System.Windows.Forms.TreeNode)~Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint">
-      <summary>Converts <see cref="T:System.Windows.Forms.TreeNode" /> to <see cref="T:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint" /></summary>
-      <param name="a">A <see cref="T:System.Windows.Forms.TreeNode" /></param>
-      <returns>INstance of <see cref="T:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint" /> populated with <paramref name="a" /></returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="a" /> is null</exception>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint._Tag">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.Tag" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.Tag">
-      <summary>Tag can contain any additional information for navigation point</summary>
-    </member>
-    <member name="F:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint._Node">
-      <summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.Node" /> property</summary>
-    </member>
-    <member name="P:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.Node">
-      <summary>
-        <see cref="T:System.Windows.Forms.TreeNode" /> that is point of navigation</summary>
-      <remarks>Node must be always set but more information can be provided in order to allow navigation whne the node was already removed form <see cref="T:System.Windows.Forms.TreeView" /></remarks>
-    </member>
-    <member name="M:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint.#ctor(System.Windows.Forms.TreeNode)">
-      <summary>CTor from <see cref="T:System.Windows.Forms.TreeNode" /></summary>
-      <paramref name="Node">Node this navigation point points to. It cannot be null.</paramref>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="Node" /> is null</exception>
-    </member>
-    <member name="T:Tools.WindowsT.FormsT.ObjectBrowser.NavigationPoint">
-      <summary>Represents point for forward/backward navigation</summary>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.NavigateForward">
-      <summary>Raised after forward navigation ocured</summary>
-      <param name="e">
-        <see cref="F:System.EventArgs.Empty" />
-      </param>
-      <version version="1.5.2">Added <see cref="T:Tools.ComponentModelT.KnownCategoryAttribute" /> and <see cref="T:Tools.ComponentModelT.LDescriptionAttribute" /></version>
-    </member>
-    <member name="E:Tools.WindowsT.FormsT.ObjectBrowser.NavigateBackward">
-      <summary>raised after backward navigation ocured</summary>
-      <param name="e">
-        <see cref="F:System.EventArgs.Empty" />
-      </param>
-      <version version="1.5.2">Added <see cref="T:Tools.ComponentModelT.KnownCategoryAttribute" /> and <see cref="T:Tools.ComponentModelT.LDescriptionAttribute" /></version>
-    </member>
-    <member name="T:Tools.WindowsT.FormsT.ObjectBrowser">
-      <summary>Control for browsing .NET assemblies</summary>
-      <author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
-      <version stage="Nightly" version="1.5.2">Fixed: Uncatchable <see cref="T:System.ArgumentNullException" /> in tvwObjects_BeforeSelect on show of object.</version>
-      <version version="1.5.2">Fixed: Resources-related errors</version>
-      <version version="1.5.2">Removed <see cref="T:Tools.InternalT.VersionAttribute" /> and <see cref="T:Tools.InternalT.FirstVersionAttribute" /></version>
-      <version version="1.5.2">Added property <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItem" /></version>
-      <version version="1.5.2">Added <see cref="T:System.ComponentModel.DefaultEventAttribute" />.</version>
-      <version version="1.5.2">Added <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.SelectedItem" /> property</version>
     </member>
     <member name="M:Tools.ComponentModelT.PrefixAttribute.#ctor(System.String)">
       <summary>CTor</summary>

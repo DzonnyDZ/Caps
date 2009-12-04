@@ -59,7 +59,7 @@ Module Main
     ''' <exception cref="SqlException">Upgrade script failed</exception>
     ''' <remarks>If database version matches, procedure just returns.
     ''' <para>This procedure emits messageboxes to user</para></remarks>
-    Public Sub VerifyDatabaseVersionWithUpgrade(ByVal Connection As SqlConnection)
+    Public Sub VerifyDatabaseVersionWithUpgrade(ByVal Connection As SqlConnection, ByVal owner As Window)
         Dim checkResult = VerifyDatabaseVersion(Connection)
         If checkResult.IsOK Then Return
         Dim Script = GetUpdateScript(Connection)
@@ -67,7 +67,7 @@ Module Main
         If VerifyDatabaseVersionWithUpgradeOnStack OrElse _
             mBox.MsgBox(My.Resources.msg_DatabaseVersionUpgrade.f( _
                              checkResult.DatabaseVersion, My.Application.Info.Title, My.Application.Info.Version, DatabaseVersion, vbCrLf), _
-                             MsgBoxStyle.YesNo Or MsgBoxStyle.Question, My.Resources.txt_UpgradeDatabase) = MsgBoxResult.Yes Then
+                             MsgBoxStyle.YesNo Or MsgBoxStyle.Question, My.Resources.txt_UpgradeDatabase, owner) = MsgBoxResult.Yes Then
             Dim cmd = Connection.CreateCommand
             Dim Server = New Microsoft.SqlServer.Management.Smo.Server(New ServerConnection(Connection))
             Server.ConnectionContext.ExecuteNonQuery(Script)
@@ -78,7 +78,7 @@ Module Main
             Finally
                 VerifyDatabaseVersionWithUpgradeOnStack = WasOnStack
             End Try
-            If Not VerifyDatabaseVersionWithUpgradeOnStack Then mBox.MsgBox(My.Resources.msg_DatabaseChangedSuccessfully, MsgBoxStyle.OkCancel Or MsgBoxStyle.Information, My.Resources.txt_UpgradeDatabase)
+            If Not VerifyDatabaseVersionWithUpgradeOnStack Then mBox.MsgBox(My.Resources.msg_DatabaseChangedSuccessfully, MsgBoxStyle.OkCancel Or MsgBoxStyle.Information, My.Resources.txt_UpgradeDatabase, owner)
         Else
             Throw New ApplicationException(My.Resources.err_IncorrectDatabaseVersion)
         End If

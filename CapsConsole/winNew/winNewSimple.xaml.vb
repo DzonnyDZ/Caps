@@ -57,13 +57,13 @@ Partial Public Class winNewSimple
             End Select
             tbl.InsertOnSubmit(_NewObject)
         Catch ex As Exception
-            mBox.Error_X(ex)
+            mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Exit Sub
         End Try
         Try
             Context.SubmitChanges()
         Catch ex As Exception
-            mBox.Error_X(ex)
+            mBox.Error_XTW(ex, ex.GetType.Name, Me)
             tbl.DeleteOnSubmit(_NewObject)
             Exit Sub
         End Try

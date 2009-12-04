@@ -69,7 +69,7 @@ Partial Public Class winNewCap
                 Cap.Note = .CapNote
                 Cap.Year = .Year
                 'If .Country <> "" AndAlso Not .Country Like "[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz][ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz]" Then _
-                '    mBox.Modal_PTI(My.Resources.msg_CountryCodeMustBeISO3Code, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : .txtCountryCode.SelectAll() : .txtCountryCode.Focus() : Exit Sub
+                '    mBox.Modal_PTIw(My.Resources.msg_CountryCodeMustBeISO3Code, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation) : .txtCountryCode.SelectAll() : .txtCountryCode.Focus() : Exit Sub
                 If .Country <> "" Then Cap.CountryCode = .Country
                 Cap.Storage = .Storage
                 Cap.ProductType = .CapProductType
@@ -120,7 +120,7 @@ Partial Public Class winNewCap
                 Try
                     .Context.SubmitChanges()
                 Catch ex As Exception
-                    mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCommittingChangesToDatabase, My.Resources.txt_DatabaseError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.OK)
+                    mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCommittingChangesToDatabase, My.Resources.txt_DatabaseError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.OK, Me)
                     'Undo
                     '.Context.Cap_Category_Ints.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Cap_Category_Int))
                     '.Context.Images.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Image))
@@ -130,14 +130,14 @@ Partial Public Class winNewCap
                     '.Context.Products.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Product))
                     '.Context.Caps.DeleteAllOnSubmit(.Context.GetChangeSet.Inserts.OfType(Of Cap))
                     .ResetContext()
-                    CapEditor.UndoCopyImages(From img In IntroducedImages Select img.RelativePath)
+                    .UndoCopyImages(From img In IntroducedImages Select img.RelativePath)
                     Exit Sub
                 End Try
                 'For newly introduced cap type copy image
                 If .CapTypeSelection = CapEditor.CreatableItemSelection.NewItem AndAlso IO.File.Exists(.CapTypeImagePath) Then
                     .CopyTypeImage(NewType)
                 End If
-                mBox.MsgBox(My.Resources.msg_CapsSavedID.f(Cap.CapID), MsgBoxStyle.Information, My.Resources.txt_CapSaved)
+                mBox.MsgBox(My.Resources.msg_CapsSavedID.f(Cap.CapID), MsgBoxStyle.Information, My.Resources.txt_CapSaved, Me)
                 Me.lastSavedID = Cap.CapID
             End If
             Select Case e.Mode
@@ -150,7 +150,7 @@ Partial Public Class winNewCap
                         Try
                             SubDialog = New winCapEditor(PrevLastSavedID)
                         Catch ex As ArgumentException
-                            mBox.Error_X(ex)
+                            mBox.Error_Xrw(ex, ex.GetType.Name, Me)
                             .Reset()
                             Exit Sub
                         End Try
@@ -161,7 +161,7 @@ Partial Public Class winNewCap
                         SubDialog.ShowDialog()
                         Me.Close()
                     Else
-                        mBox.MsgBox(My.Resources.err_NoPrevItem, MsgBoxStyle.Exclamation, My.Resources.txt_PreviousCap)
+                        mBox.MsgBox(My.Resources.err_NoPrevItem, MsgBoxStyle.Exclamation, My.Resources.txt_PreviousCap, Me)
                         .Reset()
                     End If
                 Case CapEditor.SaveMode.SaveAndNextNoClean

@@ -29,7 +29,7 @@ Connect: If win.ShowDialog Then
             Main.Connection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)
             Try
                 Connection.Open()
-                VerifyDatabaseVersionWithUpgrade(Connection)
+                VerifyDatabaseVersionWithUpgrade(Connection, Me)
             Catch ex As Exception
                 Try : Connection.Close() : Catch : End Try
                 If mBox.Error_XBI(ex, Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Retry Or Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Abort) = Forms.DialogResult.Retry Then
@@ -171,7 +171,7 @@ Connect: If win.ShowDialog Then
         Dim delShape = From file In IO.Directory.GetFiles(pShape) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From sh In Me.Context.Shapes Where sh.ShapeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0
 
         If del256.IsEmpty AndAlso del64.IsEmpty AndAlso delOriginal.IsEmpty AndAlso delCapType.IsEmpty AndAlso delMainType.IsEmpty AndAlso delShape.IsEmpty Then
-            mBox.MsgBox(My.Resources.msg_NoFilesToDelete, MsgBoxStyle.Information, My.Resources.txt_ImageCleanup)
+            mBox.MsgBox(My.Resources.msg_NoFilesToDelete, MsgBoxStyle.Information, My.Resources.txt_ImageCleanup, Me)
         Else
             Dim msg = mBox.GetDefault()
             msg.Prompt = My.Resources.msg_ImagesToDelete
@@ -185,7 +185,7 @@ Connect: If win.ShowDialog Then
             msg.MidControl = New TextBlock() With {.Text = My.Resources.txt_ClearImagesNote, .TextWrapping = TextWrapping.Wrap, .HorizontalAlignment = Windows.HorizontalAlignment.Stretch, .TextAlignment = TextAlignment.Left}
             msg.SetButtons(mBox.MessageBoxButton.Buttons.OK Or mBox.MessageBoxButton.Buttons.Cancel)
             msg.Title = My.Resources.txt_ImageCleanup
-            If msg.ShowDialog = Forms.DialogResult.OK Then
+            If msg.ShowDialog(Me) = Forms.DialogResult.OK Then
                 Dim todel As IEnumerable(Of String) = New String() {}
                 If chkOriginal.State = Forms.CheckState.Checked Then todel = todel.Union(delOriginal)
                 If chk256.State = Forms.CheckState.Checked Then todel = todel.Union(del256)
@@ -202,9 +202,9 @@ Connect: If win.ShowDialog Then
                     End Try
                 Next
                 If ErrNo = 0 Then
-                    mBox.MsgBox(My.Resources.msg_AllFilesDeleted, MsgBoxStyle.Information, My.Resources.txt_ImageCleanup)
+                    mBox.MsgBox(My.Resources.msg_AllFilesDeleted, MsgBoxStyle.Information, My.Resources.txt_ImageCleanup, Me)
                 Else
-                    mBox.MsgBox(My.Resources.err_UnableToDeleteFiles.f(ErrNo), MsgBoxStyle.Exclamation, My.Resources.txt_ImageCleanup)
+                    mBox.MsgBox(My.Resources.err_UnableToDeleteFiles.f(ErrNo), MsgBoxStyle.Exclamation, My.Resources.txt_ImageCleanup, Me)
                 End If
             End If
         End If
@@ -219,17 +219,17 @@ Connect: If win.ShowDialog Then
         msg.Buttons.Clear()
         msg.Buttons.AddRange(mBox.MessageBoxButton.GetButtons(Forms.MessageBoxButtons.OKCancel))
         AddHandler msg.Shown, AddressOf msgCapID_Shown
-        If msg.ShowDialog() = Forms.DialogResult.OK Then
+        If msg.ShowDialog(Me) = Forms.DialogResult.OK Then
             Dim ID%
             Try
-                id = Integer.Parse(txt.Text)
+                ID = Integer.Parse(txt.Text)
             Catch ex As Exception
-                mBox.Error_X(ex)
+                mBox.Error_XTW(ex, ex.GetType.Name, Me)
                 Exit Sub
             End Try
             Dim cap = (From item In Context.Caps Where item.CapID = ID).FirstOrDefault
             If cap Is Nothing Then
-                mBox.MsgBox(My.Resources.err_CapIdNotFound.f(ID), MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, My.Resources.txt_CapNotFound)
+                mBox.MsgBox(My.Resources.err_CapIdNotFound.f(ID), MsgBoxStyle.OkOnly Or MsgBoxStyle.Exclamation, My.Resources.txt_CapNotFound, Me)
                 Exit Sub
             End If
             Dim win As New winCapDetails(New Cap() {cap})

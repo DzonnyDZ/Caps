@@ -21,7 +21,7 @@ Partial Public Class winCapDetails
 
     Private Sub cmdDelete_Executed(ByVal sender As Object, ByVal e As System.Windows.Input.ExecutedRoutedEventArgs) Handles cmdDelete.Executed
         e.Handled = True
-        If mBox.Modal_PTIB(My.Resources.msg_q_DelCap, My.Resources.txt_DeleteCap, mBox.GetIconDelegate(mBox.MessageBoxIcons.Question), mBox.MessageBoxButton.Yes, mBox.MessageBoxButton.No) <> Forms.DialogResult.Yes Then Exit Sub
+        If mBox.Modal_PTWBIO(My.Resources.msg_q_DelCap, My.Resources.txt_DeleteCap, Me, mBox.MessageBoxButton.Buttons.Yes Or mBox.MessageBoxButton.Buttons.No, mBox.GetIconDelegate(mBox.MessageBoxIcons.Question)) <> Forms.DialogResult.Yes Then Exit Sub
 
         Dim osi As Integer = lstCaps.SelectedIndex
         Dim Context As New CapsDataDataContext(Main.Connection)
@@ -30,21 +30,21 @@ Partial Public Class winCapDetails
         Try
             Context.SubmitChanges()
         Catch ex As Exception
-            mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorDeletingCaps, My.Resources.txt_DatabaseError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.OK)
+            mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorDeletingCaps, My.Resources.txt_DatabaseError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.OK, Me)
             Exit Sub
         End Try
         Dim OriginalCaps = (From itm As Cap In lstCaps.Items).ToArray
         lstCaps.ItemsSource = From cap In OriginalCaps Where Not (From ctd In CapsToDel Select ctd.CapID).Contains(cap.CapID)
         lstCaps.SelectedIndex = If(lstCaps.Items.Count > osi, osi, lstCaps.Items.Count - 1)
         If lstCaps.Items.Count = 0 Then
-            mBox.Modal_PTI(My.Resources.msg_AllCapsDeletedClose, My.Resources.txt_DeleteCap, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Information)
+            mBox.Modal_PTIW(My.Resources.msg_AllCapsDeletedClose, My.Resources.txt_DeleteCap, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Information, Me)
             Me.Close()
         End If
     End Sub
 
     Private Sub cmdEdit_Executed(ByVal sender As Object, ByVal e As System.Windows.Input.ExecutedRoutedEventArgs) Handles cmdEdit.Executed
         If lstCaps.SelectedItems.Count <> 1 Then
-            mBox.Modal_PTI(My.Resources.err_SelectExactlyOneCap, My.Resources.txt_InvalidSelection, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Information)
+            mBox.Modal_PTIW(My.Resources.err_SelectExactlyOneCap, My.Resources.txt_InvalidSelection, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Information, Me)
             Exit Sub
         End If
         Dim Cap As Cap = DirectCast(lstCaps.SelectedItem, Cap)
@@ -90,7 +90,7 @@ Partial Public Class winCapDetails
             Try
                 Process.Start(path)
             Catch ex As Exception
-                mBox.Error_X(ex)
+                mBox.Error_XTW(ex, ex.GetType.Name, Me)
             End Try
         End If
     End Sub

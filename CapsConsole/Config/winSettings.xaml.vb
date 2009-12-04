@@ -13,7 +13,7 @@ Partial Public Class winSettings
 
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
         If Not IO.Directory.Exists(txtImageRoot.Text) Then
-            mBox.Modal_PTI(My.Resources.msg_ImageRootPathError, My.Resources.txt_ImageRoot, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation)
+            mBox.Modal_PTIW(My.Resources.msg_ImageRootPathError, My.Resources.txt_ImageRoot, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation, Me)
             Exit Sub
         End If
         My.Settings.ImageRoot = txtImageRoot.Text
