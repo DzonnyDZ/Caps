@@ -1112,4 +1112,73 @@ Dvakrát klikněte pro editaci.</value>
   <data name="txt_CapMissing" xml:space="preserve">
     <value>Chybějící víčko</value>
   </data>
+  <data name="lbl_NoSuggestions" xml:space="preserve">
+    <value>Žádné návrhy</value>
+  </data>
+  <data name="lbl_SuggExTypes" xml:space="preserve">
+    <value>Použít existující typ</value>
+  </data>
+  <data name="lbl_SuggNewTypes" xml:space="preserve">
+    <value>Vytvořit nový typ</value>
+  </data>
+  <data name="txt_TypeSuggestor" xml:space="preserve">
+    <value>Navrhovač typů</value>
+  </data>
+  <data name="err_ErrorData" xml:space="preserve">
+    <value>Chyba při získávání dat</value>
+  </data>
+  <data name="txt_SuggestedType" xml:space="preserve">
+    <value>Navržený typ</value>
+  </data>
+  <data name="lbl_Height_Simple" xml:space="preserve">
+    <value>Výška</value>
+  </data>
+  <data name="mni_CreateType" xml:space="preserve">
+    <value>Vytvořit typ ...</value>
+  </data>
+  <data name="lbl_Surface" xml:space="preserve">
+    <value>Povrch</value>
+  </data>
+  <data name="txt_CreateNewType" xml:space="preserve">
+    <value>Vytvořit nový typ</value>
+  </data>
+  <data name="tot_SetTypeToNew" xml:space="preserve">
+    <value>Nastavit typ tohoto víčka na nově vytvářený typ</value>
+  </data>
+  <data name="txt_SelectedCapProperties" xml:space="preserve">
+    <value>Vlastnosti vybraného víčka</value>
+  </data>
+  <data name="txt_NewTypeProperties" xml:space="preserve">
+    <value>Vlastnosti vytvářenýho typu</value>
+  </data>
+  <data name="txt_EligibleCaps" xml:space="preserve">
+    <value>Víčka pasující na nový typ</value>
+  </data>
+  <data name="mni_UseCapImageAsTypeImage" xml:space="preserve">
+    <value>Použít obrázek víčka jako obrázek typu</value>
+  </data>
+  <data name="cmd_CreateType" xml:space="preserve">
+    <value>Vytvořit typ</value>
+  </data>
+  <data name="msg_EnterTypeName" xml:space="preserve">
+    <value>Zadejte název typu, prosím</value>
+  </data>
+  <data name="err_TypeImageNotEnteredContinue" xml:space="preserve">
+    <value>Nezadali jste obrázek typu. Chcete vytvořit typ víčka bez obrázku?</value>
+  </data>
+  <data name="txt_ImageNotSet" xml:space="preserve">
+    <value>Obrázek nenastaven</value>
+  </data>
+  <data name="txt_ImageDoesNotExist" xml:space="preserve">
+    <value>Obrázek neexistuje</value>
+  </data>
+  <data name="err_ImageMustBePNG" xml:space="preserve">
+    <value>Obrázek typu víčka musí být typu PNG. Vyberte PNG obrázek, prosím.</value>
+  </data>
+  <data name="txt_UnsupportedImageType" xml:space="preserve">
+    <value>Nepodporovaný typ obrázku</value>
+  </data>
+  <data name="msg_CopyCapTypeImageError" xml:space="preserve">
+    <value>Nepodařilo se zkopírovat obrázek typu víčka. Typ víčka vytvořen bez obrázku.</value>
+  </data>
 </root>

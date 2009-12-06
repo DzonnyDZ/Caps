@@ -601,6 +601,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Image of cap type must be of type PNG. Please, select PNG image..
+        '''</summary>
+        Public ReadOnly Property err_ImageMustBePNG() As String
+            Get
+                Return ResourceManager.GetString("err_ImageMustBePNG", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Database is not Caps database or database belongs other version of Caps application..
         '''</summary>
         Public ReadOnly Property err_IncorrectDatabaseVersion() As String
@@ -642,6 +651,15 @@ Namespace My.Resources
         Public ReadOnly Property err_TestConnection() As String
             Get
                 Return ResourceManager.GetString("err_TestConnection", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to You have not entered type image. Do you want to create cap type without image?.
+        '''</summary>
+        Public ReadOnly Property err_TypeImageNotEnteredContinue() As String
+            Get
+                Return ResourceManager.GetString("err_TypeImageNotEnteredContinue", resourceCulture)
             End Get
         End Property
         
@@ -2023,6 +2041,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Failed to copy cap type image. Cap type created without image..
+        '''</summary>
+        Public ReadOnly Property msg_CopyCapTypeImageError() As String
+            Get
+                Return ResourceManager.GetString("msg_CopyCapTypeImageError", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Failed to copy main type image. Main type created without image..
         '''</summary>
         Public ReadOnly Property msg_CopyMainTypeImageError() As String
@@ -2655,6 +2682,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Image does not exist.
+        '''</summary>
+        Public ReadOnly Property txt_ImageDoesNotExist() As String
+            Get
+                Return ResourceManager.GetString("txt_ImageDoesNotExist", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Drawing.
         '''</summary>
         Public ReadOnly Property txt_ImageDrawing() As String
@@ -2687,6 +2723,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_ImageNo() As String
             Get
                 Return ResourceManager.GetString("txt_ImageNo", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Image not set.
+        '''</summary>
+        Public ReadOnly Property txt_ImageNotSet() As String
+            Get
+                Return ResourceManager.GetString("txt_ImageNotSet", resourceCulture)
             End Get
         End Property
         
@@ -3182,6 +3227,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_TypeSuggestor() As String
             Get
                 Return ResourceManager.GetString("txt_TypeSuggestor", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Unsupported image type.
+        '''</summary>
+        Public ReadOnly Property txt_UnsupportedImageType() As String
+            Get
+                Return ResourceManager.GetString("txt_UnsupportedImageType", resourceCulture)
             End Get
         End Property
         

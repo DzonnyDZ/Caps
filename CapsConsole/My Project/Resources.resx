@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="clr_Black" xml:space="preserve">
     <value>Black</value>
@@ -1474,5 +1474,23 @@ Doubleclick to edit.</value>
   <data name="msg_EnterTypeName" xml:space="preserve">
     <value>Enter type name, please</value>
     <comment>Message text</comment>
+  </data>
+  <data name="err_TypeImageNotEnteredContinue" xml:space="preserve">
+    <value>You have not entered type image. Do you want to create cap type without image?</value>
+  </data>
+  <data name="txt_ImageNotSet" xml:space="preserve">
+    <value>Image not set</value>
+  </data>
+  <data name="txt_ImageDoesNotExist" xml:space="preserve">
+    <value>Image does not exist</value>
+  </data>
+  <data name="err_ImageMustBePNG" xml:space="preserve">
+    <value>Image of cap type must be of type PNG. Please, select PNG image.</value>
+  </data>
+  <data name="txt_UnsupportedImageType" xml:space="preserve">
+    <value>Unsupported image type</value>
+  </data>
+  <data name="msg_CopyCapTypeImageError" xml:space="preserve">
+    <value>Failed to copy cap type image. Cap type created without image.</value>
   </data>
 </root>

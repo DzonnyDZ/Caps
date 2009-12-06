@@ -1,5 +1,5 @@
 ﻿Imports mBox = Tools.WindowsT.WPF.DialogsT.MessageBox
-Imports Tools.DrawingT.ImageTools
+Imports Tools.DrawingT.ImageTools, Tools.ExtensionsT
 ''' <summary>Allows to create new cap type based on suggestion</summary>
 Public Class winCreateNewType : Implements IDisposable
     ''' <summary>CTor</summary>
@@ -48,17 +48,17 @@ Public Class winCreateNewType : Implements IDisposable
             Exit Sub
         End If
         If txtPicturePath.Text = "" Then
-            If mBox.MsgBox("You have not entered type image. Do you want to create cap type without image?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "Image not set", Me) <> MsgBoxResult.Yes Then
+            If mBox.MsgBox(My.Resources.err_TypeImageNotEnteredContinue, MsgBoxStyle.YesNo Or MsgBoxStyle.Question, My.Resources.txt_ImageNotSet, Me) <> MsgBoxResult.Yes Then
                 txtPicturePath.Focus()
                 Exit Sub
             End If
         ElseIf Not IO.File.Exists(txtPicturePath.Text) Then
-            If mBox.MsgBox("File {0} does not exist. Do you want to create cap type without image?", MsgBoxStyle.YesNo Or MsgBoxStyle.Question, "Image not set", Me) <> MsgBoxResult.Yes Then
+            If mBox.MsgBox(My.Resources.msg_FileNotExists_ContinueWOImage.f(txtPicturePath.Text), MsgBoxStyle.YesNo Or MsgBoxStyle.Question, My.Resources.txt_ImageDoesNotExist, Me) <> MsgBoxResult.Yes Then
                 txtPicturePath.Focus()
                 Exit Sub
             End If
         ElseIf IO.Path.GetExtension(txtPicturePath.Text).ToLower <> ".png" Then
-            mBox.MsgBox("Image of cap type must be of type PNG. Please, select PNG image.", MsgBoxStyle.Exclamation, "Unsupported image type", Me)
+            mBox.MsgBox(My.Resources.err_ImageMustBePNG, MsgBoxStyle.Exclamation, My.Resources.txt_UnsupportedImageType, Me)
             txtPicturePath.Focus()
             Exit Sub
         End If
@@ -95,7 +95,7 @@ Public Class winCreateNewType : Implements IDisposable
         Try
             IO.File.Copy(txtPicturePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "CapType"), Type.CapTypeID & ".png"))
         Catch ex As Exception
-            mBox.Error_XPTIBWO(ex, "Failed to copy cap type image. Cap type created without image.", My.Resources.txt_CopyFile, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Error, , Me)
+            mBox.Error_XPTIBWO(ex, My.Resources.msg_CopyCapTypeImageError, My.Resources.txt_CopyFile, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Error, , Me)
         End Try
         'Close
         _CreatedType = Type
