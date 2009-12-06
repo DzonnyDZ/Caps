@@ -310,13 +310,14 @@ Partial Public Class TypeSuggestor
     Private Shared Function CoerceSelectedExistingTypeValue(ByVal d As System.Windows.DependencyObject, ByVal baseValue As Object) As Object
         If d Is Nothing Then Throw New ArgumentNullException("d")
         If Not TypeOf d Is TypeSuggestor Then Throw New Tools.TypeMismatchException("d", d, GetType(TypeSuggestor))
-        If Not TypeOf baseValue Is String AndAlso Not baseValue Is Nothing Then Throw New Tools.TypeMismatchException("baseValue", baseValue, GetType(CapType))
+        If Not TypeOf baseValue Is CapType AndAlso Not baseValue Is Nothing Then Throw New Tools.TypeMismatchException("baseValue", baseValue, GetType(CapType))
         Return DirectCast(d, TypeSuggestor).CoerceSelectedExistingTypeValue(baseValue)
     End Function
     ''' <summary>Called whenever a value of the <see cref="SelectedExistingType"/> dependency property is being re-evaluated, or coercion is specifically requested.</summary>
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt, but ensured to be of correct type.</param>
     ''' <returns>The coerced value (with appropriate type).</returns>
     Protected Overridable Function CoerceSelectedExistingTypeValue(ByVal baseValue As CapType) As CapType
+        If baseValue Is Nothing Then Return baseValue
         For Each item As CapType In lstExTypes.Items
             If item.CapTypeID = baseValue.CapTypeID Then Return item
         Next
@@ -324,52 +325,51 @@ Partial Public Class TypeSuggestor
     End Function
 #End Region
 
-#Region "SelectedSuggestedType"
+#Region "SelectedNewType"
     ''' <summary>Gets or sets currently selected suggested type</summary>
-    Public Property SelectedSuggestedType() As Object
+    Public Property SelectedNewType() As Object
         <DebuggerStepThrough()> Get
-            Return GetValue(SelectedSuggestedTypeProperty)
+            Return GetValue(SelectedNewTypeProperty)
         End Get
         <DebuggerStepThrough()> Set(ByVal value As Object)
-            SetValue(SelectedSuggestedTypeProperty, value)
+            SetValue(SelectedNewTypeProperty, value)
         End Set
     End Property
-    ''' <summary>Metadata of the <see cref="SelectedSuggestedType"/> property</summary>
-    Public Shared ReadOnly SelectedSuggestedTypeProperty As DependencyProperty = _
-                           DependencyProperty.Register("SelectedSuggestedType", GetType(Object), GetType(TypeSuggestor), _
-                           New FrameworkPropertyMetadata(Nothing, AddressOf OnSelectedSuggestedTypeChanged, AddressOf CoerceSelectedSuggestedTypeValue))
-    ''' <summary>Called when value of the <see cref="SelectedSuggestedType"/> property changes for any <see cref="TypeSuggestor"/></summary>
-    ''' <param name="d">A <see cref="TypeSuggestor"/> <see cref="SelectedSuggestedType"/> has changed for</param>
+    ''' <summary>Metadata of the <see cref="SelectedNewType"/> property</summary>
+    Public Shared ReadOnly SelectedNewTypeProperty As DependencyProperty = _
+                           DependencyProperty.Register("SelectedNewType", GetType(Object), GetType(TypeSuggestor), _
+                           New FrameworkPropertyMetadata(Nothing, AddressOf OnSelectedNewTypeChanged, AddressOf CoerceSelectedNewTypeValue))
+    ''' <summary>Called when value of the <see cref="SelectedNewType"/> property changes for any <see cref="TypeSuggestor"/></summary>
+    ''' <param name="d">A <see cref="TypeSuggestor"/> <see cref="SelectedNewType"/> has changed for</param>
     ''' <param name="e">Event arguments</param>
     ''' <exception cref="Tools.TypeMismatchException"><paramref name="d"/> is not <see cref="TypeSuggestor"/></exception>
     ''' <exception cref="ArgumentNullException"><paramref name="d"/> is null</exception>
     <DebuggerStepThrough()> _
-    Private Shared Sub OnSelectedSuggestedTypeChanged(ByVal d As System.Windows.DependencyObject, ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+    Private Shared Sub OnSelectedNewTypeChanged(ByVal d As System.Windows.DependencyObject, ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
         If d Is Nothing Then Throw New ArgumentNullException("d")
         If Not TypeOf d Is TypeSuggestor Then Throw New Tools.TypeMismatchException("d", d, GetType(TypeSuggestor))
-        DirectCast(d, TypeSuggestor).OnSelectedSuggestedTypeChanged(e)
+        DirectCast(d, TypeSuggestor).OnSelectedNewTypeChanged(e)
     End Sub
-    ''' <summary>Called whan value of the <see cref="SelectedSuggestedType"/> property changes</summary>
+    ''' <summary>Called whan value of the <see cref="SelectedNewType"/> property changes</summary>
     ''' <param name="e">Event arguments</param>
-    Protected Overridable Sub OnSelectedSuggestedTypeChanged(ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
+    Protected Overridable Sub OnSelectedNewTypeChanged(ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
         dgNewTypes.SelectedItem = e.NewValue
     End Sub
-    ''' <summary>Called whenever a value of the <see cref="SelectedSuggestedType"/> dependency property is being re-evaluated, or coercion is specifically requested.</summary>
+    ''' <summary>Called whenever a value of the <see cref="SelectedNewType"/> dependency property is being re-evaluated, or coercion is specifically requested.</summary>
     ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system passes this value.</param>
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
     ''' <returns>The coerced value (with appropriate type).</returns>
     ''' <exception cref="Tools.TypeMismatchException"><paramref name="d"/> is not of type <see cref="TypeSuggestor"/> -or- <paramref name="baseValue"/> is not of type <see cref="Object"/></exception>
     ''' <exception cref="ArgumentNullException"><paramref name="d"/> is null</exception>
-    Private Shared Function CoerceSelectedSuggestedTypeValue(ByVal d As System.Windows.DependencyObject, ByVal baseValue As Object) As Object
+    Private Shared Function CoerceSelectedNewTypeValue(ByVal d As System.Windows.DependencyObject, ByVal baseValue As Object) As Object
         If d Is Nothing Then Throw New ArgumentNullException("d")
         If Not TypeOf d Is TypeSuggestor Then Throw New Tools.TypeMismatchException("d", d, GetType(TypeSuggestor))
-        If Not TypeOf baseValue Is String AndAlso Not baseValue Is Nothing Then Throw New Tools.TypeMismatchException("baseValue", baseValue, GetType(Object))
-        Return DirectCast(d, TypeSuggestor).CoerceSelectedSuggestedTypeValue(baseValue)
+                Return DirectCast(d, TypeSuggestor).CoerceSelectedNewTypeValue(baseValue)
     End Function
-    ''' <summary>Called whenever a value of the <see cref="SelectedSuggestedType"/> dependency property is being re-evaluated, or coercion is specifically requested.</summary>
+    ''' <summary>Called whenever a value of the <see cref="SelectedNewType"/> dependency property is being re-evaluated, or coercion is specifically requested.</summary>
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt, but ensured to be of correct type.</param>
     ''' <returns>The coerced value (with appropriate type).</returns>
-    Protected Overridable Function CoerceSelectedSuggestedTypeValue(ByVal baseValue As Object) As Object
+    Protected Overridable Function CoerceSelectedNewTypeValue(ByVal baseValue As Object) As Object
         For Each item As Object In dgNewTypes.Items
             If item Is baseValue Then Return baseValue
         Next
@@ -416,7 +416,7 @@ Partial Public Class TypeSuggestor
                    Order By Score Descending _
                    Take 10      'TODO: There's probably bug in LINQ-to-SQL. If If(If( above is rewritten using single If(x IsNot Nothing AndAlso x.xID = type.xID ... it throws NullReferenceException upon ToList() call
                 Try
-                    Dim exTypes = exTypesQ.ToList
+                    Dim exTypes = (From item In exTypesQ Select item.Type).ToList
                     AnyExType = exTypes.Count > 0
                     lstExTypes.ItemsSource = exTypes
                 Catch ex As Exception
@@ -466,6 +466,15 @@ Partial Public Class TypeSuggestor
         dgNewTypes.Visibility = If(AnyNewType, Visibility.Visible, Visibility.Collapsed)
         lblNoNewTypes.Visibility = If(AnyNewType, Visibility.Collapsed, Visibility.Visible)
     End Sub
+    ''' <summary>Shows appropriate controls for state when no suggestions are made</summary>
+    Private Sub MakeNoSuggestions()
+        lblNewError.Visibility = Windows.Visibility.Collapsed
+        lblExError.Visibility = Windows.Visibility.Collapsed
+        lstExTypes.Visibility = Windows.Visibility.Collapsed
+        lblNoExTypes.Visibility = Windows.Visibility.Visible
+        dgNewTypes.Visibility = Windows.Visibility.Collapsed
+        lblNoNewTypes.Visibility = Windows.Visibility.Visible
+    End Sub
 
     ''' <summary>Called when value of the <see cref="IsEnabled"/> property changes for any instance of <see cref="TypeSuggestor"/></summary>
     ''' <param name="d">Instance of <see cref="TypeSuggestor"/> <see cref="IsEnabled"/> has changed for</param>
@@ -480,7 +489,13 @@ Partial Public Class TypeSuggestor
     ''' <summary>Called when value of the <see cref="IsEnabled"/> property changes for current instance</summary>
     ''' <param name="e">Event arguments</param>
     Protected Overridable Sub OnIsEnabledChanged(ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
-        If IsEnabled Then MakeSuggestions()
+        If IsEnabled Then
+            MakeSuggestions()
+        Else
+            MakeNoSuggestions()
+        End If
+SetNewType 
+        SetExType()
     End Sub
 
 #Region "Events"
@@ -534,5 +549,28 @@ Partial Public Class TypeSuggestor
     End Sub
 #End Region
 #End Region
+''' <summary>Sets value of the <see cref="SelectedNewType"/> property</summary>
+private sub SetNewType
+       selectednewtype=if(me.isenabled andalso dgnewtypes.isvisible,dgnewtypes.selecteditem,nothing)
+end sub
+''' <summary>Sets value of the <see cref="SelectedExistingType"/> property</summary>
+private sub SetExType
+selectedexistingtype=if(me.isenabled andalso lstextypes.isvisible,lstextypes.selecteditem,nothing)
+End Sub
+    Private Sub dgNewTypes_IsVisibleChanged(ByVal sender As Object, ByVal e As System.Windows.DependencyPropertyChangedEventArgs) Handles dgNewTypes.IsVisibleChanged
+       setnewtype
+    End Sub
+
+    Private Sub dgNewTypes_SelectionChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs) Handles dgNewTypes.SelectionChanged
+                 setnewtype
+    End Sub
+
+    Private Sub lstExTypes_IsVisibleChanged(ByVal sender As Object, ByVal e As System.Windows.DependencyPropertyChangedEventArgs) Handles lstExTypes.IsVisibleChanged
+                setextype
+    End Sub
+
+    Private Sub lstExTypes_SelectionChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs) Handles lstExTypes.SelectionChanged
+        SetExType()
+    End Sub
 End Class
 

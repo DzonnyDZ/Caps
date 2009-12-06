@@ -50,7 +50,7 @@ Partial Public Class winEditors
         Try
             CapsContext.SubmitChanges()
         Catch ex As Exception
-            mBox.Error_X(ex, ex.GetType.Name, Me)
+            mBox.Error_XTW(ex, ex.GetType.Name, Me)
         End Try
     End Sub
 

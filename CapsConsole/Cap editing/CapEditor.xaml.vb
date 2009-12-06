@@ -17,10 +17,12 @@ Partial Public Class CapEditor
         InitializeComponent()
         tysSuggestor.Context = Context
         Images = New ListWithEvents(Of Image)()
-        DirectCast(Me.Resources("GetCapsOfConverter"), GetCapsOfConverter).Context = OriginalContext
+        'DirectCast(Me.Resources("GetCapsOfConverter"), GetCapsOfConverter).Context = OriginalContext
         UnderConstruction = False
         chkIsDrink_CheckedChanged(chkIsDrink, New RoutedEventArgs())
     End Sub
+
+
     ''' <summary>Database context</summary>
     ''' <exception cref="ArgumentNullException">Value being set is null</exception>
     Public Property Context() As CapsDataDataContext
@@ -33,7 +35,7 @@ Partial Public Class CapEditor
                 OriginalContext.Dispose()
                 OriginalContext = Nothing
             End If
-            DirectCast(Me.Resources("GetCapsOfConverter"), GetCapsOfConverter).Context = value
+            ' DirectCast(Me.Resources("GetCapsOfConverter"), GetCapsOfConverter).Context = value
             _Context = value
             tysSuggestor.Context = value
         End Set
@@ -3140,8 +3142,9 @@ Resize256:      Try
         Dim OldTarget = Target
         Dim OldMaterial = Material
         'Make selection
+        Dim exType = tysSuggestor.SelectedExistingType
         CapTypeSelection = CreatableItemSelection.SelectedItem
-        CapType = tysSuggestor.SelectedExistingType
+        CapType = exType
         'Preserved values
         Size1 = OldSize1
         Size2 = OldSize2
@@ -3151,9 +3154,28 @@ Resize256:      Try
     End Sub
 
     Private Sub tysSuggestor_ApplyNewType(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles tysSuggestor.ApplyNewType
-        Dim win As New winCreateNewType
+        'Preserve values
+        Dim OldSize1 = Size1
+        Dim OldSize2 = Size2
+        Dim OldHeigh = CapHeight
+        Dim OldTarget = Target
+        Dim OldMaterial = Material
+        'Show dialog
+        Dim win As New winCreateNewType(Me.Context)
+        win.DataContext = tysSuggestor.SelectedNewType
         win.ShowDialog(Me)
-        ' <!--TODO: Commands - right button, window to select caps, create new type, set type properties-->
+        If win.DialogResult Then
+            'Apply new type
+            cmbCapType.Items.Add(win.CreatedType)
+            CapTypeSelection = CreatableItemSelection.SelectedItem
+            cmbCapType.SelectedValue = win.CreatedType
+            'Preserved values
+            Size1 = OldSize1
+            Size2 = OldSize2
+            CapHeight = OldHeigh
+            Material = OldMaterial
+            Target = OldTarget
+        End If
     End Sub
 #End Region
 #Region "txtFavoriteCharacters"

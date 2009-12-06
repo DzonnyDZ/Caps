@@ -150,7 +150,7 @@ Partial Public Class winNewCap
                         Try
                             SubDialog = New winCapEditor(PrevLastSavedID)
                         Catch ex As ArgumentException
-                            mBox.Error_Xrw(ex, ex.GetType.Name, Me)
+                            mBox.Error_XTW(ex, ex.GetType.Name, Me)
                             .Reset()
                             Exit Sub
                         End Try

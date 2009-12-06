@@ -268,6 +268,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Create type.
+        '''</summary>
+        Public ReadOnly Property cmd_CreateType() As String
+            Get
+                Return ResourceManager.GetString("cmd_CreateType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to _Delete.
         '''</summary>
         Public ReadOnly Property cmd_Delete() As String
@@ -1897,6 +1906,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Use cap image as type image.
+        '''</summary>
+        Public ReadOnly Property mni_UseCapImageAsTypeImage() As String
+            Get
+                Return ResourceManager.GetString("mni_UseCapImageAsTypeImage", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to All shown caps have been deleted. The window will be closed..
         '''</summary>
         Public ReadOnly Property msg_AllCapsDeletedClose() As String
@@ -2046,6 +2064,15 @@ Namespace My.Resources
         Public ReadOnly Property msg_DatabaseVersionUpgrade() As String
             Get
                 Return ResourceManager.GetString("msg_DatabaseVersionUpgrade", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Enter type name, please.
+        '''</summary>
+        Public ReadOnly Property msg_EnterTypeName() As String
+            Get
+                Return ResourceManager.GetString("msg_EnterTypeName", resourceCulture)
             End Get
         End Property
         
@@ -2340,6 +2367,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Set type of this cap to newly created type.
+        '''</summary>
+        Public ReadOnly Property tot_SetTypeToNew() As String
+            Get
+                Return ResourceManager.GetString("tot_SetTypeToNew", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Cap sign is small graphical or textual sign. Plastic caps usually have it at bottom while metallic (including crown caps) at side..
         '''</summary>
         Public ReadOnly Property tot_Sign() As String
@@ -2534,6 +2570,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_DuplicateEntry() As String
             Get
                 Return ResourceManager.GetString("txt_DuplicateEntry", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Caps eligible for new type.
+        '''</summary>
+        Public ReadOnly Property txt_EligibleCaps() As String
+            Get
+                Return ResourceManager.GetString("txt_EligibleCaps", resourceCulture)
             End Get
         End Property
         
@@ -2916,6 +2961,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Properties of newly created cap type.
+        '''</summary>
+        Public ReadOnly Property txt_NewTypeProperties() As String
+            Get
+                Return ResourceManager.GetString("txt_NewTypeProperties", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Owervrite file.
         '''</summary>
         Public ReadOnly Property txt_OwervriteFile() As String
@@ -3002,6 +3056,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_SelectDatabase() As String
             Get
                 Return ResourceManager.GetString("txt_SelectDatabase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Selected cap properties.
+        '''</summary>
+        Public ReadOnly Property txt_SelectedCapProperties() As String
+            Get
+                Return ResourceManager.GetString("txt_SelectedCapProperties", resourceCulture)
             End Get
         End Property
         

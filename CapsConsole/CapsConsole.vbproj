@@ -139,7 +139,7 @@
     <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="XAML helpers\Application.xaml">
+    <ApplicationDefinition Include="Application.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -279,7 +279,7 @@
     <Compile Include="Cap editing\winCreateNewType.xaml.vb">
       <DependentUpon>winCreateNewType.xaml</DependentUpon>
     </Compile>
-    <Compile Include="XAML helpers\Application.xaml.vb">
+    <Compile Include="Application.xaml.vb">
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

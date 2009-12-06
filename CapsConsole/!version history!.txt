@@ -88,3 +88,4 @@ Pending issues:
 * Save and goto in editor window
 * Type suggestor in editor window
 * When color is gray or transparent, color name is not visible
+* When editing existing cap and request to create sth. is made creating st. commits changes in cap.

@@ -34,7 +34,7 @@ Partial Public Class winNewMainType
         Try
             Context.SubmitChanges()
         Catch ex As Exception
-            mBox.Error_X(ex, ex.GetType.Name, Me)
+            mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Context.MainTypes.DeleteAllNew()
             Exit Sub
         End Try

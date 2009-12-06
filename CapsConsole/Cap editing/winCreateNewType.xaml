@@ -3,10 +3,108 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:res="clr-namespace:Caps.Console.My.Resources"
     xmlns:my="clr-namespace:Caps.Console"
+    xmlns:controlsT="clr-namespace:Tools.WindowsT.WPF.ControlsT;assembly=Tools.Windows"    
+    xmlns:convertersT="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
     Title="{x:Static res:Resources.txt_CreateNewType}"
-    Height="300" Width="300">
+    Height="400"  SizeToContent="Width">
+    <Window.Resources>
+        <convertersT:NullInvisibleConverter x:Key="NullInvisibleConverter"/>
+        <convertersT:IsNotNullConverter x:Key="IsNotNullConverter"/>
+    </Window.Resources>
     <DockPanel>
-        <ListBox DockPanel.Dock="Left"/>
-        <my:CapDetailsView DockPanel.Dock="Left"/>       
+        <GroupBox Header="{x:Static res:Resources.txt_EligibleCaps}" DockPanel.Dock="Left">
+            <ListBox Name="lstCaps" ItemsSource="{Binding Path=Caps, Mode=OneWay}" MinWidth="64" Width="auto">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="64" Height="auto">
+                            <Grid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="{x:Static res:Resources.mni_UseCapImageAsTypeImage}" ItemsSource="{Binding ImagesOrdered, Mode=OneWay}">
+                                        <MenuItem.ItemTemplate>
+                                            <DataTemplate>
+                                                <MenuItem Click="mniImage_Click">
+                                                    <MenuItem.Icon>
+                                                        <Image MaxWidth="64" MaxHeight="64" Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i64}}"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                            </DataTemplate>
+                                        </MenuItem.ItemTemplate>
+                                        <MenuItem.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel Orientation="Horizontal" IsItemsHost="True"/>
+                                            </ItemsPanelTemplate>
+                                        </MenuItem.ItemsPanel>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </Grid.ContextMenu>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="auto" MaxHeight="64"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Image Source="{Binding ImagesOrdered/RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i64}}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" MaxWidth="64" MaxHeight="64"/>
+                            <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" ToolTip="{x:Static res:Resources.tot_SetTypeToNew}" IsChecked="True" Checked="chkCap_Checked" Unchecked="chkCap_Unchecked"  />
+                            <TextBlock TextWrapping="Wrap" Text="{Binding CapName, Mode=OneWay}" TextAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" IsItemsHost="True"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </GroupBox>
+        <GroupBox DockPanel.Dock="Left" Header="{x:Static res:Resources.txt_SelectedCapProperties}" Width="250">
+            <my:CapDetailsView DockPanel.Dock="Left" DataContext="{Binding ElementName=lstCaps, Path=SelectedItem, Mode=OneWay}" IsEnabled="{Binding ElementName=lstCaps, Path=SelectedItem, Mode=OneWay, Converter={StaticResource IsNotNullConverter}}"/>
+        </GroupBox>
+        <GroupBox Header="{x:Static res:Resources.txt_NewTypeProperties}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <my:AttachedProperties.ItemsWithAutomaticRows>
+                    <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" Content="{x:Static res:Resources.lbl_Name}"  VerticalAlignment="Center"/>
+                    <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Name="txtName" VerticalAlignment="Center" my:AttachedProperties.SelectAllOnFocus="True"/>
+                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Content="{x:Static res:Resources.lbl_MainType}" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" SelectedValue="{Binding MainType.MainTypeID, Mode=OneWay}" SelectedValuePath="MainTypeID" Name="cmbMainType" VerticalAlignment="Center" Style="{StaticResource MainTypeTemplate}"/>
+                    <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" Content="{x:Static res:Resources.lbl_Shape}" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" SelectedValue="{Binding Shape.ShapeID, Mode=OneWay}" SelectedValuePath="ShapeID" Name="cmbShape" VerticalAlignment="Center" Style="{StaticResource ShapeTemplate}"/>
+                    <Label Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" Content="{Binding Shape.Size1Name, Mode=OneWay}" VerticalAlignment="Center"/>
+                    <controlsT:NumericUpDown Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" Value="{Binding Size, Mode=OneWay}" Name="nudSize1" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" Content="{Binding Shape.Size2Name, Mode=OneWay}" Visibility="{Binding Shape.Size2Name, Mode=OneWay, Converter={StaticResource NullInvisibleConverter}}" VerticalAlignment="Center"/>
+                    <controlsT:NumericUpDown Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Value="{Binding Size2, Mode=OneWay}" Visibility="{Binding Shape.Size2Name, Mode=OneWay, Converter={StaticResource NullInvisibleConverter}}" Name="nudSize2"/>
+                    <Label Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" Content="{x:Static res:Resources.lbl_Height}" VerticalAlignment="Center"/>
+                    <controlsT:NumericUpDown Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" Value="{Binding Height, Mode=OneWay}" Name="nudHeight" VerticalAlignment="Center"/>
+                    <Label Grid.Column="0" Grid.Row="6" Content="{x:Static res:Resources.lbl_Material}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" SelectedValue="{Binding Material.MaterialID, Mode=OneWay}" SelectedValuePath="MaterialID" Name="cmbMaterial" VerticalAlignment="Center" Style="{StaticResource MaterialTemplate}"/>
+                    <Label Grid.Column="0" Grid.Row="7" Content="{x:Static res:Resources.lbl_Target}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch" SelectedValue="{Binding Target.TargetID, Mode=OneWay}" SelectedValuePath="TargetID" Name="cmbTarget" VerticalAlignment="Center" Style="{StaticResource TargetTemplate}"/>
+                    <Label Grid.Column="0" Grid.Row="8" Content="{x:Static res:Resources.lbl_Description}" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                    <TextBox Grid.Column="1" Grid.Row="8" MinLines="3" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Name="txtDesciption" my:AttachedProperties.SelectAllOnFocus="True"/>
+                    <Label Grid.Column="0" Grid.Row="9" Content="{x:Static res:Resources.lbl_Image}" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="9" Grid.Column="1" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Column="0" Grid.Row="0" Name="txtPicturePath" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+                        <Button Grid.Column="1" Grid.Row="0" Name="cmdPicturePath" Padding="3,0" VerticalAlignment="Center">...</Button>
+                    </Grid>
+                    <Image MaxWidth="64" MaxHeight="64" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Source="{Binding ElementName=txtPicturePath, Mode=OneWay, Path=Text}"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                        <Button HorizontalAlignment="Center" IsDefault="True" Name="cmdOK" Content="{x:Static res:Resources.cmd_CreateType}"/>
+                        <Button HorizontalAlignment="Center" IsCancel="True" Name="cmdCancel" Content="{x:Static res:Resources.cmd_Cancel}"/>
+                    </StackPanel>
+                    
+                </my:AttachedProperties.ItemsWithAutomaticRows>
+            </Grid>
+        </GroupBox>
     </DockPanel>
 </Window>

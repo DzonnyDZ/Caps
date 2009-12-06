@@ -119,7 +119,7 @@ Partial Public Class winCapEditor
                 Cap.ProductType = Context.ProductTypes.FirstOrDefault(Function(itm) itm.ProductTypeID = OldCap.ProductTypeID)
                 Cap.Company = Context.Companies.FirstOrDefault(Function(itm) itm.CompanyID = OldCap.CompanyID)
                 Me.DataContext = Cap
-                CapEditor.UndoCopyImages(From img In IntroducedImages Select img.RelativePath)
+                caeEditor.UndoCopyImages(From img In IntroducedImages Select img.RelativePath)
                 Exit Sub
             End Try
             If NewType IsNot Nothing Then
@@ -213,11 +213,6 @@ GetNextCap:
             Return "M"c
         End If
     End Function
-
-
-
-
-
 
     Private Sub winCapEditor_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
         Me.SetWindowPosition(My.Settings.winCapEditorLoc)

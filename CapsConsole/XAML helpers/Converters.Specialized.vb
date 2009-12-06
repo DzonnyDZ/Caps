@@ -106,7 +106,9 @@ End Class
 
 ''' <summary>gets caps associated with certain object</summary>
 Public Class GetCapsOfConverter
-    Implements IValueConverter
+    Implements IValueConverter, IDisposable
+    ''' <summary>Context to be used when <see cref="Context"/> is not set</summary>
+    Private OriginalContext As New CapsDataDataContext(Main.Connection)
     ''' <summary>CTor</summary>
     Public Sub New()
     End Sub
@@ -118,11 +120,13 @@ Public Class GetCapsOfConverter
     ''' <summary>Contains value of the <see cref="Context"/> property</summary>
     Private _Context As CapsDataDataContext
     ''' <summary>Gtes or sets data context used for querying for caps</summary>
-      Public Property Context() As CapsDataDataContext
+    Public Property Context() As CapsDataDataContext
         <DebuggerStepThrough()> Get
-            Return _Context
+            Return If(_Context, OriginalContext)
         End Get
         <DebuggerStepThrough()> Set(ByVal value As CapsDataDataContext)
+            If value Is Context Then Exit Property
+            If Not OriginalContext.IsDisposed Then OriginalContext.Dispose()
             _Context = value
         End Set
     End Property
@@ -177,6 +181,29 @@ Public Class GetCapsOfConverter
         If value Is Nothing Then Return Nothing
         Throw New NotSupportedException(My.Resources.ex_CannotConvertBack.f(Me.GetType.Name))
     End Function
+
+#Region "IDisposable Support"
+    ''' <summary> To detect redundant calls to <see cref="Dispose"/></summary>
+    Private disposedValue As Boolean
+
+    ''' <summary>Implements <see cref="IDisposable.Dispose"/></summary>
+    ''' <param name="disposing">True when disposing</param>
+    Protected Overridable Sub Dispose(ByVal disposing As Boolean)
+        If Not Me.disposedValue Then
+            If disposing Then
+                OriginalContext.Dispose()
+            End If
+        End If
+        Me.disposedValue = True
+    End Sub
+    ''' <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    Public Sub Dispose() Implements IDisposable.Dispose
+        ' Do not change this code.  Put cleanup code in Dispose(ByVal disposing As Boolean) above.
+        Dispose(True)
+        GC.SuppressFinalize(Me)
+    End Sub
+#End Region
+
 End Class
 
 ''' <summary>Converts ISO-2 country code to path of resource containing flag of that country.</summary>

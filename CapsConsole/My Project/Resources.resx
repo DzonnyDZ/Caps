@@ -1447,4 +1447,32 @@ Doubleclick to edit.</value>
     <value>Create new type</value>
     <comment>Window title</comment>
   </data>
+  <data name="tot_SetTypeToNew" xml:space="preserve">
+    <value>Set type of this cap to newly created type</value>
+    <comment>Tool tip text</comment>
+  </data>
+  <data name="txt_SelectedCapProperties" xml:space="preserve">
+    <value>Selected cap properties</value>
+    <comment>Group box header</comment>
+  </data>
+  <data name="txt_NewTypeProperties" xml:space="preserve">
+    <value>Properties of newly created cap type</value>
+    <comment>Group box title</comment>
+  </data>
+  <data name="txt_EligibleCaps" xml:space="preserve">
+    <value>Caps eligible for new type</value>
+    <comment>Group box header</comment>
+  </data>
+  <data name="mni_UseCapImageAsTypeImage" xml:space="preserve">
+    <value>Use cap image as type image</value>
+    <comment>Menu item text</comment>
+  </data>
+  <data name="cmd_CreateType" xml:space="preserve">
+    <value>Create type</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="msg_EnterTypeName" xml:space="preserve">
+    <value>Enter type name, please</value>
+    <comment>Message text</comment>
+  </data>
 </root>
