@@ -252,7 +252,7 @@
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate >
                         <DataTemplate>
-                            <Image MaxWidth="32" MaxHeight="32" Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i64}}">
+                            <Image MaxWidth="32" MaxHeight="32" Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i64}}" ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}">
                                 <Image.ToolTip>
                                     <Image MaxWidth="128" MaxHeight="128" Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i128}}"/>
                                 </Image.ToolTip>

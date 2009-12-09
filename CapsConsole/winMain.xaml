@@ -19,10 +19,11 @@
             <StackPanel Orientation="Horizontal" Height="auto" IsItemsHost="True"  />
         </ItemsPanelTemplate>
         <DataTemplate x:Key="CapView">
-            <Grid Margin="3" Width="64" Height="100" MouseLeftButtonDown="Image_MouseLeftButtonDown">
+            <Grid Margin="3" Width="64" MaxHeight="168" Height="auto" MouseLeftButtonDown="Image_MouseLeftButtonDown"  ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="64"/>
-                    <RowDefinition Height="*"/> 
+                    <RowDefinition MaxHeight="64" Height="auto" SharedSizeGroup="capImgGr"/>
+                    <RowDefinition MaxHeight="72" Height="72" SharedSizeGroup="capNameGr"/>
+                    <RowDefinition MaxHeight="32" Height="auto" SharedSizeGroup="capIdGr"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="64"/>
@@ -34,18 +35,22 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition MaxHeight="256" Height="auto"/>
+                            <RowDefinition MaxHeight="32" Height="auto"/>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <Image MaxWidth="256" MaxHeight="256" Height="auto" Width="auto"
                             Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i256}}"                               
                             HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
-                        <TextBlock Text="{Binding Path=CapName, Mode=OneWay}" Grid.Column="0" Grid.Row="1"/>
+                        <Image MaxWidth="256" MaxHeight="32" Height="auto" Width="auto" Grid.Row="1" Grid.Column="0"
+                            Source="{Binding Path=CapSign.CapSignID, Converter={StaticResource MyImageIDConverter}, Mode=OneWay, ConverterParameter='CapSign'}"/>
+                        <TextBlock Text="{Binding Path=CapName, Mode=OneWay}" Grid.Column="0" Grid.Row="2"/>
                     </Grid>
                 </Grid.ToolTip>
                 <Image MaxWidth="64" MaxHeight="64"
                        Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i64}}"
                        HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Height="auto"  Grid.Column="0" Grid.Row="0" />
-                <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Top" Text="{Binding CapName, Mode=OneWay}" TextWrapping="Wrap" MaxWidth="72" />                   
+                <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding CapName, Mode=OneWay}" TextWrapping="Wrap" MaxWidth="72" FontSize="10" />                   
+                <TextBlock Grid.Column="0" Grid.Row="2" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding CapID, Mode=OneWay}" MaxWidth="72" FontSize="10"/>
                 <Image MaxWidth="18" MaxHeight="18" Width="auto" Height="auto"
                        Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                        Source="{Binding Path=CapSign.CapSignID, Converter={StaticResource MyImageIDConverter}, Mode=OneWay, ConverterParameter='CapSign'}"/>
@@ -131,12 +136,12 @@
                 </GroupBox.Header>
                 <ItemsControl Name="itmNewest" ItemsPanel="{StaticResource HorizontalCapsView}"
                               ItemTemplate="{StaticResource CapView}" HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch" Height="auto" MinHeight="75" IsTabStop="False" />
+                              VerticalAlignment="Stretch" Height="auto" MinHeight="75" IsTabStop="False" Grid.IsSharedSizeScope="True" />
             </GroupBox>
             <GroupBox  Grid.Column="1" Grid.Row="1" Header="{x:Static res:Resources.txt_Random}">
                 <ItemsControl Name="itmRandom" ItemsPanel="{StaticResource HorizontalCapsView}"
                               ItemTemplate="{StaticResource CapView}" HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch" Height="auto" MinHeight="75" IsTabStop="False"   />
+                              VerticalAlignment="Stretch" Height="auto" MinHeight="75" IsTabStop="False" Grid.IsSharedSizeScope="True"   />
             </GroupBox>
             <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Height="300">
                 <Grid.ColumnDefinitions >

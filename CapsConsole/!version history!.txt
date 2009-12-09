@@ -57,35 +57,37 @@
     * Caps detail displays names of colors
     * Fix: Automatic text does not work on drop
     * Favorite characters box is now eidable only after double click, which prevents vanishing characters on drag & drop.
+    * Type suggestor (for new / anonymous cap type offers existing types or creation of new type based on entered anonymous type parameters).
     * All messageboxes changed to behave modaly to ther respecive parent windows.
+    * Main windows shows cap IDs.
+    * Smaller cap names in main window.
+    * Main Window: Cap tooltip shows sign.
+    * Fix: ProductID is not shown on Products tab in Lists editor.
+    * Cap editor / new cap window shows total caps count in database.
+    * Fixed mistaken database version number (0.0.3.0 instead of 0.1.3.0).
+    * Search for similar caps - takes caps of similar size into account.
+    * Sign image in cap details window (big readonly) enlarged
     
 Pending issues:
 ===============
-* ComboBox tooltip error
+* ComboBox tooltip error (x32)
 * ComboBox: Press delete shall select null item    
 * Accelerators for numeric up-downs and keywords editor don't work
 * Select language in options
-* Show cap IDs in main window
 * Edit cap by double click (in view details)
 * Details window: Enlarge sign image
-* Main window - image tooltip: show sign
 * Custom dialog for file selection (optionally)
 * Alt+→ & Alt+← in editor and new cap window
-* List editor: Product ID is not shown
 * List editor: Sortable headers
-* Storage images
+* Storage images (images of storages)
 * Save & previous in new cap window does not work
-* Show total cap count in editor/new cap window
 * Structured storage
 * New (without saving) in editor window
 * Images in caps editor
 * Do not lock images loaded to app from file
 * Image preview in newXxx dialogs
-* Modal message boxes not connected to window
 * Pseudocategories (defined in db)
-* Search for similar caps - reckon with similar size
 * Localized state names in menu
 * Save and goto in editor window
-* Type suggestor in editor window
 * When color is gray or transparent, color name is not visible
 * When editing existing cap and request to create sth. is made creating st. commits changes in cap.

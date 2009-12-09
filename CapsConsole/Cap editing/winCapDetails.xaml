@@ -269,7 +269,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <Image Width="auto" MaxWidth="19" Height="16" VerticalAlignment="Center" Source="{Binding CapSign.CapSignID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
+                        <Image Width="auto" MaxWidth="35" Height="32" VerticalAlignment="Center" Source="{Binding CapSign.CapSignID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding CapSign.Name, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding CapSign.CapSignID, Mode=OneWay}" Grid.Column="2" Grid.Row="0"/>
                     </Grid>

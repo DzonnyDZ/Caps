@@ -151,7 +151,7 @@ ALTER PROCEDURE [dbo].[GetSimilarCaps]
 	@State smallint = null,
 	@TargetID int = null,
 	@IsAlcoholic bit = null,
-	@CapSignID int = null
+	@CapSignId int = null
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -159,83 +159,84 @@ BEGIN
 	SET NOCOUNT ON;
 
     SELECT top 100 c.*,
-			case when c.CapName = @CapName then 20 else 0 end
+			case when c.CapName = @CapName then 200 else 0 end
             +
-            case when c.MainText = @MainText then 20 else 0 end 
+            case when c.MainText = @MainText then 200 else 0 end 
             +
-            case when c.SubTitle = @SubTitle then 20 else 0 end
+            case when c.SubTitle = @SubTitle then 200 else 0 end
             +
-            case when c.CapTypeID = @CapTypeID then 5 else 0 end
+            case when c.CapTypeID = @CapTypeID then 50 else 0 end
             +
-            case when c.MainTypeID = @MainTypeID then 2 else 0 end
+            case when c.MainTypeID = @MainTypeID then 20 else 0 end
             +
-            case when c.ShapeID = @ShapeID then 2 else 0 end
+            case when c.ShapeID = @ShapeID then 20 else 0 end
             +
-            case when c.BackColor1 = @BackColor1 then 4 else 0 end
+            case when c.BackColor1 = @BackColor1 then 40 else 0 end
             +
-            case when c.BackColor2 = @BackColor2  then 5 else 0 end 
+            case when c.BackColor2 = @BackColor2  then 50 else 0 end 
             +
-            case when c.ForeColor = @ForeColor    then 5 else 0 end
+            case when c.ForeColor = @ForeColor    then 50 else 0 end
             +
-            case when c.ForeColor2 = @ForeColor   then 5 else 0 end
+            case when c.ForeColor2 = @ForeColor   then 50 else 0 end
             +
-            case when c.MainPicture = @MainPicture then 5 else 0 end
+            case when c.MainPicture = @MainPicture then 50 else 0 end
             +
-            case when c.TopText = @TopText then 20 else 0 end
+            case when c.TopText = @TopText then 200 else 0 end
             +
-            case when c.SideText = @SideText then 30 else 0 end
+            case when c.SideText = @SideText then 300 else 0 end
             +
-            case when c.BottomText = @BottomText then 30 else 0 end
+            case when c.BottomText = @BottomText then 300 else 0 end
             +
-            case when c.MaterialID = @MaterialID then 2 else 0 end
+            case when c.MaterialID = @MaterialID then 20 else 0 end
             +
-            case when c.Surface = @Surface then 1 else 0 end
+            case when c.Surface = @Surface then 10 else 0 end
             +
-            case when c.ShapeID = @ShapeID and c.Size=@Size then 1 else 0 end
+            case when c.ShapeID = @ShapeID and abs(c.Size-@Size)<3 then 10 - abs(c.Size-@Size) / 0.4  else 0 end
             +
-            case when c.ShapeID = @ShapeID and c.Size2=@Size2 then 1 else 0 end
+            case when c.ShapeID = @ShapeID and abs(c.Size2-@Size2)<3 then 10 - abs(c.Size2-@Size2) / 0.4 else 0 end
             +
-            case when c.Height = @Height then 1 else 0 end
+            case when abs(c.Height - @Height) < 3 then 10 - abs(c.Height - @Height) / 0.4  else 0 end
             +
-            case when c.Is3D = @Is3D and c.Is3D = 1 then 20 when c.Is3D=@Is3D then 1 else 0 end
+            case when c.Is3D = @Is3D and c.Is3D = 1 then 200 when c.Is3D=@Is3D then 10 else 0 end
             +
-            case when c.Year = @Year then 1 else 0 end
+            case when c.Year = @Year then 10 else 0 end
             +
-            case when c.CountryCode = @CountryCode then 1 else 0 end
+            case when c.CountryCode = @CountryCode then 10 else 0 end
             +
-            case when c.Note = @Note then 2 else 0 end
+            case when c.Note = @Note then 20 else 0 end
             +
-            case when c.CompanyID = @CompanyID then 5 else 0 end
+            case when c.CompanyID = @CompanyID then 50 else 0 end
             +
-            case when c.ProductID = @ProductID then 5 else 0   end
+            case when c.ProductID = @ProductID then 50 else 0   end
             +
-            case when c.ProductTypeID=@ProductTypeID then 2 else 0 end
+            case when c.ProductTypeID=@ProductTypeID then 20 else 0 end
             +
-            case when c.StorageID=@StorageID then 1 else 0 end
+            case when c.StorageID=@StorageID then 10 else 0 end
             +
-            case when c.PictureType=@PictureType then 1 else 0 end
+            case when c.PictureType=@PictureType then 10 else 0 end
             +
-            case when c.HasBottom=@HasBottom and c.HasBottom = 1 then 5 when c.HasBottom=@HasBottom then 1 else 0 end
+            case when c.HasBottom=@HasBottom and c.HasBottom = 1 then 50 when c.HasBottom=@HasBottom then 10 else 0 end
             +
-            case when c.HasSide=@HasSide and c.HasSide = 1 then 4 when c.HasSide=@HasSide then 1 else 0 end
+            case when c.HasSide=@HasSide and c.HasSide = 1 then 40 when c.HasSide=@HasSide then 10 else 0 end
             +
-            case when c.AnotherPictures = @AnotherPictures then 5 else 0 end
+            case when c.AnotherPictures = @AnotherPictures then 50 else 0 end
             +
-            (select count(*) from dbo.cap_category_int cci where cci.capid=c.capid and cci.categoryid in(select value from @categoryids))*3
+            (select count(*) from dbo.cap_category_int cci where cci.capid=c.capid and cci.categoryid in(select value from @categoryids))*30
             +
-            (select count(*) from dbo.cap_keyword_int cki inner join dbo.keyword k on(cki.keywordid=k.keywordid) where cki.CapID=c.CapID and  k.keyword in(select value from @keywords))*4
+            (select count(*) from dbo.cap_keyword_int cki inner join dbo.keyword k on(cki.keywordid=k.keywordid) where cki.CapID=c.CapID and  k.keyword in(select value from @keywords))*40
             +
-            case when c.CountryOfOrigin = @CountryOfOrigin then 2 else 0 end
+            case when c.CountryOfOrigin = @CountryOfOrigin then 20 else 0 end
             +
-            case when c.IsDrink = @IsDrink and @IsDrink=0 then 3 when c.IsDrink = @IsDrink then 1 else 0 end
+            case when c.IsDrink = @IsDrink and @IsDrink=0 then 30 when c.IsDrink = @IsDrink then 10 else 0 end
             +
-            case when c.State = @State then 1 else 0 end
+            case when c.State = @State then 10 else 0 end
             +
-            case when c.TargetID = @TargetID then 2 else 0 end
+            case when c.TargetID = @TargetID then 20 else 0 end
             +
-            case when c.IsDrink = 1 and @IsDrink = 1 and @IsAlcoholic = c.IsAlcoholic and @IsAlcoholic = 1 then 3 when c.IsDrink = 1 and @IsDrink = 1 and @IsAlcoholic = c.IsAlcoholic then 1 else 0 end
+            case when c.IsDrink = 1 and @IsDrink = 1 and @IsAlcoholic = c.IsAlcoholic and @IsAlcoholic = 1 then 30
+                 when c.IsDrink = 1 and @IsDrink = 1 and @IsAlcoholic = c.IsAlcoholic then 10 else 0 end
             +
-            case when c.CapSignID = @CapSignID then 2 else 0 end
+            case when c.CapSignID = @CapSignId then 20 else 0 end
             as Score
 		from dbo.Cap c
         order by
@@ -394,7 +395,7 @@ RETURNS nvarchar(50)
 AS
 BEGIN
 declare @dbGuid nvarchar(38) = '{DAFDAE3F-2F0A-4359-81D6-50BA394D72D9}';
-declare @dbVersion nvarchar(11) = '0.0.3.0';
+declare @dbVersion nvarchar(11) = '0.1.3.0';
 return @dbGuid + @dbversion;
 
 END;   

@@ -18,7 +18,7 @@ Begin DataProject = "CapsData"
    End
    Begin Folder = "Change Scripts"
       Script = "0.0.1.0-to-0.0.2.0.sql"
-      Script = "0.0.2.0-to-0.0.3.0.sql"
+      Script = "0.0.2.0-to-0.1.3.0.sql"
    End
    Begin Folder = "Queries"
    End

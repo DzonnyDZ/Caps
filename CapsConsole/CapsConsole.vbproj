@@ -424,9 +424,9 @@
       <Link>DAL\Change scripts\0.0.1.0-to-0.0.2.0.sql</Link>
       <LogicalName>ChangeScripts/0.0.1.0-to-0.0.2.0.sql</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\CapsData\Change Scripts\0.0.2.0-to-0.0.3.0.sql">
-      <Link>DAL\Change scripts\0.0.2.0-to-0.0.3.0.sql</Link>
-      <LogicalName>ChangeScripts/0.0.2.0-to-0.0.3.0.sql</LogicalName>
+    <EmbeddedResource Include="..\CapsData\Change Scripts\0.0.2.0-to-0.1.3.0.sql">
+      <Link>DAL\Change scripts\0.0.2.0-to-0.1.3.0.sql</Link>
+      <LogicalName>ChangeScripts/0.0.2.0-to-0.1.3.0.sql</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Countries.cs.resx">
       <DependentUpon>Countries.vb</DependentUpon>

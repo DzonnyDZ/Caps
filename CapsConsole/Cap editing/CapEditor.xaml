@@ -61,6 +61,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <!--Naming-->
         <GroupBox Header="{x:Static res:Resources.txt_Naming}"  Grid.Column="0" Grid.Row="0" >
@@ -483,6 +484,10 @@
                  ToolTip="{x:Static res:Resources.tot_FavoriteCharacters}"
                  FontSize="24pt" IsReadOnly="True"
                  Name="txtFavoriteCharacters"/>
+        <StatusBar Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+            <Label Content="{x:Static res:Resources.lbl_CapsCounts}"/>
+            <Label Name="lblCapsCount"/>
+        </StatusBar>
     </Grid>
 </UserControl>
     

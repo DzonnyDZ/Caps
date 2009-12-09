@@ -1195,6 +1195,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Total caps count:.
+        '''</summary>
+        Public ReadOnly Property lbl_CapsCounts() As String
+            Get
+                Return ResourceManager.GetString("lbl_CapsCounts", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to State.
         '''</summary>
         Public ReadOnly Property lbl_CapState() As String

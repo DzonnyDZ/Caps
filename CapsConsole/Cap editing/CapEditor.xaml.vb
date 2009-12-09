@@ -74,6 +74,7 @@ Partial Public Class CapEditor
             initializing = False
         End Try
         initialized = True
+        ShowCount()
     End Sub
     Private Sub winNewCap_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
         If Not initialized Then Initialize(False)
@@ -3094,6 +3095,8 @@ Resize256:      Try
         Actualize()
 
         InitFocus()
+
+        ShowCount()
     End Sub
 
     Private Sub Image_MouseDown(ByVal sender As FrameworkElement, ByVal e As System.Windows.Input.MouseButtonEventArgs)
@@ -3195,6 +3198,12 @@ Resize256:      Try
         txtFavoriteCharacters.IsReadOnly = False
     End Sub
 #End Region
+
+    ''' <summary>Shows total count of caps</summary>
+    Private Sub ShowCount()
+        If Context IsNot Nothing AndAlso Not Context.IsDisposed Then _
+            lblCapsCount.Content = Context.Caps.Count
+    End Sub
 End Class
 
 ''' <summary>Allows to distinguish image already in database and a new image</summary>

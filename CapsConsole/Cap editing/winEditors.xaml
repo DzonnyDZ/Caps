@@ -99,7 +99,7 @@
             <TabItem Header="{x:Static res:Resources.txt_Products}" Name="tapProducts">
                 <toolkit:DataGrid AutoGenerateColumns="False" Name="dgrProducts" >
                     <toolkit:DataGrid.Columns>
-                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding ProductD, Mode=OneWay}"/>
+                        <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding ProductID, Mode=OneWay}"/>
                         <toolkit:DataGridTextColumn Header="{x:Static res:Resources.coh_Name}" Binding="{Binding ProductName, Mode=TwoWay}"/>
                         <toolkit:DataGridComboBoxColumn Header="{x:Static res:Resources.coh_Company}" DisplayMemberPath="CompanyName" SelectedItemBinding="{Binding Company, Mode=TwoWay, Converter={StaticResource NullConverter}}" x:Name="cmcProduct_Company" SortMemberPath="CompanyName"/>
                         <toolkit:DataGridComboBoxColumn Header="{x:Static res:Resources.coh_ProductType}" DisplayMemberPath="ProductTypeName" SelectedItemBinding="{Binding ProductType, Mode=TwoWay, Converter={StaticResource NullConverter}}" x:Name="cmcProduct_ProductType" SortMemberPath="ProductTypeName" />

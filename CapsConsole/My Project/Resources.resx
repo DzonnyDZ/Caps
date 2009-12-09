@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="clr_Black" xml:space="preserve">
     <value>Black</value>
@@ -1489,8 +1489,13 @@ Doubleclick to edit.</value>
   </data>
   <data name="txt_UnsupportedImageType" xml:space="preserve">
     <value>Unsupported image type</value>
+    <comment>Message box header</comment>
   </data>
   <data name="msg_CopyCapTypeImageError" xml:space="preserve">
     <value>Failed to copy cap type image. Cap type created without image.</value>
+  </data>
+  <data name="lbl_CapsCounts" xml:space="preserve">
+    <value>Total caps count:</value>
+    <comment>Status bar label text</comment>
   </data>
 </root>
