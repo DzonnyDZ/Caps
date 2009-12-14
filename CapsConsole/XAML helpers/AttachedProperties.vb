@@ -50,6 +50,24 @@ Public Module AttachedProperties
     ''' If there is more rows than required, rows are NOT removed.
     ''' Before possibly adding rows, setter <see cref="UIElementCollection.Clear">clears</see> <see cref="Grid.Children">Children</see> collection of the <see cref="Grid"/>.
     ''' After possibly adding rows, setter adds all items from array passed as property value to <see cref="Grid.Children">Children</see> collection of the <see cref="Grid"/>.
+    ''' <example>This exaple shows typical usage of SetItemsWithAutomaticRows attached dependency property
+    ''' <code lang="XAML"><![CDATA[<Grid>
+    '''     <Grid.ColumnDefinitions>
+    '''         <ColumnDefinition Width="auto"/>
+    '''         <ColumnDefinition Width="*"/>
+    '''     </Grid.ColumnDefinitions>
+    '''     <ns:AttachedProperties.ItemsWithAutomaticRows>
+    '''         <x:Array Type="UIElement">
+    '''             <Label Content="Name" Grid.Row="0" Grid.Column="0"/>
+    '''             <TextBox Name="txtName" Grid.Column="1" Grid.Row="0"/>
+    '''             <Label Content="Description" Grid.Row="1" Grid.Column="0"/>
+    '''             <TextBox Name="txtDesc" Grid.Column="1" Grid.Row="1"/>
+    '''             <Label Content="Note" Grid.Row="2" Grid.Column="0"/>
+    '''             <TextBox Name="txtNote" Grid.Column="1" Grid.Row="2"/>
+    '''         </x:Array>
+    '''     </ns:AttachedProperties.ItemsWithAutomaticRows>
+    ''' </Grid>]]></code>
+    ''' </example>
     ''' </remarks>
     Public ReadOnly ItemsWithAutomaticRowsProperty As DependencyProperty = DependencyProperty.RegisterAttached("ItemsWithAutomaticRows", _
                            GetType(UIElement()), GetType(AttachedProperties), _

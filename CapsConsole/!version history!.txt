@@ -67,6 +67,11 @@
     * Fixed mistaken database version number (0.0.3.0 instead of 0.1.3.0).
     * Search for similar caps - takes caps of similar size into account.
     * Sign image in cap details window (big readonly) enlarged
+0.1.4.0
+    * Image preview in Create new xxx windows
+    * Fix: Images used by the application are locked until application is closed.
+    * Fix: Typo in Czech localization - Nenjnovější
+    * Fix: Create new type in Type suggestor causes crash.
     
 Pending issues:
 ===============
@@ -91,3 +96,5 @@ Pending issues:
 * Save and goto in editor window
 * When color is gray or transparent, color name is not visible
 * When editing existing cap and request to create sth. is made creating st. commits changes in cap.
+* Cap editor - Cap checkboxes are cropped
+* When new cap is created via TypeSuggestor, it'sn't applied on checked caps

@@ -22,7 +22,7 @@ Public Class winCreateNewType : Implements IDisposable
     Private TemporaryFiles As New List(Of String)
 
     Private Sub mniImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
-        Dim sourcePath = IO.Path.Combine(My.Settings.ImageRoot, DirectCast(DirectCast(sender, MenuItem).DataContext, Image).RelativePath)
+        Dim sourcePath = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "original"), DirectCast(DirectCast(sender, MenuItem).DataContext, Image).RelativePath)
         Try
             Dim img As New System.Drawing.Bitmap(sourcePath)
             Dim targImage As System.Drawing.Bitmap
@@ -36,7 +36,7 @@ Public Class winCreateNewType : Implements IDisposable
             TemporaryFiles.Add(tempFile)
             txtPicturePath.Text = tempFile
         Catch ex As Exception
-            mBox.MsgBox("Failed to generate image thumbnail in PNG format:" & vbCrLf & ex.Message, MsgBoxStyle.Critical, ex.GetType.Name, Me)
+            mBox.MsgBox(My.Resources.err_PNGThumbnailFailed & vbCrLf & ex.Message, MsgBoxStyle.Critical, ex.GetType.Name, Me)
         End Try
     End Sub
 
@@ -74,7 +74,7 @@ Public Class winCreateNewType : Implements IDisposable
             .Target = cmbTarget.SelectedItem,
             .Description = txtDesciption.Text
         }
-        Context.CapTypes.Attach(Type)
+        Context.CapTypes.InsertOnSubmit(Type)
         'Caps for type
         For Each Cap In CheckedCaps
             Cap.CapType = Type

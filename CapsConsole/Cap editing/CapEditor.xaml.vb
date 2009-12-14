@@ -3169,9 +3169,10 @@ Resize256:      Try
         win.ShowDialog(Me)
         If win.DialogResult Then
             'Apply new type
-            cmbCapType.Items.Add(win.CreatedType)
+            DirectCast(cmbCapType.ItemsSource, IList(Of CapType)).Add(win.CreatedType)
+            cmbCapType.Items.Refresh() 'TODO: THis is workaround. Source shall refresh automatically
             CapTypeSelection = CreatableItemSelection.SelectedItem
-            cmbCapType.SelectedValue = win.CreatedType
+            Me.CapType = win.CreatedType
             'Preserved values
             Size1 = OldSize1
             Size2 = OldSize2

@@ -520,6 +520,33 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to {0} can convert back only to {1}..
+        '''</summary>
+        Public ReadOnly Property err_CanConvertBackOnlyTo() As String
+            Get
+                Return ResourceManager.GetString("err_CanConvertBackOnlyTo", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to {0} can convert only to {1}.
+        '''</summary>
+        Public ReadOnly Property err_CanConvertOnlyTo() As String
+            Get
+                Return ResourceManager.GetString("err_CanConvertOnlyTo", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to {0} can convert only to {1} and {2}.
+        '''</summary>
+        Public ReadOnly Property err_CanConvertOnlyTo1And2() As String
+            Get
+                Return ResourceManager.GetString("err_CanConvertOnlyTo1And2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Cap id {0} not found.
         '''</summary>
         Public ReadOnly Property err_CapIdNotFound() As String
@@ -624,6 +651,15 @@ Namespace My.Resources
         Public ReadOnly Property err_NoPrevItem() As String
             Get
                 Return ResourceManager.GetString("err_NoPrevItem", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Failed to generate image thumbnail in PNG format:.
+        '''</summary>
+        Public ReadOnly Property err_PNGThumbnailFailed() As String
+            Get
+                Return ResourceManager.GetString("err_PNGThumbnailFailed", resourceCulture)
             End Get
         End Property
         
