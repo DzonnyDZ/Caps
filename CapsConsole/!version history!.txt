@@ -98,3 +98,5 @@ Pending issues:
 * When editing existing cap and request to create sth. is made creating st. commits changes in cap.
 * Cap editor - Cap checkboxes are cropped
 * When new cap is created via TypeSuggestor, it'sn't applied on checked caps
+* Tooltip in list in cap detail 
+* Cap sign image does not fit to given space in cap detail
