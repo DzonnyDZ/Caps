@@ -89,7 +89,7 @@
                 <Label Grid.Column="0" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_AnotherPictures}" Target="{Binding ElementName=txtAnotherPictures}"/>
                 <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtAnotherPictures" AcceptsReturn="True" MinLines="2" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" MaxLines="2" my:AttachedProperties.SelectAllOnFocus="true"/>
                 <Label Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_PictureType}" Target="{Binding ElementName=cmbPictureType}"/>
-                <ComboBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="cmbPictureType">
+                <ComboBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="cmbPictureType"  >
                     <ComboBox.Items>
                         <ComboBoxItem Content="{x:Static res:Resources.txt_ImageNo}" Name="cmiImageNo"/>                        
                         <ComboBoxItem Content="{x:Static res:Resources.txt_ImageGeometry}" Name="cmiImageGeometry"/>
@@ -164,7 +164,7 @@
                         </Grid.RowDefinitions>
                         <RadioButton Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" IsChecked="True" Name="optCapTypeSelect" Content="{x:Static res:Resources.lbl_SelectType}"/>
                         <ComboBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbCapType" Style="{StaticResource CapTypeTemplate}"
-                                  IsEnabled="{Binding ElementName=optCapTypeSelect, Path=IsChecked, Mode=OneWay}" SelectedValuePath="CapTypeID" Grid.ColumnSpan="2" />
+                                  IsEnabled="{Binding ElementName=optCapTypeSelect, Path=IsChecked, Mode=OneWay}" SelectedValuePath="CapTypeID" Grid.ColumnSpan="2" my:AttachedProperties.SelectNullOnDelete="true"/>
                         <RadioButton Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Name="optCapTypeNew" Content="{x:Static res:Resources.lbl_NewType}"/>
                         <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"  HorizontalAlignment="Stretch" Name="txtCapTypeName" MaxLength="50"
                                  IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Grid.ColumnSpan="2" my:AttachedProperties.SelectAllOnFocus="true"/>
@@ -206,11 +206,11 @@
                 <Button Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewMaterial" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
                 
                 <Label Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Target}" Target="{Binding ElementName=cmbTarget}"/>
-                <ComboBox Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbTarget" Style="{StaticResource TargetTemplate}" SelectedValuePath="TargetID" />
+                <ComboBox Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbTarget" Style="{StaticResource TargetTemplate}" SelectedValuePath="TargetID" my:AttachedProperties.SelectNullOnDelete="true"/>
                 <Button Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewTarget" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
                 
                 <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Sign}" Target="{Binding ElementName=cmbSign}"/>
-                <ComboBox Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbSign" Style="{StaticResource SignTemplate}" SelectedValuePath="CapSignID" />
+                <ComboBox Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbSign" Style="{StaticResource SignTemplate}" SelectedValuePath="CapSignID" my:AttachedProperties.SelectNullOnDelete="true"/>
                 <Button Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewSign" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
                 <GroupBox Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="auto" Header="{x:Static res:Resources.txt_TypeSuggestor}" IsEnabled="{Binding ElementName=optCapTypeSelect, Path=IsChecked, Mode=OneWay, Converter={StaticResource NotBooleanValueConverter}}">
                     <my:TypeSuggestor x:Name="tysSuggestor" HorizontalAlignment="Stretch" Height="auto" IsEnabled="{Binding ElementName=optCapTypeSelect, Path=IsChecked, Mode=OneWay, Converter={StaticResource NotBooleanValueConverter}}"
@@ -325,7 +325,7 @@
                         </Grid.RowDefinitions>
                         <RadioButton Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center" Name="optProductSelected" Content="{x:Static res:Resources.lbl_SelectProduct}"/>
                         <ComboBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch"  VerticalAlignment="Center" Name="cmbProduct" Style="{StaticResource ProductTemplate}"
-                                  IsEnabled="{Binding ElementName=optProductSelected, Path=IsChecked, Mode=OneWay}"/>
+                                  IsEnabled="{Binding ElementName=optProductSelected, Path=IsChecked, Mode=OneWay}" my:AttachedProperties.SelectNullOnDelete="true"/>
                         <RadioButton Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Name="optProductNew" Content="{x:Static res:Resources.lbl_NewProduct}"/>
                         <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="txtProductName"  MaxLength="50" 
                                  IsEnabled="{Binding ElementName=optProductNew, Path=IsChecked, Mode=OneWay}" my:AttachedProperties.SelectAllOnFocus="true"/>
@@ -336,10 +336,10 @@
                     </Grid>
                 </GroupBox>
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_ProductType}" Target="{Binding ElementName=cmbProductType}"/>
-                <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbProductType" Style="{StaticResource ProductTypeTemplate}" SelectedValuePath="ProductTypeID" />
+                <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbProductType" Style="{StaticResource ProductTypeTemplate}" SelectedValuePath="ProductTypeID" my:AttachedProperties.SelectNullOnDelete="true"/>
                 <Button Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="btnNewProductType" Content="{x:Static res:Resources.cmd_New}"/>
                 <Label Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Company}" Target="{Binding ElementName=cmbCompany}"/>
-                <ComboBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbCompany" Style="{StaticResource CompanyTemplate}" SelectedValuePath="CompanyID" />
+                <ComboBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbCompany" Style="{StaticResource CompanyTemplate}" SelectedValuePath="CompanyID" my:AttachedProperties.SelectNullOnDelete="true"/>
                 <Button Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="btnNewCompany" Content="{x:Static res:Resources.cmd_New}"/>
                 <StackPanel Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Orientation="Horizontal">
                     <CheckBox VerticalAlignment="Center" Name="chkIsDrink" IsThreeState="True" Content="{x:Static res:Resources.lbl_IsDrink}" IsChecked="{x:Null}" />

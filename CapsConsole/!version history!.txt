@@ -72,11 +72,11 @@
     * Fix: Images used by the application are locked until application is closed.
     * Fix: Typo in Czech localization - Nenjnovější
     * Fix: Create new type in Type suggestor causes crash.
+    * When delete is pressed on ComboBox empty item is selected.
     
 Pending issues:
 ===============
-* ComboBox tooltip error (x32)
-* ComboBox: Press delete shall select null item    
+* ComboBox tooltip error (x32, x64 as well but not so often)
 * Accelerators for numeric up-downs and keywords editor don't work
 * Select language in options
 * Edit cap by double click (in view details)

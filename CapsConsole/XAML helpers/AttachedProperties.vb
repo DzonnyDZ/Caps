@@ -5,7 +5,48 @@ Public Module AttachedProperties
     ''' <summary>Initializer</summary>
     Sub New()
         EventManager.RegisterClassHandler(GetType(TextBox), TextBox.GotFocusEvent, New RoutedEventHandler(AddressOf TextBox_GotFocus))
+        EventManager.RegisterClassHandler(GetType(ComboBox), ComboBox.KeyDownEvent, New KeyEventHandler(AddressOf Combo_KeyDown))
     End Sub
+
+#Region "SelectNullOnDelete"
+    ''' <summary>Gets value of the SelectNullOnDelete attached dependency property</summary>
+    ''' <param name="element">Object (<see cref="ComboBox"/>) to get value for</param>
+    ''' <returns>True when combo box selects null value when Delete key is pressed; false otherwise</returns>
+    ''' <exception cref="ArgumentNullException"><paramref name="element"/> is null</exception>
+    Public Function GetSelectNullOnDelete(ByVal element As DependencyObject) As Boolean
+        If element Is Nothing Then Throw New ArgumentNullException("element")
+        Return element.GetValue(SelectNullOnDeleteProperty)
+    End Function
+    ''' <summary>Sets value of the SelectNullOnDelete attached dependency property</summary>
+    ''' <param name="element">Object (<see cref="ComboBox"/>) to set value for</param>
+    ''' <param name="value">True to make <see cref="ComboBox"/> select null item when the Delete key is pressed; false to prevent such behavior.</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="element"/> is null</exception>
+    Public Sub SetSelectNullOnDelete(ByVal element As DependencyObject, ByVal value As Boolean)
+        If element Is Nothing Then Throw New ArgumentNullException("element")
+        element.SetValue(SelectNullOnDeleteProperty, value)
+    End Sub
+    ''' <summary>Metadata of the SelectNullOnDelete attached dependency property</summary>
+    ''' <remarks>The SelectNullOnDelete attached dependency property, when set to true, causes that when user presses the Delete key 1st item of value null is selected (if <see cref="ComboBox"/> contains null item).</remarks>
+    Public ReadOnly SelectNullOnDeleteProperty As  _
+                           DependencyProperty = DependencyProperty.RegisterAttached("SelectNullOnDelete", _
+                           GetType(Boolean), GetType(AttachedProperties), _
+                           New FrameworkPropertyMetadata(False))
+    Private Sub Combo_KeyDown(ByVal sender As ComboBox, ByVal e As KeyEventArgs)
+        If GetSelectNullOnDelete(sender) AndAlso Not e.Handled AndAlso e.Key = Key.Delete Then
+            Dim i As Integer = 0
+            For Each item As Object In sender.Items
+                If item Is Nothing Then
+                    sender.SelectedIndex = i
+                    e.Handled = True
+                    Exit For
+                End If
+                i += 1
+            Next
+        End If
+    End Sub
+
+#End Region
+
 #Region "SelectAllOnFocus"
     Private Sub TextBox_GotFocus(ByVal sender As TextBox, ByVal e As RoutedEventArgs)
         If GetSelectAllOnFocus(sender) Then sender.SelectAll()
@@ -39,7 +80,7 @@ Public Module AttachedProperties
     ''' <exception cref="ArgumentNullException"><paramref name="element"/> is null</exception>
     ''' <remarks>This property does not have get method since it is meaningless. Use <see cref="Grid.Children"/> instead.</remarks>
     Public Sub SetItemsWithAutomaticRows(ByVal element As Grid, ByVal value As UIElement())
-        If element Is Nothing Then      Throw New ArgumentNullException("element")
+        If element Is Nothing Then Throw New ArgumentNullException("element")
         element.SetValue(ItemsWithAutomaticRowsProperty, value)
     End Sub
     ''' <summary>Metadata of the SetItemsWithAutomaticRows attached dependency property</summary>
@@ -90,7 +131,7 @@ Public Module AttachedProperties
         Else
             RequiredRowsCount = (From item In newElements Where item IsNot Nothing Select Grid.GetRow(item) + Grid.GetRowSpan(item) - 1).Max + 1
         End If
-           For i As Integer = Grid.RowDefinitions.Count To RequiredRowsCount - 1
+        For i As Integer = Grid.RowDefinitions.Count To RequiredRowsCount - 1
             Grid.RowDefinitions.Add(New RowDefinition With {.Height = New GridLength(0, GridUnitType.Auto)})
         Next
         If newElements IsNot Nothing Then
