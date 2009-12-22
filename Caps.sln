@@ -32,7 +32,7 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CapsConsole setup", "CapsCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SplitButton", "SplitButton\SplitButton.csproj", "{A75FA431-B3D7-4AC6-8033-CDE76FA98C97}"
 EndProject
-Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "capsdata", "CapsData\capsdata.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
+Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "CapsData", "CapsData\CapsData.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -50,7 +50,7 @@ Global
 		SccProjectTopLevelParentUniqueName3 = Caps.sln
 		SccProjectName3 = SplitButton
 		SccLocalPath3 = SplitButton
-		SccProjectUniqueName4 = CapsData\\capsdata.dbproj
+		SccProjectUniqueName4 = CapsData\\CapsData.dbproj
 		SccProjectName4 = CapsData
 		SccLocalPath4 = CapsData
 	EndGlobalSection
