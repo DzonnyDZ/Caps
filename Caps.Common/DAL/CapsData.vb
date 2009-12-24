@@ -90,6 +90,8 @@ Partial Class Keyword
 End Class
 
 Partial Class CapsDataDataContext
+
+
 #If DEBUG Then
     Private Sub OnCreated()
         MyBase.Log = New DebugLog

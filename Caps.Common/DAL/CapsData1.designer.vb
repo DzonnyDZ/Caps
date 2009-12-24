@@ -146,16 +146,11 @@ Partial Public Class CapsDataDataContext
   Partial Private Sub DeleteCapSign(instance As CapSign)
     End Sub
   #End Region
-	
-	Public Sub New()
-		MyBase.New(Global.Caps.Console.MySettings.Default.CapsDevConnectionString, mappingSource)
-		OnCreated
-	End Sub
-	
-	Public Sub New(ByVal connection As String)
-		MyBase.New(connection, mappingSource)
-		OnCreated
-	End Sub
+
+    Public Sub New(ByVal connection As String)
+        MyBase.New(connection, mappingSource)
+        OnCreated()
+    End Sub
 	
 	Public Sub New(ByVal connection As System.Data.IDbConnection)
 		MyBase.New(connection, mappingSource)

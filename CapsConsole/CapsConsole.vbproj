@@ -275,6 +275,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="..\!version!.vb">
+      <Link>!version!.vb</Link>
+    </Compile>
     <Compile Include="Cap editing\CapDetailsView.xaml.vb">
       <DependentUpon>CapDetailsView.xaml</DependentUpon>
     </Compile>
@@ -285,6 +288,8 @@
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\CapsDataDataContext.vb" />
+    <Compile Include="DAL\Main.vb" />
     <Compile Include="winMain.xaml.vb">
       <DependentUpon>winMain.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -309,7 +314,6 @@
     <Import Include="System.Windows.Navigation" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="!version!.vb" />
     <Compile Include="Cap editing\TypeSuggestor.xaml.vb">
       <DependentUpon>TypeSuggestor.xaml</DependentUpon>
     </Compile>
@@ -326,15 +330,6 @@
       <DependentUpon>4-pgSummary.xaml</DependentUpon>
     </Compile>
     <Compile Include="Config\Database wizard\Wizard helpers.vb" />
-    <Compile Include="DAL\CapsData.vb">
-      <DependentUpon>CapsData.dbml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DAL\CapsData1.designer.vb">
-      <DependentUpon>CapsData.dbml</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="Resources\Countries.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -350,14 +345,6 @@
     </Compile>
     <Compile Include="Cap editing\CapEditor.xaml.vb">
       <DependentUpon>CapEditor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\HelperDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HelperDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\HelperDataSet.vb">
-      <DependentUpon>HelperDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="XAML helpers\Converters.Copied.vb" />
     <Compile Include="XAML helpers\MarkupExtensions.vb" />
@@ -379,7 +366,6 @@
     <Compile Include="winNew\winNewStorage.xaml.vb">
       <DependentUpon>winNewStorage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DAL\Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb">
       <SubType>Code</SubType>
     </Compile>
@@ -443,25 +429,6 @@
     </EmbeddedResource>
     <None Include="app.config" />
     <Compile Include="XAML helpers\Converters.Specialized.vb" />
-    <None Include="DAL\CapsData.dbml">
-      <SubType>Designer</SubType>
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>CapsData1.designer.vb</LastGenOutput>
-    </None>
-    <None Include="DAL\CapsData.dbml.layout">
-      <DependentUpon>CapsData.dbml</DependentUpon>
-    </None>
-    <None Include="DAL\HelperDataSet.xsc">
-      <DependentUpon>HelperDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DAL\HelperDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>HelperDataSet.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="DAL\HelperDataSet.xss">
-      <DependentUpon>HelperDataSet.xsd</DependentUpon>
-    </None>
     <None Include="My Project\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
@@ -782,6 +749,10 @@
     <Resource Include="Resources\Flags\HN.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Caps.Common\Caps.Common.vbproj">
+      <Project>{7AD26E25-D660-42BB-8BC3-F46F65C74811}</Project>
+      <Name>Caps.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SplitButton\SplitButton.csproj">
       <Project>{A75FA431-B3D7-4AC6-8033-CDE76FA98C97}</Project>
       <Name>SplitButton</Name>

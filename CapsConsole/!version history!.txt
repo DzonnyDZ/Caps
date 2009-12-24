@@ -73,6 +73,7 @@
     * Fix: Typo in Czech localization - Nenjnovější
     * Fix: Create new type in Type suggestor causes crash.
     * When delete is pressed on ComboBox empty item is selected.
+    * Common functionality extracted to separate DLL
     
 Pending issues:
 ===============
@@ -89,8 +90,6 @@ Pending issues:
 * Structured storage
 * New (without saving) in editor window
 * Images in caps editor
-* Do not lock images loaded to app from file
-* Image preview in newXxx dialogs
 * Pseudocategories (defined in db)
 * Localized state names in menu
 * Save and goto in editor window

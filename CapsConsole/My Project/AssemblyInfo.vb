@@ -13,10 +13,6 @@ Imports System.Windows
 
 <Assembly: AssemblyTitle("Caps Console")> 
 <Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("Đonny")> 
-<Assembly: AssemblyProduct("Caps")> 
-<Assembly: AssemblyCopyright("Copyright © Đonny  2009")> 
-<Assembly: AssemblyTrademark("")> 
 <Assembly: ComVisible(false)>
 
 'In order to begin building localizable applications, set 
@@ -55,6 +51,6 @@ Imports System.Windows
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion(__.version)> 
+
 
 <Assembly: NeutralResourcesLanguageAttribute("en")> 

@@ -22,14 +22,6 @@
     <Setting Name="UserConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="CapsDataConnectionString1" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=.\SQLEXPRESS;AttachDbFilename="C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf";Integrated Security=True&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=.\SQLEXPRESS;AttachDbFilename="C:\Documents and Settings\Honza\Dokumenty\Programy\Caps\CapsData.mdf";Integrated Security=True</Value>
-    </Setting>
     <Setting Name="winMainLoc" Type="System.Drawing.Rectangle" Scope="User">
       <Value Profile="(Default)">0, 0, 0, 0</Value>
     </Setting>
