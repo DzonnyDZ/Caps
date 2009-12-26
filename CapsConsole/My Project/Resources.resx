@@ -1510,4 +1510,26 @@ Doubleclick to edit.</value>
   <data name="err_PNGThumbnailFailed" xml:space="preserve">
     <value>Failed to generate image thumbnail in PNG format:</value>
   </data>
+  <data name="lbl_Language" xml:space="preserve">
+    <value>Language</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>Default</value>
+  </data>
+  <data name="msg_LanguageChangedRestart" xml:space="preserve">
+    <value>You have changed language of the application. In order this change to fully take effect, this application must be restarted. Do you want ro restart the application now?</value>
+  </data>
+  <data name="txt_LanguageChange" xml:space="preserve">
+    <value>Language change</value>
+  </data>
+  <data name="err_CannotRestart" xml:space="preserve">
+    <value>Cannot start application. Please start it manually.</value>
+  </data>
+  <data name="txt_ErrorRestarting" xml:space="preserve">
+    <value>Error restarting application</value>
+  </data>
+  <data name="err_InvalidCommandLineConnectionString" xml:space="preserve">
+    <value>Connection string passed from command line {0} is invalid.</value>
+  </data>
 </root>

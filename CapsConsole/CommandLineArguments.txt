@@ -1,0 +1,5 @@
+﻿Each parameters are in form name=value.
+If either name or value contains spaces whole parameter must be enclosed in quotes like
+    "ConnectionString=connection string"
+ConnectionString=connection string
+    Use this connection string and do not show dialog on startup

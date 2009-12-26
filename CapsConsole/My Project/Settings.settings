@@ -48,5 +48,8 @@
     <Setting Name="FavoriteCharacters" Type="System.String" Scope="User">
       <Value Profile="(Default)">®©№■•‰½→←↺↻▲▼▶◀★</Value>
     </Setting>
+    <Setting Name="Language" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -74,6 +74,9 @@
     * Fix: Create new type in Type suggestor causes crash.
     * When delete is pressed on ComboBox empty item is selected.
     * Common functionality extracted to separate DLL
+    * Fix: COuntry selection menu does not show localized counry names
+    * Manual language selection in application settings.
+    * Possibility to pass connection string to application command line.
     
 Pending issues:
 ===============
@@ -91,7 +94,6 @@ Pending issues:
 * New (without saving) in editor window
 * Images in caps editor
 * Pseudocategories (defined in db)
-* Localized state names in menu
 * Save and goto in editor window
 * When color is gray or transparent, color name is not visible
 * When editing existing cap and request to create sth. is made creating st. commits changes in cap.

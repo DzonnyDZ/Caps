@@ -1181,4 +1181,37 @@ Dvakrát klikněte pro editaci.</value>
   <data name="msg_CopyCapTypeImageError" xml:space="preserve">
     <value>Nepodařilo se zkopírovat obrázek typu víčka. Typ víčka vytvořen bez obrázku.</value>
   </data>
+  <data name="lbl_CapsCounts" xml:space="preserve">
+    <value>Celkový počet víček:</value>
+  </data>
+  <data name="err_CanConvertOnlyTo1And2" xml:space="preserve">
+    <value>{0} může konvertovat jen na {1} a {2}</value>
+  </data>
+  <data name="err_CanConvertOnlyTo" xml:space="preserve">
+    <value>{0} může konvertovat jen na {1}</value>
+  </data>
+  <data name="err_CanConvertBackOnlyTo" xml:space="preserve">
+    <value>{0} může konvertovat zpět jen na {1}.</value>
+  </data>
+  <data name="err_PNGThumbnailFailed" xml:space="preserve">
+    <value>Nepodařilo se vygenerovat zmenšeninu obrázku ve formátu PNG:</value>
+  </data>
+  <data name="lbl_Language" xml:space="preserve">
+    <value>Jazyk</value>
+  </data>
+  <data name="DefaultLanguage" xml:space="preserve">
+    <value>Výchozí</value>
+  </data>
+  <data name="msg_LanguageChangedRestart" xml:space="preserve">
+    <value>Jazyk aplikace byl změněn. Aby se tato změna plně projevila, je potřeba aplikaci restartovat. Checet restartovat aplikaci nyní?</value>
+  </data>
+  <data name="txt_LanguageChange" xml:space="preserve">
+    <value>Změna jazyka</value>
+  </data>
+  <data name="err_CannotRestart" xml:space="preserve">
+    <value>Nemohu spustit aplikaci. Restartujte ji ručně, prosím.</value>
+  </data>
+  <data name="txt_ErrorRestarting" xml:space="preserve">
+    <value>Chyba při restartu aplikace</value>
+  </data>
 </root>

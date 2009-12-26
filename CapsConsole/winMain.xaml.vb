@@ -2,6 +2,7 @@
 Imports Tools.ExtensionsT, Tools.LinqT
 ''' <summary>Main application window</summary>
 Class winMain
+    Private Const ConnectionString$ = "ConnectionString"
     ''' <summary>CTor</summary>
     Public Sub New()
         InitializeComponent()
@@ -23,27 +24,40 @@ Class winMain
     End Sub
     Private Sub winMain_Loaded(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
         Me.SetWindowPosition(My.Settings.winMainLoc)
-        Dim win As New winSelectDatabase
-        win.Owner = Me
-Connect: If win.ShowDialog Then
-            Main.Connection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)
+        Dim Args = ParseParameters(Environment.GetCommandLineArgs, True)
+        If Args.ContainsKey(ConnectionString) AndAlso Args(ConnectionString).Count > 0 AndAlso Args(ConnectionString)(0) <> "" Then
             Try
-                Connection.Open()
-                VerifyDatabaseVersionWithUpgrade(Connection, Me)
+                Main.Connection = New System.Data.SqlClient.SqlConnection(Args(ConnectionString)(0))
             Catch ex As Exception
-                Try : Connection.Close() : Catch : End Try
-                If mBox.Error_XBI(ex, Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Retry Or Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Abort) = Forms.DialogResult.Retry Then
-                    win = New winSelectDatabase(win.ConnectionString.ToString)
-                    GoTo Connect
-                Else
-                    Environment.Exit(2)
-                End If
+                mBox.Error_XPTIBWO(ex, String.Format(My.Resources.err_InvalidCommandLineConnectionString, Args(ConnectionString)(0)), "Invalid connection string", mBox.MessageBoxIcons.Error, , Me)
             End Try
-            My.Settings.UserConnectionString = Connection.ConnectionString
-            My.Settings.Save()
-        Else
-            Environment.Exit(1)
         End If
+       
+        Dim Redo As Boolean = False
+Connect: If Main.Connection Is Nothing OrElse Redo Then
+            Dim win = If(Main.Connection Is Nothing, New winSelectDatabase, New winSelectDatabase(Main.Connection.ConnectionString))
+            win.Owner = Me
+            If win.ShowDialog Then
+                Main.Connection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)
+            Else
+                Environment.Exit(1)
+            End If
+        End If
+        Try
+            Connection.Open()
+            VerifyDatabaseVersionWithUpgrade(Connection, Me)
+        Catch ex As Exception
+            Try : Connection.Close() : Catch : End Try
+            If mBox.Error_XBWI(ex, Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Retry Or Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Abort, Me) = Forms.DialogResult.Retry Then
+                Redo = True
+                GoTo Connect
+            Else
+                Environment.Exit(2)
+            End If
+        End Try
+        My.Settings.UserConnectionString = Connection.ConnectionString
+        My.Settings.Save()
+  
         If Not IO.Directory.Exists(My.Settings.ImageRoot) Then
             Dim dlg As New Forms.FolderBrowserDialog With {.Description = My.Resources.des_SelectImagesRootDirectory}
             If dlg.ShowDialog = Forms.DialogResult.OK Then
@@ -69,9 +83,9 @@ Connect: If win.ShowDialog Then
         Dim SmallestKeyword = If((From itm In Context.Keywords Order By itm.Cap_Keyword_Ints.Count Ascending Select New Integer?(itm.Cap_Keyword_Ints.Count)).FirstOrDefault, 0)
         Const FontMax% = 50
         Const FontMin% = 8
-        Dim mup As Double = If(Not BiggestCategory.HasValue OrElse BiggestCategory = 0, 0, (FontMax - FontMin) / (BiggestCategory - Smallestcategory))
+        Dim mup As Double = If(Not BiggestCategory.HasValue OrElse BiggestCategory = 0, 0, (FontMax - FontMin) / (BiggestCategory - SmallestCategory))
         itmCategories.ItemsSource = From itm In Context.Categories _
-                                    Select Count = itm.Cap_Category_Ints.Count, Name = itm.CategoryName, ID = itm.CategoryID, Size = mup * (itm.Cap_Category_Ints.Count - Smallestcategory) + FontMin, Type = "C"c _
+                                    Select Count = itm.Cap_Category_Ints.Count, Name = itm.CategoryName, ID = itm.CategoryID, Size = mup * (itm.Cap_Category_Ints.Count - SmallestCategory) + FontMin, Type = "C"c _
                                     Order By Count Descending
         mup = If(Not BiggestKeyword.HasValue OrElse BiggestKeyword = 0, 0, (FontMax - FontMin) / (BiggestKeyword - SmallestKeyword))
         itmKeywords.ItemsSource = From itm In Context.Keywords _
@@ -80,8 +94,34 @@ Connect: If win.ShowDialog Then
     End Sub
 
     Private Sub mniSettings_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniSettings.Click
+        Dim originalLanguage As String = My.Settings.Language
         Dim win As New winSettings
-        win.ShowDialog()
+        If win.ShowDialog() Then
+            My.Settings.Save()
+            If My.Settings.Language <> originalLanguage Then
+                Try
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(My.Settings.Language)
+                Catch : End Try
+                Select Case mBox.MsgBox(My.Resources.msg_LanguageChangedRestart, MsgBoxStyle.YesNo Or MsgBoxStyle.Question, My.Resources.txt_LanguageChange, Me)
+                    Case MsgBoxResult.Yes
+                        Dim newP As New Process
+                        newP.StartInfo.Arguments = (From param In Environment.GetCommandLineArgs.Skip(1) Select If(param.Contains(" "c) OrElse param.Contains(""""c), """" & param.Replace("""", """""") & """", param)).Join(" ")
+                        Dim OrigArgs = ParseParameters(Environment.GetCommandLineArgs, True)
+                        If Not OrigArgs.ContainsKey(ConnectionString) AndAlso newP.StartInfo.Arguments <> "" Then newP.StartInfo.Arguments &= " "
+                        If Not OrigArgs.ContainsKey(ConnectionString) Then
+                            newP.StartInfo.Arguments &= """" & ConnectionString & "=" & Main.Connection.ConnectionString.Replace("""", """""") & """"
+                        End If
+                        newP.StartInfo.FileName = IO.Path.Combine(Reflection.Assembly.GetEntryAssembly.Location)
+                        newP.StartInfo.WorkingDirectory = Environment.CurrentDirectory
+                        Try
+                            newP.Start()
+                        Catch ex As Exception
+                            mBox.Error_XPTIBWO(ex, My.Resources.err_CannotRestart, My.Resources.txt_ErrorRestarting, Owner:=Me)
+                        End Try
+                        Me.Close()
+                End Select
+            End If
+        End If
     End Sub
 
     Private Sub cmdClose_CanExecute(ByVal sender As System.Object, ByVal e As System.Windows.Input.CanExecuteRoutedEventArgs) Handles cmdClose.CanExecute
@@ -154,7 +194,7 @@ Connect: If win.ShowDialog Then
     End Sub
 
 
-  
+
     Private Sub mniImagesClear_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniImagesClear.Click
         Dim p256 = IO.Path.Combine(My.Settings.ImageRoot, "256_256")
         Dim p64 = IO.Path.Combine(My.Settings.ImageRoot, "64_64")
@@ -209,7 +249,7 @@ Connect: If win.ShowDialog Then
             End If
         End If
     End Sub
-    
+
     Private Sub mniGoto_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniGoto.Click
         Dim msg = mBox.GetDefault
         msg.Prompt = My.Resources.lbl_TypeCapID

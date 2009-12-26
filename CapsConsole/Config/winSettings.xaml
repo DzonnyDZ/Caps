@@ -20,7 +20,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Height="auto" HorizontalAlignment="Right" Name="lblImageRoot" VerticalAlignment="Center" Width="auto" Content="{x:Static res:Resources.lbl_ImageRoot}"/>
-        <TextBox Grid.Column="1" Grid.Row="0" Height="21.96" Name="txtImageRoot" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="0" Name="txtImageRoot" VerticalAlignment="Center" HorizontalAlignment="Stretch" />
         <Button Grid.Column="2" Grid.Row="0" Height="auto" HorizontalAlignment="Center"  Name="btnImageRoot" VerticalAlignment="Center" Width="auto" Padding="3,0">...</Button>
         <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" >
             <Grid.ColumnDefinitions>
@@ -33,6 +33,23 @@
             <Button Grid.Column="0" Name="btnOK" Width="auto" Padding="3,0" HorizontalAlignment="Center" IsDefault="True" Content="{x:Static res:Resources.cmd_OK}"/>
             <Button Grid.Column="2" Name="btnCancel" Width="auto" Padding="3,0" HorizontalAlignment="Center" IsCancel="True" Content="{x:Static res:Resources.cmd_Cancel}"/>
         </Grid>
+        <Label Grid.Column="1" Grid.Row="1" Height="auto" HorizontalAlignment="Right" VerticalAlignment="Center" Width="auto" Content="{x:Static res:Resources.lbl_Language}"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" Name="cmbLanguage" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.IsSharedSizeScope="True">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="Native"/>
+                            <ColumnDefinition SharedSizeGroup="Current"/>
+                            <ColumnDefinition SharedSizeGroup="English"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding NativeName, Mode=OneWay}" Grid.Column="0" Margin="0,0,3,0"/>
+                        <TextBlock Text="{Binding DisplayName, Mode=OneWay}" Grid.Column="1" Margin="0,0,3,0"/>
+                        <TextBlock Text="{Binding EnglishName, Mode=OneWay}" Grid.Column="2"/>
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
     </Grid>
 </Window>
                        
