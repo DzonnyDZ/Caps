@@ -136,8 +136,139 @@ ALTER TABLE dbo.StoredImage ADD CONSTRAINT
 	 ON DELETE  CASCADE 
 	
 GO
+ALTER TABLE dbo.StoredImage ADD CONSTRAINT CHK_StoredImage_NoEmptyStrings CHECK (FileName <> '' AND MIME <> '');
+GO
+COMMIT;
+GO
+
+--------------------------------------------------------------------------------------------------------------------------------------
+--Multiple signs per cap
+
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.Cap_CapSign_Int
+	(
+	CapID int NOT NULL,
+	CapSignID int NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Cap_CapSign_Int ADD CONSTRAINT
+	PK_Cap_CapSign_Int PRIMARY KEY CLUSTERED 
+	(
+	CapID,
+	CapSignID
+	)  ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Cap_CapSign_Int ADD CONSTRAINT
+	FK_Cap_CapSign_Int_Cap FOREIGN KEY
+	(
+	CapID
+	) REFERENCES dbo.Cap
+	(
+	CapID
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  CASCADE 
+	
+GO
+ALTER TABLE dbo.Cap_CapSign_Int ADD CONSTRAINT
+	FK_Cap_CapSign_Int_CapSign FOREIGN KEY
+	(
+	CapSignID
+	) REFERENCES dbo.CapSign
+	(
+	CapSignID
+	) ON UPDATE  NO ACTION 
+	 ON DELETE  CASCADE 
+	
+GO
+COMMIT
+GO
+
+BEGIN TRANSACTION;
+
+insert into dbo.Cap_CapSign_int (CapID,CapSignID)
+SELECT c.CapID,c.CapSignID
+FROM dbo.Cap c
+WHERE c.CapSignID IS NOT NULL;
+GO
+ALTER TABLE dbo.Cap	DROP CONSTRAINT FK_Cap_CapSign;
+GO
+ALTER TABLE dbo.Cap	DROP COLUMN CapSignID;
+GO
 
 COMMIT;
+GO
+-------------------------------------------------------------------------------------------------------------------------
+--Pseudocategory
+BEGIN TRANSACTION;
+GO
+CREATE TABLE dbo.PseudoCategory
+	(
+	PseudoCategoryID int NOT NULL IDENTITY (1, 1),
+	Name nvarchar(50) NOT NULL,
+	Description nvarchar(MAX) NULL,
+	Condition nvarchar(1024) NOT NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE dbo.PseudoCategory ADD CONSTRAINT
+	PK_PseudoCategory PRIMARY KEY CLUSTERED 
+	(
+	PseudoCategoryID
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.PseudoCategory ADD CONSTRAINT
+	CHK_PseudoCategory_NoEmptyStrings CHECK (Name <> '' AND Description <> '' AND Condition <> '');
+GO	
+COMMIT;
+GO
+CREATE TRIGGER [dbo].[PseudoCategory_Instead_Ins] 
+   ON  [dbo].[PseudoCategory]
+   instead of INSERT
+AS 
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for trigger here
+			 insert into dbo.PseudoCategory
+					 (	 Name,[Description],Condition)
+         output inserted.*
+			 SELECT dbo.EmptyStrToNull(Name),dbo.EmptyStrToNull([Description]),	dbo.EmptyStrToNull(Condition)
+  FROM inserted	 ;
+
+
+     -- select * from dbo.shape where shapeid=scope_identity();
+			 
+END
+GO
+
+CREATE TRIGGER [dbo].[PseudoCategory_Instead_Upd]
+   ON  [dbo].PseudoCategory 
+   instead of update
+AS 
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+	  UPDATE [dbo].PseudoCategory	
+   SET	
+   name=dbo.EmptyStrToNull(i.name)   ,
+      [Description]=dbo.EmptyStrToNull(i.[description]),
+      Condition=dbo.EmptyStrToNull(i.Condition)
+     
+
+ from inserted	as i
+ WHERE pseudocategory.pseudocategoryid=i.pseudocategoryid
+
+					;
+			 
+END
 GO
 
 --------------------------------------------------------------------------------------------------------------------------------
