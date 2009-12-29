@@ -76,6 +76,13 @@
     <NotInBuild Include="Create Scripts\Create all.sql" />
     <NotInBuild Include="Change Scripts\0.0.1.0-to-0.0.2.0.sql" />
     <NotInBuild Include="Change Scripts\0.0.2.0-to-0.1.3.0.sql" />
+    <NotInBuild Include="Change Scripts\0.1.3.0-to-0.1.4.0.sql">
+      <SubType>NotInBuild</SubType>
+    </NotInBuild>
+    <NotInBuild Include="..\CapsData.mdf">
+      <SubType>NotInBuild</SubType>
+      <Link>CapsData.mdf</Link>
+    </NotInBuild>
   </ItemGroup>
   <ItemGroup>
     <BuildContributorArgument Include="OutDir=$(OutDir)" />

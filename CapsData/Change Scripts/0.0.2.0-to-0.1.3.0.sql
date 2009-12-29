@@ -389,14 +389,14 @@ ALTER TABLE dbo.CapSign ADD CONSTRAINT
 	WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY];
 GO
 
---Increase version
-ALTER FUNCTION [dbo].[GetDatabaseVersion] ()
-RETURNS nvarchar(50)
-AS
-BEGIN
-declare @dbGuid nvarchar(38) = '{DAFDAE3F-2F0A-4359-81D6-50BA394D72D9}';
-declare @dbVersion nvarchar(11) = '0.1.3.0';
-return @dbGuid + @dbversion;
+    --Increase version
+    ALTER FUNCTION [dbo].[GetDatabaseVersion] ()
+    RETURNS nvarchar(50)
+    AS
+    BEGIN
+    declare @dbGuid nvarchar(38) = '{DAFDAE3F-2F0A-4359-81D6-50BA394D72D9}';
+    declare @dbVersion nvarchar(11) = '0.1.3.0';
+    return @dbGuid + @dbversion;
 
-END;   
-GO
+    END;   
+    GO

@@ -1,6 +1,6 @@
 ﻿Imports System.Reflection
 
-<Assembly: AssemblyVersion("0.1.3.0")> 
+<Assembly: AssemblyVersion("0.1.4.0")> 
 
 <Assembly: AssemblyCompany("Đonny")> 
 <Assembly: AssemblyProduct("Caps")> 

@@ -82,7 +82,6 @@ Pending issues:
 ===============
 * ComboBox tooltip error (x32, x64 as well but not so often)
 * Accelerators for numeric up-downs and keywords editor don't work
-* Select language in options
 * Edit cap by double click (in view details)
 * Details window: Enlarge sign image
 * Custom dialog for file selection (optionally)
