@@ -1,7 +1,7 @@
 ﻿
 
 
-CREATE TRIGGER [dbo].company_Instead_Upd
+CREATE TRIGGER [dbo].[Company_Instead_Upd]
    ON  [dbo].company 
    instead of update
 AS 

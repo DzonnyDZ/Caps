@@ -1,7 +1,7 @@
 ﻿
 
 
-CREATE TRIGGER [dbo].storage_Instead_Upd
+CREATE TRIGGER [dbo].[Storage_Instead_Upd]
    ON  [dbo].storage 
    instead of update
 AS 

@@ -541,6 +541,19 @@ BEGIN
 	WHERE SimpleTranslation.SimpleTranslationID=i.SimpleTranslationID;			 
 END;
 GO
+-------------------------------------------------------------------------------------------------------------------------------
+--Cleanup
+EXEC sp_rename N'category_Instead_Upd',N'Category_Instead_Upd';
+EXEC sp_rename N'company_Instead_Upd',N'Company_Instead_Upd';
+EXEC sp_rename N'image_Instead_Upd',N'Image_Instead_Upd';
+EXEC sp_rename N'material_Instead_Upd',N'Material_Instead_Upd';
+EXEC sp_rename N'product_Instead_Upd',N'Product_Instead_Upd';
+EXEC sp_rename N'productype_Instead_Upd',N'ProducType_Instead_Upd';
+EXEC sp_rename N'shape_Instead_Upd',N'Shape_Instead_Upd';
+EXEC sp_rename N'storagetype_Instead_Upd',N'StorageType_Instead_Upd';
+EXEC sp_rename N'target_Instead_Upd',N'Target_Instead_Upd';
+EXEC sp_rename N'storage_Instead_Upd',N'Storage_Instead_Upd';
+GO
 
 --------------------------------------------------------------------------------------------------------------------------------
 --Increase version

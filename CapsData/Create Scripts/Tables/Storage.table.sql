@@ -7,3 +7,5 @@
     [HasCaps]       BIT            NOT NULL
 );
 
+
+

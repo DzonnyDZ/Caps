@@ -1,7 +1,7 @@
 ﻿
 
 
-CREATE TRIGGER [dbo].productype_Instead_Upd
+CREATE TRIGGER [dbo].[ProducType_Instead_Upd]
    ON  [dbo].producttype 
    instead of update
 AS 

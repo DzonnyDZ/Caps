@@ -1,8 +1,8 @@
 ﻿
 
 
-CREATE TRIGGER [dbo].category_Instead_Upd
-   ON  [dbo].category 
+CREATE TRIGGER [dbo].[Material_Instead_Upd]
+   ON  [dbo].material 
    instead of update
 AS 
 BEGIN
@@ -11,14 +11,15 @@ BEGIN
 	SET NOCOUNT ON;
 
 
-	  UPDATE [dbo].category	
+	  UPDATE [dbo].material	
    SET	
-   categoryName=dbo.EmptyStrToNull(i.categoryName),
+   name=dbo.EmptyStrToNull(i.name)   ,
    
       Description=dbo.EmptyStrToNull(i.description)
+     
 
  from inserted	as i
- WHERE category.categoryid=i.categoryid
+ WHERE material.materialid=i.materialid
 
 					;
 

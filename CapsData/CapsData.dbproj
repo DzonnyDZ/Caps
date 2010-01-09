@@ -18,7 +18,7 @@
     <RootPath>
     </RootPath>
     <IncludeSchemaNameInFileName>False</IncludeSchemaNameInFileName>
-    <ModelCollation>1033, CS</ModelCollation>
+    <ModelCollation>1029,CI</ModelCollation>
     <DefaultFileStructure>BySchema</DefaultFileStructure>
     <DeployToDatabaseAddToServerExplorer>True</DeployToDatabaseAddToServerExplorer>
     <DeployToScript>True</DeployToScript>
@@ -527,209 +527,343 @@
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Cap_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Cap_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Cap_Keyword_Int_AF_DEL_UPD.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\CapInstance_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\CapInstance_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\CapSign_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Capsign_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\CapTranslation_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\CapTranslation_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\CapType_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\CapType_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Category_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Company_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Image_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Keyword_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Keyword_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\MainType_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\MainType_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Material_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Product_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\ProductType_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\PseudoCategory_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\PseudoCategory_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Shape_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\SimpleTranslation_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\SimpleTranslation_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Storage_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\StorageType_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Target_Instead_Ins.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="Create Scripts\Tables\Triggers\target_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\Target_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Cap.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Cap_CapSign_Int.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Cap_Category_Int.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Cap_Keyword_Int.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\CapInstance.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\CapSign.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\CapTranslation.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\CapType.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Category.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Company.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Image.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\ISO 3166-1.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Keyword.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\MainType.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Material.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Product.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\ProductType.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\PseudoCategory.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Shape.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\SimpleTranslation.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Storage.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\StorageType.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\StoredImage.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Target.table.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Functions\EmptyStrToNull.function.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Functions\GetDatabaseVersion.function.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Stored Procedures\Get_Cap_PseudoCategory_Int.proc.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Stored Procedures\GetCapsOfPseudoCategory.proc.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Stored Procedures\GetSimilarCaps.proc.sql">
       <SubType>Code</SubType>
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="Create Scripts\Tables\Triggers\category_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\Category_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
     </Build>
-    <Build Include="Create Scripts\Tables\Triggers\company_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\Company_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
     </Build>
-    <Build Include="Create Scripts\Tables\Triggers\image_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\Image_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
     </Build>
-    <Build Include="Create Scripts\Tables\Triggers\material_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\Material_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\storagetype_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
     </Build>
-    <Build Include="Create Scripts\Tables\Triggers\product_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\Product_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
     </Build>
-    <Build Include="Create Scripts\Tables\Triggers\productype_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\Productype_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
     </Build>
-    <Build Include="Create Scripts\Tables\Triggers\shape_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\Shape_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
     </Build>
-    <Build Include="Create Scripts\Tables\Triggers\storage_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\Storage_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
+      <AnsiNulls>ProjectDefault</AnsiNulls>
+      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\User Defined Types\VarCharTable.udtt.sql">
       <SubType>Code</SubType>

@@ -1,4 +1,4 @@
-﻿CREATE TRIGGER [dbo].image_Instead_Upd
+﻿CREATE TRIGGER [dbo].[Image_Instead_Upd]
    ON  [dbo].image 
    instead of update
 AS 

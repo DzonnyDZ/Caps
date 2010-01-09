@@ -1,8 +1,8 @@
 ﻿
 
 
-CREATE TRIGGER [dbo].product_Instead_Upd
-   ON  [dbo].product 
+CREATE TRIGGER [dbo].[Shape_Instead_Upd]
+   ON  [dbo].shape 
    instead of update
 AS 
 BEGIN
@@ -11,15 +11,16 @@ BEGIN
 	SET NOCOUNT ON;
 
 
-	  UPDATE [dbo].product	
+	  UPDATE [dbo].shape	
    SET	
-   productname=dbo.EmptyStrToNull(i.productname)   ,
-				 companyid=i.companyid,producttypeid=i.producttypeid,
+   name=dbo.EmptyStrToNull(i.name)   ,
+				size1name=dbo.EmptyStrToNull(i.size1name)   ,
+				size2name=dbo.EmptyStrToNull(i.size2name)   , 
       Description=dbo.EmptyStrToNull(i.description)
      
 
  from inserted	as i
- WHERE product.productid=i.productid
+ WHERE shape.shapeid=i.shapeid
 
 					;
 

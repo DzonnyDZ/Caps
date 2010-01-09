@@ -1,8 +1,8 @@
 ﻿
 
 
-CREATE TRIGGER [dbo].[target_Instead_Upd]
-   ON  [dbo].[Target] 
+CREATE TRIGGER [dbo].[Product_Instead_Upd]
+   ON  [dbo].product 
    instead of update
 AS 
 BEGIN
@@ -11,16 +11,15 @@ BEGIN
 	SET NOCOUNT ON;
 
 
-	  UPDATE [dbo].target
+	  UPDATE [dbo].product	
    SET	
-   --name=dbo.EmptyStrToNull(i.name)   ,
-			name=i.name,
+   productname=dbo.EmptyStrToNull(i.productname)   ,
+				 companyid=i.companyid,producttypeid=i.producttypeid,
       Description=dbo.EmptyStrToNull(i.description)
-
      
 
  from inserted	as i
- WHERE target.targetid=i.targetid
+ WHERE product.productid=i.productid
 
 					;
 
@@ -28,5 +27,3 @@ BEGIN
 
 			 
 END
-
-
