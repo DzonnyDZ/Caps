@@ -1,8 +1,8 @@
 ﻿
 
 
-CREATE TRIGGER [dbo].storagetype_Instead_Upd
-   ON  [dbo].storagetype 
+CREATE TRIGGER [dbo].shape_Instead_Upd
+   ON  [dbo].shape 
    instead of update
 AS 
 BEGIN
@@ -11,16 +11,16 @@ BEGIN
 	SET NOCOUNT ON;
 
 
-	  UPDATE [dbo].storagetype	
+	  UPDATE [dbo].shape	
    SET	
    name=dbo.EmptyStrToNull(i.name)   ,
-			
+				size1name=dbo.EmptyStrToNull(i.size1name)   ,
+				size2name=dbo.EmptyStrToNull(i.size2name)   , 
       Description=dbo.EmptyStrToNull(i.description)
-      
      
 
  from inserted	as i
- WHERE storagetype.storagetypeid=i.storagetypeid
+ WHERE shape.shapeid=i.shapeid
 
 					;
 
@@ -28,5 +28,3 @@ BEGIN
 
 			 
 END
-
-

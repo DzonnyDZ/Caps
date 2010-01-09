@@ -13,5 +13,3 @@ BEGIN
  WHERE image.imageid=i.imageid;
 		 
 END;
-
-
