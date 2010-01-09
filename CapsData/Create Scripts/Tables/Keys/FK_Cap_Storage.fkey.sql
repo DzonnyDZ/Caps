@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[Cap]
+    ADD CONSTRAINT [FK_Cap_Storage] FOREIGN KEY ([StorageID]) REFERENCES [dbo].[Storage] ([StorageID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+

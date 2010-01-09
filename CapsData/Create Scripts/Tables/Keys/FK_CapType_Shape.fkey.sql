@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[CapType]
+    ADD CONSTRAINT [FK_CapType_Shape] FOREIGN KEY ([ShapeID]) REFERENCES [dbo].[Shape] ([ShapeID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+

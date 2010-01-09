@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[Cap]
+    ADD CONSTRAINT [FK_Cap_CapType] FOREIGN KEY ([CapTypeID]) REFERENCES [dbo].[CapType] ([CapTypeID]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+

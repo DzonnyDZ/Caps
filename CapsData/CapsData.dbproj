@@ -71,9 +71,17 @@
     <Folder Include="Create Scripts" />
     <Folder Include="Change Scripts" />
     <Folder Include="Properties" />
+    <Folder Include="Create Scripts\Views" />
+    <Folder Include="Create Scripts\Tables" />
+    <Folder Include="Create Scripts\Tables\Constraints" />
+    <Folder Include="Create Scripts\Tables\Indexes" />
+    <Folder Include="Create Scripts\Tables\Keys" />
+    <Folder Include="Create Scripts\Tables\Triggers" />
+    <Folder Include="Create Scripts\Functions" />
+    <Folder Include="Create Scripts\Stored Procedures" />
+    <Folder Include="Create Scripts\User Defined Types" />
   </ItemGroup>
   <ItemGroup>
-    <NotInBuild Include="Create Scripts\Create all.sql" />
     <NotInBuild Include="Change Scripts\0.0.1.0-to-0.0.2.0.sql" />
     <NotInBuild Include="Change Scripts\0.0.2.0-to-0.1.3.0.sql" />
     <NotInBuild Include="Change Scripts\0.1.3.0-to-0.1.4.0.sql">
@@ -86,5 +94,643 @@
   </ItemGroup>
   <ItemGroup>
     <BuildContributorArgument Include="OutDir=$(OutDir)" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Create Scripts\Tables\Constraints\CK_Cap_CountryOfOrigin.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\DF_Cap_DateCreated.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\DF_Cap_HasBottom.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\DF_Cap_HasSide.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\DF_Image_IsMain.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\DF_Storage_HasCaps.defconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_AnotherPictures_MainPicture.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_BottomText_HasBottom.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_CountryCode.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_ForeColor_ForeColor2.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_Height.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_IsDrinkIsAlcoholic.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_MainImage_PictureType.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_NoEmptyString.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_PictureType.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_Sate.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_SideText_HasSide.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_Size.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_Size2.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_Surface.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_Year.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_CapInstance_CountryCode.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_CapInstance_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_CapInstance_State.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_CapInstance_Year.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_CapSign_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_CapTranslation_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_CapType_Height.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_CapType_NoEmptyString.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_CapType_Size.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_CapType_Size2.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Category_NoEmptyString.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Company_NoEmptyString.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Image_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_ISO 3166-1_Alpha-2.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_ISO 3166-1_Alpha-3.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Keyword_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_MainType_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Material_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Product_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_ProductType_IsDrinkIsAlcoholic.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_ProductType_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_PseudoCategory_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Shape_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Shape_SizeName.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_SimpleTranslation_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_SimpleTranslation_OnlyOneParent.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Storage_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_StorageType_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_StoredImage_AtLeastOneReference.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_StoredImage_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_StoredImage_OnlyOneReference.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Target_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Indexes\UNQ_CapSignName.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_CapSign_Int_Cap.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_CapSign_Int_CapSign.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_CapType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_Category_Int_Cap.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_Category_Int_Category.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_Company.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_Keyword_Int_Cap.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_Keyword_Int_Keyword.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_MainType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_Material.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_Product.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_ProductType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_Shape.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_Storage.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Cap_Target.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_CapInstance_Cap.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_CapInstance_Storage.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_CapTranslation_Cap.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_CapType_MainType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_CapType_Material.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_CapType_Shape.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_CapType_Target.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Image_Cap.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Product_Company.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Product_ProductType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_CapInstance.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_CapSign.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_CapType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_Category.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_Company.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_Keyword.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_MainType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_Material.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_Product.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_ProductType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_Shape.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_Storage.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_StorageType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_SimpleTranslation_Target.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Storage_ParentStorage.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_Storage_StorageType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_StoredImage_CapSign.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_StoredImage_CapType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_StoredImage_Image.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_StoredImage_MainType.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_StoredImage_Shape.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_StoredImage_Storage.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Cap.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Cap_CapSign_Int.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Cap_Category_Int.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Cap_Keyword_Int.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_CapInstance.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_CapSign.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_CapTranslation.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_CapType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Category.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Company.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Image.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_ISO 3166-1.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Keyword.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_MainType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Material.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Product.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_ProductType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_PseudoCategory.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Shape.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_SimpleTranslation.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Storage.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_StorageType.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_StoredImage.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Target.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_CapSign_Name.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_CapType_Name.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_CategoryName.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_CompanyName.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_Image_RelativePath.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_ISO 3166-1_Alpha-3.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_Keyword.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_MainType_Name.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_Material_Name.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_ProductName.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_ProductTypeName.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_Shape_Name.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_SimpleTranslation.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_StorageNumber.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_StorageType_Name.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_Target.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\UNQ_trnCap.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Cap_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Cap_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Cap_Keyword_Int_AF_DEL_UPD.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\CapInstance_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\CapInstance_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\CapSign_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Capsign_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\CapTranslation_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\CapTranslation_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\CapType_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\CapType_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Category_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\category_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Company_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\company_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Image_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\image_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Keyword_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Keyword_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\MainType_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\MainType_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Material_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\material_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Product_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\product_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\ProductType_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\productype_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\PseudoCategory_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\PseudoCategory_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Shape_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\shape_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\SimpleTranslation_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\SimpleTranslation_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Storage_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\storage_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\StorageType_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\storagetype_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\Target_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\target_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Cap.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Cap_CapSign_Int.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Cap_Category_Int.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Cap_Keyword_Int.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\CapInstance.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\CapSign.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\CapTranslation.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\CapType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Category.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Company.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Image.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\ISO 3166-1.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keyword.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\MainType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Material.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Product.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\ProductType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\PseudoCategory.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Shape.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\SimpleTranslation.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Storage.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\StorageType.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\StoredImage.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Target.table.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Functions\EmptyStrToNull.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Functions\GetDatabaseVersion.function.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Stored Procedures\Get_Cap_PseudoCategory_Int.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Stored Procedures\GetCapsOfPseudoCategory.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Stored Procedures\GetSimilarCaps.proc.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\User Defined Table Types\IntTable.udtt.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\User Defined Table Types\VarCharTable.udtt.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
 </Project>
