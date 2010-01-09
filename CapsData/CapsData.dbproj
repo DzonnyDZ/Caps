@@ -99,7 +99,7 @@
     <BuildContributorArgument Include="OutDir=$(OutDir)" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Create Scripts\Tables\Constraints\CK_Cap_CountryOfOrigin.chkconst.sql">
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Cap_CountryOfOrigin.chkconst.sql">
       <SubType>Code</SubType>
     </Build>
     <Build Include="Create Scripts\Tables\Constraints\DF_Cap_DateCreated.defconst.sql">
