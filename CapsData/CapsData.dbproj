@@ -704,37 +704,37 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="storagetype_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\category_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="storage_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\company_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="shape_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\image_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="productype_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\material_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="product_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\storagetype_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="material_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\product_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="VarCharTable.udtt.sql">
+    <Build Include="Create Scripts\Tables\Triggers\productype_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="IntTable.udtt.sql">
+    <Build Include="Create Scripts\Tables\Triggers\shape_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Create Scripts\Tables\category_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\storage_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Create Scripts\Tables\image_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\User Defined Types\VarCharTable.udtt.sql">
       <SubType>Code</SubType>
     </Build>
-    <Build Include="Create Scripts\Tables\company_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\User Defined Types\IntTable.udtt.sql">
       <SubType>Code</SubType>
     </Build>
   </ItemGroup>
