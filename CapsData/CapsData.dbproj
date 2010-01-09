@@ -822,48 +822,48 @@
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Category_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
-      <AnsiNulls>ProjectDefault</AnsiNulls>
-      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Company_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
-      <AnsiNulls>ProjectDefault</AnsiNulls>
-      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Image_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
-      <AnsiNulls>ProjectDefault</AnsiNulls>
-      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Material_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
-      <AnsiNulls>ProjectDefault</AnsiNulls>
-      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="Create Scripts\Tables\Triggers\storagetype_Instead_Upd.trigger.sql">
+    <Build Include="Create Scripts\Tables\Triggers\StorageType_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
-      <AnsiNulls>ProjectDefault</AnsiNulls>
-      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Product_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
-      <AnsiNulls>ProjectDefault</AnsiNulls>
-      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Productype_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
-      <AnsiNulls>ProjectDefault</AnsiNulls>
-      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Shape_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
-      <AnsiNulls>ProjectDefault</AnsiNulls>
-      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\Tables\Triggers\Storage_Instead_Upd.trigger.sql">
       <SubType>Code</SubType>
-      <AnsiNulls>ProjectDefault</AnsiNulls>
-      <QuotedIdentifier>ProjectDefault</QuotedIdentifier>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="Create Scripts\User Defined Types\VarCharTable.udtt.sql">
       <SubType>Code</SubType>
