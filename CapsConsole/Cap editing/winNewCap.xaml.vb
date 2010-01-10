@@ -52,7 +52,6 @@ Partial Public Class winNewCap
                 Cap.MainPicture = .MainPicture
                 Cap.MainType = .CapMainType
                 Cap.Shape = .CapShape
-                Cap.CapSign = .CapSign
                 Cap.Size = .Size1
                 If .CapShape.Size2Name IsNot Nothing Then Cap.Size2 = .Size2
                 Cap.Height = .CapHeight
@@ -83,6 +82,13 @@ Partial Public Class winNewCap
                 Cap.State = .State
                 Cap.Target = .Target
                 Cap.IsAlcoholic = .IsAlcoholic
+                'Cap signs
+                Dim CreatedDBSignInts As New List(Of Cap_CapSign_Int)
+                If .SelectedCapSigns IsNot Nothing Then
+                    For Each Sign In .SelectedCapSigns
+                        CreatedDBSignInts.Add(New Cap_CapSign_Int(Cap, Sign))
+                    Next
+                End If
                 'Categories
                 Dim CreatedDBCatInts As New List(Of Cap_Category_Int)
                 If .SelectedCategories IsNot Nothing Then
@@ -165,7 +171,7 @@ Partial Public Class winNewCap
                         .Reset()
                     End If
                 Case CapEditor.SaveMode.SaveAndNextNoClean
-                    .Actualize()
+                    .ActualizeChangedLists()
                     If Cap IsNot Nothing AndAlso Cap.CapType IsNot Nothing Then .CapType = Cap.CapType
                     If Cap IsNot Nothing AndAlso Cap.Product IsNot Nothing Then .Product = Cap.Product
                     .InitFocus()

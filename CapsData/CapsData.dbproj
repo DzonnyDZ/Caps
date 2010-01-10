@@ -871,5 +871,21 @@
     <Build Include="Create Scripts\User Defined Types\IntTable.udtt.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Create Scripts\Functions\Romanize.function.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Create Scripts\Tables\Romanization.table.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Create Scripts\Tables\Indexes\UNQ_Romanization.index.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Romanization.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
 </Project>

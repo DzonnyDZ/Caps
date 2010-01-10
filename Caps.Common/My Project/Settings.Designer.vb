@@ -77,6 +77,17 @@ Namespace My
                 Return CType(Me("CapsDevConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.255.1;Initial Catalog=D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\"& _ 
+            "CAPSDATA.MDF;Integrated Security=True")>  _
+        Public ReadOnly Property D__USERS_HONZA_DOCUMENTS_PROGRAMY_CAPS_CAPSDATA_MDFConnectionString() As String
+            Get
+                Return CType(Me("D__USERS_HONZA_DOCUMENTS_PROGRAMY_CAPS_CAPSDATA_MDFConnectionString"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

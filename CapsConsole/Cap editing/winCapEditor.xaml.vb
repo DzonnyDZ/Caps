@@ -21,10 +21,17 @@ Partial Public Class winCapEditor
         OldCategories = Cap.Cap_Category_Ints.ToArray
         caeEditor.Images.AddRange(Cap.Images)
         OldImages = Cap.Images.ToArray
+        caeEditor.SelectedCapSigns = From csi In Cap.Cap_CapSign_Ints Select csi.CapSign
+        OldCapSigns = Cap.Cap_CapSign_Ints.ToArray
     End Sub
+    ''' <summary>Original categories of cap before editing</summary>
     Private OldCategories As Cap_Category_Int()
+    ''' <summary>Original keywords of cap before editing</summary>
     Private OldKeywords As Cap_Keyword_Int()
+    ''' <summary>Original images of cap before editing</summary>
     Private OldImages As Image()
+    ''' <summary>Original signs of cap before editing</summary>
+    Private OldCapSigns As Cap_CapSign_Int()
     ''' <summary>True when <see cref="winCapEditor_Closing"/> shall do nothing</summary>
     Private IsClosing As Boolean = False
 
@@ -63,6 +70,9 @@ Partial Public Class winCapEditor
             'Categories
             Context.Cap_Category_Ints.DeleteAllOnSubmit((From cat In OldCategories Where Not caeEditor.SelectedCategories.Contains(cat.Category)).ToArray)
             Context.Cap_Category_Ints.InsertAllOnSubmit((From cat In caeEditor.SelectedCategories Where Not (From ci In OldCategories Select ci.Category).Contains(cat) Select New Cap_Category_Int(Cap, cat)).ToArray)
+            'CapSigns
+            Context.Cap_CapSign_Ints.DeleteAllOnSubmit((From cs In OldCapSigns Where Not caeEditor.SelectedCapSigns.Contains(cs.CapSign)).ToArray)
+            Context.Cap_CapSign_Ints.InsertAllOnSubmit((From cs In caeEditor.SelectedCapSigns Where Not (From ci In OldCapSigns Select ci.CapSign).Contains(cs) Select New Cap_CapSign_Int(Cap, cs)).ToArray)
             'Keywords
             Context.Cap_Keyword_Ints.DeleteAllOnSubmit((From kw In OldKeywords Where Not caeEditor.Keywords.Contains(kw.Keyword.Keyword)).ToArray)
             Dim KeywordsToAssociate = From kw In caeEditor.Keywords Where Not (From oldk In OldKeywords Select oldk.Keyword.Keyword).Contains(kw) Select kw, DbKw = (From kwdb In Context.Keywords Where kwdb.Keyword = kw).FirstOrDefault
@@ -174,6 +184,7 @@ GetNextCap:
                     OldKeywords = Cap.Cap_Keyword_Ints.ToArray
                     caeEditor.SelectedCategories = From cat In Cap.Cap_Category_Ints Select cat.Category
                     OldCategories = Cap.Cap_Category_Ints.ToArray
+                    OldCapSigns = Cap.Cap_CapSign_Ints.ToArray
                     caeEditor.Images.AddRange(Cap.Images)
                     caeEditor.lvwImages.Items.Refresh() 'TODO: This is workaround, AddRange should work out-of-the-box
                     OldImages = Cap.Images.ToArray

@@ -137,12 +137,23 @@
                             <Label Content="{x:Static res:Resources.lbl_Target}" Grid.Row="7" Grid.Column="0"/>
                             <Label Content="{Binding Target.Name}" Grid.Row="7" Grid.Column="1"/>
                             <Label Content="{x:Static res:Resources.lbl_Sign}" Grid.Row="8" Grid.Column="0"/>
-                            <Label Grid.Column="1" Grid.Row="8">
-                                <TextBlock>
-                                    <Image Source="{Binding CapSign.CapSignID, Mode=OneWay, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign'}" MaxWidth="16" MaxHeight="16"/>
-                                    <TextBlock Text="{Binding CapSign.Name, Mode=OneWay}"/>
-                                </TextBlock>
-                            </Label>
+                            <ItemsControl ItemsSource="{Binding Cap_CapSign_Ints, Mode=OneWay}" Grid.Row="8" Grid.Column="1">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" Height="Auto" IsItemsHost="True"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label HorizontalAlignment="Stretch">
+                                            <TextBlock>
+                                                <Image Source="{Binding CapSign.CapSignID, Mode=OneWay, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign'}" MaxWidth="16" MaxHeight="16"/>
+                                            <TextBlock Text="{Binding CapSign.Name, Mode=OneWay}"/>
+                                            </TextBlock>
+                                        </Label>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </x:Array>
                     </my:AttachedProperties.ItemsWithAutomaticRows>
                 </Grid>

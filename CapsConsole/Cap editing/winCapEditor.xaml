@@ -54,8 +54,7 @@
                       State="{Binding State, Mode=TwoWay}"
                       Target="{Binding Target, Mode=TwoWay}"
                       IsAlcoholic="{Binding IsAlcoholic, Mode=TwoWay}"
-                      CapSign="{Binding CapSign, Mode=TwoWay}"
-                      
+                                          
                       AllowSearch="False"
                       IsSplitButtonVisible="True"
                       EnabledCommands="SaveAndClose,SaveAndNext,SaveAndPrevious,SaveAndNew,PreviousNoSave,NextNoSave,Reset"

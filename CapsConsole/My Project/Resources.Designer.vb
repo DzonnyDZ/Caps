@@ -241,6 +241,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Add sign.
+        '''</summary>
+        Public ReadOnly Property cmd_AddSign() As String
+            Get
+                Return ResourceManager.GetString("cmd_AddSign", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Apply.
         '''</summary>
         Public ReadOnly Property cmd_Apply() As String
@@ -309,6 +318,15 @@ Namespace My.Resources
         Public ReadOnly Property cmd_NewCategory() As String
             Get
                 Return ResourceManager.GetString("cmd_NewCategory", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to New sign ....
+        '''</summary>
+        Public ReadOnly Property cmd_NewSign() As String
+            Get
+                Return ResourceManager.GetString("cmd_NewSign", resourceCulture)
             End Get
         End Property
         
@@ -3308,6 +3326,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_Texts() As String
             Get
                 Return ResourceManager.GetString("txt_Texts", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to A sing is selected multiple times. Each sign can be selected maximally once..
+        '''</summary>
+        Public ReadOnly Property txt_ToManyCapSigns() As String
+            Get
+                Return ResourceManager.GetString("txt_ToManyCapSigns", resourceCulture)
             End Get
         End Property
         

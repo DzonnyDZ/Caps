@@ -147,6 +147,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <GroupBox Header="{x:Static res:Resources.txt_CapType}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
                     <Grid>
@@ -209,10 +210,34 @@
                 <ComboBox Grid.Column="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbTarget" Style="{StaticResource TargetTemplate}" SelectedValuePath="TargetID" my:AttachedProperties.SelectNullOnDelete="true"/>
                 <Button Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewTarget" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
                 
-                <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Sign}" Target="{Binding ElementName=cmbSign}"/>
-                <ComboBox Grid.Column="1" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="cmbSign" Style="{StaticResource SignTemplate}" SelectedValuePath="CapSignID" my:AttachedProperties.SelectNullOnDelete="true"/>
-                <Button Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewSign" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
-                <GroupBox Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="auto" Header="{x:Static res:Resources.txt_TypeSuggestor}" IsEnabled="{Binding ElementName=optCapTypeSelect, Path=IsChecked, Mode=OneWay, Converter={StaticResource NotBooleanValueConverter}}">
+                <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Sign}" Target="{Binding ElementName=cmbSign}"/>
+                <ItemsControl Name="icSigns" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxHeight="99">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
+                                <StackPanel Orientation="Vertical" IsItemsHost="True"/>
+                            </ScrollViewer>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ComboBox HorizontalAlignment="Stretch" Name="cmbSign" Style="{StaticResource SignTemplate}" SelectedValuePath="CapSignID" KeyDown="cmbSign_KeyDown" Loaded="cmbSign_Loaded" SelectedValue="{Binding CapSignID, Mode=TwoWay}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Grid Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Height="auto" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50%"/>
+                        <ColumnDefinition Width="50%"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="btnNewSign" Margin="0" Content="{x:Static res:Resources.cmd_NewSign}"/>
+                    <Button Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="btnAddSign" Margin="0" Content="{x:Static res:Resources.cmd_AddSign}"/>
+                </Grid>
+                
+                <GroupBox Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="auto" Header="{x:Static res:Resources.txt_TypeSuggestor}" IsEnabled="{Binding ElementName=optCapTypeSelect, Path=IsChecked, Mode=OneWay, Converter={StaticResource NotBooleanValueConverter}}">
                     <my:TypeSuggestor x:Name="tysSuggestor" HorizontalAlignment="Stretch" Height="auto" IsEnabled="{Binding ElementName=optCapTypeSelect, Path=IsChecked, Mode=OneWay, Converter={StaticResource NotBooleanValueConverter}}"
                                       MainType="{Binding ElementName=cmbMainType, Path=SelectedItem}"
                                       Shape="{Binding ElementName=cmbShape, Path=SelectedItem}"

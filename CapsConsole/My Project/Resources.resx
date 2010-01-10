@@ -1532,4 +1532,16 @@ Doubleclick to edit.</value>
   <data name="err_InvalidCommandLineConnectionString" xml:space="preserve">
     <value>Connection string passed from command line {0} is invalid.</value>
   </data>
+  <data name="cmd_AddSign" xml:space="preserve">
+    <value>Add sign</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="cmd_NewSign" xml:space="preserve">
+    <value>New sign ...</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="txt_ToManyCapSigns" xml:space="preserve">
+    <value>A sing is selected multiple times. Each sign can be selected maximally once.</value>
+    <comment>Error message</comment>
+  </data>
 </root>

@@ -12,6 +12,8 @@ Partial Public Class CapEditor
     ''' <summary>Contains value of the <see cref="Context"/> proeprty</summary>
     Private _Context As CapsDataDataContext = OriginalContext
     Private UnderConstruction As Boolean = True
+    ''' <summary>Contains list of all cap signs</summary>
+    Private AllCapSigns As New ListWithEvents(Of CapSign)
     ''' <summary>CTor</summary>
     Public Sub New()
         InitializeComponent()
@@ -49,11 +51,11 @@ Partial Public Class CapEditor
             cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
             cmbMainType.ItemsSource = New ListWithEvents(Of MainType)(From item In Context.MainTypes Order By item.TypeName)
             cmbShape.ItemsSource = New ListWithEvents(Of Shape)(From item In Context.Shapes Order By item.Name)
-            cmbSign.ItemsSource = New ListWithEvents(Of CapSign)(From item In Context.CapSigns Order By item.Name)
             cmbMaterial.ItemsSource = New ListWithEvents(Of Material)(From item In Context.Materials Order By item.Name)
             cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Order By item.StorageNumber)
             cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
             cmbTarget.ItemsSource = New ListWithEvents(Of Target)(From item In Context.Targets Order By item.Name)
+            icSigns.ItemsSource = New ListWithEvents(Of Cap_CapSign_Int)
             Dim ProductTypesList As ListWithEvents(Of ProductType) = New ListWithEvents(Of ProductType)(From item In Context.ProductTypes Order By item.ProductTypeName)
             ProductTypesList.Add(Nothing)
             cmbProductType.ItemsSource = ProductTypesList
@@ -64,7 +66,7 @@ Partial Public Class CapEditor
             kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
             'lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
             DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(Nothing)
-            DirectCast(cmbSign.ItemsSource, ListWithEvents(Of CapSign)).Add(Nothing)
+            If Not ForBinding Then DirectCast(icSigns.ItemsSource, ListWithEvents(Of Cap_CapSign_Int)).Add(New Cap_CapSign_Int)
 
             If ForBinding Then
                 optCapTypeAnonymous.IsChecked = True
@@ -176,10 +178,34 @@ Partial Public Class CapEditor
     Private Sub btnNewSign_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewSign.Click
         Dim win As New winNewSign(Context)
         If win.ShowDialog Then
-            DirectCast(cmbSign.ItemsSource, ListWithEvents(Of CapSign)).Add(win.NewObject)
-            cmbSign.Items.Refresh()
-            cmbSign.SelectedItem = win.NewObject
+            AllCapSigns.Add(win.NewObject)
+            Dim Cap_Sign_Ints As List(Of Cap_CapSign_Int) = icSigns.ItemsSource
+            For Each item In Cap_Sign_Ints
+                If item.CapSign Is Nothing Then
+                    item.CapSign = win.NewObject
+                    Exit Sub
+                End If
+            Next
+            Cap_Sign_Ints.Add(New Cap_CapSign_Int With {.CapSign = win.NewObject})
+            Dim NewValue = (From Cap_Sing_Int In Cap_Sign_Ints Select Cap_Sing_Int.CapSign).ToArray
+            SelectadCapSignsValuesNotToBeCoerced.Add(NewValue)
+            SelectedCapSigns = NewValue
         End If
+    End Sub
+    Private Sub cmbSign_KeyDown(ByVal sender As ComboBox, ByVal e As System.Windows.Input.KeyEventArgs)
+        DirectCast(icSigns.ItemsSource, ListWithEvents(Of Cap_CapSign_Int)).Remove(DirectCast(sender.DataContext, Cap_CapSign_Int))
+    End Sub
+
+    Private Sub cmbSign_Loaded(ByVal sender As ComboBox, ByVal e As System.Windows.RoutedEventArgs)
+        sender.ItemsSource = AllCapSigns
+    End Sub
+
+    Private Sub btnAddSign_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnAddSign.Click
+        Dim Cap_Sign_Ints = DirectCast(icSigns.ItemsSource, List(Of Cap_CapSign_Int))
+        Cap_Sign_Ints.Add(New Cap_CapSign_Int)
+        Dim NewValue = (From Cap_Sing_Int In Cap_Sign_Ints Select Cap_Sing_Int.CapSign).ToArray
+        SelectadCapSignsValuesNotToBeCoerced.Add(NewValue)
+        SelectedCapSigns = NewValue
     End Sub
 #End Region
     ''' <summary>Category proxy that adds <see cref="CategoryProxy.Checked"/> property</summary>
@@ -509,98 +535,50 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnSearch.Click
-        Dim srchKeywords As New HelperDataSet.VarCharTableDataTable
-        For Each kw In kweKeywords.KeyWords
-            srchKeywords.AddVarCharTableRow(kw)
-        Next
-        Dim srchCategories As New HelperDataSet.IntTableDataTable
-        If SelectedCategories IsNot Nothing Then
-            For Each cat In SelectedCategories
-                srchCategories.AddIntTableRow(cat.CategoryID)
-            Next
-        End If
-        Dim ta As New HelperDataSetTableAdapters.GetSimilarCapsTableAdapter With {.Connection = Main.Connection}
-        'Dim DELETEASAP = ta.GetSimilarCaps( _
-        '       If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
-        '       If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
-        '       If(cmbShape.SelectedItem IsNot Nothing, DirectCast(cmbShape.SelectedItem, Shape).ShapeID, Nothing), _
-        '       txtCapName.Text, _
-        '       txtMainText.Text, _
-        '       txtSubTitle.Text, _
-        '       copBackground.Color.ToArgb, _
-        '       copSecondaryBackground.Color.ToArgb, _
-        '       copForeground.Color.ToArgb, _
-        '       txtMainPicture.Text, _
-        '       txtTopText.Text, _
-        '       txtSideText.Text, _
-        '       txtBottomText.Text, _
-        '       If(cmbMaterial.SelectedItem IsNot Nothing, DirectCast(cmbMaterial.SelectedItem, Material).MaterialID, Nothing), _
-        '       If(optMatting.IsChecked, "M"c, If(optGlossy.IsChecked, "G"c, Nothing)), _
-        '       nudSize1.Value, _
-        '       If(cmbShape.SelectedItem IsNot Nothing AndAlso DirectCast(cmbShape.SelectedItem, Shape).Size2Name IsNot Nothing, nudSize2.Value, Nothing), _
-        '       nudHeight.Value, _
-        '       chk3D.IsChecked, _
-        '       If(nudYear.Value = 0, Nothing, nudYear.Value), _
-        '       If(txtCountryCode.Text <> "", txtCountryCode.Text, Nothing), _
-        '       txtNote.Text, _
-        '       If(cmbCompany.SelectedItem IsNot Nothing, DirectCast(cmbCompany.SelectedItem, Company).CompanyID, Nothing), _
-        '       If(optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem IsNot Nothing, DirectCast(cmbProduct.SelectedItem, Product).ProductID, Nothing), _
-        '       If(cmbProductType.SelectedItem IsNot Nothing, DirectCast(cmbProductType.SelectedItem, ProductType).ProductTypeID, Nothing), _
-        '       If(cmbStorage.SelectedItem IsNot Nothing, DirectCast(cmbStorage.SelectedItem, Storage).StorageID, Nothing), _
-        '       copForeground2.Color.ToArgb, _
-        '       If(cmbPictureType.SelectedItem Is cmiImageGeometry, "G"c, If(cmbPictureType.SelectedItem Is cmiImageLogo, "L"c, If(cmbPictureType.SelectedItem Is cmiImageDrawing, "D"c, If(cmbPictureType.SelectedItem Is cmiImagePhoto, "P"c, Nothing)))), _
-        '       chkHasBottom.IsChecked, _
-        '       chkHasSide.IsChecked, _
-        '       txtAnotherPictures.Text, _
-        '       srchCategories, _
-        '       srchKeywords, _
-        '       txtCountryOfOrigin.Text, _
-        '       chkIsDrink.IsChecked, _
-        '       nudCapState.Value, _
-        '       If(cmbTarget.SelectedItem Is Nothing, New Integer?(), DirectCast(cmbTarget.SelectedItem, Target).TargetID) _
-        ')
-        Dim SearchResults = ta.ReadSimilarCaps( _
-               If(optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem IsNot Nothing, DirectCast(cmbCapType.SelectedItem, CapType).CapTypeID, Nothing), _
-               If(cmbMainType.SelectedItem IsNot Nothing, DirectCast(cmbMainType.SelectedItem, MainType).MainTypeID, Nothing), _
-               If(cmbShape.SelectedItem IsNot Nothing, DirectCast(cmbShape.SelectedItem, Shape).ShapeID, Nothing), _
-               txtCapName.Text, _
-               txtMainText.Text, _
-               txtSubTitle.Text, _
-               copBackground.Color.ToArgb, _
-               copSecondaryBackground.Color.ToArgb, _
-               copForeground.Color.ToArgb, _
-               txtMainPicture.Text, _
-               txtTopText.Text, _
-               txtSideText.Text, _
-               txtBottomText.Text, _
-               If(cmbMaterial.SelectedItem IsNot Nothing, DirectCast(cmbMaterial.SelectedItem, Material).MaterialID, Nothing), _
-               If(optMatting.IsChecked, "M"c, If(optGlossy.IsChecked, "G"c, Nothing)), _
-               nudSize1.Value, _
-               If(cmbShape.SelectedItem IsNot Nothing AndAlso DirectCast(cmbShape.SelectedItem, Shape).Size2Name IsNot Nothing, nudSize2.Value, Nothing), _
-               nudHeight.Value, _
-               chk3D.IsChecked, _
-               If(nudYear.Value = 0, Nothing, nudYear.Value), _
-               If(txtCountryCode.Text <> "", txtCountryCode.Text, Nothing), _
-               txtNote.Text, _
-               If(cmbCompany.SelectedItem IsNot Nothing, DirectCast(cmbCompany.SelectedItem, Company).CompanyID, Nothing), _
-               If(optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem IsNot Nothing, DirectCast(cmbProduct.SelectedItem, Product).ProductID, Nothing), _
-               If(cmbProductType.SelectedItem IsNot Nothing, DirectCast(cmbProductType.SelectedItem, ProductType).ProductTypeID, Nothing), _
-               If(cmbStorage.SelectedItem IsNot Nothing, DirectCast(cmbStorage.SelectedItem, Storage).StorageID, Nothing), _
-               copForeground2.Color.ToArgb, _
-               If(cmbPictureType.SelectedItem Is cmiImageGeometry, "G"c, If(cmbPictureType.SelectedItem Is cmiImageLogo, "L"c, If(cmbPictureType.SelectedItem Is cmiImageDrawing, "D"c, If(cmbPictureType.SelectedItem Is cmiImagePhoto, "P"c, Nothing)))), _
-               chkHasBottom.IsChecked, _
-               chkHasSide.IsChecked, _
-               txtAnotherPictures.Text, _
-               srchCategories, _
-               srchKeywords, _
-               txtCountryOfOrigin.Text, _
-               chkIsDrink.IsChecked, _
-               nudCapState.Value, _
-               If(cmbTarget.SelectedItem Is Nothing, New Integer?(), DirectCast(cmbTarget.SelectedItem, Target).TargetID), _
-               chkIsAlcoholic.IsChecked _
+
+        Dim caps = Context.GetSimilarCaps(
+            CapTypeID:=If(CapType Is Nothing, New Integer?, CapType.CapTypeID),
+            MainTypeID:=If(CapMainType Is Nothing, New Integer?, CapMainType.MainTypeID),
+            ShapeID:=If(CapShape Is Nothing, New Integer?, CapShape.ShapeID),
+            CapName:=CapName,
+            MainText:=MainText,
+            SubTitle:=SubTitle,
+            BackColor1:=CapBackgroundColor1.ToArgb,
+            BackColor2:=If(CapBackgroundColor2.HasValue, CapBackgroundColor2.ToArgb, New Integer?),
+            ForeColor:=If(CapForegroundColor1.HasValue, CapForegroundColor1.ToArgb, New Integer?),
+            MainPicture:=MainPicture,
+            TopText:=TopText,
+            SideText:=SideText,
+            BottomText:=BottomText,
+            MaterialID:=If(Material Is Nothing, New Integer?, Material.MaterialID),
+            Surface:=If(IsGlossy, "G"c, "M"c),
+            Size:=If(Size1 = 0, New Integer?, Size1),
+            Size2:=If((CapShape IsNot Nothing AndAlso CapShape.Size2Name Is Nothing) OrElse Size2 = 0, New Integer?, Size2),
+            Height:=If(CapHeight = 0, New Integer?, CapHeight),
+            Is3D:=Is3D,
+            Year:=Year,
+            CountryCode:=Country,
+            Note:=CapNote,
+            CompanyID:=If(CapCompany Is Nothing, New Integer?, CapCompany.CompanyID),
+            ProductID:=If(Product Is Nothing, New Integer?, Product.ProductID),
+            ProductTypeID:=If(CapProductType Is Nothing, New Integer?, CapProductType.ProductTypeID),
+            StorageID:=If(Storage Is Nothing, New Integer?, Storage.StorageID),
+            ForeColor2:=If(CapForegroundColor2.HasValue, CapForegroundColor2.Value.ToArgb, New Integer?),
+            PictureType:=PictureType,
+            HasBottom:=HasBottom,
+            HasSide:=HasSide,
+            AnotherPictures:=AnotherPictures,
+            CategoryIDs:=(From cat In SelectedCategories Select cat.CategoryID).ToArray,
+            Keywords:=Keywords.ToArray,
+            CountryOfOrigin:=CountryOfOrigin,
+            IsDrink:=IsDrink,
+            State:=State,
+            TargetID:=If(Target Is Nothing, New Integer?, Target.TargetID),
+            IsAlcoholic:=IsAlcoholic,
+            CapSignIDs:=(From sign In SelectedCapSigns Select sign.CapSignID).ToArray
         )
 
-        Dim caps = Context.Translate(Of Cap)(SearchResults)
+
         Dim win As New winCapDetails(caps)
         win.Owner = Me.FindAncestor(Of Window)()
         win.Title = My.Resources.txt_SearchResults
@@ -2530,62 +2508,69 @@ Partial Public Class CapEditor
     End Sub
 
 #End Region
-#Region "CapSign"
-    ''' <summary>Gets or sets cap sign.</summary>
+
+#Region "SelectedCapSigns"
+    ''' <summary>Gets or sets selected cap signs</summary>
     <LCategory("Caps.Console.Resources.resources", "cat_CapProperties", GetType(CapEditor), "Cap properties")> _
-    Public Property CapSign() As CapSign
+    Public Property SelectedCapSigns() As IEnumerable(Of CapSign)
         <DebuggerStepThrough()> Get
-            Return GetValue(CapSignProperty)
+            Return GetValue(SelectedCapSignsProperty)
         End Get
-        <DebuggerStepThrough()> Set(ByVal value As CapSign)
-            SetValue(CapSignProperty, value)
+        <DebuggerStepThrough()> Set(ByVal value As IEnumerable(Of CapSign))
+            SetValue(SelectedCapSignsProperty, value)
         End Set
     End Property
-    ''' <summary>Metadata of the <see cref="CapSign"/> property</summary>
+    ''' <summary>Metadata of the <see cref="SelectedCapSigns"/> property</summary>
     <EditorBrowsable(EditorBrowsableState.Advanced)> _
-    Public Shared ReadOnly CapSignProperty As DependencyProperty = DependencyProperty.Register("CapSign", GetType(CapSign), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnCapSignChanged, AddressOf CoerceCapSign))
-    ''' <summary>Coerces value of the <see cref="CapSign"/> property</summary>
+    Public Shared ReadOnly SelectedCapSignsProperty As DependencyProperty = DependencyProperty.Register("SelectedCapSigns", GetType(IEnumerable(Of CapSign)), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnSelectedCapSignsChanged, AddressOf CoerceSelectedCapSigns))
+    ''' <summary>COerces value of the <see cref="SelectedCapSigns"/> property</summary>
     ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
-    ''' <returns><see cref="CapSign"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
-    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="CapSign"/>.</exception>
-    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="CapSign.CapSignID"/> in combobox</exception>
-    Private Shared Function CoerceCapSign(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
+    ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/> -or- <paramref name="baseValue"/> is neither null nor <see cref="IEnumerable(Of CapSign)"/> of <see cref="CapSign"/></exception> 
+    ''' <returns>Those of CapSigns in <paramref name="baseValue"/> which are known to this control</returns>
+    Private Shared Function CoerceSelectedCapSigns(ByVal d As DependencyObject, ByVal baseValue As Object) As Object
         If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
-        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is CapSign Then Throw New TypeMismatchException("baseValue", baseValue, GetType(CapSign))
-        Return DirectCast(d, CapEditor).CoerceCapSign(baseValue)
+        If baseValue IsNot Nothing AndAlso Not TypeOf baseValue Is IEnumerable(Of CapSign) Then Throw New TypeMismatchException("baseValue", baseValue, GetType(IEnumerable(Of CapSign)))
+        Return DirectCast(d, CapEditor).CoerceSelectedCapSigns(baseValue)
     End Function
-    ''' <summary>COerces value of the <see cref="CapSign"/> property</summary>
+    ''' <summary>Contains list of value which when set to <see cref="SelectedCapSigns"/> are accepted without any checks and manipulation</summary>
+    Private SelectadCapSignsValuesNotToBeCoerced As New List(Of IEnumerable(Of CapSign))
+    ''' <summary>Coerces value of the <see cref="SelectedCapSigns"/> property</summary>
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
-    ''' <returns><see cref="CapSign"/> that is either <paramref name="baseValue"/> if it is in combo box or has same id as <paramref name="baseValue"/> if it is not in combo box. Null when <paramref name="baseValue"/> is null.</returns>
-    ''' <exception cref="ArgumentException"><paramref name="baseValue"/> is not in combo box and there is no item with same <see cref="CapSign.CapSignID"/> in combobox</exception>
-    Protected Overridable Function CoerceCapSign(ByVal baseValue As CapSign) As CapSign
-        If baseValue Is Nothing Then cmbSign.SelectedIndex = -1 : Return Nothing
-        For Each item As CapSign In cmbSign.Items
-            If item Is baseValue Then Return baseValue
-        Next
-        For Each item As CapSign In cmbSign.Items
-            If item.CapSignID = baseValue.CapSignID Then Return item
-        Next
-        Throw New ArgumentException(My.Resources.ex_SetUnknownSign)
+    ''' <returns>Array of <see cref="CapSign"/>: Those of CapSigns in <paramref name="baseValue"/> which are known to this control</returns>
+    Private Function CoerceSelectedCapSigns(ByVal baseValue As IEnumerable(Of CapSign)) As IEnumerable(Of CapSign)
+        If baseValue Is Nothing Then Return Nothing
+        If SelectadCapSignsValuesNotToBeCoerced.Contains(baseValue) Then Return baseValue
+        Return (From itm In baseValue Where (From sign In AllCapSigns Select sign.CapSignID).Contains(itm.CapSignID)).ToArray
     End Function
-    ''' <summary>Called when value of the property <see cref="CapSign"/> is changed</summary>
+    ''' <summary>Called when value of the property <see cref="SelectedCapSigns"/> is changed</summary>
     ''' <param name="d">The <see cref="CapEditor"/> the change occured for</param>
     ''' <param name="e">Evcent arguments</param>
     ''' <exception cref="TypeMismatchException"><paramref name="d"/> is not <see cref="CapEditor"/></exception>
-    Private Shared Sub OnCapSignChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
+    Private Shared Sub OnSelectedCapSignsChanged(ByVal d As DependencyObject, ByVal e As DependencyPropertyChangedEventArgs)
         If Not TypeOf d Is CapEditor Then Throw New TypeMismatchException("d", d, GetType(CapEditor))
-        DirectCast(d, CapEditor).OnCapSignChanged(e)
+        DirectCast(d, CapEditor).OnSelectedCapSignsChanged(e)
     End Sub
-    ''' <summary>Called when value of the <see cref="CapSign"/> property changes</summary>
+    ''' <summary>Indicates that <see cref="OnSelectedCapSignsChanged"/> is on call stack</summary>
+    Private OnSelectedCapSignsChangedOnStack As Boolean = False
+    ''' <summary>Called when value of the <see cref="SelectedCapSigns"/> property changes</summary>
     ''' <param name="e">Event arguments</param>
-    Protected Overridable Sub OnCapSignChanged(ByVal e As DependencyPropertyChangedEventArgs)
-        cmbSign.SelectedItem = CapSign
+    Protected Overridable Sub OnSelectedCapSignsChanged(ByVal e As DependencyPropertyChangedEventArgs)
+        If SelectadCapSignsValuesNotToBeCoerced.Contains(e.NewValue) Then
+            SelectadCapSignsValuesNotToBeCoerced.Remove(e.NewValue)
+            Exit Sub
+        End If
+        OnSelectedCapSignsChangedOnStack = True
+        Try
+            Dim Cap_Sign_Ints As ListWithEvents(Of Cap_CapSign_Int) = icSigns.ItemsSource
+            Cap_Sign_Ints.Clear()
+            Cap_Sign_Ints.AddRange(From itm In AllCapSigns
+                                   Where (From base In DirectCast(e.NewValue, IEnumerable(Of CapSign)) Select base.CapSignID).Contains(itm.CapSignID)
+                                   Select New Cap_CapSign_Int With {.CapSign = itm})
+        Finally
+            OnSelectedCapSignsChangedOnStack = False
+        End Try
     End Sub
-    Private Sub cmbCapSign_SelectionChanged(ByVal sender As Object, ByVal e As SelectionChangedEventArgs) Handles cmbSign.SelectionChanged
-        CapSign = cmbSign.SelectedItem
-    End Sub
-
 #End Region
 #End Region
 
@@ -2619,7 +2604,9 @@ Partial Public Class CapEditor
             .ProductType = If(CapProductType IsNot Nothing, CapProductType.ProductTypeID, New Integer?), _
             .Product = If(Product IsNot Nothing, Product.ProductID, New Integer?), _
             .Company = If(CapCompany IsNot Nothing, CapCompany.CompanyID, New Integer?), _
-            .Categories = (From cat As Category In If(SelectedCategories, New Category() {}) Select cat.CategoryID).ToArray}
+            .Categories = (From cat In If(SelectedCategories, New Category() {}) Select cat.CategoryID).ToArray,
+            .CapSigns = (From sign In If(SelectedCapSigns, New CapSign() {}) Select sign.CapSignID).ToArray
+        }
         If OriginalContext IsNot Nothing Then OriginalContext.Dispose()
         OriginalContext = Nothing
         If Context Is Nothing Then
@@ -2660,6 +2647,10 @@ Partial Public Class CapEditor
             'Categories
             lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item, .Categories.Contains(item.CategoryID)))
             lstCategories_CheckedChanged(Nothing, Nothing)
+            'CapSigns
+            AllCapSigns.Clear()
+            AllCapSigns.AddRange(Context.CapSigns)
+            SelectedCapSigns = From cs In AllCapSigns Where .CapSigns.Contains(cs.CapSignID)
         End With
         With DirectCast(lvwImages.ItemsSource, ListWithEvents(Of Image))
             .RemoveAll(Function(img) Not TypeOf img Is NewImage)
@@ -2693,6 +2684,7 @@ Partial Public Class CapEditor
         If optCapTypeSelect.IsChecked AndAlso cmbCapType.SelectedItem Is Nothing Then mBox.Modal_PTIW(My.Resources.msg_NoCapTypeSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : cmbCapType.Focus() : Exit Function
         If txtCountryCode.Text <> "" AndAlso (txtCountryCode.Text.Length <> 2 OrElse Not txtCountryCode.Text Like "[A-Z][A-Z]") Then mBox.Modal_PTIW(My.Resources.txt_InvalidCountryCode, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : txtCountryCode.Focus() : Exit Function
         If txtCountryOfOrigin.Text <> "" AndAlso (txtCountryOfOrigin.Text.Length <> 2 OrElse Not txtCountryOfOrigin.Text Like "[A-Z][A-Z]") Then mBox.Modal_PTIW(My.Resources.txt_InvalidCountryOfOriginCode, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : txtCountryOfOrigin.Focus() : Exit Function
+        If (From CapSign In SelectedCapSigns Select (From CapSign2 In SelectedCapSigns Where CapSign.CapSignID = CapSign2.CapSignID).Count).Any(Function(count) count > 1) Then mBox.Modal_PTIW(My.Resources.txt_ToManyCapSigns, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : icSigns.Focus() : Exit Function
         Tests = True
     End Function
 
@@ -2992,7 +2984,6 @@ Resize256:      Try
 #End Region
 #End Region
 
-
     Public Property AllowSearch() As Boolean
         Get
             Return GetValue(AllowSearchProperty)
@@ -3023,8 +3014,8 @@ Resize256:      Try
             cmbTarget.SelectedItem = win.NewObject
         End If
     End Sub
-    ''' <summary>Actualizes lists</summary>
-    Public Sub Actualize()
+    ''' <summary>Actualizes lists which are changed when cap is saved</summary>
+    Public Sub ActualizeChangedLists()
         kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
 
         cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
@@ -3057,7 +3048,6 @@ Resize256:      Try
         nudHeight.Value = 0
         cmbMaterial.SelectedIndex = -1
         cmbTarget.SelectedIndex = -1
-        cmbSign.SelectedIndex = -1
 
         copBackground.Color = Colors.Transparent
         copSecondaryBackground.Color = Nothing
@@ -3091,8 +3081,9 @@ Resize256:      Try
 
         SelectedCategories = New Category() {}
         Keywords = New String() {}
+        SelectedCapSigns = New CapSign() {}
         Images.Clear()
-        Actualize()
+        ActualizeChangedLists()
 
         InitFocus()
 
@@ -3205,6 +3196,8 @@ Resize256:      Try
         If Context IsNot Nothing AndAlso Not Context.IsDisposed Then _
             lblCapsCount.Content = Context.Caps.Count
     End Sub
+
+   
 End Class
 
 ''' <summary>Allows to distinguish image already in database and a new image</summary>

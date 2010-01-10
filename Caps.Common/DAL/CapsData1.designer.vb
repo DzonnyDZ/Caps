@@ -22,7 +22,7 @@ Imports System.Linq.Expressions
 Imports System.Reflection
 
 
-<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="CapsDev")>  _
+<Global.System.Data.Linq.Mapping.DatabaseAttribute(Name:="D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF")>  _
 Partial Public Class CapsDataDataContext
 	Inherits System.Data.Linq.DataContext
 	
@@ -91,12 +91,6 @@ Partial Public Class CapsDataDataContext
     End Sub
   Partial Private Sub DeleteProductType(instance As ProductType)
     End Sub
-  Partial Private Sub InsertStorage(instance As Storage)
-    End Sub
-  Partial Private Sub UpdateStorage(instance As Storage)
-    End Sub
-  Partial Private Sub DeleteStorage(instance As Storage)
-    End Sub
   Partial Private Sub InsertStorageType(instance As StorageType)
     End Sub
   Partial Private Sub UpdateStorageType(instance As StorageType)
@@ -145,10 +139,58 @@ Partial Public Class CapsDataDataContext
     End Sub
   Partial Private Sub DeleteCapSign(instance As CapSign)
     End Sub
+  Partial Private Sub InsertCap_CapSign_Int(instance As Cap_CapSign_Int)
+    End Sub
+  Partial Private Sub UpdateCap_CapSign_Int(instance As Cap_CapSign_Int)
+    End Sub
+  Partial Private Sub DeleteCap_CapSign_Int(instance As Cap_CapSign_Int)
+    End Sub
+  Partial Private Sub InsertStorage(instance As Storage)
+    End Sub
+  Partial Private Sub UpdateStorage(instance As Storage)
+    End Sub
+  Partial Private Sub DeleteStorage(instance As Storage)
+    End Sub
+  Partial Private Sub InsertStoredImage(instance As StoredImage)
+    End Sub
+  Partial Private Sub UpdateStoredImage(instance As StoredImage)
+    End Sub
+  Partial Private Sub DeleteStoredImage(instance As StoredImage)
+    End Sub
+  Partial Private Sub InsertPseudoCategory(instance As PseudoCategory)
+    End Sub
+  Partial Private Sub UpdatePseudoCategory(instance As PseudoCategory)
+    End Sub
+  Partial Private Sub DeletePseudoCategory(instance As PseudoCategory)
+    End Sub
+  Partial Private Sub InsertCap_PseudoCategory_Int(instance As Cap_PseudoCategory_Int)
+    End Sub
+  Partial Private Sub UpdateCap_PseudoCategory_Int(instance As Cap_PseudoCategory_Int)
+    End Sub
+  Partial Private Sub DeleteCap_PseudoCategory_Int(instance As Cap_PseudoCategory_Int)
+    End Sub
+  Partial Private Sub InsertCapTranslation(instance As CapTranslation)
+    End Sub
+  Partial Private Sub UpdateCapTranslation(instance As CapTranslation)
+    End Sub
+  Partial Private Sub DeleteCapTranslation(instance As CapTranslation)
+    End Sub
+  Partial Private Sub InsertShapeTranslation(instance As ShapeTranslation)
+    End Sub
+  Partial Private Sub UpdateShapeTranslation(instance As ShapeTranslation)
+    End Sub
+  Partial Private Sub DeleteShapeTranslation(instance As ShapeTranslation)
+    End Sub
+  Partial Private Sub InsertSimpleTranslation(instance As SimpleTranslation)
+    End Sub
+  Partial Private Sub UpdateSimpleTranslation(instance As SimpleTranslation)
+    End Sub
+  Partial Private Sub DeleteSimpleTranslation(instance As SimpleTranslation)
+    End Sub
   #End Region
 	
 	Public Sub New()
-		MyBase.New(Global.Caps.My.MySettings.Default.CapsDevConnectionString, mappingSource)
+		MyBase.New(Global.Caps.My.MySettings.Default.D__USERS_HONZA_DOCUMENTS_PROGRAMY_CAPS_CAPSDATA_MDFConnectionString, mappingSource)
 		OnCreated
 	End Sub
 	
@@ -232,12 +274,6 @@ Partial Public Class CapsDataDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property Storages() As System.Data.Linq.Table(Of Storage)
-		Get
-			Return Me.GetTable(Of Storage)
-		End Get
-	End Property
-	
 	Public ReadOnly Property StorageTypes() As System.Data.Linq.Table(Of StorageType)
 		Get
 			Return Me.GetTable(Of StorageType)
@@ -286,6 +322,72 @@ Partial Public Class CapsDataDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property Cap_CapSign_Ints() As System.Data.Linq.Table(Of Cap_CapSign_Int)
+		Get
+			Return Me.GetTable(Of Cap_CapSign_Int)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Storages() As System.Data.Linq.Table(Of Storage)
+		Get
+			Return Me.GetTable(Of Storage)
+		End Get
+	End Property
+	
+	Public ReadOnly Property StoredImages() As System.Data.Linq.Table(Of StoredImage)
+		Get
+			Return Me.GetTable(Of StoredImage)
+		End Get
+	End Property
+	
+	Public ReadOnly Property PseudoCategories() As System.Data.Linq.Table(Of PseudoCategory)
+		Get
+			Return Me.GetTable(Of PseudoCategory)
+		End Get
+	End Property
+	
+	Public ReadOnly Property Cap_PseudoCategory_Ints() As System.Data.Linq.Table(Of Cap_PseudoCategory_Int)
+		Get
+			Return Me.GetTable(Of Cap_PseudoCategory_Int)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CapTranslations() As System.Data.Linq.Table(Of CapTranslation)
+		Get
+			Return Me.GetTable(Of CapTranslation)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ShapeTranslations() As System.Data.Linq.Table(Of ShapeTranslation)
+		Get
+			Return Me.GetTable(Of ShapeTranslation)
+		End Get
+	End Property
+	
+	Public ReadOnly Property SimpleTranslations() As System.Data.Linq.Table(Of SimpleTranslation)
+		Get
+			Return Me.GetTable(Of SimpleTranslation)
+		End Get
+	End Property
+	
+	Public ReadOnly Property CapFullTranslations() As System.Data.Linq.Table(Of CapFullTranslation)
+		Get
+			Return Me.GetTable(Of CapFullTranslation)
+		End Get
+	End Property
+	
+	Public ReadOnly Property ShapeFullTranslations() As System.Data.Linq.Table(Of ShapeFullTranslation)
+		Get
+			Return Me.GetTable(Of ShapeFullTranslation)
+		End Get
+	End Property
+	
+	Public ReadOnly Property SimpleFullTranslations() As System.Data.Linq.Table(Of SimpleFullTranslation)
+		Get
+			Return Me.GetTable(Of SimpleFullTranslation)
+		End Get
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.GetDatabaseVersion", IsComposable:=true)>  _
 	Public Function GetDatabaseVersion() As String
 		Return CType(Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo)).ReturnValue,String)
@@ -294,6 +396,23 @@ Partial Public Class CapsDataDataContext
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(IsComposable:=true)>  _
 	Public Function NewID() As System.Nullable(Of System.Guid)
 		Return CType(Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo)).ReturnValue,System.Nullable(Of System.Guid))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.Romanize", IsComposable:=true)>  _
+	Public Function Romanize(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="Str", DbType:="NVarChar(MAX)")> ByVal str As String) As String
+		Return CType(Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), str).ReturnValue,String)
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.Get_Cap_PseudoCategory_Int")>  _
+	Public Function Get_Cap_PseudoCategory_Int() As ISingleResult(Of Cap_PseudoCategory_Int)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
+		Return CType(result.ReturnValue,ISingleResult(Of Cap_PseudoCategory_Int))
+	End Function
+	
+	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.GetCapsOfPseudoCategory")>  _
+	Public Function GetCapsOfPseudoCategory(<Global.System.Data.Linq.Mapping.ParameterAttribute(Name:="PseudoCategoryID", DbType:="Int")> ByVal pseudoCategoryID As System.Nullable(Of Integer)) As ISingleResult(Of Cap)
+		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), pseudoCategoryID)
+		Return CType(result.ReturnValue,ISingleResult(Of Cap))
 	End Function
 End Class
 
@@ -563,6 +682,10 @@ Partial Public Class CapType
 	
 	Private _Caps As EntitySet(Of Cap)
 	
+	Private _StoredImages As EntitySet(Of StoredImage)
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
+	
 	Private _MainType As EntityRef(Of MainType)
 	
 	Private _Material As EntityRef(Of Material)
@@ -619,6 +742,8 @@ Partial Public Class CapType
 	Public Sub New()
 		MyBase.New
 		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
+		Me._StoredImages = New EntitySet(Of StoredImage)(AddressOf Me.attach_StoredImages, AddressOf Me.detach_StoredImages)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		Me._MainType = CType(Nothing, EntityRef(Of MainType))
 		Me._Material = CType(Nothing, EntityRef(Of Material))
 		Me._Shape = CType(Nothing, EntityRef(Of Shape))
@@ -804,6 +929,26 @@ Partial Public Class CapType
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapType_StoredImage", Storage:="_StoredImages", ThisKey:="CapTypeID", OtherKey:="CapTypeID")>  _
+	Public Property StoredImages() As EntitySet(Of StoredImage)
+		Get
+			Return Me._StoredImages
+		End Get
+		Set
+			Me._StoredImages.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapType_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="CapTypeID", OtherKey:="CapTypeID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="MainType_CapType", Storage:="_MainType", ThisKey:="MainTypeID", OtherKey:="MainTypeID", IsForeignKey:=true)>  _
 	Public Property MainType() As MainType
 		Get
@@ -943,6 +1088,26 @@ Partial Public Class CapType
 		Me.SendPropertyChanging
 		entity.CapType = Nothing
 	End Sub
+	
+	Private Sub attach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.CapType = Me
+	End Sub
+	
+	Private Sub detach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.CapType = Nothing
+	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.CapType = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.CapType = Nothing
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Category")>  _
@@ -958,6 +1123,8 @@ Partial Public Class Category
 	Private _Description As String
 	
 	Private _Cap_Category_Ints As EntitySet(Of Cap_Category_Int)
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -979,6 +1146,7 @@ Partial Public Class Category
 	Public Sub New()
 		MyBase.New
 		Me._Cap_Category_Ints = New EntitySet(Of Cap_Category_Int)(AddressOf Me.attach_Cap_Category_Ints, AddressOf Me.detach_Cap_Category_Ints)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		OnCreated
 	End Sub
 	
@@ -1031,6 +1199,16 @@ Partial Public Class Category
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Category_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="CategoryID", OtherKey:="CategoryID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -1058,6 +1236,16 @@ Partial Public Class Category
 		Me.SendPropertyChanging
 		entity.Category = Nothing
 	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Category = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Category = Nothing
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Company")>  _
@@ -1075,6 +1263,8 @@ Partial Public Class Company
 	Private _Products As EntitySet(Of Product)
 	
 	Private _Caps As EntitySet(Of Cap)
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -1097,6 +1287,7 @@ Partial Public Class Company
 		MyBase.New
 		Me._Products = New EntitySet(Of Product)(AddressOf Me.attach_Products, AddressOf Me.detach_Products)
 		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		OnCreated
 	End Sub
 	
@@ -1159,6 +1350,16 @@ Partial Public Class Company
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Company_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="CompanyID", OtherKey:="CompanyID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -1196,6 +1397,16 @@ Partial Public Class Company
 		Me.SendPropertyChanging
 		entity.Company = Nothing
 	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Company = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Company = Nothing
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Keyword")>  _
@@ -1210,6 +1421,8 @@ Partial Public Class Keyword
 	
 	Private _Cap_Keyword_Ints As EntitySet(Of Cap_Keyword_Int)
 	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -1222,6 +1435,7 @@ Partial Public Class Keyword
 	Public Sub New()
 		MyBase.New
 		Me._Cap_Keyword_Ints = New EntitySet(Of Cap_Keyword_Int)(AddressOf Me.attach_Cap_Keyword_Ints, AddressOf Me.detach_Cap_Keyword_Ints)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		OnCreated
 	End Sub
 	
@@ -1246,6 +1460,16 @@ Partial Public Class Keyword
 		End Get
 		Set
 			Me._Cap_Keyword_Ints.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Keyword_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="KeywordID", OtherKey:="KeywordID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
 		End Set
 	End Property
 	
@@ -1276,6 +1500,16 @@ Partial Public Class Keyword
 		Me.SendPropertyChanging
 		entity.Keyword = Nothing
 	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Keyword = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Keyword = Nothing
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.MainType")>  _
@@ -1293,6 +1527,10 @@ Partial Public Class MainType
 	Private _CapTypes As EntitySet(Of CapType)
 	
 	Private _Caps As EntitySet(Of Cap)
+	
+	Private _StoredImages As EntitySet(Of StoredImage)
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -1315,6 +1553,8 @@ Partial Public Class MainType
 		MyBase.New
 		Me._CapTypes = New EntitySet(Of CapType)(AddressOf Me.attach_CapTypes, AddressOf Me.detach_CapTypes)
 		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
+		Me._StoredImages = New EntitySet(Of StoredImage)(AddressOf Me.attach_StoredImages, AddressOf Me.detach_StoredImages)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		OnCreated
 	End Sub
 	
@@ -1377,6 +1617,26 @@ Partial Public Class MainType
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="MainType_StoredImage", Storage:="_StoredImages", ThisKey:="MainTypeID", OtherKey:="MainTypeID")>  _
+	Public Property StoredImages() As EntitySet(Of StoredImage)
+		Get
+			Return Me._StoredImages
+		End Get
+		Set
+			Me._StoredImages.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="MainType_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="MainTypeID", OtherKey:="MainTypeID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -1414,6 +1674,26 @@ Partial Public Class MainType
 		Me.SendPropertyChanging
 		entity.MainType = Nothing
 	End Sub
+	
+	Private Sub attach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.MainType = Me
+	End Sub
+	
+	Private Sub detach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.MainType = Nothing
+	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.MainType = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.MainType = Nothing
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Material")>  _
@@ -1431,6 +1711,8 @@ Partial Public Class Material
 	Private _CapTypes As EntitySet(Of CapType)
 	
 	Private _Caps As EntitySet(Of Cap)
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -1453,6 +1735,7 @@ Partial Public Class Material
 		MyBase.New
 		Me._CapTypes = New EntitySet(Of CapType)(AddressOf Me.attach_CapTypes, AddressOf Me.detach_CapTypes)
 		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		OnCreated
 	End Sub
 	
@@ -1515,6 +1798,16 @@ Partial Public Class Material
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Material_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="MaterialID", OtherKey:="MaterialID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -1552,6 +1845,16 @@ Partial Public Class Material
 		Me.SendPropertyChanging
 		entity.Material = Nothing
 	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Material = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Material = Nothing
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Product")>  _
@@ -1571,6 +1874,8 @@ Partial Public Class Product
 	Private _Description As String
 	
 	Private _Caps As EntitySet(Of Cap)
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
 	
 	Private _Company As EntityRef(Of Company)
 	
@@ -1608,6 +1913,7 @@ Partial Public Class Product
 	Public Sub New()
 		MyBase.New
 		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		Me._Company = CType(Nothing, EntityRef(Of Company))
 		Me._ProductType = CType(Nothing, EntityRef(Of ProductType))
 		OnCreated
@@ -1710,6 +2016,16 @@ Partial Public Class Product
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Product_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="ProductID", OtherKey:="ProductID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Company_Product", Storage:="_Company", ThisKey:="CompanyID", OtherKey:="CompanyID", IsForeignKey:=true)>  _
 	Public Property Company() As Company
 		Get
@@ -1793,6 +2109,16 @@ Partial Public Class Product
 		Me.SendPropertyChanging
 		entity.Product = Nothing
 	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Product = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Product = Nothing
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ProductType")>  _
@@ -1814,6 +2140,8 @@ Partial Public Class ProductType
 	Private _Products As EntitySet(Of Product)
 	
 	Private _Caps As EntitySet(Of Cap)
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -1844,6 +2172,7 @@ Partial Public Class ProductType
 		MyBase.New
 		Me._Products = New EntitySet(Of Product)(AddressOf Me.attach_Products, AddressOf Me.detach_Products)
 		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		OnCreated
 	End Sub
 	
@@ -1938,6 +2267,16 @@ Partial Public Class ProductType
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ProductType_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="ProductTypeID", OtherKey:="ProductTypeID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -1975,200 +2314,15 @@ Partial Public Class ProductType
 		Me.SendPropertyChanging
 		entity.ProductType = Nothing
 	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Storage")>  _
-Partial Public Class Storage
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _StorageID As Integer = CType(Nothing, Integer)
-	
-	Private _StorageNumber As String
-	
-	Private _Description As String
-	
-	Private _StorageTypeID As Integer
-	
-	Private _Caps As EntitySet(Of Cap)
-	
-	Private _CapInstances As EntitySet(Of CapInstance)
-	
-	Private _StorageType As EntityRef(Of StorageType)
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnStorageNumberChanging(value As String)
-    End Sub
-    Partial Private Sub OnStorageNumberChanged()
-    End Sub
-    Partial Private Sub OnDescriptionChanging(value As String)
-    End Sub
-    Partial Private Sub OnDescriptionChanged()
-    End Sub
-    Partial Private Sub OnStorageTypeIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnStorageTypeIDChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
-		Me._CapInstances = New EntitySet(Of CapInstance)(AddressOf Me.attach_CapInstances, AddressOf Me.detach_CapInstances)
-		Me._StorageType = CType(Nothing, EntityRef(Of StorageType))
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StorageID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true, UpdateCheck:=UpdateCheck.Never)>  _
-	Public ReadOnly Property StorageID() As Integer
-		Get
-			Return Me._StorageID
-		End Get
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StorageNumber", DbType:="NvarChar (10) NOT NULL", CanBeNull:=false)>  _
-	Public Property StorageNumber() As String
-		Get
-			Return Me._StorageNumber
-		End Get
-		Set
-			If (String.Equals(Me._StorageNumber, value) = false) Then
-				Me.OnStorageNumberChanging(value)
-				Me.SendPropertyChanging
-				Me._StorageNumber = value
-				Me.SendPropertyChanged("StorageNumber")
-				Me.OnStorageNumberChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(MAX)")>  _
-	Public Property Description() As String
-		Get
-			Return Me._Description
-		End Get
-		Set
-			If (String.Equals(Me._Description, value) = false) Then
-				Me.OnDescriptionChanging(value)
-				Me.SendPropertyChanging
-				Me._Description = value
-				Me.SendPropertyChanged("Description")
-				Me.OnDescriptionChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StorageTypeID", DbType:="Int NOT NULL")>  _
-	Public Property StorageTypeID() As Integer
-		Get
-			Return Me._StorageTypeID
-		End Get
-		Set
-			If ((Me._StorageTypeID = value)  _
-						= false) Then
-				If Me._StorageType.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnStorageTypeIDChanging(value)
-				Me.SendPropertyChanging
-				Me._StorageTypeID = value
-				Me.SendPropertyChanged("StorageTypeID")
-				Me.OnStorageTypeIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_Cap", Storage:="_Caps", ThisKey:="StorageID", OtherKey:="StorageID")>  _
-	Public Property Caps() As EntitySet(Of Cap)
-		Get
-			Return Me._Caps
-		End Get
-		Set
-			Me._Caps.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_CapInstance", Storage:="_CapInstances", ThisKey:="StorageID", OtherKey:="StorageID")>  _
-	Public Property CapInstances() As EntitySet(Of CapInstance)
-		Get
-			Return Me._CapInstances
-		End Get
-		Set
-			Me._CapInstances.Assign(value)
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="StorageType_Storage", Storage:="_StorageType", ThisKey:="StorageTypeID", OtherKey:="StorageTypeID", IsForeignKey:=true)>  _
-	Public Property StorageType() As StorageType
-		Get
-			Return Me._StorageType.Entity
-		End Get
-		Set
-			Dim previousValue As StorageType = Me._StorageType.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._StorageType.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._StorageType.Entity = Nothing
-					previousValue.Storages.Remove(Me)
-				End If
-				Me._StorageType.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.Storages.Add(Me)
-					Me._StorageTypeID = value.StorageTypeID
-				Else
-					Me._StorageTypeID = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("StorageType")
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-	
-	Private Sub attach_Caps(ByVal entity As Cap)
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
 		Me.SendPropertyChanging
-		entity.Storage = Me
+		entity.ProductType = Me
 	End Sub
 	
-	Private Sub detach_Caps(ByVal entity As Cap)
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
 		Me.SendPropertyChanging
-		entity.Storage = Nothing
-	End Sub
-	
-	Private Sub attach_CapInstances(ByVal entity As CapInstance)
-		Me.SendPropertyChanging
-		entity.Storage = Me
-	End Sub
-	
-	Private Sub detach_CapInstances(ByVal entity As CapInstance)
-		Me.SendPropertyChanging
-		entity.Storage = Nothing
+		entity.ProductType = Nothing
 	End Sub
 End Class
 
@@ -2185,6 +2339,8 @@ Partial Public Class StorageType
 	Private _Description As String
 	
 	Private _Storages As EntitySet(Of Storage)
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -2206,6 +2362,7 @@ Partial Public Class StorageType
 	Public Sub New()
 		MyBase.New
 		Me._Storages = New EntitySet(Of Storage)(AddressOf Me.attach_Storages, AddressOf Me.detach_Storages)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		OnCreated
 	End Sub
 	
@@ -2258,6 +2415,16 @@ Partial Public Class StorageType
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="StorageType_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="StorageTypeID", OtherKey:="StorageTypeID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -2282,6 +2449,16 @@ Partial Public Class StorageType
 	End Sub
 	
 	Private Sub detach_Storages(ByVal entity As Storage)
+		Me.SendPropertyChanging
+		entity.StorageType = Nothing
+	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.StorageType = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
 		Me.SendPropertyChanging
 		entity.StorageType = Nothing
 	End Sub
@@ -2369,8 +2546,6 @@ Partial Public Class Cap
 	
 	Private _IsAlcoholic As System.Nullable(Of Boolean)
 	
-	Private _CapSignID As System.Nullable(Of Integer)
-	
 	Private _Cap_Category_Ints As EntitySet(Of Cap_Category_Int)
 	
 	Private _Cap_Keyword_Ints As EntitySet(Of Cap_Keyword_Int)
@@ -2378,6 +2553,12 @@ Partial Public Class Cap
 	Private _Images As EntitySet(Of Image)
 	
 	Private _CapInstances As EntitySet(Of CapInstance)
+	
+	Private _Cap_CapSign_Ints As EntitySet(Of Cap_CapSign_Int)
+	
+	Private _Cap_PseudoCategory_Ints As EntitySet(Of Cap_PseudoCategory_Int)
+	
+	Private _CapTranslations As EntitySet(Of CapTranslation)
 	
 	Private _CapType As EntityRef(Of CapType)
 	
@@ -2391,13 +2572,11 @@ Partial Public Class Cap
 	
 	Private _ProductType As EntityRef(Of ProductType)
 	
-	Private _Storage As EntityRef(Of Storage)
-	
 	Private _Shape As EntityRef(Of Shape)
 	
 	Private _Target As EntityRef(Of Target)
 	
-	Private _CapSign As EntityRef(Of CapSign)
+	Private _Storage As EntityRef(Of Storage)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -2550,10 +2729,6 @@ Partial Public Class Cap
     End Sub
     Partial Private Sub OnIsAlcoholicChanged()
     End Sub
-    Partial Private Sub OnCapSignIDChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnCapSignIDChanged()
-    End Sub
     #End Region
 	
 	Public Sub New()
@@ -2562,16 +2737,18 @@ Partial Public Class Cap
 		Me._Cap_Keyword_Ints = New EntitySet(Of Cap_Keyword_Int)(AddressOf Me.attach_Cap_Keyword_Ints, AddressOf Me.detach_Cap_Keyword_Ints)
 		Me._Images = New EntitySet(Of Image)(AddressOf Me.attach_Images, AddressOf Me.detach_Images)
 		Me._CapInstances = New EntitySet(Of CapInstance)(AddressOf Me.attach_CapInstances, AddressOf Me.detach_CapInstances)
+		Me._Cap_CapSign_Ints = New EntitySet(Of Cap_CapSign_Int)(AddressOf Me.attach_Cap_CapSign_Ints, AddressOf Me.detach_Cap_CapSign_Ints)
+		Me._Cap_PseudoCategory_Ints = New EntitySet(Of Cap_PseudoCategory_Int)(AddressOf Me.attach_Cap_PseudoCategory_Ints, AddressOf Me.detach_Cap_PseudoCategory_Ints)
+		Me._CapTranslations = New EntitySet(Of CapTranslation)(AddressOf Me.attach_CapTranslations, AddressOf Me.detach_CapTranslations)
 		Me._CapType = CType(Nothing, EntityRef(Of CapType))
 		Me._Company = CType(Nothing, EntityRef(Of Company))
 		Me._MainType = CType(Nothing, EntityRef(Of MainType))
 		Me._Material = CType(Nothing, EntityRef(Of Material))
 		Me._Product = CType(Nothing, EntityRef(Of Product))
 		Me._ProductType = CType(Nothing, EntityRef(Of ProductType))
-		Me._Storage = CType(Nothing, EntityRef(Of Storage))
 		Me._Shape = CType(Nothing, EntityRef(Of Shape))
 		Me._Target = CType(Nothing, EntityRef(Of Target))
-		Me._CapSign = CType(Nothing, EntityRef(Of CapSign))
+		Me._Storage = CType(Nothing, EntityRef(Of Storage))
 		OnCreated
 	End Sub
 	
@@ -3204,25 +3381,6 @@ Partial Public Class Cap
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapSignID", DbType:="Int")>  _
-	Public Overridable Property CapSignID() As System.Nullable(Of Integer)
-		Get
-			Return Me._CapSignID
-		End Get
-		Set
-			If (Me._CapSignID.Equals(value) = false) Then
-				If Me._CapSign.HasLoadedOrAssignedValue Then
-					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
-				End If
-				Me.OnCapSignIDChanging(value)
-				Me.SendPropertyChanging
-				Me._CapSignID = value
-				Me.SendPropertyChanged("CapSignID")
-				Me.OnCapSignIDChanged
-			End If
-		End Set
-	End Property
-	
 	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Cap_Cap_Category_Int", Storage:="_Cap_Category_Ints", ThisKey:="CapID", OtherKey:="CapID")>  _
 	Public Property Cap_Category_Ints() As EntitySet(Of Cap_Category_Int)
 		Get
@@ -3260,6 +3418,36 @@ Partial Public Class Cap
 		End Get
 		Set
 			Me._CapInstances.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Cap_Cap_CapSign_Int", Storage:="_Cap_CapSign_Ints", ThisKey:="CapID", OtherKey:="CapID")>  _
+	Public Property Cap_CapSign_Ints() As EntitySet(Of Cap_CapSign_Int)
+		Get
+			Return Me._Cap_CapSign_Ints
+		End Get
+		Set
+			Me._Cap_CapSign_Ints.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Cap_Cap_PseudoCategory_Int", Storage:="_Cap_PseudoCategory_Ints", ThisKey:="CapID", OtherKey:="CapID")>  _
+	Public Property Cap_PseudoCategory_Ints() As EntitySet(Of Cap_PseudoCategory_Int)
+		Get
+			Return Me._Cap_PseudoCategory_Ints
+		End Get
+		Set
+			Me._Cap_PseudoCategory_Ints.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Cap_CapTranslation", Storage:="_CapTranslations", ThisKey:="CapID", OtherKey:="CapID")>  _
+	Public Property CapTranslations() As EntitySet(Of CapTranslation)
+		Get
+			Return Me._CapTranslations
+		End Get
+		Set
+			Me._CapTranslations.Assign(value)
 		End Set
 	End Property
 	
@@ -3431,34 +3619,6 @@ Partial Public Class Cap
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_Cap", Storage:="_Storage", ThisKey:="StorageID", OtherKey:="StorageID", IsForeignKey:=true)>  _
-	Public Property Storage() As Storage
-		Get
-			Return Me._Storage.Entity
-		End Get
-		Set
-			Dim previousValue As Storage = Me._Storage.Entity
-			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._Storage.HasLoadedOrAssignedValue = false)) Then
-				Me.SendPropertyChanging
-				If ((previousValue Is Nothing)  _
-							= false) Then
-					Me._Storage.Entity = Nothing
-					previousValue.Caps.Remove(Me)
-				End If
-				Me._Storage.Entity = value
-				If ((value Is Nothing)  _
-							= false) Then
-					value.Caps.Add(Me)
-					Me._StorageID = value.StorageID
-				Else
-					Me._StorageID = CType(Nothing, Integer)
-				End If
-				Me.SendPropertyChanged("Storage")
-			End If
-		End Set
-	End Property
-	
 	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Shape_Cap", Storage:="_Shape", ThisKey:="ShapeID", OtherKey:="ShapeID", IsForeignKey:=true)>  _
 	Public Property Shape() As Shape
 		Get
@@ -3515,30 +3675,30 @@ Partial Public Class Cap
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapSign_Cap", Storage:="_CapSign", ThisKey:="CapSignID", OtherKey:="CapSignID", IsForeignKey:=true)>  _
-	Public Property CapSign() As CapSign
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_Cap", Storage:="_Storage", ThisKey:="StorageID", OtherKey:="StorageID", IsForeignKey:=true)>  _
+	Public Property Storage() As Storage
 		Get
-			Return Me._CapSign.Entity
+			Return Me._Storage.Entity
 		End Get
 		Set
-			Dim previousValue As CapSign = Me._CapSign.Entity
+			Dim previousValue As Storage = Me._Storage.Entity
 			If ((Object.Equals(previousValue, value) = false)  _
-						OrElse (Me._CapSign.HasLoadedOrAssignedValue = false)) Then
+						OrElse (Me._Storage.HasLoadedOrAssignedValue = false)) Then
 				Me.SendPropertyChanging
 				If ((previousValue Is Nothing)  _
 							= false) Then
-					Me._CapSign.Entity = Nothing
+					Me._Storage.Entity = Nothing
 					previousValue.Caps.Remove(Me)
 				End If
-				Me._CapSign.Entity = value
+				Me._Storage.Entity = value
 				If ((value Is Nothing)  _
 							= false) Then
 					value.Caps.Add(Me)
-					Me._CapSignID = value.CapSignID
+					Me._StorageID = value.StorageID
 				Else
-					Me._CapSignID = CType(Nothing, Nullable(Of Integer))
+					Me._StorageID = CType(Nothing, Integer)
 				End If
-				Me.SendPropertyChanged("CapSign")
+				Me.SendPropertyChanged("Storage")
 			End If
 		End Set
 	End Property
@@ -3600,6 +3760,36 @@ Partial Public Class Cap
 		Me.SendPropertyChanging
 		entity.Cap = Nothing
 	End Sub
+	
+	Private Sub attach_Cap_CapSign_Ints(ByVal entity As Cap_CapSign_Int)
+		Me.SendPropertyChanging
+		entity.Cap = Me
+	End Sub
+	
+	Private Sub detach_Cap_CapSign_Ints(ByVal entity As Cap_CapSign_Int)
+		Me.SendPropertyChanging
+		entity.Cap = Nothing
+	End Sub
+	
+	Private Sub attach_Cap_PseudoCategory_Ints(ByVal entity As Cap_PseudoCategory_Int)
+		Me.SendPropertyChanging
+		entity.Cap = Me
+	End Sub
+	
+	Private Sub detach_Cap_PseudoCategory_Ints(ByVal entity As Cap_PseudoCategory_Int)
+		Me.SendPropertyChanging
+		entity.Cap = Nothing
+	End Sub
+	
+	Private Sub attach_CapTranslations(ByVal entity As CapTranslation)
+		Me.SendPropertyChanging
+		entity.Cap = Me
+	End Sub
+	
+	Private Sub detach_CapTranslations(ByVal entity As CapTranslation)
+		Me.SendPropertyChanging
+		entity.Cap = Nothing
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Shape")>  _
@@ -3621,6 +3811,10 @@ Partial Public Class Shape
 	Private _CapTypes As EntitySet(Of CapType)
 	
 	Private _Caps As EntitySet(Of Cap)
+	
+	Private _StoredImages As EntitySet(Of StoredImage)
+	
+	Private _ShapeTranslations As EntitySet(Of ShapeTranslation)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -3651,6 +3845,8 @@ Partial Public Class Shape
 		MyBase.New
 		Me._CapTypes = New EntitySet(Of CapType)(AddressOf Me.attach_CapTypes, AddressOf Me.detach_CapTypes)
 		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
+		Me._StoredImages = New EntitySet(Of StoredImage)(AddressOf Me.attach_StoredImages, AddressOf Me.detach_StoredImages)
+		Me._ShapeTranslations = New EntitySet(Of ShapeTranslation)(AddressOf Me.attach_ShapeTranslations, AddressOf Me.detach_ShapeTranslations)
 		OnCreated
 	End Sub
 	
@@ -3745,6 +3941,26 @@ Partial Public Class Shape
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Shape_StoredImage", Storage:="_StoredImages", ThisKey:="ShapeID", OtherKey:="ShapeID")>  _
+	Public Property StoredImages() As EntitySet(Of StoredImage)
+		Get
+			Return Me._StoredImages
+		End Get
+		Set
+			Me._StoredImages.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Shape_ShapeTranslation", Storage:="_ShapeTranslations", ThisKey:="ShapeID", OtherKey:="ShapeID")>  _
+	Public Property ShapeTranslations() As EntitySet(Of ShapeTranslation)
+		Get
+			Return Me._ShapeTranslations
+		End Get
+		Set
+			Me._ShapeTranslations.Assign(value)
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -3782,6 +3998,26 @@ Partial Public Class Shape
 		Me.SendPropertyChanging
 		entity.Shape = Nothing
 	End Sub
+	
+	Private Sub attach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.Shape = Me
+	End Sub
+	
+	Private Sub detach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.Shape = Nothing
+	End Sub
+	
+	Private Sub attach_ShapeTranslations(ByVal entity As ShapeTranslation)
+		Me.SendPropertyChanging
+		entity.Shape = Me
+	End Sub
+	
+	Private Sub detach_ShapeTranslations(ByVal entity As ShapeTranslation)
+		Me.SendPropertyChanging
+		entity.Shape = Nothing
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Image")>  _
@@ -3797,6 +4033,8 @@ Partial Public Class Image
 	Private _CapID As Integer
 	
 	Private _IsMain As Boolean
+	
+	Private _StoredImages As EntitySet(Of StoredImage)
 	
 	Private _Cap As EntityRef(Of Cap)
 	
@@ -3823,6 +4061,7 @@ Partial Public Class Image
 	
 	Public Sub New()
 		MyBase.New
+		Me._StoredImages = New EntitySet(Of StoredImage)(AddressOf Me.attach_StoredImages, AddressOf Me.detach_StoredImages)
 		Me._Cap = CType(Nothing, EntityRef(Of Cap))
 		OnCreated
 	End Sub
@@ -3887,6 +4126,16 @@ Partial Public Class Image
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Image_StoredImage", Storage:="_StoredImages", ThisKey:="ImageID", OtherKey:="ImageID")>  _
+	Public Property StoredImages() As EntitySet(Of StoredImage)
+		Get
+			Return Me._StoredImages
+		End Get
+		Set
+			Me._StoredImages.Assign(value)
+		End Set
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Cap_Image", Storage:="_Cap", ThisKey:="CapID", OtherKey:="CapID", IsForeignKey:=true)>  _
 	Public Property Cap() As Cap
 		Get
@@ -3932,6 +4181,16 @@ Partial Public Class Image
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
 	End Sub
+	
+	Private Sub attach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.Image = Me
+	End Sub
+	
+	Private Sub detach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.Image = Nothing
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Target")>  _
@@ -3949,6 +4208,8 @@ Partial Public Class Target
 	Private _CapTypes As EntitySet(Of CapType)
 	
 	Private _Caps As EntitySet(Of Cap)
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -3971,6 +4232,7 @@ Partial Public Class Target
 		MyBase.New
 		Me._CapTypes = New EntitySet(Of CapType)(AddressOf Me.attach_CapTypes, AddressOf Me.detach_CapTypes)
 		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		OnCreated
 	End Sub
 	
@@ -4033,6 +4295,16 @@ Partial Public Class Target
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Target_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="TargetID", OtherKey:="TargetID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
 	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
 	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
@@ -4070,6 +4342,16 @@ Partial Public Class Target
 		Me.SendPropertyChanging
 		entity.Target = Nothing
 	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Target = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Target = Nothing
+	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CapInstance")>  _
@@ -4093,6 +4375,8 @@ Partial Public Class CapInstance
 	Private _DateCreated As Date = CType(Nothing, Date)
 	
 	Private _Note As String
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
 	
 	Private _Cap As EntityRef(Of Cap)
 	
@@ -4129,6 +4413,7 @@ Partial Public Class CapInstance
 	
 	Public Sub New()
 		MyBase.New
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		Me._Cap = CType(Nothing, EntityRef(Of Cap))
 		Me._Storage = CType(Nothing, EntityRef(Of Storage))
 		OnCreated
@@ -4240,6 +4525,16 @@ Partial Public Class CapInstance
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapInstance_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="CapInstanceID", OtherKey:="CapInstanceID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Cap_CapInstance", Storage:="_Cap", ThisKey:="CapID", OtherKey:="CapID", IsForeignKey:=true)>  _
 	Public Property Cap() As Cap
 		Get
@@ -4312,6 +4607,16 @@ Partial Public Class CapInstance
 					= false) Then
 			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
 		End If
+	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.CapInstance = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.CapInstance = Nothing
 	End Sub
 End Class
 
@@ -4410,7 +4715,11 @@ Partial Public Class CapSign
 	
 	Private _Description As String
 	
-	Private _Caps As EntitySet(Of Cap)
+	Private _Cap_CapSign_Ints As EntitySet(Of Cap_CapSign_Int)
+	
+	Private _StoredImages As EntitySet(Of StoredImage)
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -4435,7 +4744,9 @@ Partial Public Class CapSign
 	
 	Public Sub New()
 		MyBase.New
-		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
+		Me._Cap_CapSign_Ints = New EntitySet(Of Cap_CapSign_Int)(AddressOf Me.attach_Cap_CapSign_Ints, AddressOf Me.detach_Cap_CapSign_Ints)
+		Me._StoredImages = New EntitySet(Of StoredImage)(AddressOf Me.attach_StoredImages, AddressOf Me.detach_StoredImages)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
 		OnCreated
 	End Sub
 	
@@ -4488,13 +4799,520 @@ Partial Public Class CapSign
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapSign_Cap", Storage:="_Caps", ThisKey:="CapSignID", OtherKey:="CapSignID")>  _
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapSign_Cap_CapSign_Int", Storage:="_Cap_CapSign_Ints", ThisKey:="CapSignID", OtherKey:="CapSignID")>  _
+	Public Property Cap_CapSign_Ints() As EntitySet(Of Cap_CapSign_Int)
+		Get
+			Return Me._Cap_CapSign_Ints
+		End Get
+		Set
+			Me._Cap_CapSign_Ints.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapSign_StoredImage", Storage:="_StoredImages", ThisKey:="CapSignID", OtherKey:="CapSignID")>  _
+	Public Property StoredImages() As EntitySet(Of StoredImage)
+		Get
+			Return Me._StoredImages
+		End Get
+		Set
+			Me._StoredImages.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapSign_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="CapSignID", OtherKey:="CapSignID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+	
+	Private Sub attach_Cap_CapSign_Ints(ByVal entity As Cap_CapSign_Int)
+		Me.SendPropertyChanging
+		entity.CapSign = Me
+	End Sub
+	
+	Private Sub detach_Cap_CapSign_Ints(ByVal entity As Cap_CapSign_Int)
+		Me.SendPropertyChanging
+		entity.CapSign = Nothing
+	End Sub
+	
+	Private Sub attach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.CapSign = Me
+	End Sub
+	
+	Private Sub detach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.CapSign = Nothing
+	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.CapSign = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.CapSign = Nothing
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Cap_CapSign_Int")>  _
+Partial Public Class Cap_CapSign_Int
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CapID As Integer
+	
+	Private _CapSignID As Integer
+	
+	Private _Cap As EntityRef(Of Cap)
+	
+	Private _CapSign As EntityRef(Of CapSign)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCapIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCapIDChanged()
+    End Sub
+    Partial Private Sub OnCapSignIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCapSignIDChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._Cap = CType(Nothing, EntityRef(Of Cap))
+		Me._CapSign = CType(Nothing, EntityRef(Of CapSign))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CapID() As Integer
+		Get
+			Return Me._CapID
+		End Get
+		Set
+			If ((Me._CapID = value)  _
+						= false) Then
+				If Me._Cap.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnCapIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CapID = value
+				Me.SendPropertyChanged("CapID")
+				Me.OnCapIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapSignID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	Public Property CapSignID() As Integer
+		Get
+			Return Me._CapSignID
+		End Get
+		Set
+			If ((Me._CapSignID = value)  _
+						= false) Then
+				If Me._CapSign.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnCapSignIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CapSignID = value
+				Me.SendPropertyChanged("CapSignID")
+				Me.OnCapSignIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Cap_Cap_CapSign_Int", Storage:="_Cap", ThisKey:="CapID", OtherKey:="CapID", IsForeignKey:=true, DeleteOnNull:=true, DeleteRule:="CASCADE")>  _
+	Public Property Cap() As Cap
+		Get
+			Return Me._Cap.Entity
+		End Get
+		Set
+			Dim previousValue As Cap = Me._Cap.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Cap.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Cap.Entity = Nothing
+					previousValue.Cap_CapSign_Ints.Remove(Me)
+				End If
+				Me._Cap.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Cap_CapSign_Ints.Add(Me)
+					Me._CapID = value.CapID
+				Else
+					Me._CapID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("Cap")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapSign_Cap_CapSign_Int", Storage:="_CapSign", ThisKey:="CapSignID", OtherKey:="CapSignID", IsForeignKey:=true, DeleteOnNull:=true, DeleteRule:="CASCADE")>  _
+	Public Property CapSign() As CapSign
+		Get
+			Return Me._CapSign.Entity
+		End Get
+		Set
+			Dim previousValue As CapSign = Me._CapSign.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._CapSign.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._CapSign.Entity = Nothing
+					previousValue.Cap_CapSign_Ints.Remove(Me)
+				End If
+				Me._CapSign.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Cap_CapSign_Ints.Add(Me)
+					Me._CapSignID = value.CapSignID
+				Else
+					Me._CapSignID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("CapSign")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Storage")>  _
+Partial Public Class Storage
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _StorageID As Integer
+	
+	Private _StorageNumber As String
+	
+	Private _Description As String
+	
+	Private _StorageTypeID As Integer
+	
+	Private _ParentStorageID As System.Nullable(Of Integer)
+	
+	Private _HasCaps As Boolean
+	
+	Private _Caps As EntitySet(Of Cap)
+	
+	Private _CapInstances As EntitySet(Of CapInstance)
+	
+	Private _ChildStorages As EntitySet(Of Storage)
+	
+	Private _StoredImages As EntitySet(Of StoredImage)
+	
+	Private _SimpleTranslations As EntitySet(Of SimpleTranslation)
+	
+	Private _ParentStorage As EntityRef(Of Storage)
+	
+	Private _StorageType As EntityRef(Of StorageType)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnStorageIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnStorageIDChanged()
+    End Sub
+    Partial Private Sub OnStorageNumberChanging(value As String)
+    End Sub
+    Partial Private Sub OnStorageNumberChanged()
+    End Sub
+    Partial Private Sub OnDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnDescriptionChanged()
+    End Sub
+    Partial Private Sub OnStorageTypeIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnStorageTypeIDChanged()
+    End Sub
+    Partial Private Sub OnParentStorageIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnParentStorageIDChanged()
+    End Sub
+    Partial Private Sub OnHasCapsChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnHasCapsChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._Caps = New EntitySet(Of Cap)(AddressOf Me.attach_Caps, AddressOf Me.detach_Caps)
+		Me._CapInstances = New EntitySet(Of CapInstance)(AddressOf Me.attach_CapInstances, AddressOf Me.detach_CapInstances)
+		Me._ChildStorages = New EntitySet(Of Storage)(AddressOf Me.attach_ChildStorages, AddressOf Me.detach_ChildStorages)
+		Me._StoredImages = New EntitySet(Of StoredImage)(AddressOf Me.attach_StoredImages, AddressOf Me.detach_StoredImages)
+		Me._SimpleTranslations = New EntitySet(Of SimpleTranslation)(AddressOf Me.attach_SimpleTranslations, AddressOf Me.detach_SimpleTranslations)
+		Me._ParentStorage = CType(Nothing, EntityRef(Of Storage))
+		Me._StorageType = CType(Nothing, EntityRef(Of StorageType))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StorageID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property StorageID() As Integer
+		Get
+			Return Me._StorageID
+		End Get
+		Set
+			If ((Me._StorageID = value)  _
+						= false) Then
+				Me.OnStorageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._StorageID = value
+				Me.SendPropertyChanged("StorageID")
+				Me.OnStorageIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StorageNumber", DbType:="NVarChar(10) NOT NULL", CanBeNull:=false)>  _
+	Public Property StorageNumber() As String
+		Get
+			Return Me._StorageNumber
+		End Get
+		Set
+			If (String.Equals(Me._StorageNumber, value) = false) Then
+				Me.OnStorageNumberChanging(value)
+				Me.SendPropertyChanging
+				Me._StorageNumber = value
+				Me.SendPropertyChanged("StorageNumber")
+				Me.OnStorageNumberChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(MAX)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me.OnDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._Description = value
+				Me.SendPropertyChanged("Description")
+				Me.OnDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StorageTypeID", DbType:="Int NOT NULL")>  _
+	Public Property StorageTypeID() As Integer
+		Get
+			Return Me._StorageTypeID
+		End Get
+		Set
+			If ((Me._StorageTypeID = value)  _
+						= false) Then
+				If Me._StorageType.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnStorageTypeIDChanging(value)
+				Me.SendPropertyChanging
+				Me._StorageTypeID = value
+				Me.SendPropertyChanged("StorageTypeID")
+				Me.OnStorageTypeIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="ParentStorage", Storage:="_ParentStorageID", DbType:="Int")>  _
+	Public Property ParentStorageID() As System.Nullable(Of Integer)
+		Get
+			Return Me._ParentStorageID
+		End Get
+		Set
+			If (Me._ParentStorageID.Equals(value) = false) Then
+				Me.OnParentStorageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ParentStorageID = value
+				Me.SendPropertyChanged("ParentStorageID")
+				Me.OnParentStorageIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_HasCaps", DbType:="Bit NOT NULL")>  _
+	Public Property HasCaps() As Boolean
+		Get
+			Return Me._HasCaps
+		End Get
+		Set
+			If ((Me._HasCaps = value)  _
+						= false) Then
+				Me.OnHasCapsChanging(value)
+				Me.SendPropertyChanging
+				Me._HasCaps = value
+				Me.SendPropertyChanged("HasCaps")
+				Me.OnHasCapsChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_Cap", Storage:="_Caps", ThisKey:="StorageID", OtherKey:="StorageID")>  _
 	Public Property Caps() As EntitySet(Of Cap)
 		Get
 			Return Me._Caps
 		End Get
 		Set
 			Me._Caps.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_CapInstance", Storage:="_CapInstances", ThisKey:="StorageID", OtherKey:="StorageID")>  _
+	Public Property CapInstances() As EntitySet(Of CapInstance)
+		Get
+			Return Me._CapInstances
+		End Get
+		Set
+			Me._CapInstances.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_Storage", Storage:="_ChildStorages", ThisKey:="StorageID", OtherKey:="ParentStorageID")>  _
+	Public Property ChildStorages() As EntitySet(Of Storage)
+		Get
+			Return Me._ChildStorages
+		End Get
+		Set
+			Me._ChildStorages.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_StoredImage", Storage:="_StoredImages", ThisKey:="StorageID", OtherKey:="StorageID")>  _
+	Public Property StoredImages() As EntitySet(Of StoredImage)
+		Get
+			Return Me._StoredImages
+		End Get
+		Set
+			Me._StoredImages.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_SimpleTranslation", Storage:="_SimpleTranslations", ThisKey:="StorageID", OtherKey:="StorageID")>  _
+	Public Property SimpleTranslations() As EntitySet(Of SimpleTranslation)
+		Get
+			Return Me._SimpleTranslations
+		End Get
+		Set
+			Me._SimpleTranslations.Assign(value)
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_Storage", Storage:="_ParentStorage", ThisKey:="ParentStorageID", OtherKey:="StorageID", IsForeignKey:=true)>  _
+	Public Property ParentStorage() As Storage
+		Get
+			Return Me._ParentStorage.Entity
+		End Get
+		Set
+			Dim previousValue As Storage = Me._ParentStorage.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._ParentStorage.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._ParentStorage.Entity = Nothing
+					previousValue.ChildStorages.Remove(Me)
+				End If
+				Me._ParentStorage.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.ChildStorages.Add(Me)
+					Me._ParentStorageID = value.StorageID
+				Else
+					Me._ParentStorageID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("ParentStorage")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="StorageType_Storage", Storage:="_StorageType", ThisKey:="StorageTypeID", OtherKey:="StorageTypeID", IsForeignKey:=true)>  _
+	Public Property StorageType() As StorageType
+		Get
+			Return Me._StorageType.Entity
+		End Get
+		Set
+			Dim previousValue As StorageType = Me._StorageType.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._StorageType.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._StorageType.Entity = Nothing
+					previousValue.Storages.Remove(Me)
+				End If
+				Me._StorageType.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Storages.Add(Me)
+					Me._StorageTypeID = value.StorageTypeID
+				Else
+					Me._StorageTypeID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("StorageType")
+			End If
 		End Set
 	End Property
 	
@@ -4518,11 +5336,2390 @@ Partial Public Class CapSign
 	
 	Private Sub attach_Caps(ByVal entity As Cap)
 		Me.SendPropertyChanging
-		entity.CapSign = Me
+		entity.Storage = Me
 	End Sub
 	
 	Private Sub detach_Caps(ByVal entity As Cap)
 		Me.SendPropertyChanging
-		entity.CapSign = Nothing
+		entity.Storage = Nothing
 	End Sub
+	
+	Private Sub attach_CapInstances(ByVal entity As CapInstance)
+		Me.SendPropertyChanging
+		entity.Storage = Me
+	End Sub
+	
+	Private Sub detach_CapInstances(ByVal entity As CapInstance)
+		Me.SendPropertyChanging
+		entity.Storage = Nothing
+	End Sub
+	
+	Private Sub attach_ChildStorages(ByVal entity As Storage)
+		Me.SendPropertyChanging
+		entity.ParentStorage = Me
+	End Sub
+	
+	Private Sub detach_ChildStorages(ByVal entity As Storage)
+		Me.SendPropertyChanging
+		entity.ParentStorage = Nothing
+	End Sub
+	
+	Private Sub attach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.Storage = Me
+	End Sub
+	
+	Private Sub detach_StoredImages(ByVal entity As StoredImage)
+		Me.SendPropertyChanging
+		entity.Storage = Nothing
+	End Sub
+	
+	Private Sub attach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Storage = Me
+	End Sub
+	
+	Private Sub detach_SimpleTranslations(ByVal entity As SimpleTranslation)
+		Me.SendPropertyChanging
+		entity.Storage = Nothing
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.StoredImage")>  _
+Partial Public Class StoredImage
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _StoredImageID As Integer
+	
+	Private _FileName As String
+	
+	Private _MIME As String
+	
+	Private _Size As Integer
+	
+	Private _Width As Integer
+	
+	Private _Height As Integer
+	
+	Private _ImageID As System.Nullable(Of Integer)
+	
+	Private _CapSignID As System.Nullable(Of Integer)
+	
+	Private _CapTypeID As System.Nullable(Of Integer)
+	
+	Private _MainTypeID As System.Nullable(Of Integer)
+	
+	Private _ShapeID As System.Nullable(Of Integer)
+	
+	Private _StorageID As System.Nullable(Of Integer)
+	
+	Private _Data As System.Data.Linq.Binary
+	
+	Private _CapSign As EntityRef(Of CapSign)
+	
+	Private _CapType As EntityRef(Of CapType)
+	
+	Private _Image As EntityRef(Of Image)
+	
+	Private _MainType As EntityRef(Of MainType)
+	
+	Private _Shape As EntityRef(Of Shape)
+	
+	Private _Storage As EntityRef(Of Storage)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnStoredImageIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnStoredImageIDChanged()
+    End Sub
+    Partial Private Sub OnFileNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnFileNameChanged()
+    End Sub
+    Partial Private Sub OnMIMEChanging(value As String)
+    End Sub
+    Partial Private Sub OnMIMEChanged()
+    End Sub
+    Partial Private Sub OnSizeChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnSizeChanged()
+    End Sub
+    Partial Private Sub OnWidthChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnWidthChanged()
+    End Sub
+    Partial Private Sub OnHeightChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnHeightChanged()
+    End Sub
+    Partial Private Sub OnImageIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnImageIDChanged()
+    End Sub
+    Partial Private Sub OnCapSignIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCapSignIDChanged()
+    End Sub
+    Partial Private Sub OnCapTypeIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCapTypeIDChanged()
+    End Sub
+    Partial Private Sub OnMainTypeIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnMainTypeIDChanged()
+    End Sub
+    Partial Private Sub OnShapeIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnShapeIDChanged()
+    End Sub
+    Partial Private Sub OnStorageIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnStorageIDChanged()
+    End Sub
+    Partial Private Sub OnDataChanging(value As System.Data.Linq.Binary)
+    End Sub
+    Partial Private Sub OnDataChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._CapSign = CType(Nothing, EntityRef(Of CapSign))
+		Me._CapType = CType(Nothing, EntityRef(Of CapType))
+		Me._Image = CType(Nothing, EntityRef(Of Image))
+		Me._MainType = CType(Nothing, EntityRef(Of MainType))
+		Me._Shape = CType(Nothing, EntityRef(Of Shape))
+		Me._Storage = CType(Nothing, EntityRef(Of Storage))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StoredImageID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property StoredImageID() As Integer
+		Get
+			Return Me._StoredImageID
+		End Get
+		Set
+			If ((Me._StoredImageID = value)  _
+						= false) Then
+				Me.OnStoredImageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._StoredImageID = value
+				Me.SendPropertyChanged("StoredImageID")
+				Me.OnStoredImageIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FileName", DbType:="NVarChar(1024) NOT NULL", CanBeNull:=false)>  _
+	Public Property FileName() As String
+		Get
+			Return Me._FileName
+		End Get
+		Set
+			If (String.Equals(Me._FileName, value) = false) Then
+				Me.OnFileNameChanging(value)
+				Me.SendPropertyChanging
+				Me._FileName = value
+				Me.SendPropertyChanged("FileName")
+				Me.OnFileNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MIME", DbType:="NVarChar(100) NOT NULL", CanBeNull:=false)>  _
+	Public Property MIME() As String
+		Get
+			Return Me._MIME
+		End Get
+		Set
+			If (String.Equals(Me._MIME, value) = false) Then
+				Me.OnMIMEChanging(value)
+				Me.SendPropertyChanging
+				Me._MIME = value
+				Me.SendPropertyChanged("MIME")
+				Me.OnMIMEChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Size", DbType:="Int NOT NULL")>  _
+	Public Property Size() As Integer
+		Get
+			Return Me._Size
+		End Get
+		Set
+			If ((Me._Size = value)  _
+						= false) Then
+				Me.OnSizeChanging(value)
+				Me.SendPropertyChanging
+				Me._Size = value
+				Me.SendPropertyChanged("Size")
+				Me.OnSizeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Width", DbType:="Int NOT NULL")>  _
+	Public Property Width() As Integer
+		Get
+			Return Me._Width
+		End Get
+		Set
+			If ((Me._Width = value)  _
+						= false) Then
+				Me.OnWidthChanging(value)
+				Me.SendPropertyChanging
+				Me._Width = value
+				Me.SendPropertyChanged("Width")
+				Me.OnWidthChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Height", DbType:="Int NOT NULL")>  _
+	Public Property Height() As Integer
+		Get
+			Return Me._Height
+		End Get
+		Set
+			If ((Me._Height = value)  _
+						= false) Then
+				Me.OnHeightChanging(value)
+				Me.SendPropertyChanging
+				Me._Height = value
+				Me.SendPropertyChanged("Height")
+				Me.OnHeightChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ImageID", DbType:="Int")>  _
+	Public Property ImageID() As System.Nullable(Of Integer)
+		Get
+			Return Me._ImageID
+		End Get
+		Set
+			If (Me._ImageID.Equals(value) = false) Then
+				If Me._Image.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnImageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ImageID = value
+				Me.SendPropertyChanged("ImageID")
+				Me.OnImageIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapSignID", DbType:="Int")>  _
+	Public Property CapSignID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CapSignID
+		End Get
+		Set
+			If (Me._CapSignID.Equals(value) = false) Then
+				If Me._CapSign.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnCapSignIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CapSignID = value
+				Me.SendPropertyChanged("CapSignID")
+				Me.OnCapSignIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapTypeID", DbType:="Int")>  _
+	Public Property CapTypeID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CapTypeID
+		End Get
+		Set
+			If (Me._CapTypeID.Equals(value) = false) Then
+				If Me._CapType.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnCapTypeIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CapTypeID = value
+				Me.SendPropertyChanged("CapTypeID")
+				Me.OnCapTypeIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MainTypeID", DbType:="Int")>  _
+	Public Property MainTypeID() As System.Nullable(Of Integer)
+		Get
+			Return Me._MainTypeID
+		End Get
+		Set
+			If (Me._MainTypeID.Equals(value) = false) Then
+				If Me._MainType.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnMainTypeIDChanging(value)
+				Me.SendPropertyChanging
+				Me._MainTypeID = value
+				Me.SendPropertyChanged("MainTypeID")
+				Me.OnMainTypeIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ShapeID", DbType:="Int")>  _
+	Public Property ShapeID() As System.Nullable(Of Integer)
+		Get
+			Return Me._ShapeID
+		End Get
+		Set
+			If (Me._ShapeID.Equals(value) = false) Then
+				If Me._Shape.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnShapeIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ShapeID = value
+				Me.SendPropertyChanged("ShapeID")
+				Me.OnShapeIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StorageID", DbType:="Int")>  _
+	Public Property StorageID() As System.Nullable(Of Integer)
+		Get
+			Return Me._StorageID
+		End Get
+		Set
+			If (Me._StorageID.Equals(value) = false) Then
+				If Me._Storage.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnStorageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._StorageID = value
+				Me.SendPropertyChanged("StorageID")
+				Me.OnStorageIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Data", DbType:="VarBinary(MAX) NOT NULL", CanBeNull:=false, UpdateCheck:=UpdateCheck.Never)>  _
+	Public Property Data() As System.Data.Linq.Binary
+		Get
+			Return Me._Data
+		End Get
+		Set
+			If (Object.Equals(Me._Data, value) = false) Then
+				Me.OnDataChanging(value)
+				Me.SendPropertyChanging
+				Me._Data = value
+				Me.SendPropertyChanged("Data")
+				Me.OnDataChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapSign_StoredImage", Storage:="_CapSign", ThisKey:="CapSignID", OtherKey:="CapSignID", IsForeignKey:=true, DeleteRule:="CASCADE")>  _
+	Public Property CapSign() As CapSign
+		Get
+			Return Me._CapSign.Entity
+		End Get
+		Set
+			Dim previousValue As CapSign = Me._CapSign.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._CapSign.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._CapSign.Entity = Nothing
+					previousValue.StoredImages.Remove(Me)
+				End If
+				Me._CapSign.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.StoredImages.Add(Me)
+					Me._CapSignID = value.CapSignID
+				Else
+					Me._CapSignID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("CapSign")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapType_StoredImage", Storage:="_CapType", ThisKey:="CapTypeID", OtherKey:="CapTypeID", IsForeignKey:=true, DeleteRule:="CASCADE")>  _
+	Public Property CapType() As CapType
+		Get
+			Return Me._CapType.Entity
+		End Get
+		Set
+			Dim previousValue As CapType = Me._CapType.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._CapType.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._CapType.Entity = Nothing
+					previousValue.StoredImages.Remove(Me)
+				End If
+				Me._CapType.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.StoredImages.Add(Me)
+					Me._CapTypeID = value.CapTypeID
+				Else
+					Me._CapTypeID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("CapType")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Image_StoredImage", Storage:="_Image", ThisKey:="ImageID", OtherKey:="ImageID", IsForeignKey:=true, DeleteRule:="CASCADE")>  _
+	Public Property Image() As Image
+		Get
+			Return Me._Image.Entity
+		End Get
+		Set
+			Dim previousValue As Image = Me._Image.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Image.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Image.Entity = Nothing
+					previousValue.StoredImages.Remove(Me)
+				End If
+				Me._Image.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.StoredImages.Add(Me)
+					Me._ImageID = value.ImageID
+				Else
+					Me._ImageID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Image")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="MainType_StoredImage", Storage:="_MainType", ThisKey:="MainTypeID", OtherKey:="MainTypeID", IsForeignKey:=true, DeleteRule:="CASCADE")>  _
+	Public Property MainType() As MainType
+		Get
+			Return Me._MainType.Entity
+		End Get
+		Set
+			Dim previousValue As MainType = Me._MainType.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._MainType.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._MainType.Entity = Nothing
+					previousValue.StoredImages.Remove(Me)
+				End If
+				Me._MainType.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.StoredImages.Add(Me)
+					Me._MainTypeID = value.MainTypeID
+				Else
+					Me._MainTypeID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("MainType")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Shape_StoredImage", Storage:="_Shape", ThisKey:="ShapeID", OtherKey:="ShapeID", IsForeignKey:=true, DeleteRule:="CASCADE")>  _
+	Public Property Shape() As Shape
+		Get
+			Return Me._Shape.Entity
+		End Get
+		Set
+			Dim previousValue As Shape = Me._Shape.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Shape.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Shape.Entity = Nothing
+					previousValue.StoredImages.Remove(Me)
+				End If
+				Me._Shape.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.StoredImages.Add(Me)
+					Me._ShapeID = value.ShapeID
+				Else
+					Me._ShapeID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Shape")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_StoredImage", Storage:="_Storage", ThisKey:="StorageID", OtherKey:="StorageID", IsForeignKey:=true, DeleteRule:="CASCADE")>  _
+	Public Property Storage() As Storage
+		Get
+			Return Me._Storage.Entity
+		End Get
+		Set
+			Dim previousValue As Storage = Me._Storage.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Storage.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Storage.Entity = Nothing
+					previousValue.StoredImages.Remove(Me)
+				End If
+				Me._Storage.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.StoredImages.Add(Me)
+					Me._StorageID = value.StorageID
+				Else
+					Me._StorageID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Storage")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.PseudoCategory")>  _
+Partial Public Class PseudoCategory
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _PseudoCategoryID As Integer
+	
+	Private _Name As String
+	
+	Private _Description As String
+	
+	Private _Condition As String
+	
+	Private _Cap_PseudoCategory_Ints As EntitySet(Of Cap_PseudoCategory_Int)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnPseudoCategoryIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnPseudoCategoryIDChanged()
+    End Sub
+    Partial Private Sub OnNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnNameChanged()
+    End Sub
+    Partial Private Sub OnDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnDescriptionChanged()
+    End Sub
+    Partial Private Sub OnConditionChanging(value As String)
+    End Sub
+    Partial Private Sub OnConditionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._Cap_PseudoCategory_Ints = New EntitySet(Of Cap_PseudoCategory_Int)(AddressOf Me.attach_Cap_PseudoCategory_Ints, AddressOf Me.detach_Cap_PseudoCategory_Ints)
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PseudoCategoryID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property PseudoCategoryID() As Integer
+		Get
+			Return Me._PseudoCategoryID
+		End Get
+		Set
+			If ((Me._PseudoCategoryID = value)  _
+						= false) Then
+				Me.OnPseudoCategoryIDChanging(value)
+				Me.SendPropertyChanging
+				Me._PseudoCategoryID = value
+				Me.SendPropertyChanged("PseudoCategoryID")
+				Me.OnPseudoCategoryIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVarChar(50) NOT NULL", CanBeNull:=false)>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me.OnNameChanging(value)
+				Me.SendPropertyChanging
+				Me._Name = value
+				Me.SendPropertyChanged("Name")
+				Me.OnNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(MAX)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me.OnDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._Description = value
+				Me.SendPropertyChanged("Description")
+				Me.OnDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Condition", DbType:="NVarChar(1024) NOT NULL", CanBeNull:=false)>  _
+	Public Property Condition() As String
+		Get
+			Return Me._Condition
+		End Get
+		Set
+			If (String.Equals(Me._Condition, value) = false) Then
+				Me.OnConditionChanging(value)
+				Me.SendPropertyChanging
+				Me._Condition = value
+				Me.SendPropertyChanged("Condition")
+				Me.OnConditionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="PseudoCategory_Cap_PseudoCategory_Int", Storage:="_Cap_PseudoCategory_Ints", ThisKey:="PseudoCategoryID", OtherKey:="PseudoCategoryID")>  _
+	Public Property Cap_PseudoCategory_Ints() As EntitySet(Of Cap_PseudoCategory_Int)
+		Get
+			Return Me._Cap_PseudoCategory_Ints
+		End Get
+		Set
+			Me._Cap_PseudoCategory_Ints.Assign(value)
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+	
+	Private Sub attach_Cap_PseudoCategory_Ints(ByVal entity As Cap_PseudoCategory_Int)
+		Me.SendPropertyChanging
+		entity.PseudoCategory = Me
+	End Sub
+	
+	Private Sub detach_Cap_PseudoCategory_Ints(ByVal entity As Cap_PseudoCategory_Int)
+		Me.SendPropertyChanging
+		entity.PseudoCategory = Nothing
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.Get_Cap_PseudoCategory_Int")>  _
+Partial Public Class Cap_PseudoCategory_Int
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CapID As Integer = CType(Nothing, Integer)
+	
+	Private _PseudoCategoryID As Integer = CType(Nothing, Integer)
+	
+	Private _PseudoCategory As EntityRef(Of PseudoCategory)
+	
+	Private _Cap As EntityRef(Of Cap)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._PseudoCategory = CType(Nothing, EntityRef(Of PseudoCategory))
+		Me._Cap = CType(Nothing, EntityRef(Of Cap))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapID", DbType:="INT NOT NULL", IsPrimaryKey:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property CapID() As Integer
+		Get
+			Return Me._CapID
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PseudoCategoryID", DbType:="INT NOT NULL", IsPrimaryKey:=true, UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property PseudoCategoryID() As Integer
+		Get
+			Return Me._PseudoCategoryID
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="PseudoCategory_Cap_PseudoCategory_Int", Storage:="_PseudoCategory", ThisKey:="PseudoCategoryID", OtherKey:="PseudoCategoryID", IsForeignKey:=true)>  _
+	Public Property PseudoCategory() As PseudoCategory
+		Get
+			Return Me._PseudoCategory.Entity
+		End Get
+		Set
+			Dim previousValue As PseudoCategory = Me._PseudoCategory.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._PseudoCategory.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._PseudoCategory.Entity = Nothing
+					previousValue.Cap_PseudoCategory_Ints.Remove(Me)
+				End If
+				Me._PseudoCategory.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Cap_PseudoCategory_Ints.Add(Me)
+					Me._PseudoCategoryID = value.PseudoCategoryID
+				Else
+					Me._PseudoCategoryID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("PseudoCategory")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Cap_Cap_PseudoCategory_Int", Storage:="_Cap", ThisKey:="CapID", OtherKey:="CapID", IsForeignKey:=true)>  _
+	Public Property Cap() As Cap
+		Get
+			Return Me._Cap.Entity
+		End Get
+		Set
+			Dim previousValue As Cap = Me._Cap.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Cap.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Cap.Entity = Nothing
+					previousValue.Cap_PseudoCategory_Ints.Remove(Me)
+				End If
+				Me._Cap.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.Cap_PseudoCategory_Ints.Add(Me)
+					Me._CapID = value.CapID
+				Else
+					Me._CapID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("Cap")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.CapTranslation")>  _
+Partial Public Class CapTranslation
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _CapTranslationID As Integer
+	
+	Private _CapID As Integer
+	
+	Private _Culture As String
+	
+	Private _CapName As String
+	
+	Private _MainPicture As String
+	
+	Private _Note As String
+	
+	Private _AnotherPictures As String
+	
+	Private _Cap As EntityRef(Of Cap)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnCapTranslationIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCapTranslationIDChanged()
+    End Sub
+    Partial Private Sub OnCapIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnCapIDChanged()
+    End Sub
+    Partial Private Sub OnCultureNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCultureNameChanged()
+    End Sub
+    Partial Private Sub OnCapNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCapNameChanged()
+    End Sub
+    Partial Private Sub OnMainPictureChanging(value As String)
+    End Sub
+    Partial Private Sub OnMainPictureChanged()
+    End Sub
+    Partial Private Sub OnNoteChanging(value As String)
+    End Sub
+    Partial Private Sub OnNoteChanged()
+    End Sub
+    Partial Private Sub OnAnotherPicturesChanging(value As String)
+    End Sub
+    Partial Private Sub OnAnotherPicturesChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._Cap = CType(Nothing, EntityRef(Of Cap))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapTranslationID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property CapTranslationID() As Integer
+		Get
+			Return Me._CapTranslationID
+		End Get
+		Set
+			If ((Me._CapTranslationID = value)  _
+						= false) Then
+				Me.OnCapTranslationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CapTranslationID = value
+				Me.SendPropertyChanged("CapTranslationID")
+				Me.OnCapTranslationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapID", DbType:="Int NOT NULL")>  _
+	Public Property CapID() As Integer
+		Get
+			Return Me._CapID
+		End Get
+		Set
+			If ((Me._CapID = value)  _
+						= false) Then
+				If Me._Cap.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnCapIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CapID = value
+				Me.SendPropertyChanged("CapID")
+				Me.OnCapIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="Culture", Storage:="_Culture", DbType:="VarChar(15) NOT NULL", CanBeNull:=false)>  _
+	Public Property CultureName() As String
+		Get
+			Return Me._Culture
+		End Get
+		Set
+			If (String.Equals(Me._Culture, value) = false) Then
+				Me.OnCultureNameChanging(value)
+				Me.SendPropertyChanging
+				Me._Culture = value
+				Me.SendPropertyChanged("CultureName")
+				Me.OnCultureNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapName", DbType:="NVarChar(255)")>  _
+	Public Property CapName() As String
+		Get
+			Return Me._CapName
+		End Get
+		Set
+			If (String.Equals(Me._CapName, value) = false) Then
+				Me.OnCapNameChanging(value)
+				Me.SendPropertyChanging
+				Me._CapName = value
+				Me.SendPropertyChanged("CapName")
+				Me.OnCapNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MainPicture", DbType:="NVarChar(255)")>  _
+	Public Property MainPicture() As String
+		Get
+			Return Me._MainPicture
+		End Get
+		Set
+			If (String.Equals(Me._MainPicture, value) = false) Then
+				Me.OnMainPictureChanging(value)
+				Me.SendPropertyChanging
+				Me._MainPicture = value
+				Me.SendPropertyChanged("MainPicture")
+				Me.OnMainPictureChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Note", DbType:="NVarChar(MAX)")>  _
+	Public Property Note() As String
+		Get
+			Return Me._Note
+		End Get
+		Set
+			If (String.Equals(Me._Note, value) = false) Then
+				Me.OnNoteChanging(value)
+				Me.SendPropertyChanging
+				Me._Note = value
+				Me.SendPropertyChanged("Note")
+				Me.OnNoteChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AnotherPictures", DbType:="NVarChar(MAX)")>  _
+	Public Property AnotherPictures() As String
+		Get
+			Return Me._AnotherPictures
+		End Get
+		Set
+			If (String.Equals(Me._AnotherPictures, value) = false) Then
+				Me.OnAnotherPicturesChanging(value)
+				Me.SendPropertyChanging
+				Me._AnotherPictures = value
+				Me.SendPropertyChanged("AnotherPictures")
+				Me.OnAnotherPicturesChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Cap_CapTranslation", Storage:="_Cap", ThisKey:="CapID", OtherKey:="CapID", IsForeignKey:=true, DeleteOnNull:=true, DeleteRule:="CASCADE")>  _
+	Public Property Cap() As Cap
+		Get
+			Return Me._Cap.Entity
+		End Get
+		Set
+			Dim previousValue As Cap = Me._Cap.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Cap.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Cap.Entity = Nothing
+					previousValue.CapTranslations.Remove(Me)
+				End If
+				Me._Cap.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.CapTranslations.Add(Me)
+					Me._CapID = value.CapID
+				Else
+					Me._CapID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("Cap")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.ShapeTranslation")>  _
+Partial Public Class ShapeTranslation
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ShapeTranslationID As Integer
+	
+	Private _ShapeID As Integer
+	
+	Private _Culture As String
+	
+	Private _Name As String
+	
+	Private _Size1Name As String
+	
+	Private _Size2Name As String
+	
+	Private _Description As String
+	
+	Private _Shape As EntityRef(Of Shape)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnShapeTranslationIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnShapeTranslationIDChanged()
+    End Sub
+    Partial Private Sub OnShapeIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnShapeIDChanged()
+    End Sub
+    Partial Private Sub OnCultureNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCultureNameChanged()
+    End Sub
+    Partial Private Sub OnNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnNameChanged()
+    End Sub
+    Partial Private Sub OnSize1NameChanging(value As String)
+    End Sub
+    Partial Private Sub OnSize1NameChanged()
+    End Sub
+    Partial Private Sub OnSize2NameChanging(value As String)
+    End Sub
+    Partial Private Sub OnSize2NameChanged()
+    End Sub
+    Partial Private Sub OnDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._Shape = CType(Nothing, EntityRef(Of Shape))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ShapeTranslationID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property ShapeTranslationID() As Integer
+		Get
+			Return Me._ShapeTranslationID
+		End Get
+		Set
+			If ((Me._ShapeTranslationID = value)  _
+						= false) Then
+				Me.OnShapeTranslationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ShapeTranslationID = value
+				Me.SendPropertyChanged("ShapeTranslationID")
+				Me.OnShapeTranslationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ShapeID", DbType:="Int NOT NULL")>  _
+	Public Property ShapeID() As Integer
+		Get
+			Return Me._ShapeID
+		End Get
+		Set
+			If ((Me._ShapeID = value)  _
+						= false) Then
+				If Me._Shape.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnShapeIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ShapeID = value
+				Me.SendPropertyChanged("ShapeID")
+				Me.OnShapeIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="Culture", Storage:="_Culture", DbType:="VarChar(15) NOT NULL", CanBeNull:=false)>  _
+	Public Property CultureName() As String
+		Get
+			Return Me._Culture
+		End Get
+		Set
+			If (String.Equals(Me._Culture, value) = false) Then
+				Me.OnCultureNameChanging(value)
+				Me.SendPropertyChanging
+				Me._Culture = value
+				Me.SendPropertyChanged("CultureName")
+				Me.OnCultureNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVarChar(50)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me.OnNameChanging(value)
+				Me.SendPropertyChanging
+				Me._Name = value
+				Me.SendPropertyChanged("Name")
+				Me.OnNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Size1Name", DbType:="NVarChar(50)")>  _
+	Public Property Size1Name() As String
+		Get
+			Return Me._Size1Name
+		End Get
+		Set
+			If (String.Equals(Me._Size1Name, value) = false) Then
+				Me.OnSize1NameChanging(value)
+				Me.SendPropertyChanging
+				Me._Size1Name = value
+				Me.SendPropertyChanged("Size1Name")
+				Me.OnSize1NameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Size2Name", DbType:="NVarChar(50)")>  _
+	Public Property Size2Name() As String
+		Get
+			Return Me._Size2Name
+		End Get
+		Set
+			If (String.Equals(Me._Size2Name, value) = false) Then
+				Me.OnSize2NameChanging(value)
+				Me.SendPropertyChanging
+				Me._Size2Name = value
+				Me.SendPropertyChanged("Size2Name")
+				Me.OnSize2NameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(MAX)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me.OnDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._Description = value
+				Me.SendPropertyChanged("Description")
+				Me.OnDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Shape_ShapeTranslation", Storage:="_Shape", ThisKey:="ShapeID", OtherKey:="ShapeID", IsForeignKey:=true, DeleteOnNull:=true, DeleteRule:="CASCADE")>  _
+	Public Property Shape() As Shape
+		Get
+			Return Me._Shape.Entity
+		End Get
+		Set
+			Dim previousValue As Shape = Me._Shape.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Shape.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Shape.Entity = Nothing
+					previousValue.ShapeTranslations.Remove(Me)
+				End If
+				Me._Shape.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.ShapeTranslations.Add(Me)
+					Me._ShapeID = value.ShapeID
+				Else
+					Me._ShapeID = CType(Nothing, Integer)
+				End If
+				Me.SendPropertyChanged("Shape")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.SimpleTranslation")>  _
+Partial Public Class SimpleTranslation
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _SimpleTranslationID As Integer
+	
+	Private _CategoryID As System.Nullable(Of Integer)
+	
+	Private _KeywordID As System.Nullable(Of Integer)
+	
+	Private _ProductID As System.Nullable(Of Integer)
+	
+	Private _CompanyID As System.Nullable(Of Integer)
+	
+	Private _ProductTypeID As System.Nullable(Of Integer)
+	
+	Private _TargetID As System.Nullable(Of Integer)
+	
+	Private _MaterialID As System.Nullable(Of Integer)
+	
+	Private _CapTypeID As System.Nullable(Of Integer)
+	
+	Private _MainTypeID As System.Nullable(Of Integer)
+	
+	Private _CapSignID As System.Nullable(Of Integer)
+	
+	Private _StorageID As System.Nullable(Of Integer)
+	
+	Private _StorageTypeID As System.Nullable(Of Integer)
+	
+	Private _CapInstanceID As System.Nullable(Of Integer)
+	
+	Private _Culture As String
+	
+	Private _Name As String
+	
+	Private _Description As String
+	
+	Private _CapInstance As EntityRef(Of CapInstance)
+	
+	Private _CapSign As EntityRef(Of CapSign)
+	
+	Private _CapType As EntityRef(Of CapType)
+	
+	Private _Category As EntityRef(Of Category)
+	
+	Private _Company As EntityRef(Of Company)
+	
+	Private _Keyword As EntityRef(Of Keyword)
+	
+	Private _MainType As EntityRef(Of MainType)
+	
+	Private _Material As EntityRef(Of Material)
+	
+	Private _Product As EntityRef(Of Product)
+	
+	Private _ProductType As EntityRef(Of ProductType)
+	
+	Private _Storage As EntityRef(Of Storage)
+	
+	Private _StorageType As EntityRef(Of StorageType)
+	
+	Private _Target As EntityRef(Of Target)
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnSimpleTranslationIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnSimpleTranslationIDChanged()
+    End Sub
+    Partial Private Sub OnCategoryIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCategoryIDChanged()
+    End Sub
+    Partial Private Sub OnKeywordIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnKeywordIDChanged()
+    End Sub
+    Partial Private Sub OnProductIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnProductIDChanged()
+    End Sub
+    Partial Private Sub OnCompanyIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCompanyIDChanged()
+    End Sub
+    Partial Private Sub OnProductTypeIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnProductTypeIDChanged()
+    End Sub
+    Partial Private Sub OnTargetIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnTargetIDChanged()
+    End Sub
+    Partial Private Sub OnMaterialIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnMaterialIDChanged()
+    End Sub
+    Partial Private Sub OnCapTypeIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCapTypeIDChanged()
+    End Sub
+    Partial Private Sub OnMainTypeIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnMainTypeIDChanged()
+    End Sub
+    Partial Private Sub OnCapSignIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCapSignIDChanged()
+    End Sub
+    Partial Private Sub OnStorageIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnStorageIDChanged()
+    End Sub
+    Partial Private Sub OnStorageTypeIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnStorageTypeIDChanged()
+    End Sub
+    Partial Private Sub OnCapInstanceIDChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnCapInstanceIDChanged()
+    End Sub
+    Partial Private Sub OnCultureNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnCultureNameChanged()
+    End Sub
+    Partial Private Sub OnNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnNameChanged()
+    End Sub
+    Partial Private Sub OnDescriptionChanging(value As String)
+    End Sub
+    Partial Private Sub OnDescriptionChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		Me._CapInstance = CType(Nothing, EntityRef(Of CapInstance))
+		Me._CapSign = CType(Nothing, EntityRef(Of CapSign))
+		Me._CapType = CType(Nothing, EntityRef(Of CapType))
+		Me._Category = CType(Nothing, EntityRef(Of Category))
+		Me._Company = CType(Nothing, EntityRef(Of Company))
+		Me._Keyword = CType(Nothing, EntityRef(Of Keyword))
+		Me._MainType = CType(Nothing, EntityRef(Of MainType))
+		Me._Material = CType(Nothing, EntityRef(Of Material))
+		Me._Product = CType(Nothing, EntityRef(Of Product))
+		Me._ProductType = CType(Nothing, EntityRef(Of ProductType))
+		Me._Storage = CType(Nothing, EntityRef(Of Storage))
+		Me._StorageType = CType(Nothing, EntityRef(Of StorageType))
+		Me._Target = CType(Nothing, EntityRef(Of Target))
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SimpleTranslationID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property SimpleTranslationID() As Integer
+		Get
+			Return Me._SimpleTranslationID
+		End Get
+		Set
+			If ((Me._SimpleTranslationID = value)  _
+						= false) Then
+				Me.OnSimpleTranslationIDChanging(value)
+				Me.SendPropertyChanging
+				Me._SimpleTranslationID = value
+				Me.SendPropertyChanged("SimpleTranslationID")
+				Me.OnSimpleTranslationIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CategoryID", DbType:="Int")>  _
+	Public Property CategoryID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CategoryID
+		End Get
+		Set
+			If (Me._CategoryID.Equals(value) = false) Then
+				If Me._Category.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnCategoryIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CategoryID = value
+				Me.SendPropertyChanged("CategoryID")
+				Me.OnCategoryIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_KeywordID", DbType:="Int")>  _
+	Public Property KeywordID() As System.Nullable(Of Integer)
+		Get
+			Return Me._KeywordID
+		End Get
+		Set
+			If (Me._KeywordID.Equals(value) = false) Then
+				If Me._Keyword.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnKeywordIDChanging(value)
+				Me.SendPropertyChanging
+				Me._KeywordID = value
+				Me.SendPropertyChanged("KeywordID")
+				Me.OnKeywordIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductID", DbType:="Int")>  _
+	Public Property ProductID() As System.Nullable(Of Integer)
+		Get
+			Return Me._ProductID
+		End Get
+		Set
+			If (Me._ProductID.Equals(value) = false) Then
+				If Me._Product.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnProductIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ProductID = value
+				Me.SendPropertyChanged("ProductID")
+				Me.OnProductIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CompanyID", DbType:="Int")>  _
+	Public Property CompanyID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CompanyID
+		End Get
+		Set
+			If (Me._CompanyID.Equals(value) = false) Then
+				If Me._Company.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnCompanyIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CompanyID = value
+				Me.SendPropertyChanged("CompanyID")
+				Me.OnCompanyIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductTypeID", DbType:="Int")>  _
+	Public Property ProductTypeID() As System.Nullable(Of Integer)
+		Get
+			Return Me._ProductTypeID
+		End Get
+		Set
+			If (Me._ProductTypeID.Equals(value) = false) Then
+				If Me._ProductType.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnProductTypeIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ProductTypeID = value
+				Me.SendPropertyChanged("ProductTypeID")
+				Me.OnProductTypeIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TargetID", DbType:="Int")>  _
+	Public Property TargetID() As System.Nullable(Of Integer)
+		Get
+			Return Me._TargetID
+		End Get
+		Set
+			If (Me._TargetID.Equals(value) = false) Then
+				If Me._Target.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnTargetIDChanging(value)
+				Me.SendPropertyChanging
+				Me._TargetID = value
+				Me.SendPropertyChanged("TargetID")
+				Me.OnTargetIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MaterialID", DbType:="Int")>  _
+	Public Property MaterialID() As System.Nullable(Of Integer)
+		Get
+			Return Me._MaterialID
+		End Get
+		Set
+			If (Me._MaterialID.Equals(value) = false) Then
+				If Me._Material.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnMaterialIDChanging(value)
+				Me.SendPropertyChanging
+				Me._MaterialID = value
+				Me.SendPropertyChanged("MaterialID")
+				Me.OnMaterialIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapTypeID", DbType:="Int")>  _
+	Public Property CapTypeID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CapTypeID
+		End Get
+		Set
+			If (Me._CapTypeID.Equals(value) = false) Then
+				If Me._CapType.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnCapTypeIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CapTypeID = value
+				Me.SendPropertyChanged("CapTypeID")
+				Me.OnCapTypeIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MainTypeID", DbType:="Int")>  _
+	Public Property MainTypeID() As System.Nullable(Of Integer)
+		Get
+			Return Me._MainTypeID
+		End Get
+		Set
+			If (Me._MainTypeID.Equals(value) = false) Then
+				If Me._MainType.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnMainTypeIDChanging(value)
+				Me.SendPropertyChanging
+				Me._MainTypeID = value
+				Me.SendPropertyChanged("MainTypeID")
+				Me.OnMainTypeIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapSignID", DbType:="Int")>  _
+	Public Property CapSignID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CapSignID
+		End Get
+		Set
+			If (Me._CapSignID.Equals(value) = false) Then
+				If Me._CapSign.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnCapSignIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CapSignID = value
+				Me.SendPropertyChanged("CapSignID")
+				Me.OnCapSignIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StorageID", DbType:="Int")>  _
+	Public Property StorageID() As System.Nullable(Of Integer)
+		Get
+			Return Me._StorageID
+		End Get
+		Set
+			If (Me._StorageID.Equals(value) = false) Then
+				If Me._Storage.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnStorageIDChanging(value)
+				Me.SendPropertyChanging
+				Me._StorageID = value
+				Me.SendPropertyChanged("StorageID")
+				Me.OnStorageIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_StorageTypeID", DbType:="Int")>  _
+	Public Property StorageTypeID() As System.Nullable(Of Integer)
+		Get
+			Return Me._StorageTypeID
+		End Get
+		Set
+			If (Me._StorageTypeID.Equals(value) = false) Then
+				If Me._StorageType.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnStorageTypeIDChanging(value)
+				Me.SendPropertyChanging
+				Me._StorageTypeID = value
+				Me.SendPropertyChanged("StorageTypeID")
+				Me.OnStorageTypeIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapInstanceID", DbType:="Int")>  _
+	Public Property CapInstanceID() As System.Nullable(Of Integer)
+		Get
+			Return Me._CapInstanceID
+		End Get
+		Set
+			If (Me._CapInstanceID.Equals(value) = false) Then
+				If Me._CapInstance.HasLoadedOrAssignedValue Then
+					Throw New System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException()
+				End If
+				Me.OnCapInstanceIDChanging(value)
+				Me.SendPropertyChanging
+				Me._CapInstanceID = value
+				Me.SendPropertyChanged("CapInstanceID")
+				Me.OnCapInstanceIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="Culture", Storage:="_Culture", DbType:="VarChar(15) NOT NULL", CanBeNull:=false)>  _
+	Public Property CultureName() As String
+		Get
+			Return Me._Culture
+		End Get
+		Set
+			If (String.Equals(Me._Culture, value) = false) Then
+				Me.OnCultureNameChanging(value)
+				Me.SendPropertyChanging
+				Me._Culture = value
+				Me.SendPropertyChanged("CultureName")
+				Me.OnCultureNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVarChar(50)")>  _
+	Public Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+		Set
+			If (String.Equals(Me._Name, value) = false) Then
+				Me.OnNameChanging(value)
+				Me.SendPropertyChanging
+				Me._Name = value
+				Me.SendPropertyChanged("Name")
+				Me.OnNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVarChar(MAX)")>  _
+	Public Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+		Set
+			If (String.Equals(Me._Description, value) = false) Then
+				Me.OnDescriptionChanging(value)
+				Me.SendPropertyChanging
+				Me._Description = value
+				Me.SendPropertyChanged("Description")
+				Me.OnDescriptionChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapInstance_SimpleTranslation", Storage:="_CapInstance", ThisKey:="CapInstanceID", OtherKey:="CapInstanceID", IsForeignKey:=true)>  _
+	Public Property CapInstance() As CapInstance
+		Get
+			Return Me._CapInstance.Entity
+		End Get
+		Set
+			Dim previousValue As CapInstance = Me._CapInstance.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._CapInstance.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._CapInstance.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._CapInstance.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._CapInstanceID = value.CapInstanceID
+				Else
+					Me._CapInstanceID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("CapInstance")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapSign_SimpleTranslation", Storage:="_CapSign", ThisKey:="CapSignID", OtherKey:="CapSignID", IsForeignKey:=true)>  _
+	Public Property CapSign() As CapSign
+		Get
+			Return Me._CapSign.Entity
+		End Get
+		Set
+			Dim previousValue As CapSign = Me._CapSign.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._CapSign.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._CapSign.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._CapSign.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._CapSignID = value.CapSignID
+				Else
+					Me._CapSignID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("CapSign")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="CapType_SimpleTranslation", Storage:="_CapType", ThisKey:="CapTypeID", OtherKey:="CapTypeID", IsForeignKey:=true)>  _
+	Public Property CapType() As CapType
+		Get
+			Return Me._CapType.Entity
+		End Get
+		Set
+			Dim previousValue As CapType = Me._CapType.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._CapType.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._CapType.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._CapType.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._CapTypeID = value.CapTypeID
+				Else
+					Me._CapTypeID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("CapType")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Category_SimpleTranslation", Storage:="_Category", ThisKey:="CategoryID", OtherKey:="CategoryID", IsForeignKey:=true)>  _
+	Public Property Category() As Category
+		Get
+			Return Me._Category.Entity
+		End Get
+		Set
+			Dim previousValue As Category = Me._Category.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Category.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Category.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._Category.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._CategoryID = value.CategoryID
+				Else
+					Me._CategoryID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Category")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Company_SimpleTranslation", Storage:="_Company", ThisKey:="CompanyID", OtherKey:="CompanyID", IsForeignKey:=true)>  _
+	Public Property Company() As Company
+		Get
+			Return Me._Company.Entity
+		End Get
+		Set
+			Dim previousValue As Company = Me._Company.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Company.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Company.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._Company.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._CompanyID = value.CompanyID
+				Else
+					Me._CompanyID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Company")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Keyword_SimpleTranslation", Storage:="_Keyword", ThisKey:="KeywordID", OtherKey:="KeywordID", IsForeignKey:=true)>  _
+	Public Property Keyword() As Keyword
+		Get
+			Return Me._Keyword.Entity
+		End Get
+		Set
+			Dim previousValue As Keyword = Me._Keyword.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Keyword.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Keyword.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._Keyword.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._KeywordID = value.KeywordID
+				Else
+					Me._KeywordID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Keyword")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="MainType_SimpleTranslation", Storage:="_MainType", ThisKey:="MainTypeID", OtherKey:="MainTypeID", IsForeignKey:=true)>  _
+	Public Property MainType() As MainType
+		Get
+			Return Me._MainType.Entity
+		End Get
+		Set
+			Dim previousValue As MainType = Me._MainType.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._MainType.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._MainType.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._MainType.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._MainTypeID = value.MainTypeID
+				Else
+					Me._MainTypeID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("MainType")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Material_SimpleTranslation", Storage:="_Material", ThisKey:="MaterialID", OtherKey:="MaterialID", IsForeignKey:=true)>  _
+	Public Property Material() As Material
+		Get
+			Return Me._Material.Entity
+		End Get
+		Set
+			Dim previousValue As Material = Me._Material.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Material.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Material.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._Material.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._MaterialID = value.MaterialID
+				Else
+					Me._MaterialID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Material")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Product_SimpleTranslation", Storage:="_Product", ThisKey:="ProductID", OtherKey:="ProductID", IsForeignKey:=true)>  _
+	Public Property Product() As Product
+		Get
+			Return Me._Product.Entity
+		End Get
+		Set
+			Dim previousValue As Product = Me._Product.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Product.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Product.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._Product.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._ProductID = value.ProductID
+				Else
+					Me._ProductID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Product")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="ProductType_SimpleTranslation", Storage:="_ProductType", ThisKey:="ProductTypeID", OtherKey:="ProductTypeID", IsForeignKey:=true)>  _
+	Public Property ProductType() As ProductType
+		Get
+			Return Me._ProductType.Entity
+		End Get
+		Set
+			Dim previousValue As ProductType = Me._ProductType.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._ProductType.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._ProductType.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._ProductType.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._ProductTypeID = value.ProductTypeID
+				Else
+					Me._ProductTypeID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("ProductType")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Storage_SimpleTranslation", Storage:="_Storage", ThisKey:="StorageID", OtherKey:="StorageID", IsForeignKey:=true)>  _
+	Public Property Storage() As Storage
+		Get
+			Return Me._Storage.Entity
+		End Get
+		Set
+			Dim previousValue As Storage = Me._Storage.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Storage.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Storage.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._Storage.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._StorageID = value.StorageID
+				Else
+					Me._StorageID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Storage")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="StorageType_SimpleTranslation", Storage:="_StorageType", ThisKey:="StorageTypeID", OtherKey:="StorageTypeID", IsForeignKey:=true)>  _
+	Public Property StorageType() As StorageType
+		Get
+			Return Me._StorageType.Entity
+		End Get
+		Set
+			Dim previousValue As StorageType = Me._StorageType.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._StorageType.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._StorageType.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._StorageType.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._StorageTypeID = value.StorageTypeID
+				Else
+					Me._StorageTypeID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("StorageType")
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.AssociationAttribute(Name:="Target_SimpleTranslation", Storage:="_Target", ThisKey:="TargetID", OtherKey:="TargetID", IsForeignKey:=true)>  _
+	Public Property Target() As Target
+		Get
+			Return Me._Target.Entity
+		End Get
+		Set
+			Dim previousValue As Target = Me._Target.Entity
+			If ((Object.Equals(previousValue, value) = false)  _
+						OrElse (Me._Target.HasLoadedOrAssignedValue = false)) Then
+				Me.SendPropertyChanging
+				If ((previousValue Is Nothing)  _
+							= false) Then
+					Me._Target.Entity = Nothing
+					previousValue.SimpleTranslations.Remove(Me)
+				End If
+				Me._Target.Entity = value
+				If ((value Is Nothing)  _
+							= false) Then
+					value.SimpleTranslations.Add(Me)
+					Me._TargetID = value.TargetID
+				Else
+					Me._TargetID = CType(Nothing, Nullable(Of Integer))
+				End If
+				Me.SendPropertyChanged("Target")
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="")>  _
+Partial Public Class CapFullTranslation
+	
+	Private _CapID As Integer = CType(Nothing, Integer)
+	
+	Private _CapName As String = CType(Nothing, String)
+	
+	Private _CapNameCultureName As String = CType(Nothing, String)
+	
+	Private _MainPicture As String = CType(Nothing, String)
+	
+	Private _MainPictureCultureName As String = CType(Nothing, String)
+	
+	Private _Note As String = CType(Nothing, String)
+	
+	Private _NoteCultureName As String = CType(Nothing, String)
+	
+	Private _AnotherPictures As String = CType(Nothing, String)
+	
+	Private _AnotherPicturesCultureName As String = CType(Nothing, String)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapID", DbType:="INT NOT NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property CapID() As Integer
+		Get
+			Return Me._CapID
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CapName", DbType:="NVARCHAR(255) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property CapName() As String
+		Get
+			Return Me._CapName
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="CapNameCulture", Storage:="_CapNameCultureName", DbType:="VARCHAR(15) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property CapNameCultureName() As String
+		Get
+			Return Me._CapNameCultureName
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MainPicture", DbType:="NVARCHAR(255) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property MainPicture() As String
+		Get
+			Return Me._MainPicture
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="MainPictureCulture", Storage:="_MainPictureCultureName", DbType:="VARCHAR(15) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property MainPictureCultureName() As String
+		Get
+			Return Me._MainPictureCultureName
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Note", DbType:="NVARCHAR(MAX) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property Note() As String
+		Get
+			Return Me._Note
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="NoteCulture", Storage:="_NoteCultureName", DbType:="VARCHAR(15) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property NoteCultureName() As String
+		Get
+			Return Me._NoteCultureName
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AnotherPictures", DbType:="NVARCHAR(MAX) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property AnotherPictures() As String
+		Get
+			Return Me._AnotherPictures
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="AnotherPicturesCulture", Storage:="_AnotherPicturesCultureName", DbType:="VARCHAR(15) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property AnotherPicturesCultureName() As String
+		Get
+			Return Me._AnotherPicturesCultureName
+		End Get
+	End Property
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="")>  _
+Partial Public Class ShapeFullTranslation
+	
+	Private _ShapeID As Integer = CType(Nothing, Integer)
+	
+	Private _Name As String = CType(Nothing, String)
+	
+	Private _NameCultureName As String = CType(Nothing, String)
+	
+	Private _Size1Name As String = CType(Nothing, String)
+	
+	Private _Size1NameCultureName As String = CType(Nothing, String)
+	
+	Private _Size2Name As String = CType(Nothing, String)
+	
+	Private _Size2NameCultureName As String = CType(Nothing, String)
+	
+	Private _Description As String = CType(Nothing, String)
+	
+	Private _DescriptionCultureName As String = CType(Nothing, String)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ShapeID", DbType:="INT NOT NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property ShapeID() As Integer
+		Get
+			Return Me._ShapeID
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVARCHAR(50) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="NameCulture", Storage:="_NameCultureName", DbType:="VARCHAR(15) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property NameCultureName() As String
+		Get
+			Return Me._NameCultureName
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Size1Name", DbType:="NVARCHAR(50) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property Size1Name() As String
+		Get
+			Return Me._Size1Name
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="Size1Culture", Storage:="_Size1NameCultureName", DbType:="VARCHAR(15) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property Size1NameCultureName() As String
+		Get
+			Return Me._Size1NameCultureName
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Size2Name", DbType:="NVARCHAR(50) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property Size2Name() As String
+		Get
+			Return Me._Size2Name
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="Size2Culture", Storage:="_Size2NameCultureName", DbType:="VARCHAR(15) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property Size2NameCultureName() As String
+		Get
+			Return Me._Size2NameCultureName
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVARCHAR(MAX) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="DescriptionCulture", Storage:="_DescriptionCultureName", DbType:="VARCHAR(15) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property DescriptionCultureName() As String
+		Get
+			Return Me._DescriptionCultureName
+		End Get
+	End Property
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="")>  _
+Partial Public Class SimpleFullTranslation
+	
+	Private _Name As String = CType(Nothing, String)
+	
+	Private _NameCultureName As String = CType(Nothing, String)
+	
+	Private _Description As String = CType(Nothing, String)
+	
+	Private _DescriptionCultureName As String = CType(Nothing, String)
+	
+	Public Sub New()
+		MyBase.New
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Name", DbType:="NVARCHAR(50) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property Name() As String
+		Get
+			Return Me._Name
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="NameCulture", Storage:="_NameCultureName", DbType:="VARCHAR(15)", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property NameCultureName() As String
+		Get
+			Return Me._NameCultureName
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Description", DbType:="NVARCHAR(MAX) NULL", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property Description() As String
+		Get
+			Return Me._Description
+		End Get
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Name:="DescriptionCulture", Storage:="_DescriptionCultureName", DbType:="VARCHAR(15)", UpdateCheck:=UpdateCheck.Never)>  _
+	Public ReadOnly Property DescriptionCultureName() As String
+		Get
+			Return Me._DescriptionCultureName
+		End Get
+	End Property
 End Class

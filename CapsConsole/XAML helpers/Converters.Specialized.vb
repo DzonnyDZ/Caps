@@ -236,7 +236,7 @@ Public Class GetCapsOfConverter
         ElseIf TypeOf value Is Keyword Then
             Return From cap In Context.Caps Join c_k In Context.Cap_Keyword_Ints On Cap.CapID Equals c_k.capid Where c_k.KeywordID = DirectCast(value, Keyword).KeywordID Order By Context.NewID Take Count
         ElseIf TypeOf value Is CapSign Then
-            Return From item In Context.Caps Where item.CapSignID = DirectCast(value, CapSign).CapSignID Order By Context.NewID Take Count
+            Return From cap In Context.Caps Join c_s In Context.Cap_CapSign_Ints On Cap.CapID Equals c_s.CapID Where c_s.CapSignID = DirectCast(value, CapSign).CapSignID Order By Context.NewID Take Count
         ElseIf value Is Nothing Then
             Return Nothing
         Else
