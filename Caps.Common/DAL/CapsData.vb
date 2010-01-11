@@ -1,5 +1,6 @@
 Imports System.Globalization
-
+#Region "Localization"
+#Region "FullTranslation"
 <DebuggerDisplay("ShapeFullTranslation {Name} for {ShapeID}")>
 Partial Class ShapeFullTranslation
 
@@ -13,6 +14,9 @@ Partial Class CapFullTranslation
 
 End Class
 
+#End Region
+
+#Region "Translation"
 <DebuggerDisplay("SimpleTranslation {CultureName} {Name} ({SimpleTranslationID})")>
 Partial Class SimpleTranslation
 
@@ -25,48 +29,128 @@ End Class
 Partial Class ShapeTranslation
 
 End Class
+#End Region
+#End Region
 
+#Region "Support"
 <DebuggerDisplay("StoredImage {FileName} ({StoredImageID})")> _
 Partial Class StoredImage
 
 End Class
-
-<DebuggerDisplay("CapInstance ID {CapInstanceID}")>
-Partial Class CapInstance
-    Implements ISimpleObject
-End Class
-
-<DebuggerDisplay("Cap {CapID} <-> CapSign {CapSignID}")>
-Partial Class Cap_CapSign_Int
-    Public Sub New(ByVal Cap As Cap, ByVal CapSign As CapSign)
-        Me.New()
-        Me.Cap = Cap
-        Me.CapSign = CapSign
-    End Sub
-End Class
-
-<DebuggerDisplay("Cap {CapID} <-> PseudoCategory {PseudoCategoryID}")> _
-Partial Class Cap_PseudoCategory_Int
-
-End Class
-
 <DebuggerDisplay("PseudoCategory {Name} ({PseudoCategoryID}) Condition: {Condition}")>
 Partial Class PseudoCategory
 
 End Class
-
 <DebuggerDisplay("Image {RelativePath} ({ImageID})")> _
 Partial Class Image
 
 End Class
+#End Region
+
+#Region "Basic objects"
+<DebuggerDisplay("CapInstance ID {CapInstanceID}")>
+Partial Class CapInstance
+    Implements ISimpleObject
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Note
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Note = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return CapInstanceID
+        End Get
+    End Property
+
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return "CapInstance " + CapInstanceID
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Throw New NotSupportedException("ISimpleObject.Name is not supported by " + Me.GetType.Name)
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "CapInstance"
+        End Get
+    End Property
+#End Region
+End Class
+
 <DebuggerDisplay("Material {Name} ({MaterialID})")> _
 Partial Class Material
     Implements ISimpleObject
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Description
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Description = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return MaterialID
+        End Get
+    End Property
+
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return Name
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Name = value
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "Material"
+        End Get
+    End Property
+#End Region
 End Class
 
 <DebuggerDisplay("CapType {TypeName} ({CapTypeID})")> _
 Partial Class CapType
     Implements ISimpleObject
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Description
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Description = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return CapTypeID
+        End Get
+    End Property
+
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return TypeName
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            TypeName = value
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "CapType"
+        End Get
+    End Property
+#End Region
 End Class
 
 <DebuggerDisplay("Cap {CapName} ({CapID})")> _
@@ -79,6 +163,7 @@ Partial Class Cap
         End Get
     End Property
 End Class
+
 <DebuggerDisplay("Shape {Name} ({ShapeID})")> _
 Partial Class Shape
 
@@ -87,61 +172,316 @@ End Class
 <DebuggerDisplay("MainType {TypeName} ({MainTypeID})")> _
 Partial Class MainType
     Implements ISimpleObject
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Description
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Description = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return MainTypeID
+        End Get
+    End Property
+
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return TypeName
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            TypeName = value
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "MainType"
+        End Get
+    End Property
+#End Region
 End Class
+
 <DebuggerDisplay("CapSign {Name} ({CapSignID})")>
 Partial Class CapSign
     Implements ISimpleObject
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Description
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Description = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return CapSignID
+        End Get
+    End Property
+
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return Name
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Name = value
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "CapSign"
+        End Get
+    End Property
+#End Region
 End Class
 
 <DebuggerDisplay("Category {CategoryName} ({CategoryID})")> _
 Partial Class Category
     Implements ISimpleObject
-End Class
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Description
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Description = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return CategoryID
+        End Get
+    End Property
 
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return CategoryName
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            CategoryName = value
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "Category"
+        End Get
+    End Property
+#End Region
+End Class
 
 <DebuggerDisplay("Product {ProductName} ({ProductID})")> _
 Partial Class Product
     Implements ISimpleObject
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Description
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Description = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return ProductID
+        End Get
+    End Property
+
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return ProductName
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            ProductName = value
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "Product"
+        End Get
+    End Property
+#End Region
 End Class
 
 <DebuggerDisplay("Company {CompanyName} ({CompanyID})")> _
 Partial Class Company
     Implements ISimpleObject
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Description
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Description = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return CompanyID
+        End Get
+    End Property
+
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return CompanyName
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            CompanyName = value
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "Company"
+        End Get
+    End Property
+#End Region
 End Class
+
 <DebuggerDisplay("ProductType {ProducTypeName} ({ProductTypeID})")> _
 Partial Class ProductType
     Implements ISimpleObject
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Description
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Description = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return ProductTypeID
+        End Get
+    End Property
+
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return ProductTypeName
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            ProductTypeName = value
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "ProductType"
+        End Get
+    End Property
+#End Region
 End Class
+
 <DebuggerDisplay("Target {Name} ({TargetID})")>
 Partial Class Target
     Implements ISimpleObject
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Description
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Description = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return TargetID
+        End Get
+    End Property
+
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return Name
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Name = value
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "Target"
+        End Get
+    End Property
+#End Region
 End Class
+
 <DebuggerDisplay("Storage {StorageNumber} ({StorageID})")> _
 Partial Class Storage
     Implements ISimpleObject
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Description
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Description = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return StorageID
+        End Get
+    End Property
+
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return StorageNumber
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            StorageNumber = value
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "Storage"
+        End Get
+    End Property
+#End Region
 End Class
+
 <DebuggerDisplay("StorageType {Name} ({StorageTypeID})")> _
 Partial Class StorageType
     Implements ISimpleObject
-End Class
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return Description
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Description = value
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return StorageTypeID
+        End Get
+    End Property
 
-<DebuggerDisplay("Cap {CapID} <-> Category {CategoryID}")> _
-Partial Class Cap_Category_Int
-    Public Sub New(ByVal Cap As Cap, ByVal Category As Category)
-        Me.New()
-        Me.Cap = Cap
-        Me.Category = Category
-    End Sub
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return Name
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Name = value
+        End Set
+    End Property
 
-
-End Class
-<DebuggerDisplay("Cap {CapID} <-> Keyword {KeywordID}")> _
-Partial Class Cap_Keyword_Int
-    Public Sub New(ByVal Cap As Cap, ByVal Keyword As Keyword)
-        Me.New()
-        Me.Cap = Cap
-        Me.Keyword = Keyword
-    End Sub
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "StorageType"
+        End Get
+    End Property
+#End Region
 End Class
 
 <DebuggerDisplay("Keyword {Keyword} ({KeywordID})")> _
@@ -151,7 +491,71 @@ Partial Class Keyword
         Me.New()
         Me._Keyword = Keyword
     End Sub
+#Region "ISimpleObject"
+    Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
+        <DebuggerStepThrough()> Get
+            Return "Keyword " + Keyword
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Throw New NotSupportedException("ISimpleObject.Description is not supported by " + Me.GetType.Name)
+        End Set
+    End Property
+    Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        <DebuggerStepThrough()> Get
+            Return KeywordID
+        End Get
+    End Property
+
+    Private Property ISimpleObject_Name As String Implements ISimpleObject.Name
+        <DebuggerStepThrough()> Get
+            Return Keyword
+        End Get
+        <DebuggerStepThrough()> Set(ByVal value As String)
+            Throw New NotSupportedException(String.Format("Property ISimpleObject.Name on {0} is read-only", Me.GetType.Name))
+        End Set
+    End Property
+
+    Private ReadOnly Property ISimpleObject_ObjectName As String Implements ISimpleObject.ObjectName
+        <DebuggerStepThrough()> Get
+            Return "Keyword"
+        End Get
+    End Property
+#End Region
 End Class
+#End Region
+
+#Region "Relations"
+<DebuggerDisplay("Cap {CapID} <-> CapSign {CapSignID}")>
+Partial Class Cap_CapSign_Int
+    Public Sub New(ByVal Cap As Cap, ByVal CapSign As CapSign)
+        Me.New()
+        Me.Cap = Cap
+        Me.CapSign = CapSign
+    End Sub
+End Class
+
+<DebuggerDisplay("Cap {CapID} <-> PseudoCategory {PseudoCategoryID}")> _
+Partial Class Cap_PseudoCategory_Int
+End Class
+
+<DebuggerDisplay("Cap {CapID} <-> Category {CategoryID}")> _
+Partial Class Cap_Category_Int
+    Public Sub New(ByVal Cap As Cap, ByVal Category As Category)
+        Me.New()
+        Me.Cap = Cap
+        Me.Category = Category
+    End Sub
+End Class
+
+<DebuggerDisplay("Cap {CapID} <-> Keyword {KeywordID}")> _
+Partial Class Cap_Keyword_Int
+    Public Sub New(ByVal Cap As Cap, ByVal Keyword As Keyword)
+        Me.New()
+        Me.Cap = Cap
+        Me.Keyword = Keyword
+    End Sub
+End Class
+#End Region
 
 Partial Class CapsDataDataContext
 
@@ -239,7 +643,7 @@ Partial Class CapsDataDataContext
             cult = cult.Parent
         End While
         Dim ta As New HelperDataSetTableAdapters.TranslateShapeTableAdapter With {.Connection = Me.Connection}
-        Using r = ta.Read(ShapeID, Table)
+        Using r = ta.Read(shapeID, Table)
             Return Me.Translate(Of ShapeFullTranslation)(r).FirstOrDefault
         End Using
     End Function
@@ -256,14 +660,14 @@ Partial Class CapsDataDataContext
     ''' <param name="shapeID"><see cref="Shape.ShapeID">ShapeID</see> of <see cref="Shape"/> to get translation of</param>
     ''' <returns>Translation of localizable properties of given <see cref="Shape"/> represented by <paramref name="ShapeID"/> to <see cref="CultureInfo.CurrentUICulture">current UI culture</see> or one of its parent cultures.</returns>
     Public Function TranslateShape(ByVal shapeID%) As ShapeFullTranslation
-        Return TranslateShape(ShapeID, CultureInfo.CurrentUICulture)
+        Return TranslateShape(shapeID, CultureInfo.CurrentUICulture)
     End Function
     ''' <summary>Returns full trasnslation for <see cref="CultureInfo.CurrentUICulture">current UI culture</see> of given <see cref="Shape"/></summary>
     ''' <param name="shape"><see cref="Shape"/> to get translation of</param>
     ''' <returns>Translation of localizable properties of given <see cref="Shape"/> to <see cref="CultureInfo.CurrentUICulture">current UI culture</see> or one of its parent cultures.</returns>
     ''' <exception cref="ArgumentNullException"><paramref name="shape"/> is null</exception>
     Public Function TranslateShape(ByVal shape As Shape) As ShapeFullTranslation
-        Return TranslateShape(Shape, CultureInfo.CurrentUICulture)
+        Return TranslateShape(shape, CultureInfo.CurrentUICulture)
     End Function
 #End Region
 #Region "SimpleObject"
@@ -377,6 +781,7 @@ Partial Class CapsDataDataContext
         End Using
     End Function
 End Class
+
 #If DEBUG Then
 ''' <summary><see cref="IO.TextWriter"/> over <see cref="Debug"/></summary>
 Friend Class DebugLog
