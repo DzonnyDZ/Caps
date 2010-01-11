@@ -59,5 +59,23 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to {0} is not supported by {1}.
+        '''</summary>
+        Friend ReadOnly Property err_PropertyIsNotSupported() As String
+            Get
+                Return ResourceManager.GetString("err_PropertyIsNotSupported", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Property {0} on {1} is read-only.
+        '''</summary>
+        Friend ReadOnly Property err_PropertyIsReadOnly() As String
+            Get
+                Return ResourceManager.GetString("err_PropertyIsReadOnly", resourceCulture)
+            End Get
+        End Property
     End Module
 End Namespace

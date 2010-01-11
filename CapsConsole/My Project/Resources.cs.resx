@@ -1214,4 +1214,16 @@ Dvakrát klikněte pro editaci.</value>
   <data name="txt_ErrorRestarting" xml:space="preserve">
     <value>Chyba při restartu aplikace</value>
   </data>
+  <data name="err_InvalidCommandLineConnectionString" xml:space="preserve">
+    <value>Připojovací řetězec předaný z příkazové řádky {0} je neplatný.</value>
+  </data>
+  <data name="cmd_AddSign" xml:space="preserve">
+    <value>Přidat značku</value>
+  </data>
+  <data name="cmd_NewSign" xml:space="preserve">
+    <value>Nová značka ...</value>
+  </data>
+  <data name="txt_ToManyCapSigns" xml:space="preserve">
+    <value>Jedna značka byla vybrána vícekrát. Každá značka může být vybrána maximálně jednou.</value>
+  </data>
 </root>

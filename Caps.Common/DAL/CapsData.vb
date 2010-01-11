@@ -71,7 +71,7 @@ Partial Class CapInstance
             Return "CapInstance " + CapInstanceID
         End Get
         <DebuggerStepThrough()> Set(ByVal value As String)
-            Throw New NotSupportedException("ISimpleObject.Name is not supported by " + Me.GetType.Name)
+            Throw New NotSupportedException(String.Format(My.Resources.err_PropertyIsNotSupported, "ISimpleObject.Name", Me.GetType.Name))
         End Set
     End Property
 
@@ -497,7 +497,7 @@ Partial Class Keyword
             Return "Keyword " + Keyword
         End Get
         <DebuggerStepThrough()> Set(ByVal value As String)
-            Throw New NotSupportedException("ISimpleObject.Description is not supported by " + Me.GetType.Name)
+            Throw New NotSupportedException(String.Format(My.Resources.err_PropertyIsNotSupported, "ISimpleObject.Description", Me.GetType.Name))
         End Set
     End Property
     Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
@@ -511,7 +511,7 @@ Partial Class Keyword
             Return Keyword
         End Get
         <DebuggerStepThrough()> Set(ByVal value As String)
-            Throw New NotSupportedException(String.Format("Property ISimpleObject.Name on {0} is read-only", Me.GetType.Name))
+            Throw New NotSupportedException(String.Format(My.Resources.err_PropertyIsReadOnly, "ISimpleObject.Name", Me.GetType.Name))
         End Set
     End Property
 
