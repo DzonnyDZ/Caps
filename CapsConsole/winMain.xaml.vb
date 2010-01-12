@@ -48,7 +48,7 @@ Connect: If Main.Connection Is Nothing OrElse Redo Then
             VerifyDatabaseVersionWithUpgrade(Connection, Me)
         Catch ex As Exception
             Try : Connection.Close() : Catch : End Try
-            If mBox.Error_XBWI(ex, Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Retry Or Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.Abort, Me) = Forms.DialogResult.Retry Then
+            If mBox.Error_XBWI(ex, mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Abort, Me) = Forms.DialogResult.Retry Then
                 Redo = True
                 GoTo Connect
             Else
