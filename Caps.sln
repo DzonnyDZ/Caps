@@ -38,31 +38,6 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Caps.Common", "Caps.Common\Caps.Common.vbproj", "{7AD26E25-D660-42BB-8BC3-F46F65C74811}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 7
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs10.codeplex.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = CapsConsole\\CapsConsole.vbproj
-		SccProjectName1 = CapsConsole
-		SccLocalPath1 = CapsConsole
-		SccProjectUniqueName2 = CapsConsole\u0020setup\\CapsConsole\u0020setup.vdproj
-		SccProjectName2 = CapsConsole\u0020setup
-		SccLocalPath2 = CapsConsole\u0020setup
-		SccProjectUniqueName3 = SplitButton\\SplitButton.csproj
-		SccProjectTopLevelParentUniqueName3 = Caps.sln
-		SccProjectName3 = SplitButton
-		SccLocalPath3 = SplitButton
-		SccProjectUniqueName4 = CapsData\\CapsData.dbproj
-		SccProjectName4 = CapsData
-		SccLocalPath4 = CapsData
-		SccProjectUniqueName5 = CapsWeb\\CapsWeb.vbproj
-		SccProjectName5 = CapsWeb
-		SccLocalPath5 = CapsWeb
-		SccProjectUniqueName6 = Caps.Common\\Caps.Common.vbproj
-		SccProjectName6 = Caps.Common
-		SccLocalPath6 = Caps.Common
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
