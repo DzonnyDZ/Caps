@@ -1,6 +1,6 @@
-﻿--Table Storage
-
-BEGIN TRANSACTION;
+﻿BEGIN TRANSACTION;
+--Table Storage
+PRINT 'ALTER TABLE dbo.Storage';
 GO
 ALTER TABLE dbo.Storage ADD
 	ParentStorage int NULL,
@@ -16,11 +16,9 @@ ALTER TABLE dbo.Storage ADD CONSTRAINT
 	) ON UPDATE  NO ACTION 
 	 ON DELETE  NO ACTION;
 GO
-COMMIT;
-GO
 -------------------------------------------------------------------------------------------------------------------------------
 -- Table StoredImage
-BEGIN TRANSACTION;
+PRINT 'CREATE TABLE dbo.StoredImage';
 GO
 CREATE TABLE dbo.StoredImage
 	(
@@ -119,13 +117,10 @@ ALTER TABLE dbo.StoredImage ADD CONSTRAINT
 GO
 ALTER TABLE dbo.StoredImage ADD CONSTRAINT CHK_StoredImage_NoEmptyStrings CHECK (FileName <> '' AND MIME <> '');
 GO
-COMMIT;
-GO
 
 --------------------------------------------------------------------------------------------------------------------------------------
 --Multiple signs per cap
-
-BEGIN TRANSACTION
+PRINT 'CREATE TABLE dbo.Cap_CapSign_Int';
 GO
 CREATE TABLE dbo.Cap_CapSign_Int
 	(
@@ -163,12 +158,9 @@ ALTER TABLE dbo.Cap_CapSign_Int ADD CONSTRAINT
 	 ON DELETE  CASCADE 
 	
 GO
-COMMIT
-GO
+PRINT 'INSERT INTO dbo.Cap_CapSign_int';
 
-BEGIN TRANSACTION;
-
-insert into dbo.Cap_CapSign_int (CapID,CapSignID)
+INSERT INTO dbo.Cap_CapSign_int (CapID,CapSignID)
 SELECT c.CapID,c.CapSignID
 FROM dbo.Cap c
 WHERE c.CapSignID IS NOT NULL;
@@ -177,12 +169,9 @@ ALTER TABLE dbo.Cap	DROP CONSTRAINT FK_Cap_CapSign;
 GO
 ALTER TABLE dbo.Cap	DROP COLUMN CapSignID;
 GO
-
-COMMIT;
-GO
 -------------------------------------------------------------------------------------------------------------------------
 --Pseudocategory
-BEGIN TRANSACTION;
+PRINT 'CREATE TABLE dbo.PseudoCategory';
 GO
 CREATE TABLE dbo.PseudoCategory
 	(
@@ -203,57 +192,38 @@ GO
 ALTER TABLE dbo.PseudoCategory ADD CONSTRAINT
 	CHK_PseudoCategory_NoEmptyStrings CHECK (Name <> '' AND Description <> '' AND Condition <> '');
 GO	
-COMMIT;
-GO
 CREATE TRIGGER [dbo].[PseudoCategory_Instead_Ins] 
    ON  [dbo].[PseudoCategory]
-   instead of INSERT
+   INSTEAD OF INSERT
 AS 
 BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-
-    -- Insert statements for trigger here
-			 insert into dbo.PseudoCategory
-					 (	 Name,[Description],Condition)
-         output inserted.*
-			 SELECT dbo.EmptyStrToNull(Name),dbo.EmptyStrToNull([Description]),	dbo.EmptyStrToNull(Condition)
-  FROM inserted	 ;
-
-
-     -- select * from dbo.shape where shapeid=scope_identity();
-			 
+    INSERT INTO dbo.PseudoCategory (Name,[Description],Condition)
+        OUTPUT inserted.*
+		SELECT dbo.EmptyStrToNull(Name),dbo.EmptyStrToNull([Description]), dbo.EmptyStrToNull(Condition)
+			FROM INSERTED;
 END
 GO
 
 CREATE TRIGGER [dbo].[PseudoCategory_Instead_Upd]
    ON  [dbo].PseudoCategory 
-   instead of update
+   INSTEAD OF UPDATE
 AS 
 BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-
-
-	  UPDATE [dbo].PseudoCategory	
-   SET	
-   name=dbo.EmptyStrToNull(i.name)   ,
-      [Description]=dbo.EmptyStrToNull(i.[description]),
-      Condition=dbo.EmptyStrToNull(i.Condition)
-     
-
- from inserted	as i
- WHERE pseudocategory.pseudocategoryid=i.pseudocategoryid
-
-					;
-			 
+	UPDATE [dbo].PseudoCategory	
+	SET	
+		Name = dbo.EmptyStrToNull(i.Name),
+		[Description] = dbo.EmptyStrToNull(i.[Description]),
+		Condition = dbo.EmptyStrToNull(i.Condition)
+	FROM INSERTED as i
+	WHERE PseudoCategory.PseudoCategoryID = i.PseudoCategoryID;
 END
 GO
 ----------------------------------------------------------------------------------------------------------------------------------
 -- CapTranslation table
-
+PRINT 'CREATE TABLE [dbo].[CapTranslation]';
+GO
 CREATE TABLE [dbo].[CapTranslation](
 	[CapTranslationID] [int] IDENTITY(1,1) NOT NULL,
 	[CapID] [int] NOT NULL,
@@ -324,6 +294,8 @@ GO
 
 -------------------------------------------------------------------------------------------------------------------------------
 -- SimpleTranslation table
+PRINT 'CREATE TABLE [dbo].[SimpleTranslation]';
+GO
 CREATE TABLE [dbo].[SimpleTranslation](
 	[SimpleTranslationID] [int] IDENTITY(1,1) NOT NULL,
 	[CategoryID] [int] NULL,
@@ -519,6 +491,8 @@ END;
 GO
 -----------------------------------------------------------------------------------------------------------------------------
 --ShapeTranslation table
+PRINT 'CREATE TABLE [dbo].[ShapeTranslation]';
+GO
 CREATE TABLE [dbo].[ShapeTranslation](
 	[ShapeTranslationID] [int] IDENTITY(1,1) NOT NULL,
 	[ShapeID] [int] NOT NULL,
@@ -589,8 +563,10 @@ GO
 
 ------------------------------------------------------------------------------------------------------------------------------
 --Romanization table
+PRINT 'CREATE TABLE [dbo].[Romanization]';
+GO
 CREATE TABLE [dbo].[Romanization](
-	[Character] [nchar](1) NOT NULL,
+	[Character] [nchar](1) COLLATE Latin1_General_BIN2 NOT NULL,
 	[Romanization] [nvarchar](10) NOT NULL,
 	[Code]  AS (unicode([Character])) PERSISTED,
  CONSTRAINT [PK_Romanization] PRIMARY KEY CLUSTERED 
@@ -602,6 +578,7 @@ CREATE TABLE [dbo].[Romanization](
 GO
 
 --Data
+PRINT 'INSERT INTO Romanization';
 INSERT INTO Romanization VALUES (N'А',N'A'), (N'а',N'a'),
 (N'Б',N'B'), (N'б',N'b'),
 (N'В',N'V'), (N'в',N'v'),
@@ -867,12 +844,13 @@ INSERT INTO Romanization VALUES (N'А',N'A'), (N'а',N'a'),
 (N'Ὼ',N'Ó');	
 GO
 --Romanize function
+PRINT 'CREATE FUNCTION [dbo].[Romanize]';
 GO
 --- <summary>Converts given Unicode string to Unicode string containing romanized characters</summary>
 --- <param name="Str">String to be romenized</param>
 --- <returns><paramref name="Str"> with characters for which romanization is know romanized</returns>
 --- <remarks>Romanization is based on romanization rules tored in <see cref="dbo.Romanization"/> table</remarks>
-ALTER FUNCTION [dbo].[Romanize]
+CREATE FUNCTION [dbo].[Romanize]
 (@Str NVARCHAR(MAX))
 RETURNS NVARCHAR(MAX)
 AS
@@ -897,9 +875,15 @@ END;
 GO
 --================================================================================================================================
 --VarCharTable UDT (requires re-creation of GetSimilarCaps)
-begin transaction;
-drop procedure dbo.GetSimilarCaps;
-drop type [dbo].[VarCharTable];
+PRINT 'DROP PROCEDURE dbo.GetSimilarCaps';
+GO
+DROP PROCEDURE dbo.GetSimilarCaps;
+GO
+PRINT 'DROP TYPE [dbo].[VarCharTable]';
+GO
+DROP TYPE [dbo].[VarCharTable];
+GO
+PRINT 'CREATE TYPE [dbo].[VarCharTable]';
 GO
 CREATE TYPE [dbo].[VarCharTable] AS TABLE(
 	[Value] nvarchar(50) NOT NULL,
@@ -912,6 +896,7 @@ GO
 
 
 --Re-cerate GetSimilarCaps
+PRINT 'CREATE PROCEDURE [dbo].[GetSimilarCaps]';
 GO
 CREATE PROCEDURE [dbo].[GetSimilarCaps] 
 	-- Add the parameters for the stored procedure here
@@ -1047,11 +1032,11 @@ BEGIN
 END;
 GO
 
-COMMIT;
 --================================================================================================================================
 -------------------------------- Translation-related procedures -----------------------------------------------------------------
 GO
 --TranslateSimplaObject
+PRINT 'CREATE PROCEDURE [dbo].[TranslateSimpleObject]';
 GO					   
 --- <summary>Returns full translation of object that supports simple translation</summary>
 --- <param name="ObjectType">String type of object to get simple translation of. This must be name of one of table table <see cref="dbo.SimpleTranslation"/> has relation to.</param>
@@ -1146,6 +1131,7 @@ BEGIN
 END;
 GO
 --TranslateCap
+PRINT 'CREATE PROCEDURE [dbo].[TranslateCap]';
 GO
 --- <summary>Returns full translation of <see cref="dbo.Cap"/> object</summary>
 --- <param name="CapID">ID of <see cref="dbo.Cap"/> to get translation of</param>
@@ -1162,7 +1148,7 @@ GO
 --- <item><term>AnotherPictures</term><description>Localized description of other pictures on shape</description></item>
 --- <item><term>AnotherPicturesCulture</term><description>Name of culture AnotherPictures is returned in. Null if Description was read diersctly from <see cref="dbo.Cap"/>.</description></item>
 --- </list></returns>
-ALTER PROCEDURE [dbo].[TranslateCap](
+CREATE PROCEDURE [dbo].[TranslateCap](
 	@CapID int,
 	@CultureNames dbo.VarCharTable READONLY
 ) AS BEGIN
@@ -1200,6 +1186,7 @@ ALTER PROCEDURE [dbo].[TranslateCap](
 END;
 GO
 --TranslateShape
+PRINT 'CREATE PROCEDURE [dbo].[TranslateShape]';
 GO	 
 --- <summary>Returns full translation of <see cref="dbo.Shape"/> object</summary>
 --- <param name="ShapeID">ID of <see cref="dbo.Shape"/> to get translation of</param>
@@ -1216,7 +1203,7 @@ GO
 --- <item><term>Description</term><description>Localized description of the shape</description></item>
 --- <item><term>DescriptionCulture</term><description>Name of culture Description is returned in. Null if Description was read diersctly from <see cref="dbo.Shape"/>.</description></item>
 --- </list></returns>
-ALTER PROCEDURE [dbo].[TranslateShape](
+CREATE PROCEDURE [dbo].[TranslateShape](
 	@ShapeID int,
 	@CultureNames dbo.VarCharTable READONLY
 ) AS BEGIN
@@ -1255,6 +1242,7 @@ END;
 GO
 -------------------------------------------------------------------------------------------------------------------------------
 --Cleanup
+PRINT 'Cleanup';
 EXEC sp_rename N'category_Instead_Upd',N'Category_Instead_Upd';
 EXEC sp_rename N'company_Instead_Upd',N'Company_Instead_Upd';
 EXEC sp_rename N'image_Instead_Upd',N'Image_Instead_Upd';
@@ -1270,13 +1258,17 @@ GO
 
 --------------------------------------------------------------------------------------------------------------------------------
 --Increase version
+PRINT 'ALTER FUNCTION [dbo].[GetDatabaseVersion]';
+GO
 ALTER FUNCTION [dbo].[GetDatabaseVersion] ()
 RETURNS nvarchar(50)
 AS
 BEGIN
-declare @dbGuid nvarchar(38) = '{DAFDAE3F-2F0A-4359-81D6-50BA394D72D9}';
-declare @dbVersion nvarchar(11) = '0.1.4.0';
-return @dbGuid + @dbversion;
-
+	DECLARE @dbGuid NVARCHAR(38) = '{DAFDAE3F-2F0A-4359-81D6-50BA394D72D9}';
+	DECLARE @dbVersion NVARCHAR(11) = '0.1.4.0';
+	RETURN @dbGuid + @dbversion;
 END;   
 GO
+PRINT 'Done!';
+GO
+COMMIT;

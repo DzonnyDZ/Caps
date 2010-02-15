@@ -3197,7 +3197,7 @@ Resize256:      Try
             lblCapsCount.Content = Context.Caps.Count
     End Sub
 
-   
+
 End Class
 
 ''' <summary>Allows to distinguish image already in database and a new image</summary>

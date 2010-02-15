@@ -214,9 +214,7 @@
                 <ItemsControl Name="icSigns" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxHeight="99">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden">
-                                <StackPanel Orientation="Vertical" IsItemsHost="True"/>
-                            </ScrollViewer>
+                                    <StackPanel Orientation="Vertical" IsItemsHost="True"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
@@ -227,8 +225,8 @@
                 </ItemsControl>
                 <Grid Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Height="auto" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50%"/>
-                        <ColumnDefinition Width="50%"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
