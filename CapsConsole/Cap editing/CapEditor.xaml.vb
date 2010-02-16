@@ -8,7 +8,7 @@ Imports Tools, Tools.WindowsT.WPF.WpfExtensions
 ''' <summary>Creates a new cap</summary>
 Partial Public Class CapEditor
     ''' <summary>Context to be used when <see cref="Context"/> is not set</summary>
-    Private OriginalContext As New CapsDataDataContext(Main.Connection)
+    Private OriginalContext As CapsDataDataContext = If(Main.Connection Is Nothing, Nothing, New CapsDataDataContext(Main.Connection)) 'If(...) - for designer
     ''' <summary>Contains value of the <see cref="Context"/> proeprty</summary>
     Private _Context As CapsDataDataContext = OriginalContext
     Private UnderConstruction As Boolean = True
@@ -55,6 +55,8 @@ Partial Public Class CapEditor
             cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Order By item.StorageNumber)
             cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
             cmbTarget.ItemsSource = New ListWithEvents(Of Target)(From item In Context.Targets Order By item.Name)
+            AllCapSigns.Clear()
+            AllCapSigns.AddRange(Context.CapSigns)
             icSigns.ItemsSource = New ListWithEvents(Of Cap_CapSign_Int)
             Dim ProductTypesList As ListWithEvents(Of ProductType) = New ListWithEvents(Of ProductType)(From item In Context.ProductTypes Order By item.ProductTypeName)
             ProductTypesList.Add(Nothing)
@@ -188,7 +190,7 @@ Partial Public Class CapEditor
             Next
             Cap_Sign_Ints.Add(New Cap_CapSign_Int With {.CapSign = win.NewObject})
             Dim NewValue = (From Cap_Sing_Int In Cap_Sign_Ints Select Cap_Sing_Int.CapSign).ToArray
-            SelectadCapSignsValuesNotToBeCoerced.Add(NewValue)
+            SelectedCapSignsValuesNotToBeCoerced.Add(NewValue)
             SelectedCapSigns = NewValue
         End If
     End Sub
@@ -201,10 +203,10 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnAddSign_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnAddSign.Click
-        Dim Cap_Sign_Ints = DirectCast(icSigns.ItemsSource, List(Of Cap_CapSign_Int))
+        Dim Cap_Sign_Ints As ListWithEvents(Of Cap_CapSign_Int) = icSigns.ItemsSource
         Cap_Sign_Ints.Add(New Cap_CapSign_Int)
         Dim NewValue = (From Cap_Sing_Int In Cap_Sign_Ints Select Cap_Sing_Int.CapSign).ToArray
-        SelectadCapSignsValuesNotToBeCoerced.Add(NewValue)
+        SelectedCapSignsValuesNotToBeCoerced.Add(NewValue)
         SelectedCapSigns = NewValue
     End Sub
 #End Region
@@ -2534,13 +2536,13 @@ Partial Public Class CapEditor
         Return DirectCast(d, CapEditor).CoerceSelectedCapSigns(baseValue)
     End Function
     ''' <summary>Contains list of value which when set to <see cref="SelectedCapSigns"/> are accepted without any checks and manipulation</summary>
-    Private SelectadCapSignsValuesNotToBeCoerced As New List(Of IEnumerable(Of CapSign))
+    Private SelectedCapSignsValuesNotToBeCoerced As New List(Of IEnumerable(Of CapSign))
     ''' <summary>Coerces value of the <see cref="SelectedCapSigns"/> property</summary>
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
     ''' <returns>Array of <see cref="CapSign"/>: Those of CapSigns in <paramref name="baseValue"/> which are known to this control</returns>
     Private Function CoerceSelectedCapSigns(ByVal baseValue As IEnumerable(Of CapSign)) As IEnumerable(Of CapSign)
         If baseValue Is Nothing Then Return Nothing
-        If SelectadCapSignsValuesNotToBeCoerced.Contains(baseValue) Then Return baseValue
+        If SelectedCapSignsValuesNotToBeCoerced.Contains(baseValue) Then Return baseValue
         Return (From itm In baseValue Where (From sign In AllCapSigns Select sign.CapSignID).Contains(itm.CapSignID)).ToArray
     End Function
     ''' <summary>Called when value of the property <see cref="SelectedCapSigns"/> is changed</summary>
@@ -2556,8 +2558,8 @@ Partial Public Class CapEditor
     ''' <summary>Called when value of the <see cref="SelectedCapSigns"/> property changes</summary>
     ''' <param name="e">Event arguments</param>
     Protected Overridable Sub OnSelectedCapSignsChanged(ByVal e As DependencyPropertyChangedEventArgs)
-        If SelectadCapSignsValuesNotToBeCoerced.Contains(e.NewValue) Then
-            SelectadCapSignsValuesNotToBeCoerced.Remove(e.NewValue)
+        If SelectedCapSignsValuesNotToBeCoerced.Contains(e.NewValue) Then
+            SelectedCapSignsValuesNotToBeCoerced.Remove(e.NewValue)
             Exit Sub
         End If
         OnSelectedCapSignsChangedOnStack = True
@@ -3198,6 +3200,9 @@ Resize256:      Try
     End Sub
 
 
+    Private Sub cmbSign_SelectionChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs)
+
+    End Sub
 End Class
 
 ''' <summary>Allows to distinguish image already in database and a new image</summary>
