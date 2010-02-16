@@ -70,7 +70,7 @@
                        HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Height="auto"  Grid.Column="0" Grid.Row="0" />
                 <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding CapName, Mode=OneWay}" TextWrapping="Wrap" MaxWidth="72" FontSize="10" />                   
                 <TextBlock Grid.Column="0" Grid.Row="2" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding CapID, Mode=OneWay}" MaxWidth="72" FontSize="10"/>
-                <ItemsControl MaxHeight="18" Width="auto" Height="auto" MaxWidth="64" ItemsSource="{Binding Cap_CapSign_Ints, Mode=OneWay}">
+                <ItemsControl MaxHeight="18" Width="auto" Height="auto" MaxWidth="64" ItemsSource="{Binding Cap_CapSign_Ints, Mode=OneWay}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" IsItemsHost="True"/>

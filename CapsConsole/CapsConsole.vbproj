@@ -112,18 +112,6 @@
     <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Tools, Version=1.5.2.41175, Culture=neutral, PublicKeyToken=373c02ac923768e6, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\Tools.dll</HintPath>
-    </Reference>
-    <Reference Include="Tools.Metadata, Version=1.5.2.41876, Culture=neutral, PublicKeyToken=373c02ac923768e6, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\Tools.Metadata.dll</HintPath>
-    </Reference>
-    <Reference Include="Tools.Windows, Version=1.5.2.41872, Culture=neutral, PublicKeyToken=373c02ac923768e6, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\Tools.Windows.dll</HintPath>
-    </Reference>
     <Reference Include="UIAutomationProvider">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -759,6 +747,18 @@
     <Resource Include="Resources\Flags\HN.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Tools\Tools.Metadata\Tools.Metadata.vbproj">
+      <Project>{F2E3DDFB-EEDB-4F85-8AE8-CBE6B18A5ED0}</Project>
+      <Name>Tools.Metadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tools\Tools.Windows\Tools.Windows.vbproj">
+      <Project>{452A48B6-DBD2-43C0-9D4B-3834E2EA135A}</Project>
+      <Name>Tools.Windows</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tools\Tools\Tools.vbproj">
+      <Project>{FCF346AC-D1C3-42DB-9026-9144240FB766}</Project>
+      <Name>Tools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Caps.Common\Caps.Common.vbproj">
       <Project>{7AD26E25-D660-42BB-8BC3-F46F65C74811}</Project>
       <Name>Caps.Common</Name>
@@ -772,4 +772,7 @@
     <Resource Include="CommandLineArguments.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetDir)Tools*" "$(SolutionDir)References\"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
