@@ -263,16 +263,14 @@
                     <ItemsControl Grid.Column="1" Grid.Row="8" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" ItemsSource="{Binding Cap_CapSign_Ints, Mode=OneWay}" Grid.IsSharedSizeScope="True">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
-                                    <StackPanel Orientation="Vertical" IsItemsHost="True"/>
-                                </ScrollViewer>
+                                <StackPanel Orientation="Vertical" IsItemsHost="True"/>
                             </ItemsPanelTemplate>                                 
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Grid HorizontalAlignment="Stretch" ToolTip="{Binding CapSign.Description, Mode=OneWay}">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto" MaxWidth="19" SharedSizeGroup="c1" />
+                                        <ColumnDefinition Width="auto" MaxWidth="35" SharedSizeGroup="c1" />
                                         <ColumnDefinition Width="*" SharedSizeGroup="c2"/>
                                         <ColumnDefinition Width="auto" SharedSizeGroup="c3"/>
                                     </Grid.ColumnDefinitions>
