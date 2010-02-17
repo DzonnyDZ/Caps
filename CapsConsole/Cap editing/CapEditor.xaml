@@ -211,7 +211,8 @@
                 <Button Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewTarget" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
 
                 <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Sign}" Target="{Binding ElementName=icSigns}"/>
-                <ItemsControl Name="icSigns" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxHeight="99">
+                <ItemsControl Name="icSigns" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxHeight="99"
+                              ComboBox.SelectionChanged="cmbSign_SelectionChanged">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                                     <StackPanel Orientation="Vertical" IsItemsHost="True"/>
@@ -219,7 +220,10 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <ComboBox HorizontalAlignment="Stretch" Name="cmbSign" Style="{StaticResource SignTemplate}" SelectedValuePath="CapSignID" KeyDown="cmbSign_KeyDown" Loaded="cmbSign_Loaded" SelectedItem="{Binding CapSign, Mode=TwoWay}" SelectionChanged="cmbSign_SelectionChanged" />
+                            <ComboBox HorizontalAlignment="Stretch" Name="cmbSign" Style="{StaticResource SignTemplate}"
+                                      SelectedValuePath="CapSignID" KeyDown="cmbSign_KeyDown" Loaded="cmbSign_Loaded"
+                                      SelectedItem="{Binding ., Mode=TwoWay}"  />
+                            <!--SelectionChanged="cmbSign_SelectionChanged"-->
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
