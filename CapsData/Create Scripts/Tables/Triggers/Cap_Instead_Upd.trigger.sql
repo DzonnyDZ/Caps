@@ -41,8 +41,7 @@ BEGIN
       isdrink=i.isdrink,
       [state]=i.[state],
       targetid=i.targetid,
-      isalcoholic=i.isalcoholic,
-      capsignid=i.capsignid
+      isalcoholic=i.isalcoholic
  from inserted	as i
  WHERE cap.capid=i.capid;
 	 

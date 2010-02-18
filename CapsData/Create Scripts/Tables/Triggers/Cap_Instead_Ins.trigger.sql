@@ -36,7 +36,7 @@ insert into dbo.cap
       ,[PictureType]
       ,[HasBottom]
       ,[HasSide]
-      ,[AnotherPictures],Countryoforigin,isdrink,[state],targetid,isalcoholic,capsignid)
+      ,[AnotherPictures],Countryoforigin,isdrink,[state],targetid,isalcoholic)
                    output INSERTED.*
 			 SELECT [CapTypeID]
       ,[MainTypeID]
@@ -70,7 +70,7 @@ insert into dbo.cap
       ,[HasBottom]
       ,[HasSide]
       ,dbo.EmptyStrToNull([AnotherPictures]),
-      dbo.EmptyStrToNull(Countryoforigin),isdrink,[state],targetid, isalcoholic,capsignid
+      dbo.EmptyStrToNull(Countryoforigin),isdrink,[state],targetid, isalcoholic
   FROM inserted	 ;
   
 END

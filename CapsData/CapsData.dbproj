@@ -891,5 +891,50 @@
     <Build Include="Create Scripts\Tables\Keys\PK_Romanization.pkey.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_StoredImage_OneReference.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_ShapeTranslation_NoEmptyStrings.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_ShapeTranslation.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\FK_ShapeTranslation_Shape.fkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Indexes\UNQ_ShapeTranslation.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\ShapeTranslation.table.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\ShapeTranslation_Instead_Upd.trigger.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Create Scripts\Tables\Triggers\ShapeTranslation_Instead_Ins.trigger.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Create Scripts\Stored Procedures\TranslateCap.proc.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Create Scripts\Stored Procedures\TranslateSimpleObject.proc.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Create Scripts\Stored Procedures\TranslateShape.proc.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
   </ItemGroup>
 </Project>

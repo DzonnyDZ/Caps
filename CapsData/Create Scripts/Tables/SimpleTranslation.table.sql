@@ -8,7 +8,6 @@
     [TargetID]            INT            NULL,
     [MaterialID]          INT            NULL,
     [CapTypeID]           INT            NULL,
-    [ShapeID]             INT            NULL,
     [MainTypeID]          INT            NULL,
     [CapSignID]           INT            NULL,
     [StorageID]           INT            NULL,
@@ -18,6 +17,8 @@
     [Name]                NVARCHAR (50)  NULL,
     [Description]         NVARCHAR (MAX) NULL
 );
+
+
 
 
 

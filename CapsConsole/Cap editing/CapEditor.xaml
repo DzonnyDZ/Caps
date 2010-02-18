@@ -222,12 +222,12 @@
                         <DataTemplate>
                             <ComboBox HorizontalAlignment="Stretch" Name="cmbSign" Style="{StaticResource SignTemplate}"
                                       SelectedValuePath="CapSignID" KeyDown="cmbSign_KeyDown" Loaded="cmbSign_Loaded"
-                                      SelectedItem="{Binding ., Mode=TwoWay}"  />
+                                      SelectedItem="{Binding CapSign, Mode=TwoWay}"  />
                             <!--SelectionChanged="cmbSign_SelectionChanged"-->
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <Grid Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Height="auto" HorizontalAlignment="Stretch">
+                <Grid Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Height="auto" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -235,8 +235,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Button Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="btnNewSign" Margin="0" Content="{x:Static res:Resources.cmd_NewSign}"/>
                     <Button Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="btnAddSign" Margin="0" Content="{x:Static res:Resources.cmd_AddSign}"/>
+                    <Button Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Stretch" Width="auto" Name="btnNewSign" Margin="0" Content="{x:Static res:Resources.cmd_NewSign}"/>
                 </Grid>
                 
                 <GroupBox Grid.Column="0" Grid.Row="10" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="auto" Header="{x:Static res:Resources.txt_TypeSuggestor}" IsEnabled="{Binding ElementName=optCapTypeSelect, Path=IsChecked, Mode=OneWay, Converter={StaticResource NotBooleanValueConverter}}">

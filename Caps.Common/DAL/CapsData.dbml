@@ -380,24 +380,24 @@
   </Table>
   <Table Name="" Member="ShapeFullTranslations">
     <Type Name="ShapeFullTranslation">
-      <Column Name="ShapeID" Type="System.Int32" DbType="INT NOT NULL" IsReadOnly="true" CanBeNull="false" UpdateCheck="Always" />
-      <Column Name="Name" Type="System.String" DbType="NVARCHAR(50) NULL" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
-      <Column Name="NameCulture" Member="NameCultureName" Type="System.String" DbType="VARCHAR(15) NULL" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
-      <Column Name="Size1Name" Type="System.String" DbType="NVARCHAR(50) NULL" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
-      <Column Name="Size1Culture" Member="Size1NameCultureName" Type="System.String" DbType="VARCHAR(15) NULL" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
-      <Column Name="Size2Name" Type="System.String" DbType="NVARCHAR(50) NULL" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
-      <Column Name="Size2Culture" Member="Size2NameCultureName" Type="System.String" DbType="VARCHAR(15) NULL" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
-      <Column Name="Description" Type="System.String" DbType="NVARCHAR(MAX) NULL" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
-      <Column Name="DescriptionCulture" Member="DescriptionCultureName" Type="System.String" DbType="VARCHAR(15) NULL" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
+      <Column Name="ShapeID" Type="System.Int32" DbType="INT NOT NULL" IsReadOnly="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVARCHAR(50) NULL" IsReadOnly="true" CanBeNull="true" />
+      <Column Name="NameCulture" Member="NameCultureName" Type="System.String" DbType="VARCHAR(15) NULL" IsReadOnly="true" CanBeNull="true" />
+      <Column Name="Size1Name" Type="System.String" DbType="NVARCHAR(50) NULL" IsReadOnly="true" CanBeNull="true" />
+      <Column Name="Size1Culture" Member="Size1NameCultureName" Type="System.String" DbType="VARCHAR(15) NULL" IsReadOnly="true" CanBeNull="true" />
+      <Column Name="Size2Name" Type="System.String" DbType="NVARCHAR(50) NULL" IsReadOnly="true" CanBeNull="true" />
+      <Column Name="Size2Culture" Member="Size2NameCultureName" Type="System.String" DbType="VARCHAR(15) NULL" IsReadOnly="true" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVARCHAR(MAX) NULL" IsReadOnly="true" CanBeNull="true" />
+      <Column Name="DescriptionCulture" Member="DescriptionCultureName" Type="System.String" DbType="VARCHAR(15) NULL" IsReadOnly="true" CanBeNull="true" />
       <Association Name="Shape_ShapeFullTranslation" Member="Shape" ThisKey="ShapeID" OtherKey="ShapeID" Type="Shape" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="" Member="SimpleFullTranslations">
     <Type Name="SimpleFullTranslation">
-      <Column Name="Name" Type="System.String" DbType="NVARCHAR(50) NULL" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
-      <Column Name="NameCulture" Member="NameCultureName" Type="System.String" DbType="VARCHAR(15)" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
-      <Column Name="Description" Type="System.String" DbType="NVARCHAR(MAX) NULL" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
-      <Column Name="DescriptionCulture" Member="DescriptionCultureName" Type="System.String" DbType="VARCHAR(15)" IsReadOnly="true" CanBeNull="true" UpdateCheck="Always" />
+      <Column Name="Name" Type="System.String" DbType="NVARCHAR(50) NULL" IsReadOnly="true" CanBeNull="true" />
+      <Column Name="NameCulture" Member="NameCultureName" Type="System.String" DbType="VARCHAR(15)" IsReadOnly="true" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVARCHAR(MAX) NULL" IsReadOnly="true" CanBeNull="true" />
+      <Column Name="DescriptionCulture" Member="DescriptionCultureName" Type="System.String" DbType="VARCHAR(15)" IsReadOnly="true" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetDatabaseVersion" Method="GetDatabaseVersion" IsComposable="true">

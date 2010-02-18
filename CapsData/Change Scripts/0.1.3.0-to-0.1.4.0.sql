@@ -1255,7 +1255,126 @@ EXEC sp_rename N'target_Instead_Upd',N'Target_Instead_Upd';
 EXEC sp_rename N'storage_Instead_Upd',N'Storage_Instead_Upd';
 EXEC sp_rename N'CK_Cap_CountryOfOrigin',N'CHK_Cap_CountryOfOrigin';
 GO
-
+--------------------------------------------------------------------------------------------------------------------------------
+--Triggers
+GO
+ALTER TRIGGER [dbo].[Cap_Instead_Upd] ON  dbo.Cap INSTEAD OF UPDATE AS 
+BEGIN
+	SET NOCOUNT ON;
+	  UPDATE [dbo].[Cap]
+   SET [CapTypeID] = i.CapTypeID
+      ,[MainTypeID] = i.MainTypeID
+      ,[ShapeID] = i.ShapeID
+      ,[CapName] = dbo.EmptyStrToNull(i.CapName)
+      ,[MainText] = dbo.EmptyStrToNull(i.MainText)
+      ,[SubTitle] = dbo.EmptyStrToNull(i.SubTitle)
+      ,[BackColor1] = i.BackColor1
+      ,[BackColor2] = i.BackColor2
+      ,[ForeColor] = i.ForeColor
+      ,[MainPicture] = dbo.EmptyStrToNull(i.MainPicture)
+      ,[TopText] = dbo.EmptyStrToNull(i.TopText)
+      ,[SideText] = dbo.EmptyStrToNull(i.SideText)
+      ,[BottomText] = dbo.EmptyStrToNull(i.BottomText)
+      ,[MaterialID] = i.MaterialID
+      ,[Surface] = i.Surface
+      ,[Size] = i.Size
+      ,[Size2] = i.Size2
+      ,[Height] = i.Height
+      ,[Is3D] = i.Is3D
+      ,[Year] = i.Year
+      ,[CountryCode] = dbo.EmptyStrToNull(i.CountryCode)
+      ,[Note] = dbo.EmptyStrToNull(i.Note)
+      ,[CompanyID] = i.CompanyID
+      ,[ProductID] = i.ProductID
+      ,[ProductTypeID] = i.ProductTypeID
+      ,[StorageID] = i.StorageID
+      ,[ForeColor2] = i.ForeColor2
+      ,[PictureType] = i.PictureType
+      ,[HasBottom] = i.HasBottom
+      ,[HasSide] = i.HasSide
+      ,[AnotherPictures] = dbo.EmptyStrToNull(i.AnotherPictures),
+      countryoforigin=i.countryoforigin,
+      isdrink=i.isdrink,
+      [state]=i.[state],
+      targetid=i.targetid,
+      isalcoholic=i.isalcoholic
+ FROM inserted AS i
+ WHERE cap.capid=i.capid;
+END
+GO
+ALTER TRIGGER [dbo].[Cap_Instead_Ins] ON  dbo.Cap INSTEAD OF INSERT AS 
+BEGIN
+	SET NOCOUNT ON;
+INSERT INTO dbo.cap 
+					 (	[CapTypeID]
+      ,[MainTypeID]
+      ,[ShapeID]
+      ,[CapName]
+      ,[MainText]
+      ,[SubTitle]
+      ,[BackColor1]
+      ,[BackColor2]
+      ,[ForeColor]
+      ,[MainPicture]
+      ,[TopText]
+      ,[SideText]
+      ,[BottomText]
+      ,[MaterialID]
+      ,[Surface]
+      ,[Size]
+      ,[Size2]
+      ,[Height]
+      ,[Is3D]
+      ,[Year]
+      ,[CountryCode]
+      ,[DateCreated]
+      ,[Note]
+      ,[CompanyID]
+      ,[ProductID]
+      ,[ProductTypeID]
+      ,[StorageID]
+      ,[ForeColor2]
+      ,[PictureType]
+      ,[HasBottom]
+      ,[HasSide]
+      ,[AnotherPictures],Countryoforigin,isdrink,[state],targetid,isalcoholic)
+                   output INSERTED.*
+			 SELECT [CapTypeID]
+      ,[MainTypeID]
+      ,[ShapeID]
+      ,dbo.EmptyStrToNull([CapName])
+      ,dbo.EmptyStrToNull([MainText])
+      ,dbo.EmptyStrToNull([SubTitle])
+      ,[BackColor1]
+      ,[BackColor2]
+      ,[ForeColor]
+      ,dbo.EmptyStrToNull([MainPicture])
+      ,dbo.EmptyStrToNull([TopText])
+      ,dbo.EmptyStrToNull([SideText])
+      ,dbo.EmptyStrToNull([BottomText])
+      ,[MaterialID]
+      ,[Surface]
+      ,[Size]
+      ,[Size2]
+      ,[Height]
+      ,[Is3D]
+      ,[Year]
+      ,dbo.EmptyStrToNull([CountryCode])
+      ,isnull([DateCreated],getdate())
+      ,dbo.EmptyStrToNull([Note])
+      ,[CompanyID]
+      ,[ProductID]
+      ,[ProductTypeID]
+      ,[StorageID]
+      ,[ForeColor2]
+      ,dbo.EmptyStrToNull([PictureType])
+      ,[HasBottom]
+      ,[HasSide]
+      ,dbo.EmptyStrToNull([AnotherPictures]),
+      dbo.EmptyStrToNull(Countryoforigin),isdrink,[state],targetid, isalcoholic
+  FROM inserted;
+END
+GO
 --------------------------------------------------------------------------------------------------------------------------------
 --Increase version
 PRINT 'ALTER FUNCTION [dbo].[GetDatabaseVersion]';

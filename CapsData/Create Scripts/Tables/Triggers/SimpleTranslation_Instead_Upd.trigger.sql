@@ -14,7 +14,7 @@ BEGIN
 		TargetID      = i.TargetID,
 		MaterialID    = i.MaterialID,
 		CapTypeID     = i.CapTypeID,
-		ShapeID       = i.ShapeID,
+
 		MainTypeID    = i.MainTypeID,
 		CapSignID     = i.CapSignID,
 		StorageID     = i.StorageID,

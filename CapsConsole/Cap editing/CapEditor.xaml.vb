@@ -14,6 +14,8 @@ Partial Public Class CapEditor
     Private UnderConstruction As Boolean = True
     ''' <summary>Contains list of all cap signs</summary>
     Private AllCapSigns As New ListWithEvents(Of CapSign)
+    ''' <summary>Contains list of currently selected cap signs</summary>
+    Private _SelectedCapSigns As New ListWithEvents(Of CapSignProxy)
     ''' <summary>CTor</summary>
     Public Sub New()
         InitializeComponent()
@@ -57,7 +59,8 @@ Partial Public Class CapEditor
             cmbTarget.ItemsSource = New ListWithEvents(Of Target)(From item In Context.Targets Order By item.Name)
             AllCapSigns.Clear()
             AllCapSigns.AddRange(From item In Context.CapSigns Order By item.Name)
-            icSigns.ItemsSource = New ListWithEvents(Of CapSign)
+            icSigns.ItemsSource = _SelectedCapSigns
+            InternalSetSelectedCapSigns()
             Dim ProductTypesList As ListWithEvents(Of ProductType) = New ListWithEvents(Of ProductType)(From item In Context.ProductTypes Order By item.ProductTypeName)
             ProductTypesList.Add(Nothing)
             cmbProductType.ItemsSource = ProductTypesList
@@ -68,7 +71,7 @@ Partial Public Class CapEditor
             kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
             'lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
             DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(Nothing)
-            If Not ForBinding Then DirectCast(icSigns.ItemsSource, ListWithEvents(Of CapSign)).Add(Nothing)
+            If Not ForBinding Then _SelectedCapSigns.Add(New CapSignProxy) : InternalSetSelectedCapSigns()
 
             If ForBinding Then
                 optCapTypeAnonymous.IsChecked = True
@@ -181,24 +184,25 @@ Partial Public Class CapEditor
         Dim win As New winNewSign(Context)
         If win.ShowDialog Then
             AllCapSigns.Add(win.NewObject)
-            Dim iSelectedCapSigns As List(Of CapSign) = icSigns.ItemsSource
-            Dim i% = 0
-            For Each item In iSelectedCapSigns
-                If item Is Nothing Then
-                    iSelectedCapSigns(i) = win.NewObject
-                    Exit Sub
-                End If
-            Next
-            iSelectedCapSigns.Add(win.NewObject)
-            SelectedCapSignsValuesNotToBeCoerced.Add(iSelectedCapSigns)
-            SelectedCapSigns = iSelectedCapSigns
+            Try
+                Dim i% = 0
+                For Each item In _SelectedCapSigns
+                    If item.CapSign Is Nothing Then
+                        item.CapSign = win.NewObject
+                        Exit Sub
+                    End If
+                Next
+                _SelectedCapSigns.Add(win.NewObject)
+            Finally
+                InternalSetSelectedCapSigns()
+            End Try
         End If
     End Sub
     Private Sub cmbSign_KeyDown(ByVal sender As ComboBox, ByVal e As System.Windows.Input.KeyEventArgs)
-        Dim iSelectedCapSigns = DirectCast(icSigns.ItemsSource, ListWithEvents(Of CapSign))
-        iSelectedCapSigns.Remove(DirectCast(sender.DataContext, CapSign))
-        SelectedCapSignsValuesNotToBeCoerced.Add(SelectedCapSigns)
-        SelectedCapSigns = iSelectedCapSigns
+        If e.Key = Key.Delete Then
+            _SelectedCapSigns.Remove(DirectCast(sender.DataContext, CapSignProxy))
+            InternalSetSelectedCapSigns()
+        End If
     End Sub
 
     Private Sub cmbSign_Loaded(ByVal sender As ComboBox, ByVal e As System.Windows.RoutedEventArgs)
@@ -206,10 +210,8 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnAddSign_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnAddSign.Click
-        Dim iSelectedcapSigns As ListWithEvents(Of CapSign) = icSigns.ItemsSource
-        iSelectedcapSigns.Add(Nothing)
-        SelectedCapSignsValuesNotToBeCoerced.Add(iSelectedcapSigns)
-        SelectedCapSigns = iSelectedcapSigns
+        _SelectedCapSigns.Add(New CapSignProxy)
+        InternalSetSelectedCapSigns()
     End Sub
 #End Region
     ''' <summary>Category proxy that adds <see cref="CategoryProxy.Checked"/> property</summary>
@@ -2606,11 +2608,11 @@ Partial Public Class CapEditor
         End If
         OnSelectedCapSignsChangedOnStack = True
         Try
-            Dim iSelectedCapSigns As ListWithEvents(Of CapSign) = icSigns.ItemsSource
+            Dim iSelectedCapSigns As ListWithEvents(Of CapSignProxy) = icSigns.ItemsSource
             iSelectedCapSigns.Clear()
             iSelectedCapSigns.AddRange(From itm In AllCapSigns
                                    Where (From base In DirectCast(e.NewValue, IEnumerable(Of CapSign)) Select base.CapSignID).Contains(itm.CapSignID)
-                                   Select itm)
+                                   Select CType(itm, CapSignProxy))
         Finally
             OnSelectedCapSignsChangedOnStack = False
         End Try
@@ -3243,10 +3245,18 @@ Resize256:      Try
 
 
     Private Sub cmbSign_SelectionChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs)
-        Dim NewSigns = DirectCast(icSigns.ItemsSource, IEnumerable(Of CapSign)).ToArray
-        SelectedCapSignsValuesNotToBeCoerced.Add(NewSigns)
-        SelectedCapSigns = NewSigns
+        InternalSetSelectedCapSigns()
     End Sub
+
+    ''' <summary>Sets value of the <see cref="SelectedCapSigns"/> property avoiding coercion of value being set</summary>
+    ''' <param name="value">Collection of <see cref="CapSignProxy">CapSignProxies</see> to populates <see cref="SelectedCapSigns"/> with. If null <see cref="_SelectedCapSigns"/> is used.</param>
+    Private Sub InternalSetSelectedCapSigns(Optional ByVal value As IEnumerable(Of CapSignProxy) = Nothing)
+        If value Is Nothing Then value = _SelectedCapSigns
+        Dim CapSigns = (From item In value Where item IsNot Nothing AndAlso item.CapSign IsNot Nothing Select item.CapSign)
+        SelectedCapSignsValuesNotToBeCoerced.Add(CapSigns)
+        SelectedCapSigns = CapSigns
+    End Sub
+
 End Class
 
 ''' <summary>Allows to distinguish image already in database and a new image</summary>

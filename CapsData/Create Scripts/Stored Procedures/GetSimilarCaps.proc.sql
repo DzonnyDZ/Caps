@@ -38,7 +38,7 @@
 	@State smallint = null,
 	@TargetID int = null,
 	@IsAlcoholic bit = null,
-	@CapSignId int = null
+	@CapSignIDs dbo.IntTable readonly
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -123,10 +123,10 @@ BEGIN
             case when c.IsDrink = 1 and @IsDrink = 1 and @IsAlcoholic = c.IsAlcoholic and @IsAlcoholic = 1 then 30
                  when c.IsDrink = 1 and @IsDrink = 1 and @IsAlcoholic = c.IsAlcoholic then 10 else 0 end
             +
-            case when c.CapSignID = @CapSignId then 20 else 0 end
+            (select COUNT(*) from dbo.Cap_CapSign_Int csi where csi.CapID=csi.CapID and csi.CapSignID in(select value from @CapSignIDs))*20
             as Score
 		from dbo.Cap c
         order by
             Score desc
             ;
-END
+END;
