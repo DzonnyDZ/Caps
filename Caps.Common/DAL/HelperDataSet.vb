@@ -1,6 +1,66 @@
 ﻿Imports System.Data.SqlClient
 
-Namespace HelperDataSetTableAdapters
+Namespace Data
+
+    Partial Class HelperDataSet
+        Partial Class VarCharTableDataTable
+            ''' <summary>Converts array of <see cref="String"/> to <see cref="VarCharTableDataTable"/></summary>
+            ''' <param name="a">An array to be converted</param>
+            ''' <returns>A new <see cref="VarCharTableDataTable"/> filled with values from <paramref name="a"/>; null when <paramref name="a"/> is null</returns>
+            Public Shared Widening Operator CType(ByVal a As String()) As VarCharTableDataTable
+                If a Is Nothing Then Return Nothing
+                Dim ret As New VarCharTableDataTable
+                For Each value In a
+                    ret.AddVarCharTableRow(value)
+                Next
+                Return ret
+            End Operator
+            ''' <summary>Converts <see cref="VarCharTableDataTable"/> to array of <see cref="String"/></summary>
+            ''' <param name="a">A <see cref="VarCharTableDataTable"/> to be converted</param>
+            ''' <returns>An array containing <see cref="VarCharTableRow.Value">Values</see> from <paramref name="a"/>; null when <paramref name="a"/> is null.</returns>
+            Public Shared Widening Operator CType(ByVal a As VarCharTableDataTable) As String()
+                If a Is Nothing Then Return Nothing
+                Dim ret(a.Rows.Count - 1) As String
+                Dim i As Integer = 0
+                For Each row In a
+                    ret(i) = row.Value
+                    i += 1
+                Next
+                Return ret
+            End Operator
+        End Class
+        Partial Class IntTableDataTable
+            ''' <summary>Converts array of <see cref="Integer"/> to <see cref="IntTableDataTable"/></summary>
+            ''' <param name="a">An array to be converted</param>
+            ''' <returns>A new <see cref="IntTableDataTable"/> filled with values from <paramref name="a"/>; null when <paramref name="a"/> is null</returns>
+            Public Shared Widening Operator CType(ByVal a As Integer()) As IntTableDataTable
+                If a Is Nothing Then Return Nothing
+                Dim ret As New IntTableDataTable
+                For Each value In a
+                    ret.AddIntTableRow(value)
+                Next
+                Return ret
+            End Operator
+            ''' <summary>Converts <see cref="IntTableDataTable"/> to array of <see cref="Integer"/></summary>
+            ''' <param name="a">A <see cref="IntTableDataTable"/> to be converted</param>
+            ''' <returns>An array containing <see cref="IntTableRow.Value">Values</see> from <paramref name="a"/>; null when <paramref name="a"/> is null.</returns>
+            Public Shared Widening Operator CType(ByVal a As IntTableDataTable) As Integer()
+                If a Is Nothing Then Return Nothing
+                Dim ret(a.Rows.Count - 1) As Integer
+                Dim i As Integer = 0
+                For Each row In a
+                    ret(i) = row.Value
+                    i += 1
+                Next
+                Return ret
+            End Operator
+        End Class
+
+    End Class
+
+End Namespace
+
+Namespace Data.HelperDataSetTableAdapters
     Partial Class GetSimilarCapsTableAdapter
         ''' <summary>Opens reader to read <see cref="Cap">Caps</see> similar to cap with given properties</summary>
         ''' <param name="CapTypeID">ID of <see cref="CapType"/></param>
@@ -359,58 +419,4 @@ Namespace HelperDataSetTableAdapters
         End Function
     End Class
 End Namespace
-Partial Class HelperDataSet
-    Partial Class VarCharTableDataTable
-        ''' <summary>Converts array of <see cref="String"/> to <see cref="VarCharTableDataTable"/></summary>
-        ''' <param name="a">An array to be converted</param>
-        ''' <returns>A new <see cref="VarCharTableDataTable"/> filled with values from <paramref name="a"/>; null when <paramref name="a"/> is null</returns>
-        Public Shared Widening Operator CType(ByVal a As String()) As VarCharTableDataTable
-            If a Is Nothing Then Return Nothing
-            Dim ret As New VarCharTableDataTable
-            For Each value In a
-                ret.AddVarCharTableRow(value)
-            Next
-            Return ret
-        End Operator
-        ''' <summary>Converts <see cref="VarCharTableDataTable"/> to array of <see cref="String"/></summary>
-        ''' <param name="a">A <see cref="VarCharTableDataTable"/> to be converted</param>
-        ''' <returns>An array containing <see cref="VarCharTableRow.Value">Values</see> from <paramref name="a"/>; null when <paramref name="a"/> is null.</returns>
-        Public Shared Widening Operator CType(ByVal a As VarCharTableDataTable) As String()
-            If a Is Nothing Then Return Nothing
-            Dim ret(a.Rows.Count - 1) As String
-            Dim i As Integer = 0
-            For Each row In a
-                ret(i) = row.Value
-                i += 1
-            Next
-            Return ret
-        End Operator
-    End Class
-    Partial Class IntTableDataTable
-        ''' <summary>Converts array of <see cref="Integer"/> to <see cref="IntTableDataTable"/></summary>
-        ''' <param name="a">An array to be converted</param>
-        ''' <returns>A new <see cref="IntTableDataTable"/> filled with values from <paramref name="a"/>; null when <paramref name="a"/> is null</returns>
-        Public Shared Widening Operator CType(ByVal a As Integer()) As IntTableDataTable
-            If a Is Nothing Then Return Nothing
-            Dim ret As New IntTableDataTable
-            For Each value In a
-                ret.AddIntTableRow(value)
-            Next
-            Return ret
-        End Operator
-        ''' <summary>Converts <see cref="IntTableDataTable"/> to array of <see cref="Integer"/></summary>
-        ''' <param name="a">A <see cref="IntTableDataTable"/> to be converted</param>
-        ''' <returns>An array containing <see cref="IntTableRow.Value">Values</see> from <paramref name="a"/>; null when <paramref name="a"/> is null.</returns>
-        Public Shared Widening Operator CType(ByVal a As IntTableDataTable) As Integer()
-            If a Is Nothing Then Return Nothing
-            Dim ret(a.Rows.Count - 1) As Integer
-            Dim i As Integer = 0
-            For Each row In a
-                ret(i) = row.Value
-                i += 1
-            Next
-            Return ret
-        End Operator
-    End Class
 
-End Class

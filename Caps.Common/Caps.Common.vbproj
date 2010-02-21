@@ -13,7 +13,7 @@
     <AssemblyName>Caps.Common</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SccProjectName>
     </SccProjectName>
     <SccLocalPath>
@@ -57,7 +57,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -77,14 +80,12 @@
     <Compile Include="..\!version!.vb">
       <Link>!version!.vb</Link>
     </Compile>
-    <Compile Include="DAL\CapsData.vb">
-      <DependentUpon>CapsData.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\CapsData1.designer.vb">
-      <DependentUpon>CapsData.dbml</DependentUpon>
+    <Compile Include="DAL\CapsData.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>CapsData.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\CapsData.vb" />
     <Compile Include="DAL\HelperDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -113,9 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="DAL\CapsData.dbml.layout">
-      <DependentUpon>CapsData.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="My Project\Resources.cs.resx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -125,17 +123,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DAL\CapsData.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>CapsData1.designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
+    <EntityDeploy Include="DAL\CapsData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CapsData.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>Data</CustomToolNamespace>
+    </EntityDeploy>
     <None Include="DAL\HelperDataSet.xsc">
       <DependentUpon>HelperDataSet.xsd</DependentUpon>
     </None>
     <None Include="DAL\HelperDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <SubType>Designer</SubType>
+      <CustomToolNamespace>Data</CustomToolNamespace>
       <LastGenOutput>HelperDataSet.Designer.vb</LastGenOutput>
     </None>
     <None Include="DAL\HelperDataSet.xss">
