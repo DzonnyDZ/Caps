@@ -9,9 +9,9 @@ Imports Caps.Data
 ''' <summary>Creates a new cap</summary>
 Partial Public Class CapEditor
     ''' <summary>Context to be used when <see cref="Context"/> is not set</summary>
-    Private OriginalContext As CapsDataDataContext = If(Main.Connection Is Nothing, Nothing, New CapsDataDataContext(Main.Connection)) 'If(...) - for designer
+    Private OriginalContext As CapsDataContext = If(Main.Connection Is Nothing, Nothing, New CapsDataContext(Main.Connection)) 'If(...) - for designer
     ''' <summary>Contains value of the <see cref="Context"/> proeprty</summary>
-    Private _Context As CapsDataDataContext = OriginalContext
+    Private _Context As CapsDataContext = OriginalContext
     Private UnderConstruction As Boolean = True
     ''' <summary>Contains list of all cap signs</summary>
     Private AllCapSigns As New ListWithEvents(Of CapSign)
@@ -30,11 +30,11 @@ Partial Public Class CapEditor
 
     ''' <summary>Database context</summary>
     ''' <exception cref="ArgumentNullException">Value being set is null</exception>
-    Public Property Context() As CapsDataDataContext
+    Public Property Context() As CapsDataContext
         <DebuggerStepThrough()> Get
             Return _Context
         End Get
-        Set(ByVal value As CapsDataDataContext)
+        Set(ByVal value As CapsDataContext)
             If value Is Nothing Then Throw New ArgumentNullException("value")
             If value IsNot OriginalContext AndAlso OriginalContext IsNot Nothing Then
                 OriginalContext.Dispose()
@@ -69,7 +69,7 @@ Partial Public Class CapEditor
             CompaniesList.Add(Nothing)
             cmbCompany.ItemsSource = CompaniesList
             lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item))
-            kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
+            kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.KeywordName Select item.KeywordName)
             'lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
             DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(Nothing)
             If Not ForBinding Then _SelectedCapSigns.Add(New CapSignProxy) : InternalSetSelectedCapSigns()
@@ -219,11 +219,11 @@ Partial Public Class CapEditor
     <DebuggerDisplay("{Category.CategoryName}")> _
     Private Class CategoryProxy : Implements INotifyPropertyChanged
         ''' <summary>Contains value of the <see cref="Category"/> property</summary>
-        Private ReadOnly _Category As Category
+        Private ReadOnly _Category As Caps.Data.Category
         ''' <summary>Contains value of the <see cref="Checked"/> property</summary>
         Private _Checked As Boolean
         ''' <summary>Gets category</summary>
-        Public ReadOnly Property Category() As Category
+        Public ReadOnly Property Category() As Caps.Data.Category
             Get
                 Return _Category
             End Get
@@ -243,7 +243,7 @@ Partial Public Class CapEditor
         ''' <param name="Category">A category</param>
         ''' <param name="Checked">Indicates if category is selected (checked)</param>
         ''' <exception cref="ArgumentNullException"><paramref name="Category"/> is null</exception>
-        Public Sub New(ByVal Category As Category, Optional ByVal Checked As Boolean = False)
+        Public Sub New(ByVal Category As Caps.Data.Category, Optional ByVal Checked As Boolean = False)
             If Category Is Nothing Then Throw New ArgumentNullException("Category")
             _Category = Category
             _Checked = Checked
@@ -2641,7 +2641,7 @@ Partial Public Class CapEditor
     End Sub
 
     ''' <summary>Resets datacontext of this instance</summary>
-    Public Function ResetContext(Optional ByRef Context As CapsDataDataContext = Nothing) As CapsDataDataContext
+    Public Function ResetContext(Optional ByRef Context As CapsDataContext = Nothing) As CapsDataContext
         Dim OldSelectedIds = New With { _
             .CapType = If(CapType IsNot Nothing, CapType.CapTypeID, New Integer?), _
             .MainType = If(CapMainType IsNot Nothing, CapMainType.MainTypeID, New Integer?), _
@@ -2657,7 +2657,7 @@ Partial Public Class CapEditor
         If OriginalContext IsNot Nothing Then OriginalContext.Dispose()
         OriginalContext = Nothing
         If Context Is Nothing Then
-            OriginalContext = New CapsDataDataContext(Main.Connection)
+            OriginalContext = New CapsDataContext(Main.Connection)
             Context = OriginalContext
         End If
 
@@ -2859,8 +2859,8 @@ CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
                         End If
                         IPTC.Keywords = keywords.ToArray
                         If Country <> "" Then
-                            Dim cox As New CapsDataDataContext(Main.Connection)
-                            Dim Code = (From c In cox.ISO_3166_1s Where c.Alpha_2 = Country Select c.Alpha_3).FirstOrDefault
+                            Dim cox As New CapsDataContext(Main.Connection)
+                            Dim Code = (From c In cox.ISO_3166_1 Where c.Alpha_2 = Country Select c.Alpha_3).FirstOrDefault
                             If Code IsNot Nothing Then
                                 IPTC.CountryPrimaryLocationCode = Code
                             End If
@@ -3063,7 +3063,7 @@ Resize256:      Try
     End Sub
     ''' <summary>Actualizes lists which are changed when cap is saved</summary>
     Public Sub ActualizeChangedLists()
-        kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.Keyword Select item.Keyword)
+        kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.KeywordName Select item.KeywordName)
 
         cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
         cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)

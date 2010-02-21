@@ -1,6 +1,7 @@
 ﻿Imports Tools, Tools.TypeTools, Tools.ExtensionsT
 Imports System.ComponentModel
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
+Imports Caps.Data
 
 Partial Public Class winNewMainType
     ''' <summary>CTor</summary>

@@ -1,7 +1,7 @@
 Imports System, mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports System.Windows
 Imports System.Windows.Controls
-Imports System.Data.SqlClient
+Imports System.Data.SqlClient, Caps.Data
 
 Public Class pgSummary
     Inherits PageFunction(Of Boolean)

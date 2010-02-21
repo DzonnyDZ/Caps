@@ -1,5 +1,7 @@
 ﻿Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Tools.ExtensionsT, Tools.LinqT
+Imports Caps.Data
+
 ''' <summary>Main application window</summary>
 Class winMain
     Private Const ConnectionString$ = "ConnectionString"
@@ -32,7 +34,7 @@ Class winMain
                 mBox.Error_XPTIBWO(ex, String.Format(My.Resources.err_InvalidCommandLineConnectionString, Args(ConnectionString)(0)), "Invalid connection string", mBox.MessageBoxIcons.Error, , Me)
             End Try
         End If
-       
+
         Dim Redo As Boolean = False
 Connect: If Main.Connection Is Nothing OrElse Redo Then
             Dim win = If(Main.Connection Is Nothing, New winSelectDatabase, New winSelectDatabase(Main.Connection.ConnectionString))
@@ -57,7 +59,7 @@ Connect: If Main.Connection Is Nothing OrElse Redo Then
         End Try
         My.Settings.UserConnectionString = Connection.ConnectionString
         My.Settings.Save()
-  
+
         If Not IO.Directory.Exists(My.Settings.ImageRoot) Then
             Dim dlg As New Forms.FolderBrowserDialog With {.Description = My.Resources.des_SelectImagesRootDirectory}
             If dlg.ShowDialog = Forms.DialogResult.OK Then
@@ -89,7 +91,7 @@ Connect: If Main.Connection Is Nothing OrElse Redo Then
                                     Order By Count Descending
         mup = If(Not BiggestKeyword.HasValue OrElse BiggestKeyword = 0, 0, (FontMax - FontMin) / (BiggestKeyword - SmallestKeyword))
         itmKeywords.ItemsSource = From itm In Context.Keywords _
-                                   Select Count = itm.Cap_Keyword_Ints.Count, Name = itm.Keyword, ID = itm.KeywordID, Size = mup * (itm.Cap_Keyword_Ints.Count - SmallestKeyword) + FontMin, Type = "K"c _
+                                   Select Count = itm.Cap_Keyword_Ints.Count, Name = itm.KeywordName, ID = itm.KeywordID, Size = mup * (itm.Cap_Keyword_Ints.Count - SmallestKeyword) + FontMin, Type = "K"c _
                                    Order By Count Descending
     End Sub
 

@@ -1,6 +1,7 @@
 ﻿Imports Tools, Tools.TypeTools, Tools.ExtensionsT
 Imports System.ComponentModel
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
+Imports Caps.Data
 
 Partial Public Class winNewSign
     ''' <summary>CTor</summary>
@@ -32,7 +33,7 @@ Partial Public Class winNewSign
             Exit Sub
         End Try
         Try
-            Context.SubmitChanges()
+            Context.SaveChanges()
         Catch ex As Exception
             Context.CapSigns.DeleteAllNew()
             mBox.Error_XTW(ex, ex.GetType.Name, Me)
@@ -49,7 +50,7 @@ Partial Public Class winNewSign
                 End Try
             End If
             Try
-                IO.File.Copy(txtImagePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "CapSign"), NewObject.Capsignid & ".png"))
+                IO.File.Copy(txtImagePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "CapSign"), NewObject.CapSignID & ".png"))
             Catch ex As Exception
                 mBox.Error_XPTIBWO(ex, My.Resources.msg_CopyCapSignImageError, My.Resources.txt_FileSystemError, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation, , Me)
             End Try

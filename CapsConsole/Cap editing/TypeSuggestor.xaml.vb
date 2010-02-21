@@ -232,17 +232,17 @@ Partial Public Class TypeSuggestor
 
 #Region "Context"
     ''' <summary>Gets or sets <see cref="CapsDataDataContext"/> to operate onto</summary>
-    Public Property Context() As CapsDataDataContext
+    Public Property Context() As CapsDataContext
         <DebuggerStepThrough()> Get
             Return GetValue(ContextProperty)
         End Get
-        <DebuggerStepThrough()> Set(ByVal value As CapsDataDataContext)
+        <DebuggerStepThrough()> Set(ByVal value As CapsDataContext)
             SetValue(ContextProperty, value)
         End Set
     End Property
     ''' <summary>Metadata of the <see cref="Context"/> property</summary>
     Public Shared ReadOnly ContextProperty As DependencyProperty = _
-                           DependencyProperty.Register("Context", GetType(CapsDataDataContext), GetType(TypeSuggestor), _
+                           DependencyProperty.Register("Context", GetType(CapsDataContext), GetType(TypeSuggestor), _
                            New FrameworkPropertyMetadata(Nothing, AddressOf OnContextChanged))
     ''' <summary>Called when value of the <see cref="Context"/> property changes for any <see cref="TypeSuggestor"/></summary>
     ''' <param name="d">A <see cref="TypeSuggestor"/> <see cref="Context"/> has changed for</param>
@@ -258,12 +258,12 @@ Partial Public Class TypeSuggestor
     ''' <summary>Called whan value of the <see cref="Context"/> property changes</summary>
     ''' <param name="e">Event arguments</param>
     Protected Overridable Sub OnContextChanged(ByVal e As System.Windows.DependencyPropertyChangedEventArgs)
-        If e.OldValue IsNot Nothing Then RemoveHandler DirectCast(e.OldValue, CapsDataDataContext).Disposed, AddressOf Context_Disposed
+        If e.OldValue IsNot Nothing Then RemoveHandler DirectCast(e.OldValue, CapsDataContext).Disposed, AddressOf Context_Disposed
         If e.NewValue IsNot Nothing Then AddHandler Context.Disposed, AddressOf Context_Disposed
         CType(Resources("GetCapsOfConverter"), GetCapsOfConverter).Context = Me.Context
         MakeSuggestions()
     End Sub
-    ''' <summary>Handles the <see cref="Context"/>.<see cref="CapsDataDataContext.Disposed">Disposed</see> event</summary>
+    ''' <summary>Handles the <see cref="Context"/>.<see cref="CapsDataContext.Disposed">Disposed</see> event</summary>
     ''' <param name="sender">Source of the event</param>
     ''' <param name="e">Event arguments</param>
     Private Sub Context_Disposed(ByVal sender As Object, ByVal e As EventArgs)

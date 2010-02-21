@@ -20,4 +20,10 @@
         ''' <exception cref="NotSupportedException">Current implementation of <see cref="ISimpleObject"/> does not support Description</exception>
         Property Description$
     End Interface
+
+    ''' <summary>An item related to <see cref="Cap"/></summary>
+    Public Interface IRelatedToCap
+        ''' <summary>Gets caps this item is related to</summary>
+        ReadOnly Property Caps As IEnumerable(Of Cap)
+    End Interface
 End Namespace

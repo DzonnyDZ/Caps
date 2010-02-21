@@ -2184,6 +2184,9 @@
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
           <End Role="Keyword" Type="Data.Keyword" Multiplicity="*" />
         </Association>
+          <Function Name="NewGuid" ReturnType="Edm.Guid">
+              <DefiningExpression>NewId()</DefiningExpression>
+          </Function>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2430,6 +2433,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

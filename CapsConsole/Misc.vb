@@ -1,5 +1,7 @@
 ﻿Imports System.Runtime.CompilerServices, Tools.ExtensionsT
 Imports System.ComponentModel, Tools
+Imports System.Data.Objects
+Imports System.Data.Objects.DataClasses
 
 ''' <summary>Miscelaneous functions</summary>
 Friend Module Misc
@@ -14,7 +16,7 @@ Friend Module Misc
     ''' <param name="Color">COlor to get ARGB value of or null</param>
     ''' <returns>The 32-bit ARGB value of <paramref name="Color"/>, or null when <paramref name="Color"/> is null.</returns>
     <Extension()> _
-  Public Function ToArgb(ByVal Color As Color?) As Integer?
+    Public Function ToArgb(ByVal Color As Color?) As Integer?
         If Color.HasValue Then
             Return Color.Value.ToArgb
         Else
@@ -218,4 +220,68 @@ Friend Module Misc
         Return ret
     End Function
 
+
+    ''' <summary>Marks all given entities for deletion from <see cref="IObjectSet(Of TEntity)"/></summary>
+    ''' <param name="objectSet">An <see cref="IObjectSet(Of TEntity)"/> to delete entities from</param>
+    ''' <param name="objects">Entities to be deleted</param>
+    ''' <typeparam name="TEntity">Type of entities</typeparam>
+    ''' <exception cref="ArgumentNullException"><paramref name="objectSet"/> is null</exception>
+    <Extension()>
+    Public Sub DeleteObjects(Of TEntity As Class)(ByVal objectSet As IObjectSet(Of TEntity), ByVal objects As IEnumerable(Of TEntity))
+        If objectSet Is Nothing Then Throw New ArgumentNullException("objectSet")
+        If objects Is Nothing Then Exit Sub
+        For Each obj In objects
+            objectSet.DeleteObject(obj)
+        Next
+    End Sub
+
+    ''' <summary>Notifies set than objects representing new entities must be added to the set</summary>
+    ''' <param name="objectSet">>An <see cref="IObjectSet(Of TEntity)"/> to notify</param>
+    ''' <param name="objects">Objects to be added to the set</param>
+    ''' <typeparam name="TEntity">Type of entities</typeparam>
+    ''' <exception cref="ArgumentNullException"><paramref name="objectSet"/> is null</exception>
+    <Extension()>
+    Public Sub AddObjects(Of TEntity As Class)(ByVal objectSet As IObjectSet(Of TEntity), ByVal objects As IEnumerable(Of TEntity))
+        If objectSet Is Nothing Then Throw New ArgumentNullException("objectSet")
+        If objects Is Nothing Then Exit Sub
+        For Each obj In objects
+            objectSet.AddObject(obj)
+        Next
+    End Sub
+
+    ''' <summary>Removes all objects from collection and marks appropriate relations for deletion</summary>
+    ''' <param name="collection">Collection to remove objects from</param>
+    ''' <param name="objects">Objects to be removed</param>
+    ''' <typeparam name="TEntity">Type of entities</typeparam>
+    ''' <returns>True if all objects were removed; false if no object was removed; null if some objects were removed and some not. False is also returned in case <paramref name="objects"/> is null or empty.</returns>
+    ''' <exception cref="ArgumentNullException"><paramref name="collection"/> is null</exception>
+    <Extension()>
+    Public Function RemoveAll(Of TEntity As Class)(ByVal collection As EntityCollection(Of TEntity), ByVal objects As IEnumerable(Of TEntity)) As Boolean?
+        If collection Is Nothing Then Throw New ArgumentNullException("collection")
+        If objects Is Nothing Then Return False
+        Dim AllDeleted As Boolean = True
+        Dim AnyDeleted As Boolean = False
+        For Each item In objects
+            Dim result = collection.Remove(item)
+            AllDeleted = AllDeleted AndAlso result
+            AnyDeleted = AnyDeleted OrElse result
+        Next
+        If AllDeleted AndAlso Not AnyDeleted Then Return False 'Empty objects
+        If AllDeleted Then Return True
+        If Not AnyDeleted Then Return False
+        Return Nothing
+    End Function
+    ''' <summary>Adds all given objects to the collection</summary>
+    ''' <param name="collection">Collection to add objects to</param>
+    ''' <param name="objects">Objects to be added</param>
+    ''' <typeparam name="TEntity">Type of entities</typeparam>
+    ''' <exception cref="ArgumentNullException"><paramref name="collection"/> is null</exception>
+    <Extension()>
+    Public Sub AddRange(Of TEntity As Class)(ByVal collection As EntityCollection(Of TEntity), ByVal objects As IEnumerable(Of TEntity))
+        If collection Is Nothing Then Throw New ArgumentNullException("collection")
+        If objects Is Nothing Then Return
+        For Each item In objects
+            collection.Add(item)
+        Next
+    End Sub
 End Module

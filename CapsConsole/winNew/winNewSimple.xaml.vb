@@ -1,6 +1,7 @@
 ﻿Imports Tools, Tools.TypeTools, Tools.ExtensionsT
 Imports System.ComponentModel
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
+Imports Caps.Data
 
 Partial Public Class winNewSimple
 
@@ -61,7 +62,7 @@ Partial Public Class winNewSimple
             Exit Sub
         End Try
         Try
-            Context.SubmitChanges()
+            Context.SaveChanges()
         Catch ex As Exception
             mBox.Error_XTW(ex, ex.GetType.Name, Me)
             tbl.DeleteOnSubmit(_NewObject)

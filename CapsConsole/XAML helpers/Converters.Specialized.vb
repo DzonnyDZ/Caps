@@ -156,8 +156,8 @@ Public Class TopRandomConverter
     Implements IValueConverter
 
     Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
-        If TypeOf value Is IQueryable AndAlso TypeOf value Is System.Data.Linq.ITable AndAlso TypeOf DirectCast(value, System.Data.Linq.ITable).Context Is CapsDataDataContext Then
-            Dim context As CapsDataDataContext = DirectCast(value, System.Data.Linq.ITable).Context
+        If TypeOf value Is IQueryable AndAlso TypeOf value Is System.Data.Linq.ITable AndAlso TypeOf DirectCast(value, System.Data.Linq.ITable).Context Is CapsDataContext Then
+            Dim context As CapsDataContext = DirectCast(value, System.Data.Linq.ITable).Context
             Dim list = DirectCast(value, IQueryable)
             Dim count As Integer
             Dim oldc = System.Threading.Thread.CurrentThread.CurrentCulture
@@ -181,63 +181,41 @@ End Class
 Public Class GetCapsOfConverter
     Implements IValueConverter, IDisposable
     ''' <summary>Context to be used when <see cref="Context"/> is not set</summary>
-    Private OriginalContext As CapsDataDataContext = If(Main.Connection IsNot Nothing, New CapsDataDataContext(Main.Connection), Nothing) 'If(...) - for designer
+    Private OriginalContext As CapsDataContext = If(Main.Connection IsNot Nothing, New CapsDataContext(Main.Connection), Nothing) 'If(...) - for designer
     ''' <summary>CTor</summary>
     Public Sub New()
     End Sub
     ''' <summary>CTor with data context</summary>
     ''' <param name="Context">Data context to use</param>
-    Public Sub New(ByVal Context As CapsDataDataContext)
+    Public Sub New(ByVal Context As CapsDataContext)
         Me.Context = Context
     End Sub
     ''' <summary>Contains value of the <see cref="Context"/> property</summary>
-    Private _Context As CapsDataDataContext
+    Private _Context As CapsDataContext
     ''' <summary>Gtes or sets data context used for querying for caps</summary>
-    Public Property Context() As CapsDataDataContext
+    Public Property Context() As CapsDataContext
         <DebuggerStepThrough()> Get
             Return If(_Context, OriginalContext)
         End Get
-        <DebuggerStepThrough()> Set(ByVal value As CapsDataDataContext)
+        <DebuggerStepThrough()> Set(ByVal value As CapsDataContext)
             If value Is Context Then Exit Property
             If Not OriginalContext.IsDisposed Then OriginalContext.Dispose()
             _Context = value
         End Set
     End Property
     ''' <summary>Performs conversion from object to gets caps associated with it</summary>
-    ''' <param name="value">Objects to get caps for. It must be either <see cref="Material"/>, <see cref="CapType"/>, <see cref="Shape"/>, <see cref="MainType"/>, <see cref="Product"/>, <see cref="Company"/>, <see cref="ProductType"/>, <see cref="Storage"/>, <see cref="Target"/> or <see cref="CapSign"/> or null.</param>
+    ''' <param name="value">Objects to get caps for. It must imnplement <see cref="IRelatedToCap"/> or be null.</param>
     ''' <param name="targetType">Ignored. Always returns <see cref="IEnumerable(Of Cap)"/>[<see cref="Cap"/>].</param>
     ''' <param name="parameter">Maximal count of items to be returned. Value must be <see cref="TypeTools.DynamicCast">dynamicly castable</see> to <see cref="Integer"/>.</param>
     ''' <param name="culture">Ignored.</param>
     ''' <returns><see cref="IEnumerable(Of Cap)"/>[<see cref="Cap"/>] containing maximally <paramref name="parameter"/> random items associated by <see cref="Object"/>. Null when <paramref name="value"/> is null.</returns>
-    ''' <exception cref="TypeMismatchException"><paramref name="value"/> is not of supported type.</exception>
+    ''' <exception cref="TypeMismatchException"><paramref name="value"/> is neither null nor <see cref="IRelatedToCap"/></exception>
     Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
         If Context Is Nothing Then Throw New InvalidOperationException(My.Resources.err_ValueCannotBeNull.f("Context"))
         Dim Count = TypeTools.DynamicCast(Of Integer)(parameter)
-        If TypeOf value Is Material Then
-            Return From item In Context.Caps Where item.MaterialID = DirectCast(value, Material).MaterialID Order By Context.NewID Take Count
-        ElseIf TypeOf value Is CapType Then
-            Return From item In Context.Caps Where item.captypeID = DirectCast(value, CapType).CapTypeID Order By Context.NewID Take Count
-        ElseIf TypeOf value Is Shape Then
-            Return From item In Context.Caps Where item.ShapeID = DirectCast(value, Shape).ShapeID Order By Context.NewID Take Count
-        ElseIf TypeOf value Is MainType Then
-            Return From item In Context.Caps Where item.MainTypeID = DirectCast(value, MainType).MainTypeID Order By Context.NewID Take Count
-        ElseIf TypeOf value Is Product Then
-            Return From item In Context.Caps Where item.ProductID = DirectCast(value, Product).ProductID Order By Context.NewID Take Count
-        ElseIf TypeOf value Is Company Then
-            Return From item In Context.Caps Where item.CompanyID = DirectCast(value, Company).CompanyID Order By Context.NewID Take Count
-        ElseIf TypeOf value Is ProductType Then
-            Return From item In Context.Caps Where item.ProductTypeID = DirectCast(value, ProductType).ProductTypeID Order By Context.NewID Take Count
-        ElseIf TypeOf value Is Storage Then
-            Return From item In Context.Caps Where item.StorageID = DirectCast(value, Storage).StorageID Order By Context.NewID Take Count
-        ElseIf TypeOf value Is Target Then
-            Return From item In Context.Caps Where item.TargetID = DirectCast(value, Target).TargetID Order By Context.NewID Take Count
-        ElseIf TypeOf value Is Category Then
-            Return From cap In Context.Caps Join c_c In Context.Cap_Category_Ints On Cap.CapID Equals c_c.capid Where c_c.CategoryID = DirectCast(value, Category).CategoryID Order By Context.NewID Take Count
-        ElseIf TypeOf value Is Keyword Then
-            Return From cap In Context.Caps Join c_k In Context.Cap_Keyword_Ints On Cap.CapID Equals c_k.capid Where c_k.KeywordID = DirectCast(value, Keyword).KeywordID Order By Context.NewID Take Count
-        ElseIf TypeOf value Is CapSign Then
-            Return From cap In Context.Caps Join c_s In Context.Cap_CapSign_Ints On Cap.CapID Equals c_s.CapID Where c_s.CapSignID = DirectCast(value, CapSign).CapSignID Order By Context.NewID Take Count
-        ElseIf value Is Nothing Then
+        If TypeOf value Is IRelatedToCap Then
+            Return From item In DirectCast(value, IRelatedToCap).Caps Order By NewGuid Take Count
+          ElseIf value Is Nothing Then
             Return Nothing
         Else
             Throw New TypeMismatchException(My.Resources.ex_UnsupportedTypeOfEntity, value)

@@ -1,5 +1,5 @@
 ﻿Imports Tools, Tools.TypeTools, Tools.ExtensionsT
-Imports System.ComponentModel
+Imports System.ComponentModel, Caps.Data
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 
 Partial Public Class winNewShape
@@ -32,7 +32,7 @@ Partial Public Class winNewShape
             Exit Sub
         End Try
         Try
-            Context.SubmitChanges()
+            Context.SaveChanges()
         Catch ex As Exception
             Context.Shapes.DeleteAllNew()
             mBox.Error_XTW(ex, ex.GetType.Name, Me)

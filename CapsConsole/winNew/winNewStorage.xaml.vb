@@ -2,6 +2,7 @@
 Imports System.ComponentModel
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Tools.CollectionsT.GenericT
+Imports Caps.Data
 
 Partial Public Class winNewStorage
 
@@ -25,7 +26,7 @@ Partial Public Class winNewStorage
             Exit Sub
         End Try
         Try
-            Context.SubmitChanges()
+            Context.SaveChanges()
         Catch ex As Exception
             Context.Storages.DeleteAllNew()
             mBox.Error_XTW(ex, ex.GetType.Name, Me)

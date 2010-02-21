@@ -2,7 +2,7 @@
 Imports System.Data.SqlClient
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Microsoft.SqlServer.Management.Common
-Imports Caps.DALProperties
+Imports Caps.Data
 
 Friend Module Main
     ''' <summary>Current con nection to database</summary>

@@ -1,11 +1,11 @@
 ﻿Imports mBox = Tools.WindowsT.WPF.DialogsT.MessageBox
-Imports Tools.DrawingT.ImageTools, Tools.ExtensionsT
+Imports Tools.DrawingT.ImageTools, Tools.ExtensionsT, Caps.Data
 ''' <summary>Allows to create new cap type based on suggestion</summary>
 Public Class winCreateNewType : Implements IDisposable
     ''' <summary>CTor</summary>
     ''' <param name="Context">Data contetx</param>
     ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
-    Public Sub New(ByVal Context As CapsDataDataContext)
+    Public Sub New(ByVal Context As CapsDataContext)
         If Context Is Nothing Then Throw New ArgumentNullException("Context")
         Me.Context = Context
         InitializeComponent()
@@ -17,7 +17,7 @@ Public Class winCreateNewType : Implements IDisposable
         cmbTarget.ItemsSource = Targets
     End Sub
     ''' <summary>Data context</summary>
-    Private Context As CapsDataDataContext
+    Private Context As CapsDataContext
     ''' <summary>List of temporaryr file created during form life time</summary>
     Private TemporaryFiles As New List(Of String)
 
@@ -74,20 +74,20 @@ Public Class winCreateNewType : Implements IDisposable
             .Target = cmbTarget.SelectedItem,
             .Description = txtDesciption.Text
         }
-        Context.CapTypes.InsertOnSubmit(Type)
+        Context.CapTypes.AddObject(Type)
         'Caps for type
         For Each Cap In CheckedCaps
             Cap.CapType = Type
         Next
 
         Try
-            Context.SubmitChanges()
+            Context.SaveChanges()
         Catch ex As Exception
             'Undo
             For Each Cap In CheckedCaps
                 Cap.CapType = Nothing
             Next
-            Context.CapTypes.DeleteOnSubmit(Type)
+            Context.CapTypes.DeleteObject(Type)
             mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Exit Sub
         End Try

@@ -34,7 +34,7 @@ Partial Public Class winEditors
 
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
         Try
-            CapsContext.SubmitChanges()
+            CapsContext.SaveChanges()
         Catch ex As Exception
             mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Exit Sub
@@ -48,7 +48,7 @@ Partial Public Class winEditors
 
     Private Sub btnApply_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnApply.Click
         Try
-            CapsContext.SubmitChanges()
+            CapsContext.SaveChanges()
         Catch ex As Exception
             mBox.Error_XTW(ex, ex.GetType.Name, Me)
         End Try

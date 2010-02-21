@@ -1,5 +1,5 @@
 ﻿Imports mBox = Tools.WindowsT.IndependentT.MessageBox
-Imports Tools.CollectionsT.GenericT
+Imports Tools.CollectionsT.GenericT, Caps.Data
 
 Partial Public Class winCapDetails
     '''' <summary>Data context</summary>
@@ -26,9 +26,9 @@ Partial Public Class winCapDetails
         Dim osi As Integer = lstCaps.SelectedIndex
         Dim Context As New CapsDataDataContext(Main.Connection)
         Dim CapsToDel = (From ccap In Context.Caps Where (From cap As Cap In lstCaps.SelectedItems Select cap.CapID).Contains(ccap.CapID)).ToArray
-        Context.Caps.DeleteAllOnSubmit(CapsToDel)
+        Context.Caps.DeleteObjects(CapsToDel)
         Try
-            Context.SubmitChanges()
+            Context.SaveChanges()
         Catch ex As Exception
             mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorDeletingCaps, My.Resources.txt_DatabaseError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.OK, Me)
             Exit Sub
@@ -52,11 +52,12 @@ Partial Public Class winCapDetails
         win.Owner = Me
         e.Handled = True
         If win.ShowDialog() Then
-            Dim context As New CapsDataDataContext(Main.Connection)
+            Dim context As New CapsDataContext(Main.Connection)
             Dim SelectedItemID As Integer = DirectCast(lstCaps.SelectedItem, Cap).CapID
             With DirectCast(lstCaps.ItemsSource, ListWithEvents(Of Cap))
                 .Item(lstCaps.SelectedIndex) = context.Caps.First(Function(newcap) newcap.CapID = Cap.CapID)
             End With
+
             lstCaps.Items.Refresh()
             Dim i% = 0
             For Each item As Cap In lstCaps.Items

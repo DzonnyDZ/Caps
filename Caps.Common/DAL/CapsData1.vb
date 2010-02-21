@@ -16,7 +16,7 @@ Imports System.ComponentModel
 Imports System.Xml.Serialization
 Imports System.Runtime.Serialization
 
-<Assembly: EdmSchemaAttribute("0345b911-e58d-4245-b0cf-6a690a558381")>
+<Assembly: EdmSchemaAttribute("eaa60bbf-33cd-47d6-9af8-988dc92e54a8")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(CapType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Cap), True)>
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Company), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Cap), True)>
