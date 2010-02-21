@@ -4,33 +4,33 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Data.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="Data.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="DataStoreContainer">
-          <EntitySet Name="Cap" EntityType="Data.Store.Cap" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Cap_CapSign_Int" EntityType="Data.Store.Cap_CapSign_Int" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Cap_Category_Int" EntityType="Data.Store.Cap_Category_Int" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Cap_Keyword_Int" EntityType="Data.Store.Cap_Keyword_Int" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CapInstance" EntityType="Data.Store.CapInstance" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CapSign" EntityType="Data.Store.CapSign" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CapTranslation" EntityType="Data.Store.CapTranslation" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="CapType" EntityType="Data.Store.CapType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Category" EntityType="Data.Store.Category" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Company" EntityType="Data.Store.Company" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Image" EntityType="Data.Store.Image" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ISO 3166-1" EntityType="Data.Store.ISO 3166-1" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Keyword" EntityType="Data.Store.Keyword" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="MainType" EntityType="Data.Store.MainType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Material" EntityType="Data.Store.Material" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Product" EntityType="Data.Store.Product" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ProductType" EntityType="Data.Store.ProductType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="PseudoCategory" EntityType="Data.Store.PseudoCategory" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Shape" EntityType="Data.Store.Shape" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ShapeTranslation" EntityType="Data.Store.ShapeTranslation" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="SimpleTranslation" EntityType="Data.Store.SimpleTranslation" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Storage" EntityType="Data.Store.Storage" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="StorageType" EntityType="Data.Store.StorageType" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="StoredImage" EntityType="Data.Store.StoredImage" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Target" EntityType="Data.Store.Target" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Cap" EntityType="Data.Store.Cap" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cap_CapSign_Int" EntityType="Data.Store.Cap_CapSign_Int" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cap_Category_Int" EntityType="Data.Store.Cap_Category_Int" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cap_Keyword_Int" EntityType="Data.Store.Cap_Keyword_Int" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CapInstance" EntityType="Data.Store.CapInstance" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CapSign" EntityType="Data.Store.CapSign" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CapTranslation" EntityType="Data.Store.CapTranslation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CapType" EntityType="Data.Store.CapType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="Data.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Company" EntityType="Data.Store.Company" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Image" EntityType="Data.Store.Image" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ISO 3166-1" EntityType="Data.Store.ISO 3166-1" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Keyword" EntityType="Data.Store.Keyword" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MainType" EntityType="Data.Store.MainType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Material" EntityType="Data.Store.Material" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Product" EntityType="Data.Store.Product" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductType" EntityType="Data.Store.ProductType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PseudoCategory" EntityType="Data.Store.PseudoCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Shape" EntityType="Data.Store.Shape" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ShapeTranslation" EntityType="Data.Store.ShapeTranslation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SimpleTranslation" EntityType="Data.Store.SimpleTranslation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Storage" EntityType="Data.Store.Storage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StorageType" EntityType="Data.Store.StorageType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StoredImage" EntityType="Data.Store.StoredImage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Target" EntityType="Data.Store.Target" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Cap_CapSign_Int_Cap" Association="Data.Store.FK_Cap_CapSign_Int_Cap">
             <End Role="Cap" EntitySet="Cap" />
             <End Role="Cap_CapSign_Int" EntitySet="Cap_CapSign_Int" />
@@ -225,9 +225,9 @@
             <PropertyRef Name="CapID" />
           </Key>
           <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CapTypeID" Type="int" />
-          <Property Name="MainTypeID" Type="int" Nullable="false" />
-          <Property Name="ShapeID" Type="int" Nullable="false" />
+          <Property Name="CapTypeID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="MainTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ShapeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CapName" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="MainText" Type="nvarchar" MaxLength="255" />
           <Property Name="SubTitle" Type="nvarchar" MaxLength="255" />
@@ -238,7 +238,7 @@
           <Property Name="TopText" Type="nvarchar(max)" />
           <Property Name="SideText" Type="nvarchar(max)" />
           <Property Name="BottomText" Type="nvarchar(max)" />
-          <Property Name="MaterialID" Type="int" Nullable="false" />
+          <Property Name="MaterialID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Surface" Type="char" Nullable="false" MaxLength="1" />
           <Property Name="Size" Type="int" Nullable="false" />
           <Property Name="Size2" Type="int" />
@@ -248,10 +248,10 @@
           <Property Name="CountryCode" Type="char" MaxLength="2" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
           <Property Name="Note" Type="nvarchar(max)" />
-          <Property Name="CompanyID" Type="int" />
-          <Property Name="ProductID" Type="int" />
-          <Property Name="ProductTypeID" Type="int" />
-          <Property Name="StorageID" Type="int" Nullable="false" />
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTypeID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="StorageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ForeColor2" Type="int" />
           <Property Name="PictureType" Type="char" MaxLength="1" />
           <Property Name="HasBottom" Type="bit" Nullable="false" />
@@ -260,7 +260,7 @@
           <Property Name="CountryOfOrigin" Type="char" MaxLength="2" />
           <Property Name="IsDrink" Type="bit" />
           <Property Name="State" Type="smallint" Nullable="false" />
-          <Property Name="TargetID" Type="int" />
+          <Property Name="TargetID" Type="int" StoreGeneratedPattern="Identity" />
           <Property Name="IsAlcoholic" Type="bit" />
         </EntityType>
         <EntityType Name="Cap_CapSign_Int">
@@ -268,32 +268,32 @@
             <PropertyRef Name="CapID" />
             <PropertyRef Name="CapSignID" />
           </Key>
-          <Property Name="CapID" Type="int" Nullable="false" />
-          <Property Name="CapSignID" Type="int" Nullable="false" />
+          <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CapSignID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Cap_Category_Int">
           <Key>
             <PropertyRef Name="CapID" />
             <PropertyRef Name="CategoryID" />
           </Key>
-          <Property Name="CapID" Type="int" Nullable="false" />
-          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Cap_Keyword_Int">
           <Key>
             <PropertyRef Name="CapID" />
             <PropertyRef Name="KeywordID" />
           </Key>
-          <Property Name="CapID" Type="int" Nullable="false" />
-          <Property Name="KeywordID" Type="int" Nullable="false" />
+          <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="KeywordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="CapInstance">
           <Key>
             <PropertyRef Name="CapInstanceID" />
           </Key>
           <Property Name="CapInstanceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CapID" Type="int" Nullable="false" />
-          <Property Name="StorageID" Type="int" Nullable="false" />
+          <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StorageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="State" Type="smallint" Nullable="false" />
           <Property Name="Year" Type="int" />
           <Property Name="CountryCode" Type="char" MaxLength="2" />
@@ -313,7 +313,7 @@
             <PropertyRef Name="CapTranslationID" />
           </Key>
           <Property Name="CapTranslationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CapID" Type="int" Nullable="false" />
+          <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="15" />
           <Property Name="CapName" Type="nvarchar" MaxLength="255" />
           <Property Name="MainPicture" Type="nvarchar" MaxLength="255" />
@@ -326,14 +326,14 @@
           </Key>
           <Property Name="CapTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TypeName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ShapeID" Type="int" Nullable="false" />
+          <Property Name="ShapeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Size" Type="int" Nullable="false" />
           <Property Name="Size2" Type="int" />
           <Property Name="Height" Type="int" Nullable="false" />
-          <Property Name="MaterialID" Type="int" Nullable="false" />
-          <Property Name="MainTypeID" Type="int" Nullable="false" />
+          <Property Name="MaterialID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MainTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="TargetID" Type="int" />
+          <Property Name="TargetID" Type="int" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -357,7 +357,7 @@
           </Key>
           <Property Name="ImageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="RelativePath" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="CapID" Type="int" Nullable="false" />
+          <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IsMain" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ISO 3166-1">
@@ -396,8 +396,8 @@
           </Key>
           <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="CompanyID" Type="int" />
-          <Property Name="ProductTypeID" Type="int" />
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTypeID" Type="int" StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ProductType">
@@ -434,7 +434,7 @@
             <PropertyRef Name="ShapeTranslationID" />
           </Key>
           <Property Name="ShapeTranslationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ShapeID" Type="int" Nullable="false" />
+          <Property Name="ShapeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="15" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Size1Name" Type="nvarchar" MaxLength="50" />
@@ -446,19 +446,19 @@
             <PropertyRef Name="SimpleTranslationID" />
           </Key>
           <Property Name="SimpleTranslationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryID" Type="int" />
-          <Property Name="KeywordID" Type="int" />
-          <Property Name="ProductID" Type="int" />
-          <Property Name="CompanyID" Type="int" />
-          <Property Name="ProductTypeID" Type="int" />
-          <Property Name="TargetID" Type="int" />
-          <Property Name="MaterialID" Type="int" />
-          <Property Name="CapTypeID" Type="int" />
-          <Property Name="MainTypeID" Type="int" />
-          <Property Name="CapSignID" Type="int" />
-          <Property Name="StorageID" Type="int" />
-          <Property Name="StorageTypeID" Type="int" />
-          <Property Name="CapInstanceID" Type="int" />
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="KeywordID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="ProductTypeID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="TargetID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="MaterialID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="CapTypeID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="MainTypeID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="CapSignID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="StorageID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="StorageTypeID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="CapInstanceID" Type="int" StoreGeneratedPattern="Identity" />
           <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="15" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -470,8 +470,8 @@
           <Property Name="StorageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="StorageNumber" Type="nvarchar" Nullable="false" MaxLength="10" />
           <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="StorageTypeID" Type="int" Nullable="false" />
-          <Property Name="ParentStorage" Type="int" />
+          <Property Name="StorageTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ParentStorage" Type="int" StoreGeneratedPattern="Identity" />
           <Property Name="HasCaps" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="StorageType">
@@ -492,12 +492,12 @@
           <Property Name="Size" Type="int" Nullable="false" />
           <Property Name="Width" Type="int" Nullable="false" />
           <Property Name="Height" Type="int" Nullable="false" />
-          <Property Name="ImageID" Type="int" />
-          <Property Name="CapSignID" Type="int" />
-          <Property Name="CapTypeID" Type="int" />
-          <Property Name="MainTypeID" Type="int" />
-          <Property Name="ShapeID" Type="int" />
-          <Property Name="StorageID" Type="int" />
+          <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="CapSignID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="CapTypeID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="MainTypeID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="ShapeID" Type="int" StoreGeneratedPattern="Identity" />
+          <Property Name="StorageID" Type="int" StoreGeneratedPattern="Identity" />
           <Property Name="Data" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Target">
@@ -1106,74 +1106,11 @@
           <Parameter Name="SELECT" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="GetDatabaseVersion" ReturnType="nvarchar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <!--Errors Found During Generation:
-      warning 6005: The function 'GetSimilarCaps' has a parameter 'CategoryIDs' at parameter index 31 that has a data type 'table type' which is not supported. The function was excluded.
-      warning 6005: The function 'GetSimilarCaps' has a parameter 'Keywords' at parameter index 32 that has a data type 'table type' which is not supported. The function was excluded.
-      warning 6005: The function 'GetSimilarCaps' has a parameter 'CapSignIDs' at parameter index 38 that has a data type 'table type' which is not supported. The function was excluded.
-      
-      <Function Name="GetSimilarCaps" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-        <Parameter Name="CapTypeID" Type="int" Mode="In" />
-        <Parameter Name="MainTypeID" Type="int" Mode="In" />
-        <Parameter Name="ShapeID" Type="int" Mode="In" />
-        <Parameter Name="CapName" Type="varchar" Mode="In" />
-        <Parameter Name="MainText" Type="varchar" Mode="In" />
-        <Parameter Name="SubTitle" Type="varchar" Mode="In" />
-        <Parameter Name="BackColor1" Type="int" Mode="In" />
-        <Parameter Name="BackColor2" Type="int" Mode="In" />
-        <Parameter Name="ForeColor" Type="int" Mode="In" />
-        <Parameter Name="MainPicture" Type="varchar" Mode="In" />
-        <Parameter Name="TopText" Type="varchar(max)" Mode="In" />
-        <Parameter Name="SideText" Type="varchar(max)" Mode="In" />
-        <Parameter Name="BottomText" Type="varchar(max)" Mode="In" />
-        <Parameter Name="MaterialID" Type="int" Mode="In" />
-        <Parameter Name="Surface" Type="char" Mode="In" />
-        <Parameter Name="Size" Type="int" Mode="In" />
-        <Parameter Name="Size2" Type="int" Mode="In" />
-        <Parameter Name="Height" Type="int" Mode="In" />
-        <Parameter Name="Is3D" Type="bit" Mode="In" />
-        <Parameter Name="Year" Type="int" Mode="In" />
-        <Parameter Name="CountryCode" Type="char" Mode="In" />
-        <Parameter Name="Note" Type="varchar(max)" Mode="In" />
-        <Parameter Name="CompanyID" Type="int" Mode="In" />
-        <Parameter Name="ProductID" Type="int" Mode="In" />
-        <Parameter Name="ProductTypeID" Type="int" Mode="In" />
-        <Parameter Name="StorageID" Type="int" Mode="In" />
-        <Parameter Name="ForeColor2" Type="int" Mode="In" />
-        <Parameter Name="PictureType" Type="char" Mode="In" />
-        <Parameter Name="HasBottom" Type="bit" Mode="In" />
-        <Parameter Name="HasSide" Type="bit" Mode="In" />
-        <Parameter Name="AnotherPictures" Type="varchar(max)" Mode="In" />
-        <Parameter Name="CountryOfOrigin" Type="char" Mode="In" />
-        <Parameter Name="IsDrink" Type="bit" Mode="In" />
-        <Parameter Name="State" Type="smallint" Mode="In" />
-        <Parameter Name="TargetID" Type="int" Mode="In" />
-        <Parameter Name="IsAlcoholic" Type="bit" Mode="In" />
-      </Function>
-      Errors Found During Generation:
-      warning 6005: The function 'TranslateCap' has a parameter 'CultureNames' at parameter index 1 that has a data type 'table type' which is not supported. The function was excluded.
-      
-      <Function Name="TranslateCap" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-        <Parameter Name="CapID" Type="int" Mode="In" />
-      </Function>
-      Errors Found During Generation:
-      warning 6005: The function 'TranslateShape' has a parameter 'CultureNames' at parameter index 1 that has a data type 'table type' which is not supported. The function was excluded.
-      
-      <Function Name="TranslateShape" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-        <Parameter Name="ShapeID" Type="int" Mode="In" />
-      </Function>
-      Errors Found During Generation:
-      warning 6005: The function 'TranslateSimpleObject' has a parameter 'CultureNames' at parameter index 2 that has a data type 'table type' which is not supported. The function was excluded.
-      
-      <Function Name="TranslateSimpleObject" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-        <Parameter Name="ObjectType" Type="varchar" Mode="In" />
-        <Parameter Name="ObjectID" Type="int" Mode="In" />
-      </Function>-->
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Data" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="CapsDataEntities">
+        <EntityContainer Name="CapsDataContext">
           <EntitySet Name="Caps" EntityType="Data.Cap" />
           <EntitySet Name="CapInstances" EntityType="Data.CapInstance" />
           <EntitySet Name="CapSigns" EntityType="Data.CapSign" />
@@ -1377,7 +1314,7 @@
           <Key>
             <PropertyRef Name="CapID" />
           </Key>
-          <Property Name="CapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="CapName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="MainText" Type="String" MaxLength="255" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="SubTitle" Type="String" MaxLength="255" Unicode="true" FixedLength="false" Nullable="true" />
@@ -1426,7 +1363,7 @@
           <Key>
             <PropertyRef Name="CapInstanceID" />
           </Key>
-          <Property Name="CapInstanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CapInstanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="State" Type="Int16" Nullable="false" />
           <Property Name="Year" Type="Int32" Nullable="true" />
           <Property Name="CountryCode" Type="String" MaxLength="2" Unicode="false" FixedLength="true" Nullable="true" />
@@ -1440,7 +1377,7 @@
           <Key>
             <PropertyRef Name="CapSignID" />
           </Key>
-          <Property Name="CapSignID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CapSignID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="SimpleTranslations" Relationship="Data.FK_SimpleTranslation_CapSign" FromRole="CapSign" ToRole="SimpleTranslation" />
@@ -1451,7 +1388,7 @@
           <Key>
             <PropertyRef Name="CapTranslationID" />
           </Key>
-          <Property Name="CapTranslationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CapTranslationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="Culture" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="CapName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="MainPicture" Type="String" MaxLength="255" Unicode="true" FixedLength="false" Nullable="true" />
@@ -1463,7 +1400,7 @@
           <Key>
             <PropertyRef Name="CapTypeID" />
           </Key>
-          <Property Name="CapTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CapTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Size" Type="Int32" Nullable="false" />
           <Property Name="Size2" Type="Int32" Nullable="true" />
@@ -1481,7 +1418,7 @@
           <Key>
             <PropertyRef Name="CategoryID" />
           </Key>
-          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" a:SetterAccess="Protected" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="SimpleTranslations" Relationship="Data.FK_SimpleTranslation_Category" FromRole="Category" ToRole="SimpleTranslation" />
@@ -1491,7 +1428,7 @@
           <Key>
             <PropertyRef Name="CompanyID" />
           </Key>
-          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Caps" Relationship="Data.FK_Cap_Company" FromRole="Company" ToRole="Cap" />
@@ -1502,7 +1439,7 @@
           <Key>
             <PropertyRef Name="ImageID" />
           </Key>
-          <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="RelativePath" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
           <Property Name="IsMain" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Cap" Relationship="Data.FK_Image_Cap" FromRole="Image" ToRole="Cap" />
@@ -1512,14 +1449,14 @@
           <Key>
             <PropertyRef Name="Alpha_2" />
           </Key>
-          <Property Name="Alpha_2" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="Alpha_2" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="true" a:GetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Public" />
           <Property Name="Alpha_3" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
         </EntityType>
         <EntityType Name="Keyword">
           <Key>
             <PropertyRef Name="KeywordID" />
           </Key>
-          <Property Name="KeywordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="KeywordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="KeywordName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="SimpleTranslations" Relationship="Data.FK_SimpleTranslation_Keyword" FromRole="Keyword" ToRole="SimpleTranslation" />
           <NavigationProperty Name="Caps" Relationship="Data.Cap_Keyword_Int" FromRole="Keyword" ToRole="Cap" />
@@ -1528,7 +1465,7 @@
           <Key>
             <PropertyRef Name="MainTypeID" />
           </Key>
-          <Property Name="MainTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="MainTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Caps" Relationship="Data.FK_Cap_MainType" FromRole="MainType" ToRole="Cap" />
@@ -1540,7 +1477,7 @@
           <Key>
             <PropertyRef Name="MaterialID" />
           </Key>
-          <Property Name="MaterialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="MaterialID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:GetterAccess="Public" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Caps" Relationship="Data.FK_Cap_Material" FromRole="Material" ToRole="Cap" />
@@ -1551,7 +1488,7 @@
           <Key>
             <PropertyRef Name="ProductID" />
           </Key>
-          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Caps" Relationship="Data.FK_Cap_Product" FromRole="Product" ToRole="Cap" />
@@ -1563,7 +1500,7 @@
           <Key>
             <PropertyRef Name="ProductTypeID" />
           </Key>
-          <Property Name="ProductTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="ProductTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="ProductTypeName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="IsDrink" Type="Boolean" Nullable="true" />
@@ -1576,7 +1513,7 @@
           <Key>
             <PropertyRef Name="PseudoCategoryID" />
           </Key>
-          <Property Name="PseudoCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="PseudoCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" a:SetterAccess="Protected" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="Condition" Type="String" Nullable="false" MaxLength="1024" Unicode="true" FixedLength="false" />
@@ -1585,7 +1522,7 @@
           <Key>
             <PropertyRef Name="ShapeID" />
           </Key>
-          <Property Name="ShapeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="ShapeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Size1Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Size2Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" Nullable="true" />
@@ -1599,7 +1536,7 @@
           <Key>
             <PropertyRef Name="ShapeTranslationID" />
           </Key>
-          <Property Name="ShapeTranslationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="ShapeTranslationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="Culture" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="Size1Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" Nullable="true" />
@@ -1611,7 +1548,7 @@
           <Key>
             <PropertyRef Name="SimpleTranslationID" />
           </Key>
-          <Property Name="SimpleTranslationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="SimpleTranslationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="Culture" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
@@ -1633,7 +1570,7 @@
           <Key>
             <PropertyRef Name="StorageID" />
           </Key>
-          <Property Name="StorageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="StorageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="StorageNumber" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="HasCaps" Type="Boolean" Nullable="false" />
@@ -1649,7 +1586,7 @@
           <Key>
             <PropertyRef Name="StorageTypeID" />
           </Key>
-          <Property Name="StorageTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="StorageTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="SimpleTranslations" Relationship="Data.FK_SimpleTranslation_StorageType" FromRole="StorageType" ToRole="SimpleTranslation" />
@@ -1659,7 +1596,7 @@
           <Key>
             <PropertyRef Name="StoredImageID" />
           </Key>
-          <Property Name="StoredImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="StoredImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="FileName" Type="String" Nullable="false" MaxLength="1024" Unicode="true" FixedLength="false" />
           <Property Name="MIME" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Size" Type="Int32" Nullable="false" />
@@ -1677,7 +1614,7 @@
           <Key>
             <PropertyRef Name="TargetID" />
           </Key>
-          <Property Name="TargetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="TargetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Caps" Relationship="Data.FK_Cap_Target" FromRole="Target" ToRole="Cap" />
@@ -1883,7 +1820,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DataStoreContainer" CdmEntityContainer="CapsDataEntities">
+        <EntityContainerMapping StorageEntityContainer="DataStoreContainer" CdmEntityContainer="CapsDataContext">
           <EntitySetMapping Name="Caps"><EntityTypeMapping TypeName="Data.Cap"><MappingFragment StoreEntitySet="Cap">
             <ScalarProperty Name="CapID" ColumnName="CapID" />
             <ScalarProperty Name="CapName" ColumnName="CapName" />
@@ -2436,12 +2373,12 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="CapsData" ZoomLevel="121">
+      <Diagram Name="CapsData" ZoomLevel="74">
         <EntityTypeShape EntityType="Data.Cap" Width="1.5" PointX="5.5" PointY="5.375" Height="9.6723437500000014" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.CapInstance" Width="1.5" PointX="9.5" PointY="15.625" Height="2.7494921875000014" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.CapSign" Width="1.5" PointX="3.375" PointY="7.625" Height="2.1725878906249996" IsExpanded="true" />
@@ -2472,7 +2409,7 @@
           <ConnectorPoint PointX="3.9874118595059924" PointY="16.75" />
           <ConnectorPoint PointX="3.9874118595059924" PointY="16.174611628973761" />
           <ConnectorPoint PointX="6.0660341438065348" PointY="16.174611628973761" />
-          <ConnectorPoint PointX="6.0660341438065348" PointY="15.047343750000001" />
+          <ConnectorPoint PointX="6.0660341438065348" PointY="14.855042317708328" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_MainType" ManuallyRouted="false">
           <ConnectorPoint PointX="7.625" PointY="7.5574446614583373" />
@@ -2483,13 +2420,13 @@
           <ConnectorPoint PointX="6.3125" PointY="5.375" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_Product" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.364537639497577" PointY="16.75" />
-          <ConnectorPoint PointX="6.364537639497577" PointY="15.047343750000001" />
+          <ConnectorPoint PointX="6.5330170719032674" PointY="16.75" />
+          <ConnectorPoint PointX="6.5330170719032674" PointY="14.855042317708334" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_ProductType" ManuallyRouted="true">
           <ConnectorPoint PointX="7.9571174180919773" PointY="16.5" />
-          <ConnectorPoint PointX="7.9571174180919773" PointY="14.745253557183723" />
-          <ConnectorPoint PointX="7" PointY="14.745253557183723" />
+          <ConnectorPoint PointX="7.9571174180919773" PointY="14.765894827878812" />
+          <ConnectorPoint PointX="7" PointY="14.765894827878812" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_Shape" ManuallyRouted="false">
           <ConnectorPoint PointX="7.625" PointY="10.499746093750002" />
@@ -2498,21 +2435,21 @@
         <AssociationConnector Association="Data.FK_Cap_Storage" ManuallyRouted="true">
           <ConnectorPoint PointX="7.5" PointY="22.861033664776542" />
           <ConnectorPoint PointX="2.7375284446604811" PointY="22.861033664776542" />
-          <ConnectorPoint PointX="2.7375284446604811" PointY="14.833830457826542" />
-          <ConnectorPoint PointX="5.5" PointY="14.833830457826542" />
+          <ConnectorPoint PointX="2.7375284446604811" PointY="14.64577400616826" />
+          <ConnectorPoint PointX="5.5" PointY="14.64577400616826" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_Target" ManuallyRouted="false">
           <ConnectorPoint PointX="4.25" PointY="11.211293945312505" />
           <ConnectorPoint PointX="5.5" PointY="11.211293945312505" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_CapInstance_Cap" ManuallyRouted="true">
-          <ConnectorPoint PointX="7" PointY="14.628587498036081" />
-          <ConnectorPoint PointX="8.3939005606113675" PointY="14.628587498036081" />
+          <ConnectorPoint PointX="7" PointY="14.518788068515251" />
+          <ConnectorPoint PointX="8.3939005606113675" PointY="14.518788068515251" />
           <ConnectorPoint PointX="8.3939005606113675" PointY="15.980674082082423" />
           <ConnectorPoint PointX="9.5" PointY="15.980674082082423" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_CapTranslation_Cap" ManuallyRouted="true">
-          <ConnectorPoint PointX="5.605633411975945" PointY="15.047343750000001" />
+          <ConnectorPoint PointX="5.605633411975945" PointY="14.855042317708328" />
           <ConnectorPoint PointX="5.605633411975945" PointY="15.562366718602114" />
           <ConnectorPoint PointX="2.989176318195554" PointY="15.562366718602114" />
           <ConnectorPoint PointX="2.989176318195554" PointY="20.39671510765077" />
@@ -2721,12 +2658,14 @@
           <ConnectorPoint PointX="4.875" PointY="8.7112939453125" />
         </AssociationConnector>
         <AssociationConnector Association="Data.Cap_Category_Int" ManuallyRouted="false">
-          <ConnectorPoint PointX="7" PointY="13.115143229166666" />
-          <ConnectorPoint PointX="7.625" PointY="13.115143229166666" />
+          <ConnectorPoint PointX="7" PointY="13.046287154246029" />
+          <ConnectorPoint PointX="7.291666666666667" PointY="13.046287154246029" />
+          <ConnectorPoint PointX="7.458333333333333" PointY="13.046287154246029" />
+          <ConnectorPoint PointX="7.625" PointY="13.046287154246029" />
         </AssociationConnector>
         <AssociationConnector Association="Data.Cap_Keyword_Int" ManuallyRouted="true">
-          <ConnectorPoint PointX="7" PointY="14.205646472840265" />
-          <ConnectorPoint PointX="9.5" PointY="14.225171002991903" />
+          <ConnectorPoint PointX="7" PointY="14.309888173786378" />
+          <ConnectorPoint PointX="9.5" PointY="14.31155131241081" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
