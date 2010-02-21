@@ -4,6 +4,7 @@ Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports System.ComponentModel
 Imports Tools.ComponentModelT, Tools.LinqT
 Imports Tools, Tools.WindowsT.WPF.WpfExtensions
+Imports Caps.Data
 
 ''' <summary>Creates a new cap</summary>
 Partial Public Class CapEditor

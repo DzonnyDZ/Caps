@@ -1109,7 +1109,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="Data" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <Schema Namespace="Data" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="CapsDataContext">
           <EntitySet Name="Caps" EntityType="Data.Cap" />
           <EntitySet Name="CapInstances" EntityType="Data.CapInstance" />
@@ -1315,6 +1315,9 @@
             <PropertyRef Name="CapID" />
           </Key>
           <Property Name="CapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CapTypeID" Type="Int32" />
+          <Property Name="MainTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ShapeID" Type="Int32" Nullable="false" />
           <Property Name="CapName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
           <Property Name="MainText" Type="String" MaxLength="255" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="SubTitle" Type="String" MaxLength="255" Unicode="true" FixedLength="false" Nullable="true" />
@@ -1325,6 +1328,7 @@
           <Property Name="TopText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="SideText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="BottomText" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
+          <Property Name="MaterialID" Type="Int32" Nullable="false" />
           <Property Name="Surface" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
           <Property Name="Size" Type="Int32" Nullable="false" />
           <Property Name="Size2" Type="Int32" Nullable="true" />
@@ -1334,6 +1338,10 @@
           <Property Name="CountryCode" Type="String" MaxLength="2" Unicode="false" FixedLength="true" Nullable="true" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="Note" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="ProductTypeID" Type="Int32" />
+          <Property Name="StorageID" Type="Int32" Nullable="false" />
           <Property Name="ForeColor2" Type="Int32" Nullable="true" />
           <Property Name="PictureType" Type="String" Nullable="true" />
           <Property Name="HasBottom" Type="Boolean" Nullable="false" />
@@ -1342,6 +1350,7 @@
           <Property Name="CountryOfOrigin" Type="String" MaxLength="2" Unicode="false" FixedLength="true" Nullable="true" />
           <Property Name="IsDrink" Type="Boolean" />
           <Property Name="State" Type="Int16" Nullable="false" />
+          <Property Name="TargetID" Type="Int32" />
           <Property Name="IsAlcoholic" Type="Boolean" Nullable="true" />
           <NavigationProperty Name="CapType" Relationship="Data.FK_Cap_CapType" FromRole="Cap" ToRole="CapType" />
           <NavigationProperty Name="Company" Relationship="Data.FK_Cap_Company" FromRole="Cap" ToRole="Company" />
@@ -1364,6 +1373,8 @@
             <PropertyRef Name="CapInstanceID" />
           </Key>
           <Property Name="CapInstanceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CapID" Type="Int32" Nullable="false" />
+          <Property Name="StorageID" Type="Int32" Nullable="false" />
           <Property Name="State" Type="Int16" Nullable="false" />
           <Property Name="Year" Type="Int32" Nullable="true" />
           <Property Name="CountryCode" Type="String" MaxLength="2" Unicode="false" FixedLength="true" Nullable="true" />
@@ -1389,6 +1400,7 @@
             <PropertyRef Name="CapTranslationID" />
           </Key>
           <Property Name="CapTranslationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CapID" Type="Int32" Nullable="false" />
           <Property Name="Culture" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="CapName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="MainPicture" Type="String" MaxLength="255" Unicode="true" FixedLength="false" Nullable="true" />
@@ -1402,12 +1414,16 @@
           </Key>
           <Property Name="CapTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="TypeName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ShapeID" Type="Int32" Nullable="false" />
           <Property Name="Size" Type="Int32" Nullable="false" />
           <Property Name="Size2" Type="Int32" Nullable="true" />
           <Property Name="Height" Type="Int32" Nullable="false" />
+          <Property Name="MaterialID" Type="Int32" Nullable="false" />
+          <Property Name="MainTypeID" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Caps" Relationship="Data.FK_Cap_CapType" FromRole="CapType" ToRole="Cap" />
           <NavigationProperty Name="MainType" Relationship="Data.FK_CapType_MainType" FromRole="CapType" ToRole="MainType" />
+          <Property Name="TargetID" Type="Int32" />
           <NavigationProperty Name="Material" Relationship="Data.FK_CapType_Material" FromRole="CapType" ToRole="Material" />
           <NavigationProperty Name="Shape" Relationship="Data.FK_CapType_Shape" FromRole="CapType" ToRole="Shape" />
           <NavigationProperty Name="Target" Relationship="Data.FK_CapType_Target" FromRole="CapType" ToRole="Target" />
@@ -1441,6 +1457,7 @@
           </Key>
           <Property Name="ImageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="RelativePath" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="CapID" Type="Int32" Nullable="false" />
           <Property Name="IsMain" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Cap" Relationship="Data.FK_Image_Cap" FromRole="Image" ToRole="Cap" />
           <NavigationProperty Name="StoredImages" Relationship="Data.FK_StoredImage_Image" FromRole="Image" ToRole="StoredImage" />
@@ -1490,6 +1507,8 @@
           </Key>
           <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="ProductTypeID" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Caps" Relationship="Data.FK_Cap_Product" FromRole="Product" ToRole="Cap" />
           <NavigationProperty Name="Company" Relationship="Data.FK_Product_Company" FromRole="Product" ToRole="Company" />
@@ -1536,7 +1555,8 @@
           <Key>
             <PropertyRef Name="ShapeTranslationID" />
           </Key>
-          <Property Name="ShapeTranslationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="ShapeTranslationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShapeID" Type="Int32" Nullable="false" />
           <Property Name="Culture" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="Size1Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" Nullable="true" />
@@ -1549,6 +1569,19 @@
             <PropertyRef Name="SimpleTranslationID" />
           </Key>
           <Property Name="SimpleTranslationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="KeywordID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="CompanyID" Type="Int32" />
+          <Property Name="ProductTypeID" Type="Int32" />
+          <Property Name="TargetID" Type="Int32" />
+          <Property Name="MaterialID" Type="Int32" />
+          <Property Name="CapTypeID" Type="Int32" />
+          <Property Name="MainTypeID" Type="Int32" />
+          <Property Name="CapSignID" Type="Int32" />
+          <Property Name="StorageID" Type="Int32" />
+          <Property Name="StorageTypeID" Type="Int32" />
+          <Property Name="CapInstanceID" Type="Int32" />
           <Property Name="Culture" Type="String" Nullable="false" MaxLength="15" Unicode="false" FixedLength="false" />
           <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
@@ -1573,6 +1606,8 @@
           <Property Name="StorageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Protected" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
           <Property Name="StorageNumber" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
+          <Property Name="StorageTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ParentStorage" Type="Int32" />
           <Property Name="HasCaps" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Caps" Relationship="Data.FK_Cap_Storage" FromRole="Storage" ToRole="Cap" />
           <NavigationProperty Name="CapInstances" Relationship="Data.FK_CapInstance_Storage" FromRole="Storage" ToRole="CapInstance" />
@@ -1602,6 +1637,12 @@
           <Property Name="Size" Type="Int32" Nullable="false" />
           <Property Name="Width" Type="Int32" Nullable="false" />
           <Property Name="Height" Type="Int32" Nullable="false" />
+          <Property Name="ImageID" Type="Int32" />
+          <Property Name="CapSignID" Type="Int32" />
+          <Property Name="CapTypeID" Type="Int32" />
+          <Property Name="MainTypeID" Type="Int32" />
+          <Property Name="ShapeID" Type="Int32" />
+          <Property Name="StorageID" Type="Int32" />
           <Property Name="Data" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="CapSign" Relationship="Data.FK_StoredImage_CapSign" FromRole="StoredImage" ToRole="CapSign" />
           <NavigationProperty Name="CapType" Relationship="Data.FK_StoredImage_CapType" FromRole="StoredImage" ToRole="CapType" />
@@ -1624,184 +1665,512 @@
         <Association Name="FK_Cap_CapType">
           <End Role="CapType" Type="Data.CapType" Multiplicity="0..1" />
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CapType">
+              <PropertyRef Name="CapTypeID" />
+            </Principal>
+            <Dependent Role="Cap">
+              <PropertyRef Name="CapTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cap_Company">
           <End Role="Company" Type="Data.Company" Multiplicity="0..1" />
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Cap">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cap_MainType">
           <End Role="MainType" Type="Data.MainType" Multiplicity="1" />
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainType">
+              <PropertyRef Name="MainTypeID" />
+            </Principal>
+            <Dependent Role="Cap">
+              <PropertyRef Name="MainTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cap_Material">
           <End Role="Material" Type="Data.Material" Multiplicity="1" />
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="MaterialID" />
+            </Principal>
+            <Dependent Role="Cap">
+              <PropertyRef Name="MaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cap_Product">
           <End Role="Product" Type="Data.Product" Multiplicity="0..1" />
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="Cap">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cap_ProductType">
           <End Role="ProductType" Type="Data.ProductType" Multiplicity="0..1" />
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="Cap">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cap_Shape">
           <End Role="Shape" Type="Data.Shape" Multiplicity="1" />
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shape">
+              <PropertyRef Name="ShapeID" />
+            </Principal>
+            <Dependent Role="Cap">
+              <PropertyRef Name="ShapeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cap_Storage">
           <End Role="Storage" Type="Data.Storage" Multiplicity="1" />
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="StorageID" />
+            </Principal>
+            <Dependent Role="Cap">
+              <PropertyRef Name="StorageID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cap_Target">
           <End Role="Target" Type="Data.Target" Multiplicity="0..1" />
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Target">
+              <PropertyRef Name="TargetID" />
+            </Principal>
+            <Dependent Role="Cap">
+              <PropertyRef Name="TargetID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_CapInstance_Cap">
           <End Role="Cap" Type="Data.Cap" Multiplicity="1" />
           <End Role="CapInstance" Type="Data.CapInstance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cap">
+              <PropertyRef Name="CapID" />
+            </Principal>
+            <Dependent Role="CapInstance">
+              <PropertyRef Name="CapID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_CapTranslation_Cap">
           <End Role="Cap" Type="Data.Cap" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="CapTranslation" Type="Data.CapTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cap">
+              <PropertyRef Name="CapID" />
+            </Principal>
+            <Dependent Role="CapTranslation">
+              <PropertyRef Name="CapID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Image_Cap">
           <End Role="Cap" Type="Data.Cap" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Image" Type="Data.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cap">
+              <PropertyRef Name="CapID" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="CapID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_CapInstance_Storage">
           <End Role="Storage" Type="Data.Storage" Multiplicity="1" />
           <End Role="CapInstance" Type="Data.CapInstance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="StorageID" />
+            </Principal>
+            <Dependent Role="CapInstance">
+              <PropertyRef Name="StorageID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_CapInstance">
           <End Role="CapInstance" Type="Data.CapInstance" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CapInstance">
+              <PropertyRef Name="CapInstanceID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="CapInstanceID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_CapSign">
           <End Role="CapSign" Type="Data.CapSign" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CapSign">
+              <PropertyRef Name="CapSignID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="CapSignID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_StoredImage_CapSign">
           <End Role="CapSign" Type="Data.CapSign" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="StoredImage" Type="Data.StoredImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CapSign">
+              <PropertyRef Name="CapSignID" />
+            </Principal>
+            <Dependent Role="StoredImage">
+              <PropertyRef Name="CapSignID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_CapType_MainType">
           <End Role="MainType" Type="Data.MainType" Multiplicity="1" />
           <End Role="CapType" Type="Data.CapType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainType">
+              <PropertyRef Name="MainTypeID" />
+            </Principal>
+            <Dependent Role="CapType">
+              <PropertyRef Name="MainTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_CapType_Material">
           <End Role="Material" Type="Data.Material" Multiplicity="1" />
           <End Role="CapType" Type="Data.CapType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="MaterialID" />
+            </Principal>
+            <Dependent Role="CapType">
+              <PropertyRef Name="MaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_CapType_Shape">
           <End Role="Shape" Type="Data.Shape" Multiplicity="1" />
           <End Role="CapType" Type="Data.CapType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shape">
+              <PropertyRef Name="ShapeID" />
+            </Principal>
+            <Dependent Role="CapType">
+              <PropertyRef Name="ShapeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_CapType_Target">
           <End Role="Target" Type="Data.Target" Multiplicity="0..1" />
           <End Role="CapType" Type="Data.CapType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Target">
+              <PropertyRef Name="TargetID" />
+            </Principal>
+            <Dependent Role="CapType">
+              <PropertyRef Name="TargetID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_CapType">
           <End Role="CapType" Type="Data.CapType" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CapType">
+              <PropertyRef Name="CapTypeID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="CapTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_StoredImage_CapType">
           <End Role="CapType" Type="Data.CapType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="StoredImage" Type="Data.StoredImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CapType">
+              <PropertyRef Name="CapTypeID" />
+            </Principal>
+            <Dependent Role="StoredImage">
+              <PropertyRef Name="CapTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_Category">
           <End Role="Category" Type="Data.Category" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Company">
           <End Role="Company" Type="Data.Company" Multiplicity="0..1" />
           <End Role="Product" Type="Data.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_Company">
           <End Role="Company" Type="Data.Company" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_StoredImage_Image">
           <End Role="Image" Type="Data.Image" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="StoredImage" Type="Data.StoredImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="ImageID" />
+            </Principal>
+            <Dependent Role="StoredImage">
+              <PropertyRef Name="ImageID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_Keyword">
           <End Role="Keyword" Type="Data.Keyword" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Keyword">
+              <PropertyRef Name="KeywordID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="KeywordID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_MainType">
           <End Role="MainType" Type="Data.MainType" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainType">
+              <PropertyRef Name="MainTypeID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="MainTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_StoredImage_MainType">
           <End Role="MainType" Type="Data.MainType" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="StoredImage" Type="Data.StoredImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainType">
+              <PropertyRef Name="MainTypeID" />
+            </Principal>
+            <Dependent Role="StoredImage">
+              <PropertyRef Name="MainTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_Material">
           <End Role="Material" Type="Data.Material" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="MaterialID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="MaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_ProductType">
           <End Role="ProductType" Type="Data.ProductType" Multiplicity="0..1" />
           <End Role="Product" Type="Data.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_Product">
           <End Role="Product" Type="Data.Product" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_ProductType">
           <End Role="ProductType" Type="Data.ProductType" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductType">
+              <PropertyRef Name="ProductTypeID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="ProductTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_ShapeTranslation_Shape">
           <End Role="Shape" Type="Data.Shape" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="ShapeTranslation" Type="Data.ShapeTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shape">
+              <PropertyRef Name="ShapeID" />
+            </Principal>
+            <Dependent Role="ShapeTranslation">
+              <PropertyRef Name="ShapeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_StoredImage_Shape">
           <End Role="Shape" Type="Data.Shape" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="StoredImage" Type="Data.StoredImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shape">
+              <PropertyRef Name="ShapeID" />
+            </Principal>
+            <Dependent Role="StoredImage">
+              <PropertyRef Name="ShapeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_Storage">
           <End Role="Storage" Type="Data.Storage" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="StorageID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="StorageID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_StorageType">
           <End Role="StorageType" Type="Data.StorageType" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StorageType">
+              <PropertyRef Name="StorageTypeID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="StorageTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_SimpleTranslation_Target">
           <End Role="Target" Type="Data.Target" Multiplicity="0..1" />
           <End Role="SimpleTranslation" Type="Data.SimpleTranslation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Target">
+              <PropertyRef Name="TargetID" />
+            </Principal>
+            <Dependent Role="SimpleTranslation">
+              <PropertyRef Name="TargetID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Storage_ParentStorage">
           <End Role="Storage" Type="Data.Storage" Multiplicity="0..1" />
           <End Role="Storage1" Type="Data.Storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="StorageID" />
+            </Principal>
+            <Dependent Role="Storage1">
+              <PropertyRef Name="ParentStorage" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_Storage_StorageType">
           <End Role="StorageType" Type="Data.StorageType" Multiplicity="1" />
           <End Role="Storage" Type="Data.Storage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StorageType">
+              <PropertyRef Name="StorageTypeID" />
+            </Principal>
+            <Dependent Role="Storage">
+              <PropertyRef Name="StorageTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="FK_StoredImage_Storage">
           <End Role="Storage" Type="Data.Storage" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="StoredImage" Type="Data.StoredImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="StorageID" />
+            </Principal>
+            <Dependent Role="StoredImage">
+              <PropertyRef Name="StorageID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <Association Name="Cap_CapSign_Int">
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
@@ -1823,6 +2192,9 @@
         <EntityContainerMapping StorageEntityContainer="DataStoreContainer" CdmEntityContainer="CapsDataContext">
           <EntitySetMapping Name="Caps"><EntityTypeMapping TypeName="Data.Cap"><MappingFragment StoreEntitySet="Cap">
             <ScalarProperty Name="CapID" ColumnName="CapID" />
+            <ScalarProperty Name="CapTypeID" ColumnName="CapTypeID" />
+            <ScalarProperty Name="MainTypeID" ColumnName="MainTypeID" />
+            <ScalarProperty Name="ShapeID" ColumnName="ShapeID" />
             <ScalarProperty Name="CapName" ColumnName="CapName" />
             <ScalarProperty Name="MainText" ColumnName="MainText" />
             <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
@@ -1833,6 +2205,7 @@
             <ScalarProperty Name="TopText" ColumnName="TopText" />
             <ScalarProperty Name="SideText" ColumnName="SideText" />
             <ScalarProperty Name="BottomText" ColumnName="BottomText" />
+            <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
             <ScalarProperty Name="Surface" ColumnName="Surface" />
             <ScalarProperty Name="Size" ColumnName="Size" />
             <ScalarProperty Name="Size2" ColumnName="Size2" />
@@ -1842,6 +2215,10 @@
             <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
             <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
             <ScalarProperty Name="Note" ColumnName="Note" />
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+            <ScalarProperty Name="StorageID" ColumnName="StorageID" />
             <ScalarProperty Name="ForeColor2" ColumnName="ForeColor2" />
             <ScalarProperty Name="PictureType" ColumnName="PictureType" />
             <ScalarProperty Name="HasBottom" ColumnName="HasBottom" />
@@ -1850,10 +2227,13 @@
             <ScalarProperty Name="CountryOfOrigin" ColumnName="CountryOfOrigin" />
             <ScalarProperty Name="IsDrink" ColumnName="IsDrink" />
             <ScalarProperty Name="State" ColumnName="State" />
+            <ScalarProperty Name="TargetID" ColumnName="TargetID" />
             <ScalarProperty Name="IsAlcoholic" ColumnName="IsAlcoholic" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="CapInstances"><EntityTypeMapping TypeName="Data.CapInstance"><MappingFragment StoreEntitySet="CapInstance">
             <ScalarProperty Name="CapInstanceID" ColumnName="CapInstanceID" />
+            <ScalarProperty Name="CapID" ColumnName="CapID" />
+            <ScalarProperty Name="StorageID" ColumnName="StorageID" />
             <ScalarProperty Name="State" ColumnName="State" />
             <ScalarProperty Name="Year" ColumnName="Year" />
             <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
@@ -1867,6 +2247,7 @@
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="CapTranslations"><EntityTypeMapping TypeName="Data.CapTranslation"><MappingFragment StoreEntitySet="CapTranslation">
             <ScalarProperty Name="CapTranslationID" ColumnName="CapTranslationID" />
+            <ScalarProperty Name="CapID" ColumnName="CapID" />
             <ScalarProperty Name="Culture" ColumnName="Culture" />
             <ScalarProperty Name="CapName" ColumnName="CapName" />
             <ScalarProperty Name="MainPicture" ColumnName="MainPicture" />
@@ -1876,10 +2257,14 @@
           <EntitySetMapping Name="CapTypes"><EntityTypeMapping TypeName="Data.CapType"><MappingFragment StoreEntitySet="CapType">
             <ScalarProperty Name="CapTypeID" ColumnName="CapTypeID" />
             <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+            <ScalarProperty Name="ShapeID" ColumnName="ShapeID" />
             <ScalarProperty Name="Size" ColumnName="Size" />
             <ScalarProperty Name="Size2" ColumnName="Size2" />
             <ScalarProperty Name="Height" ColumnName="Height" />
+            <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+            <ScalarProperty Name="MainTypeID" ColumnName="MainTypeID" />
             <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="TargetID" ColumnName="TargetID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Categories"><EntityTypeMapping TypeName="Data.Category"><MappingFragment StoreEntitySet="Category">
             <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
@@ -1894,6 +2279,7 @@
           <EntitySetMapping Name="Images"><EntityTypeMapping TypeName="Data.Image"><MappingFragment StoreEntitySet="Image">
             <ScalarProperty Name="ImageID" ColumnName="ImageID" />
             <ScalarProperty Name="RelativePath" ColumnName="RelativePath" />
+            <ScalarProperty Name="CapID" ColumnName="CapID" />
             <ScalarProperty Name="IsMain" ColumnName="IsMain" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="ISO_3166_1"><EntityTypeMapping TypeName="Data.ISO_3166_1"><MappingFragment StoreEntitySet="ISO 3166-1">
@@ -1917,6 +2303,8 @@
           <EntitySetMapping Name="Products"><EntityTypeMapping TypeName="Data.Product"><MappingFragment StoreEntitySet="Product">
             <ScalarProperty Name="ProductID" ColumnName="ProductID" />
             <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
             <ScalarProperty Name="Description" ColumnName="Description" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="ProductTypes"><EntityTypeMapping TypeName="Data.ProductType"><MappingFragment StoreEntitySet="ProductType">
@@ -1941,6 +2329,7 @@
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="ShapeTranslations"><EntityTypeMapping TypeName="Data.ShapeTranslation"><MappingFragment StoreEntitySet="ShapeTranslation">
             <ScalarProperty Name="ShapeTranslationID" ColumnName="ShapeTranslationID" />
+            <ScalarProperty Name="ShapeID" ColumnName="ShapeID" />
             <ScalarProperty Name="Culture" ColumnName="Culture" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Size1Name" ColumnName="Size1Name" />
@@ -1949,6 +2338,19 @@
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="SimpleTranslations"><EntityTypeMapping TypeName="Data.SimpleTranslation"><MappingFragment StoreEntitySet="SimpleTranslation">
             <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
+            <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+            <ScalarProperty Name="KeywordID" ColumnName="KeywordID" />
+            <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+            <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+            <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+            <ScalarProperty Name="TargetID" ColumnName="TargetID" />
+            <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+            <ScalarProperty Name="CapTypeID" ColumnName="CapTypeID" />
+            <ScalarProperty Name="MainTypeID" ColumnName="MainTypeID" />
+            <ScalarProperty Name="CapSignID" ColumnName="CapSignID" />
+            <ScalarProperty Name="StorageID" ColumnName="StorageID" />
+            <ScalarProperty Name="StorageTypeID" ColumnName="StorageTypeID" />
+            <ScalarProperty Name="CapInstanceID" ColumnName="CapInstanceID" />
             <ScalarProperty Name="Culture" ColumnName="Culture" />
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Description" ColumnName="Description" />
@@ -1957,6 +2359,8 @@
             <ScalarProperty Name="StorageID" ColumnName="StorageID" />
             <ScalarProperty Name="StorageNumber" ColumnName="StorageNumber" />
             <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="StorageTypeID" ColumnName="StorageTypeID" />
+            <ScalarProperty Name="ParentStorage" ColumnName="ParentStorage" />
             <ScalarProperty Name="HasCaps" ColumnName="HasCaps" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="StorageTypes"><EntityTypeMapping TypeName="Data.StorageType"><MappingFragment StoreEntitySet="StorageType">
@@ -1971,6 +2375,12 @@
             <ScalarProperty Name="Size" ColumnName="Size" />
             <ScalarProperty Name="Width" ColumnName="Width" />
             <ScalarProperty Name="Height" ColumnName="Height" />
+            <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+            <ScalarProperty Name="CapSignID" ColumnName="CapSignID" />
+            <ScalarProperty Name="CapTypeID" ColumnName="CapTypeID" />
+            <ScalarProperty Name="MainTypeID" ColumnName="MainTypeID" />
+            <ScalarProperty Name="ShapeID" ColumnName="ShapeID" />
+            <ScalarProperty Name="StorageID" ColumnName="StorageID" />
             <ScalarProperty Name="Data" ColumnName="Data" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Targets"><EntityTypeMapping TypeName="Data.Target"><MappingFragment StoreEntitySet="Target">
@@ -1978,362 +2388,8 @@
             <ScalarProperty Name="Name" ColumnName="Name" />
             <ScalarProperty Name="Description" ColumnName="Description" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <AssociationSetMapping Name="FK_Cap_CapType" TypeName="Data.FK_Cap_CapType" StoreEntitySet="Cap">
-            <EndProperty Name="CapType">
-              <ScalarProperty Name="CapTypeID" ColumnName="CapTypeID" />
-            </EndProperty>
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-            <Condition ColumnName="CapTypeID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Cap_Company" TypeName="Data.FK_Cap_Company" StoreEntitySet="Cap">
-            <EndProperty Name="Company">
-              <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-            </EndProperty>
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-            <Condition ColumnName="CompanyID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Cap_MainType" TypeName="Data.FK_Cap_MainType" StoreEntitySet="Cap">
-            <EndProperty Name="MainType">
-              <ScalarProperty Name="MainTypeID" ColumnName="MainTypeID" />
-            </EndProperty>
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Cap_Material" TypeName="Data.FK_Cap_Material" StoreEntitySet="Cap">
-            <EndProperty Name="Material">
-              <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
-            </EndProperty>
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Cap_Product" TypeName="Data.FK_Cap_Product" StoreEntitySet="Cap">
-            <EndProperty Name="Product">
-              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-            </EndProperty>
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-            <Condition ColumnName="ProductID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Cap_ProductType" TypeName="Data.FK_Cap_ProductType" StoreEntitySet="Cap">
-            <EndProperty Name="ProductType">
-              <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
-            </EndProperty>
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-            <Condition ColumnName="ProductTypeID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Cap_Shape" TypeName="Data.FK_Cap_Shape" StoreEntitySet="Cap">
-            <EndProperty Name="Shape">
-              <ScalarProperty Name="ShapeID" ColumnName="ShapeID" />
-            </EndProperty>
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Cap_Storage" TypeName="Data.FK_Cap_Storage" StoreEntitySet="Cap">
-            <EndProperty Name="Storage">
-              <ScalarProperty Name="StorageID" ColumnName="StorageID" />
-            </EndProperty>
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Cap_Target" TypeName="Data.FK_Cap_Target" StoreEntitySet="Cap">
-            <EndProperty Name="Target">
-              <ScalarProperty Name="TargetID" ColumnName="TargetID" />
-            </EndProperty>
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-            <Condition ColumnName="TargetID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_CapInstance_Cap" TypeName="Data.FK_CapInstance_Cap" StoreEntitySet="CapInstance">
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-            <EndProperty Name="CapInstance">
-              <ScalarProperty Name="CapInstanceID" ColumnName="CapInstanceID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_CapTranslation_Cap" TypeName="Data.FK_CapTranslation_Cap" StoreEntitySet="CapTranslation">
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-            <EndProperty Name="CapTranslation">
-              <ScalarProperty Name="CapTranslationID" ColumnName="CapTranslationID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Image_Cap" TypeName="Data.FK_Image_Cap" StoreEntitySet="Image">
-            <EndProperty Name="Cap">
-              <ScalarProperty Name="CapID" ColumnName="CapID" />
-            </EndProperty>
-            <EndProperty Name="Image">
-              <ScalarProperty Name="ImageID" ColumnName="ImageID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_CapInstance_Storage" TypeName="Data.FK_CapInstance_Storage" StoreEntitySet="CapInstance">
-            <EndProperty Name="Storage">
-              <ScalarProperty Name="StorageID" ColumnName="StorageID" />
-            </EndProperty>
-            <EndProperty Name="CapInstance">
-              <ScalarProperty Name="CapInstanceID" ColumnName="CapInstanceID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_CapInstance" TypeName="Data.FK_SimpleTranslation_CapInstance" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="CapInstance">
-              <ScalarProperty Name="CapInstanceID" ColumnName="CapInstanceID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="CapInstanceID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_CapSign" TypeName="Data.FK_SimpleTranslation_CapSign" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="CapSign">
-              <ScalarProperty Name="CapSignID" ColumnName="CapSignID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="CapSignID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_StoredImage_CapSign" TypeName="Data.FK_StoredImage_CapSign" StoreEntitySet="StoredImage">
-            <EndProperty Name="CapSign">
-              <ScalarProperty Name="CapSignID" ColumnName="CapSignID" />
-            </EndProperty>
-            <EndProperty Name="StoredImage">
-              <ScalarProperty Name="StoredImageID" ColumnName="StoredImageID" />
-            </EndProperty>
-            <Condition ColumnName="CapSignID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_CapType_MainType" TypeName="Data.FK_CapType_MainType" StoreEntitySet="CapType">
-            <EndProperty Name="MainType">
-              <ScalarProperty Name="MainTypeID" ColumnName="MainTypeID" />
-            </EndProperty>
-            <EndProperty Name="CapType">
-              <ScalarProperty Name="CapTypeID" ColumnName="CapTypeID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_CapType_Material" TypeName="Data.FK_CapType_Material" StoreEntitySet="CapType">
-            <EndProperty Name="Material">
-              <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
-            </EndProperty>
-            <EndProperty Name="CapType">
-              <ScalarProperty Name="CapTypeID" ColumnName="CapTypeID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_CapType_Shape" TypeName="Data.FK_CapType_Shape" StoreEntitySet="CapType">
-            <EndProperty Name="Shape">
-              <ScalarProperty Name="ShapeID" ColumnName="ShapeID" />
-            </EndProperty>
-            <EndProperty Name="CapType">
-              <ScalarProperty Name="CapTypeID" ColumnName="CapTypeID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_CapType_Target" TypeName="Data.FK_CapType_Target" StoreEntitySet="CapType">
-            <EndProperty Name="Target">
-              <ScalarProperty Name="TargetID" ColumnName="TargetID" />
-            </EndProperty>
-            <EndProperty Name="CapType">
-              <ScalarProperty Name="CapTypeID" ColumnName="CapTypeID" />
-            </EndProperty>
-            <Condition ColumnName="TargetID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_CapType" TypeName="Data.FK_SimpleTranslation_CapType" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="CapType">
-              <ScalarProperty Name="CapTypeID" ColumnName="CapTypeID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="CapTypeID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_StoredImage_CapType" TypeName="Data.FK_StoredImage_CapType" StoreEntitySet="StoredImage">
-            <EndProperty Name="CapType">
-              <ScalarProperty Name="CapTypeID" ColumnName="CapTypeID" />
-            </EndProperty>
-            <EndProperty Name="StoredImage">
-              <ScalarProperty Name="StoredImageID" ColumnName="StoredImageID" />
-            </EndProperty>
-            <Condition ColumnName="CapTypeID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_Category" TypeName="Data.FK_SimpleTranslation_Category" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="Category">
-              <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="CategoryID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Product_Company" TypeName="Data.FK_Product_Company" StoreEntitySet="Product">
-            <EndProperty Name="Company">
-              <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-            </EndProperty>
-            <EndProperty Name="Product">
-              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-            </EndProperty>
-            <Condition ColumnName="CompanyID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_Company" TypeName="Data.FK_SimpleTranslation_Company" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="Company">
-              <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="CompanyID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_StoredImage_Image" TypeName="Data.FK_StoredImage_Image" StoreEntitySet="StoredImage">
-            <EndProperty Name="Image">
-              <ScalarProperty Name="ImageID" ColumnName="ImageID" />
-            </EndProperty>
-            <EndProperty Name="StoredImage">
-              <ScalarProperty Name="StoredImageID" ColumnName="StoredImageID" />
-            </EndProperty>
-            <Condition ColumnName="ImageID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_Keyword" TypeName="Data.FK_SimpleTranslation_Keyword" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="Keyword">
-              <ScalarProperty Name="KeywordID" ColumnName="KeywordID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="KeywordID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_MainType" TypeName="Data.FK_SimpleTranslation_MainType" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="MainType">
-              <ScalarProperty Name="MainTypeID" ColumnName="MainTypeID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="MainTypeID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_StoredImage_MainType" TypeName="Data.FK_StoredImage_MainType" StoreEntitySet="StoredImage">
-            <EndProperty Name="MainType">
-              <ScalarProperty Name="MainTypeID" ColumnName="MainTypeID" />
-            </EndProperty>
-            <EndProperty Name="StoredImage">
-              <ScalarProperty Name="StoredImageID" ColumnName="StoredImageID" />
-            </EndProperty>
-            <Condition ColumnName="MainTypeID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_Material" TypeName="Data.FK_SimpleTranslation_Material" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="Material">
-              <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="MaterialID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Product_ProductType" TypeName="Data.FK_Product_ProductType" StoreEntitySet="Product">
-            <EndProperty Name="ProductType">
-              <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
-            </EndProperty>
-            <EndProperty Name="Product">
-              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-            </EndProperty>
-            <Condition ColumnName="ProductTypeID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_Product" TypeName="Data.FK_SimpleTranslation_Product" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="Product">
-              <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="ProductID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_ProductType" TypeName="Data.FK_SimpleTranslation_ProductType" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="ProductType">
-              <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="ProductTypeID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_ShapeTranslation_Shape" TypeName="Data.FK_ShapeTranslation_Shape" StoreEntitySet="ShapeTranslation">
-            <EndProperty Name="Shape">
-              <ScalarProperty Name="ShapeID" ColumnName="ShapeID" />
-            </EndProperty>
-            <EndProperty Name="ShapeTranslation">
-              <ScalarProperty Name="ShapeTranslationID" ColumnName="ShapeTranslationID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_StoredImage_Shape" TypeName="Data.FK_StoredImage_Shape" StoreEntitySet="StoredImage">
-            <EndProperty Name="Shape">
-              <ScalarProperty Name="ShapeID" ColumnName="ShapeID" />
-            </EndProperty>
-            <EndProperty Name="StoredImage">
-              <ScalarProperty Name="StoredImageID" ColumnName="StoredImageID" />
-            </EndProperty>
-            <Condition ColumnName="ShapeID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_Storage" TypeName="Data.FK_SimpleTranslation_Storage" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="Storage">
-              <ScalarProperty Name="StorageID" ColumnName="StorageID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="StorageID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_StorageType" TypeName="Data.FK_SimpleTranslation_StorageType" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="StorageType">
-              <ScalarProperty Name="StorageTypeID" ColumnName="StorageTypeID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="StorageTypeID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_SimpleTranslation_Target" TypeName="Data.FK_SimpleTranslation_Target" StoreEntitySet="SimpleTranslation">
-            <EndProperty Name="Target">
-              <ScalarProperty Name="TargetID" ColumnName="TargetID" />
-            </EndProperty>
-            <EndProperty Name="SimpleTranslation">
-              <ScalarProperty Name="SimpleTranslationID" ColumnName="SimpleTranslationID" />
-            </EndProperty>
-            <Condition ColumnName="TargetID" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Storage_ParentStorage" TypeName="Data.FK_Storage_ParentStorage" StoreEntitySet="Storage">
-            <EndProperty Name="Storage">
-              <ScalarProperty Name="StorageID" ColumnName="ParentStorage" />
-            </EndProperty>
-            <EndProperty Name="Storage1">
-              <ScalarProperty Name="StorageID" ColumnName="StorageID" />
-            </EndProperty>
-            <Condition ColumnName="ParentStorage" IsNull="false" />
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_Storage_StorageType" TypeName="Data.FK_Storage_StorageType" StoreEntitySet="Storage">
-            <EndProperty Name="StorageType">
-              <ScalarProperty Name="StorageTypeID" ColumnName="StorageTypeID" />
-            </EndProperty>
-            <EndProperty Name="Storage">
-              <ScalarProperty Name="StorageID" ColumnName="StorageID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FK_StoredImage_Storage" TypeName="Data.FK_StoredImage_Storage" StoreEntitySet="StoredImage">
-            <EndProperty Name="Storage">
-              <ScalarProperty Name="StorageID" ColumnName="StorageID" />
-            </EndProperty>
-            <EndProperty Name="StoredImage">
-              <ScalarProperty Name="StoredImageID" ColumnName="StoredImageID" />
-            </EndProperty>
-            <Condition ColumnName="StorageID" IsNull="false" />
-          </AssociationSetMapping>
+
+ 
           <AssociationSetMapping Name="Cap_CapSign_Int" TypeName="Data.Cap_CapSign_Int" StoreEntitySet="Cap_CapSign_Int">
             <EndProperty Name="Cap">
               <ScalarProperty Name="CapID" ColumnName="CapID" />
@@ -2378,102 +2434,106 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="CapsData" ZoomLevel="74">
-        <EntityTypeShape EntityType="Data.Cap" Width="1.5" PointX="5.5" PointY="5.375" Height="9.6723437500000014" IsExpanded="true" />
+      <Diagram Name="CapsData" ZoomLevel="64">
+        <EntityTypeShape EntityType="Data.Cap" Width="1.5" PointX="5.375" PointY="5.375" Height="11.210755208333335" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.CapInstance" Width="1.5" PointX="9.5" PointY="15.625" Height="2.7494921875000014" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.CapSign" Width="1.5" PointX="3.375" PointY="7.625" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="Data.CapTranslation" Width="1.5" PointX="3.25" PointY="20.125" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="Data.CapType" Width="1.5" PointX="7.75" PointY="2.25" Height="3.5186979166666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Data.CapTranslation" Width="1.5" PointX="2.625" PointY="15.5" Height="2.5571907552083353" IsExpanded="true" />
+        <EntityTypeShape EntityType="Data.CapType" Width="1.5" PointX="7.75" PointY="1.5" Height="4.2879036458333317" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.Category" Width="1.5" PointX="7.625" PointY="12.125" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="Data.Company" Width="1.5" PointX="3.25" PointY="16.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Data.Company" Width="1.5" PointX="4.125" PointY="20.75" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.Image" Width="1.5" PointX="2.5" PointY="4.875" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.ISO_3166_1" Width="1.5" PointX="3.5" PointY="2.5" Height="1.4033821614583317" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.Keyword" Width="1.5" PointX="9.5" PointY="13.375" Height="1.7879850260416674" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.MainType" Width="1.5" PointX="7.625" PointY="6.375" Height="2.3648893229166745" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.Material" Width="1.5" PointX="5.625" PointY="2.25" Height="2.1725878906250031" IsExpanded="true" />
-        <EntityTypeShape EntityType="Data.Product" Width="1.5" PointX="5.375" PointY="16.75" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="Data.ProductType" Width="1.5" PointX="7.5" PointY="16.5" Height="2.5571907552083388" IsExpanded="true" />
+        <EntityTypeShape EntityType="Data.Product" Width="1.5" PointX="5.375" PointY="17.25" Height="2.7494921875000031" IsExpanded="true" />
+        <EntityTypeShape EntityType="Data.ProductType" Width="1.5" PointX="7.5" PointY="16.25" Height="2.5571907552083388" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.PseudoCategory" Width="1.5" PointX="2.75" PointY="12.5" Height="1.9802864583333317" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.Shape" Width="1.5" PointX="7.625" PointY="9.125" Height="2.7494921875000049" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.ShapeTranslation" Width="1.5" PointX="9.625" PointY="10.5" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.SimpleTranslation" Width="1.5" PointX="13.375" PointY="13.5" Height="4.2879036458333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="Data.Storage" Width="1.5" PointX="7.5" PointY="20" Height="3.1340950520833388" IsExpanded="true" />
+        <EntityTypeShape EntityType="Data.Storage" Width="1.5" PointX="9.125" PointY="19.625" Height="3.518697916666671" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.StorageType" Width="1.5" PointX="11.75" PointY="20.5" Height="1.9802864583333388" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.StoredImage" Width="1.5" PointX="10.875" PointY="3.625" Height="3.5186979166666674" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.Target" Width="1.5" PointX="2.75" PointY="10.125" Height="2.1725878906250102" IsExpanded="true" />
         <AssociationConnector Association="Data.FK_Cap_CapType" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.75" PointY="5.5718489583333337" />
-          <ConnectorPoint PointX="7" PointY="5.5718489583333337" />
+          <ConnectorPoint PointX="7.75" PointY="5.5814518229166659" />
+          <ConnectorPoint PointX="7.1600059174237662" PointY="5.581451822916665" />
+          <ConnectorPoint PointX="6.9933392507571" PointY="5.5814518229166659" />
+          <ConnectorPoint PointX="6.875" PointY="5.5814518229166659" />
         </AssociationConnector>
-        <AssociationConnector Association="Data.FK_Cap_Company" ManuallyRouted="true">
-          <ConnectorPoint PointX="3.9874118595059924" PointY="16.75" />
-          <ConnectorPoint PointX="3.9874118595059924" PointY="16.174611628973761" />
-          <ConnectorPoint PointX="6.0660341438065348" PointY="16.174611628973761" />
-          <ConnectorPoint PointX="6.0660341438065348" PointY="14.855042317708328" />
+        <AssociationConnector Association="Data.FK_Cap_Company" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.9226631672831385" PointY="20.75" />
+          <ConnectorPoint PointX="4.9226631672831385" PointY="15.143193578441066" />
+          <ConnectorPoint PointX="5.375" PointY="15.143193578441066" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_MainType" ManuallyRouted="false">
           <ConnectorPoint PointX="7.625" PointY="7.5574446614583373" />
-          <ConnectorPoint PointX="7" PointY="7.5574446614583373" />
+          <ConnectorPoint PointX="7.1600059174237662" PointY="7.5574446614583364" />
+          <ConnectorPoint PointX="6.9933392507571" PointY="7.5574446614583373" />
+          <ConnectorPoint PointX="6.875" PointY="7.5574446614583373" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_Material" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.3125" PointY="4.4225878906250031" />
-          <ConnectorPoint PointX="6.3125" PointY="5.375" />
+          <ConnectorPoint PointX="6.25" PointY="4.4225878906250031" />
+          <ConnectorPoint PointX="6.25" PointY="5.375" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_Product" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.5330170719032674" PointY="16.75" />
-          <ConnectorPoint PointX="6.5330170719032674" PointY="14.855042317708334" />
+          <ConnectorPoint PointX="6.125" PointY="17.25" />
+          <ConnectorPoint PointX="6.125" PointY="16.585755208333335" />
         </AssociationConnector>
-        <AssociationConnector Association="Data.FK_Cap_ProductType" ManuallyRouted="true">
-          <ConnectorPoint PointX="7.9571174180919773" PointY="16.5" />
-          <ConnectorPoint PointX="7.9571174180919773" PointY="14.765894827878812" />
-          <ConnectorPoint PointX="7" PointY="14.765894827878812" />
+        <AssociationConnector Association="Data.FK_Cap_ProductType" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="16.407022450981774" />
+          <ConnectorPoint PointX="7.2" PointY="16.407022450981774" />
+          <ConnectorPoint PointX="7.2" PointY="16.410944554673176" />
+          <ConnectorPoint PointX="6.875" PointY="16.410944554673176" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_Shape" ManuallyRouted="false">
           <ConnectorPoint PointX="7.625" PointY="10.499746093750002" />
-          <ConnectorPoint PointX="7" PointY="10.499746093750002" />
+          <ConnectorPoint PointX="7.1600059174237662" PointY="10.499746093750002" />
+          <ConnectorPoint PointX="6.9933392507571" PointY="10.499746093750002" />
+          <ConnectorPoint PointX="6.875" PointY="10.499746093750002" />
         </AssociationConnector>
-        <AssociationConnector Association="Data.FK_Cap_Storage" ManuallyRouted="true">
-          <ConnectorPoint PointX="7.5" PointY="22.861033664776542" />
-          <ConnectorPoint PointX="2.7375284446604811" PointY="22.861033664776542" />
-          <ConnectorPoint PointX="2.7375284446604811" PointY="14.64577400616826" />
-          <ConnectorPoint PointX="5.5" PointY="14.64577400616826" />
+        <AssociationConnector Association="Data.FK_Cap_Storage" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.2789885387816646" PointY="19.625" />
+          <ConnectorPoint PointX="9.2789885387816646" PointY="16.043620033623927" />
+          <ConnectorPoint PointX="6.875" PointY="16.043620033623927" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_Target" ManuallyRouted="false">
           <ConnectorPoint PointX="4.25" PointY="11.211293945312505" />
-          <ConnectorPoint PointX="5.5" PointY="11.211293945312505" />
+          <ConnectorPoint PointX="5.375" PointY="11.211293945312505" />
         </AssociationConnector>
-        <AssociationConnector Association="Data.FK_CapInstance_Cap" ManuallyRouted="true">
-          <ConnectorPoint PointX="7" PointY="14.518788068515251" />
-          <ConnectorPoint PointX="8.3939005606113675" PointY="14.518788068515251" />
-          <ConnectorPoint PointX="8.3939005606113675" PointY="15.980674082082423" />
-          <ConnectorPoint PointX="9.5" PointY="15.980674082082423" />
+        <AssociationConnector Association="Data.FK_CapInstance_Cap" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.875" PointY="15.740847776071513" />
+          <ConnectorPoint PointX="7.25" PointY="15.740847776071513" />
+          <ConnectorPoint PointX="7.25" PointY="15.735081153684682" />
+          <ConnectorPoint PointX="9.5" PointY="15.735081153684682" />
         </AssociationConnector>
-        <AssociationConnector Association="Data.FK_CapTranslation_Cap" ManuallyRouted="true">
-          <ConnectorPoint PointX="5.605633411975945" PointY="14.855042317708328" />
-          <ConnectorPoint PointX="5.605633411975945" PointY="15.562366718602114" />
-          <ConnectorPoint PointX="2.989176318195554" PointY="15.562366718602114" />
-          <ConnectorPoint PointX="2.989176318195554" PointY="20.39671510765077" />
-          <ConnectorPoint PointX="3.25" PointY="20.39671510765077" />
+        <AssociationConnector Association="Data.FK_CapTranslation_Cap" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.375" PointY="14.728877117038076" />
+          <ConnectorPoint PointX="3.4650810307967008" PointY="14.728877117038076" />
+          <ConnectorPoint PointX="3.4650810307967008" PointY="15.5" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Image_Cap" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.5" PointY="6.1151432291666659" />
-          <ConnectorPoint PointX="4" PointY="6.1151432291666659" />
+          <ConnectorPoint PointX="5.375" PointY="6.2112939453125" />
+          <ConnectorPoint PointX="4" PointY="6.2112939453125" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_CapInstance_Storage" ManuallyRouted="false">
-          <ConnectorPoint PointX="9" PointY="20.688125598045605" />
-          <ConnectorPoint PointX="10.352506497866877" PointY="20.688125598045605" />
-          <ConnectorPoint PointX="10.352506497866877" PointY="18.374492187500003" />
+          <ConnectorPoint PointX="10.166893666783999" PointY="19.625" />
+          <ConnectorPoint PointX="10.166893666783999" PointY="18.759095052083335" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_CapInstance" ManuallyRouted="false">
           <ConnectorPoint PointX="11" PointY="16.0625" />
           <ConnectorPoint PointX="11.338444917331074" PointY="16.0625" />
           <ConnectorPoint PointX="11.505111583997742" PointY="16.0625" />
+          <ConnectorPoint PointX="11.697916666666666" PointY="16.0625" />
+          <ConnectorPoint PointX="11.864583333333334" PointY="16.0625" />
           <ConnectorPoint PointX="13.375" PointY="16.0625" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_CapSign" ManuallyRouted="true">
           <ConnectorPoint PointX="3.375" PointY="9.3676340254180328" />
-          <ConnectorPoint PointX="2.4583333333333335" PointY="9.3676340254180328" />
-          <ConnectorPoint PointX="2.2916666666666665" PointY="9.3676340254180328" />
+          <ConnectorPoint PointX="2.4646057741347591" PointY="9.3676340254180328" />
+          <ConnectorPoint PointX="2.2979391074680922" PointY="9.3676340254180328" />
           <ConnectorPoint PointX="1.793981322045185" PointY="9.3676340254180328" />
           <ConnectorPoint PointX="1.793981322045185" PointY="0.903573419729744" />
           <ConnectorPoint PointX="14.464368651112624" PointY="0.903573419729744" />
@@ -2481,8 +2541,8 @@
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_StoredImage_CapSign" ManuallyRouted="true">
           <ConnectorPoint PointX="3.375" PointY="8.8726548473095068" />
-          <ConnectorPoint PointX="2.3829224177105388" PointY="8.8726548473095068" />
-          <ConnectorPoint PointX="2.2162557510438718" PointY="8.8726548473095068" />
+          <ConnectorPoint PointX="2.4646057741347591" PointY="8.8726548473095068" />
+          <ConnectorPoint PointX="2.2979391074680922" PointY="8.8726548473095068" />
           <ConnectorPoint PointX="2.043133484899835" PointY="8.8726548473095068" />
           <ConnectorPoint PointX="2.043133484899835" PointY="1.0886149241528074" />
           <ConnectorPoint PointX="12.022192474036878" PointY="1.0886149241528074" />
@@ -2490,62 +2550,55 @@
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_CapType_MainType" ManuallyRouted="false">
           <ConnectorPoint PointX="8.4375" PointY="6.375" />
-          <ConnectorPoint PointX="8.4375" PointY="5.7686979166666674" />
+          <ConnectorPoint PointX="8.4375" PointY="5.7879036458333317" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_CapType_Material" ManuallyRouted="false">
           <ConnectorPoint PointX="7.125" PointY="3.3362939453125016" />
           <ConnectorPoint PointX="7.75" PointY="3.3362939453125016" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_CapType_Shape" ManuallyRouted="true">
-          <ConnectorPoint PointX="9.125" PointY="9.51978559900896" />
-          <ConnectorPoint PointX="9.80705976972613" PointY="9.51978559900896" />
-          <ConnectorPoint PointX="9.80705976972613" PointY="5.1419882726299635" />
-          <ConnectorPoint PointX="9.25" PointY="5.1419882726299635" />
+          <ConnectorPoint PointX="9.125" PointY="9.80385361076198" />
+          <ConnectorPoint PointX="9.625" PointY="9.80385361076198" />
+          <ConnectorPoint PointX="9.625" PointY="5.22281223904839" />
+          <ConnectorPoint PointX="9.25" PointY="5.22281223904839" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_CapType_Target" ManuallyRouted="true">
-          <ConnectorPoint PointX="2.75" PointY="10.746519127001843" />
-          <ConnectorPoint PointX="2.2995890843772053" PointY="10.746519127001843" />
-          <ConnectorPoint PointX="2.2995890843772053" PointY="1.6182511187274471" />
-          <ConnectorPoint PointX="3.1166502020450797" PointY="1.6182511187274464" />
-          <ConnectorPoint PointX="3.2833168687117467" PointY="1.6182511187274471" />
-          <ConnectorPoint PointX="8.4096227536822141" PointY="1.6182511187274471" />
-          <ConnectorPoint PointX="8.4096227536822141" PointY="2.25" />
+          <ConnectorPoint PointX="2.75" PointY="10.600158838766671" />
+          <ConnectorPoint PointX="2.3812724408014256" PointY="10.600158838766671" />
+          <ConnectorPoint PointX="2.3812724408014256" PointY="1.8827519215526247" />
+          <ConnectorPoint PointX="3.1166502020450797" PointY="1.8827519215526241" />
+          <ConnectorPoint PointX="3.2833168687117467" PointY="1.8827519215526247" />
+          <ConnectorPoint PointX="7.75" PointY="1.8827519215526247" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_CapType" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.25" PointY="2.8125" />
-          <ConnectorPoint PointX="11.496941924057632" PointY="2.8124999999999996" />
-          <ConnectorPoint PointX="11.6636085907243" PointY="2.8125" />
-          <ConnectorPoint PointX="11.938859140703544" PointY="2.8124999999999996" />
-          <ConnectorPoint PointX="12.105525807370212" PointY="2.8125" />
-          <ConnectorPoint PointX="13.963969135550634" PointY="2.8125" />
-          <ConnectorPoint PointX="13.963969135550634" PointY="13.5" />
+          <ConnectorPoint PointX="9.25" PointY="2.6894691437738922" />
+          <ConnectorPoint PointX="11.496941924057632" PointY="2.6894691437738918" />
+          <ConnectorPoint PointX="11.6636085907243" PointY="2.6894691437738922" />
+          <ConnectorPoint PointX="11.938859140703544" PointY="2.6894691437738918" />
+          <ConnectorPoint PointX="12.105525807370212" PointY="2.6894691437738922" />
+          <ConnectorPoint PointX="14.119395176692333" PointY="2.6894691437738922" />
+          <ConnectorPoint PointX="14.119395176692333" PointY="13.5" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_StoredImage_CapType" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.25" PointY="4.6006228937288158" />
-          <ConnectorPoint PointX="9.625" PointY="4.6006228937288158" />
-          <ConnectorPoint PointX="9.625" PointY="4.602534447401279" />
-          <ConnectorPoint PointX="10.875" PointY="4.602534447401279" />
+          <ConnectorPoint PointX="9.25" PointY="4.6746218998397424" />
+          <ConnectorPoint PointX="10.875" PointY="4.6746218998397424" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_Category" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.125" PointY="13.119944661458334" />
-          <ConnectorPoint PointX="11.338444917331074" PointY="13.119944661458334" />
-          <ConnectorPoint PointX="11.505111583997742" PointY="13.119944661458334" />
-          <ConnectorPoint PointX="13.546429162787412" PointY="13.119944661458334" />
-          <ConnectorPoint PointX="13.546429162787412" PointY="13.5" />
+          <ConnectorPoint PointX="9.125" PointY="13.216095377604166" />
+          <ConnectorPoint PointX="11.697916666666666" PointY="13.216095377604166" />
+          <ConnectorPoint PointX="11.864583333333334" PointY="13.216095377604166" />
+          <ConnectorPoint PointX="13.543458351136021" PointY="13.216095377604166" />
+          <ConnectorPoint PointX="13.543458351136021" PointY="13.5" />
         </AssociationConnector>
-        <AssociationConnector Association="Data.FK_Product_Company" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.75" PointY="17.836293945312498" />
-          <ConnectorPoint PointX="5.375" PointY="17.836293945312498" />
+        <AssociationConnector Association="Data.FK_Product_Company" ManuallyRouted="true">
+          <ConnectorPoint PointX="5.5484896783746169" PointY="20.75" />
+          <ConnectorPoint PointX="5.5520917224411139" PointY="19.999492187500003" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_Company" ManuallyRouted="true">
-          <ConnectorPoint PointX="3.5484268109197119" PointY="18.922587890625" />
-          <ConnectorPoint PointX="3.5484268109197119" PointY="19.614779050649382" />
-          <ConnectorPoint PointX="10.269173164533543" PointY="19.614779050649382" />
-          <ConnectorPoint PointX="10.435839831200211" PointY="19.614779050649382" />
-          <ConnectorPoint PointX="11.338444917331074" PointY="19.614779050649382" />
-          <ConnectorPoint PointX="11.505111583997742" PointY="19.614779050649382" />
-          <ConnectorPoint PointX="14.039555022502864" PointY="19.614779050649382" />
-          <ConnectorPoint PointX="14.039555022502864" PointY="17.787903645833332" />
+          <ConnectorPoint PointX="4.7686130364020718" PointY="22.922587890625" />
+          <ConnectorPoint PointX="4.7686130364020718" PointY="23.921344127747556" />
+          <ConnectorPoint PointX="14.518521558450935" PointY="23.921344127747556" />
+          <ConnectorPoint PointX="14.518521558450935" PointY="20.287822265625003" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_StoredImage_Image" ManuallyRouted="true">
           <ConnectorPoint PointX="3.1999835353784132" PointY="4.875" />
@@ -2554,62 +2607,52 @@
           <ConnectorPoint PointX="11.580275257390966" PointY="3.625" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_Keyword" ManuallyRouted="false">
-          <ConnectorPoint PointX="11" PointY="14.58973817392509" />
-          <ConnectorPoint PointX="11.338444917331074" PointY="14.58973817392509" />
-          <ConnectorPoint PointX="11.505111583997742" PointY="14.58973817392509" />
-          <ConnectorPoint PointX="13.375" PointY="14.58973817392509" />
+          <ConnectorPoint PointX="11" PointY="14.331492513020834" />
+          <ConnectorPoint PointX="11.697916666666666" PointY="14.331492513020834" />
+          <ConnectorPoint PointX="11.864583333333334" PointY="14.331492513020834" />
+          <ConnectorPoint PointX="13.375" PointY="14.331492513020834" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_MainType" ManuallyRouted="true">
-          <ConnectorPoint PointX="9.125" PointY="7.9960198789062567" />
-          <ConnectorPoint PointX="9.7237264363927967" PointY="7.9960198789062558" />
-          <ConnectorPoint PointX="9.8903931030594645" PointY="7.9960198789062567" />
-          <ConnectorPoint PointX="11.021511323072035" PointY="7.9960198789062558" />
-          <ConnectorPoint PointX="11.188177989738703" PointY="7.9960198789062567" />
-          <ConnectorPoint PointX="11.338444917331074" PointY="7.9960198789062558" />
-          <ConnectorPoint PointX="11.505111583997742" PointY="7.9960198789062567" />
-          <ConnectorPoint PointX="13.774421702272042" PointY="7.9960198789062567" />
+          <ConnectorPoint PointX="9.125" PointY="8.576349245058168" />
+          <ConnectorPoint PointX="9.5416666666666661" PointY="8.576349245058168" />
+          <ConnectorPoint PointX="9.7083333333333339" PointY="8.576349245058168" />
+          <ConnectorPoint PointX="11.021511323072035" PointY="8.576349245058168" />
+          <ConnectorPoint PointX="11.188177989738703" PointY="8.576349245058168" />
+          <ConnectorPoint PointX="11.697916666666666" PointY="8.576349245058168" />
+          <ConnectorPoint PointX="11.864583333333334" PointY="8.576349245058168" />
+          <ConnectorPoint PointX="13.774421702272042" PointY="8.576349245058168" />
           <ConnectorPoint PointX="13.774421702272042" PointY="13.5" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_StoredImage_MainType" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.125" PointY="6.5912200545840935" />
-          <ConnectorPoint PointX="9.7237264363927967" PointY="6.5912200545840927" />
-          <ConnectorPoint PointX="9.8903931030594645" PointY="6.5912200545840935" />
-          <ConnectorPoint PointX="10.875" PointY="6.5912200545840935" />
+          <ConnectorPoint PointX="9.125" PointY="7.2357117623697942" />
+          <ConnectorPoint PointX="9.5416666666666661" PointY="7.2357117623697933" />
+          <ConnectorPoint PointX="9.7083333333333339" PointY="7.2357117623697942" />
+          <ConnectorPoint PointX="10.875" PointY="7.2357117623697942" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_Material" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.3211463328215896" PointY="2.25" />
-          <ConnectorPoint PointX="6.3211463328215896" PointY="1.875" />
-          <ConnectorPoint PointX="8.32628942034888" PointY="1.8749999999999993" />
-          <ConnectorPoint PointX="8.492956087015548" PointY="1.875" />
-          <ConnectorPoint PointX="11.496941924057632" PointY="1.8749999999999993" />
-          <ConnectorPoint PointX="11.6636085907243" PointY="1.875" />
-          <ConnectorPoint PointX="11.938859140703544" PointY="1.8749999999999993" />
-          <ConnectorPoint PointX="12.105525807370212" PointY="1.875" />
-          <ConnectorPoint PointX="14.234018621445632" PointY="1.875" />
-          <ConnectorPoint PointX="14.234018621445632" PointY="13.5" />
+          <ConnectorPoint PointX="7.0766725840904332" PointY="4.4225878906250031" />
+          <ConnectorPoint PointX="7.0766725840904332" PointY="15.393992513020836" />
+          <ConnectorPoint PointX="11.338444917331074" PointY="15.393992513020836" />
+          <ConnectorPoint PointX="11.505111583997742" PointY="15.393992513020836" />
+          <ConnectorPoint PointX="11.697916666666666" PointY="15.393992513020836" />
+          <ConnectorPoint PointX="11.864583333333334" PointY="15.393992513020836" />
+          <ConnectorPoint PointX="13.375" PointY="15.393992513020836" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Product_ProductType" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="17.981335421032767" />
-          <ConnectorPoint PointX="6.875" PointY="17.981335421032767" />
+          <ConnectorPoint PointX="7.5" PointY="18.028595377604169" />
+          <ConnectorPoint PointX="6.875" PointY="18.028595377604169" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_Product" ManuallyRouted="true">
-          <ConnectorPoint PointX="6.0376022348967009" PointY="19.114889322916667" />
-          <ConnectorPoint PointX="6.0376022348967009" PointY="19.489889322916667" />
-          <ConnectorPoint PointX="10.269173164533543" PointY="19.489889322916667" />
-          <ConnectorPoint PointX="10.435839831200211" PointY="19.489889322916667" />
-          <ConnectorPoint PointX="11.338444917331074" PointY="19.489889322916667" />
-          <ConnectorPoint PointX="11.505111583997742" PointY="19.489889322916667" />
-          <ConnectorPoint PointX="13.729616297424844" PointY="19.489889322916667" />
-          <ConnectorPoint PointX="13.729616297424844" PointY="17.787903645833332" />
+          <ConnectorPoint PointX="6.5773942843514686" PointY="19.999492187500003" />
+          <ConnectorPoint PointX="6.5773942843514686" PointY="23.713749893226677" />
+          <ConnectorPoint PointX="14.166002248885706" PointY="23.713749893226677" />
+          <ConnectorPoint PointX="14.166002248885706" PointY="20.287822265625003" />
         </AssociationConnector>
-        <AssociationConnector Association="Data.FK_SimpleTranslation_ProductType" ManuallyRouted="false">
-          <ConnectorPoint PointX="9" PointY="18.747091471354171" />
-          <ConnectorPoint PointX="10.269173164533543" PointY="18.747091471354171" />
-          <ConnectorPoint PointX="10.435839831200211" PointY="18.747091471354171" />
-          <ConnectorPoint PointX="11.338444917331074" PointY="18.747091471354171" />
-          <ConnectorPoint PointX="11.505111583997742" PointY="18.747091471354171" />
-          <ConnectorPoint PointX="13.518797018465421" PointY="18.747091471354171" />
-          <ConnectorPoint PointX="13.518797018465421" PointY="17.787903645833332" />
+        <AssociationConnector Association="Data.FK_SimpleTranslation_ProductType" ManuallyRouted="true">
+          <ConnectorPoint PointX="8.30130233791034" PointY="18.807190755208339" />
+          <ConnectorPoint PointX="8.30130233791034" PointY="23.488898128973137" />
+          <ConnectorPoint PointX="13.99100865185517" PointY="23.488898128973137" />
+          <ConnectorPoint PointX="13.99100865185517" PointY="20.287822265625003" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_ShapeTranslation_Shape" ManuallyRouted="false">
           <ConnectorPoint PointX="9.125" PointY="11.187246093750002" />
@@ -2618,17 +2661,17 @@
         <AssociationConnector Association="Data.FK_StoredImage_Shape" ManuallyRouted="true">
           <ConnectorPoint PointX="9.125" PointY="10.036204886023885" />
           <ConnectorPoint PointX="11.104844656405369" PointY="10.036204886023885" />
-          <ConnectorPoint PointX="11.104844656405369" PointY="7.1436979166666674" />
+          <ConnectorPoint PointX="11.104844656405369" PointY="8.2975065104166656" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_Storage" ManuallyRouted="false">
-          <ConnectorPoint PointX="9" PointY="22.617960489577943" />
-          <ConnectorPoint PointX="14.650030658246564" PointY="22.617960489577943" />
-          <ConnectorPoint PointX="14.650030658246564" PointY="17.787903645833332" />
+          <ConnectorPoint PointX="10.625" PointY="22.843242187500003" />
+          <ConnectorPoint PointX="13.798794680027696" PointY="22.843242187500003" />
+          <ConnectorPoint PointX="13.798794680027696" PointY="20.287822265625003" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_StorageType" ManuallyRouted="false">
-          <ConnectorPoint PointX="13.25" PointY="21.490143229166669" />
-          <ConnectorPoint PointX="14.389421558961129" PointY="21.490143229166669" />
-          <ConnectorPoint PointX="14.389421558961129" PointY="17.787903645833332" />
+          <ConnectorPoint PointX="12.499439602894871" PointY="20.5" />
+          <ConnectorPoint PointX="12.499439602894871" PointY="19.900986637889343" />
+          <ConnectorPoint PointX="13.375" PointY="19.900986637889343" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_Target" ManuallyRouted="true">
           <ConnectorPoint PointX="2.75" PointY="11.0513797692823" />
@@ -2638,34 +2681,38 @@
           <ConnectorPoint PointX="14.689831197813835" PointY="13.5" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Storage_ParentStorage" ManuallyRouted="true">
-          <ConnectorPoint PointX="9" PointY="20.365629827882657" />
-          <ConnectorPoint PointX="9.375" PointY="20.365629827882657" />
-          <ConnectorPoint PointX="9.375" PointY="19.742472694764267" />
-          <ConnectorPoint PointX="8.7175445692247" PointY="19.742472694764267" />
-          <ConnectorPoint PointX="8.7175445692247" PointY="20" />
+          <ConnectorPoint PointX="9.467528490127826" PointY="23.143697916666671" />
+          <ConnectorPoint PointX="9.467528490127826" PointY="23.36375" />
+          <ConnectorPoint PointX="8.8860677083333339" PointY="23.36375" />
+          <ConnectorPoint PointX="8.8860677083333339" PointY="22.902736055107525" />
+          <ConnectorPoint PointX="9.125" PointY="22.902736055107525" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Storage_StorageType" ManuallyRouted="false">
-          <ConnectorPoint PointX="11.75" PointY="21.933235227912665" />
-          <ConnectorPoint PointX="9" PointY="21.933235227912665" />
+          <ConnectorPoint PointX="11.75" PointY="21.490143229166669" />
+          <ConnectorPoint PointX="10.625" PointY="21.490143229166669" />
         </AssociationConnector>
-        <AssociationConnector Association="Data.FK_StoredImage_Storage" ManuallyRouted="true">
-          <ConnectorPoint PointX="9" PointY="21.26118399749199" />
-          <ConnectorPoint PointX="11.421778250664408" PointY="21.26118399749199" />
-          <ConnectorPoint PointX="11.421778250664408" PointY="7.1436979166666674" />
+        <AssociationConnector Association="Data.FK_StoredImage_Storage" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.625" PointY="20.404915815530117" />
+          <ConnectorPoint PointX="11.78125" PointY="20.404915815530117" />
+          <ConnectorPoint PointX="11.78125" PointY="8.2975065104166656" />
         </AssociationConnector>
         <AssociationConnector Association="Data.Cap_CapSign_Int" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.5" PointY="8.7112939453125" />
+          <ConnectorPoint PointX="5.375" PointY="8.7112939453125" />
           <ConnectorPoint PointX="4.875" PointY="8.7112939453125" />
         </AssociationConnector>
         <AssociationConnector Association="Data.Cap_Category_Int" ManuallyRouted="false">
-          <ConnectorPoint PointX="7" PointY="13.046287154246029" />
-          <ConnectorPoint PointX="7.291666666666667" PointY="13.046287154246029" />
-          <ConnectorPoint PointX="7.458333333333333" PointY="13.046287154246029" />
-          <ConnectorPoint PointX="7.625" PointY="13.046287154246029" />
+          <ConnectorPoint PointX="6.875" PointY="12.671432922702326" />
+          <ConnectorPoint PointX="6.9933392507571" PointY="12.671432922702326" />
+          <ConnectorPoint PointX="7.1600059174237662" PointY="12.671432922702326" />
+          <ConnectorPoint PointX="7.625" PointY="12.671432922702326" />
         </AssociationConnector>
-        <AssociationConnector Association="Data.Cap_Keyword_Int" ManuallyRouted="true">
-          <ConnectorPoint PointX="7" PointY="14.309888173786378" />
-          <ConnectorPoint PointX="9.5" PointY="14.31155131241081" />
+        <AssociationConnector Association="Data.Cap_Keyword_Int" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.875" PointY="14.358864218884678" />
+          <ConnectorPoint PointX="6.9933392507571" PointY="14.358864218884678" />
+          <ConnectorPoint PointX="7.1600059174237662" PointY="14.358864218884678" />
+          <ConnectorPoint PointX="7.3125" PointY="14.358864218884678" />
+          <ConnectorPoint PointX="7.3125" PointY="14.361334156403879" />
+          <ConnectorPoint PointX="9.5" PointY="14.361334156403879" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

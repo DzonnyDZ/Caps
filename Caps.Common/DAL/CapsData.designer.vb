@@ -16,49 +16,49 @@ Imports System.ComponentModel
 Imports System.Xml.Serialization
 Imports System.Runtime.Serialization
 
-<Assembly: EdmSchemaAttribute("4780f997-8307-4a65-8caa-40fbfe960d4a")>
+<Assembly: EdmSchemaAttribute("3ef80ed6-bd3b-40e5-a2de-3dc1b146b30d")>
 #Region "EDM Relationship Metadata"
-<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Company), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_MainType", "MainType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.MainType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Material", "Material", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Material), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Product", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Product), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_ProductType", "ProductType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.ProductType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Shape", "Shape", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Shape), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Storage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Storage), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Target", "Target", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Target), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_CapInstance_Cap", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Cap), "CapInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapInstance))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_CapTranslation_Cap", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Cap), "CapTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Image_Cap", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Cap), "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Image))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_CapInstance_Storage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Storage), "CapInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapInstance))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_CapInstance", "CapInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapInstance), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_CapSign", "CapSign", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapSign), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_CapSign", "CapSign", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapSign), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_CapType_MainType", "MainType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.MainType), "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapType))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_CapType_Material", "Material", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Material), "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapType))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_CapType_Shape", "Shape", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Shape), "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapType))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_CapType_Target", "Target", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Target), "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapType))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Category), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Product_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Company), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Product))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Company), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_Image", "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Image), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Keyword", "Keyword", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Keyword), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_MainType", "MainType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.MainType), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_MainType", "MainType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.MainType), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Material", "Material", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Material), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Product_ProductType", "ProductType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.ProductType), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Product))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Product", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Product), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_ProductType", "ProductType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.ProductType), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_ShapeTranslation_Shape", "Shape", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Shape), "ShapeTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.ShapeTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_Shape", "Shape", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Shape), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Storage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Storage), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_StorageType", "StorageType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.StorageType), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Target", "Target", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Target), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Storage_ParentStorage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Storage), "Storage1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Storage))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Storage_StorageType", "StorageType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.StorageType), "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Storage))>
-<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_Storage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Storage), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage))>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Company), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_MainType", "MainType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.MainType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Material", "Material", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Material), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Product", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Product), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_ProductType", "ProductType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.ProductType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Shape", "Shape", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Shape), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Storage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Storage), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Target", "Target", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Target), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_CapInstance_Cap", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Cap), "CapInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapInstance), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_CapTranslation_Cap", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Cap), "CapTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Image_Cap", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Cap), "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Image), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_CapInstance_Storage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Storage), "CapInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapInstance), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_CapInstance", "CapInstance", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapInstance), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_CapSign", "CapSign", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapSign), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_CapSign", "CapSign", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapSign), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_CapType_MainType", "MainType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.MainType), "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapType), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_CapType_Material", "Material", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Material), "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapType), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_CapType_Shape", "Shape", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Shape), "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapType), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_CapType_Target", "Target", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Target), "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapType), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Category", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Category), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Product_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Company), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Product), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Company), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_Image", "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Image), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Keyword", "Keyword", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Keyword), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_MainType", "MainType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.MainType), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_MainType", "MainType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.MainType), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Material", "Material", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Material), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Product_ProductType", "ProductType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.ProductType), "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Product), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Product", "Product", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Product), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_ProductType", "ProductType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.ProductType), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_ShapeTranslation_Shape", "Shape", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.Shape), "ShapeTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.ShapeTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_Shape", "Shape", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Shape), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Storage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Storage), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_StorageType", "StorageType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.StorageType), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Target", "Target", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Target), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Storage_ParentStorage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Storage), "Storage1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Storage), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Storage_StorageType", "StorageType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.StorageType), "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Storage), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_Storage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Storage), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage), True)>
 <Assembly: EdmRelationshipAttribute("Data", "Cap_CapSign_Int", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), "CapSign", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapSign))>
 <Assembly: EdmRelationshipAttribute("Data", "Cap_Category_Int", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Category))>
 <Assembly: EdmRelationshipAttribute("Data", "Cap_Keyword_Int", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), "Keyword", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Keyword))>
@@ -71,32 +71,32 @@ Namespace Data
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
-    Public Partial Class CapsDataEntities
+    Public Partial Class CapsDataContext
         Inherits ObjectContext
     
         #Region "Constructors"
     
         ''' <summary>
-        ''' Initializes a new CapsDataEntities object using the connection string found in the 'CapsDataEntities' section of the application configuration file.
+        ''' Initializes a new CapsDataContext object using the connection string found in the 'CapsDataContext' section of the application configuration file.
         ''' </summary>
         Public Sub New()
-            MyBase.New("name=CapsDataEntities", "CapsDataEntities")
+            MyBase.New("name=CapsDataContext", "CapsDataContext")
             OnContextCreated()
         End Sub
     
         ''' <summary>
-        ''' Initialize a new CapsDataEntities object.
+        ''' Initialize a new CapsDataContext object.
         ''' </summary>
         Public Sub New(ByVal connectionString As String)
-            MyBase.New(connectionString, "CapsDataEntities")
+            MyBase.New(connectionString, "CapsDataContext")
             OnContextCreated()
         End Sub
     
         ''' <summary>
-        ''' Initialize a new CapsDataEntities object.
+        ''' Initialize a new CapsDataContext object.
         ''' </summary>
         Public Sub New(ByVal connection As EntityConnection)
-            MyBase.New(connection, "CapsDataEntities")
+            MyBase.New(connection, "CapsDataContext")
             OnContextCreated()
         End Sub
     
@@ -596,26 +596,34 @@ Namespace Data
         ''' Create a new Cap object.
         ''' </summary>
         ''' <param name="capID">Initial value of the CapID property.</param>
+        ''' <param name="mainTypeID">Initial value of the MainTypeID property.</param>
+        ''' <param name="shapeID">Initial value of the ShapeID property.</param>
         ''' <param name="capName">Initial value of the CapName property.</param>
         ''' <param name="backColor1">Initial value of the BackColor1 property.</param>
+        ''' <param name="materialID">Initial value of the MaterialID property.</param>
         ''' <param name="surface">Initial value of the Surface property.</param>
         ''' <param name="size">Initial value of the Size property.</param>
         ''' <param name="height">Initial value of the Height property.</param>
         ''' <param name="is3D">Initial value of the Is3D property.</param>
         ''' <param name="dateCreated">Initial value of the DateCreated property.</param>
+        ''' <param name="storageID">Initial value of the StorageID property.</param>
         ''' <param name="hasBottom">Initial value of the HasBottom property.</param>
         ''' <param name="hasSide">Initial value of the HasSide property.</param>
         ''' <param name="state">Initial value of the State property.</param>
-        Public Shared Function CreateCap(capID As Global.System.Int32, capName As Global.System.String, backColor1 As Global.System.Int32, surface As Global.System.String, size As Global.System.Int32, height As Global.System.Int32, is3D As Global.System.Boolean, dateCreated As Global.System.DateTime, hasBottom As Global.System.Boolean, hasSide As Global.System.Boolean, state As Global.System.Int16) As Cap
+        Public Shared Function CreateCap(capID As Global.System.Int32, mainTypeID As Global.System.Int32, shapeID As Global.System.Int32, capName As Global.System.String, backColor1 As Global.System.Int32, materialID As Global.System.Int32, surface As Global.System.String, size As Global.System.Int32, height As Global.System.Int32, is3D As Global.System.Boolean, dateCreated As Global.System.DateTime, storageID As Global.System.Int32, hasBottom As Global.System.Boolean, hasSide As Global.System.Boolean, state As Global.System.Int16) As Cap
             Dim cap as Cap = New Cap
             cap.CapID = capID
+            cap.MainTypeID = mainTypeID
+            cap.ShapeID = shapeID
             cap.CapName = capName
             cap.BackColor1 = backColor1
+            cap.MaterialID = materialID
             cap.Surface = surface
             cap.Size = size
             cap.Height = height
             cap.Is3D = is3D
             cap.DateCreated = dateCreated
+            cap.StorageID = storageID
             cap.HasBottom = hasBottom
             cap.HasSide = hasSide
             cap.State = state
@@ -634,7 +642,7 @@ Namespace Data
             Get
                 Return _CapID
             End Get
-            Private Set
+            Protected Set
                 If (_CapID <> Value) Then
                     OnCapIDChanging(value)
                     ReportPropertyChanging("CapID")
@@ -650,6 +658,81 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnCapIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property CapTypeID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _CapTypeID
+            End Get
+            Set
+                OnCapTypeIDChanging(value)
+                ReportPropertyChanging("CapTypeID")
+                _CapTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CapTypeID")
+                OnCapTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _CapTypeID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnCapTypeIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnCapTypeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property MainTypeID() As Global.System.Int32
+            Get
+                Return _MainTypeID
+            End Get
+            Set
+                OnMainTypeIDChanging(value)
+                ReportPropertyChanging("MainTypeID")
+                _MainTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("MainTypeID")
+                OnMainTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _MainTypeID As Global.System.Int32
+        Private Partial Sub OnMainTypeIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnMainTypeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property ShapeID() As Global.System.Int32
+            Get
+                Return _ShapeID
+            End Get
+            Set
+                OnShapeIDChanging(value)
+                ReportPropertyChanging("ShapeID")
+                _ShapeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ShapeID")
+                OnShapeIDChanged()
+            End Set
+        End Property
+    
+        Private _ShapeID As Global.System.Int32
+        Private Partial Sub OnShapeIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnShapeIDChanged()
         End Sub
     
         ''' <summary>
@@ -907,6 +990,31 @@ Namespace Data
         ''' </summary>
         <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
+        Public Property MaterialID() As Global.System.Int32
+            Get
+                Return _MaterialID
+            End Get
+            Set
+                OnMaterialIDChanging(value)
+                ReportPropertyChanging("MaterialID")
+                _MaterialID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("MaterialID")
+                OnMaterialIDChanged()
+            End Set
+        End Property
+    
+        Private _MaterialID As Global.System.Int32
+        Private Partial Sub OnMaterialIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnMaterialIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
         Public Property Surface() As Global.System.String
             Get
                 Return _Surface
@@ -1132,6 +1240,106 @@ Namespace Data
         ''' </summary>
         <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
+        Public Property CompanyID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _CompanyID
+            End Get
+            Set
+                OnCompanyIDChanging(value)
+                ReportPropertyChanging("CompanyID")
+                _CompanyID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CompanyID")
+                OnCompanyIDChanged()
+            End Set
+        End Property
+    
+        Private _CompanyID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnCompanyIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnCompanyIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property ProductID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _ProductID
+            End Get
+            Set
+                OnProductIDChanging(value)
+                ReportPropertyChanging("ProductID")
+                _ProductID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ProductID")
+                OnProductIDChanged()
+            End Set
+        End Property
+    
+        Private _ProductID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnProductIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnProductIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property ProductTypeID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _ProductTypeID
+            End Get
+            Set
+                OnProductTypeIDChanging(value)
+                ReportPropertyChanging("ProductTypeID")
+                _ProductTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ProductTypeID")
+                OnProductTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _ProductTypeID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnProductTypeIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnProductTypeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property StorageID() As Global.System.Int32
+            Get
+                Return _StorageID
+            End Get
+            Set
+                OnStorageIDChanging(value)
+                ReportPropertyChanging("StorageID")
+                _StorageID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("StorageID")
+                OnStorageIDChanged()
+            End Set
+        End Property
+    
+        Private _StorageID As Global.System.Int32
+        Private Partial Sub OnStorageIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnStorageIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
         Public Property ForeColor2() As Nullable(Of Global.System.Int32)
             Get
                 Return _ForeColor2
@@ -1325,6 +1533,31 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnStateChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property TargetID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _TargetID
+            End Get
+            Set
+                OnTargetIDChanging(value)
+                ReportPropertyChanging("TargetID")
+                _TargetID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("TargetID")
+                OnTargetIDChanged()
+            End Set
+        End Property
+    
+        Private _TargetID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnTargetIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnTargetIDChanged()
         End Sub
     
         ''' <summary>
@@ -1759,11 +1992,15 @@ Namespace Data
         ''' Create a new CapInstance object.
         ''' </summary>
         ''' <param name="capInstanceID">Initial value of the CapInstanceID property.</param>
+        ''' <param name="capID">Initial value of the CapID property.</param>
+        ''' <param name="storageID">Initial value of the StorageID property.</param>
         ''' <param name="state">Initial value of the State property.</param>
         ''' <param name="dateCreated">Initial value of the DateCreated property.</param>
-        Public Shared Function CreateCapInstance(capInstanceID As Global.System.Int32, state As Global.System.Int16, dateCreated As Global.System.DateTime) As CapInstance
+        Public Shared Function CreateCapInstance(capInstanceID As Global.System.Int32, capID As Global.System.Int32, storageID As Global.System.Int32, state As Global.System.Int16, dateCreated As Global.System.DateTime) As CapInstance
             Dim capInstance as CapInstance = New CapInstance
             capInstance.CapInstanceID = capInstanceID
+            capInstance.CapID = capID
+            capInstance.StorageID = storageID
             capInstance.State = state
             capInstance.DateCreated = dateCreated
             Return capInstance
@@ -1781,7 +2018,7 @@ Namespace Data
             Get
                 Return _CapInstanceID
             End Get
-            Private Set
+            Protected Set
                 If (_CapInstanceID <> Value) Then
                     OnCapInstanceIDChanging(value)
                     ReportPropertyChanging("CapInstanceID")
@@ -1797,6 +2034,56 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnCapInstanceIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property CapID() As Global.System.Int32
+            Get
+                Return _CapID
+            End Get
+            Set
+                OnCapIDChanging(value)
+                ReportPropertyChanging("CapID")
+                _CapID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CapID")
+                OnCapIDChanged()
+            End Set
+        End Property
+    
+        Private _CapID As Global.System.Int32
+        Private Partial Sub OnCapIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnCapIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property StorageID() As Global.System.Int32
+            Get
+                Return _StorageID
+            End Get
+            Set
+                OnStorageIDChanging(value)
+                ReportPropertyChanging("StorageID")
+                _StorageID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("StorageID")
+                OnStorageIDChanged()
+            End Set
+        End Property
+    
+        Private _StorageID As Global.System.Int32
+        Private Partial Sub OnStorageIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnStorageIDChanged()
         End Sub
     
         ''' <summary>
@@ -2044,7 +2331,7 @@ Namespace Data
             Get
                 Return _CapSignID
             End Get
-            Private Set
+            Protected Set
                 If (_CapSignID <> Value) Then
                     OnCapSignIDChanging(value)
                     ReportPropertyChanging("CapSignID")
@@ -2186,10 +2473,12 @@ Namespace Data
         ''' Create a new CapTranslation object.
         ''' </summary>
         ''' <param name="capTranslationID">Initial value of the CapTranslationID property.</param>
+        ''' <param name="capID">Initial value of the CapID property.</param>
         ''' <param name="culture">Initial value of the Culture property.</param>
-        Public Shared Function CreateCapTranslation(capTranslationID As Global.System.Int32, culture As Global.System.String) As CapTranslation
+        Public Shared Function CreateCapTranslation(capTranslationID As Global.System.Int32, capID As Global.System.Int32, culture As Global.System.String) As CapTranslation
             Dim capTranslation as CapTranslation = New CapTranslation
             capTranslation.CapTranslationID = capTranslationID
+            capTranslation.CapID = capID
             capTranslation.Culture = culture
             Return capTranslation
         End Function
@@ -2206,7 +2495,7 @@ Namespace Data
             Get
                 Return _CapTranslationID
             End Get
-            Private Set
+            Protected Set
                 If (_CapTranslationID <> Value) Then
                     OnCapTranslationIDChanging(value)
                     ReportPropertyChanging("CapTranslationID")
@@ -2222,6 +2511,31 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnCapTranslationIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property CapID() As Global.System.Int32
+            Get
+                Return _CapID
+            End Get
+            Set
+                OnCapIDChanging(value)
+                ReportPropertyChanging("CapID")
+                _CapID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CapID")
+                OnCapIDChanged()
+            End Set
+        End Property
+    
+        Private _CapID As Global.System.Int32
+        Private Partial Sub OnCapIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnCapIDChanged()
         End Sub
     
         ''' <summary>
@@ -2401,14 +2715,20 @@ Namespace Data
         ''' </summary>
         ''' <param name="capTypeID">Initial value of the CapTypeID property.</param>
         ''' <param name="typeName">Initial value of the TypeName property.</param>
+        ''' <param name="shapeID">Initial value of the ShapeID property.</param>
         ''' <param name="size">Initial value of the Size property.</param>
         ''' <param name="height">Initial value of the Height property.</param>
-        Public Shared Function CreateCapType(capTypeID As Global.System.Int32, typeName As Global.System.String, size As Global.System.Int32, height As Global.System.Int32) As CapType
+        ''' <param name="materialID">Initial value of the MaterialID property.</param>
+        ''' <param name="mainTypeID">Initial value of the MainTypeID property.</param>
+        Public Shared Function CreateCapType(capTypeID As Global.System.Int32, typeName As Global.System.String, shapeID As Global.System.Int32, size As Global.System.Int32, height As Global.System.Int32, materialID As Global.System.Int32, mainTypeID As Global.System.Int32) As CapType
             Dim capType as CapType = New CapType
             capType.CapTypeID = capTypeID
             capType.TypeName = typeName
+            capType.ShapeID = shapeID
             capType.Size = size
             capType.Height = height
+            capType.MaterialID = materialID
+            capType.MainTypeID = mainTypeID
             Return capType
         End Function
 
@@ -2424,7 +2744,7 @@ Namespace Data
             Get
                 Return _CapTypeID
             End Get
-            Private Set
+            Protected Set
                 If (_CapTypeID <> Value) Then
                     OnCapTypeIDChanging(value)
                     ReportPropertyChanging("CapTypeID")
@@ -2465,6 +2785,31 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnTypeNameChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property ShapeID() As Global.System.Int32
+            Get
+                Return _ShapeID
+            End Get
+            Set
+                OnShapeIDChanging(value)
+                ReportPropertyChanging("ShapeID")
+                _ShapeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ShapeID")
+                OnShapeIDChanged()
+            End Set
+        End Property
+    
+        Private _ShapeID As Global.System.Int32
+        Private Partial Sub OnShapeIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnShapeIDChanged()
         End Sub
     
         ''' <summary>
@@ -2545,6 +2890,56 @@ Namespace Data
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property MaterialID() As Global.System.Int32
+            Get
+                Return _MaterialID
+            End Get
+            Set
+                OnMaterialIDChanging(value)
+                ReportPropertyChanging("MaterialID")
+                _MaterialID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("MaterialID")
+                OnMaterialIDChanged()
+            End Set
+        End Property
+    
+        Private _MaterialID As Global.System.Int32
+        Private Partial Sub OnMaterialIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnMaterialIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property MainTypeID() As Global.System.Int32
+            Get
+                Return _MainTypeID
+            End Get
+            Set
+                OnMainTypeIDChanging(value)
+                ReportPropertyChanging("MainTypeID")
+                _MainTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("MainTypeID")
+                OnMainTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _MainTypeID As Global.System.Int32
+        Private Partial Sub OnMainTypeIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnMainTypeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
         <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
@@ -2565,6 +2960,31 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnDescriptionChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property TargetID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _TargetID
+            End Get
+            Set
+                OnTargetIDChanging(value)
+                ReportPropertyChanging("TargetID")
+                _TargetID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("TargetID")
+                OnTargetIDChanged()
+            End Set
+        End Property
+    
+        Private _TargetID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnTargetIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnTargetIDChanged()
         End Sub
 
         #End Region
@@ -2785,7 +3205,7 @@ Namespace Data
             Get
                 Return _CategoryID
             End Get
-            Set
+            Protected Set
                 If (_CategoryID <> Value) Then
                     OnCategoryIDChanging(value)
                     ReportPropertyChanging("CategoryID")
@@ -2929,7 +3349,7 @@ Namespace Data
             Get
                 Return _CompanyID
             End Get
-            Private Set
+            Protected Set
                 If (_CompanyID <> Value) Then
                     OnCompanyIDChanging(value)
                     ReportPropertyChanging("CompanyID")
@@ -3072,11 +3492,13 @@ Namespace Data
         ''' </summary>
         ''' <param name="imageID">Initial value of the ImageID property.</param>
         ''' <param name="relativePath">Initial value of the RelativePath property.</param>
+        ''' <param name="capID">Initial value of the CapID property.</param>
         ''' <param name="isMain">Initial value of the IsMain property.</param>
-        Public Shared Function CreateImage(imageID As Global.System.Int32, relativePath As Global.System.String, isMain As Global.System.Boolean) As Image
+        Public Shared Function CreateImage(imageID As Global.System.Int32, relativePath As Global.System.String, capID As Global.System.Int32, isMain As Global.System.Boolean) As Image
             Dim image as Image = New Image
             image.ImageID = imageID
             image.RelativePath = relativePath
+            image.CapID = capID
             image.IsMain = isMain
             Return image
         End Function
@@ -3093,7 +3515,7 @@ Namespace Data
             Get
                 Return _ImageID
             End Get
-            Private Set
+            Protected Set
                 If (_ImageID <> Value) Then
                     OnImageIDChanging(value)
                     ReportPropertyChanging("ImageID")
@@ -3134,6 +3556,31 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnRelativePathChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property CapID() As Global.System.Int32
+            Get
+                Return _CapID
+            End Get
+            Set
+                OnCapIDChanging(value)
+                ReportPropertyChanging("CapID")
+                _CapID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CapID")
+                OnCapIDChanged()
+            End Set
+        End Property
+    
+        Private _CapID As Global.System.Int32
+        Private Partial Sub OnCapIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnCapIDChanged()
         End Sub
     
         ''' <summary>
@@ -3330,7 +3777,7 @@ Namespace Data
             Get
                 Return _KeywordID
             End Get
-            Private Set
+            Protected Set
                 If (_KeywordID <> Value) Then
                     OnKeywordIDChanging(value)
                     ReportPropertyChanging("KeywordID")
@@ -3449,7 +3896,7 @@ Namespace Data
             Get
                 Return _MainTypeID
             End Get
-            Private Set
+            Protected Set
                 If (_MainTypeID <> Value) Then
                     OnMainTypeIDChanging(value)
                     ReportPropertyChanging("MainTypeID")
@@ -3629,7 +4076,7 @@ Namespace Data
             Get
                 Return _MaterialID
             End Get
-            Private Set
+            Protected Set
                 If (_MaterialID <> Value) Then
                     OnMaterialIDChanging(value)
                     ReportPropertyChanging("MaterialID")
@@ -3791,7 +4238,7 @@ Namespace Data
             Get
                 Return _ProductID
             End Get
-            Private Set
+            Protected Set
                 If (_ProductID <> Value) Then
                     OnProductIDChanging(value)
                     ReportPropertyChanging("ProductID")
@@ -3832,6 +4279,56 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnProductNameChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property CompanyID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _CompanyID
+            End Get
+            Set
+                OnCompanyIDChanging(value)
+                ReportPropertyChanging("CompanyID")
+                _CompanyID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CompanyID")
+                OnCompanyIDChanged()
+            End Set
+        End Property
+    
+        Private _CompanyID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnCompanyIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnCompanyIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property ProductTypeID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _ProductTypeID
+            End Get
+            Set
+                OnProductTypeIDChanging(value)
+                ReportPropertyChanging("ProductTypeID")
+                _ProductTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ProductTypeID")
+                OnProductTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _ProductTypeID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnProductTypeIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnProductTypeIDChanged()
         End Sub
     
         ''' <summary>
@@ -3997,7 +4494,7 @@ Namespace Data
             Get
                 Return _ProductTypeID
             End Get
-            Private Set
+            Protected Set
                 If (_ProductTypeID <> Value) Then
                     OnProductTypeIDChanging(value)
                     ReportPropertyChanging("ProductTypeID")
@@ -4211,7 +4708,7 @@ Namespace Data
             Get
                 Return _PseudoCategoryID
             End Get
-            Set
+            Protected Set
                 If (_PseudoCategoryID <> Value) Then
                     OnPseudoCategoryIDChanging(value)
                     ReportPropertyChanging("PseudoCategoryID")
@@ -4343,7 +4840,7 @@ Namespace Data
             Get
                 Return _ShapeID
             End Get
-            Private Set
+            Protected Set
                 If (_ShapeID <> Value) Then
                     OnShapeIDChanging(value)
                     ReportPropertyChanging("ShapeID")
@@ -4553,10 +5050,12 @@ Namespace Data
         ''' Create a new ShapeTranslation object.
         ''' </summary>
         ''' <param name="shapeTranslationID">Initial value of the ShapeTranslationID property.</param>
+        ''' <param name="shapeID">Initial value of the ShapeID property.</param>
         ''' <param name="culture">Initial value of the Culture property.</param>
-        Public Shared Function CreateShapeTranslation(shapeTranslationID As Global.System.Int32, culture As Global.System.String) As ShapeTranslation
+        Public Shared Function CreateShapeTranslation(shapeTranslationID As Global.System.Int32, shapeID As Global.System.Int32, culture As Global.System.String) As ShapeTranslation
             Dim shapeTranslation as ShapeTranslation = New ShapeTranslation
             shapeTranslation.ShapeTranslationID = shapeTranslationID
+            shapeTranslation.ShapeID = shapeID
             shapeTranslation.Culture = culture
             Return shapeTranslation
         End Function
@@ -4573,7 +5072,7 @@ Namespace Data
             Get
                 Return _ShapeTranslationID
             End Get
-            Private Set
+            Set
                 If (_ShapeTranslationID <> Value) Then
                     OnShapeTranslationIDChanging(value)
                     ReportPropertyChanging("ShapeTranslationID")
@@ -4589,6 +5088,31 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnShapeTranslationIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property ShapeID() As Global.System.Int32
+            Get
+                Return _ShapeID
+            End Get
+            Set
+                OnShapeIDChanging(value)
+                ReportPropertyChanging("ShapeID")
+                _ShapeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ShapeID")
+                OnShapeIDChanged()
+            End Set
+        End Property
+    
+        Private _ShapeID As Global.System.Int32
+        Private Partial Sub OnShapeIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnShapeIDChanged()
         End Sub
     
         ''' <summary>
@@ -4787,7 +5311,7 @@ Namespace Data
             Get
                 Return _SimpleTranslationID
             End Get
-            Private Set
+            Protected Set
                 If (_SimpleTranslationID <> Value) Then
                     OnSimpleTranslationIDChanging(value)
                     ReportPropertyChanging("SimpleTranslationID")
@@ -4803,6 +5327,331 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnSimpleTranslationIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property CategoryID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _CategoryID
+            End Get
+            Set
+                OnCategoryIDChanging(value)
+                ReportPropertyChanging("CategoryID")
+                _CategoryID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CategoryID")
+                OnCategoryIDChanged()
+            End Set
+        End Property
+    
+        Private _CategoryID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnCategoryIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnCategoryIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property KeywordID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _KeywordID
+            End Get
+            Set
+                OnKeywordIDChanging(value)
+                ReportPropertyChanging("KeywordID")
+                _KeywordID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("KeywordID")
+                OnKeywordIDChanged()
+            End Set
+        End Property
+    
+        Private _KeywordID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnKeywordIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnKeywordIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property ProductID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _ProductID
+            End Get
+            Set
+                OnProductIDChanging(value)
+                ReportPropertyChanging("ProductID")
+                _ProductID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ProductID")
+                OnProductIDChanged()
+            End Set
+        End Property
+    
+        Private _ProductID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnProductIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnProductIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property CompanyID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _CompanyID
+            End Get
+            Set
+                OnCompanyIDChanging(value)
+                ReportPropertyChanging("CompanyID")
+                _CompanyID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CompanyID")
+                OnCompanyIDChanged()
+            End Set
+        End Property
+    
+        Private _CompanyID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnCompanyIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnCompanyIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property ProductTypeID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _ProductTypeID
+            End Get
+            Set
+                OnProductTypeIDChanging(value)
+                ReportPropertyChanging("ProductTypeID")
+                _ProductTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ProductTypeID")
+                OnProductTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _ProductTypeID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnProductTypeIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnProductTypeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property TargetID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _TargetID
+            End Get
+            Set
+                OnTargetIDChanging(value)
+                ReportPropertyChanging("TargetID")
+                _TargetID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("TargetID")
+                OnTargetIDChanged()
+            End Set
+        End Property
+    
+        Private _TargetID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnTargetIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnTargetIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property MaterialID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _MaterialID
+            End Get
+            Set
+                OnMaterialIDChanging(value)
+                ReportPropertyChanging("MaterialID")
+                _MaterialID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("MaterialID")
+                OnMaterialIDChanged()
+            End Set
+        End Property
+    
+        Private _MaterialID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnMaterialIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnMaterialIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property CapTypeID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _CapTypeID
+            End Get
+            Set
+                OnCapTypeIDChanging(value)
+                ReportPropertyChanging("CapTypeID")
+                _CapTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CapTypeID")
+                OnCapTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _CapTypeID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnCapTypeIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnCapTypeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property MainTypeID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _MainTypeID
+            End Get
+            Set
+                OnMainTypeIDChanging(value)
+                ReportPropertyChanging("MainTypeID")
+                _MainTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("MainTypeID")
+                OnMainTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _MainTypeID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnMainTypeIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnMainTypeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property CapSignID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _CapSignID
+            End Get
+            Set
+                OnCapSignIDChanging(value)
+                ReportPropertyChanging("CapSignID")
+                _CapSignID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CapSignID")
+                OnCapSignIDChanged()
+            End Set
+        End Property
+    
+        Private _CapSignID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnCapSignIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnCapSignIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property StorageID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _StorageID
+            End Get
+            Set
+                OnStorageIDChanging(value)
+                ReportPropertyChanging("StorageID")
+                _StorageID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("StorageID")
+                OnStorageIDChanged()
+            End Set
+        End Property
+    
+        Private _StorageID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnStorageIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnStorageIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property StorageTypeID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _StorageTypeID
+            End Get
+            Set
+                OnStorageTypeIDChanging(value)
+                ReportPropertyChanging("StorageTypeID")
+                _StorageTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("StorageTypeID")
+                OnStorageTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _StorageTypeID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnStorageTypeIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnStorageTypeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property CapInstanceID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _CapInstanceID
+            End Get
+            Set
+                OnCapInstanceIDChanging(value)
+                ReportPropertyChanging("CapInstanceID")
+                _CapInstanceID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CapInstanceID")
+                OnCapInstanceIDChanged()
+            End Set
+        End Property
+    
+        Private _CapInstanceID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnCapInstanceIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnCapInstanceIDChanged()
         End Sub
     
         ''' <summary>
@@ -5304,11 +6153,13 @@ Namespace Data
         ''' </summary>
         ''' <param name="storageID">Initial value of the StorageID property.</param>
         ''' <param name="storageNumber">Initial value of the StorageNumber property.</param>
+        ''' <param name="storageTypeID">Initial value of the StorageTypeID property.</param>
         ''' <param name="hasCaps">Initial value of the HasCaps property.</param>
-        Public Shared Function CreateStorage(storageID As Global.System.Int32, storageNumber As Global.System.String, hasCaps As Global.System.Boolean) As Storage
+        Public Shared Function CreateStorage(storageID As Global.System.Int32, storageNumber As Global.System.String, storageTypeID As Global.System.Int32, hasCaps As Global.System.Boolean) As Storage
             Dim storage as Storage = New Storage
             storage.StorageID = storageID
             storage.StorageNumber = storageNumber
+            storage.StorageTypeID = storageTypeID
             storage.HasCaps = hasCaps
             Return storage
         End Function
@@ -5325,7 +6176,7 @@ Namespace Data
             Get
                 Return _StorageID
             End Get
-            Private Set
+            Protected Set
                 If (_StorageID <> Value) Then
                     OnStorageIDChanging(value)
                     ReportPropertyChanging("StorageID")
@@ -5391,6 +6242,56 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnDescriptionChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property StorageTypeID() As Global.System.Int32
+            Get
+                Return _StorageTypeID
+            End Get
+            Set
+                OnStorageTypeIDChanging(value)
+                ReportPropertyChanging("StorageTypeID")
+                _StorageTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("StorageTypeID")
+                OnStorageTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _StorageTypeID As Global.System.Int32
+        Private Partial Sub OnStorageTypeIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnStorageTypeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property ParentStorage() As Nullable(Of Global.System.Int32)
+            Get
+                Return _ParentStorage
+            End Get
+            Set
+                OnParentStorageChanging(value)
+                ReportPropertyChanging("ParentStorage")
+                _ParentStorage = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ParentStorage")
+                OnParentStorageChanged()
+            End Set
+        End Property
+    
+        Private _ParentStorage As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnParentStorageChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnParentStorageChanged()
         End Sub
     
         ''' <summary>
@@ -5610,7 +6511,7 @@ Namespace Data
             Get
                 Return _StorageTypeID
             End Get
-            Private Set
+            Protected Set
                 If (_StorageTypeID <> Value) Then
                     OnStorageTypeIDChanging(value)
                     ReportPropertyChanging("StorageTypeID")
@@ -5764,7 +6665,7 @@ Namespace Data
             Get
                 Return _StoredImageID
             End Get
-            Private Set
+            Protected Set
                 If (_StoredImageID <> Value) Then
                     OnStoredImageIDChanging(value)
                     ReportPropertyChanging("StoredImageID")
@@ -5905,6 +6806,156 @@ Namespace Data
         End Sub
     
         Private Partial Sub OnHeightChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property ImageID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _ImageID
+            End Get
+            Set
+                OnImageIDChanging(value)
+                ReportPropertyChanging("ImageID")
+                _ImageID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ImageID")
+                OnImageIDChanged()
+            End Set
+        End Property
+    
+        Private _ImageID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnImageIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnImageIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property CapSignID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _CapSignID
+            End Get
+            Set
+                OnCapSignIDChanging(value)
+                ReportPropertyChanging("CapSignID")
+                _CapSignID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CapSignID")
+                OnCapSignIDChanged()
+            End Set
+        End Property
+    
+        Private _CapSignID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnCapSignIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnCapSignIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property CapTypeID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _CapTypeID
+            End Get
+            Set
+                OnCapTypeIDChanging(value)
+                ReportPropertyChanging("CapTypeID")
+                _CapTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("CapTypeID")
+                OnCapTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _CapTypeID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnCapTypeIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnCapTypeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property MainTypeID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _MainTypeID
+            End Get
+            Set
+                OnMainTypeIDChanging(value)
+                ReportPropertyChanging("MainTypeID")
+                _MainTypeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("MainTypeID")
+                OnMainTypeIDChanged()
+            End Set
+        End Property
+    
+        Private _MainTypeID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnMainTypeIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnMainTypeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property ShapeID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _ShapeID
+            End Get
+            Set
+                OnShapeIDChanging(value)
+                ReportPropertyChanging("ShapeID")
+                _ShapeID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ShapeID")
+                OnShapeIDChanged()
+            End Set
+        End Property
+    
+        Private _ShapeID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnShapeIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnShapeIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property StorageID() As Nullable(Of Global.System.Int32)
+            Get
+                Return _StorageID
+            End Get
+            Set
+                OnStorageIDChanging(value)
+                ReportPropertyChanging("StorageID")
+                _StorageID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("StorageID")
+                OnStorageIDChanged()
+            End Set
+        End Property
+    
+        Private _StorageID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnStorageIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnStorageIDChanged()
         End Sub
     
         ''' <summary>
@@ -6158,7 +7209,7 @@ Namespace Data
             Get
                 Return _TargetID
             End Get
-            Private Set
+            Protected Set
                 If (_TargetID <> Value) Then
                     OnTargetIDChanging(value)
                     ReportPropertyChanging("TargetID")

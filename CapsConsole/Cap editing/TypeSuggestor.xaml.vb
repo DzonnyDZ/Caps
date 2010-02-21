@@ -1,4 +1,5 @@
 ﻿Imports Tools
+Imports Caps.Data
 
 ''' <summary>Suggests cap types based on cap properties</summary>
 Partial Public Class TypeSuggestor
@@ -364,7 +365,7 @@ Partial Public Class TypeSuggestor
     Private Shared Function CoerceSelectedNewTypeValue(ByVal d As System.Windows.DependencyObject, ByVal baseValue As Object) As Object
         If d Is Nothing Then Throw New ArgumentNullException("d")
         If Not TypeOf d Is TypeSuggestor Then Throw New Tools.TypeMismatchException("d", d, GetType(TypeSuggestor))
-                Return DirectCast(d, TypeSuggestor).CoerceSelectedNewTypeValue(baseValue)
+        Return DirectCast(d, TypeSuggestor).CoerceSelectedNewTypeValue(baseValue)
     End Function
     ''' <summary>Called whenever a value of the <see cref="SelectedNewType"/> dependency property is being re-evaluated, or coercion is specifically requested.</summary>
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt, but ensured to be of correct type.</param>
@@ -494,7 +495,7 @@ Partial Public Class TypeSuggestor
         Else
             MakeNoSuggestions()
         End If
-SetNewType 
+        SetNewType()
         SetExType()
     End Sub
 
@@ -549,24 +550,24 @@ SetNewType
     End Sub
 #End Region
 #End Region
-''' <summary>Sets value of the <see cref="SelectedNewType"/> property</summary>
-private sub SetNewType
-       selectednewtype=if(me.isenabled andalso dgnewtypes.isvisible,dgnewtypes.selecteditem,nothing)
-end sub
-''' <summary>Sets value of the <see cref="SelectedExistingType"/> property</summary>
-private sub SetExType
-selectedexistingtype=if(me.isenabled andalso lstextypes.isvisible,lstextypes.selecteditem,nothing)
-End Sub
+    ''' <summary>Sets value of the <see cref="SelectedNewType"/> property</summary>
+    Private Sub SetNewType()
+        SelectedNewType = If(Me.IsEnabled AndAlso dgNewTypes.IsVisible, dgNewTypes.SelectedItem, Nothing)
+    End Sub
+    ''' <summary>Sets value of the <see cref="SelectedExistingType"/> property</summary>
+    Private Sub SetExType()
+        SelectedExistingType = If(Me.IsEnabled AndAlso lstExTypes.IsVisible, lstExTypes.SelectedItem, Nothing)
+    End Sub
     Private Sub dgNewTypes_IsVisibleChanged(ByVal sender As Object, ByVal e As System.Windows.DependencyPropertyChangedEventArgs) Handles dgNewTypes.IsVisibleChanged
-       setnewtype
+        SetNewType()
     End Sub
 
     Private Sub dgNewTypes_SelectionChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs) Handles dgNewTypes.SelectionChanged
-                 setnewtype
+        SetNewType()
     End Sub
 
     Private Sub lstExTypes_IsVisibleChanged(ByVal sender As Object, ByVal e As System.Windows.DependencyPropertyChangedEventArgs) Handles lstExTypes.IsVisibleChanged
-                setextype
+        SetExType()
     End Sub
 
     Private Sub lstExTypes_SelectionChanged(ByVal sender As Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs) Handles lstExTypes.SelectionChanged
