@@ -1372,21 +1372,6 @@
             <End Role="Cap" EntitySet="Caps" />
             <End Role="Keyword" EntitySet="Keywords" />
           </AssociationSet>
-          <AssociationSet Name="CapPseudoCategory" Association="Data.CapPseudoCategory">
-            <End Role="Cap" EntitySet="Caps" />
-            <End Role="PseudoCategory" EntitySet="PseudoCategories" />
-          </AssociationSet>
-          <EntitySet Name="ShapeFullTranslationSet" EntityType="Data.ShapeFullTranslation" />
-          <AssociationSet Name="ShapeFullTranslationShape" Association="Data.ShapeFullTranslationShape">
-            <End Role="ShapeFullTranslation" EntitySet="ShapeFullTranslationSet" />
-            <End Role="Shape" EntitySet="Shapes" />
-          </AssociationSet>
-          <EntitySet Name="SimpleFullTranslationSet" EntityType="Data.SimpleFullTranslation" />
-          <EntitySet Name="CapFullTranslationSet" EntityType="Data.CapFullTranslation" />
-          <AssociationSet Name="CapFullTranslationCap" Association="Data.CapFullTranslationCap">
-            <End Role="CapFullTranslation" EntitySet="CapFullTranslationSet" />
-            <End Role="Cap" EntitySet="Caps" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Cap">
           <Key>
@@ -1436,7 +1421,6 @@
           <NavigationProperty Name="CapSigns" Relationship="Data.Cap_CapSign_Int" FromRole="Cap" ToRole="CapSign" />
           <NavigationProperty Name="Categories" Relationship="Data.Cap_Category_Int" FromRole="Cap" ToRole="Category" />
           <NavigationProperty Name="Keywords" Relationship="Data.Cap_Keyword_Int" FromRole="Cap" ToRole="Keyword" />
-          <NavigationProperty Name="PseudoCategories" Relationship="Data.CapPseudoCategory" FromRole="Cap" ToRole="PseudoCategory" />
         </EntityType>
         <EntityType Name="CapInstance">
           <Key>
@@ -1596,7 +1580,6 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="Condition" Type="String" Nullable="false" MaxLength="1024" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Caps" Relationship="Data.CapPseudoCategory" FromRole="PseudoCategory" ToRole="Cap" />
         </EntityType>
         <EntityType Name="Shape">
           <Key>
@@ -1894,46 +1877,6 @@
         <Association Name="Cap_Keyword_Int">
           <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
           <End Role="Keyword" Type="Data.Keyword" Multiplicity="*" />
-        </Association>
-        <Association Name="CapPseudoCategory">
-          <End Type="Data.Cap" Role="Cap" Multiplicity="*" />
-          <End Type="Data.PseudoCategory" Role="PseudoCategory" Multiplicity="*" />
-        </Association>
-        <EntityType Name="ShapeFullTranslation" >
-          <NavigationProperty Name="Shape" Relationship="Data.ShapeFullTranslationShape" FromRole="ShapeFullTranslation" ToRole="Shape" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" Unicode="true" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="NameCultureName" Nullable="false" MaxLength="15" Unicode="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="Size1Name" Nullable="false" a:SetterAccess="Private" MaxLength="50" Unicode="true" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="Size1NameCultureName" Nullable="false" MaxLength="15" Unicode="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="Size2Name" Nullable="true" a:SetterAccess="Private" MaxLength="50" Unicode="true" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="Size2NameCultureName" Nullable="true" MaxLength="15" Unicode="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="Description" a:SetterAccess="Private" MaxLength="Max" Unicode="true" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Nullable="true" />
-          <Property Type="String" Name="DescriptionCultureName" Nullable="true" MaxLength="15" Unicode="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-        </EntityType>
-        <Association Name="ShapeFullTranslationShape">
-          <End Type="Data.ShapeFullTranslation" Role="ShapeFullTranslation" Multiplicity="*" />
-          <End Type="Data.Shape" Role="Shape" Multiplicity="1" />
-        </Association>
-        <EntityType Name="SimpleFullTranslation" >
-          <Property Type="String" Name="Name" Nullable="true" a:SetterAccess="Private" MaxLength="50" Unicode="true" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="NameCultureName" Nullable="true" a:SetterAccess="Private" MaxLength="15" Unicode="false" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="Description" Nullable="true" a:SetterAccess="Private" MaxLength="Max" Unicode="true" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="DescriptionCultureName" Nullable="true" a:SetterAccess="Private" MaxLength="15" Unicode="false" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-        </EntityType>
-        <EntityType Name="CapFullTranslation" >
-          <NavigationProperty Name="Cap" Relationship="Data.CapFullTranslationCap" FromRole="CapFullTranslation" ToRole="Cap" />
-          <Property Type="String" Name="CapName" MaxLength="255" FixedLength="false" Unicode="true" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Nullable="false" />
-          <Property Type="String" Name="CapNameCultureName" Nullable="false" a:SetterAccess="Private" MaxLength="15" Unicode="false" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="MainPicture" MaxLength="255" FixedLength="false" Unicode="true" Nullable="true" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="MainPictureCultureName" Nullable="true" a:SetterAccess="Private" MaxLength="15" Unicode="false" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="Note" MaxLength="Max" FixedLength="false" Unicode="true" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Nullable="true" />
-          <Property Type="String" Name="NoteCultureName" Nullable="true" a:SetterAccess="Private" MaxLength="15" Unicode="false" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <Property Type="String" Name="AnotherPictures" MaxLength="Max" FixedLength="false" Unicode="true" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Nullable="true" />
-          <Property Type="String" Name="AnotherPicturesCultureName" Nullable="true" a:SetterAccess="Private" MaxLength="15" Unicode="false" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-        </EntityType>
-        <Association Name="CapFullTranslationCap">
-          <End Type="Data.CapFullTranslation" Role="CapFullTranslation" Multiplicity="*" />
-          <End Type="Data.Cap" Role="Cap" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -2498,7 +2441,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="CapsData" ZoomLevel="86">
+      <Diagram Name="CapsData" ZoomLevel="39">
         <EntityTypeShape EntityType="Data.Cap" Width="1.5" PointX="5.5" PointY="5.375" Height="9.6723437500000014" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.CapInstance" Width="1.5" PointX="9.5" PointY="15.625" Height="2.7494921875000014" IsExpanded="true" />
         <EntityTypeShape EntityType="Data.CapSign" Width="1.5" PointX="3.375" PointY="7.625" Height="2.1725878906249996" IsExpanded="true" />
@@ -2545,8 +2488,8 @@
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_ProductType" ManuallyRouted="true">
           <ConnectorPoint PointX="7.9571174180919773" PointY="16.5" />
-          <ConnectorPoint PointX="7.9571174180919773" PointY="14.743201137596769" />
-          <ConnectorPoint PointX="7" PointY="14.743201137596769" />
+          <ConnectorPoint PointX="7.9571174180919773" PointY="14.745253557183723" />
+          <ConnectorPoint PointX="7" PointY="14.745253557183723" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Cap_Shape" ManuallyRouted="false">
           <ConnectorPoint PointX="7.625" PointY="10.499746093750002" />
@@ -2563,8 +2506,8 @@
           <ConnectorPoint PointX="5.5" PointY="11.211293945312505" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_CapInstance_Cap" ManuallyRouted="true">
-          <ConnectorPoint PointX="7" PointY="14.517043229400208" />
-          <ConnectorPoint PointX="8.3939005606113675" PointY="14.517043229400208" />
+          <ConnectorPoint PointX="7" PointY="14.628587498036081" />
+          <ConnectorPoint PointX="8.3939005606113675" PointY="14.628587498036081" />
           <ConnectorPoint PointX="8.3939005606113675" PointY="15.980674082082423" />
           <ConnectorPoint PointX="9.5" PointY="15.980674082082423" />
         </AssociationConnector>
@@ -2647,10 +2590,10 @@
           <ConnectorPoint PointX="10.875" PointY="4.602534447401279" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_Category" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.125" PointY="13.124746093750002" />
-          <ConnectorPoint PointX="11.338444917331074" PointY="13.124746093750002" />
-          <ConnectorPoint PointX="11.505111583997742" PointY="13.124746093750002" />
-          <ConnectorPoint PointX="13.546429162787412" PointY="13.124746093750002" />
+          <ConnectorPoint PointX="9.125" PointY="13.119944661458334" />
+          <ConnectorPoint PointX="11.338444917331074" PointY="13.119944661458334" />
+          <ConnectorPoint PointX="11.505111583997742" PointY="13.119944661458334" />
+          <ConnectorPoint PointX="13.546429162787412" PointY="13.119944661458334" />
           <ConnectorPoint PointX="13.546429162787412" PointY="13.5" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_Product_Company" ManuallyRouted="false">
@@ -2723,12 +2666,12 @@
           <ConnectorPoint PointX="13.729616297424844" PointY="17.787903645833332" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_SimpleTranslation_ProductType" ManuallyRouted="false">
-          <ConnectorPoint PointX="9" PointY="18.891337890625003" />
-          <ConnectorPoint PointX="10.269173164533543" PointY="18.891337890625003" />
-          <ConnectorPoint PointX="10.435839831200211" PointY="18.891337890625003" />
-          <ConnectorPoint PointX="11.338444917331074" PointY="18.891337890625003" />
-          <ConnectorPoint PointX="11.505111583997742" PointY="18.891337890625003" />
-          <ConnectorPoint PointX="13.518797018465421" PointY="18.891337890625003" />
+          <ConnectorPoint PointX="9" PointY="18.747091471354171" />
+          <ConnectorPoint PointX="10.269173164533543" PointY="18.747091471354171" />
+          <ConnectorPoint PointX="10.435839831200211" PointY="18.747091471354171" />
+          <ConnectorPoint PointX="11.338444917331074" PointY="18.747091471354171" />
+          <ConnectorPoint PointX="11.505111583997742" PointY="18.747091471354171" />
+          <ConnectorPoint PointX="13.518797018465421" PointY="18.747091471354171" />
           <ConnectorPoint PointX="13.518797018465421" PointY="17.787903645833332" />
         </AssociationConnector>
         <AssociationConnector Association="Data.FK_ShapeTranslation_Shape" ManuallyRouted="false">
@@ -2781,29 +2724,9 @@
           <ConnectorPoint PointX="7" PointY="13.115143229166666" />
           <ConnectorPoint PointX="7.625" PointY="13.115143229166666" />
         </AssociationConnector>
-        <AssociationConnector Association="Data.Cap_Keyword_Int" ManuallyRouted="false">
-          <ConnectorPoint PointX="7" PointY="14.258050359674924" />
-          <ConnectorPoint PointX="9.5" PointY="14.258050359674924" />
-        </AssociationConnector>
-        <AssociationConnector Association="Data.CapPseudoCategory">
-          <ConnectorPoint PointX="5.5" PointY="13.490143229166666" />
-          <ConnectorPoint PointX="4.25" PointY="13.490143229166666" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="Data.ShapeFullTranslation" Width="1.5" PointX="11.875" PointY="10.125" Height="2.7494921875000014" />
-        <AssociationConnector Association="Data.ShapeFullTranslationShape">
-          <ConnectorPoint PointX="11.875" PointY="10.28125" />
-          <ConnectorPoint PointX="11.505111583997742" PointY="10.28125" />
-          <ConnectorPoint PointX="11.338444917331074" PointY="10.28125" />
-          <ConnectorPoint PointX="9.125" PointY="10.28125" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="Data.SimpleFullTranslation" Width="1.5" PointX="11.75" PointY="16.875" Height="1.7879850260416657" />
-        <EntityTypeShape EntityType="Data.CapFullTranslation" Width="1.5" PointX="5.25" PointY="19.75" Height="2.7494921875000031" />
-        <AssociationConnector Association="Data.CapFullTranslationCap" ManuallyRouted="true">
-          <ConnectorPoint PointX="5.25" PointY="20.018419006094781" />
-          <ConnectorPoint PointX="3.1434241332363007" PointY="20.018419006094781" />
-          <ConnectorPoint PointX="3.1434241332363007" PointY="15.867213664825103" />
-          <ConnectorPoint PointX="5.8390134804218379" PointY="15.867213664825103" />
-          <ConnectorPoint PointX="5.8390134804218379" PointY="15.047343750000001" />
+        <AssociationConnector Association="Data.Cap_Keyword_Int" ManuallyRouted="true">
+          <ConnectorPoint PointX="7" PointY="14.211354401965197" />
+          <ConnectorPoint PointX="9.5" PointY="14.224617016147219" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
