@@ -27,7 +27,7 @@
             .SourceCsdlPath = "CapsData.edmx", _
             .ReferenceCsdlPaths = new string () {}, _
             .FullyQualifySystemTypes = True, _
-            .CreateContextAddToMethods = True, _
+            .CreateContextAddToMethods = False, _
             .CamelCaseFields = False _
         }
 
@@ -65,6 +65,7 @@ Imports System.Xml.Serialization
 Imports System.Runtime.Serialization
 
 <Assembly: EdmSchemaAttribute("<#=Guid.NewGuid().ToString("D", CultureInfo.InvariantCulture)#>")>
+
 <#
     ''''''''
     '''''''' Write Relationship Attributes.
@@ -76,7 +77,9 @@ Imports System.Runtime.Serialization
 <#
     Next
     region.End()
+#>
 
+<#
     If(Not String.IsNullOrEmpty(namespaceName)) Then
 #>
 Namespace <#=namespaceName#>
@@ -157,6 +160,9 @@ Namespace <#=namespaceName#>
 <#
         Next
         region.End()
+#>
+
+<#
 
         ''''''''
         ''''''''  Write EntityContainer and ObjectContext AddTo<EntitySet> methods.
@@ -168,6 +174,7 @@ Namespace <#=namespaceName#>
         ''''''''  Set the CreateContextAddToMethods property of the UserSettings object to false
         ''''''''  to turn off generation of the AddTo methods.
         ''''''''
+
         region.Begin(GetResourceString("Template_RegionAddToMethods"))
         Dim addToMethods As IEnumerable(Of EntitySet) = If(CreateContextAddToMethods.Value, container.BaseEntitySets.OfType(Of EntitySet)(), Enumerable.Empty(Of EntitySet)())
         For Each addTo As EntitySet in addToMethods
@@ -183,6 +190,9 @@ Namespace <#=namespaceName#>
 <#
         Next
         region.End()
+#>
+
+<#
 
         region.Begin(GetResourceString("Template_RegionFunctionImports"))
         For Each edmFunction As EdmFunction in container.FunctionImports
@@ -246,11 +256,38 @@ Namespace <#=namespaceName#>
         Next
         region.End()
 #>
+
+<#
+'        '''''''' Write context-level function
+'		Dim Functions As IEnumerable(Of EdmFunction) = GetSourceSchemaTypes(Of EdmFunction)
+'		If Functions.Any Then
+'			region.Begin("Context-level functions")
+'			For Each userFunction As EdmFunction In Functions
+'				Dim parameters As IEnumerable(Of FunctionImportParameter) = FunctionImportParameter.Create(userFunction.Parameters, code, ef)
+'            	Dim paramList As String = String.Join(", ", (From p In parameters Select p.FunctionParameterName & " As " & p.FunctionParameterType).ToArray())
+'            	Dim returnType As TypeUsage = If(userFunction.ReturnParameter Is Nothing, Nothing, ef.GetElementType(userFunction.ReturnParameter.TypeUsage))
+'# >			
+'    ''' <summary>< #=SummaryComment(userFunction)# ></summary>
+'	< #=LongDescriptionCommentElement(userFunction, region.CurrentIndentLevel)# >
+'	< #=ParameterComments((From p in parameters Select New Tuple(Of string, string)(p.RawFunctionParameterName, SummaryComment(p.Source))), region.CurrentIndentLevel)# >
+'    <EdmFunction("???", "< #=userFunction.Name # >")>
+'	Public < #=If(returnType Is Nothing,"Sub","Function") # > < #=userFunction.Name # >(< #=paramlist # >)< #=If(returnType IsNot Nothing," As " & MultiSchemaEscape(returnType, code), "")# >
+'		'TODO: In/Out parameters
+'		Throw New InvalidOperationException("This function cannot be called directly") 'TODO: Function body
+'    End Function				
+'< #
+'			Next
+'			region.End()
+'		End If
+#>
 End Class
 <#
         VerifyCaseInsensitiveEntitySetUniqueness(container.BaseEntitySets.OfType(Of EntitySet)())
     Next
     region.End()
+#>
+
+<#
 
     ''''''''
     ''''''''  Write EntityType classes.
@@ -366,6 +403,9 @@ End Class
         VerifyCaseInsensitiveMemberUniqueness(GetAllDeclaredMembers(entity))
     Next
     region.End()
+#>
+	
+<#
 
     ''''''''
     ''''''''  Write ComplexType classes.
