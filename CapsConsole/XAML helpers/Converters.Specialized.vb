@@ -156,8 +156,8 @@ Public Class TopRandomConverter
     Implements IValueConverter
 
     Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
-        If TypeOf value Is IQueryable AndAlso TypeOf value Is System.Data.Linq.ITable AndAlso TypeOf DirectCast(value, System.Data.Linq.ITable).Context Is CapsDataContext Then
-            Dim context As CapsDataContext = DirectCast(value, System.Data.Linq.ITable).Context
+        If TypeOf value Is IQueryable AndAlso GetType(System.Data.Objects.ObjectSet(Of )).MakeGenericType(DirectCast(value, IQueryable).ElementType).IsAssignableFrom(value.GetType) AndAlso TypeOf value.Context Is CapsDataContext Then
+            Dim context As CapsDataContext = value.Context
             Dim list = DirectCast(value, IQueryable)
             Dim count As Integer
             Dim oldc = System.Threading.Thread.CurrentThread.CurrentCulture
@@ -168,7 +168,7 @@ Public Class TopRandomConverter
                 System.Threading.Thread.CurrentThread.CurrentCulture = oldc
             End Try
             Return From item As Object In list Order By context.NewID Take count
-        Else : Throw New NotSupportedException(My.Resources.ex_CanConvertOnlyFromValuesImplementingAndHaving.f(Me.GetType.Name, GetType(IQueryable).Name, GetType(System.Data.Linq.ITable).Name, "Context", GetType(CapsDataDataContext).Name))
+        Else : Throw New NotSupportedException(My.Resources.ex_CanConvertOnlyFromValuesImplementingAndHaving.f(Me.GetType.Name, GetType(IQueryable).Name, GetType(System.Data.Objects.ObjectSet(Of )).Name, "Context", GetType(CapsDataContext).Name))
         End If
     End Function
 

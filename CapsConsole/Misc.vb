@@ -67,28 +67,7 @@ Friend Module Misc
         Return Nothing
     End Function
 
-    ''' <summary>Undos all INSERTs performed with <see cref="System.Data.Linq.Table(Of TEntity)"/></summary>
-    ''' <param name="Table">Table to delete all inserted not commited items of coresponding type from</param>
-    ''' <typeparam name="TEntity">Type of items in table</typeparam>
-    ''' <remarks>This methods delets all items in <paramref name="Table"/>.<see cref="System.Data.Linq.Table.Context">Context</see>.<see cref="System.Data.Linq.DataContext.GetChangeSet">GetChangeSet</see>.<see cref="System.Data.Linq.ChangeSet.Inserts">Inserts</see> which are of type <typeparamref name="TEntity"/>.</remarks>
-    ''' <exception cref="ArgumentNullException"><paramref name="Table"/> is null</exception>
-    ''' <exception cref="ArgumentException"><paramref name="Table"/>.<see cref="System.Data.Linq.Table.Context">Context</see> is null</exception>
-    <Extension()> Public Sub DeleteAllNew(Of TEntity As Class)(ByVal Table As System.Data.Linq.Table(Of TEntity))
-        If Table Is Nothing Then Throw New ArgumentNullException("Table")
-        If Table.Context Is Nothing Then Throw New ArgumentException(My.Resources.ex_MustNotBeNull.f("Table.Context"))
-        Table.DeleteAllOnSubmit(Table.Context.GetChangeSet.Inserts.OfType(Of TEntity))
-    End Sub
-    ''' <summary>Undos all DELETEs performed with <see cref="System.Data.Linq.Table(Of TEntity)"/></summary>
-    ''' <param name="Table">Table to insert (undelete) all deleted not commited items of coresponding type to</param>
-    ''' <typeparam name="TEntity">Type of items in table</typeparam>
-    ''' <remarks>This methods re-inserts all items in <paramref name="Table"/>.<see cref="System.Data.Linq.Table.Context">Context</see>.<see cref="System.Data.Linq.DataContext.GetChangeSet">GetChangeSet</see>.<see cref="System.Data.Linq.ChangeSet.Deletes">Deletes</see> which are of type <typeparamref name="TEntity"/>.</remarks>
-    ''' <exception cref="ArgumentNullException"><paramref name="Table"/> is null</exception>
-    ''' <exception cref="ArgumentException"><paramref name="Table"/>.<see cref="System.Data.Linq.Table.Context">Context</see> is null</exception>
-    <Extension()> Public Sub RecoverAllDeleted(Of TEntity As Class)(ByVal Table As System.Data.Linq.Table(Of TEntity))
-        If Table Is Nothing Then Throw New ArgumentNullException("Table")
-        If Table.Context Is Nothing Then Throw New ArgumentException(My.Resources.ex_MustNotBeNull.f("Table.Context"))
-        Table.InsertAllOnSubmit(Table.Context.GetChangeSet.Deletes.OfType(Of TEntity))
-    End Sub
+    
     ''' <summary>Sets windows position and size. Prevents window from leaking out of screen.</summary>
     ''' <param name="Window">Window to set position of</param>
     ''' <param name="Position">Proposed position and size of <paramref name="Window"/> in window client coordinates</param>

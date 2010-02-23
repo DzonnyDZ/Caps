@@ -1,4 +1,6 @@
 Imports System.Globalization
+Imports System.Data.EntityClient
+
 Namespace Data
 #Region "Localization"
     '#Region "FullTranslation"
@@ -631,11 +633,22 @@ Namespace Data
 
     Partial Class CapsDataContext
 
+        Private _connection As SqlClient.SqlConnection
+
         ''' <summary>CTor from connection string to SQL server</summary>
         ''' <param name="connectionString">SQL Server connection string used to create connection to SQL server</param>
         Public Sub New(ByVal connectionString As String)
             MyBase.New(String.Format("metadata=res://*/DAL.CapsEntityData.csdl|res://*/DAL.CapsEntityData.ssdl|res://*/DAL.CapsEntityData.msl;provider=System.Data.SqlClient;provider connection string=""{0}""", connectionString))
             OnContextCreated()
+        End Sub
+
+
+        ''' <summary>CTor from SQL server connection</summary>
+        ''' <param name="connection">Connection to SQL server</param>
+        Public Sub New(ByVal connection As SqlClient.SqlConnection)
+            Me.New(New EntityConnection(New Metadata.Edm.MetadataWorkspace({"res://*/DAL.CapsEntityData.csdl", "res://*/DAL.CapsEntityData.ssdl", "res://*/DAL.CapsEntityData.msl"},
+                                                                           {GetType(CapsDataContext).Assembly}),
+                                        connection))
         End Sub
 
         '#If DEBUG Then
@@ -645,6 +658,9 @@ Namespace Data
         '#End If
         ''' <summary>Contains value of the <see cref="IsDisposed"/> property</summary>
         Private _isDisposed As Boolean
+
+        
+
         ''' <summary>Raised whrn this instance is disposed of finalied</summary>
         Public Event Disposed As EventHandler
         ''' <summary>Gets or stets value indicating if this instance have already been disposed</summary>

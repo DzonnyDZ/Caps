@@ -1013,10 +1013,7 @@
     <value>Attempt to set storage that is not in combo box.</value>
     <comment>Inner exception message</comment>
   </data>
-  <data name="ex_MustNotBeNull" xml:space="preserve">
-    <value>{0} must not be null</value>
-    <comment>Inner exception message</comment>
-  </data>
+
   <data name="err_DeleteingOfSomeImagesFailed" xml:space="preserve">
     <value>Deleteing of some images failed:</value>
     <comment>Error message</comment>

@@ -786,9 +786,7 @@
   <data name="ex_SetUnknownStorage" xml:space="preserve">
     <value>Pokus o nastavení úložiště, který není v combo boxu.</value>
   </data>
-  <data name="ex_MustNotBeNull" xml:space="preserve">
-    <value>{0} nesmí být null</value>
-  </data>
+
   <data name="err_DeleteingOfSomeImagesFailed" xml:space="preserve">
     <value>Mazání některých obrázků selhalo:</value>
   </data>
