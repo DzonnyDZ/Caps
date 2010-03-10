@@ -16,7 +16,7 @@ Imports System.ComponentModel
 Imports System.Xml.Serialization
 Imports System.Runtime.Serialization
 
-<Assembly: EdmSchemaAttribute("d8ddb077-f35a-413c-a104-d96345c98a66")>
+<Assembly: EdmSchemaAttribute("8c96a526-4766-43af-92ed-62c40e7f4d65")>
 
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
@@ -68,16 +68,16 @@ Imports System.Runtime.Serialization
 
 Namespace Data
     
-#Region "Contexts"
-
+    #Region "Contexts"
+    
     ''' <summary>
     ''' Entity Framework data context for Caps database
     ''' </summary>
-    Partial Public Class CapsDataContext
+    Public Partial Class CapsDataContext
         Inherits ObjectContext
-
-#Region "Constructors"
-
+    
+        #Region "Constructors"
+    
         ''' <summary>
         ''' Initializes a new CapsDataContext object using the connection string found in the 'CapsDataContext' section of the application configuration file.
         ''' </summary>
@@ -85,7 +85,7 @@ Namespace Data
             MyBase.New("name=CapsDataContext", "CapsDataContext")
             OnContextCreated()
         End Sub
-
+    
         ''' <summary>
         ''' Initialize a new CapsDataContext object.
         ''' </summary>
@@ -93,18 +93,18 @@ Namespace Data
             MyBase.New(connection, "CapsDataContext")
             OnContextCreated()
         End Sub
-
-#End Region
-
-#Region "Partial Methods"
-
+    
+        #End Region
+    
+        #Region "Partial Methods"
+    
         Partial Private Sub OnContextCreated()
         End Sub
-
-#End Region
-
-#Region "ObjectSet Properties"
-
+    
+        #End Region
+    
+        #Region "ObjectSet Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -116,9 +116,9 @@ Namespace Data
                 Return _Caps
             End Get
         End Property
-
+    
         Private _Caps As ObjectSet(Of Cap)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -130,9 +130,9 @@ Namespace Data
                 Return _CapInstances
             End Get
         End Property
-
+    
         Private _CapInstances As ObjectSet(Of CapInstance)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -144,9 +144,9 @@ Namespace Data
                 Return _CapSigns
             End Get
         End Property
-
+    
         Private _CapSigns As ObjectSet(Of CapSign)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -158,9 +158,9 @@ Namespace Data
                 Return _CapTranslations
             End Get
         End Property
-
+    
         Private _CapTranslations As ObjectSet(Of CapTranslation)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -172,9 +172,9 @@ Namespace Data
                 Return _CapTypes
             End Get
         End Property
-
+    
         Private _CapTypes As ObjectSet(Of CapType)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -186,9 +186,9 @@ Namespace Data
                 Return _Categories
             End Get
         End Property
-
+    
         Private _Categories As ObjectSet(Of Category)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -200,9 +200,9 @@ Namespace Data
                 Return _Companies
             End Get
         End Property
-
+    
         Private _Companies As ObjectSet(Of Company)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -214,9 +214,9 @@ Namespace Data
                 Return _Images
             End Get
         End Property
-
+    
         Private _Images As ObjectSet(Of Image)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -228,9 +228,9 @@ Namespace Data
                 Return _ISO_3166_1
             End Get
         End Property
-
+    
         Private _ISO_3166_1 As ObjectSet(Of ISO_3166_1)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -242,9 +242,9 @@ Namespace Data
                 Return _Keywords
             End Get
         End Property
-
+    
         Private _Keywords As ObjectSet(Of Keyword)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -256,9 +256,9 @@ Namespace Data
                 Return _MainTypes
             End Get
         End Property
-
+    
         Private _MainTypes As ObjectSet(Of MainType)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -270,9 +270,9 @@ Namespace Data
                 Return _Materials
             End Get
         End Property
-
+    
         Private _Materials As ObjectSet(Of Material)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -284,9 +284,9 @@ Namespace Data
                 Return _Products
             End Get
         End Property
-
+    
         Private _Products As ObjectSet(Of Product)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -298,9 +298,9 @@ Namespace Data
                 Return _ProductTypes
             End Get
         End Property
-
+    
         Private _ProductTypes As ObjectSet(Of ProductType)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -312,9 +312,9 @@ Namespace Data
                 Return _PseudoCategories
             End Get
         End Property
-
+    
         Private _PseudoCategories As ObjectSet(Of PseudoCategory)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -326,9 +326,9 @@ Namespace Data
                 Return _Shapes
             End Get
         End Property
-
+    
         Private _Shapes As ObjectSet(Of Shape)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -340,9 +340,9 @@ Namespace Data
                 Return _ShapeTranslations
             End Get
         End Property
-
+    
         Private _ShapeTranslations As ObjectSet(Of ShapeTranslation)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -354,9 +354,9 @@ Namespace Data
                 Return _SimpleTranslations
             End Get
         End Property
-
+    
         Private _SimpleTranslations As ObjectSet(Of SimpleTranslation)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -368,9 +368,9 @@ Namespace Data
                 Return _Storages
             End Get
         End Property
-
+    
         Private _Storages As ObjectSet(Of Storage)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -382,9 +382,9 @@ Namespace Data
                 Return _StorageTypes
             End Get
         End Property
-
+    
         Private _StorageTypes As ObjectSet(Of StorageType)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -396,9 +396,9 @@ Namespace Data
                 Return _StoredImages
             End Get
         End Property
-
+    
         Private _StoredImages As ObjectSet(Of StoredImage)
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -410,44 +410,44 @@ Namespace Data
                 Return _Targets
             End Get
         End Property
-
+    
         Private _Targets As ObjectSet(Of Target)
 
-#End Region
-
-
-#Region "Function Imports"
-
+        #End Region
+    
+    
+        #Region "Function Imports"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
         Public Function Get_Cap_PseudoCategory_Int() As ObjectResult(Of Cap_PseudoCategory_Int)
             Return MyBase.ExecuteFunction(Of Cap_PseudoCategory_Int)("Get_Cap_PseudoCategory_Int")
-
+    
         End Function
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
         ''' <param name="pseudoCategoryID">No Metadata Documentation available.</param>
         ''' <param name="sELECT">No Metadata Documentation available.</param>
-        Public Function GetCapsOfPseudoCategory(ByVal pseudoCategoryID As Nullable(Of Global.System.Int32), ByVal [sELECT] As Global.System.String) As ObjectResult(Of Cap)
+        Public Function GetCapsOfPseudoCategory(pseudoCategoryID As Nullable(Of Global.System.Int32), [sELECT] As Global.System.String) As ObjectResult(Of Cap)
             Dim pseudoCategoryIDParameter As ObjectParameter
-            If (pseudoCategoryID.HasValue) Then
+            If (pseudoCategoryID.HasValue)
                 pseudoCategoryIDParameter = New ObjectParameter("PseudoCategoryID", pseudoCategoryID)
             Else
                 pseudoCategoryIDParameter = New ObjectParameter("PseudoCategoryID", GetType(Global.System.Int32))
             End If
-
+    
             Dim sELECTParameter As ObjectParameter
-            If ([sELECT] IsNot Nothing) Then
+            If ([sELECT] IsNot Nothing)
                 sELECTParameter = New ObjectParameter("SELECT", [sELECT])
             Else
                 sELECTParameter = New ObjectParameter("SELECT", GetType(Global.System.String))
             End If
-
+    
             Return MyBase.ExecuteFunction(Of Cap)("GetCapsOfPseudoCategory", pseudoCategoryIDParameter, sELECTParameter)
-
+    
         End Function
         ''' <summary>
         ''' No Metadata Documentation available.
@@ -455,43 +455,43 @@ Namespace Data
         ''' <param name="mergeOption"></param>
         ''' <param name="pseudoCategoryID">No Metadata Documentation available.</param>
         ''' <param name="sELECT">No Metadata Documentation available.</param>
-        Public Function GetCapsOfPseudoCategory(ByVal pseudoCategoryID As Nullable(Of Global.System.Int32), ByVal [sELECT] As Global.System.String, ByVal mergeOption As MergeOption) As ObjectResult(Of Cap)
+        Public Function GetCapsOfPseudoCategory(pseudoCategoryID As Nullable(Of Global.System.Int32), [sELECT] As Global.System.String, mergeOption As MergeOption) As ObjectResult(Of Cap)
             Dim pseudoCategoryIDParameter As ObjectParameter
-            If (pseudoCategoryID.HasValue) Then
+            If (pseudoCategoryID.HasValue)
                 pseudoCategoryIDParameter = New ObjectParameter("PseudoCategoryID", pseudoCategoryID)
             Else
                 pseudoCategoryIDParameter = New ObjectParameter("PseudoCategoryID", GetType(Global.System.Int32))
             End If
-
+    
             Dim sELECTParameter As ObjectParameter
-            If ([sELECT] IsNot Nothing) Then
+            If ([sELECT] IsNot Nothing)
                 sELECTParameter = New ObjectParameter("SELECT", [sELECT])
             Else
                 sELECTParameter = New ObjectParameter("SELECT", GetType(Global.System.String))
             End If
-
+    
             Return MyBase.ExecuteFunction(Of Cap)("GetCapsOfPseudoCategory", mergeOption, pseudoCategoryIDParameter, sELECTParameter)
-
+    
         End Function
 
-#End Region
-
+        #End Region
+    
     End Class
 
-#End Region
+    #End Region
     
-#Region "Entities"
-
+    #Region "Entities"
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Cap")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class Cap
+    Public Partial Class Cap
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new Cap object.
         ''' </summary>
@@ -510,8 +510,8 @@ Namespace Data
         ''' <param name="hasBottom">Initial value of the HasBottom property.</param>
         ''' <param name="hasSide">Initial value of the HasSide property.</param>
         ''' <param name="state">Initial value of the State property.</param>
-        Public Shared Function CreateCap(ByVal capID As Global.System.Int32, ByVal mainTypeID As Global.System.Int32, ByVal shapeID As Global.System.Int32, ByVal capName As Global.System.String, ByVal backColor1 As Global.System.Int32, ByVal materialID As Global.System.Int32, ByVal surface As Global.System.String, ByVal size As Global.System.Int32, ByVal height As Global.System.Int32, ByVal is3D As Global.System.Boolean, ByVal dateCreated As Global.System.DateTime, ByVal storageID As Global.System.Int32, ByVal hasBottom As Global.System.Boolean, ByVal hasSide As Global.System.Boolean, ByVal state As Global.System.Int16) As Cap
-            Dim cap As Cap = New Cap
+        Public Shared Function CreateCap(capID As Global.System.Int32, mainTypeID As Global.System.Int32, shapeID As Global.System.Int32, capName As Global.System.String, backColor1 As Global.System.Int32, materialID As Global.System.Int32, surface As Global.System.String, size As Global.System.Int32, height As Global.System.Int32, is3D As Global.System.Boolean, dateCreated As Global.System.DateTime, storageID As Global.System.Int32, hasBottom As Global.System.Boolean, hasSide As Global.System.Boolean, state As Global.System.Int16) As Cap
+            Dim cap as Cap = New Cap
             cap.CapID = capID
             cap.MainTypeID = mainTypeID
             cap.ShapeID = shapeID
@@ -530,964 +530,964 @@ Namespace Data
             Return cap
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CapID() As Global.System.Int32
             Get
                 Return _CapID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_CapID <> Value) Then
-                    OnCapIDChanging(Value)
+                    OnCapIDChanging(value)
                     ReportPropertyChanging("CapID")
-                    _CapID = StructuralObject.SetValidValue(Value)
+                    _CapID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("CapID")
                     OnCapIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _CapID As Global.System.Int32
-        Partial Private Sub OnCapIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnCapIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnCapIDChanged()
+    
+        Private Partial Sub OnCapIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CapTypeID() As Nullable(Of Global.System.Int32)
             Get
                 Return _CapTypeID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnCapTypeIDChanging(Value)
+            Set
+                OnCapTypeIDChanging(value)
                 ReportPropertyChanging("CapTypeID")
-                _CapTypeID = StructuralObject.SetValidValue(Value)
+                _CapTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CapTypeID")
                 OnCapTypeIDChanged()
             End Set
         End Property
-
+    
         Private _CapTypeID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnCapTypeIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnCapTypeIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnCapTypeIDChanged()
+    
+        Private Partial Sub OnCapTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property MainTypeID() As Global.System.Int32
             Get
                 Return _MainTypeID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnMainTypeIDChanging(Value)
+            Set
+                OnMainTypeIDChanging(value)
                 ReportPropertyChanging("MainTypeID")
-                _MainTypeID = StructuralObject.SetValidValue(Value)
+                _MainTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("MainTypeID")
                 OnMainTypeIDChanged()
             End Set
         End Property
-
+    
         Private _MainTypeID As Global.System.Int32
-        Partial Private Sub OnMainTypeIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnMainTypeIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnMainTypeIDChanged()
+    
+        Private Partial Sub OnMainTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property ShapeID() As Global.System.Int32
             Get
                 Return _ShapeID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnShapeIDChanging(Value)
+            Set
+                OnShapeIDChanging(value)
                 ReportPropertyChanging("ShapeID")
-                _ShapeID = StructuralObject.SetValidValue(Value)
+                _ShapeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ShapeID")
                 OnShapeIDChanged()
             End Set
         End Property
-
+    
         Private _ShapeID As Global.System.Int32
-        Partial Private Sub OnShapeIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnShapeIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnShapeIDChanged()
+    
+        Private Partial Sub OnShapeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CapName() As Global.System.String
             Get
                 Return _CapName
             End Get
-            Set(ByVal value As Global.System.String)
-                OnCapNameChanging(Value)
+            Set
+                OnCapNameChanging(value)
                 ReportPropertyChanging("CapName")
-                _CapName = StructuralObject.SetValidValue(Value, False)
+                _CapName = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("CapName")
                 OnCapNameChanged()
             End Set
         End Property
-
+    
         Private _CapName As Global.System.String
-        Partial Private Sub OnCapNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnCapNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnCapNameChanged()
+    
+        Private Partial Sub OnCapNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property MainText() As Global.System.String
             Get
                 Return _MainText
             End Get
-            Set(ByVal value As Global.System.String)
-                OnMainTextChanging(Value)
+            Set
+                OnMainTextChanging(value)
                 ReportPropertyChanging("MainText")
-                _MainText = StructuralObject.SetValidValue(Value, True)
+                _MainText = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("MainText")
                 OnMainTextChanged()
             End Set
         End Property
-
+    
         Private _MainText As Global.System.String
-        Partial Private Sub OnMainTextChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnMainTextChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnMainTextChanged()
+    
+        Private Partial Sub OnMainTextChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property SubTitle() As Global.System.String
             Get
                 Return _SubTitle
             End Get
-            Set(ByVal value As Global.System.String)
-                OnSubTitleChanging(Value)
+            Set
+                OnSubTitleChanging(value)
                 ReportPropertyChanging("SubTitle")
-                _SubTitle = StructuralObject.SetValidValue(Value, True)
+                _SubTitle = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("SubTitle")
                 OnSubTitleChanged()
             End Set
         End Property
-
+    
         Private _SubTitle As Global.System.String
-        Partial Private Sub OnSubTitleChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnSubTitleChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnSubTitleChanged()
+    
+        Private Partial Sub OnSubTitleChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property BackColor1() As Global.System.Int32
             Get
                 Return _BackColor1
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnBackColor1Changing(Value)
+            Set
+                OnBackColor1Changing(value)
                 ReportPropertyChanging("BackColor1")
-                _BackColor1 = StructuralObject.SetValidValue(Value)
+                _BackColor1 = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("BackColor1")
                 OnBackColor1Changed()
             End Set
         End Property
-
+    
         Private _BackColor1 As Global.System.Int32
-        Partial Private Sub OnBackColor1Changing(ByVal value As Global.System.Int32)
+        Private Partial Sub OnBackColor1Changing(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnBackColor1Changed()
+    
+        Private Partial Sub OnBackColor1Changed()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property BackColor2() As Nullable(Of Global.System.Int32)
             Get
                 Return _BackColor2
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnBackColor2Changing(Value)
+            Set
+                OnBackColor2Changing(value)
                 ReportPropertyChanging("BackColor2")
-                _BackColor2 = StructuralObject.SetValidValue(Value)
+                _BackColor2 = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("BackColor2")
                 OnBackColor2Changed()
             End Set
         End Property
-
+    
         Private _BackColor2 As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnBackColor2Changing(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnBackColor2Changing(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnBackColor2Changed()
+    
+        Private Partial Sub OnBackColor2Changed()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property ForeColor() As Nullable(Of Global.System.Int32)
             Get
                 Return _ForeColor
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnForeColorChanging(Value)
+            Set
+                OnForeColorChanging(value)
                 ReportPropertyChanging("ForeColor")
-                _ForeColor = StructuralObject.SetValidValue(Value)
+                _ForeColor = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ForeColor")
                 OnForeColorChanged()
             End Set
         End Property
-
+    
         Private _ForeColor As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnForeColorChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnForeColorChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnForeColorChanged()
+    
+        Private Partial Sub OnForeColorChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property MainPicture() As Global.System.String
             Get
                 Return _MainPicture
             End Get
-            Set(ByVal value As Global.System.String)
-                OnMainPictureChanging(Value)
+            Set
+                OnMainPictureChanging(value)
                 ReportPropertyChanging("MainPicture")
-                _MainPicture = StructuralObject.SetValidValue(Value, True)
+                _MainPicture = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("MainPicture")
                 OnMainPictureChanged()
             End Set
         End Property
-
+    
         Private _MainPicture As Global.System.String
-        Partial Private Sub OnMainPictureChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnMainPictureChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnMainPictureChanged()
+    
+        Private Partial Sub OnMainPictureChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property TopText() As Global.System.String
             Get
                 Return _TopText
             End Get
-            Set(ByVal value As Global.System.String)
-                OnTopTextChanging(Value)
+            Set
+                OnTopTextChanging(value)
                 ReportPropertyChanging("TopText")
-                _TopText = StructuralObject.SetValidValue(Value, True)
+                _TopText = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("TopText")
                 OnTopTextChanged()
             End Set
         End Property
-
+    
         Private _TopText As Global.System.String
-        Partial Private Sub OnTopTextChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnTopTextChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnTopTextChanged()
+    
+        Private Partial Sub OnTopTextChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property SideText() As Global.System.String
             Get
                 Return _SideText
             End Get
-            Set(ByVal value As Global.System.String)
-                OnSideTextChanging(Value)
+            Set
+                OnSideTextChanging(value)
                 ReportPropertyChanging("SideText")
-                _SideText = StructuralObject.SetValidValue(Value, True)
+                _SideText = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("SideText")
                 OnSideTextChanged()
             End Set
         End Property
-
+    
         Private _SideText As Global.System.String
-        Partial Private Sub OnSideTextChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnSideTextChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnSideTextChanged()
+    
+        Private Partial Sub OnSideTextChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property BottomText() As Global.System.String
             Get
                 Return _BottomText
             End Get
-            Set(ByVal value As Global.System.String)
-                OnBottomTextChanging(Value)
+            Set
+                OnBottomTextChanging(value)
                 ReportPropertyChanging("BottomText")
-                _BottomText = StructuralObject.SetValidValue(Value, True)
+                _BottomText = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("BottomText")
                 OnBottomTextChanged()
             End Set
         End Property
-
+    
         Private _BottomText As Global.System.String
-        Partial Private Sub OnBottomTextChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnBottomTextChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnBottomTextChanged()
+    
+        Private Partial Sub OnBottomTextChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property MaterialID() As Global.System.Int32
             Get
                 Return _MaterialID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnMaterialIDChanging(Value)
+            Set
+                OnMaterialIDChanging(value)
                 ReportPropertyChanging("MaterialID")
-                _MaterialID = StructuralObject.SetValidValue(Value)
+                _MaterialID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("MaterialID")
                 OnMaterialIDChanged()
             End Set
         End Property
-
+    
         Private _MaterialID As Global.System.Int32
-        Partial Private Sub OnMaterialIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnMaterialIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnMaterialIDChanged()
+    
+        Private Partial Sub OnMaterialIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Surface() As Global.System.String
             Get
                 Return _Surface
             End Get
-            Set(ByVal value As Global.System.String)
-                OnSurfaceChanging(Value)
+            Set
+                OnSurfaceChanging(value)
                 ReportPropertyChanging("Surface")
-                _Surface = StructuralObject.SetValidValue(Value, False)
+                _Surface = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Surface")
                 OnSurfaceChanged()
             End Set
         End Property
-
+    
         Private _Surface As Global.System.String
-        Partial Private Sub OnSurfaceChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnSurfaceChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnSurfaceChanged()
+    
+        Private Partial Sub OnSurfaceChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Size() As Global.System.Int32
             Get
                 Return _Size
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnSizeChanging(Value)
+            Set
+                OnSizeChanging(value)
                 ReportPropertyChanging("Size")
-                _Size = StructuralObject.SetValidValue(Value)
+                _Size = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Size")
                 OnSizeChanged()
             End Set
         End Property
-
+    
         Private _Size As Global.System.Int32
-        Partial Private Sub OnSizeChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnSizeChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnSizeChanged()
+    
+        Private Partial Sub OnSizeChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Size2() As Nullable(Of Global.System.Int32)
             Get
                 Return _Size2
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnSize2Changing(Value)
+            Set
+                OnSize2Changing(value)
                 ReportPropertyChanging("Size2")
-                _Size2 = StructuralObject.SetValidValue(Value)
+                _Size2 = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Size2")
                 OnSize2Changed()
             End Set
         End Property
-
+    
         Private _Size2 As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnSize2Changing(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnSize2Changing(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnSize2Changed()
+    
+        Private Partial Sub OnSize2Changed()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Height() As Global.System.Int32
             Get
                 Return _Height
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnHeightChanging(Value)
+            Set
+                OnHeightChanging(value)
                 ReportPropertyChanging("Height")
-                _Height = StructuralObject.SetValidValue(Value)
+                _Height = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Height")
                 OnHeightChanged()
             End Set
         End Property
-
+    
         Private _Height As Global.System.Int32
-        Partial Private Sub OnHeightChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnHeightChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnHeightChanged()
+    
+        Private Partial Sub OnHeightChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Is3D() As Global.System.Boolean
             Get
                 Return _Is3D
             End Get
-            Set(ByVal value As Global.System.Boolean)
-                OnIs3DChanging(Value)
+            Set
+                OnIs3DChanging(value)
                 ReportPropertyChanging("Is3D")
-                _Is3D = StructuralObject.SetValidValue(Value)
+                _Is3D = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Is3D")
                 OnIs3DChanged()
             End Set
         End Property
-
+    
         Private _Is3D As Global.System.Boolean
-        Partial Private Sub OnIs3DChanging(ByVal value As Global.System.Boolean)
+        Private Partial Sub OnIs3DChanging(value As Global.System.Boolean)
         End Sub
-
-        Partial Private Sub OnIs3DChanged()
+    
+        Private Partial Sub OnIs3DChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Year() As Nullable(Of Global.System.Int32)
             Get
                 Return _Year
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnYearChanging(Value)
+            Set
+                OnYearChanging(value)
                 ReportPropertyChanging("Year")
-                _Year = StructuralObject.SetValidValue(Value)
+                _Year = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Year")
                 OnYearChanged()
             End Set
         End Property
-
+    
         Private _Year As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnYearChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnYearChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnYearChanged()
+    
+        Private Partial Sub OnYearChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CountryCode() As Global.System.String
             Get
                 Return _CountryCode
             End Get
-            Set(ByVal value As Global.System.String)
-                OnCountryCodeChanging(Value)
+            Set
+                OnCountryCodeChanging(value)
                 ReportPropertyChanging("CountryCode")
-                _CountryCode = StructuralObject.SetValidValue(Value, True)
+                _CountryCode = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("CountryCode")
                 OnCountryCodeChanged()
             End Set
         End Property
-
+    
         Private _CountryCode As Global.System.String
-        Partial Private Sub OnCountryCodeChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnCountryCodeChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnCountryCodeChanged()
+    
+        Private Partial Sub OnCountryCodeChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property DateCreated() As Global.System.DateTime
             Get
                 Return _DateCreated
             End Get
-            Private Set(ByVal value As Global.System.DateTime)
-                OnDateCreatedChanging(Value)
+            Private Set
+                OnDateCreatedChanging(value)
                 ReportPropertyChanging("DateCreated")
-                _DateCreated = StructuralObject.SetValidValue(Value)
+                _DateCreated = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("DateCreated")
                 OnDateCreatedChanged()
             End Set
         End Property
-
+    
         Private _DateCreated As Global.System.DateTime
-        Partial Private Sub OnDateCreatedChanging(ByVal value As Global.System.DateTime)
+        Private Partial Sub OnDateCreatedChanging(value As Global.System.DateTime)
         End Sub
-
-        Partial Private Sub OnDateCreatedChanged()
+    
+        Private Partial Sub OnDateCreatedChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Note() As Global.System.String
             Get
                 Return _Note
             End Get
-            Set(ByVal value As Global.System.String)
-                OnNoteChanging(Value)
+            Set
+                OnNoteChanging(value)
                 ReportPropertyChanging("Note")
-                _Note = StructuralObject.SetValidValue(Value, True)
+                _Note = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Note")
                 OnNoteChanged()
             End Set
         End Property
-
+    
         Private _Note As Global.System.String
-        Partial Private Sub OnNoteChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnNoteChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnNoteChanged()
+    
+        Private Partial Sub OnNoteChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CompanyID() As Nullable(Of Global.System.Int32)
             Get
                 Return _CompanyID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnCompanyIDChanging(Value)
+            Set
+                OnCompanyIDChanging(value)
                 ReportPropertyChanging("CompanyID")
-                _CompanyID = StructuralObject.SetValidValue(Value)
+                _CompanyID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CompanyID")
                 OnCompanyIDChanged()
             End Set
         End Property
-
+    
         Private _CompanyID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnCompanyIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnCompanyIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnCompanyIDChanged()
+    
+        Private Partial Sub OnCompanyIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property ProductID() As Nullable(Of Global.System.Int32)
             Get
                 Return _ProductID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnProductIDChanging(Value)
+            Set
+                OnProductIDChanging(value)
                 ReportPropertyChanging("ProductID")
-                _ProductID = StructuralObject.SetValidValue(Value)
+                _ProductID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ProductID")
                 OnProductIDChanged()
             End Set
         End Property
-
+    
         Private _ProductID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnProductIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnProductIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnProductIDChanged()
+    
+        Private Partial Sub OnProductIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property ProductTypeID() As Nullable(Of Global.System.Int32)
             Get
                 Return _ProductTypeID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnProductTypeIDChanging(Value)
+            Set
+                OnProductTypeIDChanging(value)
                 ReportPropertyChanging("ProductTypeID")
-                _ProductTypeID = StructuralObject.SetValidValue(Value)
+                _ProductTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ProductTypeID")
                 OnProductTypeIDChanged()
             End Set
         End Property
-
+    
         Private _ProductTypeID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnProductTypeIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnProductTypeIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnProductTypeIDChanged()
+    
+        Private Partial Sub OnProductTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property StorageID() As Global.System.Int32
             Get
                 Return _StorageID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnStorageIDChanging(Value)
+            Set
+                OnStorageIDChanging(value)
                 ReportPropertyChanging("StorageID")
-                _StorageID = StructuralObject.SetValidValue(Value)
+                _StorageID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("StorageID")
                 OnStorageIDChanged()
             End Set
         End Property
-
+    
         Private _StorageID As Global.System.Int32
-        Partial Private Sub OnStorageIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnStorageIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnStorageIDChanged()
+    
+        Private Partial Sub OnStorageIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property ForeColor2() As Nullable(Of Global.System.Int32)
             Get
                 Return _ForeColor2
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnForeColor2Changing(Value)
+            Set
+                OnForeColor2Changing(value)
                 ReportPropertyChanging("ForeColor2")
-                _ForeColor2 = StructuralObject.SetValidValue(Value)
+                _ForeColor2 = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ForeColor2")
                 OnForeColor2Changed()
             End Set
         End Property
-
+    
         Private _ForeColor2 As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnForeColor2Changing(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnForeColor2Changing(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnForeColor2Changed()
+    
+        Private Partial Sub OnForeColor2Changed()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property PictureType() As Global.System.String
             Get
                 Return _PictureType
             End Get
-            Set(ByVal value As Global.System.String)
-                OnPictureTypeChanging(Value)
+            Set
+                OnPictureTypeChanging(value)
                 ReportPropertyChanging("PictureType")
-                _PictureType = StructuralObject.SetValidValue(Value, True)
+                _PictureType = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("PictureType")
                 OnPictureTypeChanged()
             End Set
         End Property
-
+    
         Private _PictureType As Global.System.String
-        Partial Private Sub OnPictureTypeChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnPictureTypeChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnPictureTypeChanged()
+    
+        Private Partial Sub OnPictureTypeChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property HasBottom() As Global.System.Boolean
             Get
                 Return _HasBottom
             End Get
-            Set(ByVal value As Global.System.Boolean)
-                OnHasBottomChanging(Value)
+            Set
+                OnHasBottomChanging(value)
                 ReportPropertyChanging("HasBottom")
-                _HasBottom = StructuralObject.SetValidValue(Value)
+                _HasBottom = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("HasBottom")
                 OnHasBottomChanged()
             End Set
         End Property
-
+    
         Private _HasBottom As Global.System.Boolean
-        Partial Private Sub OnHasBottomChanging(ByVal value As Global.System.Boolean)
+        Private Partial Sub OnHasBottomChanging(value As Global.System.Boolean)
         End Sub
-
-        Partial Private Sub OnHasBottomChanged()
+    
+        Private Partial Sub OnHasBottomChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property HasSide() As Global.System.Boolean
             Get
                 Return _HasSide
             End Get
-            Set(ByVal value As Global.System.Boolean)
-                OnHasSideChanging(Value)
+            Set
+                OnHasSideChanging(value)
                 ReportPropertyChanging("HasSide")
-                _HasSide = StructuralObject.SetValidValue(Value)
+                _HasSide = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("HasSide")
                 OnHasSideChanged()
             End Set
         End Property
-
+    
         Private _HasSide As Global.System.Boolean
-        Partial Private Sub OnHasSideChanging(ByVal value As Global.System.Boolean)
+        Private Partial Sub OnHasSideChanging(value As Global.System.Boolean)
         End Sub
-
-        Partial Private Sub OnHasSideChanged()
+    
+        Private Partial Sub OnHasSideChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property AnotherPictures() As Global.System.String
             Get
                 Return _AnotherPictures
             End Get
-            Set(ByVal value As Global.System.String)
-                OnAnotherPicturesChanging(Value)
+            Set
+                OnAnotherPicturesChanging(value)
                 ReportPropertyChanging("AnotherPictures")
-                _AnotherPictures = StructuralObject.SetValidValue(Value, True)
+                _AnotherPictures = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("AnotherPictures")
                 OnAnotherPicturesChanged()
             End Set
         End Property
-
+    
         Private _AnotherPictures As Global.System.String
-        Partial Private Sub OnAnotherPicturesChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnAnotherPicturesChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnAnotherPicturesChanged()
+    
+        Private Partial Sub OnAnotherPicturesChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CountryOfOrigin() As Global.System.String
             Get
                 Return _CountryOfOrigin
             End Get
-            Set(ByVal value As Global.System.String)
-                OnCountryOfOriginChanging(Value)
+            Set
+                OnCountryOfOriginChanging(value)
                 ReportPropertyChanging("CountryOfOrigin")
-                _CountryOfOrigin = StructuralObject.SetValidValue(Value, True)
+                _CountryOfOrigin = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("CountryOfOrigin")
                 OnCountryOfOriginChanged()
             End Set
         End Property
-
+    
         Private _CountryOfOrigin As Global.System.String
-        Partial Private Sub OnCountryOfOriginChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnCountryOfOriginChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnCountryOfOriginChanged()
+    
+        Private Partial Sub OnCountryOfOriginChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property IsDrink() As Nullable(Of Global.System.Boolean)
             Get
                 Return _IsDrink
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Boolean))
-                OnIsDrinkChanging(Value)
+            Set
+                OnIsDrinkChanging(value)
                 ReportPropertyChanging("IsDrink")
-                _IsDrink = StructuralObject.SetValidValue(Value)
+                _IsDrink = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("IsDrink")
                 OnIsDrinkChanged()
             End Set
         End Property
-
+    
         Private _IsDrink As Nullable(Of Global.System.Boolean)
-        Partial Private Sub OnIsDrinkChanging(ByVal value As Nullable(Of Global.System.Boolean))
+        Private Partial Sub OnIsDrinkChanging(value As Nullable(Of Global.System.Boolean))
         End Sub
-
-        Partial Private Sub OnIsDrinkChanged()
+    
+        Private Partial Sub OnIsDrinkChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property State() As Global.System.Int16
             Get
                 Return _State
             End Get
-            Set(ByVal value As Global.System.Int16)
-                OnStateChanging(Value)
+            Set
+                OnStateChanging(value)
                 ReportPropertyChanging("State")
-                _State = StructuralObject.SetValidValue(Value)
+                _State = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("State")
                 OnStateChanged()
             End Set
         End Property
-
+    
         Private _State As Global.System.Int16
-        Partial Private Sub OnStateChanging(ByVal value As Global.System.Int16)
+        Private Partial Sub OnStateChanging(value As Global.System.Int16)
         End Sub
-
-        Partial Private Sub OnStateChanged()
+    
+        Private Partial Sub OnStateChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property TargetID() As Nullable(Of Global.System.Int32)
             Get
                 Return _TargetID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnTargetIDChanging(Value)
+            Set
+                OnTargetIDChanging(value)
                 ReportPropertyChanging("TargetID")
-                _TargetID = StructuralObject.SetValidValue(Value)
+                _TargetID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("TargetID")
                 OnTargetIDChanged()
             End Set
         End Property
-
+    
         Private _TargetID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnTargetIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnTargetIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnTargetIDChanged()
+    
+        Private Partial Sub OnTargetIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property IsAlcoholic() As Nullable(Of Global.System.Boolean)
             Get
                 Return _IsAlcoholic
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Boolean))
-                OnIsAlcoholicChanging(Value)
+            Set
+                OnIsAlcoholicChanging(value)
                 ReportPropertyChanging("IsAlcoholic")
-                _IsAlcoholic = StructuralObject.SetValidValue(Value)
+                _IsAlcoholic = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("IsAlcoholic")
                 OnIsAlcoholicChanged()
             End Set
         End Property
-
+    
         Private _IsAlcoholic As Nullable(Of Global.System.Boolean)
-        Partial Private Sub OnIsAlcoholicChanging(ByVal value As Nullable(Of Global.System.Boolean))
+        Private Partial Sub OnIsAlcoholicChanging(value As Nullable(Of Global.System.Boolean))
+        End Sub
+    
+        Private Partial Sub OnIsAlcoholicChanged()
         End Sub
 
-        Partial Private Sub OnIsAlcoholicChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1499,8 +1499,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_Cap_CapType", "CapType").Value
             End Get
-            Set(ByVal value As CapType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_Cap_CapType", "CapType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_Cap_CapType", "CapType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -1512,13 +1512,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_Cap_CapType", "CapType")
             End Get
-            Set(ByVal value As EntityReference(Of CapType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapType)("Data.FK_Cap_CapType", "CapType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapType)("Data.FK_Cap_CapType", "CapType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1530,8 +1530,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_Cap_Company", "Company").Value
             End Get
-            Set(ByVal value As Company)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_Cap_Company", "Company").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_Cap_Company", "Company").Value = value
             End Set
         End Property
         ''' <summary>
@@ -1543,13 +1543,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_Cap_Company", "Company")
             End Get
-            Set(ByVal value As EntityReference(Of Company))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Company)("Data.FK_Cap_Company", "Company", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Company)("Data.FK_Cap_Company", "Company", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1561,8 +1561,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_Cap_MainType", "MainType").Value
             End Get
-            Set(ByVal value As MainType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_Cap_MainType", "MainType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_Cap_MainType", "MainType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -1574,13 +1574,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_Cap_MainType", "MainType")
             End Get
-            Set(ByVal value As EntityReference(Of MainType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of MainType)("Data.FK_Cap_MainType", "MainType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of MainType)("Data.FK_Cap_MainType", "MainType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1592,8 +1592,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_Cap_Material", "Material").Value
             End Get
-            Set(ByVal value As Material)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_Cap_Material", "Material").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_Cap_Material", "Material").Value = value
             End Set
         End Property
         ''' <summary>
@@ -1605,13 +1605,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_Cap_Material", "Material")
             End Get
-            Set(ByVal value As EntityReference(Of Material))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Material)("Data.FK_Cap_Material", "Material", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Material)("Data.FK_Cap_Material", "Material", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1623,8 +1623,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Product)("Data.FK_Cap_Product", "Product").Value
             End Get
-            Set(ByVal value As Product)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Product)("Data.FK_Cap_Product", "Product").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Product)("Data.FK_Cap_Product", "Product").Value = value
             End Set
         End Property
         ''' <summary>
@@ -1636,13 +1636,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Product)("Data.FK_Cap_Product", "Product")
             End Get
-            Set(ByVal value As EntityReference(Of Product))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Product)("Data.FK_Cap_Product", "Product", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Product)("Data.FK_Cap_Product", "Product", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1654,8 +1654,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_Cap_ProductType", "ProductType").Value
             End Get
-            Set(ByVal value As ProductType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_Cap_ProductType", "ProductType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_Cap_ProductType", "ProductType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -1667,13 +1667,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_Cap_ProductType", "ProductType")
             End Get
-            Set(ByVal value As EntityReference(Of ProductType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of ProductType)("Data.FK_Cap_ProductType", "ProductType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of ProductType)("Data.FK_Cap_ProductType", "ProductType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1685,8 +1685,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_Cap_Shape", "Shape").Value
             End Get
-            Set(ByVal value As Shape)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_Cap_Shape", "Shape").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_Cap_Shape", "Shape").Value = value
             End Set
         End Property
         ''' <summary>
@@ -1698,13 +1698,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_Cap_Shape", "Shape")
             End Get
-            Set(ByVal value As EntityReference(Of Shape))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Shape)("Data.FK_Cap_Shape", "Shape", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Shape)("Data.FK_Cap_Shape", "Shape", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1716,8 +1716,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_Cap_Storage", "Storage").Value
             End Get
-            Set(ByVal value As Storage)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_Cap_Storage", "Storage").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_Cap_Storage", "Storage").Value = value
             End Set
         End Property
         ''' <summary>
@@ -1729,13 +1729,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_Cap_Storage", "Storage")
             End Get
-            Set(ByVal value As EntityReference(Of Storage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Storage)("Data.FK_Cap_Storage", "Storage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Storage)("Data.FK_Cap_Storage", "Storage", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1747,8 +1747,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_Cap_Target", "Target").Value
             End Get
-            Set(ByVal value As Target)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_Cap_Target", "Target").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_Cap_Target", "Target").Value = value
             End Set
         End Property
         ''' <summary>
@@ -1760,13 +1760,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_Cap_Target", "Target")
             End Get
-            Set(ByVal value As EntityReference(Of Target))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Target)("Data.FK_Cap_Target", "Target", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Target)("Data.FK_Cap_Target", "Target", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1774,17 +1774,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_CapInstance_Cap", "CapInstance")>
-        Public Property CapInstances() As EntityCollection(Of CapInstance)
+         Public Property CapInstances() As EntityCollection(Of CapInstance)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapInstance)("Data.FK_CapInstance_Cap", "CapInstance")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapInstance)("Data.FK_CapInstance_Cap", "CapInstance")
             End Get
-            Set(ByVal value As EntityCollection(Of CapInstance))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapInstance)("Data.FK_CapInstance_Cap", "CapInstance", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapInstance)("Data.FK_CapInstance_Cap", "CapInstance", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1792,17 +1792,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_CapTranslation_Cap", "CapTranslation")>
-        Public Property CapTranslations() As EntityCollection(Of CapTranslation)
+         Public Property CapTranslations() As EntityCollection(Of CapTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapTranslation)("Data.FK_CapTranslation_Cap", "CapTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapTranslation)("Data.FK_CapTranslation_Cap", "CapTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of CapTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapTranslation)("Data.FK_CapTranslation_Cap", "CapTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapTranslation)("Data.FK_CapTranslation_Cap", "CapTranslation", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1810,17 +1810,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Image_Cap", "Image")>
-        Public Property Images() As EntityCollection(Of Image)
+         Public Property Images() As EntityCollection(Of Image)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Image)("Data.FK_Image_Cap", "Image")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Image)("Data.FK_Image_Cap", "Image")
             End Get
-            Set(ByVal value As EntityCollection(Of Image))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Image)("Data.FK_Image_Cap", "Image", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Image)("Data.FK_Image_Cap", "Image", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1828,17 +1828,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "Cap_CapSign_Int", "CapSign")>
-        Public Property CapSigns() As EntityCollection(Of CapSign)
+         Public Property CapSigns() As EntityCollection(Of CapSign)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapSign)("Data.Cap_CapSign_Int", "CapSign")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapSign)("Data.Cap_CapSign_Int", "CapSign")
             End Get
-            Set(ByVal value As EntityCollection(Of CapSign))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapSign)("Data.Cap_CapSign_Int", "CapSign", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapSign)("Data.Cap_CapSign_Int", "CapSign", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1846,17 +1846,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "Cap_Category_Int", "Category")>
-        Public Property Categories() As EntityCollection(Of Category)
+         Public Property Categories() As EntityCollection(Of Category)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Category)("Data.Cap_Category_Int", "Category")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Category)("Data.Cap_Category_Int", "Category")
             End Get
-            Set(ByVal value As EntityCollection(Of Category))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Category)("Data.Cap_Category_Int", "Category", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Category)("Data.Cap_Category_Int", "Category", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -1864,30 +1864,30 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "Cap_Keyword_Int", "Keyword")>
-        Public Property Keywords() As EntityCollection(Of Keyword)
+         Public Property Keywords() As EntityCollection(Of Keyword)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Keyword)("Data.Cap_Keyword_Int", "Keyword")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Keyword)("Data.Cap_Keyword_Int", "Keyword")
             End Get
-            Set(ByVal value As EntityCollection(Of Keyword))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Keyword)("Data.Cap_Keyword_Int", "Keyword", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Keyword)("Data.Cap_Keyword_Int", "Keyword", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="CapInstance")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class CapInstance
+    Public Partial Class CapInstance
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new CapInstance object.
         ''' </summary>
@@ -1896,8 +1896,8 @@ Namespace Data
         ''' <param name="storageID">Initial value of the StorageID property.</param>
         ''' <param name="state">Initial value of the State property.</param>
         ''' <param name="dateCreated">Initial value of the DateCreated property.</param>
-        Public Shared Function CreateCapInstance(ByVal capInstanceID As Global.System.Int32, ByVal capID As Global.System.Int32, ByVal storageID As Global.System.Int32, ByVal state As Global.System.Int16, ByVal dateCreated As Global.System.DateTime) As CapInstance
-            Dim capInstance As CapInstance = New CapInstance
+        Public Shared Function CreateCapInstance(capInstanceID As Global.System.Int32, capID As Global.System.Int32, storageID As Global.System.Int32, state As Global.System.Int16, dateCreated As Global.System.DateTime) As CapInstance
+            Dim capInstance as CapInstance = New CapInstance
             capInstance.CapInstanceID = capInstanceID
             capInstance.CapID = capID
             capInstance.StorageID = storageID
@@ -1906,214 +1906,214 @@ Namespace Data
             Return capInstance
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CapInstanceID() As Global.System.Int32
             Get
                 Return _CapInstanceID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_CapInstanceID <> Value) Then
-                    OnCapInstanceIDChanging(Value)
+                    OnCapInstanceIDChanging(value)
                     ReportPropertyChanging("CapInstanceID")
-                    _CapInstanceID = StructuralObject.SetValidValue(Value)
+                    _CapInstanceID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("CapInstanceID")
                     OnCapInstanceIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _CapInstanceID As Global.System.Int32
-        Partial Private Sub OnCapInstanceIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnCapInstanceIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnCapInstanceIDChanged()
+    
+        Private Partial Sub OnCapInstanceIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CapID() As Global.System.Int32
             Get
                 Return _CapID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnCapIDChanging(Value)
+            Set
+                OnCapIDChanging(value)
                 ReportPropertyChanging("CapID")
-                _CapID = StructuralObject.SetValidValue(Value)
+                _CapID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CapID")
                 OnCapIDChanged()
             End Set
         End Property
-
+    
         Private _CapID As Global.System.Int32
-        Partial Private Sub OnCapIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnCapIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnCapIDChanged()
+    
+        Private Partial Sub OnCapIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property StorageID() As Global.System.Int32
             Get
                 Return _StorageID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnStorageIDChanging(Value)
+            Set
+                OnStorageIDChanging(value)
                 ReportPropertyChanging("StorageID")
-                _StorageID = StructuralObject.SetValidValue(Value)
+                _StorageID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("StorageID")
                 OnStorageIDChanged()
             End Set
         End Property
-
+    
         Private _StorageID As Global.System.Int32
-        Partial Private Sub OnStorageIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnStorageIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnStorageIDChanged()
+    
+        Private Partial Sub OnStorageIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property State() As Global.System.Int16
             Get
                 Return _State
             End Get
-            Set(ByVal value As Global.System.Int16)
-                OnStateChanging(Value)
+            Set
+                OnStateChanging(value)
                 ReportPropertyChanging("State")
-                _State = StructuralObject.SetValidValue(Value)
+                _State = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("State")
                 OnStateChanged()
             End Set
         End Property
-
+    
         Private _State As Global.System.Int16
-        Partial Private Sub OnStateChanging(ByVal value As Global.System.Int16)
+        Private Partial Sub OnStateChanging(value As Global.System.Int16)
         End Sub
-
-        Partial Private Sub OnStateChanged()
+    
+        Private Partial Sub OnStateChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Year() As Nullable(Of Global.System.Int32)
             Get
                 Return _Year
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnYearChanging(Value)
+            Set
+                OnYearChanging(value)
                 ReportPropertyChanging("Year")
-                _Year = StructuralObject.SetValidValue(Value)
+                _Year = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Year")
                 OnYearChanged()
             End Set
         End Property
-
+    
         Private _Year As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnYearChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnYearChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnYearChanged()
+    
+        Private Partial Sub OnYearChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CountryCode() As Global.System.String
             Get
                 Return _CountryCode
             End Get
-            Set(ByVal value As Global.System.String)
-                OnCountryCodeChanging(Value)
+            Set
+                OnCountryCodeChanging(value)
                 ReportPropertyChanging("CountryCode")
-                _CountryCode = StructuralObject.SetValidValue(Value, True)
+                _CountryCode = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("CountryCode")
                 OnCountryCodeChanged()
             End Set
         End Property
-
+    
         Private _CountryCode As Global.System.String
-        Partial Private Sub OnCountryCodeChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnCountryCodeChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnCountryCodeChanged()
+    
+        Private Partial Sub OnCountryCodeChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property DateCreated() As Global.System.DateTime
             Get
                 Return _DateCreated
             End Get
-            Set(ByVal value As Global.System.DateTime)
-                OnDateCreatedChanging(Value)
+            Set
+                OnDateCreatedChanging(value)
                 ReportPropertyChanging("DateCreated")
-                _DateCreated = StructuralObject.SetValidValue(Value)
+                _DateCreated = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("DateCreated")
                 OnDateCreatedChanged()
             End Set
         End Property
-
+    
         Private _DateCreated As Global.System.DateTime
-        Partial Private Sub OnDateCreatedChanging(ByVal value As Global.System.DateTime)
+        Private Partial Sub OnDateCreatedChanging(value As Global.System.DateTime)
         End Sub
-
-        Partial Private Sub OnDateCreatedChanged()
+    
+        Private Partial Sub OnDateCreatedChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Note() As Global.System.String
             Get
                 Return _Note
             End Get
-            Set(ByVal value As Global.System.String)
-                OnNoteChanging(Value)
+            Set
+                OnNoteChanging(value)
                 ReportPropertyChanging("Note")
-                _Note = StructuralObject.SetValidValue(Value, True)
+                _Note = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Note")
                 OnNoteChanged()
             End Set
         End Property
-
+    
         Private _Note As Global.System.String
-        Partial Private Sub OnNoteChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnNoteChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnNoteChanged()
         End Sub
 
-        Partial Private Sub OnNoteChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -2125,8 +2125,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_CapInstance_Cap", "Cap").Value
             End Get
-            Set(ByVal value As Cap)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_CapInstance_Cap", "Cap").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_CapInstance_Cap", "Cap").Value = value
             End Set
         End Property
         ''' <summary>
@@ -2138,13 +2138,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_CapInstance_Cap", "Cap")
             End Get
-            Set(ByVal value As EntityReference(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Cap)("Data.FK_CapInstance_Cap", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Cap)("Data.FK_CapInstance_Cap", "Cap", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -2156,8 +2156,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_CapInstance_Storage", "Storage").Value
             End Get
-            Set(ByVal value As Storage)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_CapInstance_Storage", "Storage").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_CapInstance_Storage", "Storage").Value = value
             End Set
         End Property
         ''' <summary>
@@ -2169,13 +2169,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_CapInstance_Storage", "Storage")
             End Get
-            Set(ByVal value As EntityReference(Of Storage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Storage)("Data.FK_CapInstance_Storage", "Storage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Storage)("Data.FK_CapInstance_Storage", "Storage", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -2183,125 +2183,125 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_CapInstance", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapInstance", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapInstance", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapInstance", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapInstance", "SimpleTranslation", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="CapSign")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class CapSign
+    Public Partial Class CapSign
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new CapSign object.
         ''' </summary>
         ''' <param name="capSignID">Initial value of the CapSignID property.</param>
         ''' <param name="name">Initial value of the Name property.</param>
-        Public Shared Function CreateCapSign(ByVal capSignID As Global.System.Int32, ByVal name As Global.System.String) As CapSign
-            Dim capSign As CapSign = New CapSign
+        Public Shared Function CreateCapSign(capSignID As Global.System.Int32, name As Global.System.String) As CapSign
+            Dim capSign as CapSign = New CapSign
             capSign.CapSignID = capSignID
             capSign.Name = name
             Return capSign
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CapSignID() As Global.System.Int32
             Get
                 Return _CapSignID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_CapSignID <> Value) Then
-                    OnCapSignIDChanging(Value)
+                    OnCapSignIDChanging(value)
                     ReportPropertyChanging("CapSignID")
-                    _CapSignID = StructuralObject.SetValidValue(Value)
+                    _CapSignID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("CapSignID")
                     OnCapSignIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _CapSignID As Global.System.Int32
-        Partial Private Sub OnCapSignIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnCapSignIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnCapSignIDChanged()
+    
+        Private Partial Sub OnCapSignIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Name() As Global.System.String
             Get
                 Return _Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnNameChanging(Value)
+            Set
+                OnNameChanging(value)
                 ReportPropertyChanging("Name")
-                _Name = StructuralObject.SetValidValue(Value, False)
+                _Name = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Name")
                 OnNameChanged()
             End Set
         End Property
-
+    
         Private _Name As Global.System.String
-        Partial Private Sub OnNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnNameChanged()
+    
+        Private Partial Sub OnNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
 
-        Partial Private Sub OnDescriptionChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -2309,17 +2309,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_CapSign", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapSign", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapSign", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapSign", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapSign", "SimpleTranslation", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -2327,17 +2327,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_StoredImage_CapSign", "StoredImage")>
-        Public Property StoredImages() As EntityCollection(Of StoredImage)
+         Public Property StoredImages() As EntityCollection(Of StoredImage)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_CapSign", "StoredImage")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_CapSign", "StoredImage")
             End Get
-            Set(ByVal value As EntityCollection(Of StoredImage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_CapSign", "StoredImage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_CapSign", "StoredImage", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -2345,227 +2345,227 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "Cap_CapSign_Int", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.Cap_CapSign_Int", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.Cap_CapSign_Int", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.Cap_CapSign_Int", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.Cap_CapSign_Int", "Cap", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="CapTranslation")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class CapTranslation
+    Public Partial Class CapTranslation
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new CapTranslation object.
         ''' </summary>
         ''' <param name="capTranslationID">Initial value of the CapTranslationID property.</param>
         ''' <param name="capID">Initial value of the CapID property.</param>
         ''' <param name="culture">Initial value of the Culture property.</param>
-        Public Shared Function CreateCapTranslation(ByVal capTranslationID As Global.System.Int32, ByVal capID As Global.System.Int32, ByVal culture As Global.System.String) As CapTranslation
-            Dim capTranslation As CapTranslation = New CapTranslation
+        Public Shared Function CreateCapTranslation(capTranslationID As Global.System.Int32, capID As Global.System.Int32, culture As Global.System.String) As CapTranslation
+            Dim capTranslation as CapTranslation = New CapTranslation
             capTranslation.CapTranslationID = capTranslationID
             capTranslation.CapID = capID
             capTranslation.Culture = culture
             Return capTranslation
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CapTranslationID() As Global.System.Int32
             Get
                 Return _CapTranslationID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_CapTranslationID <> Value) Then
-                    OnCapTranslationIDChanging(Value)
+                    OnCapTranslationIDChanging(value)
                     ReportPropertyChanging("CapTranslationID")
-                    _CapTranslationID = StructuralObject.SetValidValue(Value)
+                    _CapTranslationID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("CapTranslationID")
                     OnCapTranslationIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _CapTranslationID As Global.System.Int32
-        Partial Private Sub OnCapTranslationIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnCapTranslationIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnCapTranslationIDChanged()
+    
+        Private Partial Sub OnCapTranslationIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CapID() As Global.System.Int32
             Get
                 Return _CapID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnCapIDChanging(Value)
+            Set
+                OnCapIDChanging(value)
                 ReportPropertyChanging("CapID")
-                _CapID = StructuralObject.SetValidValue(Value)
+                _CapID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CapID")
                 OnCapIDChanged()
             End Set
         End Property
-
+    
         Private _CapID As Global.System.Int32
-        Partial Private Sub OnCapIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnCapIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnCapIDChanged()
+    
+        Private Partial Sub OnCapIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Culture() As Global.System.String
             Get
                 Return _Culture
             End Get
-            Set(ByVal value As Global.System.String)
-                OnCultureChanging(Value)
+            Set
+                OnCultureChanging(value)
                 ReportPropertyChanging("Culture")
-                _Culture = StructuralObject.SetValidValue(Value, False)
+                _Culture = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Culture")
                 OnCultureChanged()
             End Set
         End Property
-
+    
         Private _Culture As Global.System.String
-        Partial Private Sub OnCultureChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnCultureChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnCultureChanged()
+    
+        Private Partial Sub OnCultureChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CapName() As Global.System.String
             Get
                 Return _CapName
             End Get
-            Set(ByVal value As Global.System.String)
-                OnCapNameChanging(Value)
+            Set
+                OnCapNameChanging(value)
                 ReportPropertyChanging("CapName")
-                _CapName = StructuralObject.SetValidValue(Value, True)
+                _CapName = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("CapName")
                 OnCapNameChanged()
             End Set
         End Property
-
+    
         Private _CapName As Global.System.String
-        Partial Private Sub OnCapNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnCapNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnCapNameChanged()
+    
+        Private Partial Sub OnCapNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property MainPicture() As Global.System.String
             Get
                 Return _MainPicture
             End Get
-            Set(ByVal value As Global.System.String)
-                OnMainPictureChanging(Value)
+            Set
+                OnMainPictureChanging(value)
                 ReportPropertyChanging("MainPicture")
-                _MainPicture = StructuralObject.SetValidValue(Value, True)
+                _MainPicture = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("MainPicture")
                 OnMainPictureChanged()
             End Set
         End Property
-
+    
         Private _MainPicture As Global.System.String
-        Partial Private Sub OnMainPictureChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnMainPictureChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnMainPictureChanged()
+    
+        Private Partial Sub OnMainPictureChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Note() As Global.System.String
             Get
                 Return _Note
             End Get
-            Set(ByVal value As Global.System.String)
-                OnNoteChanging(Value)
+            Set
+                OnNoteChanging(value)
                 ReportPropertyChanging("Note")
-                _Note = StructuralObject.SetValidValue(Value, True)
+                _Note = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Note")
                 OnNoteChanged()
             End Set
         End Property
-
+    
         Private _Note As Global.System.String
-        Partial Private Sub OnNoteChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnNoteChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnNoteChanged()
+    
+        Private Partial Sub OnNoteChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property AnotherPictures() As Global.System.String
             Get
                 Return _AnotherPictures
             End Get
-            Set(ByVal value As Global.System.String)
-                OnAnotherPicturesChanging(Value)
+            Set
+                OnAnotherPicturesChanging(value)
                 ReportPropertyChanging("AnotherPictures")
-                _AnotherPictures = StructuralObject.SetValidValue(Value, True)
+                _AnotherPictures = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("AnotherPictures")
                 OnAnotherPicturesChanged()
             End Set
         End Property
-
+    
         Private _AnotherPictures As Global.System.String
-        Partial Private Sub OnAnotherPicturesChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnAnotherPicturesChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnAnotherPicturesChanged()
         End Sub
 
-        Partial Private Sub OnAnotherPicturesChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -2577,8 +2577,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_CapTranslation_Cap", "Cap").Value
             End Get
-            Set(ByVal value As Cap)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_CapTranslation_Cap", "Cap").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_CapTranslation_Cap", "Cap").Value = value
             End Set
         End Property
         ''' <summary>
@@ -2590,26 +2590,26 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_CapTranslation_Cap", "Cap")
             End Get
-            Set(ByVal value As EntityReference(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Cap)("Data.FK_CapTranslation_Cap", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Cap)("Data.FK_CapTranslation_Cap", "Cap", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="CapType")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class CapType
+    Public Partial Class CapType
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new CapType object.
         ''' </summary>
@@ -2620,8 +2620,8 @@ Namespace Data
         ''' <param name="height">Initial value of the Height property.</param>
         ''' <param name="materialID">Initial value of the MaterialID property.</param>
         ''' <param name="mainTypeID">Initial value of the MainTypeID property.</param>
-        Public Shared Function CreateCapType(ByVal capTypeID As Global.System.Int32, ByVal typeName As Global.System.String, ByVal shapeID As Global.System.Int32, ByVal size As Global.System.Int32, ByVal height As Global.System.Int32, ByVal materialID As Global.System.Int32, ByVal mainTypeID As Global.System.Int32) As CapType
-            Dim capType As CapType = New CapType
+        Public Shared Function CreateCapType(capTypeID As Global.System.Int32, typeName As Global.System.String, shapeID As Global.System.Int32, size As Global.System.Int32, height As Global.System.Int32, materialID As Global.System.Int32, mainTypeID As Global.System.Int32) As CapType
+            Dim capType as CapType = New CapType
             capType.CapTypeID = capTypeID
             capType.TypeName = typeName
             capType.ShapeID = shapeID
@@ -2632,264 +2632,264 @@ Namespace Data
             Return capType
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CapTypeID() As Global.System.Int32
             Get
                 Return _CapTypeID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_CapTypeID <> Value) Then
-                    OnCapTypeIDChanging(Value)
+                    OnCapTypeIDChanging(value)
                     ReportPropertyChanging("CapTypeID")
-                    _CapTypeID = StructuralObject.SetValidValue(Value)
+                    _CapTypeID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("CapTypeID")
                     OnCapTypeIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _CapTypeID As Global.System.Int32
-        Partial Private Sub OnCapTypeIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnCapTypeIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnCapTypeIDChanged()
+    
+        Private Partial Sub OnCapTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property TypeName() As Global.System.String
             Get
                 Return _TypeName
             End Get
-            Set(ByVal value As Global.System.String)
-                OnTypeNameChanging(Value)
+            Set
+                OnTypeNameChanging(value)
                 ReportPropertyChanging("TypeName")
-                _TypeName = StructuralObject.SetValidValue(Value, False)
+                _TypeName = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("TypeName")
                 OnTypeNameChanged()
             End Set
         End Property
-
+    
         Private _TypeName As Global.System.String
-        Partial Private Sub OnTypeNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnTypeNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnTypeNameChanged()
+    
+        Private Partial Sub OnTypeNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property ShapeID() As Global.System.Int32
             Get
                 Return _ShapeID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnShapeIDChanging(Value)
+            Set
+                OnShapeIDChanging(value)
                 ReportPropertyChanging("ShapeID")
-                _ShapeID = StructuralObject.SetValidValue(Value)
+                _ShapeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ShapeID")
                 OnShapeIDChanged()
             End Set
         End Property
-
+    
         Private _ShapeID As Global.System.Int32
-        Partial Private Sub OnShapeIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnShapeIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnShapeIDChanged()
+    
+        Private Partial Sub OnShapeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Size() As Global.System.Int32
             Get
                 Return _Size
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnSizeChanging(Value)
+            Set
+                OnSizeChanging(value)
                 ReportPropertyChanging("Size")
-                _Size = StructuralObject.SetValidValue(Value)
+                _Size = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Size")
                 OnSizeChanged()
             End Set
         End Property
-
+    
         Private _Size As Global.System.Int32
-        Partial Private Sub OnSizeChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnSizeChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnSizeChanged()
+    
+        Private Partial Sub OnSizeChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Size2() As Nullable(Of Global.System.Int32)
             Get
                 Return _Size2
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnSize2Changing(Value)
+            Set
+                OnSize2Changing(value)
                 ReportPropertyChanging("Size2")
-                _Size2 = StructuralObject.SetValidValue(Value)
+                _Size2 = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Size2")
                 OnSize2Changed()
             End Set
         End Property
-
+    
         Private _Size2 As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnSize2Changing(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnSize2Changing(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnSize2Changed()
+    
+        Private Partial Sub OnSize2Changed()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Height() As Global.System.Int32
             Get
                 Return _Height
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnHeightChanging(Value)
+            Set
+                OnHeightChanging(value)
                 ReportPropertyChanging("Height")
-                _Height = StructuralObject.SetValidValue(Value)
+                _Height = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Height")
                 OnHeightChanged()
             End Set
         End Property
-
+    
         Private _Height As Global.System.Int32
-        Partial Private Sub OnHeightChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnHeightChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnHeightChanged()
+    
+        Private Partial Sub OnHeightChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property MaterialID() As Global.System.Int32
             Get
                 Return _MaterialID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnMaterialIDChanging(Value)
+            Set
+                OnMaterialIDChanging(value)
                 ReportPropertyChanging("MaterialID")
-                _MaterialID = StructuralObject.SetValidValue(Value)
+                _MaterialID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("MaterialID")
                 OnMaterialIDChanged()
             End Set
         End Property
-
+    
         Private _MaterialID As Global.System.Int32
-        Partial Private Sub OnMaterialIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnMaterialIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnMaterialIDChanged()
+    
+        Private Partial Sub OnMaterialIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property MainTypeID() As Global.System.Int32
             Get
                 Return _MainTypeID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnMainTypeIDChanging(Value)
+            Set
+                OnMainTypeIDChanging(value)
                 ReportPropertyChanging("MainTypeID")
-                _MainTypeID = StructuralObject.SetValidValue(Value)
+                _MainTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("MainTypeID")
                 OnMainTypeIDChanged()
             End Set
         End Property
-
+    
         Private _MainTypeID As Global.System.Int32
-        Partial Private Sub OnMainTypeIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnMainTypeIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnMainTypeIDChanged()
+    
+        Private Partial Sub OnMainTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnDescriptionChanged()
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property TargetID() As Nullable(Of Global.System.Int32)
             Get
                 Return _TargetID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnTargetIDChanging(Value)
+            Set
+                OnTargetIDChanging(value)
                 ReportPropertyChanging("TargetID")
-                _TargetID = StructuralObject.SetValidValue(Value)
+                _TargetID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("TargetID")
                 OnTargetIDChanged()
             End Set
         End Property
-
+    
         Private _TargetID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnTargetIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnTargetIDChanging(value As Nullable(Of Global.System.Int32))
+        End Sub
+    
+        Private Partial Sub OnTargetIDChanged()
         End Sub
 
-        Partial Private Sub OnTargetIDChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -2897,17 +2897,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Cap_CapType", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_CapType", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_CapType", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_CapType", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_CapType", "Cap", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -2919,8 +2919,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_CapType_MainType", "MainType").Value
             End Get
-            Set(ByVal value As MainType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_CapType_MainType", "MainType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_CapType_MainType", "MainType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -2932,13 +2932,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_CapType_MainType", "MainType")
             End Get
-            Set(ByVal value As EntityReference(Of MainType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of MainType)("Data.FK_CapType_MainType", "MainType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of MainType)("Data.FK_CapType_MainType", "MainType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -2950,8 +2950,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_CapType_Material", "Material").Value
             End Get
-            Set(ByVal value As Material)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_CapType_Material", "Material").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_CapType_Material", "Material").Value = value
             End Set
         End Property
         ''' <summary>
@@ -2963,13 +2963,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_CapType_Material", "Material")
             End Get
-            Set(ByVal value As EntityReference(Of Material))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Material)("Data.FK_CapType_Material", "Material", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Material)("Data.FK_CapType_Material", "Material", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -2981,8 +2981,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_CapType_Shape", "Shape").Value
             End Get
-            Set(ByVal value As Shape)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_CapType_Shape", "Shape").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_CapType_Shape", "Shape").Value = value
             End Set
         End Property
         ''' <summary>
@@ -2994,13 +2994,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_CapType_Shape", "Shape")
             End Get
-            Set(ByVal value As EntityReference(Of Shape))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Shape)("Data.FK_CapType_Shape", "Shape", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Shape)("Data.FK_CapType_Shape", "Shape", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3012,8 +3012,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_CapType_Target", "Target").Value
             End Get
-            Set(ByVal value As Target)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_CapType_Target", "Target").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_CapType_Target", "Target").Value = value
             End Set
         End Property
         ''' <summary>
@@ -3025,13 +3025,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_CapType_Target", "Target")
             End Get
-            Set(ByVal value As EntityReference(Of Target))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Target)("Data.FK_CapType_Target", "Target", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Target)("Data.FK_CapType_Target", "Target", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3039,17 +3039,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_CapType", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapType", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapType", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapType", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_CapType", "SimpleTranslation", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3057,125 +3057,125 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_StoredImage_CapType", "StoredImage")>
-        Public Property StoredImages() As EntityCollection(Of StoredImage)
+         Public Property StoredImages() As EntityCollection(Of StoredImage)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_CapType", "StoredImage")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_CapType", "StoredImage")
             End Get
-            Set(ByVal value As EntityCollection(Of StoredImage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_CapType", "StoredImage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_CapType", "StoredImage", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Category")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class Category
+    Public Partial Class Category
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new Category object.
         ''' </summary>
         ''' <param name="categoryID">Initial value of the CategoryID property.</param>
         ''' <param name="categoryName">Initial value of the CategoryName property.</param>
-        Public Shared Function CreateCategory(ByVal categoryID As Global.System.Int32, ByVal categoryName As Global.System.String) As Category
-            Dim category As Category = New Category
+        Public Shared Function CreateCategory(categoryID As Global.System.Int32, categoryName As Global.System.String) As Category
+            Dim category as Category = New Category
             category.CategoryID = categoryID
             category.CategoryName = categoryName
             Return category
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CategoryID() As Global.System.Int32
             Get
                 Return _CategoryID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_CategoryID <> Value) Then
-                    OnCategoryIDChanging(Value)
+                    OnCategoryIDChanging(value)
                     ReportPropertyChanging("CategoryID")
-                    _CategoryID = StructuralObject.SetValidValue(Value)
+                    _CategoryID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("CategoryID")
                     OnCategoryIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _CategoryID As Global.System.Int32
-        Partial Private Sub OnCategoryIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnCategoryIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnCategoryIDChanged()
+    
+        Private Partial Sub OnCategoryIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CategoryName() As Global.System.String
             Get
                 Return _CategoryName
             End Get
-            Set(ByVal value As Global.System.String)
-                OnCategoryNameChanging(Value)
+            Set
+                OnCategoryNameChanging(value)
                 ReportPropertyChanging("CategoryName")
-                _CategoryName = StructuralObject.SetValidValue(Value, False)
+                _CategoryName = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("CategoryName")
                 OnCategoryNameChanged()
             End Set
         End Property
-
+    
         Private _CategoryName As Global.System.String
-        Partial Private Sub OnCategoryNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnCategoryNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnCategoryNameChanged()
+    
+        Private Partial Sub OnCategoryNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
 
-        Partial Private Sub OnDescriptionChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3183,17 +3183,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_Category", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Category", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Category", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Category", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Category", "SimpleTranslation", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3201,125 +3201,125 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "Cap_Category_Int", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.Cap_Category_Int", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.Cap_Category_Int", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.Cap_Category_Int", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.Cap_Category_Int", "Cap", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Company")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class Company
+    Public Partial Class Company
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new Company object.
         ''' </summary>
         ''' <param name="companyID">Initial value of the CompanyID property.</param>
         ''' <param name="companyName">Initial value of the CompanyName property.</param>
-        Public Shared Function CreateCompany(ByVal companyID As Global.System.Int32, ByVal companyName As Global.System.String) As Company
-            Dim company As Company = New Company
+        Public Shared Function CreateCompany(companyID As Global.System.Int32, companyName As Global.System.String) As Company
+            Dim company as Company = New Company
             company.CompanyID = companyID
             company.CompanyName = companyName
             Return company
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CompanyID() As Global.System.Int32
             Get
                 Return _CompanyID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_CompanyID <> Value) Then
-                    OnCompanyIDChanging(Value)
+                    OnCompanyIDChanging(value)
                     ReportPropertyChanging("CompanyID")
-                    _CompanyID = StructuralObject.SetValidValue(Value)
+                    _CompanyID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("CompanyID")
                     OnCompanyIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _CompanyID As Global.System.Int32
-        Partial Private Sub OnCompanyIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnCompanyIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnCompanyIDChanged()
+    
+        Private Partial Sub OnCompanyIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CompanyName() As Global.System.String
             Get
                 Return _CompanyName
             End Get
-            Set(ByVal value As Global.System.String)
-                OnCompanyNameChanging(Value)
+            Set
+                OnCompanyNameChanging(value)
                 ReportPropertyChanging("CompanyName")
-                _CompanyName = StructuralObject.SetValidValue(Value, False)
+                _CompanyName = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("CompanyName")
                 OnCompanyNameChanged()
             End Set
         End Property
-
+    
         Private _CompanyName As Global.System.String
-        Partial Private Sub OnCompanyNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnCompanyNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnCompanyNameChanged()
+    
+        Private Partial Sub OnCompanyNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
 
-        Partial Private Sub OnDescriptionChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3327,17 +3327,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Cap_Company", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Company", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Company", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Company", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Company", "Cap", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3345,17 +3345,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Product_Company", "Product")>
-        Public Property Products() As EntityCollection(Of Product)
+         Public Property Products() As EntityCollection(Of Product)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Product)("Data.FK_Product_Company", "Product")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Product)("Data.FK_Product_Company", "Product")
             End Get
-            Set(ByVal value As EntityCollection(Of Product))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Product)("Data.FK_Product_Company", "Product", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Product)("Data.FK_Product_Company", "Product", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3363,30 +3363,30 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_Company", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Company", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Company", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Company", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Company", "SimpleTranslation", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Image")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class Image
+    Public Partial Class Image
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new Image object.
         ''' </summary>
@@ -3394,8 +3394,8 @@ Namespace Data
         ''' <param name="relativePath">Initial value of the RelativePath property.</param>
         ''' <param name="capID">Initial value of the CapID property.</param>
         ''' <param name="isMain">Initial value of the IsMain property.</param>
-        Public Shared Function CreateImage(ByVal imageID As Global.System.Int32, ByVal relativePath As Global.System.String, ByVal capID As Global.System.Int32, ByVal isMain As Global.System.Boolean) As Image
-            Dim image As Image = New Image
+        Public Shared Function CreateImage(imageID As Global.System.Int32, relativePath As Global.System.String, capID As Global.System.Int32, isMain As Global.System.Boolean) As Image
+            Dim image as Image = New Image
             image.ImageID = imageID
             image.RelativePath = relativePath
             image.CapID = capID
@@ -3403,114 +3403,114 @@ Namespace Data
             Return image
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property ImageID() As Global.System.Int32
             Get
                 Return _ImageID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_ImageID <> Value) Then
-                    OnImageIDChanging(Value)
+                    OnImageIDChanging(value)
                     ReportPropertyChanging("ImageID")
-                    _ImageID = StructuralObject.SetValidValue(Value)
+                    _ImageID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("ImageID")
                     OnImageIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _ImageID As Global.System.Int32
-        Partial Private Sub OnImageIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnImageIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnImageIDChanged()
+    
+        Private Partial Sub OnImageIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property RelativePath() As Global.System.String
             Get
                 Return _RelativePath
             End Get
-            Set(ByVal value As Global.System.String)
-                OnRelativePathChanging(Value)
+            Set
+                OnRelativePathChanging(value)
                 ReportPropertyChanging("RelativePath")
-                _RelativePath = StructuralObject.SetValidValue(Value, False)
+                _RelativePath = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("RelativePath")
                 OnRelativePathChanged()
             End Set
         End Property
-
+    
         Private _RelativePath As Global.System.String
-        Partial Private Sub OnRelativePathChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnRelativePathChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnRelativePathChanged()
+    
+        Private Partial Sub OnRelativePathChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CapID() As Global.System.Int32
             Get
                 Return _CapID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnCapIDChanging(Value)
+            Set
+                OnCapIDChanging(value)
                 ReportPropertyChanging("CapID")
-                _CapID = StructuralObject.SetValidValue(Value)
+                _CapID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CapID")
                 OnCapIDChanged()
             End Set
         End Property
-
+    
         Private _CapID As Global.System.Int32
-        Partial Private Sub OnCapIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnCapIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnCapIDChanged()
+    
+        Private Partial Sub OnCapIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property IsMain() As Global.System.Boolean
             Get
                 Return _IsMain
             End Get
-            Set(ByVal value As Global.System.Boolean)
-                OnIsMainChanging(Value)
+            Set
+                OnIsMainChanging(value)
                 ReportPropertyChanging("IsMain")
-                _IsMain = StructuralObject.SetValidValue(Value)
+                _IsMain = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("IsMain")
                 OnIsMainChanged()
             End Set
         End Property
-
+    
         Private _IsMain As Global.System.Boolean
-        Partial Private Sub OnIsMainChanging(ByVal value As Global.System.Boolean)
+        Private Partial Sub OnIsMainChanging(value As Global.System.Boolean)
+        End Sub
+    
+        Private Partial Sub OnIsMainChanged()
         End Sub
 
-        Partial Private Sub OnIsMainChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3522,8 +3522,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_Image_Cap", "Cap").Value
             End Get
-            Set(ByVal value As Cap)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_Image_Cap", "Cap").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_Image_Cap", "Cap").Value = value
             End Set
         End Property
         ''' <summary>
@@ -3535,13 +3535,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Cap)("Data.FK_Image_Cap", "Cap")
             End Get
-            Set(ByVal value As EntityReference(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Cap)("Data.FK_Image_Cap", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Cap)("Data.FK_Image_Cap", "Cap", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3549,180 +3549,180 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_StoredImage_Image", "StoredImage")>
-        Public Property StoredImages() As EntityCollection(Of StoredImage)
+         Public Property StoredImages() As EntityCollection(Of StoredImage)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Image", "StoredImage")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Image", "StoredImage")
             End Get
-            Set(ByVal value As EntityCollection(Of StoredImage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Image", "StoredImage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Image", "StoredImage", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="ISO_3166_1")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class ISO_3166_1
+    Public Partial Class ISO_3166_1
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new ISO_3166_1 object.
         ''' </summary>
         ''' <param name="alpha_2">Initial value of the Alpha_2 property.</param>
         ''' <param name="alpha_3">Initial value of the Alpha_3 property.</param>
-        Public Shared Function CreateISO_3166_1(ByVal alpha_2 As Global.System.String, ByVal alpha_3 As Global.System.String) As ISO_3166_1
-            Dim iSO_3166_1 As ISO_3166_1 = New ISO_3166_1
+        Public Shared Function CreateISO_3166_1(alpha_2 As Global.System.String, alpha_3 As Global.System.String) As ISO_3166_1
+            Dim iSO_3166_1 as ISO_3166_1 = New ISO_3166_1
             iSO_3166_1.Alpha_2 = alpha_2
             iSO_3166_1.Alpha_3 = alpha_3
             Return iSO_3166_1
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Alpha_2() As Global.System.String
             Get
                 Return _Alpha_2
             End Get
-            Set(ByVal value As Global.System.String)
+            Set
                 If (_Alpha_2 <> Value) Then
-                    OnAlpha_2Changing(Value)
+                    OnAlpha_2Changing(value)
                     ReportPropertyChanging("Alpha_2")
-                    _Alpha_2 = StructuralObject.SetValidValue(Value, False)
+                    _Alpha_2 = StructuralObject.SetValidValue(value, false)
                     ReportPropertyChanged("Alpha_2")
                     OnAlpha_2Changed()
                 End If
             End Set
         End Property
-
+    
         Private _Alpha_2 As Global.System.String
-        Partial Private Sub OnAlpha_2Changing(ByVal value As Global.System.String)
+        Private Partial Sub OnAlpha_2Changing(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnAlpha_2Changed()
+    
+        Private Partial Sub OnAlpha_2Changed()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Alpha_3() As Global.System.String
             Get
                 Return _Alpha_3
             End Get
-            Set(ByVal value As Global.System.String)
-                OnAlpha_3Changing(Value)
+            Set
+                OnAlpha_3Changing(value)
                 ReportPropertyChanging("Alpha_3")
-                _Alpha_3 = StructuralObject.SetValidValue(Value, False)
+                _Alpha_3 = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Alpha_3")
                 OnAlpha_3Changed()
             End Set
         End Property
-
+    
         Private _Alpha_3 As Global.System.String
-        Partial Private Sub OnAlpha_3Changing(ByVal value As Global.System.String)
+        Private Partial Sub OnAlpha_3Changing(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnAlpha_3Changed()
         End Sub
 
-        Partial Private Sub OnAlpha_3Changed()
-        End Sub
-
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Keyword")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class Keyword
+    Public Partial Class Keyword
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new Keyword object.
         ''' </summary>
         ''' <param name="keywordID">Initial value of the KeywordID property.</param>
         ''' <param name="keywordName">Initial value of the KeywordName property.</param>
-        Public Shared Function CreateKeyword(ByVal keywordID As Global.System.Int32, ByVal keywordName As Global.System.String) As Keyword
-            Dim keyword As Keyword = New Keyword
+        Public Shared Function CreateKeyword(keywordID As Global.System.Int32, keywordName As Global.System.String) As Keyword
+            Dim keyword as Keyword = New Keyword
             keyword.KeywordID = keywordID
             keyword.KeywordName = keywordName
             Return keyword
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property KeywordID() As Global.System.Int32
             Get
                 Return _KeywordID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_KeywordID <> Value) Then
-                    OnKeywordIDChanging(Value)
+                    OnKeywordIDChanging(value)
                     ReportPropertyChanging("KeywordID")
-                    _KeywordID = StructuralObject.SetValidValue(Value)
+                    _KeywordID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("KeywordID")
                     OnKeywordIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _KeywordID As Global.System.Int32
-        Partial Private Sub OnKeywordIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnKeywordIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnKeywordIDChanged()
+    
+        Private Partial Sub OnKeywordIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property KeywordName() As Global.System.String
             Get
                 Return _KeywordName
             End Get
-            Set(ByVal value As Global.System.String)
-                OnKeywordNameChanging(Value)
+            Set
+                OnKeywordNameChanging(value)
                 ReportPropertyChanging("KeywordName")
-                _KeywordName = StructuralObject.SetValidValue(Value, False)
+                _KeywordName = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("KeywordName")
                 OnKeywordNameChanged()
             End Set
         End Property
-
+    
         Private _KeywordName As Global.System.String
-        Partial Private Sub OnKeywordNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnKeywordNameChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnKeywordNameChanged()
         End Sub
 
-        Partial Private Sub OnKeywordNameChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3730,17 +3730,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_Keyword", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Keyword", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Keyword", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Keyword", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Keyword", "SimpleTranslation", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3748,125 +3748,125 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "Cap_Keyword_Int", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.Cap_Keyword_Int", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.Cap_Keyword_Int", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.Cap_Keyword_Int", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.Cap_Keyword_Int", "Cap", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="MainType")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class MainType
+    Public Partial Class MainType
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new MainType object.
         ''' </summary>
         ''' <param name="mainTypeID">Initial value of the MainTypeID property.</param>
         ''' <param name="typeName">Initial value of the TypeName property.</param>
-        Public Shared Function CreateMainType(ByVal mainTypeID As Global.System.Int32, ByVal typeName As Global.System.String) As MainType
-            Dim mainType As MainType = New MainType
+        Public Shared Function CreateMainType(mainTypeID As Global.System.Int32, typeName As Global.System.String) As MainType
+            Dim mainType as MainType = New MainType
             mainType.MainTypeID = mainTypeID
             mainType.TypeName = typeName
             Return mainType
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property MainTypeID() As Global.System.Int32
             Get
                 Return _MainTypeID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_MainTypeID <> Value) Then
-                    OnMainTypeIDChanging(Value)
+                    OnMainTypeIDChanging(value)
                     ReportPropertyChanging("MainTypeID")
-                    _MainTypeID = StructuralObject.SetValidValue(Value)
+                    _MainTypeID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("MainTypeID")
                     OnMainTypeIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _MainTypeID As Global.System.Int32
-        Partial Private Sub OnMainTypeIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnMainTypeIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnMainTypeIDChanged()
+    
+        Private Partial Sub OnMainTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property TypeName() As Global.System.String
             Get
                 Return _TypeName
             End Get
-            Set(ByVal value As Global.System.String)
-                OnTypeNameChanging(Value)
+            Set
+                OnTypeNameChanging(value)
                 ReportPropertyChanging("TypeName")
-                _TypeName = StructuralObject.SetValidValue(Value, False)
+                _TypeName = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("TypeName")
                 OnTypeNameChanged()
             End Set
         End Property
-
+    
         Private _TypeName As Global.System.String
-        Partial Private Sub OnTypeNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnTypeNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnTypeNameChanged()
+    
+        Private Partial Sub OnTypeNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
 
-        Partial Private Sub OnDescriptionChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3874,17 +3874,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Cap_MainType", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_MainType", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_MainType", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_MainType", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_MainType", "Cap", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3892,17 +3892,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_CapType_MainType", "CapType")>
-        Public Property CapTypes() As EntityCollection(Of CapType)
+         Public Property CapTypes() As EntityCollection(Of CapType)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapType)("Data.FK_CapType_MainType", "CapType")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapType)("Data.FK_CapType_MainType", "CapType")
             End Get
-            Set(ByVal value As EntityCollection(Of CapType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapType)("Data.FK_CapType_MainType", "CapType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapType)("Data.FK_CapType_MainType", "CapType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3910,17 +3910,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_MainType", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_MainType", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_MainType", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_MainType", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_MainType", "SimpleTranslation", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -3928,125 +3928,125 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_StoredImage_MainType", "StoredImage")>
-        Public Property StoredImages() As EntityCollection(Of StoredImage)
+         Public Property StoredImages() As EntityCollection(Of StoredImage)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_MainType", "StoredImage")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_MainType", "StoredImage")
             End Get
-            Set(ByVal value As EntityCollection(Of StoredImage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_MainType", "StoredImage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_MainType", "StoredImage", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Material")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class Material
+    Public Partial Class Material
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new Material object.
         ''' </summary>
         ''' <param name="materialID">Initial value of the MaterialID property.</param>
         ''' <param name="name">Initial value of the Name property.</param>
-        Public Shared Function CreateMaterial(ByVal materialID As Global.System.Int32, ByVal name As Global.System.String) As Material
-            Dim material As Material = New Material
+        Public Shared Function CreateMaterial(materialID As Global.System.Int32, name As Global.System.String) As Material
+            Dim material as Material = New Material
             material.MaterialID = materialID
             material.Name = name
             Return material
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property MaterialID() As Global.System.Int32
             Get
                 Return _MaterialID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_MaterialID <> Value) Then
-                    OnMaterialIDChanging(Value)
+                    OnMaterialIDChanging(value)
                     ReportPropertyChanging("MaterialID")
-                    _MaterialID = StructuralObject.SetValidValue(Value)
+                    _MaterialID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("MaterialID")
                     OnMaterialIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _MaterialID As Global.System.Int32
-        Partial Private Sub OnMaterialIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnMaterialIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnMaterialIDChanged()
+    
+        Private Partial Sub OnMaterialIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Name() As Global.System.String
             Get
                 Return _Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnNameChanging(Value)
+            Set
+                OnNameChanging(value)
                 ReportPropertyChanging("Name")
-                _Name = StructuralObject.SetValidValue(Value, False)
+                _Name = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Name")
                 OnNameChanged()
             End Set
         End Property
-
+    
         Private _Name As Global.System.String
-        Partial Private Sub OnNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnNameChanged()
+    
+        Private Partial Sub OnNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
 
-        Partial Private Sub OnDescriptionChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4054,17 +4054,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Cap_Material", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Material", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Material", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Material", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Material", "Cap", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4072,17 +4072,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_CapType_Material", "CapType")>
-        Public Property CapTypes() As EntityCollection(Of CapType)
+         Public Property CapTypes() As EntityCollection(Of CapType)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapType)("Data.FK_CapType_Material", "CapType")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapType)("Data.FK_CapType_Material", "CapType")
             End Get
-            Set(ByVal value As EntityCollection(Of CapType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapType)("Data.FK_CapType_Material", "CapType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapType)("Data.FK_CapType_Material", "CapType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4090,175 +4090,175 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_Material", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Material", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Material", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Material", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Material", "SimpleTranslation", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Product")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class Product
+    Public Partial Class Product
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new Product object.
         ''' </summary>
         ''' <param name="productID">Initial value of the ProductID property.</param>
         ''' <param name="productName">Initial value of the ProductName property.</param>
-        Public Shared Function CreateProduct(ByVal productID As Global.System.Int32, ByVal productName As Global.System.String) As Product
-            Dim product As Product = New Product
+        Public Shared Function CreateProduct(productID As Global.System.Int32, productName As Global.System.String) As Product
+            Dim product as Product = New Product
             product.ProductID = productID
             product.ProductName = productName
             Return product
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property ProductID() As Global.System.Int32
             Get
                 Return _ProductID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_ProductID <> Value) Then
-                    OnProductIDChanging(Value)
+                    OnProductIDChanging(value)
                     ReportPropertyChanging("ProductID")
-                    _ProductID = StructuralObject.SetValidValue(Value)
+                    _ProductID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("ProductID")
                     OnProductIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _ProductID As Global.System.Int32
-        Partial Private Sub OnProductIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnProductIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnProductIDChanged()
+    
+        Private Partial Sub OnProductIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property ProductName() As Global.System.String
             Get
                 Return _ProductName
             End Get
-            Set(ByVal value As Global.System.String)
-                OnProductNameChanging(Value)
+            Set
+                OnProductNameChanging(value)
                 ReportPropertyChanging("ProductName")
-                _ProductName = StructuralObject.SetValidValue(Value, False)
+                _ProductName = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("ProductName")
                 OnProductNameChanged()
             End Set
         End Property
-
+    
         Private _ProductName As Global.System.String
-        Partial Private Sub OnProductNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnProductNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnProductNameChanged()
+    
+        Private Partial Sub OnProductNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CompanyID() As Nullable(Of Global.System.Int32)
             Get
                 Return _CompanyID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnCompanyIDChanging(Value)
+            Set
+                OnCompanyIDChanging(value)
                 ReportPropertyChanging("CompanyID")
-                _CompanyID = StructuralObject.SetValidValue(Value)
+                _CompanyID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CompanyID")
                 OnCompanyIDChanged()
             End Set
         End Property
-
+    
         Private _CompanyID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnCompanyIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnCompanyIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnCompanyIDChanged()
+    
+        Private Partial Sub OnCompanyIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property ProductTypeID() As Nullable(Of Global.System.Int32)
             Get
                 Return _ProductTypeID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnProductTypeIDChanging(Value)
+            Set
+                OnProductTypeIDChanging(value)
                 ReportPropertyChanging("ProductTypeID")
-                _ProductTypeID = StructuralObject.SetValidValue(Value)
+                _ProductTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ProductTypeID")
                 OnProductTypeIDChanged()
             End Set
         End Property
-
+    
         Private _ProductTypeID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnProductTypeIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnProductTypeIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnProductTypeIDChanged()
+    
+        Private Partial Sub OnProductTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
 
-        Partial Private Sub OnDescriptionChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4266,17 +4266,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Cap_Product", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Product", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Product", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Product", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Product", "Cap", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4288,8 +4288,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_Product_Company", "Company").Value
             End Get
-            Set(ByVal value As Company)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_Product_Company", "Company").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_Product_Company", "Company").Value = value
             End Set
         End Property
         ''' <summary>
@@ -4301,13 +4301,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_Product_Company", "Company")
             End Get
-            Set(ByVal value As EntityReference(Of Company))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Company)("Data.FK_Product_Company", "Company", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Company)("Data.FK_Product_Company", "Company", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4319,8 +4319,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_Product_ProductType", "ProductType").Value
             End Get
-            Set(ByVal value As ProductType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_Product_ProductType", "ProductType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_Product_ProductType", "ProductType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -4332,13 +4332,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_Product_ProductType", "ProductType")
             End Get
-            Set(ByVal value As EntityReference(Of ProductType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of ProductType)("Data.FK_Product_ProductType", "ProductType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of ProductType)("Data.FK_Product_ProductType", "ProductType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4346,175 +4346,175 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_Product", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Product", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Product", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Product", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Product", "SimpleTranslation", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="ProductType")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class ProductType
+    Public Partial Class ProductType
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new ProductType object.
         ''' </summary>
         ''' <param name="productTypeID">Initial value of the ProductTypeID property.</param>
         ''' <param name="productTypeName">Initial value of the ProductTypeName property.</param>
-        Public Shared Function CreateProductType(ByVal productTypeID As Global.System.Int32, ByVal productTypeName As Global.System.String) As ProductType
-            Dim productType As ProductType = New ProductType
+        Public Shared Function CreateProductType(productTypeID As Global.System.Int32, productTypeName As Global.System.String) As ProductType
+            Dim productType as ProductType = New ProductType
             productType.ProductTypeID = productTypeID
             productType.ProductTypeName = productTypeName
             Return productType
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property ProductTypeID() As Global.System.Int32
             Get
                 Return _ProductTypeID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_ProductTypeID <> Value) Then
-                    OnProductTypeIDChanging(Value)
+                    OnProductTypeIDChanging(value)
                     ReportPropertyChanging("ProductTypeID")
-                    _ProductTypeID = StructuralObject.SetValidValue(Value)
+                    _ProductTypeID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("ProductTypeID")
                     OnProductTypeIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _ProductTypeID As Global.System.Int32
-        Partial Private Sub OnProductTypeIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnProductTypeIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnProductTypeIDChanged()
+    
+        Private Partial Sub OnProductTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property ProductTypeName() As Global.System.String
             Get
                 Return _ProductTypeName
             End Get
-            Set(ByVal value As Global.System.String)
-                OnProductTypeNameChanging(Value)
+            Set
+                OnProductTypeNameChanging(value)
                 ReportPropertyChanging("ProductTypeName")
-                _ProductTypeName = StructuralObject.SetValidValue(Value, False)
+                _ProductTypeName = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("ProductTypeName")
                 OnProductTypeNameChanged()
             End Set
         End Property
-
+    
         Private _ProductTypeName As Global.System.String
-        Partial Private Sub OnProductTypeNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnProductTypeNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnProductTypeNameChanged()
+    
+        Private Partial Sub OnProductTypeNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnDescriptionChanged()
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property IsDrink() As Nullable(Of Global.System.Boolean)
             Get
                 Return _IsDrink
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Boolean))
-                OnIsDrinkChanging(Value)
+            Set
+                OnIsDrinkChanging(value)
                 ReportPropertyChanging("IsDrink")
-                _IsDrink = StructuralObject.SetValidValue(Value)
+                _IsDrink = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("IsDrink")
                 OnIsDrinkChanged()
             End Set
         End Property
-
+    
         Private _IsDrink As Nullable(Of Global.System.Boolean)
-        Partial Private Sub OnIsDrinkChanging(ByVal value As Nullable(Of Global.System.Boolean))
+        Private Partial Sub OnIsDrinkChanging(value As Nullable(Of Global.System.Boolean))
         End Sub
-
-        Partial Private Sub OnIsDrinkChanged()
+    
+        Private Partial Sub OnIsDrinkChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property IsAlcoholic() As Nullable(Of Global.System.Boolean)
             Get
                 Return _IsAlcoholic
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Boolean))
-                OnIsAlcoholicChanging(Value)
+            Set
+                OnIsAlcoholicChanging(value)
                 ReportPropertyChanging("IsAlcoholic")
-                _IsAlcoholic = StructuralObject.SetValidValue(Value)
+                _IsAlcoholic = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("IsAlcoholic")
                 OnIsAlcoholicChanged()
             End Set
         End Property
-
+    
         Private _IsAlcoholic As Nullable(Of Global.System.Boolean)
-        Partial Private Sub OnIsAlcoholicChanging(ByVal value As Nullable(Of Global.System.Boolean))
+        Private Partial Sub OnIsAlcoholicChanging(value As Nullable(Of Global.System.Boolean))
+        End Sub
+    
+        Private Partial Sub OnIsAlcoholicChanged()
         End Sub
 
-        Partial Private Sub OnIsAlcoholicChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4522,17 +4522,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Cap_ProductType", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_ProductType", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_ProductType", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_ProductType", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_ProductType", "Cap", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4540,17 +4540,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Product_ProductType", "Product")>
-        Public Property Products() As EntityCollection(Of Product)
+         Public Property Products() As EntityCollection(Of Product)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Product)("Data.FK_Product_ProductType", "Product")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Product)("Data.FK_Product_ProductType", "Product")
             End Get
-            Set(ByVal value As EntityCollection(Of Product))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Product)("Data.FK_Product_ProductType", "Product", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Product)("Data.FK_Product_ProductType", "Product", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4558,309 +4558,309 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_ProductType", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_ProductType", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_ProductType", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_ProductType", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_ProductType", "SimpleTranslation", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="PseudoCategory")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class PseudoCategory
+    Public Partial Class PseudoCategory
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new PseudoCategory object.
         ''' </summary>
         ''' <param name="pseudoCategoryID">Initial value of the PseudoCategoryID property.</param>
         ''' <param name="name">Initial value of the Name property.</param>
         ''' <param name="condition">Initial value of the Condition property.</param>
-        Public Shared Function CreatePseudoCategory(ByVal pseudoCategoryID As Global.System.Int32, ByVal name As Global.System.String, ByVal condition As Global.System.String) As PseudoCategory
-            Dim pseudoCategory As PseudoCategory = New PseudoCategory
+        Public Shared Function CreatePseudoCategory(pseudoCategoryID As Global.System.Int32, name As Global.System.String, condition As Global.System.String) As PseudoCategory
+            Dim pseudoCategory as PseudoCategory = New PseudoCategory
             pseudoCategory.PseudoCategoryID = pseudoCategoryID
             pseudoCategory.Name = name
             pseudoCategory.Condition = condition
             Return pseudoCategory
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property PseudoCategoryID() As Global.System.Int32
             Get
                 Return _PseudoCategoryID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_PseudoCategoryID <> Value) Then
-                    OnPseudoCategoryIDChanging(Value)
+                    OnPseudoCategoryIDChanging(value)
                     ReportPropertyChanging("PseudoCategoryID")
-                    _PseudoCategoryID = StructuralObject.SetValidValue(Value)
+                    _PseudoCategoryID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("PseudoCategoryID")
                     OnPseudoCategoryIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _PseudoCategoryID As Global.System.Int32
-        Partial Private Sub OnPseudoCategoryIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnPseudoCategoryIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnPseudoCategoryIDChanged()
+    
+        Private Partial Sub OnPseudoCategoryIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Name() As Global.System.String
             Get
                 Return _Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnNameChanging(Value)
+            Set
+                OnNameChanging(value)
                 ReportPropertyChanging("Name")
-                _Name = StructuralObject.SetValidValue(Value, False)
+                _Name = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Name")
                 OnNameChanged()
             End Set
         End Property
-
+    
         Private _Name As Global.System.String
-        Partial Private Sub OnNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnNameChanged()
+    
+        Private Partial Sub OnNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnDescriptionChanged()
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Condition() As Global.System.String
             Get
                 Return _Condition
             End Get
-            Set(ByVal value As Global.System.String)
-                OnConditionChanging(Value)
+            Set
+                OnConditionChanging(value)
                 ReportPropertyChanging("Condition")
-                _Condition = StructuralObject.SetValidValue(Value, False)
+                _Condition = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Condition")
                 OnConditionChanged()
             End Set
         End Property
-
+    
         Private _Condition As Global.System.String
-        Partial Private Sub OnConditionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnConditionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnConditionChanged()
         End Sub
 
-        Partial Private Sub OnConditionChanged()
-        End Sub
-
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Shape")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class Shape
+    Public Partial Class Shape
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new Shape object.
         ''' </summary>
         ''' <param name="shapeID">Initial value of the ShapeID property.</param>
         ''' <param name="name">Initial value of the Name property.</param>
         ''' <param name="size1Name">Initial value of the Size1Name property.</param>
-        Public Shared Function CreateShape(ByVal shapeID As Global.System.Int32, ByVal name As Global.System.String, ByVal size1Name As Global.System.String) As Shape
-            Dim shape As Shape = New Shape
+        Public Shared Function CreateShape(shapeID As Global.System.Int32, name As Global.System.String, size1Name As Global.System.String) As Shape
+            Dim shape as Shape = New Shape
             shape.ShapeID = shapeID
             shape.Name = name
             shape.Size1Name = size1Name
             Return shape
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property ShapeID() As Global.System.Int32
             Get
                 Return _ShapeID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_ShapeID <> Value) Then
-                    OnShapeIDChanging(Value)
+                    OnShapeIDChanging(value)
                     ReportPropertyChanging("ShapeID")
-                    _ShapeID = StructuralObject.SetValidValue(Value)
+                    _ShapeID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("ShapeID")
                     OnShapeIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _ShapeID As Global.System.Int32
-        Partial Private Sub OnShapeIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnShapeIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnShapeIDChanged()
+    
+        Private Partial Sub OnShapeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Name() As Global.System.String
             Get
                 Return _Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnNameChanging(Value)
+            Set
+                OnNameChanging(value)
                 ReportPropertyChanging("Name")
-                _Name = StructuralObject.SetValidValue(Value, False)
+                _Name = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Name")
                 OnNameChanged()
             End Set
         End Property
-
+    
         Private _Name As Global.System.String
-        Partial Private Sub OnNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnNameChanged()
+    
+        Private Partial Sub OnNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Size1Name() As Global.System.String
             Get
                 Return _Size1Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnSize1NameChanging(Value)
+            Set
+                OnSize1NameChanging(value)
                 ReportPropertyChanging("Size1Name")
-                _Size1Name = StructuralObject.SetValidValue(Value, False)
+                _Size1Name = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Size1Name")
                 OnSize1NameChanged()
             End Set
         End Property
-
+    
         Private _Size1Name As Global.System.String
-        Partial Private Sub OnSize1NameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnSize1NameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnSize1NameChanged()
+    
+        Private Partial Sub OnSize1NameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Size2Name() As Global.System.String
             Get
                 Return _Size2Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnSize2NameChanging(Value)
+            Set
+                OnSize2NameChanging(value)
                 ReportPropertyChanging("Size2Name")
-                _Size2Name = StructuralObject.SetValidValue(Value, True)
+                _Size2Name = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Size2Name")
                 OnSize2NameChanged()
             End Set
         End Property
-
+    
         Private _Size2Name As Global.System.String
-        Partial Private Sub OnSize2NameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnSize2NameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnSize2NameChanged()
+    
+        Private Partial Sub OnSize2NameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
 
-        Partial Private Sub OnDescriptionChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4868,17 +4868,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Cap_Shape", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Shape", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Shape", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Shape", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Shape", "Cap", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4886,17 +4886,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_CapType_Shape", "CapType")>
-        Public Property CapTypes() As EntityCollection(Of CapType)
+         Public Property CapTypes() As EntityCollection(Of CapType)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapType)("Data.FK_CapType_Shape", "CapType")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapType)("Data.FK_CapType_Shape", "CapType")
             End Get
-            Set(ByVal value As EntityCollection(Of CapType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapType)("Data.FK_CapType_Shape", "CapType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapType)("Data.FK_CapType_Shape", "CapType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4904,17 +4904,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_ShapeTranslation_Shape", "ShapeTranslation")>
-        Public Property ShapeTranslations() As EntityCollection(Of ShapeTranslation)
+         Public Property ShapeTranslations() As EntityCollection(Of ShapeTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of ShapeTranslation)("Data.FK_ShapeTranslation_Shape", "ShapeTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of ShapeTranslation)("Data.FK_ShapeTranslation_Shape", "ShapeTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of ShapeTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of ShapeTranslation)("Data.FK_ShapeTranslation_Shape", "ShapeTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of ShapeTranslation)("Data.FK_ShapeTranslation_Shape", "ShapeTranslation", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -4922,227 +4922,227 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_StoredImage_Shape", "StoredImage")>
-        Public Property StoredImages() As EntityCollection(Of StoredImage)
+         Public Property StoredImages() As EntityCollection(Of StoredImage)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Shape", "StoredImage")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Shape", "StoredImage")
             End Get
-            Set(ByVal value As EntityCollection(Of StoredImage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Shape", "StoredImage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Shape", "StoredImage", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="ShapeTranslation")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class ShapeTranslation
+    Public Partial Class ShapeTranslation
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new ShapeTranslation object.
         ''' </summary>
         ''' <param name="shapeTranslationID">Initial value of the ShapeTranslationID property.</param>
         ''' <param name="shapeID">Initial value of the ShapeID property.</param>
         ''' <param name="culture">Initial value of the Culture property.</param>
-        Public Shared Function CreateShapeTranslation(ByVal shapeTranslationID As Global.System.Int32, ByVal shapeID As Global.System.Int32, ByVal culture As Global.System.String) As ShapeTranslation
-            Dim shapeTranslation As ShapeTranslation = New ShapeTranslation
+        Public Shared Function CreateShapeTranslation(shapeTranslationID As Global.System.Int32, shapeID As Global.System.Int32, culture As Global.System.String) As ShapeTranslation
+            Dim shapeTranslation as ShapeTranslation = New ShapeTranslation
             shapeTranslation.ShapeTranslationID = shapeTranslationID
             shapeTranslation.ShapeID = shapeID
             shapeTranslation.Culture = culture
             Return shapeTranslation
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property ShapeTranslationID() As Global.System.Int32
             Get
                 Return _ShapeTranslationID
             End Get
-            Set(ByVal value As Global.System.Int32)
+            Set
                 If (_ShapeTranslationID <> Value) Then
-                    OnShapeTranslationIDChanging(Value)
+                    OnShapeTranslationIDChanging(value)
                     ReportPropertyChanging("ShapeTranslationID")
-                    _ShapeTranslationID = StructuralObject.SetValidValue(Value)
+                    _ShapeTranslationID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("ShapeTranslationID")
                     OnShapeTranslationIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _ShapeTranslationID As Global.System.Int32
-        Partial Private Sub OnShapeTranslationIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnShapeTranslationIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnShapeTranslationIDChanged()
+    
+        Private Partial Sub OnShapeTranslationIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property ShapeID() As Global.System.Int32
             Get
                 Return _ShapeID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnShapeIDChanging(Value)
+            Set
+                OnShapeIDChanging(value)
                 ReportPropertyChanging("ShapeID")
-                _ShapeID = StructuralObject.SetValidValue(Value)
+                _ShapeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ShapeID")
                 OnShapeIDChanged()
             End Set
         End Property
-
+    
         Private _ShapeID As Global.System.Int32
-        Partial Private Sub OnShapeIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnShapeIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnShapeIDChanged()
+    
+        Private Partial Sub OnShapeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Culture() As Global.System.String
             Get
                 Return _Culture
             End Get
-            Set(ByVal value As Global.System.String)
-                OnCultureChanging(Value)
+            Set
+                OnCultureChanging(value)
                 ReportPropertyChanging("Culture")
-                _Culture = StructuralObject.SetValidValue(Value, False)
+                _Culture = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Culture")
                 OnCultureChanged()
             End Set
         End Property
-
+    
         Private _Culture As Global.System.String
-        Partial Private Sub OnCultureChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnCultureChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnCultureChanged()
+    
+        Private Partial Sub OnCultureChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Name() As Global.System.String
             Get
                 Return _Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnNameChanging(Value)
+            Set
+                OnNameChanging(value)
                 ReportPropertyChanging("Name")
-                _Name = StructuralObject.SetValidValue(Value, True)
+                _Name = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Name")
                 OnNameChanged()
             End Set
         End Property
-
+    
         Private _Name As Global.System.String
-        Partial Private Sub OnNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnNameChanged()
+    
+        Private Partial Sub OnNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Size1Name() As Global.System.String
             Get
                 Return _Size1Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnSize1NameChanging(Value)
+            Set
+                OnSize1NameChanging(value)
                 ReportPropertyChanging("Size1Name")
-                _Size1Name = StructuralObject.SetValidValue(Value, True)
+                _Size1Name = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Size1Name")
                 OnSize1NameChanged()
             End Set
         End Property
-
+    
         Private _Size1Name As Global.System.String
-        Partial Private Sub OnSize1NameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnSize1NameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnSize1NameChanged()
+    
+        Private Partial Sub OnSize1NameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Size2Name() As Global.System.String
             Get
                 Return _Size2Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnSize2NameChanging(Value)
+            Set
+                OnSize2NameChanging(value)
                 ReportPropertyChanging("Size2Name")
-                _Size2Name = StructuralObject.SetValidValue(Value, True)
+                _Size2Name = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Size2Name")
                 OnSize2NameChanged()
             End Set
         End Property
-
+    
         Private _Size2Name As Global.System.String
-        Partial Private Sub OnSize2NameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnSize2NameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnSize2NameChanged()
+    
+        Private Partial Sub OnSize2NameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
 
-        Partial Private Sub OnDescriptionChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5154,8 +5154,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_ShapeTranslation_Shape", "Shape").Value
             End Get
-            Set(ByVal value As Shape)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_ShapeTranslation_Shape", "Shape").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_ShapeTranslation_Shape", "Shape").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5167,471 +5167,471 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_ShapeTranslation_Shape", "Shape")
             End Get
-            Set(ByVal value As EntityReference(Of Shape))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Shape)("Data.FK_ShapeTranslation_Shape", "Shape", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Shape)("Data.FK_ShapeTranslation_Shape", "Shape", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="SimpleTranslation")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class SimpleTranslation
+    Public Partial Class SimpleTranslation
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new SimpleTranslation object.
         ''' </summary>
         ''' <param name="simpleTranslationID">Initial value of the SimpleTranslationID property.</param>
         ''' <param name="culture">Initial value of the Culture property.</param>
-        Public Shared Function CreateSimpleTranslation(ByVal simpleTranslationID As Global.System.Int32, ByVal culture As Global.System.String) As SimpleTranslation
-            Dim simpleTranslation As SimpleTranslation = New SimpleTranslation
+        Public Shared Function CreateSimpleTranslation(simpleTranslationID As Global.System.Int32, culture As Global.System.String) As SimpleTranslation
+            Dim simpleTranslation as SimpleTranslation = New SimpleTranslation
             simpleTranslation.SimpleTranslationID = simpleTranslationID
             simpleTranslation.Culture = culture
             Return simpleTranslation
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property SimpleTranslationID() As Global.System.Int32
             Get
                 Return _SimpleTranslationID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_SimpleTranslationID <> Value) Then
-                    OnSimpleTranslationIDChanging(Value)
+                    OnSimpleTranslationIDChanging(value)
                     ReportPropertyChanging("SimpleTranslationID")
-                    _SimpleTranslationID = StructuralObject.SetValidValue(Value)
+                    _SimpleTranslationID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("SimpleTranslationID")
                     OnSimpleTranslationIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _SimpleTranslationID As Global.System.Int32
-        Partial Private Sub OnSimpleTranslationIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnSimpleTranslationIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnSimpleTranslationIDChanged()
+    
+        Private Partial Sub OnSimpleTranslationIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CategoryID() As Nullable(Of Global.System.Int32)
             Get
                 Return _CategoryID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnCategoryIDChanging(Value)
+            Set
+                OnCategoryIDChanging(value)
                 ReportPropertyChanging("CategoryID")
-                _CategoryID = StructuralObject.SetValidValue(Value)
+                _CategoryID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CategoryID")
                 OnCategoryIDChanged()
             End Set
         End Property
-
+    
         Private _CategoryID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnCategoryIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnCategoryIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnCategoryIDChanged()
+    
+        Private Partial Sub OnCategoryIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property KeywordID() As Nullable(Of Global.System.Int32)
             Get
                 Return _KeywordID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnKeywordIDChanging(Value)
+            Set
+                OnKeywordIDChanging(value)
                 ReportPropertyChanging("KeywordID")
-                _KeywordID = StructuralObject.SetValidValue(Value)
+                _KeywordID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("KeywordID")
                 OnKeywordIDChanged()
             End Set
         End Property
-
+    
         Private _KeywordID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnKeywordIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnKeywordIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnKeywordIDChanged()
+    
+        Private Partial Sub OnKeywordIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property ProductID() As Nullable(Of Global.System.Int32)
             Get
                 Return _ProductID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnProductIDChanging(Value)
+            Set
+                OnProductIDChanging(value)
                 ReportPropertyChanging("ProductID")
-                _ProductID = StructuralObject.SetValidValue(Value)
+                _ProductID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ProductID")
                 OnProductIDChanged()
             End Set
         End Property
-
+    
         Private _ProductID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnProductIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnProductIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnProductIDChanged()
+    
+        Private Partial Sub OnProductIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CompanyID() As Nullable(Of Global.System.Int32)
             Get
                 Return _CompanyID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnCompanyIDChanging(Value)
+            Set
+                OnCompanyIDChanging(value)
                 ReportPropertyChanging("CompanyID")
-                _CompanyID = StructuralObject.SetValidValue(Value)
+                _CompanyID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CompanyID")
                 OnCompanyIDChanged()
             End Set
         End Property
-
+    
         Private _CompanyID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnCompanyIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnCompanyIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnCompanyIDChanged()
+    
+        Private Partial Sub OnCompanyIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property ProductTypeID() As Nullable(Of Global.System.Int32)
             Get
                 Return _ProductTypeID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnProductTypeIDChanging(Value)
+            Set
+                OnProductTypeIDChanging(value)
                 ReportPropertyChanging("ProductTypeID")
-                _ProductTypeID = StructuralObject.SetValidValue(Value)
+                _ProductTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ProductTypeID")
                 OnProductTypeIDChanged()
             End Set
         End Property
-
+    
         Private _ProductTypeID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnProductTypeIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnProductTypeIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnProductTypeIDChanged()
+    
+        Private Partial Sub OnProductTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property TargetID() As Nullable(Of Global.System.Int32)
             Get
                 Return _TargetID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnTargetIDChanging(Value)
+            Set
+                OnTargetIDChanging(value)
                 ReportPropertyChanging("TargetID")
-                _TargetID = StructuralObject.SetValidValue(Value)
+                _TargetID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("TargetID")
                 OnTargetIDChanged()
             End Set
         End Property
-
+    
         Private _TargetID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnTargetIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnTargetIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnTargetIDChanged()
+    
+        Private Partial Sub OnTargetIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property MaterialID() As Nullable(Of Global.System.Int32)
             Get
                 Return _MaterialID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnMaterialIDChanging(Value)
+            Set
+                OnMaterialIDChanging(value)
                 ReportPropertyChanging("MaterialID")
-                _MaterialID = StructuralObject.SetValidValue(Value)
+                _MaterialID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("MaterialID")
                 OnMaterialIDChanged()
             End Set
         End Property
-
+    
         Private _MaterialID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnMaterialIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnMaterialIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnMaterialIDChanged()
+    
+        Private Partial Sub OnMaterialIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CapTypeID() As Nullable(Of Global.System.Int32)
             Get
                 Return _CapTypeID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnCapTypeIDChanging(Value)
+            Set
+                OnCapTypeIDChanging(value)
                 ReportPropertyChanging("CapTypeID")
-                _CapTypeID = StructuralObject.SetValidValue(Value)
+                _CapTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CapTypeID")
                 OnCapTypeIDChanged()
             End Set
         End Property
-
+    
         Private _CapTypeID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnCapTypeIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnCapTypeIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnCapTypeIDChanged()
+    
+        Private Partial Sub OnCapTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property MainTypeID() As Nullable(Of Global.System.Int32)
             Get
                 Return _MainTypeID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnMainTypeIDChanging(Value)
+            Set
+                OnMainTypeIDChanging(value)
                 ReportPropertyChanging("MainTypeID")
-                _MainTypeID = StructuralObject.SetValidValue(Value)
+                _MainTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("MainTypeID")
                 OnMainTypeIDChanged()
             End Set
         End Property
-
+    
         Private _MainTypeID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnMainTypeIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnMainTypeIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnMainTypeIDChanged()
+    
+        Private Partial Sub OnMainTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CapSignID() As Nullable(Of Global.System.Int32)
             Get
                 Return _CapSignID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnCapSignIDChanging(Value)
+            Set
+                OnCapSignIDChanging(value)
                 ReportPropertyChanging("CapSignID")
-                _CapSignID = StructuralObject.SetValidValue(Value)
+                _CapSignID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CapSignID")
                 OnCapSignIDChanged()
             End Set
         End Property
-
+    
         Private _CapSignID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnCapSignIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnCapSignIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnCapSignIDChanged()
+    
+        Private Partial Sub OnCapSignIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property StorageID() As Nullable(Of Global.System.Int32)
             Get
                 Return _StorageID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnStorageIDChanging(Value)
+            Set
+                OnStorageIDChanging(value)
                 ReportPropertyChanging("StorageID")
-                _StorageID = StructuralObject.SetValidValue(Value)
+                _StorageID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("StorageID")
                 OnStorageIDChanged()
             End Set
         End Property
-
+    
         Private _StorageID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnStorageIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnStorageIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnStorageIDChanged()
+    
+        Private Partial Sub OnStorageIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property StorageTypeID() As Nullable(Of Global.System.Int32)
             Get
                 Return _StorageTypeID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnStorageTypeIDChanging(Value)
+            Set
+                OnStorageTypeIDChanging(value)
                 ReportPropertyChanging("StorageTypeID")
-                _StorageTypeID = StructuralObject.SetValidValue(Value)
+                _StorageTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("StorageTypeID")
                 OnStorageTypeIDChanged()
             End Set
         End Property
-
+    
         Private _StorageTypeID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnStorageTypeIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnStorageTypeIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnStorageTypeIDChanged()
+    
+        Private Partial Sub OnStorageTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CapInstanceID() As Nullable(Of Global.System.Int32)
             Get
                 Return _CapInstanceID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnCapInstanceIDChanging(Value)
+            Set
+                OnCapInstanceIDChanging(value)
                 ReportPropertyChanging("CapInstanceID")
-                _CapInstanceID = StructuralObject.SetValidValue(Value)
+                _CapInstanceID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CapInstanceID")
                 OnCapInstanceIDChanged()
             End Set
         End Property
-
+    
         Private _CapInstanceID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnCapInstanceIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnCapInstanceIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnCapInstanceIDChanged()
+    
+        Private Partial Sub OnCapInstanceIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Culture() As Global.System.String
             Get
                 Return _Culture
             End Get
-            Set(ByVal value As Global.System.String)
-                OnCultureChanging(Value)
+            Set
+                OnCultureChanging(value)
                 ReportPropertyChanging("Culture")
-                _Culture = StructuralObject.SetValidValue(Value, False)
+                _Culture = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Culture")
                 OnCultureChanged()
             End Set
         End Property
-
+    
         Private _Culture As Global.System.String
-        Partial Private Sub OnCultureChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnCultureChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnCultureChanged()
+    
+        Private Partial Sub OnCultureChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Name() As Global.System.String
             Get
                 Return _Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnNameChanging(Value)
+            Set
+                OnNameChanging(value)
                 ReportPropertyChanging("Name")
-                _Name = StructuralObject.SetValidValue(Value, True)
+                _Name = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Name")
                 OnNameChanged()
             End Set
         End Property
-
+    
         Private _Name As Global.System.String
-        Partial Private Sub OnNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnNameChanged()
+    
+        Private Partial Sub OnNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
 
-        Partial Private Sub OnDescriptionChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5643,8 +5643,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapInstance)("Data.FK_SimpleTranslation_CapInstance", "CapInstance").Value
             End Get
-            Set(ByVal value As CapInstance)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapInstance)("Data.FK_SimpleTranslation_CapInstance", "CapInstance").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapInstance)("Data.FK_SimpleTranslation_CapInstance", "CapInstance").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5656,13 +5656,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapInstance)("Data.FK_SimpleTranslation_CapInstance", "CapInstance")
             End Get
-            Set(ByVal value As EntityReference(Of CapInstance))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapInstance)("Data.FK_SimpleTranslation_CapInstance", "CapInstance", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapInstance)("Data.FK_SimpleTranslation_CapInstance", "CapInstance", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5674,8 +5674,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapSign)("Data.FK_SimpleTranslation_CapSign", "CapSign").Value
             End Get
-            Set(ByVal value As CapSign)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapSign)("Data.FK_SimpleTranslation_CapSign", "CapSign").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapSign)("Data.FK_SimpleTranslation_CapSign", "CapSign").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5687,13 +5687,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapSign)("Data.FK_SimpleTranslation_CapSign", "CapSign")
             End Get
-            Set(ByVal value As EntityReference(Of CapSign))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapSign)("Data.FK_SimpleTranslation_CapSign", "CapSign", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapSign)("Data.FK_SimpleTranslation_CapSign", "CapSign", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5705,8 +5705,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_SimpleTranslation_CapType", "CapType").Value
             End Get
-            Set(ByVal value As CapType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_SimpleTranslation_CapType", "CapType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_SimpleTranslation_CapType", "CapType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5718,13 +5718,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_SimpleTranslation_CapType", "CapType")
             End Get
-            Set(ByVal value As EntityReference(Of CapType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapType)("Data.FK_SimpleTranslation_CapType", "CapType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapType)("Data.FK_SimpleTranslation_CapType", "CapType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5736,8 +5736,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Category)("Data.FK_SimpleTranslation_Category", "Category").Value
             End Get
-            Set(ByVal value As Category)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Category)("Data.FK_SimpleTranslation_Category", "Category").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Category)("Data.FK_SimpleTranslation_Category", "Category").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5749,13 +5749,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Category)("Data.FK_SimpleTranslation_Category", "Category")
             End Get
-            Set(ByVal value As EntityReference(Of Category))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Category)("Data.FK_SimpleTranslation_Category", "Category", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Category)("Data.FK_SimpleTranslation_Category", "Category", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5767,8 +5767,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_SimpleTranslation_Company", "Company").Value
             End Get
-            Set(ByVal value As Company)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_SimpleTranslation_Company", "Company").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_SimpleTranslation_Company", "Company").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5780,13 +5780,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Company)("Data.FK_SimpleTranslation_Company", "Company")
             End Get
-            Set(ByVal value As EntityReference(Of Company))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Company)("Data.FK_SimpleTranslation_Company", "Company", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Company)("Data.FK_SimpleTranslation_Company", "Company", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5798,8 +5798,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Keyword)("Data.FK_SimpleTranslation_Keyword", "Keyword").Value
             End Get
-            Set(ByVal value As Keyword)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Keyword)("Data.FK_SimpleTranslation_Keyword", "Keyword").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Keyword)("Data.FK_SimpleTranslation_Keyword", "Keyword").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5811,13 +5811,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Keyword)("Data.FK_SimpleTranslation_Keyword", "Keyword")
             End Get
-            Set(ByVal value As EntityReference(Of Keyword))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Keyword)("Data.FK_SimpleTranslation_Keyword", "Keyword", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Keyword)("Data.FK_SimpleTranslation_Keyword", "Keyword", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5829,8 +5829,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_SimpleTranslation_MainType", "MainType").Value
             End Get
-            Set(ByVal value As MainType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_SimpleTranslation_MainType", "MainType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_SimpleTranslation_MainType", "MainType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5842,13 +5842,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_SimpleTranslation_MainType", "MainType")
             End Get
-            Set(ByVal value As EntityReference(Of MainType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of MainType)("Data.FK_SimpleTranslation_MainType", "MainType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of MainType)("Data.FK_SimpleTranslation_MainType", "MainType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5860,8 +5860,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_SimpleTranslation_Material", "Material").Value
             End Get
-            Set(ByVal value As Material)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_SimpleTranslation_Material", "Material").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_SimpleTranslation_Material", "Material").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5873,13 +5873,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Material)("Data.FK_SimpleTranslation_Material", "Material")
             End Get
-            Set(ByVal value As EntityReference(Of Material))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Material)("Data.FK_SimpleTranslation_Material", "Material", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Material)("Data.FK_SimpleTranslation_Material", "Material", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5891,8 +5891,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Product)("Data.FK_SimpleTranslation_Product", "Product").Value
             End Get
-            Set(ByVal value As Product)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Product)("Data.FK_SimpleTranslation_Product", "Product").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Product)("Data.FK_SimpleTranslation_Product", "Product").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5904,13 +5904,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Product)("Data.FK_SimpleTranslation_Product", "Product")
             End Get
-            Set(ByVal value As EntityReference(Of Product))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Product)("Data.FK_SimpleTranslation_Product", "Product", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Product)("Data.FK_SimpleTranslation_Product", "Product", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5922,8 +5922,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_SimpleTranslation_ProductType", "ProductType").Value
             End Get
-            Set(ByVal value As ProductType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_SimpleTranslation_ProductType", "ProductType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_SimpleTranslation_ProductType", "ProductType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5935,13 +5935,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of ProductType)("Data.FK_SimpleTranslation_ProductType", "ProductType")
             End Get
-            Set(ByVal value As EntityReference(Of ProductType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of ProductType)("Data.FK_SimpleTranslation_ProductType", "ProductType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of ProductType)("Data.FK_SimpleTranslation_ProductType", "ProductType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5953,8 +5953,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_SimpleTranslation_Storage", "Storage").Value
             End Get
-            Set(ByVal value As Storage)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_SimpleTranslation_Storage", "Storage").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_SimpleTranslation_Storage", "Storage").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5966,13 +5966,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_SimpleTranslation_Storage", "Storage")
             End Get
-            Set(ByVal value As EntityReference(Of Storage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Storage)("Data.FK_SimpleTranslation_Storage", "Storage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Storage)("Data.FK_SimpleTranslation_Storage", "Storage", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -5984,8 +5984,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of StorageType)("Data.FK_SimpleTranslation_StorageType", "StorageType").Value
             End Get
-            Set(ByVal value As StorageType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of StorageType)("Data.FK_SimpleTranslation_StorageType", "StorageType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of StorageType)("Data.FK_SimpleTranslation_StorageType", "StorageType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -5997,13 +5997,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of StorageType)("Data.FK_SimpleTranslation_StorageType", "StorageType")
             End Get
-            Set(ByVal value As EntityReference(Of StorageType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of StorageType)("Data.FK_SimpleTranslation_StorageType", "StorageType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of StorageType)("Data.FK_SimpleTranslation_StorageType", "StorageType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6015,8 +6015,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_SimpleTranslation_Target", "Target").Value
             End Get
-            Set(ByVal value As Target)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_SimpleTranslation_Target", "Target").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_SimpleTranslation_Target", "Target").Value = value
             End Set
         End Property
         ''' <summary>
@@ -6028,26 +6028,26 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Target)("Data.FK_SimpleTranslation_Target", "Target")
             End Get
-            Set(ByVal value As EntityReference(Of Target))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Target)("Data.FK_SimpleTranslation_Target", "Target", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Target)("Data.FK_SimpleTranslation_Target", "Target", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Storage")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class Storage
+    Public Partial Class Storage
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new Storage object.
         ''' </summary>
@@ -6055,8 +6055,8 @@ Namespace Data
         ''' <param name="storageNumber">Initial value of the StorageNumber property.</param>
         ''' <param name="storageTypeID">Initial value of the StorageTypeID property.</param>
         ''' <param name="hasCaps">Initial value of the HasCaps property.</param>
-        Public Shared Function CreateStorage(ByVal storageID As Global.System.Int32, ByVal storageNumber As Global.System.String, ByVal storageTypeID As Global.System.Int32, ByVal hasCaps As Global.System.Boolean) As Storage
-            Dim storage As Storage = New Storage
+        Public Shared Function CreateStorage(storageID As Global.System.Int32, storageNumber As Global.System.String, storageTypeID As Global.System.Int32, hasCaps As Global.System.Boolean) As Storage
+            Dim storage as Storage = New Storage
             storage.StorageID = storageID
             storage.StorageNumber = storageNumber
             storage.StorageTypeID = storageTypeID
@@ -6064,164 +6064,164 @@ Namespace Data
             Return storage
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property StorageID() As Global.System.Int32
             Get
                 Return _StorageID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_StorageID <> Value) Then
-                    OnStorageIDChanging(Value)
+                    OnStorageIDChanging(value)
                     ReportPropertyChanging("StorageID")
-                    _StorageID = StructuralObject.SetValidValue(Value)
+                    _StorageID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("StorageID")
                     OnStorageIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _StorageID As Global.System.Int32
-        Partial Private Sub OnStorageIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnStorageIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnStorageIDChanged()
+    
+        Private Partial Sub OnStorageIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property StorageNumber() As Global.System.String
             Get
                 Return _StorageNumber
             End Get
-            Set(ByVal value As Global.System.String)
-                OnStorageNumberChanging(Value)
+            Set
+                OnStorageNumberChanging(value)
                 ReportPropertyChanging("StorageNumber")
-                _StorageNumber = StructuralObject.SetValidValue(Value, False)
+                _StorageNumber = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("StorageNumber")
                 OnStorageNumberChanged()
             End Set
         End Property
-
+    
         Private _StorageNumber As Global.System.String
-        Partial Private Sub OnStorageNumberChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnStorageNumberChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnStorageNumberChanged()
+    
+        Private Partial Sub OnStorageNumberChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnDescriptionChanged()
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property StorageTypeID() As Global.System.Int32
             Get
                 Return _StorageTypeID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnStorageTypeIDChanging(Value)
+            Set
+                OnStorageTypeIDChanging(value)
                 ReportPropertyChanging("StorageTypeID")
-                _StorageTypeID = StructuralObject.SetValidValue(Value)
+                _StorageTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("StorageTypeID")
                 OnStorageTypeIDChanged()
             End Set
         End Property
-
+    
         Private _StorageTypeID As Global.System.Int32
-        Partial Private Sub OnStorageTypeIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnStorageTypeIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnStorageTypeIDChanged()
+    
+        Private Partial Sub OnStorageTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property ParentStorage() As Nullable(Of Global.System.Int32)
             Get
                 Return _ParentStorage
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnParentStorageChanging(Value)
+            Set
+                OnParentStorageChanging(value)
                 ReportPropertyChanging("ParentStorage")
-                _ParentStorage = StructuralObject.SetValidValue(Value)
+                _ParentStorage = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ParentStorage")
                 OnParentStorageChanged()
             End Set
         End Property
-
+    
         Private _ParentStorage As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnParentStorageChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnParentStorageChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnParentStorageChanged()
+    
+        Private Partial Sub OnParentStorageChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property HasCaps() As Global.System.Boolean
             Get
                 Return _HasCaps
             End Get
-            Set(ByVal value As Global.System.Boolean)
-                OnHasCapsChanging(Value)
+            Set
+                OnHasCapsChanging(value)
                 ReportPropertyChanging("HasCaps")
-                _HasCaps = StructuralObject.SetValidValue(Value)
+                _HasCaps = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("HasCaps")
                 OnHasCapsChanged()
             End Set
         End Property
-
+    
         Private _HasCaps As Global.System.Boolean
-        Partial Private Sub OnHasCapsChanging(ByVal value As Global.System.Boolean)
+        Private Partial Sub OnHasCapsChanging(value As Global.System.Boolean)
+        End Sub
+    
+        Private Partial Sub OnHasCapsChanged()
         End Sub
 
-        Partial Private Sub OnHasCapsChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6229,17 +6229,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Cap_Storage", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Storage", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Storage", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Storage", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Storage", "Cap", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6247,17 +6247,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_CapInstance_Storage", "CapInstance")>
-        Public Property CapInstances() As EntityCollection(Of CapInstance)
+         Public Property CapInstances() As EntityCollection(Of CapInstance)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapInstance)("Data.FK_CapInstance_Storage", "CapInstance")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapInstance)("Data.FK_CapInstance_Storage", "CapInstance")
             End Get
-            Set(ByVal value As EntityCollection(Of CapInstance))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapInstance)("Data.FK_CapInstance_Storage", "CapInstance", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapInstance)("Data.FK_CapInstance_Storage", "CapInstance", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6265,17 +6265,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_Storage", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Storage", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Storage", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Storage", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Storage", "SimpleTranslation", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6283,17 +6283,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Storage_ParentStorage", "Storage1")>
-        Public Property Storage1() As EntityCollection(Of Storage)
+         Public Property Storage1() As EntityCollection(Of Storage)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Storage)("Data.FK_Storage_ParentStorage", "Storage1")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Storage)("Data.FK_Storage_ParentStorage", "Storage1")
             End Get
-            Set(ByVal value As EntityCollection(Of Storage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Storage)("Data.FK_Storage_ParentStorage", "Storage1", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Storage)("Data.FK_Storage_ParentStorage", "Storage1", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6305,8 +6305,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_Storage_ParentStorage", "Storage").Value
             End Get
-            Set(ByVal value As Storage)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_Storage_ParentStorage", "Storage").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_Storage_ParentStorage", "Storage").Value = value
             End Set
         End Property
         ''' <summary>
@@ -6318,13 +6318,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_Storage_ParentStorage", "Storage")
             End Get
-            Set(ByVal value As EntityReference(Of Storage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Storage)("Data.FK_Storage_ParentStorage", "Storage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Storage)("Data.FK_Storage_ParentStorage", "Storage", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6336,8 +6336,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of StorageType)("Data.FK_Storage_StorageType", "StorageType").Value
             End Get
-            Set(ByVal value As StorageType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of StorageType)("Data.FK_Storage_StorageType", "StorageType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of StorageType)("Data.FK_Storage_StorageType", "StorageType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -6349,13 +6349,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of StorageType)("Data.FK_Storage_StorageType", "StorageType")
             End Get
-            Set(ByVal value As EntityReference(Of StorageType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of StorageType)("Data.FK_Storage_StorageType", "StorageType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of StorageType)("Data.FK_Storage_StorageType", "StorageType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6363,125 +6363,125 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_StoredImage_Storage", "StoredImage")>
-        Public Property StoredImages() As EntityCollection(Of StoredImage)
+         Public Property StoredImages() As EntityCollection(Of StoredImage)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Storage", "StoredImage")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Storage", "StoredImage")
             End Get
-            Set(ByVal value As EntityCollection(Of StoredImage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Storage", "StoredImage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of StoredImage)("Data.FK_StoredImage_Storage", "StoredImage", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="StorageType")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class StorageType
+    Public Partial Class StorageType
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new StorageType object.
         ''' </summary>
         ''' <param name="storageTypeID">Initial value of the StorageTypeID property.</param>
         ''' <param name="name">Initial value of the Name property.</param>
-        Public Shared Function CreateStorageType(ByVal storageTypeID As Global.System.Int32, ByVal name As Global.System.String) As StorageType
-            Dim storageType As StorageType = New StorageType
+        Public Shared Function CreateStorageType(storageTypeID As Global.System.Int32, name As Global.System.String) As StorageType
+            Dim storageType as StorageType = New StorageType
             storageType.StorageTypeID = storageTypeID
             storageType.Name = name
             Return storageType
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property StorageTypeID() As Global.System.Int32
             Get
                 Return _StorageTypeID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_StorageTypeID <> Value) Then
-                    OnStorageTypeIDChanging(Value)
+                    OnStorageTypeIDChanging(value)
                     ReportPropertyChanging("StorageTypeID")
-                    _StorageTypeID = StructuralObject.SetValidValue(Value)
+                    _StorageTypeID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("StorageTypeID")
                     OnStorageTypeIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _StorageTypeID As Global.System.Int32
-        Partial Private Sub OnStorageTypeIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnStorageTypeIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnStorageTypeIDChanged()
+    
+        Private Partial Sub OnStorageTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Name() As Global.System.String
             Get
                 Return _Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnNameChanging(Value)
+            Set
+                OnNameChanging(value)
                 ReportPropertyChanging("Name")
-                _Name = StructuralObject.SetValidValue(Value, False)
+                _Name = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Name")
                 OnNameChanged()
             End Set
         End Property
-
+    
         Private _Name As Global.System.String
-        Partial Private Sub OnNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnNameChanged()
+    
+        Private Partial Sub OnNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
 
-        Partial Private Sub OnDescriptionChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6489,17 +6489,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_StorageType", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_StorageType", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_StorageType", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_StorageType", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_StorageType", "SimpleTranslation", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6507,30 +6507,30 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Storage_StorageType", "Storage")>
-        Public Property Storages() As EntityCollection(Of Storage)
+         Public Property Storages() As EntityCollection(Of Storage)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Storage)("Data.FK_Storage_StorageType", "Storage")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Storage)("Data.FK_Storage_StorageType", "Storage")
             End Get
-            Set(ByVal value As EntityCollection(Of Storage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Storage)("Data.FK_Storage_StorageType", "Storage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Storage)("Data.FK_Storage_StorageType", "Storage", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="StoredImage")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class StoredImage
+    Public Partial Class StoredImage
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new StoredImage object.
         ''' </summary>
@@ -6541,8 +6541,8 @@ Namespace Data
         ''' <param name="width">Initial value of the Width property.</param>
         ''' <param name="height">Initial value of the Height property.</param>
         ''' <param name="data">Initial value of the Data property.</param>
-        Public Shared Function CreateStoredImage(ByVal storedImageID As Global.System.Int32, ByVal fileName As Global.System.String, ByVal mIME As Global.System.String, ByVal size As Global.System.Int32, ByVal width As Global.System.Int32, ByVal height As Global.System.Int32, ByVal data As Global.System.Byte()) As StoredImage
-            Dim storedImage As StoredImage = New StoredImage
+        Public Shared Function CreateStoredImage(storedImageID As Global.System.Int32, fileName As Global.System.String, mIME As Global.System.String, size As Global.System.Int32, width As Global.System.Int32, height As Global.System.Int32, data As Global.System.Byte()) As StoredImage
+            Dim storedImage as StoredImage = New StoredImage
             storedImage.StoredImageID = storedImageID
             storedImage.FileName = fileName
             storedImage.MIME = mIME
@@ -6553,339 +6553,339 @@ Namespace Data
             Return storedImage
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property StoredImageID() As Global.System.Int32
             Get
                 Return _StoredImageID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_StoredImageID <> Value) Then
-                    OnStoredImageIDChanging(Value)
+                    OnStoredImageIDChanging(value)
                     ReportPropertyChanging("StoredImageID")
-                    _StoredImageID = StructuralObject.SetValidValue(Value)
+                    _StoredImageID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("StoredImageID")
                     OnStoredImageIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _StoredImageID As Global.System.Int32
-        Partial Private Sub OnStoredImageIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnStoredImageIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnStoredImageIDChanged()
+    
+        Private Partial Sub OnStoredImageIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property FileName() As Global.System.String
             Get
                 Return _FileName
             End Get
-            Set(ByVal value As Global.System.String)
-                OnFileNameChanging(Value)
+            Set
+                OnFileNameChanging(value)
                 ReportPropertyChanging("FileName")
-                _FileName = StructuralObject.SetValidValue(Value, False)
+                _FileName = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("FileName")
                 OnFileNameChanged()
             End Set
         End Property
-
+    
         Private _FileName As Global.System.String
-        Partial Private Sub OnFileNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnFileNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnFileNameChanged()
+    
+        Private Partial Sub OnFileNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property MIME() As Global.System.String
             Get
                 Return _MIME
             End Get
-            Set(ByVal value As Global.System.String)
-                OnMIMEChanging(Value)
+            Set
+                OnMIMEChanging(value)
                 ReportPropertyChanging("MIME")
-                _MIME = StructuralObject.SetValidValue(Value, False)
+                _MIME = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("MIME")
                 OnMIMEChanged()
             End Set
         End Property
-
+    
         Private _MIME As Global.System.String
-        Partial Private Sub OnMIMEChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnMIMEChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnMIMEChanged()
+    
+        Private Partial Sub OnMIMEChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Size() As Global.System.Int32
             Get
                 Return _Size
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnSizeChanging(Value)
+            Set
+                OnSizeChanging(value)
                 ReportPropertyChanging("Size")
-                _Size = StructuralObject.SetValidValue(Value)
+                _Size = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Size")
                 OnSizeChanged()
             End Set
         End Property
-
+    
         Private _Size As Global.System.Int32
-        Partial Private Sub OnSizeChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnSizeChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnSizeChanged()
+    
+        Private Partial Sub OnSizeChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Width() As Global.System.Int32
             Get
                 Return _Width
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnWidthChanging(Value)
+            Set
+                OnWidthChanging(value)
                 ReportPropertyChanging("Width")
-                _Width = StructuralObject.SetValidValue(Value)
+                _Width = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Width")
                 OnWidthChanged()
             End Set
         End Property
-
+    
         Private _Width As Global.System.Int32
-        Partial Private Sub OnWidthChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnWidthChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnWidthChanged()
+    
+        Private Partial Sub OnWidthChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Height() As Global.System.Int32
             Get
                 Return _Height
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnHeightChanging(Value)
+            Set
+                OnHeightChanging(value)
                 ReportPropertyChanging("Height")
-                _Height = StructuralObject.SetValidValue(Value)
+                _Height = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("Height")
                 OnHeightChanged()
             End Set
         End Property
-
+    
         Private _Height As Global.System.Int32
-        Partial Private Sub OnHeightChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnHeightChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnHeightChanged()
+    
+        Private Partial Sub OnHeightChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property ImageID() As Nullable(Of Global.System.Int32)
             Get
                 Return _ImageID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnImageIDChanging(Value)
+            Set
+                OnImageIDChanging(value)
                 ReportPropertyChanging("ImageID")
-                _ImageID = StructuralObject.SetValidValue(Value)
+                _ImageID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ImageID")
                 OnImageIDChanged()
             End Set
         End Property
-
+    
         Private _ImageID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnImageIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnImageIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnImageIDChanged()
+    
+        Private Partial Sub OnImageIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CapSignID() As Nullable(Of Global.System.Int32)
             Get
                 Return _CapSignID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnCapSignIDChanging(Value)
+            Set
+                OnCapSignIDChanging(value)
                 ReportPropertyChanging("CapSignID")
-                _CapSignID = StructuralObject.SetValidValue(Value)
+                _CapSignID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CapSignID")
                 OnCapSignIDChanged()
             End Set
         End Property
-
+    
         Private _CapSignID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnCapSignIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnCapSignIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnCapSignIDChanged()
+    
+        Private Partial Sub OnCapSignIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property CapTypeID() As Nullable(Of Global.System.Int32)
             Get
                 Return _CapTypeID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnCapTypeIDChanging(Value)
+            Set
+                OnCapTypeIDChanging(value)
                 ReportPropertyChanging("CapTypeID")
-                _CapTypeID = StructuralObject.SetValidValue(Value)
+                _CapTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CapTypeID")
                 OnCapTypeIDChanged()
             End Set
         End Property
-
+    
         Private _CapTypeID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnCapTypeIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnCapTypeIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnCapTypeIDChanged()
+    
+        Private Partial Sub OnCapTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property MainTypeID() As Nullable(Of Global.System.Int32)
             Get
                 Return _MainTypeID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnMainTypeIDChanging(Value)
+            Set
+                OnMainTypeIDChanging(value)
                 ReportPropertyChanging("MainTypeID")
-                _MainTypeID = StructuralObject.SetValidValue(Value)
+                _MainTypeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("MainTypeID")
                 OnMainTypeIDChanged()
             End Set
         End Property
-
+    
         Private _MainTypeID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnMainTypeIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnMainTypeIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnMainTypeIDChanged()
+    
+        Private Partial Sub OnMainTypeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property ShapeID() As Nullable(Of Global.System.Int32)
             Get
                 Return _ShapeID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnShapeIDChanging(Value)
+            Set
+                OnShapeIDChanging(value)
                 ReportPropertyChanging("ShapeID")
-                _ShapeID = StructuralObject.SetValidValue(Value)
+                _ShapeID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("ShapeID")
                 OnShapeIDChanged()
             End Set
         End Property
-
+    
         Private _ShapeID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnShapeIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnShapeIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnShapeIDChanged()
+    
+        Private Partial Sub OnShapeIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property StorageID() As Nullable(Of Global.System.Int32)
             Get
                 Return _StorageID
             End Get
-            Set(ByVal value As Nullable(Of Global.System.Int32))
-                OnStorageIDChanging(Value)
+            Set
+                OnStorageIDChanging(value)
                 ReportPropertyChanging("StorageID")
-                _StorageID = StructuralObject.SetValidValue(Value)
+                _StorageID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("StorageID")
                 OnStorageIDChanged()
             End Set
         End Property
-
+    
         Private _StorageID As Nullable(Of Global.System.Int32)
-        Partial Private Sub OnStorageIDChanging(ByVal value As Nullable(Of Global.System.Int32))
+        Private Partial Sub OnStorageIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
-
-        Partial Private Sub OnStorageIDChanged()
+    
+        Private Partial Sub OnStorageIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Data() As Global.System.Byte()
             Get
-                Return StructuralObject.GetValidValue(_Data)
+                    Return StructuralObject.GetValidValue(_Data)
             End Get
-            Set(ByVal value As Global.System.Byte())
-                OnDataChanging(Value)
+            Set
+                OnDataChanging(value)
                 ReportPropertyChanging("Data")
-                _Data = StructuralObject.SetValidValue(Value, False)
+                _Data = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Data")
                 OnDataChanged()
             End Set
         End Property
-
+    
         Private _Data As Global.System.Byte()
-        Partial Private Sub OnDataChanging(ByVal value As Global.System.Byte())
+        Private Partial Sub OnDataChanging(value As Global.System.Byte())
+        End Sub
+    
+        Private Partial Sub OnDataChanged()
         End Sub
 
-        Partial Private Sub OnDataChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6897,8 +6897,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapSign)("Data.FK_StoredImage_CapSign", "CapSign").Value
             End Get
-            Set(ByVal value As CapSign)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapSign)("Data.FK_StoredImage_CapSign", "CapSign").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapSign)("Data.FK_StoredImage_CapSign", "CapSign").Value = value
             End Set
         End Property
         ''' <summary>
@@ -6910,13 +6910,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapSign)("Data.FK_StoredImage_CapSign", "CapSign")
             End Get
-            Set(ByVal value As EntityReference(Of CapSign))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapSign)("Data.FK_StoredImage_CapSign", "CapSign", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapSign)("Data.FK_StoredImage_CapSign", "CapSign", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6928,8 +6928,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_StoredImage_CapType", "CapType").Value
             End Get
-            Set(ByVal value As CapType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_StoredImage_CapType", "CapType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_StoredImage_CapType", "CapType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -6941,13 +6941,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of CapType)("Data.FK_StoredImage_CapType", "CapType")
             End Get
-            Set(ByVal value As EntityReference(Of CapType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapType)("Data.FK_StoredImage_CapType", "CapType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of CapType)("Data.FK_StoredImage_CapType", "CapType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6959,8 +6959,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Image)("Data.FK_StoredImage_Image", "Image").Value
             End Get
-            Set(ByVal value As Image)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Image)("Data.FK_StoredImage_Image", "Image").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Image)("Data.FK_StoredImage_Image", "Image").Value = value
             End Set
         End Property
         ''' <summary>
@@ -6972,13 +6972,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Image)("Data.FK_StoredImage_Image", "Image")
             End Get
-            Set(ByVal value As EntityReference(Of Image))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Image)("Data.FK_StoredImage_Image", "Image", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Image)("Data.FK_StoredImage_Image", "Image", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -6990,8 +6990,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_StoredImage_MainType", "MainType").Value
             End Get
-            Set(ByVal value As MainType)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_StoredImage_MainType", "MainType").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_StoredImage_MainType", "MainType").Value = value
             End Set
         End Property
         ''' <summary>
@@ -7003,13 +7003,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of MainType)("Data.FK_StoredImage_MainType", "MainType")
             End Get
-            Set(ByVal value As EntityReference(Of MainType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of MainType)("Data.FK_StoredImage_MainType", "MainType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of MainType)("Data.FK_StoredImage_MainType", "MainType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -7021,8 +7021,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_StoredImage_Shape", "Shape").Value
             End Get
-            Set(ByVal value As Shape)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_StoredImage_Shape", "Shape").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_StoredImage_Shape", "Shape").Value = value
             End Set
         End Property
         ''' <summary>
@@ -7034,13 +7034,13 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Shape)("Data.FK_StoredImage_Shape", "Shape")
             End Get
-            Set(ByVal value As EntityReference(Of Shape))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Shape)("Data.FK_StoredImage_Shape", "Shape", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Shape)("Data.FK_StoredImage_Shape", "Shape", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -7052,8 +7052,8 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_StoredImage_Storage", "Storage").Value
             End Get
-            Set(ByVal value As Storage)
-                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_StoredImage_Storage", "Storage").Value = Value
+            Set
+                CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_StoredImage_Storage", "Storage").Value = value
             End Set
         End Property
         ''' <summary>
@@ -7065,121 +7065,121 @@ Namespace Data
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_StoredImage_Storage", "Storage")
             End Get
-            Set(ByVal value As EntityReference(Of Storage))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Storage)("Data.FK_StoredImage_Storage", "Storage", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedReference(Of Storage)("Data.FK_StoredImage_Storage", "Storage", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
-
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Target")>
     <Serializable()>
     <DataContractAttribute(IsReference:=True)>
-    Partial Public Class Target
+    Public Partial Class Target
         Inherits EntityObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new Target object.
         ''' </summary>
         ''' <param name="targetID">Initial value of the TargetID property.</param>
         ''' <param name="name">Initial value of the Name property.</param>
-        Public Shared Function CreateTarget(ByVal targetID As Global.System.Int32, ByVal name As Global.System.String) As Target
-            Dim target As Target = New Target
+        Public Shared Function CreateTarget(targetID As Global.System.Int32, name As Global.System.String) As Target
+            Dim target as Target = New Target
             target.TargetID = targetID
             target.Name = name
             Return target
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=True, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property TargetID() As Global.System.Int32
             Get
                 Return _TargetID
             End Get
-            Protected Set(ByVal value As Global.System.Int32)
+            Protected Set
                 If (_TargetID <> Value) Then
-                    OnTargetIDChanging(Value)
+                    OnTargetIDChanging(value)
                     ReportPropertyChanging("TargetID")
-                    _TargetID = StructuralObject.SetValidValue(Value)
+                    _TargetID = StructuralObject.SetValidValue(value)
                     ReportPropertyChanged("TargetID")
                     OnTargetIDChanged()
                 End If
             End Set
         End Property
-
+    
         Private _TargetID As Global.System.Int32
-        Partial Private Sub OnTargetIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnTargetIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnTargetIDChanged()
+    
+        Private Partial Sub OnTargetIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property Name() As Global.System.String
             Get
                 Return _Name
             End Get
-            Set(ByVal value As Global.System.String)
-                OnNameChanging(Value)
+            Set
+                OnNameChanging(value)
                 ReportPropertyChanging("Name")
-                _Name = StructuralObject.SetValidValue(Value, False)
+                _Name = StructuralObject.SetValidValue(value, false)
                 ReportPropertyChanged("Name")
                 OnNameChanged()
             End Set
         End Property
-
+    
         Private _Name As Global.System.String
-        Partial Private Sub OnNameChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnNameChanging(value As Global.System.String)
         End Sub
-
-        Partial Private Sub OnNameChanged()
+    
+        Private Partial Sub OnNameChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Description() As Global.System.String
             Get
                 Return _Description
             End Get
-            Set(ByVal value As Global.System.String)
-                OnDescriptionChanging(Value)
+            Set
+                OnDescriptionChanging(value)
                 ReportPropertyChanging("Description")
-                _Description = StructuralObject.SetValidValue(Value, True)
+                _Description = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Description")
                 OnDescriptionChanged()
             End Set
         End Property
-
+    
         Private _Description As Global.System.String
-        Partial Private Sub OnDescriptionChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnDescriptionChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnDescriptionChanged()
         End Sub
 
-        Partial Private Sub OnDescriptionChanged()
-        End Sub
-
-#End Region
-#Region "Navigation Properties"
-
+        #End Region
+        #Region "Navigation Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -7187,17 +7187,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Cap_Target", "Cap")>
-        Public Property Caps() As EntityCollection(Of Cap)
+         Public Property Caps() As EntityCollection(Of Cap)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Target", "Cap")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.FK_Cap_Target", "Cap")
             End Get
-            Set(ByVal value As EntityCollection(Of Cap))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Target", "Cap", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.FK_Cap_Target", "Cap", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -7205,17 +7205,17 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_CapType_Target", "CapType")>
-        Public Property CapTypes() As EntityCollection(Of CapType)
+         Public Property CapTypes() As EntityCollection(Of CapType)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapType)("Data.FK_CapType_Target", "CapType")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of CapType)("Data.FK_CapType_Target", "CapType")
             End Get
-            Set(ByVal value As EntityCollection(Of CapType))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapType)("Data.FK_CapType_Target", "CapType", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapType)("Data.FK_CapType_Target", "CapType", value)
                 End If
             End Set
         End Property
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
@@ -7223,127 +7223,127 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_SimpleTranslation_Target", "SimpleTranslation")>
-        Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
+         Public Property SimpleTranslations() As EntityCollection(Of SimpleTranslation)
             Get
-                Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Target", "SimpleTranslation")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Target", "SimpleTranslation")
             End Get
-            Set(ByVal value As EntityCollection(Of SimpleTranslation))
-                If (Not Value Is Nothing) Then
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Target", "SimpleTranslation", Value)
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of SimpleTranslation)("Data.FK_SimpleTranslation_Target", "SimpleTranslation", value)
                 End If
             End Set
         End Property
 
-#End Region
+        #End Region
     End Class
 
-#End Region
+    #End Region
     	
-#Region "ComplexTypes"
-
+    #Region "ComplexTypes"
+    
     ''' <summary>
     ''' No Metadata Documentation available.
     ''' </summary>
     <EdmComplexTypeAttribute(NamespaceName:="Data", Name:="Cap_PseudoCategory_Int")>
     <DataContractAttribute(IsReference:=True)>
     <Serializable()>
-    Partial Public Class Cap_PseudoCategory_Int
+    Public Partial Class Cap_PseudoCategory_Int
         Inherits ComplexObject
-#Region "Factory Method"
-
+        #Region "Factory Method"
+    
         ''' <summary>
         ''' Create a new Cap_PseudoCategory_Int object.
         ''' </summary>
         ''' <param name="capID">Initial value of the CapID property.</param>
         ''' <param name="pseudoCategoryID">Initial value of the PseudoCategoryID property.</param>
-        Public Shared Function CreateCap_PseudoCategory_Int(ByVal capID As Global.System.Int32, ByVal pseudoCategoryID As Global.System.Int32) As Cap_PseudoCategory_Int
-            Dim cap_PseudoCategory_Int As Cap_PseudoCategory_Int = New Cap_PseudoCategory_Int
+        Public Shared Function CreateCap_PseudoCategory_Int(capID As Global.System.Int32, pseudoCategoryID As Global.System.Int32) As Cap_PseudoCategory_Int
+            Dim cap_PseudoCategory_Int as Cap_PseudoCategory_Int = New Cap_PseudoCategory_Int
             cap_PseudoCategory_Int.CapID = capID
             cap_PseudoCategory_Int.PseudoCategoryID = pseudoCategoryID
             Return cap_PseudoCategory_Int
         End Function
 
-#End Region
-#Region "Primitive Properties"
-
+        #End Region
+        #Region "Primitive Properties"
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property CapID() As Global.System.Int32
             Protected Get
                 Return _CapID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnCapIDChanging(Value)
+            Set
+                OnCapIDChanging(value)
                 ReportPropertyChanging("CapID")
-                _CapID = StructuralObject.SetValidValue(Value)
+                _CapID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("CapID")
                 OnCapIDChanged()
             End Set
         End Property
-
+    
         Private _CapID As Global.System.Int32
-        Partial Private Sub OnCapIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnCapIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnCapIDChanged()
+    
+        Private Partial Sub OnCapIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=False)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
         <DataMemberAttribute()>
         Public Property PseudoCategoryID() As Global.System.Int32
             Protected Get
                 Return _PseudoCategoryID
             End Get
-            Set(ByVal value As Global.System.Int32)
-                OnPseudoCategoryIDChanging(Value)
+            Set
+                OnPseudoCategoryIDChanging(value)
                 ReportPropertyChanging("PseudoCategoryID")
-                _PseudoCategoryID = StructuralObject.SetValidValue(Value)
+                _PseudoCategoryID = StructuralObject.SetValidValue(value)
                 ReportPropertyChanged("PseudoCategoryID")
                 OnPseudoCategoryIDChanged()
             End Set
         End Property
-
+    
         Private _PseudoCategoryID As Global.System.Int32
-        Partial Private Sub OnPseudoCategoryIDChanging(ByVal value As Global.System.Int32)
+        Private Partial Sub OnPseudoCategoryIDChanging(value As Global.System.Int32)
         End Sub
-
-        Partial Private Sub OnPseudoCategoryIDChanged()
+    
+        Private Partial Sub OnPseudoCategoryIDChanged()
         End Sub
-
+    
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=False, IsNullable:=True)>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
         Public Property Info() As Global.System.String
             Protected Get
                 Return _Info
             End Get
-            Set(ByVal value As Global.System.String)
-                OnInfoChanging(Value)
+            Set
+                OnInfoChanging(value)
                 ReportPropertyChanging("Info")
-                _Info = StructuralObject.SetValidValue(Value, True)
+                _Info = StructuralObject.SetValidValue(value, true)
                 ReportPropertyChanged("Info")
                 OnInfoChanged()
             End Set
         End Property
-
+    
         Private _Info As Global.System.String
-        Partial Private Sub OnInfoChanging(ByVal value As Global.System.String)
+        Private Partial Sub OnInfoChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnInfoChanged()
         End Sub
 
-        Partial Private Sub OnInfoChanged()
-        End Sub
-
-#End Region
+        #End Region
     End Class
 
-#End Region
+    #End Region
     
 End Namespace

@@ -3,19 +3,21 @@ Imports System.ComponentModel
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Caps.Data
 
+''' <summary>Allows creation of several simple objects</summary>
 Partial Public Class winNewSimple
-
-    Private Type As SimpleTypes
-    Private Context As CapsDataDataContext
-    Private UnderConstruction As Boolean = True
+    Implements IDisposable
+    ''' <summary>Type of object to be created</summary>
+    Private ReadOnly Type As SimpleTypes
+    ''' <summary>Data context</summary>
+    Private ReadOnly Context As CapsDataContext
+    ''' <summary>True when windows is being constructed (CTor is on call stack)</summary>
+    Private ReadOnly UnderConstruction As Boolean = True
     ''' <summary>CTor</summary>
     ''' <param name="Type">Type of item to add</param>
-    ''' <param name="Context">Data context</param>
     ''' <exception cref="InvalidEnumArgumentException"><paramref name="Type"/> is not member of <see cref="SimpleTypes"/></exception>
     ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
-    Public Sub New(ByVal Type As SimpleTypes, ByVal Context As CapsDataDataContext)
+    Public Sub New(ByVal Type As SimpleTypes)
         If Not Type.IsDefined Then Throw New InvalidEnumArgumentException("Type", Type, Type.GetType)
-        If Context Is Nothing Then Throw New ArgumentNullException("Context")
         Me.Type = Type
         InitializeComponent()
         Select Case Type
@@ -26,37 +28,43 @@ Partial Public Class winNewSimple
             Case SimpleTypes.StorageType : Me.Title = My.Resources.txt_NewStorageType
             Case SimpleTypes.Target : Me.Title = My.Resources.txt_NewTarget
         End Select
-        Me.Context = Context
+        Me.Context = New CapsDataContext(Main.Connection)
         UnderConstruction = False
         chkIsDrink_Checked(chkIsDrink, New RoutedEventArgs)
     End Sub
-    Private _NewObject As Object
+    ''' <summary>Contains value of the <see cref="NewObject"/> property</summary>
+    Private _NewObject As ISimpleObject
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
-        Dim tbl As System.Data.Linq.ITable
+        Dim DeleteOnSubmit As Action(Of Object)
         Try
             Select Case Type
                 Case SimpleTypes.Material
                     _NewObject = New Material() With {.Name = txtName.Text, .Description = txtDescription.Text}
-                    tbl = Context.Materials
+                    Context.Materials.AddObject(_NewObject)
+                    DeleteOnSubmit = AddressOf Context.Materials.DeleteObject
                 Case SimpleTypes.Category
                     _NewObject = New Category() With {.CategoryName = txtName.Text, .Description = txtDescription.Text}
-                    tbl = Context.Categories
+                    Context.Categories.AddObject(_NewObject)
+                    DeleteOnSubmit = AddressOf Context.Categories.DeleteObject
                 Case SimpleTypes.Company
                     _NewObject = New Company() With {.CompanyName = txtName.Text, .Description = txtDescription.Text}
-                    tbl = Context.Companies
+                    Context.Companies.AddObject(_NewObject)
+                    DeleteOnSubmit = AddressOf Context.Companies.DeleteObject
                 Case SimpleTypes.ProductType
                     _NewObject = New ProductType() With {.ProductTypeName = txtName.Text, .Description = txtDescription.Text, .IsDrink = chkIsDrink.IsChecked, .IsAlcoholic = chkIsAlcoholic.IsChecked}
-                    tbl = Context.ProductTypes
+                    Context.ProductTypes.AddObject(_NewObject)
+                    DeleteOnSubmit = AddressOf Context.ProductTypes.DeleteObject
                 Case SimpleTypes.StorageType
                     _NewObject = New StorageType() With {.Name = txtName.Text, .Description = txtDescription.Text}
-                    tbl = Context.StorageTypes
+                    Context.StorageTypes.AddObject(_NewObject)
+                    DeleteOnSubmit = AddressOf Context.StorageTypes.DeleteObject
                 Case SimpleTypes.Target
                     _NewObject = New Target() With {.Name = txtName.Text, .Description = txtDescription.Text}
-                    tbl = Context.Targets
+                    Context.Targets.AddObject(_NewObject)
+                    DeleteOnSubmit = AddressOf Context.Targets.DeleteObject
                 Case Else
                     Throw New InvalidOperationException(My.Resources.err_UnknownSimpleObject.f(Type))
             End Select
-            tbl.InsertOnSubmit(_NewObject)
         Catch ex As Exception
             mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Exit Sub
@@ -65,14 +73,15 @@ Partial Public Class winNewSimple
             Context.SaveChanges()
         Catch ex As Exception
             mBox.Error_XTW(ex, ex.GetType.Name, Me)
-            tbl.DeleteOnSubmit(_NewObject)
+            If DeleteOnSubmit IsNot Nothing Then DeleteOnSubmit(_NewObject)
             Exit Sub
         End Try
         Me.DialogResult = True
         Me.Close()
     End Sub
 
-    Public ReadOnly Property NewObject() As Object
+    ''' <summary>Gets the object created by this instance</summary>
+    Public ReadOnly Property NewObject() As ISimpleObject
         Get
             Return _NewObject
         End Get
@@ -83,13 +92,19 @@ Partial Public Class winNewSimple
         Me.Close()
     End Sub
 
-
+    ''' <summary>Types that can be created by <see cref="winNewSimple"/>.</summary>
     Public Enum SimpleTypes
+        ''' <summary><see cref="Data.Material"/></summary>
         Material
+        ''' <summary><see cref="Data.Category"/></summary>
         Category
+        ''' <summary><see cref="Data.Company"/></summary>
         Company
+        ''' <summary><see cref="Data.ProductType"/></summary>
         ProductType
+        ''' <summary><see cref="Data.StorageType"/></summary>
         StorageType
+        ''' <summary><see cref="Target"/></summary>
         Target
     End Enum
 
@@ -105,4 +120,27 @@ Partial Public Class winNewSimple
             chkIsAlcoholic.IsChecked = New Boolean?
         End If
     End Sub
+#Region "IDisposable Support"
+    ''' <summary>To detect redundant calls</summary>
+    Private disposedValue As Boolean
+
+    ''' <summary>Implements <see cref="IDisposable.Dispose"/></summary>
+    ''' <param name="disposing">Trie whan called from <see cref="Dispose"/></param>
+    Protected Overridable Sub Dispose(ByVal disposing As Boolean)
+        If Not Me.disposedValue Then
+            If disposing Then
+                If Context IsNot Nothing Then Context.Dispose()
+            End If
+        End If
+        Me.disposedValue = True
+    End Sub
+
+
+    ''' <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    ''' <filterpriority>2</filterpriority>
+    Public Sub Dispose() Implements IDisposable.Dispose
+        Dispose(True)
+        GC.SuppressFinalize(Me)
+    End Sub
+#End Region
 End Class

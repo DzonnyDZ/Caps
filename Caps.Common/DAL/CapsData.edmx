@@ -2193,12 +2193,6 @@
                     <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
                     <End Role="Keyword" Type="Data.Keyword" Multiplicity="*" />
                 </Association>
-                <Function Name="NewGuid" ReturnType="Edm.Guid">
-                    <Documentation>
-                        <Summary>Gets a new random GUID</Summary>
-                    </Documentation>
-                    <DefiningExpression>NewIGGGd()</DefiningExpression>
-                </Function>
                 <ComplexType Name="Cap_PseudoCategory_Int">
                     <Property Type="Int32" Name="CapID" Nullable="false" a:GetterAccess="Protected" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
                     <Property Type="Int32" Name="PseudoCategoryID" Nullable="false" a:GetterAccess="Protected" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
@@ -2532,6 +2526,7 @@
                         </ResultMapping>
                     </FunctionImportMapping>
                     <FunctionImportMapping FunctionImportName="GetCapsOfPseudoCategory" FunctionName="Data.Store.GetCapsOfPseudoCategory" />
+         
                 </EntityContainerMapping>
             </Mapping>
         </edmx:Mappings>

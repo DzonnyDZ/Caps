@@ -3,16 +3,15 @@ Imports System.ComponentModel, Caps.Data
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 
 Partial Public Class winNewShape
+    Implements IDisposable
     ''' <summary>CTor</summary>
-    ''' <param name="Context">Data context</param>
     ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
-    Public Sub New(ByVal Context As CapsDataDataContext)
+    Public Sub New()
         InitializeComponent()
-        If Context Is Nothing Then Throw New ArgumentNullException("Context")
-        Me.Context = Context
+        Me.Context = New CapsDataContext(Main.Connection)
     End Sub
-
-    Private Context As CapsDataDataContext
+    ''' <summary>Data context</summary>
+    Private Context As CapsDataContext
     Private _NewObject As Shape
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
         If Not IO.File.Exists(txtImagePath.Text) Then
@@ -26,7 +25,7 @@ Partial Public Class winNewShape
         End If
         Try
             _NewObject = New Shape() With {.Name = txtName.Text, .Description = txtDescription.Text, .Size1Name = txtSize1Name.Text, .Size2Name = txtSize2Name.Text}
-            Context.Shapes.InsertOnSubmit(_NewObject)
+            Context.Shapes.AddObject(_NewObject)
         Catch ex As Exception
             mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Exit Sub
@@ -34,7 +33,7 @@ Partial Public Class winNewShape
         Try
             Context.SaveChanges()
         Catch ex As Exception
-            Context.Shapes.DeleteAllNew()
+            'Context.Shapes.DeleteAllNew()
             mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Exit Sub
         End Try
@@ -80,4 +79,27 @@ Partial Public Class winNewShape
             txtImagePath.Text = dlg.FileName
         End If
     End Sub
+#Region "IDisposable Support"
+    ''' <summary>To detect redundant calls</summary>
+    Private disposedValue As Boolean
+
+    ''' <summary>Implements <see cref="IDisposable.Dispose"/></summary>
+    ''' <param name="disposing">Trie whan called from <see cref="Dispose"/></param>
+    Protected Overridable Sub Dispose(ByVal disposing As Boolean)
+        If Not Me.disposedValue Then
+            If disposing Then
+                If Context IsNot Nothing Then Context.Dispose()
+            End If
+        End If
+        Me.disposedValue = True
+    End Sub
+
+
+    ''' <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+    ''' <filterpriority>2</filterpriority>
+    Public Sub Dispose() Implements IDisposable.Dispose
+        Dispose(True)
+        GC.SuppressFinalize(Me)
+    End Sub
+#End Region
 End Class

@@ -8530,981 +8530,6 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="T:Tools.CollectionsT.GenericT.IBiDirEnumerable`1">
 	<summary>Provides interface for collections that has bidirectional enumerator</summary>
 	<typeparam name="T">Type of element in collection</typeparam>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.aar">
-	<summary>Code for Afar (Qafár af)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.abk">
-	<summary>Code for Abkhaz (Аҧсуа)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ace">
-	<summary>Code for Acehnese, Achinese (Aceh)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ada">
-	<summary>Code for Adangme (Adangme)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ady">
-	<summary>Code for Adyghe (адыгэбзэ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.afa">
-	<summary>Code for Afro-Asiatic (Other) (Afro-Asiatic (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.afh">
-	<summary>Code for Afrihili (Afrihili)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.afr">
-	<summary>Code for Afrikaans (Afrikaans)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ach">
-	<summary>Code for Acoli (Acoli)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ain">
-	<summary>Code for Ainu (アイヌ イタク)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.aka">
-	<summary>Code for Akan (Akan)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.akk">
-	<summary>Code for Akkadian (akkadû)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.alb">
-	<summary>Code for Albanian (Shqip)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ale">
-	<summary>Code for Aleut (Unangam Tunuu)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.alg">
-	<summary>Code for Algonquian languages (Algonquian languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.alt">
-	<summary>Code for Southern Altai (алтай тили)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.amh">
-	<summary>Code for Amharic (አማርኛ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ang">
-	<summary>Code for English, Old (ca. 450–1100) (Englisc)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.anp">
-	<summary>Code for Angika (अङ्गिका)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.apa">
-	<summary>Code for Apache languages (Apache languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ara">
-	<summary>Code for Arabic (العربية)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.arc">
-	<summary>Code for Aramaic (ܐܪܡܝܐ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.arg">
-	<summary>Code for Aragonese (Aragonés)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.arm">
-	<summary>Code for Armenian (Հայերեն լեզու)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.arn">
-	<summary>Code for Araucanian (mapudungun)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.arp">
-	<summary>Code for Arapaho (Hinono'eitiit)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.art">
-	<summary>Code for Artificial (Other) (Artificial (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.arw">
-	<summary>Code for Arawak (Arawak)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.asm">
-	<summary>Code for Assamese (অসমীয়া)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ast">
-	<summary>Code for Asturian (asturianu)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ath">
-	<summary>Code for Athapascan languages (aðapaskāw)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.aus">
-	<summary>Code for Australian languages (Australian languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ava">
-	<summary>Code for Avaric (авар мацӀ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ave">
-	<summary>Code for Avestan (avesta)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.awa">
-	<summary>Code for Awadhi (अवधी)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.aym">
-	<summary>Code for Aymara (aymar aru)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.aze">
-	<summary>Code for Azerbaijani (Azərbaycanca)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bad">
-	<summary>Code for Banda (Banda)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bai">
-	<summary>Code for Bamileke languages (Bamiléké)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bak">
-	<summary>Code for Bashkir (башҡорт теле)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bal">
-	<summary>Code for Baluchi (بلوچی)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bam">
-	<summary>Code for Bambara (bamanankan)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ban">
-	<summary>Code for Balinese (Basa Bali)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.baq">
-	<summary>Code for Basque (euskara)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bas">
-	<summary>Code for Basa (ɓasaá)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bat">
-	<summary>Code for Baltic (Other) (Baltic (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bej">
-	<summary>Code for Beja (بداوية)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bel">
-	<summary>Code for Belarusian (Беларуская мова)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bem">
-	<summary>Code for Bemba (Chiwemba)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ben">
-	<summary>Code for Bengali (বাংলা)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ber">
-	<summary>Code for Berber (Other) (Tamazight)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bho">
-	<summary>Code for Bhojpuri (भोजपुरी)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bih">
-	<summary>Code for Bihari (Bihari)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bik">
-	<summary>Code for Bikol languages (Bikol)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bin">
-	<summary>Code for Bini (Edo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bis">
-	<summary>Code for Bislama (Bislama)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bla">
-	<summary>Code for Siksika (siksiká)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bnt">
-	<summary>Code for Bantu (Other) (Bantu (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bos">
-	<summary>Code for Bosnian (bosanski jezik)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bra">
-	<summary>Code for Braj (ब्रज भाषा)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bre">
-	<summary>Code for Breton (brezhoneg)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.btk">
-	<summary>Code for Batak (Indonesia) (Batak)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bua">
-	<summary>Code for Buriat (буряад хэлэн)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bug">
-	<summary>Code for Buginese (ᨅᨔ ᨕᨘᨁᨗ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bul">
-	<summary>Code for Bulgarian (български език)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.bur">
-	<summary>Code for Burmese (မန္မာစာ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.byn">
-	<summary>Code for Blin (ብሊና)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cad">
-	<summary>Code for Caddo (Hasí:nay)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cai">
-	<summary>Code for Central American Indian (Other) (Central American Indian (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.car">
-	<summary>Code for Carib (Cariban)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cat">
-	<summary>Code for Catalan (català)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cau">
-	<summary>Code for Caucasian (Other) (Caucasian (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ceb">
-	<summary>Code for Cebuano (Sinugboanon)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cel">
-	<summary>Code for Celtic (Other) (Celtic (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cmc">
-	<summary>Code for Chamic languages (Chamic languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cop">
-	<summary>Code for Coptic (ⲙⲉⲧⲛ̀ⲣⲉⲙⲛ̀ⲭⲏⲙⲓ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cor">
-	<summary>Code for Cornish (Kernewek)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cos">
-	<summary>Code for Corsican (corsu)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cpe">
-	<summary>Code for Creoles and Pidgins, English-based (Other) (Creoles and Pidgins, English-based (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cpf">
-	<summary>Code for Creoles and Pidgins, French-based (Other) (Creoles and Pidgins, French-based (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cpp">
-	<summary>Code for Creoles and Pidgins, Portuguese-based (Other) (Creoles and Pidgins, Portuguese-based (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cre">
-	<summary>Code for Cree (ᓀᐦᐃᔭᐍᐏᐣ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.crh">
-	<summary>Code for Crimean Tatar (къырымтатар тили)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.crp">
-	<summary>Code for Creoles and Pidgins (Other) (Creoles and Pidgins (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.csb">
-	<summary>Code for Kashubian (kaszëbsczi jãzëk)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cus">
-	<summary>Code for Cushitic (Other) (Cushitic (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cze">
-	<summary>Code for Czech (čeština)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.dak">
-	<summary>Code for Dakota (Lakhota)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.dan">
-	<summary>Code for Danish (dansk)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.dar">
-	<summary>Code for Dargwa (дарган мез)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.day">
-	<summary>Code for Dayak (Dayak)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.del">
-	<summary>Code for Delaware (Lënape)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.den">
-	<summary>Code for Slave (Athapascan) (Slave)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.dgr">
-	<summary>Code for Dogrib (Tłįchǫ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.din">
-	<summary>Code for Dinka (Thuɔŋjäŋ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.div">
-	<summary>Code for Divehi (ދިވެހިބަސ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.doi">
-	<summary>Code for Dogri (डोगरी)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.dra">
-	<summary>Code for Dravidian (Other) (Dravidian (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.dsb">
-	<summary>Code for Sorbian, Lower (dolnoserbski)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.dua">
-	<summary>Code for Duala (Douala)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.dum">
-	<summary>Code for Dutch, Middle (ca. 1050–1350) (Middelnederlands)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.dut">
-	<summary>Code for Dutch (Nederlands)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.dyu">
-	<summary>Code for Dyula (Julakan)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.dzo">
-	<summary>Code for Dzongkha (རྫོང་ཁ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.efi">
-	<summary>Code for Efik (Ibibio)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.egy">
-	<summary>Code for Egyptian (Ancient) (r n km.t)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.eka">
-	<summary>Code for Ekajuk (Akajo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.elx">
-	<summary>Code for Elamite (Elamite)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.eng">
-	<summary>Code for English (English)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.enm">
-	<summary>Code for English, Middle (ca. 1100–1500) (English, Middle (ca. 1100–1500))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.epo">
-	<summary>Code for Esperanto (Esperanto)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.est">
-	<summary>Code for Estonian (Eesti keel)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.eus">
-	<summary>Code for Basque (euskara)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ewe">
-	<summary>Code for Ewe (Ɛʋɛgbɛ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ewo">
-	<summary>Code for Ewondo (Ewondo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fan">
-	<summary>Code for Fang (Fang)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fao">
-	<summary>Code for Faroese (føroyskt)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fat">
-	<summary>Code for Fanti (Fanti)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fij">
-	<summary>Code for Fijian (vosa Vakaviti)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fil">
-	<summary>Code for Filipino (Filipino)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fin">
-	<summary>Code for Finnish (suomi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fiu">
-	<summary>Code for Finno-Ugrian (Other) (Finno-Ugrian (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fon">
-	<summary>Code for Fon (Fɔngbe)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fre">
-	<summary>Code for French (français)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.frm">
-	<summary>Code for French, Middle (ca. 1400—1600) (le moyen français)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fro">
-	<summary>Code for French, Old (842—ca. 1400) (langue d'oïl)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.frr">
-	<summary>Code for Frisian, Northern (Frasch)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.frs">
-	<summary>Code for Frisian, Eastern (Seeltersk Fräisk)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fry">
-	<summary>Code for Frisian, Western (frysk)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ful">
-	<summary>Code for Fulah (Fulfulde)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.fur">
-	<summary>Code for Friulian (furlan)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gaa">
-	<summary>Code for Ga (Gã)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gay">
-	<summary>Code for Gayo (Bahasa Gayo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gba">
-	<summary>Code for Gbaya (Gbaya)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gem">
-	<summary>Code for Germanic (Other) (Germanic (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.geo">
-	<summary>Code for Georgian (ქართული ენა )</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ger">
-	<summary>Code for German (Deutsch)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gez">
-	<summary>Code for Geez (ግዕዝ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gil">
-	<summary>Code for Gilbertese (taetae ni Kiribati)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gla">
-	<summary>Code for Scottish Gaelic (Gàidhlig)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gle">
-	<summary>Code for Irish (Gaeilge)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.glg">
-	<summary>Code for Galician (Galego)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.glv">
-	<summary>Code for Manx (Gaelg)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gmh">
-	<summary>Code for German, Middle High (ca. 1050–1500) (diutisk)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.goh">
-	<summary>Code for German, Old High (ca. 750–1050) (diutisc)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gon">
-	<summary>Code for Gondi (Gondi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gor">
-	<summary>Code for Gorontalo (Grontalo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.got">
-	<summary>Code for Gothic (𐌷𐌰𐌿𐌱𐌹𐌳𐌰𐍃𐌴𐌹𐌳𐍉)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.grb">
-	<summary>Code for Grebo (Grebo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.grc">
-	<summary>Code for Greek, Ancient (to 1453) (Ἑλληνικά)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gre">
-	<summary>Code for Greek, Modern (1453–) (Ελληνικά)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.grn">
-	<summary>Code for Guarani (Avañe'ẽ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gsw">
-	<summary>Code for German, Alemannic (Alemannisch, Schwyzerdütsch)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.guj">
-	<summary>Code for Gujarati (ગુજરાતી)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.gwi">
-	<summary>Code for Gwichʼin (Gwich’in)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hai">
-	<summary>Code for Haida (X̲aat Kíl)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hat">
-	<summary>Code for Haitian Creole (Kreyòl ayisyen)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hau">
-	<summary>Code for Hausa (هَوُسَ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.haw">
-	<summary>Code for Hawaiian (‘Ōlelo Hawai‘i)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.heb">
-	<summary>Code for Hebrew (עִבְרִית; עברית)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.her">
-	<summary>Code for Herero (Otjiherero)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hil">
-	<summary>Code for Hiligaynon (Ilonggo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.him">
-	<summary>Code for Himachali (हिमाचल प्रदेश)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hin">
-	<summary>Code for Hindi (हिन्दी)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hit">
-	<summary>Code for Hittite (𒉈𒅆𒇷)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hmn">
-	<summary>Code for Hmong (Hmoob)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hmo">
-	<summary>Code for Hiri Motu (Hiri Motu)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hrv">
-	<summary>Code for Croatian (hrvatski jezik)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hsb">
-	<summary>Code for Sorbian, Upper (hornjoserbsce)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hun">
-	<summary>Code for Hungarian (Magyar)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.hup">
-	<summary>Code for Hupa (?)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cha">
-	<summary>Code for Chamorro (Chamoru)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.chb">
-	<summary>Code for Chibcha (muysca kubun)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.che">
-	<summary>Code for Chechen (нохчийн мотт)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.chg">
-	<summary>Code for Chagatai (جغتای )</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.chi">
-	<summary>Code for Chinese (中文)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.chk">
-	<summary>Code for Chuukese (Trukese)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.chm">
-	<summary>Code for Mari (марий йылме)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.chn">
-	<summary>Code for Chinook jargon (Lelang)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.cho">
-	<summary>Code for Choctaw (Chahta Anumpa)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.chp">
-	<summary>Code for Dene Suline (ᑌᓀᓲᒢᕄᓀ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.chr">
-	<summary>Code for Cherokee (ᏣᎳᎩ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.chu">
-	<summary>Code for Church Slavonic (Ѩзыкъ словѣньскъ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.chv">
-	<summary>Code for Chuvash (чӑваш чӗлхи)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.chy">
-	<summary>Code for Cheyenne (Tsêhést)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.iba">
-	<summary>Code for Iban (Iban)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ibo">
-	<summary>Code for Igbo (Igbo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ice">
-	<summary>Code for Icelandic (íslenska)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ido">
-	<summary>Code for Ido (Ido)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.iii">
-	<summary>Code for Sichuan Yi (ꆇꉙ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ijo">
-	<summary>Code for Ijo (Ijo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.iku">
-	<summary>Code for Inuktitut (ᐃᓄᒃᑎᑐᑦ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ile">
-	<summary>Code for Interlingue (Interlingue)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ilo">
-	<summary>Code for Iloko (Ilokano)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ina">
-	<summary>Code for Interlingua (interlingua)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.inc">
-	<summary>Code for Indic (Other) (Indic (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ind">
-	<summary>Code for Indonesian (Bahasa Indonesia)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ine">
-	<summary>Code for Indo-European (Other) (Indo-European (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.inh">
-	<summary>Code for Ingush (гӀалгӀай мотт)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ipk">
-	<summary>Code for Inupiaq (Iñupiaq)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ira">
-	<summary>Code for Iranian (Other) (Iranian (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.iro">
-	<summary>Code for Iroquoian languages (Iroquoian languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ita">
-	<summary>Code for Italian (italiano)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.jav">
-	<summary>Code for Javanese (basa Jawa)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.jbo">
-	<summary>Code for Lojban (la lojban.)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.jpn">
-	<summary>Code for Japanese (日本語)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.jpr">
-	<summary>Code for Judeo-Persian (Jidi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.jrb">
-	<summary>Code for Judeo-Arabic (Judeo-Arabic)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kaa">
-	<summary>Code for Kara-Kalpak (қарақалпақ тили)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kab">
-	<summary>Code for Kabyle (Taqbaylit)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kac">
-	<summary>Code for Kachin (Jinghpaw)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kal">
-	<summary>Code for Greenlandic (kalaallisut)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kam">
-	<summary>Code for Kamba (Kikamba)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kan">
-	<summary>Code for Kannada (ಕನ್ನಡ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kar">
-	<summary>Code for Karen (Karen languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kas">
-	<summary>Code for Kashmiri (कॉशुर; کٲشُر)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kau">
-	<summary>Code for Kanuri (Kanuri)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kaw">
-	<summary>Code for Kawi (Bhāṣa Kawi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kaz">
-	<summary>Code for Kazakh (Қазақ тілі)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kbd">
-	<summary>Code for Kabardian (къэбэрдеибзэ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kha">
-	<summary>Code for Khasi (Khasi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.khi">
-	<summary>Code for Khoisan (Other) (Khoisan)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.khm">
-	<summary>Code for Khmer (ភាសាខ្មែរ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kho">
-	<summary>Code for Khotanese (Khotanese)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kik">
-	<summary>Code for Kikuyu (Gĩkũyũ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kin">
-	<summary>Code for Kinyarwanda (kinyaRwanda)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kir">
-	<summary>Code for Kirghiz (кыргыз тили)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kmb">
-	<summary>Code for Kimbundu (Kimbundu)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kok">
-	<summary>Code for Konkani (कोंकणी)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kom">
-	<summary>Code for Komi (коми кыв)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kon">
-	<summary>Code for Kongo (Kikongo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kor">
-	<summary>Code for Korean (한국어)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kos">
-	<summary>Code for Kosraean (Kosrae)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kpe">
-	<summary>Code for Kpelle (kpele)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.krc">
-	<summary>Code for Karachay-Balkar (къарачай-малкъар тил)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.krl">
-	<summary>Code for Karelian (karjalan kieli)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kro">
-	<summary>Code for Kru (Kru)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kru">
-	<summary>Code for Kurukh (Kurux)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kua">
-	<summary>Code for Kuanyama (Oshikwanyama)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kum">
-	<summary>Code for Kumyk (къумукъ тил)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kur">
-	<summary>Code for Kurdish (Kurdî)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.kut">
-	<summary>Code for Kutenai (Kootenai)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lad">
-	<summary>Code for Ladino (ג'ודיאו-איספאנייול)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lah">
-	<summary>Code for Lahnda (ਪੰਜਾਬੀ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lam">
-	<summary>Code for Lamba (Lamba)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lao">
-	<summary>Code for Lao (ພາສາລາວ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lat">
-	<summary>Code for Latin (latine)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lav">
-	<summary>Code for Latvian (latviešu valoda)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lez">
-	<summary>Code for Lezghian (лезги чӀал)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lim">
-	<summary>Code for Limburgish (Limburgs)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lin">
-	<summary>Code for Lingala (lingala)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lit">
-	<summary>Code for Lithuanian (lietuvių kalba)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lol">
-	<summary>Code for Mongo (Mongo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.loz">
-	<summary>Code for Lozi (Silozi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ltz">
-	<summary>Code for Luxembourgish (Lëtzebuergesch)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lua">
-	<summary>Code for Luba-Lulua (lwaà:)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lub">
-	<summary>Code for Luba-Katanga (Luba-Katanga)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lug">
-	<summary>Code for Ganda (Luganda)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lui">
-	<summary>Code for Luiseno (Luiseño)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lun">
-	<summary>Code for Lunda (Chilunda)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.luo">
-	<summary>Code for Luo (Dholuo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.lus">
-	<summary>Code for Lushai (Lushai)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mac">
-	<summary>Code for Macedonian (македонски јазик)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mad">
-	<summary>Code for Madurese (Basa Mathura)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mag">
-	<summary>Code for Magahi (मगही)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mah">
-	<summary>Code for Marshallese (Kajin M̧ajeļ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mai">
-	<summary>Code for Maithili (मैथिली)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mak">
-	<summary>Code for Makasar (Makasar)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mal">
-	<summary>Code for Malayalam (മലയാളം)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.man">
-	<summary>Code for Mandingo (Mandinka)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mao">
-	<summary>Code for Māori (te reo Māori)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.map">
-	<summary>Code for Austronesian (Other) (Austronesian (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mar">
-	<summary>Code for Marathi (मराठी)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mas">
-	<summary>Code for Masai (ɔl Maa)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.may">
-	<summary>Code for Malay (بهاس ملايو)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mdf">
-	<summary>Code for Moksha (мокшень кяль)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mdr">
-	<summary>Code for Mandar (Mandar)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.men">
-	<summary>Code for Mende (Mɛnde yia)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mga">
-	<summary>Code for Irish, Middle (900–1200) (Gaoidhealg)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mic">
-	<summary>Code for Mi'kmaq (Mi'gmaq)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.min">
-	<summary>Code for Minangkabau (Baso Minangkabau)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mis">
-	<summary>Code for miscellaneous languages (miscellaneous languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mkh">
-	<summary>Code for Mon-Khmer (Other) (Mon-Khmer (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mlg">
-	<summary>Code for Malagasy (Malagasy fiteny)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mlt">
-	<summary>Code for Maltese (Malti)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mnc">
-	<summary>Code for Manchu (ᠮᠠᠨᠵᡠ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mni">
-	<summary>Code for Manipuri (মৈইতৈইলোন)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mno">
-	<summary>Code for Manobo languages (Manobo languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.moh">
-	<summary>Code for Mohawk (Kanien’keha)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mol">
-	<summary>Code for Moldavian (лимба молдовеняскэ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mon">
-	<summary>Code for Mongolian (монгол хэл)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mos">
-	<summary>Code for Mossi (Mòoré)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mul">
-	<summary>Code for multiple languages (multiple languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mun">
-	<summary>Code for Munda languages (Munda languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mus">
-	<summary>Code for Creek (Maskoki)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mwl">
-	<summary>Code for Mirandese (Lhéngua Mirandesa)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mwr">
-	<summary>Code for Marwari (मारवाड़ी)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.mya">
-	<summary>Code for Burmese (မန္မာစာ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.myn">
-	<summary>Code for Mayan languages (Mayan languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.myv">
-	<summary>Code for Erzya (эрзянь кель)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nah">
-	<summary>Code for Nahuatl (nāhuatl)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nai">
-	<summary>Code for North American Indian (Other) (North American Indian (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nap">
-	<summary>Code for Neapolitan (napulitano)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nau">
-	<summary>Code for Nauruan (Ekakairũ Naoero)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nav">
-	<summary>Code for Navajo (Diné bizaad)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nbl">
-	<summary>Code for Ndebele, South (Ndébélé)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nde">
-	<summary>Code for Ndebele, North (isiNdebele)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ndo">
-	<summary>Code for Ndonga (Owambo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nds">
-	<summary>Code for German, Low (Nederdüütsch)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nep">
-	<summary>Code for Nepali (नेपाली)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.new">
-	<summary>Code for Nepal Bhasa (नेपाल भाषा)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nia">
-	<summary>Code for Nias (Nias)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nic">
-	<summary>Code for Niger-Kordofanian (Other) (Niger-Kordofanian (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.niu">
-	<summary>Code for Niuean (ko e vagahau Niuē)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nno">
-	<summary>Code for Norwegian Nynorsk (Norsk nynorsk)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nob">
-	<summary>Code for Norwegian Bokmål (Norsk bokmål)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nog">
-	<summary>Code for Nogai (ногай тили)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.non">
-	<summary>Code for Norse, Old (norskr)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nor">
-	<summary>Code for Norwegian (Norsk)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nqo">
-	<summary>Code for N'Ko (N'Ko)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nso">
-	<summary>Code for Sotho, Northern; Pedi; Sepedi (sePêdi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nub">
-	<summary>Code for Nubian languages (Nubian languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nwc">
-	<summary>Code for Nepal Bhasa (नेपाल भाषा)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nya">
-	<summary>Code for Chichewa (chiCheŵa)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nym">
-	<summary>Code for Nyamwezi (Kinyamwezi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nyn">
-	<summary>Code for Nyankole (Nyankole)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nyo">
-	<summary>Code for Nyoro (Runyoro)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.nzi">
-	<summary>Code for Nzima (Nzima)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.oci">
-	<summary>Code for Occitan (lenga d'òc)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.oji">
-	<summary>Code for Ojibwa (ᐊᓂᔑᓇᐯᒧᐏᐣ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ori">
-	<summary>Code for Oriya (ଓଡ଼ିଆ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.orm">
-	<summary>Code for Oromo (Afaan Oromoo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.osa">
-	<summary>Code for Osage (Osage)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.oss">
-	<summary>Code for Ossetian (ирон ӕвзаг)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ota">
-	<summary>Code for Turkish, Ottoman (1500–1928) (لسان عثمان)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.oto">
-	<summary>Code for Otomian languages (Otomian languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.paa">
-	<summary>Code for Papuan (Other) (Papuan (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pag">
-	<summary>Code for Pangasinan (salitan Pangasinan)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pal">
-	<summary>Code for Pahlavi (Pahlavi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pam">
-	<summary>Code for Pampanga (Kapampangan)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pan">
-	<summary>Code for Punjabi (ਪੰਜਾਬੀ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pap">
-	<summary>Code for Papiamento (Papiamentu)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pau">
-	<summary>Code for Palauan (tekoi ra Belau)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.peo">
-	<summary>Code for Persian, Old (ca. 600–400 BC) (Persian, Old (ca. 600–400 BC))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.per">
-	<summary>Code for Persian (فارسی)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.phi">
-	<summary>Code for Philippine (Other) (Philippine (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.phn">
-	<summary>Code for Phoenician (𐤃𐤁𐤓𐤉𐤌𐤟𐤊𐤍𐤏𐤍𐤉𐤌)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pli">
-	<summary>Code for Pali (पालि)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pol">
-	<summary>Code for Polish (polski)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pon">
-	<summary>Code for Pohnpeian (Pohnpeian)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.por">
-	<summary>Code for Portuguese (Português)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pra">
-	<summary>Code for Prakrit languages (प्राकृत)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pro">
-	<summary>Code for Provençal, Old (to 1500) (Provençal, Old (to 1500))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.pus">
-	<summary>Code for Pushto (پښت)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.que">
-	<summary>Code for Quechua (Runa Simi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.raj">
-	<summary>Code for Rajasthani (राजस्थानी)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.rap">
-	<summary>Code for Rapanui (rapanui)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.rar">
-	<summary>Code for Rarotongan (Māori Kūki 'Āirani)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.roa">
-	<summary>Code for Romance (Other) (Romance (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.roh">
-	<summary>Code for Raeto-Romance (rumantsch grischun)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.rom">
-	<summary>Code for Romany (Romani šib)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.rum">
-	<summary>Code for Romanian (română)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.run">
-	<summary>Code for Rundi (kiRundi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.rup">
-	<summary>Code for Aromanian (limba armãneascã)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.rus">
-	<summary>Code for Russian (русский язык)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sad">
-	<summary>Code for Sandawe (Sandawe)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sag">
-	<summary>Code for Sango (yângâ tî sängö)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sah">
-	<summary>Code for Yakut (Саха тыла)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sai">
-	<summary>Code for South American Indian (Other) (South American Indian (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sal">
-	<summary>Code for Salishan languages (Salishan languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sam">
-	<summary>Code for Samaritan Aramaic (ܐܪܡܝܐ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.san">
-	<summary>Code for Sanskrit (संस्कृतम्)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sas">
-	<summary>Code for Sasak (Sasak)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sat">
-	<summary>Code for Santali (संथाली)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.scc">
-	<summary>Code for Serbian (српски језик)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.scn">
-	<summary>Code for Sicilian (Sicilianu)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sco">
-	<summary>Code for Scots (Scoats leid)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sel">
-	<summary>Code for Selkup (шӧльӄумыт әты)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sem">
-	<summary>Code for Semitic (Other) (Semitic (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sga">
-	<summary>Code for Irish, Old (to 900) (Goídelc)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sgn">
-	<summary>Code for Sign languages (Sign languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.shn">
-	<summary>Code for Shan (Shan)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sid">
-	<summary>Code for Sidamo (Sidámo 'Afó)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sin">
-	<summary>Code for Sinhalese (සිංහල)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sio">
-	<summary>Code for Siouan languages (Siouan languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sit">
-	<summary>Code for Sino-Tibetan (Other) (Sino-Tibetan (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sla">
-	<summary>Code for Slavic (Other) (Slavic (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.slo">
-	<summary>Code for Slovak (slovenčina)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.slv">
-	<summary>Code for Slovenian (slovenščina)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sma">
-	<summary>Code for Southern Sami (saemien giele)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sme">
-	<summary>Code for Northern Sami (davvisámegiella)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.smi">
-	<summary>Code for Sami languages (Other) (Sami languages (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.smj">
-	<summary>Code for Lule Sami (sámegiella)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.smn">
-	<summary>Code for Inari Sami (säämegiella)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.smo">
-	<summary>Code for Samoan (gagana fa'a Samoa)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sms">
-	<summary>Code for Skolt Sami (sääʼmǩiõll)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sna">
-	<summary>Code for Shona (chiShona)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.snd">
-	<summary>Code for Sindhi (سنڌي، سندھی)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.snk">
-	<summary>Code for Soninke (Soninkanxaane)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sog">
-	<summary>Code for Sogdian (Sogdian)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.som">
-	<summary>Code for Somali (Soomaaliga)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.son">
-	<summary>Code for Songhai (Songhay languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sot">
-	<summary>Code for Sotho, Southern (seSotho)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.spa">
-	<summary>Code for Spanish (español)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.srd">
-	<summary>Code for Sardinian (sardu)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.srn">
-	<summary>Code for Sranan Tongo (Sranan Tongo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.srr">
-	<summary>Code for Serer (Sérère)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ssa">
-	<summary>Code for Nilo-Saharan (Other) (Nilo-Saharan (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ssw">
-	<summary>Code for Swati (siSwati)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.suk">
-	<summary>Code for Sukuma (Sukuma)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sun">
-	<summary>Code for Sundanese (basa Sunda)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sus">
-	<summary>Code for Susu (Sosokui)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.sux">
-	<summary>Code for Sumerian (eme-ĝir)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.swa">
-	<summary>Code for Swahili (kiswahili)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.swe">
-	<summary>Code for Swedish (Svenska)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.syc">
-	<summary>Code for Classical Syriac (ܣܘܪܝܝܐ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.syr">
-	<summary>Code for Syriac (ܣܘܪܝܝܐ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tah">
-	<summary>Code for Tahitian (te reo Tahiti; te reo Māʼohi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tai">
-	<summary>Code for Tai (Other) (´Tai (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tam">
-	<summary>Code for Tamil (தமிழ்)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tat">
-	<summary>Code for Tatar (татарча)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tel">
-	<summary>Code for Telugu (తెలుగు)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tem">
-	<summary>Code for Timne (Timne)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ter">
-	<summary>Code for Tereno (Tereno)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tet">
-	<summary>Code for Tetum (Tetun)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tgk">
-	<summary>Code for Tajik (тоҷикӣ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tgl">
-	<summary>Code for Tagalog (Tagalog)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tha">
-	<summary>Code for Thai (ภาษาไทย)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tib">
-	<summary>Code for Tibetan (བོད་ཡིག)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tig">
-	<summary>Code for Tigre (Tigré)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tir">
-	<summary>Code for Tigrinya (ትግርኛ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tiv">
-	<summary>Code for Tiv (Tiv)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tkl">
-	<summary>Code for Tokelau (Tokelauan)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tlh">
-	<summary>Code for Klingon (tlhIngan Hol)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tli">
-	<summary>Code for Tlingit (Lingít)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tmh">
-	<summary>Code for Tamashek (Tamajeq)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tog">
-	<summary>Code for Tonga (Malawi) (chiTonga)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ton">
-	<summary>Code for Tongan (faka-Tonga)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tpi">
-	<summary>Code for Tok Pisin (Tok Pisin)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tsi">
-	<summary>Code for Tsimshian (Tsimshianic languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tsn">
-	<summary>Code for Tswana (seTswana)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tso">
-	<summary>Code for Tsonga (xiTsonga)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tuk">
-	<summary>Code for Turkmen (Түркмен)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tum">
-	<summary>Code for Tumbuka (chiTumbuka)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tup">
-	<summary>Code for Tupi languages (Nheengatu)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tur">
-	<summary>Code for Turkish (Türkçe)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tut">
-	<summary>Code for Altaic (Other) (Altaic (Other))</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tvl">
-	<summary>Code for Tuvalu ('gana Tuvalu)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.twi">
-	<summary>Code for Twi (Twi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.tyv">
-	<summary>Code for Tuvinian (тыва дыл)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.udm">
-	<summary>Code for Udmurt (удмурт кыл)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.uga">
-	<summary>Code for Ugaritic (Ugaritic)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.uig">
-	<summary>Code for Uighur (Uyƣurqə)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ukr">
-	<summary>Code for Ukrainian (українська мова)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.umb">
-	<summary>Code for Umbundu (úmbúndú)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.und">
-	<summary>Code for undetermined language (undetermined language)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.urd">
-	<summary>Code for Urdu (اردو)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.uzb">
-	<summary>Code for Uzbek (Ўзбек)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.vai">
-	<summary>Code for Vai (Vai)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ven">
-	<summary>Code for Venda (tshiVenḓa)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.vie">
-	<summary>Code for Vietnamese (Tiếng Việt)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.vol">
-	<summary>Code for Volapük (Volapük)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.vot">
-	<summary>Code for Votic (vaďďa tšeeli)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.wak">
-	<summary>Code for Wakashan languages (Wakashan languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.wal">
-	<summary>Code for Walamo (Walamo)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.war">
-	<summary>Code for Waray (Winaray)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.was">
-	<summary>Code for Washo (Washoe)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.wel">
-	<summary>Code for Welsh (Cymraeg)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.wen">
-	<summary>Code for Sorbian languages (Sorbian languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.wln">
-	<summary>Code for Walloon (walon)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.wol">
-	<summary>Code for Wolof (Wolof)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.xal">
-	<summary>Code for Kalmyk (хальмг келн)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.xho">
-	<summary>Code for Xhosa (isiXhosa)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.yao">
-	<summary>Code for Yao (Chiyao)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.yap">
-	<summary>Code for Yapese (Yapese)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.yid">
-	<summary>Code for Yiddish (ייִדיש)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.yor">
-	<summary>Code for Yoruba (Yorùbá)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.ypk">
-	<summary>Code for Yupik languages (Yupik languages)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.zap">
-	<summary>Code for Zapotec (Zapotec)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.zen">
-	<summary>Code for Zenaga (Tuḍḍungiyya)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.zha">
-	<summary>Code for Zhuang (Saɯ cueŋƅ)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.znd">
-	<summary>Code for Zande (Zande)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.zul">
-	<summary>Code for Zulu (isiZulu)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.zun">
-	<summary>Code for Zuni (Shiwi)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.zxx">
-	<summary>Code for no linguistic content (no linguistic content)</summary>
-</member><member name="P:Tools.GlobalizationT.ISOLanguage.zza">
-	<summary>Code for Zaza (So-Bé)</summary>
-</member><member name="M:Tools.GlobalizationT.ISOLanguage.GetAllCodes">
-	<summary>Returns list of all predefined ISO 639-2 and ISO 639-1 language codes</summary>
-	<remarks>Reserved code from range qaa÷qtz are not returned. Duplicate codes are returnet only in <see cref="P:Tools.GlobalizationT.ISOLanguage.Duplicate"/> property of other codes.</remarks>
 </member><member name="P:Tools.ResourcesT.Exceptions.InternalSyncObject">
 	<summary>
 Thread safe lock object used by this class.
@@ -10377,6 +9402,10 @@ Looks up a localized string similar to '{0} must contain at least one item.'.
 </member><member name="P:Tools.ResourcesT.Exceptions.MustContainExactly1Parts">
 	<summary>
 Looks up a localized string similar to '{0} must contain exactly {1} parts'.
+</summary>
+</member><member name="P:Tools.ResourcesT.Exceptions.MustNotBeNull">
+	<summary>
+Looks up a localized string similar to '{0} must not be null'.
 </summary>
 </member><member name="P:Tools.ResourcesT.Exceptions.MustRepresentXMLElement1">
 	<summary>
@@ -12396,6 +11425,12 @@ Formats a localized string similar to '{0} must contain exactly {1} parts'.
 	<param name="arg0">An object (0) to format.</param>
 	<param name="arg1">An object (1) to format.</param>
 	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.ResourcesT.Exceptions.MustNotBeNullFormat(System.Object)">
+	<summary>
+Formats a localized string similar to '{0} must not be null'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
 </member><member name="M:Tools.ResourcesT.Exceptions.MustRepresentXMLElement1Format(System.Object,System.Object)">
 	<summary>
 Formats a localized string similar to '{0} must represent XML element {1}'.
@@ -13565,6 +12600,981 @@ The stub formatting method returning the YouShouldNotReplaceRecordsWhichServesAs
 	<summary>
 A strongly-typed resource class, for looking up localized strings, formatting them, etc.
 </summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.aar">
+	<summary>Code for Afar (Qafár af)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.abk">
+	<summary>Code for Abkhaz (Аҧсуа)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ace">
+	<summary>Code for Acehnese, Achinese (Aceh)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ada">
+	<summary>Code for Adangme (Adangme)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ady">
+	<summary>Code for Adyghe (адыгэбзэ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.afa">
+	<summary>Code for Afro-Asiatic (Other) (Afro-Asiatic (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.afh">
+	<summary>Code for Afrihili (Afrihili)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.afr">
+	<summary>Code for Afrikaans (Afrikaans)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ach">
+	<summary>Code for Acoli (Acoli)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ain">
+	<summary>Code for Ainu (アイヌ イタク)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.aka">
+	<summary>Code for Akan (Akan)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.akk">
+	<summary>Code for Akkadian (akkadû)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.alb">
+	<summary>Code for Albanian (Shqip)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ale">
+	<summary>Code for Aleut (Unangam Tunuu)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.alg">
+	<summary>Code for Algonquian languages (Algonquian languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.alt">
+	<summary>Code for Southern Altai (алтай тили)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.amh">
+	<summary>Code for Amharic (አማርኛ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ang">
+	<summary>Code for English, Old (ca. 450–1100) (Englisc)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.anp">
+	<summary>Code for Angika (अङ्गिका)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.apa">
+	<summary>Code for Apache languages (Apache languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ara">
+	<summary>Code for Arabic (العربية)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.arc">
+	<summary>Code for Aramaic (ܐܪܡܝܐ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.arg">
+	<summary>Code for Aragonese (Aragonés)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.arm">
+	<summary>Code for Armenian (Հայերեն լեզու)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.arn">
+	<summary>Code for Araucanian (mapudungun)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.arp">
+	<summary>Code for Arapaho (Hinono'eitiit)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.art">
+	<summary>Code for Artificial (Other) (Artificial (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.arw">
+	<summary>Code for Arawak (Arawak)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.asm">
+	<summary>Code for Assamese (অসমীয়া)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ast">
+	<summary>Code for Asturian (asturianu)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ath">
+	<summary>Code for Athapascan languages (aðapaskāw)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.aus">
+	<summary>Code for Australian languages (Australian languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ava">
+	<summary>Code for Avaric (авар мацӀ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ave">
+	<summary>Code for Avestan (avesta)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.awa">
+	<summary>Code for Awadhi (अवधी)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.aym">
+	<summary>Code for Aymara (aymar aru)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.aze">
+	<summary>Code for Azerbaijani (Azərbaycanca)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bad">
+	<summary>Code for Banda (Banda)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bai">
+	<summary>Code for Bamileke languages (Bamiléké)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bak">
+	<summary>Code for Bashkir (башҡорт теле)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bal">
+	<summary>Code for Baluchi (بلوچی)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bam">
+	<summary>Code for Bambara (bamanankan)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ban">
+	<summary>Code for Balinese (Basa Bali)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.baq">
+	<summary>Code for Basque (euskara)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bas">
+	<summary>Code for Basa (ɓasaá)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bat">
+	<summary>Code for Baltic (Other) (Baltic (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bej">
+	<summary>Code for Beja (بداوية)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bel">
+	<summary>Code for Belarusian (Беларуская мова)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bem">
+	<summary>Code for Bemba (Chiwemba)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ben">
+	<summary>Code for Bengali (বাংলা)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ber">
+	<summary>Code for Berber (Other) (Tamazight)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bho">
+	<summary>Code for Bhojpuri (भोजपुरी)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bih">
+	<summary>Code for Bihari (Bihari)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bik">
+	<summary>Code for Bikol languages (Bikol)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bin">
+	<summary>Code for Bini (Edo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bis">
+	<summary>Code for Bislama (Bislama)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bla">
+	<summary>Code for Siksika (siksiká)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bnt">
+	<summary>Code for Bantu (Other) (Bantu (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bos">
+	<summary>Code for Bosnian (bosanski jezik)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bra">
+	<summary>Code for Braj (ब्रज भाषा)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bre">
+	<summary>Code for Breton (brezhoneg)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.btk">
+	<summary>Code for Batak (Indonesia) (Batak)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bua">
+	<summary>Code for Buriat (буряад хэлэн)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bug">
+	<summary>Code for Buginese (ᨅᨔ ᨕᨘᨁᨗ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bul">
+	<summary>Code for Bulgarian (български език)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.bur">
+	<summary>Code for Burmese (မန္မာစာ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.byn">
+	<summary>Code for Blin (ብሊና)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cad">
+	<summary>Code for Caddo (Hasí:nay)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cai">
+	<summary>Code for Central American Indian (Other) (Central American Indian (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.car">
+	<summary>Code for Carib (Cariban)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cat">
+	<summary>Code for Catalan (català)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cau">
+	<summary>Code for Caucasian (Other) (Caucasian (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ceb">
+	<summary>Code for Cebuano (Sinugboanon)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cel">
+	<summary>Code for Celtic (Other) (Celtic (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cmc">
+	<summary>Code for Chamic languages (Chamic languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cop">
+	<summary>Code for Coptic (ⲙⲉⲧⲛ̀ⲣⲉⲙⲛ̀ⲭⲏⲙⲓ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cor">
+	<summary>Code for Cornish (Kernewek)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cos">
+	<summary>Code for Corsican (corsu)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cpe">
+	<summary>Code for Creoles and Pidgins, English-based (Other) (Creoles and Pidgins, English-based (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cpf">
+	<summary>Code for Creoles and Pidgins, French-based (Other) (Creoles and Pidgins, French-based (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cpp">
+	<summary>Code for Creoles and Pidgins, Portuguese-based (Other) (Creoles and Pidgins, Portuguese-based (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cre">
+	<summary>Code for Cree (ᓀᐦᐃᔭᐍᐏᐣ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.crh">
+	<summary>Code for Crimean Tatar (къырымтатар тили)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.crp">
+	<summary>Code for Creoles and Pidgins (Other) (Creoles and Pidgins (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.csb">
+	<summary>Code for Kashubian (kaszëbsczi jãzëk)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cus">
+	<summary>Code for Cushitic (Other) (Cushitic (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cze">
+	<summary>Code for Czech (čeština)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.dak">
+	<summary>Code for Dakota (Lakhota)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.dan">
+	<summary>Code for Danish (dansk)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.dar">
+	<summary>Code for Dargwa (дарган мез)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.day">
+	<summary>Code for Dayak (Dayak)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.del">
+	<summary>Code for Delaware (Lënape)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.den">
+	<summary>Code for Slave (Athapascan) (Slave)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.dgr">
+	<summary>Code for Dogrib (Tłįchǫ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.din">
+	<summary>Code for Dinka (Thuɔŋjäŋ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.div">
+	<summary>Code for Divehi (ދިވެހިބަސ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.doi">
+	<summary>Code for Dogri (डोगरी)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.dra">
+	<summary>Code for Dravidian (Other) (Dravidian (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.dsb">
+	<summary>Code for Sorbian, Lower (dolnoserbski)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.dua">
+	<summary>Code for Duala (Douala)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.dum">
+	<summary>Code for Dutch, Middle (ca. 1050–1350) (Middelnederlands)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.dut">
+	<summary>Code for Dutch (Nederlands)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.dyu">
+	<summary>Code for Dyula (Julakan)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.dzo">
+	<summary>Code for Dzongkha (རྫོང་ཁ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.efi">
+	<summary>Code for Efik (Ibibio)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.egy">
+	<summary>Code for Egyptian (Ancient) (r n km.t)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.eka">
+	<summary>Code for Ekajuk (Akajo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.elx">
+	<summary>Code for Elamite (Elamite)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.eng">
+	<summary>Code for English (English)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.enm">
+	<summary>Code for English, Middle (ca. 1100–1500) (English, Middle (ca. 1100–1500))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.epo">
+	<summary>Code for Esperanto (Esperanto)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.est">
+	<summary>Code for Estonian (Eesti keel)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.eus">
+	<summary>Code for Basque (euskara)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ewe">
+	<summary>Code for Ewe (Ɛʋɛgbɛ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ewo">
+	<summary>Code for Ewondo (Ewondo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fan">
+	<summary>Code for Fang (Fang)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fao">
+	<summary>Code for Faroese (føroyskt)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fat">
+	<summary>Code for Fanti (Fanti)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fij">
+	<summary>Code for Fijian (vosa Vakaviti)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fil">
+	<summary>Code for Filipino (Filipino)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fin">
+	<summary>Code for Finnish (suomi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fiu">
+	<summary>Code for Finno-Ugrian (Other) (Finno-Ugrian (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fon">
+	<summary>Code for Fon (Fɔngbe)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fre">
+	<summary>Code for French (français)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.frm">
+	<summary>Code for French, Middle (ca. 1400—1600) (le moyen français)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fro">
+	<summary>Code for French, Old (842—ca. 1400) (langue d'oïl)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.frr">
+	<summary>Code for Frisian, Northern (Frasch)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.frs">
+	<summary>Code for Frisian, Eastern (Seeltersk Fräisk)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fry">
+	<summary>Code for Frisian, Western (frysk)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ful">
+	<summary>Code for Fulah (Fulfulde)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.fur">
+	<summary>Code for Friulian (furlan)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gaa">
+	<summary>Code for Ga (Gã)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gay">
+	<summary>Code for Gayo (Bahasa Gayo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gba">
+	<summary>Code for Gbaya (Gbaya)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gem">
+	<summary>Code for Germanic (Other) (Germanic (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.geo">
+	<summary>Code for Georgian (ქართული ენა )</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ger">
+	<summary>Code for German (Deutsch)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gez">
+	<summary>Code for Geez (ግዕዝ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gil">
+	<summary>Code for Gilbertese (taetae ni Kiribati)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gla">
+	<summary>Code for Scottish Gaelic (Gàidhlig)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gle">
+	<summary>Code for Irish (Gaeilge)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.glg">
+	<summary>Code for Galician (Galego)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.glv">
+	<summary>Code for Manx (Gaelg)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gmh">
+	<summary>Code for German, Middle High (ca. 1050–1500) (diutisk)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.goh">
+	<summary>Code for German, Old High (ca. 750–1050) (diutisc)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gon">
+	<summary>Code for Gondi (Gondi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gor">
+	<summary>Code for Gorontalo (Grontalo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.got">
+	<summary>Code for Gothic (𐌷𐌰𐌿𐌱𐌹𐌳𐌰𐍃𐌴𐌹𐌳𐍉)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.grb">
+	<summary>Code for Grebo (Grebo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.grc">
+	<summary>Code for Greek, Ancient (to 1453) (Ἑλληνικά)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gre">
+	<summary>Code for Greek, Modern (1453–) (Ελληνικά)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.grn">
+	<summary>Code for Guarani (Avañe'ẽ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gsw">
+	<summary>Code for German, Alemannic (Alemannisch, Schwyzerdütsch)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.guj">
+	<summary>Code for Gujarati (ગુજરાતી)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.gwi">
+	<summary>Code for Gwichʼin (Gwich’in)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hai">
+	<summary>Code for Haida (X̲aat Kíl)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hat">
+	<summary>Code for Haitian Creole (Kreyòl ayisyen)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hau">
+	<summary>Code for Hausa (هَوُسَ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.haw">
+	<summary>Code for Hawaiian (‘Ōlelo Hawai‘i)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.heb">
+	<summary>Code for Hebrew (עִבְרִית; עברית)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.her">
+	<summary>Code for Herero (Otjiherero)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hil">
+	<summary>Code for Hiligaynon (Ilonggo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.him">
+	<summary>Code for Himachali (हिमाचल प्रदेश)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hin">
+	<summary>Code for Hindi (हिन्दी)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hit">
+	<summary>Code for Hittite (𒉈𒅆𒇷)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hmn">
+	<summary>Code for Hmong (Hmoob)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hmo">
+	<summary>Code for Hiri Motu (Hiri Motu)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hrv">
+	<summary>Code for Croatian (hrvatski jezik)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hsb">
+	<summary>Code for Sorbian, Upper (hornjoserbsce)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hun">
+	<summary>Code for Hungarian (Magyar)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.hup">
+	<summary>Code for Hupa (?)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cha">
+	<summary>Code for Chamorro (Chamoru)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.chb">
+	<summary>Code for Chibcha (muysca kubun)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.che">
+	<summary>Code for Chechen (нохчийн мотт)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.chg">
+	<summary>Code for Chagatai (جغتای )</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.chi">
+	<summary>Code for Chinese (中文)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.chk">
+	<summary>Code for Chuukese (Trukese)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.chm">
+	<summary>Code for Mari (марий йылме)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.chn">
+	<summary>Code for Chinook jargon (Lelang)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.cho">
+	<summary>Code for Choctaw (Chahta Anumpa)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.chp">
+	<summary>Code for Dene Suline (ᑌᓀᓲᒢᕄᓀ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.chr">
+	<summary>Code for Cherokee (ᏣᎳᎩ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.chu">
+	<summary>Code for Church Slavonic (Ѩзыкъ словѣньскъ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.chv">
+	<summary>Code for Chuvash (чӑваш чӗлхи)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.chy">
+	<summary>Code for Cheyenne (Tsêhést)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.iba">
+	<summary>Code for Iban (Iban)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ibo">
+	<summary>Code for Igbo (Igbo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ice">
+	<summary>Code for Icelandic (íslenska)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ido">
+	<summary>Code for Ido (Ido)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.iii">
+	<summary>Code for Sichuan Yi (ꆇꉙ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ijo">
+	<summary>Code for Ijo (Ijo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.iku">
+	<summary>Code for Inuktitut (ᐃᓄᒃᑎᑐᑦ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ile">
+	<summary>Code for Interlingue (Interlingue)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ilo">
+	<summary>Code for Iloko (Ilokano)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ina">
+	<summary>Code for Interlingua (interlingua)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.inc">
+	<summary>Code for Indic (Other) (Indic (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ind">
+	<summary>Code for Indonesian (Bahasa Indonesia)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ine">
+	<summary>Code for Indo-European (Other) (Indo-European (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.inh">
+	<summary>Code for Ingush (гӀалгӀай мотт)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ipk">
+	<summary>Code for Inupiaq (Iñupiaq)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ira">
+	<summary>Code for Iranian (Other) (Iranian (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.iro">
+	<summary>Code for Iroquoian languages (Iroquoian languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ita">
+	<summary>Code for Italian (italiano)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.jav">
+	<summary>Code for Javanese (basa Jawa)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.jbo">
+	<summary>Code for Lojban (la lojban.)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.jpn">
+	<summary>Code for Japanese (日本語)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.jpr">
+	<summary>Code for Judeo-Persian (Jidi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.jrb">
+	<summary>Code for Judeo-Arabic (Judeo-Arabic)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kaa">
+	<summary>Code for Kara-Kalpak (қарақалпақ тили)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kab">
+	<summary>Code for Kabyle (Taqbaylit)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kac">
+	<summary>Code for Kachin (Jinghpaw)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kal">
+	<summary>Code for Greenlandic (kalaallisut)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kam">
+	<summary>Code for Kamba (Kikamba)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kan">
+	<summary>Code for Kannada (ಕನ್ನಡ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kar">
+	<summary>Code for Karen (Karen languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kas">
+	<summary>Code for Kashmiri (कॉशुर; کٲشُر)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kau">
+	<summary>Code for Kanuri (Kanuri)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kaw">
+	<summary>Code for Kawi (Bhāṣa Kawi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kaz">
+	<summary>Code for Kazakh (Қазақ тілі)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kbd">
+	<summary>Code for Kabardian (къэбэрдеибзэ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kha">
+	<summary>Code for Khasi (Khasi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.khi">
+	<summary>Code for Khoisan (Other) (Khoisan)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.khm">
+	<summary>Code for Khmer (ភាសាខ្មែរ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kho">
+	<summary>Code for Khotanese (Khotanese)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kik">
+	<summary>Code for Kikuyu (Gĩkũyũ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kin">
+	<summary>Code for Kinyarwanda (kinyaRwanda)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kir">
+	<summary>Code for Kirghiz (кыргыз тили)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kmb">
+	<summary>Code for Kimbundu (Kimbundu)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kok">
+	<summary>Code for Konkani (कोंकणी)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kom">
+	<summary>Code for Komi (коми кыв)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kon">
+	<summary>Code for Kongo (Kikongo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kor">
+	<summary>Code for Korean (한국어)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kos">
+	<summary>Code for Kosraean (Kosrae)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kpe">
+	<summary>Code for Kpelle (kpele)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.krc">
+	<summary>Code for Karachay-Balkar (къарачай-малкъар тил)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.krl">
+	<summary>Code for Karelian (karjalan kieli)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kro">
+	<summary>Code for Kru (Kru)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kru">
+	<summary>Code for Kurukh (Kurux)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kua">
+	<summary>Code for Kuanyama (Oshikwanyama)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kum">
+	<summary>Code for Kumyk (къумукъ тил)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kur">
+	<summary>Code for Kurdish (Kurdî)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.kut">
+	<summary>Code for Kutenai (Kootenai)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lad">
+	<summary>Code for Ladino (ג'ודיאו-איספאנייול)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lah">
+	<summary>Code for Lahnda (ਪੰਜਾਬੀ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lam">
+	<summary>Code for Lamba (Lamba)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lao">
+	<summary>Code for Lao (ພາສາລາວ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lat">
+	<summary>Code for Latin (latine)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lav">
+	<summary>Code for Latvian (latviešu valoda)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lez">
+	<summary>Code for Lezghian (лезги чӀал)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lim">
+	<summary>Code for Limburgish (Limburgs)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lin">
+	<summary>Code for Lingala (lingala)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lit">
+	<summary>Code for Lithuanian (lietuvių kalba)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lol">
+	<summary>Code for Mongo (Mongo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.loz">
+	<summary>Code for Lozi (Silozi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ltz">
+	<summary>Code for Luxembourgish (Lëtzebuergesch)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lua">
+	<summary>Code for Luba-Lulua (lwaà:)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lub">
+	<summary>Code for Luba-Katanga (Luba-Katanga)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lug">
+	<summary>Code for Ganda (Luganda)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lui">
+	<summary>Code for Luiseno (Luiseño)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lun">
+	<summary>Code for Lunda (Chilunda)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.luo">
+	<summary>Code for Luo (Dholuo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.lus">
+	<summary>Code for Lushai (Lushai)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mac">
+	<summary>Code for Macedonian (македонски јазик)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mad">
+	<summary>Code for Madurese (Basa Mathura)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mag">
+	<summary>Code for Magahi (मगही)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mah">
+	<summary>Code for Marshallese (Kajin M̧ajeļ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mai">
+	<summary>Code for Maithili (मैथिली)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mak">
+	<summary>Code for Makasar (Makasar)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mal">
+	<summary>Code for Malayalam (മലയാളം)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.man">
+	<summary>Code for Mandingo (Mandinka)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mao">
+	<summary>Code for Māori (te reo Māori)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.map">
+	<summary>Code for Austronesian (Other) (Austronesian (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mar">
+	<summary>Code for Marathi (मराठी)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mas">
+	<summary>Code for Masai (ɔl Maa)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.may">
+	<summary>Code for Malay (بهاس ملايو)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mdf">
+	<summary>Code for Moksha (мокшень кяль)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mdr">
+	<summary>Code for Mandar (Mandar)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.men">
+	<summary>Code for Mende (Mɛnde yia)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mga">
+	<summary>Code for Irish, Middle (900–1200) (Gaoidhealg)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mic">
+	<summary>Code for Mi'kmaq (Mi'gmaq)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.min">
+	<summary>Code for Minangkabau (Baso Minangkabau)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mis">
+	<summary>Code for miscellaneous languages (miscellaneous languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mkh">
+	<summary>Code for Mon-Khmer (Other) (Mon-Khmer (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mlg">
+	<summary>Code for Malagasy (Malagasy fiteny)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mlt">
+	<summary>Code for Maltese (Malti)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mnc">
+	<summary>Code for Manchu (ᠮᠠᠨᠵᡠ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mni">
+	<summary>Code for Manipuri (মৈইতৈইলোন)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mno">
+	<summary>Code for Manobo languages (Manobo languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.moh">
+	<summary>Code for Mohawk (Kanien’keha)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mol">
+	<summary>Code for Moldavian (лимба молдовеняскэ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mon">
+	<summary>Code for Mongolian (монгол хэл)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mos">
+	<summary>Code for Mossi (Mòoré)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mul">
+	<summary>Code for multiple languages (multiple languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mun">
+	<summary>Code for Munda languages (Munda languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mus">
+	<summary>Code for Creek (Maskoki)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mwl">
+	<summary>Code for Mirandese (Lhéngua Mirandesa)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mwr">
+	<summary>Code for Marwari (मारवाड़ी)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.mya">
+	<summary>Code for Burmese (မန္မာစာ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.myn">
+	<summary>Code for Mayan languages (Mayan languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.myv">
+	<summary>Code for Erzya (эрзянь кель)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nah">
+	<summary>Code for Nahuatl (nāhuatl)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nai">
+	<summary>Code for North American Indian (Other) (North American Indian (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nap">
+	<summary>Code for Neapolitan (napulitano)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nau">
+	<summary>Code for Nauruan (Ekakairũ Naoero)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nav">
+	<summary>Code for Navajo (Diné bizaad)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nbl">
+	<summary>Code for Ndebele, South (Ndébélé)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nde">
+	<summary>Code for Ndebele, North (isiNdebele)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ndo">
+	<summary>Code for Ndonga (Owambo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nds">
+	<summary>Code for German, Low (Nederdüütsch)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nep">
+	<summary>Code for Nepali (नेपाली)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.new">
+	<summary>Code for Nepal Bhasa (नेपाल भाषा)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nia">
+	<summary>Code for Nias (Nias)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nic">
+	<summary>Code for Niger-Kordofanian (Other) (Niger-Kordofanian (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.niu">
+	<summary>Code for Niuean (ko e vagahau Niuē)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nno">
+	<summary>Code for Norwegian Nynorsk (Norsk nynorsk)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nob">
+	<summary>Code for Norwegian Bokmål (Norsk bokmål)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nog">
+	<summary>Code for Nogai (ногай тили)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.non">
+	<summary>Code for Norse, Old (norskr)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nor">
+	<summary>Code for Norwegian (Norsk)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nqo">
+	<summary>Code for N'Ko (N'Ko)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nso">
+	<summary>Code for Sotho, Northern; Pedi; Sepedi (sePêdi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nub">
+	<summary>Code for Nubian languages (Nubian languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nwc">
+	<summary>Code for Nepal Bhasa (नेपाल भाषा)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nya">
+	<summary>Code for Chichewa (chiCheŵa)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nym">
+	<summary>Code for Nyamwezi (Kinyamwezi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nyn">
+	<summary>Code for Nyankole (Nyankole)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nyo">
+	<summary>Code for Nyoro (Runyoro)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.nzi">
+	<summary>Code for Nzima (Nzima)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.oci">
+	<summary>Code for Occitan (lenga d'òc)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.oji">
+	<summary>Code for Ojibwa (ᐊᓂᔑᓇᐯᒧᐏᐣ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ori">
+	<summary>Code for Oriya (ଓଡ଼ିଆ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.orm">
+	<summary>Code for Oromo (Afaan Oromoo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.osa">
+	<summary>Code for Osage (Osage)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.oss">
+	<summary>Code for Ossetian (ирон ӕвзаг)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ota">
+	<summary>Code for Turkish, Ottoman (1500–1928) (لسان عثمان)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.oto">
+	<summary>Code for Otomian languages (Otomian languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.paa">
+	<summary>Code for Papuan (Other) (Papuan (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pag">
+	<summary>Code for Pangasinan (salitan Pangasinan)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pal">
+	<summary>Code for Pahlavi (Pahlavi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pam">
+	<summary>Code for Pampanga (Kapampangan)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pan">
+	<summary>Code for Punjabi (ਪੰਜਾਬੀ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pap">
+	<summary>Code for Papiamento (Papiamentu)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pau">
+	<summary>Code for Palauan (tekoi ra Belau)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.peo">
+	<summary>Code for Persian, Old (ca. 600–400 BC) (Persian, Old (ca. 600–400 BC))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.per">
+	<summary>Code for Persian (فارسی)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.phi">
+	<summary>Code for Philippine (Other) (Philippine (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.phn">
+	<summary>Code for Phoenician (𐤃𐤁𐤓𐤉𐤌𐤟𐤊𐤍𐤏𐤍𐤉𐤌)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pli">
+	<summary>Code for Pali (पालि)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pol">
+	<summary>Code for Polish (polski)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pon">
+	<summary>Code for Pohnpeian (Pohnpeian)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.por">
+	<summary>Code for Portuguese (Português)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pra">
+	<summary>Code for Prakrit languages (प्राकृत)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pro">
+	<summary>Code for Provençal, Old (to 1500) (Provençal, Old (to 1500))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.pus">
+	<summary>Code for Pushto (پښت)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.que">
+	<summary>Code for Quechua (Runa Simi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.raj">
+	<summary>Code for Rajasthani (राजस्थानी)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.rap">
+	<summary>Code for Rapanui (rapanui)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.rar">
+	<summary>Code for Rarotongan (Māori Kūki 'Āirani)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.roa">
+	<summary>Code for Romance (Other) (Romance (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.roh">
+	<summary>Code for Raeto-Romance (rumantsch grischun)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.rom">
+	<summary>Code for Romany (Romani šib)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.rum">
+	<summary>Code for Romanian (română)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.run">
+	<summary>Code for Rundi (kiRundi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.rup">
+	<summary>Code for Aromanian (limba armãneascã)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.rus">
+	<summary>Code for Russian (русский язык)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sad">
+	<summary>Code for Sandawe (Sandawe)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sag">
+	<summary>Code for Sango (yângâ tî sängö)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sah">
+	<summary>Code for Yakut (Саха тыла)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sai">
+	<summary>Code for South American Indian (Other) (South American Indian (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sal">
+	<summary>Code for Salishan languages (Salishan languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sam">
+	<summary>Code for Samaritan Aramaic (ܐܪܡܝܐ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.san">
+	<summary>Code for Sanskrit (संस्कृतम्)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sas">
+	<summary>Code for Sasak (Sasak)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sat">
+	<summary>Code for Santali (संथाली)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.scc">
+	<summary>Code for Serbian (српски језик)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.scn">
+	<summary>Code for Sicilian (Sicilianu)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sco">
+	<summary>Code for Scots (Scoats leid)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sel">
+	<summary>Code for Selkup (шӧльӄумыт әты)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sem">
+	<summary>Code for Semitic (Other) (Semitic (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sga">
+	<summary>Code for Irish, Old (to 900) (Goídelc)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sgn">
+	<summary>Code for Sign languages (Sign languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.shn">
+	<summary>Code for Shan (Shan)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sid">
+	<summary>Code for Sidamo (Sidámo 'Afó)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sin">
+	<summary>Code for Sinhalese (සිංහල)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sio">
+	<summary>Code for Siouan languages (Siouan languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sit">
+	<summary>Code for Sino-Tibetan (Other) (Sino-Tibetan (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sla">
+	<summary>Code for Slavic (Other) (Slavic (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.slo">
+	<summary>Code for Slovak (slovenčina)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.slv">
+	<summary>Code for Slovenian (slovenščina)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sma">
+	<summary>Code for Southern Sami (saemien giele)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sme">
+	<summary>Code for Northern Sami (davvisámegiella)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.smi">
+	<summary>Code for Sami languages (Other) (Sami languages (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.smj">
+	<summary>Code for Lule Sami (sámegiella)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.smn">
+	<summary>Code for Inari Sami (säämegiella)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.smo">
+	<summary>Code for Samoan (gagana fa'a Samoa)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sms">
+	<summary>Code for Skolt Sami (sääʼmǩiõll)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sna">
+	<summary>Code for Shona (chiShona)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.snd">
+	<summary>Code for Sindhi (سنڌي، سندھی)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.snk">
+	<summary>Code for Soninke (Soninkanxaane)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sog">
+	<summary>Code for Sogdian (Sogdian)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.som">
+	<summary>Code for Somali (Soomaaliga)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.son">
+	<summary>Code for Songhai (Songhay languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sot">
+	<summary>Code for Sotho, Southern (seSotho)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.spa">
+	<summary>Code for Spanish (español)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.srd">
+	<summary>Code for Sardinian (sardu)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.srn">
+	<summary>Code for Sranan Tongo (Sranan Tongo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.srr">
+	<summary>Code for Serer (Sérère)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ssa">
+	<summary>Code for Nilo-Saharan (Other) (Nilo-Saharan (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ssw">
+	<summary>Code for Swati (siSwati)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.suk">
+	<summary>Code for Sukuma (Sukuma)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sun">
+	<summary>Code for Sundanese (basa Sunda)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sus">
+	<summary>Code for Susu (Sosokui)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.sux">
+	<summary>Code for Sumerian (eme-ĝir)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.swa">
+	<summary>Code for Swahili (kiswahili)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.swe">
+	<summary>Code for Swedish (Svenska)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.syc">
+	<summary>Code for Classical Syriac (ܣܘܪܝܝܐ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.syr">
+	<summary>Code for Syriac (ܣܘܪܝܝܐ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tah">
+	<summary>Code for Tahitian (te reo Tahiti; te reo Māʼohi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tai">
+	<summary>Code for Tai (Other) (´Tai (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tam">
+	<summary>Code for Tamil (தமிழ்)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tat">
+	<summary>Code for Tatar (татарча)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tel">
+	<summary>Code for Telugu (తెలుగు)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tem">
+	<summary>Code for Timne (Timne)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ter">
+	<summary>Code for Tereno (Tereno)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tet">
+	<summary>Code for Tetum (Tetun)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tgk">
+	<summary>Code for Tajik (тоҷикӣ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tgl">
+	<summary>Code for Tagalog (Tagalog)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tha">
+	<summary>Code for Thai (ภาษาไทย)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tib">
+	<summary>Code for Tibetan (བོད་ཡིག)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tig">
+	<summary>Code for Tigre (Tigré)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tir">
+	<summary>Code for Tigrinya (ትግርኛ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tiv">
+	<summary>Code for Tiv (Tiv)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tkl">
+	<summary>Code for Tokelau (Tokelauan)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tlh">
+	<summary>Code for Klingon (tlhIngan Hol)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tli">
+	<summary>Code for Tlingit (Lingít)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tmh">
+	<summary>Code for Tamashek (Tamajeq)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tog">
+	<summary>Code for Tonga (Malawi) (chiTonga)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ton">
+	<summary>Code for Tongan (faka-Tonga)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tpi">
+	<summary>Code for Tok Pisin (Tok Pisin)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tsi">
+	<summary>Code for Tsimshian (Tsimshianic languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tsn">
+	<summary>Code for Tswana (seTswana)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tso">
+	<summary>Code for Tsonga (xiTsonga)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tuk">
+	<summary>Code for Turkmen (Түркмен)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tum">
+	<summary>Code for Tumbuka (chiTumbuka)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tup">
+	<summary>Code for Tupi languages (Nheengatu)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tur">
+	<summary>Code for Turkish (Türkçe)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tut">
+	<summary>Code for Altaic (Other) (Altaic (Other))</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tvl">
+	<summary>Code for Tuvalu ('gana Tuvalu)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.twi">
+	<summary>Code for Twi (Twi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.tyv">
+	<summary>Code for Tuvinian (тыва дыл)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.udm">
+	<summary>Code for Udmurt (удмурт кыл)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.uga">
+	<summary>Code for Ugaritic (Ugaritic)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.uig">
+	<summary>Code for Uighur (Uyƣurqə)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ukr">
+	<summary>Code for Ukrainian (українська мова)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.umb">
+	<summary>Code for Umbundu (úmbúndú)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.und">
+	<summary>Code for undetermined language (undetermined language)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.urd">
+	<summary>Code for Urdu (اردو)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.uzb">
+	<summary>Code for Uzbek (Ўзбек)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.vai">
+	<summary>Code for Vai (Vai)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ven">
+	<summary>Code for Venda (tshiVenḓa)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.vie">
+	<summary>Code for Vietnamese (Tiếng Việt)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.vol">
+	<summary>Code for Volapük (Volapük)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.vot">
+	<summary>Code for Votic (vaďďa tšeeli)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.wak">
+	<summary>Code for Wakashan languages (Wakashan languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.wal">
+	<summary>Code for Walamo (Walamo)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.war">
+	<summary>Code for Waray (Winaray)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.was">
+	<summary>Code for Washo (Washoe)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.wel">
+	<summary>Code for Welsh (Cymraeg)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.wen">
+	<summary>Code for Sorbian languages (Sorbian languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.wln">
+	<summary>Code for Walloon (walon)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.wol">
+	<summary>Code for Wolof (Wolof)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.xal">
+	<summary>Code for Kalmyk (хальмг келн)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.xho">
+	<summary>Code for Xhosa (isiXhosa)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.yao">
+	<summary>Code for Yao (Chiyao)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.yap">
+	<summary>Code for Yapese (Yapese)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.yid">
+	<summary>Code for Yiddish (ייִדיש)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.yor">
+	<summary>Code for Yoruba (Yorùbá)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.ypk">
+	<summary>Code for Yupik languages (Yupik languages)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.zap">
+	<summary>Code for Zapotec (Zapotec)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.zen">
+	<summary>Code for Zenaga (Tuḍḍungiyya)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.zha">
+	<summary>Code for Zhuang (Saɯ cueŋƅ)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.znd">
+	<summary>Code for Zande (Zande)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.zul">
+	<summary>Code for Zulu (isiZulu)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.zun">
+	<summary>Code for Zuni (Shiwi)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.zxx">
+	<summary>Code for no linguistic content (no linguistic content)</summary>
+</member><member name="P:Tools.GlobalizationT.ISOLanguage.zza">
+	<summary>Code for Zaza (So-Bé)</summary>
+</member><member name="M:Tools.GlobalizationT.ISOLanguage.GetAllCodes">
+	<summary>Returns list of all predefined ISO 639-2 and ISO 639-1 language codes</summary>
+	<remarks>Reserved code from range qaa÷qtz are not returned. Duplicate codes are returnet only in <see cref="P:Tools.GlobalizationT.ISOLanguage.Duplicate"/> property of other codes.</remarks>
 </member><member name="F:Tools.TextT.EncodingT.ISO2022.xmlns">
 	<summary>XML namespace which contains XML-Schema definition of format for storing information about ISO-2022 encodings</summary>
 </member><member name="F:Tools.TextT.EncodingT.ISO2022.AsciiEscape">
@@ -19522,6 +19532,23 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="T:Tools.ComponentModelT.ReadOnlyObject">
 	<summary>Encapsulates any object and makes it read-only</summary>
 	<remarks>Supports both - <see cref="T:System.ComponentModel.TypeDescriptor"/> and <see cref="T:System.ComponentModel.ICustomTypeDescriptor"/></remarks>
+</member><member name="M:Tools.Data.LinqToSql.LinqToSqlExtensions.DeleteAllNew``1(System.Data.Linq.Table{``0})">
+	<summary>Undos all INSERTs performed with <see cref="T:System.Data.Linq.Table`1"/></summary>
+	<param name="Table">Table to delete all inserted not commited items of coresponding type from</param>
+	<typeparam name="TEntity">Type of items in table</typeparam>
+	<remarks>This methods delets all items in <paramref name="Table"/>.<see cref="P:System.Data.Linq.Table`1.Context">Context</see>.<see cref="M:System.Data.Linq.DataContext.GetChangeSet">GetChangeSet</see>.<see cref="P:System.Data.Linq.ChangeSet.Inserts">Inserts</see> which are of type <typeparamref name="TEntity"/>.</remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="Table"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="Table"/>.<see cref="P:System.Data.Linq.Table`1.Context">Context</see> is null</exception>
+</member><member name="M:Tools.Data.LinqToSql.LinqToSqlExtensions.RecoverAllDeleted``1(System.Data.Linq.Table{``0})">
+	<summary>Undos all DELETEs performed with <see cref="T:System.Data.Linq.Table`1"/></summary>
+	<param name="Table">Table to insert (undelete) all deleted not commited items of coresponding type to</param>
+	<typeparam name="TEntity">Type of items in table</typeparam>
+	<remarks>This methods re-inserts all items in <paramref name="Table"/>.<see cref="P:System.Data.Linq.Table`1.Context">Context</see>.<see cref="M:System.Data.Linq.DataContext.GetChangeSet">GetChangeSet</see>.<see cref="P:System.Data.Linq.ChangeSet.Deletes">Deletes</see> which are of type <typeparamref name="TEntity"/>.</remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="Table"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="Table"/>.<see cref="P:System.Data.Linq.Table`1.Context">Context</see> is null</exception>
+</member><member name="T:Tools.Data.LinqToSql.LinqToSqlExtensions">
+	<summary>Contains extension methods related to LINQ-to-SQL technology</summary>
+	<version version="1.5.3" stage="Nightly">This module is new in version 1.5.3</version>
 </member><member name="M:Tools.ICloneable`1.Clone">
 	<summary>Creates a new object that is a copy of the current instance.</summary>
 	<returns>A new object that is a copy of this instance</returns>

@@ -2,7 +2,7 @@
 Imports Caps.Data
 Partial Public Class winCapEditor
     Private Cap As Cap
-    Private Context As CapsDataDataContext
+    Private Context As CapsDataContext
     ''' <summary>CTor</summary>
     ''' <param name="CapID">ID of Cap to edit</param>
     ''' <exception cref="ArgumentException">Cap with ID <paramref name="CapID"/> cannot be found</exception>

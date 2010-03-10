@@ -120,84 +120,100 @@ Partial Public Class CapEditor
 #End Region
 #Region "New"
     Private Sub btnNewMainType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMainType.Click
-        Dim win As New winNewMainType(Context)
-        If win.ShowDialog Then
-            DirectCast(cmbMainType.ItemsSource, ListWithEvents(Of MainType)).Add(win.NewObject)
-            cmbMainType.Items.Refresh()
-            cmbMainType.SelectedItem = win.NewObject
-        End If
+        Using win As New winNewMainType()
+            If win.ShowDialog Then
+                Context.Attach(win.NewObject)
+                DirectCast(cmbMainType.ItemsSource, ListWithEvents(Of MainType)).Add(win.NewObject)
+                cmbMainType.Items.Refresh()
+                cmbMainType.SelectedItem = win.NewObject
+            End If
+        End Using
     End Sub
 
     Private Sub cmbNewShape_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmdNewShape.Click
-        Dim win As New winNewShape(Context)
-        If win.ShowDialog Then
-            DirectCast(cmbShape.ItemsSource, ListWithEvents(Of Shape)).Add(win.NewObject)
-            cmbShape.Items.Refresh()
-            cmbShape.SelectedItem = win.NewObject
-        End If
+        Using win As New winNewShape()
+            If win.ShowDialog Then
+                Context.Attach(win.NewObject)
+                DirectCast(cmbShape.ItemsSource, ListWithEvents(Of Shape)).Add(win.NewObject)
+                cmbShape.Items.Refresh()
+                cmbShape.SelectedItem = win.NewObject
+            End If
+        End Using
     End Sub
 
     Private Sub btnNewMaterial_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMaterial.Click
-        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Material, Context)
-        If win.ShowDialog Then
-            DirectCast(cmbMaterial.ItemsSource, ListWithEvents(Of Material)).Add(DirectCast(win.NewObject, Material))
-            cmbMaterial.Items.Refresh()
-            cmbMaterial.SelectedItem = win.NewObject
-        End If
+        Using win As New winNewSimple(winNewSimple.SimpleTypes.Material)
+            If win.ShowDialog Then
+                Context.Attach(win.NewObject)
+                DirectCast(cmbMaterial.ItemsSource, ListWithEvents(Of Material)).Add(DirectCast(win.NewObject, Material))
+                cmbMaterial.Items.Refresh()
+                cmbMaterial.SelectedItem = win.NewObject
+            End If
+        End Using
     End Sub
 
     Private Sub btnNewStorage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewStorage.Click
-        Dim win As New winNewStorage(Context)
-        If win.ShowDialog Then
-            DirectCast(cmbStorage.ItemsSource, ListWithEvents(Of Storage)).Add(win.NewObject)
-            cmbStorage.Items.Refresh()
-            cmbStorage.SelectedItem = win.NewObject
-        End If
+        Using win As New winNewStorage()
+            If win.ShowDialog Then
+                Context.Attach(win.NewObject)
+                DirectCast(cmbStorage.ItemsSource, ListWithEvents(Of Storage)).Add(win.NewObject)
+                cmbStorage.Items.Refresh()
+                cmbStorage.SelectedItem = win.NewObject
+            End If
+        End Using
     End Sub
 
     Private Sub btnNewProductType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewProductType.Click
-        Dim win As New winNewSimple(winNewSimple.SimpleTypes.ProductType, Context)
-        If win.ShowDialog Then
-            DirectCast(cmbProductType.ItemsSource, ListWithEvents(Of ProductType)).Add(DirectCast(win.NewObject, ProductType))
-            cmbProductType.Items.Refresh()
-            cmbProductType.SelectedItem = win.NewObject
-        End If
+        Using win As New winNewSimple(winNewSimple.SimpleTypes.ProductType)
+            If win.ShowDialog Then
+                Context.Attach(win.NewObject)
+                DirectCast(cmbProductType.ItemsSource, ListWithEvents(Of ProductType)).Add(DirectCast(win.NewObject, ProductType))
+                cmbProductType.Items.Refresh()
+                cmbProductType.SelectedItem = win.NewObject
+            End If
+        End Using
     End Sub
 
     Private Sub btnNewCompany_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCompany.Click
-        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Company, Context)
-        If win.ShowDialog Then
-            DirectCast(cmbCompany.ItemsSource, ListWithEvents(Of Company)).Add(DirectCast(win.NewObject, Company))
-            cmbCompany.Items.Refresh()
-            cmbCompany.SelectedItem = win.NewObject
-        End If
+        Using win As New winNewSimple(winNewSimple.SimpleTypes.Company)
+            If win.ShowDialog Then
+                Context.Attach(win.NewObject)
+                DirectCast(cmbCompany.ItemsSource, ListWithEvents(Of Company)).Add(DirectCast(win.NewObject, Company))
+                cmbCompany.Items.Refresh()
+                cmbCompany.SelectedItem = win.NewObject
+            End If
+        End Using
     End Sub
 
     Private Sub btnNewCategory_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCategory.Click
-        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Category, Context)
-        If win.ShowDialog Then
-            DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(New CategoryProxy(win.NewObject, True))
-            lstCategories.Items.Refresh()
-            lstCategories_CheckedChanged(lstCategories.Items(lstCategories.Items.Count - 1), New RoutedEventArgs(CheckBox.CheckedEvent, lstCategories.Items(lstCategories.Items.Count - 1)))
-        End If
+        Using win As New winNewSimple(winNewSimple.SimpleTypes.Category)
+            If win.ShowDialog Then
+                Context.Attach(win.NewObject)
+                DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(New CategoryProxy(win.NewObject, True))
+                lstCategories.Items.Refresh()
+                lstCategories_CheckedChanged(lstCategories.Items(lstCategories.Items.Count - 1), New RoutedEventArgs(CheckBox.CheckedEvent, lstCategories.Items(lstCategories.Items.Count - 1)))
+            End If
+        End Using
     End Sub
     Private Sub btnNewSign_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewSign.Click
-        Dim win As New winNewSign(Context)
-        If win.ShowDialog Then
-            AllCapSigns.Add(win.NewObject)
-            Try
-                Dim i% = 0
-                For Each item In _SelectedCapSigns
-                    If item.CapSign Is Nothing Then
-                        item.CapSign = win.NewObject
-                        Exit Sub
-                    End If
-                Next
-                _SelectedCapSigns.Add(win.NewObject)
-            Finally
-                InternalSetSelectedCapSigns()
-            End Try
-        End If
+        Using win As New winNewSign()
+            If win.ShowDialog Then
+                Context.Attach(win.NewObject)
+                AllCapSigns.Add(win.NewObject)
+                Try
+                    Dim i% = 0
+                    For Each item In _SelectedCapSigns
+                        If item.CapSign Is Nothing Then
+                            item.CapSign = win.NewObject
+                            Exit Sub
+                        End If
+                    Next
+                    _SelectedCapSigns.Add(win.NewObject)
+                Finally
+                    InternalSetSelectedCapSigns()
+                End Try
+            End If
+        End Using
     End Sub
     Private Sub cmbSign_KeyDown(ByVal sender As ComboBox, ByVal e As System.Windows.Input.KeyEventArgs)
         If e.Key = Key.Delete Then
@@ -3054,12 +3070,14 @@ Resize256:      Try
     End Sub
 
     Private Sub btnNewTarget_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewTarget.Click
-        Dim win As New winNewSimple(winNewSimple.SimpleTypes.Target, Context)
-        If win.ShowDialog Then
-            DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(DirectCast(win.NewObject, Target))
-            cmbTarget.Items.Refresh()
-            cmbTarget.SelectedItem = win.NewObject
-        End If
+        Using win As New winNewSimple(winNewSimple.SimpleTypes.Target)
+            If win.ShowDialog Then
+                Context.Attach(win.NewObject)
+                DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(DirectCast(win.NewObject, Target))
+                cmbTarget.Items.Refresh()
+                cmbTarget.SelectedItem = win.NewObject
+            End If
+        End Using
     End Sub
     ''' <summary>Actualizes lists which are changed when cap is saved</summary>
     Public Sub ActualizeChangedLists()

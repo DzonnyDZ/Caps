@@ -24,7 +24,7 @@ Partial Public Class winCapDetails
         If mBox.Modal_PTWBIO(My.Resources.msg_q_DelCap, My.Resources.txt_DeleteCap, Me, mBox.MessageBoxButton.Buttons.Yes Or mBox.MessageBoxButton.Buttons.No, mBox.GetIconDelegate(mBox.MessageBoxIcons.Question)) <> Forms.DialogResult.Yes Then Exit Sub
 
         Dim osi As Integer = lstCaps.SelectedIndex
-        Dim Context As New CapsDataDataContext(Main.Connection)
+        Dim Context As New CapsDataContext(Main.Connection)
         Dim CapsToDel = (From ccap In Context.Caps Where (From cap As Cap In lstCaps.SelectedItems Select cap.CapID).Contains(ccap.CapID)).ToArray
         Context.Caps.DeleteObjects(CapsToDel)
         Try

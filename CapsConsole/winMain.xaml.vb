@@ -19,7 +19,7 @@ Class winMain
         win.ShowDialog()
     End Sub
 
-    Private Context As CapsDataDataContext
+    Private Context As CapsDataContext
 
     Private Sub winMain_Closed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Closed
         My.Settings.winMainLoc = Me.GetWindowPosition
@@ -73,25 +73,25 @@ Connect: If Main.Connection Is Nothing OrElse Redo Then
     End Sub
 
     Private Sub Bind()
-        Me.Context = New CapsDataDataContext(Main.Connection)
+        Me.Context = New CapsDataContext(Main.Connection)
         lblCapsCount.Content = Context.Caps.Count
         lblNewestCap.Content = (From itm In Context.Caps Order By itm.DateCreated Descending Select New Date?(itm.DateCreated)).FirstOrDefault
         lblOldestcap.Content = (From itm In Context.Caps Order By itm.DateCreated Ascending Select New Date?(itm.DateCreated)).FirstOrDefault
         itmNewest.ItemsSource = From itm In Context.Caps Order By itm.DateCreated Descending Take 10
-        itmRandom.ItemsSource = From itm In Context.Caps Order By Context.NewID Take 10
-        Dim BiggestCategory = (From itm In Context.Categories Order By itm.Cap_Category_Ints.Count Descending Select New Integer?(itm.Cap_Category_Ints.Count)).FirstOrDefault
-        Dim SmallestCategory = If((From itm In Context.Categories Order By itm.Cap_Category_Ints.Count Ascending Select New Integer?(itm.Cap_Category_Ints.Count)).FirstOrDefault, 0)
-        Dim BiggestKeyword = (From itm In Context.Keywords Order By itm.Cap_Keyword_Ints.Count Descending Select New Integer?(itm.Cap_Keyword_Ints.Count)).FirstOrDefault
-        Dim SmallestKeyword = If((From itm In Context.Keywords Order By itm.Cap_Keyword_Ints.Count Ascending Select New Integer?(itm.Cap_Keyword_Ints.Count)).FirstOrDefault, 0)
+        itmRandom.ItemsSource = From itm In Context.Caps Order By System.Data.Objects.SqlClient.SqlFunctions.Rand Take 10
+        Dim BiggestCategory = (From itm In Context.Categories Order By itm.Caps.Count Descending Select New Integer?(itm.Caps.Count)).FirstOrDefault
+        Dim SmallestCategory = If((From itm In Context.Categories Order By itm.Caps.Count Ascending Select New Integer?(itm.Caps.Count)).FirstOrDefault, 0)
+        Dim BiggestKeyword = (From itm In Context.Keywords Order By itm.Caps.Count Descending Select New Integer?(itm.Caps.Count)).FirstOrDefault
+        Dim SmallestKeyword = If((From itm In Context.Keywords Order By itm.Caps.Count Ascending Select New Integer?(itm.Caps.Count)).FirstOrDefault, 0)
         Const FontMax% = 50
         Const FontMin% = 8
         Dim mup As Double = If(Not BiggestCategory.HasValue OrElse BiggestCategory = 0, 0, (FontMax - FontMin) / (BiggestCategory - SmallestCategory))
         itmCategories.ItemsSource = From itm In Context.Categories _
-                                    Select Count = itm.Cap_Category_Ints.Count, Name = itm.CategoryName, ID = itm.CategoryID, Size = mup * (itm.Cap_Category_Ints.Count - SmallestCategory) + FontMin, Type = "C"c _
+                                    Select Count = itm.Caps.Count, Name = itm.CategoryName, ID = itm.CategoryID, Size = mup * (itm.Caps.Count - SmallestCategory) + FontMin, Type = "C"c _
                                     Order By Count Descending
         mup = If(Not BiggestKeyword.HasValue OrElse BiggestKeyword = 0, 0, (FontMax - FontMin) / (BiggestKeyword - SmallestKeyword))
         itmKeywords.ItemsSource = From itm In Context.Keywords _
-                                   Select Count = itm.Cap_Keyword_Ints.Count, Name = itm.KeywordName, ID = itm.KeywordID, Size = mup * (itm.Cap_Keyword_Ints.Count - SmallestKeyword) + FontMin, Type = "K"c _
+                                   Select Count = itm.Caps.Count, Name = itm.KeywordName, ID = itm.KeywordID, Size = mup * (itm.Caps.Count - SmallestKeyword) + FontMin, Type = "K"c _
                                    Order By Count Descending
     End Sub
 
@@ -171,12 +171,12 @@ Connect: If Main.Connection Is Nothing OrElse Redo Then
         Dim id% = BindItem.GetType.GetProperty("ID").GetValue(BindItem, New Object() {})
         Dim ItemType As Char = BindItem.GetType.GetProperty("Type").GetValue(BindItem, New Object() {})
         If ItemType = "K"c Then
-            src = From itm In Context.Caps Join ki In Context.Cap_Keyword_Ints On itm.CapID Equals ki.CapID _
-                  Where ki.KeywordID = id _
+            src = From itm In Context.Caps
+                  Where itm.Keywords.Contains(From kw In Context.Keywords Where kw.KeywordID = id)
                   Select itm Order By itm.CapName
         ElseIf ItemType = "C"c Then
-            src = From itm In Context.Caps Join ci In Context.Cap_Category_Ints On itm.CapID Equals ci.CapID _
-                  Where ci.CategoryID = id _
+            src = From itm In Context.Caps
+                  Where itm.Categories.Contains(From cat In Context.Categories Where cat.CategoryID = id)
                   Select itm Order By itm.CapName
         Else
             Exit Sub
