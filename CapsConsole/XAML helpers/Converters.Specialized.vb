@@ -181,7 +181,7 @@ End Class
 Public Class GetCapsOfConverter
     Implements IValueConverter, IDisposable
     ''' <summary>Context to be used when <see cref="Context"/> is not set</summary>
-    Private OriginalContext As CapsDataContext = If(Main.Connection IsNot Nothing, New CapsDataContext(Main.Connection), Nothing) 'If(...) - for designer
+    Private OriginalContext As CapsDataContext = If(Main.EntityConnection IsNot Nothing, New CapsDataContext(Main.EntityConnection), Nothing) 'If(...) - for designer
     ''' <summary>CTor</summary>
     Public Sub New()
     End Sub

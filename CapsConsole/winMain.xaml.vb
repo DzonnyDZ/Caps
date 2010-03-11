@@ -29,27 +29,28 @@ Class winMain
         Dim Args = ParseParameters(Environment.GetCommandLineArgs, True)
         If Args.ContainsKey(ConnectionString) AndAlso Args(ConnectionString).Count > 0 AndAlso Args(ConnectionString)(0) <> "" Then
             Try
-                Main.Connection = New System.Data.SqlClient.SqlConnection(Args(ConnectionString)(0))
+                Main.SqlConnection = New System.Data.SqlClient.SqlConnection(Args(ConnectionString)(0))
             Catch ex As Exception
                 mBox.Error_XPTIBWO(ex, String.Format(My.Resources.err_InvalidCommandLineConnectionString, Args(ConnectionString)(0)), "Invalid connection string", mBox.MessageBoxIcons.Error, , Me)
             End Try
         End If
 
         Dim Redo As Boolean = False
-Connect: If Main.Connection Is Nothing OrElse Redo Then
-            Dim win = If(Main.Connection Is Nothing, New winSelectDatabase, New winSelectDatabase(Main.Connection.ConnectionString))
+Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
+            Dim win = If(Main.SqlConnection Is Nothing, New winSelectDatabase, New winSelectDatabase(Main.SqlConnection.ConnectionString))
             win.Owner = Me
             If win.ShowDialog Then
-                Main.Connection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)
+                Main.SqlConnection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)
             Else
                 Environment.Exit(1)
             End If
         End If
         Try
-            Connection.Open()
-            VerifyDatabaseVersionWithUpgrade(Connection, Me)
+            Main.EntityConnection = New System.Data.EntityClient.EntityConnection(CapsDataContext.DefaultMetadataWorkspace,Main.SqlConnection)
+            EntityConnection.Open()
+            VerifyDatabaseVersionWithUpgrade(SqlConnection, Me)
         Catch ex As Exception
-            Try : Connection.Close() : Catch : End Try
+            Try : EntityConnection.Close() : Catch : End Try
             If mBox.Error_XBWI(ex, mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Abort, Me) = Forms.DialogResult.Retry Then
                 Redo = True
                 GoTo Connect
@@ -57,7 +58,7 @@ Connect: If Main.Connection Is Nothing OrElse Redo Then
                 Environment.Exit(2)
             End If
         End Try
-        My.Settings.UserConnectionString = Connection.ConnectionString
+        My.Settings.UserConnectionString = SqlConnection.ConnectionString
         My.Settings.Save()
 
         If Not IO.Directory.Exists(My.Settings.ImageRoot) Then
@@ -73,25 +74,25 @@ Connect: If Main.Connection Is Nothing OrElse Redo Then
     End Sub
 
     Private Sub Bind()
-        Me.Context = New CapsDataContext(Main.Connection)
+        Me.Context = New CapsDataContext(Main.EntityConnection)
         lblCapsCount.Content = Context.Caps.Count
-        lblNewestCap.Content = (From itm In Context.Caps Order By itm.DateCreated Descending Select New Date?(itm.DateCreated)).FirstOrDefault
-        lblOldestcap.Content = (From itm In Context.Caps Order By itm.DateCreated Ascending Select New Date?(itm.DateCreated)).FirstOrDefault
+        lblNewestCap.Content = (From itm In Context.Caps Order By itm.DateCreated Descending Select CType(itm.DateCreated, Date?)).FirstOrDefault
+        lblOldestcap.Content = (From itm In Context.Caps Order By itm.DateCreated Ascending Select CType(itm.DateCreated, Date?)).FirstOrDefault
         itmNewest.ItemsSource = From itm In Context.Caps Order By itm.DateCreated Descending Take 10
         itmRandom.ItemsSource = From itm In Context.Caps Order By System.Data.Objects.SqlClient.SqlFunctions.Rand Take 10
-        Dim BiggestCategory = (From itm In Context.Categories Order By itm.Caps.Count Descending Select New Integer?(itm.Caps.Count)).FirstOrDefault
-        Dim SmallestCategory = If((From itm In Context.Categories Order By itm.Caps.Count Ascending Select New Integer?(itm.Caps.Count)).FirstOrDefault, 0)
-        Dim BiggestKeyword = (From itm In Context.Keywords Order By itm.Caps.Count Descending Select New Integer?(itm.Caps.Count)).FirstOrDefault
-        Dim SmallestKeyword = If((From itm In Context.Keywords Order By itm.Caps.Count Ascending Select New Integer?(itm.Caps.Count)).FirstOrDefault, 0)
+        Dim BiggestCategory = (From itm In Context.Categories Order By itm.Caps.Count Descending Select CType(itm.Caps.Count, Integer?)).FirstOrDefault
+        Dim SmallestCategory = If((From itm In Context.Categories Order By itm.Caps.Count Ascending Select CType(itm.Caps.Count, Integer?)).FirstOrDefault, 0)
+        Dim BiggestKeyword = (From itm In Context.Keywords Order By itm.Caps.Count Descending Select CType(itm.Caps.Count, Integer?)).FirstOrDefault
+        Dim SmallestKeyword = If((From itm In Context.Keywords Order By itm.Caps.Count Ascending Select CType(itm.Caps.Count, Integer?)).FirstOrDefault, 0)
         Const FontMax% = 50
         Const FontMin% = 8
         Dim mup As Double = If(Not BiggestCategory.HasValue OrElse BiggestCategory = 0, 0, (FontMax - FontMin) / (BiggestCategory - SmallestCategory))
         itmCategories.ItemsSource = From itm In Context.Categories _
-                                    Select Count = itm.Caps.Count, Name = itm.CategoryName, ID = itm.CategoryID, Size = mup * (itm.Caps.Count - SmallestCategory) + FontMin, Type = "C"c _
+                                    Select Count = itm.Caps.Count, Name = itm.CategoryName, ID = itm.CategoryID, Size = mup * (itm.Caps.Count - SmallestCategory) + FontMin, Type = "C" _
                                     Order By Count Descending
         mup = If(Not BiggestKeyword.HasValue OrElse BiggestKeyword = 0, 0, (FontMax - FontMin) / (BiggestKeyword - SmallestKeyword))
         itmKeywords.ItemsSource = From itm In Context.Keywords _
-                                   Select Count = itm.Caps.Count, Name = itm.KeywordName, ID = itm.KeywordID, Size = mup * (itm.Caps.Count - SmallestKeyword) + FontMin, Type = "K"c _
+                                   Select Count = itm.Caps.Count, Name = itm.KeywordName, ID = itm.KeywordID, Size = mup * (itm.Caps.Count - SmallestKeyword) + FontMin, Type = "K" _
                                    Order By Count Descending
     End Sub
 
@@ -111,7 +112,7 @@ Connect: If Main.Connection Is Nothing OrElse Redo Then
                         Dim OrigArgs = ParseParameters(Environment.GetCommandLineArgs, True)
                         If Not OrigArgs.ContainsKey(ConnectionString) AndAlso newP.StartInfo.Arguments <> "" Then newP.StartInfo.Arguments &= " "
                         If Not OrigArgs.ContainsKey(ConnectionString) Then
-                            newP.StartInfo.Arguments &= """" & ConnectionString & "=" & Main.Connection.ConnectionString.Replace("""", """""") & """"
+                            newP.StartInfo.Arguments &= """" & ConnectionString & "=" & Main.EntityConnection.ConnectionString.Replace("""", """""") & """"
                         End If
                         newP.StartInfo.FileName = IO.Path.Combine(Reflection.Assembly.GetEntryAssembly.Location)
                         newP.StartInfo.WorkingDirectory = Environment.CurrentDirectory
@@ -172,11 +173,11 @@ Connect: If Main.Connection Is Nothing OrElse Redo Then
         Dim ItemType As Char = BindItem.GetType.GetProperty("Type").GetValue(BindItem, New Object() {})
         If ItemType = "K"c Then
             src = From itm In Context.Caps
-                  Where itm.Keywords.Contains(From kw In Context.Keywords Where kw.KeywordID = id)
+                  Where itm.Keywords.Contains((From kw In Context.Keywords Where kw.KeywordID = id).FirstOrDefault)
                   Select itm Order By itm.CapName
         ElseIf ItemType = "C"c Then
             src = From itm In Context.Caps
-                  Where itm.Categories.Contains(From cat In Context.Categories Where cat.CategoryID = id)
+                  Where itm.Categories.Contains((From cat In Context.Categories Where cat.CategoryID = id).FirstOrDefault)
                   Select itm Order By itm.CapName
         Else
             Exit Sub

@@ -10,7 +10,7 @@ Partial Public Class winNewStorage
     ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
     Public Sub New()
         InitializeComponent()
-        Me.Context = New CapsDataContext(Main.Connection)
+        Me.Context = New CapsDataContext(Main.EntityConnection)
     End Sub
     ''' <summary>Data context</summary>
     Private Context As CapsDataContext

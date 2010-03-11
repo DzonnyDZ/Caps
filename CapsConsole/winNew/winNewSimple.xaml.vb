@@ -28,7 +28,7 @@ Partial Public Class winNewSimple
             Case SimpleTypes.StorageType : Me.Title = My.Resources.txt_NewStorageType
             Case SimpleTypes.Target : Me.Title = My.Resources.txt_NewTarget
         End Select
-        Me.Context = New CapsDataContext(Main.Connection)
+        Me.Context = New CapsDataContext(Main.EntityConnection)
         UnderConstruction = False
         chkIsDrink_Checked(chkIsDrink, New RoutedEventArgs)
     End Sub

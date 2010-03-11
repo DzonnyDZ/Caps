@@ -3,7 +3,7 @@ Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Caps.Data
 
 Partial Public Class winEditors
-    Private CapsContext As New CapsDataContext(Main.Connection)
+    Private CapsContext As New CapsDataContext(Main.EntityConnection)
 
     Private Sub winEditors_Closed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Closed
         My.Settings.winEditorsLoc = Me.GetWindowPosition

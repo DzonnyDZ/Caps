@@ -403,6 +403,9 @@ Partial Public Class TypeSuggestor
             Const MaxSizeDiff% = 3
             If MainType IsNot Nothing AndAlso Shape IsNot Nothing Then
                 'Existing types
+                'TODO: There's probably a bug in EF. If following two lines are inlined, NullReferenceException is thrown by ToList
+                Dim CurrentMaterialID As Integer? = If(Material Is Nothing, New Integer?, Material.MaterialID)
+                Dim CurrentTargetObjectID As Integer? = If(TargetObject Is Nothing, New Integer?, TargetObject.TargetID)
                 Dim exTypesQ = From type In Context.CapTypes _
                     Where type.MainTypeID = MainType.MainTypeID AndAlso type.ShapeID = Shape.ShapeID AndAlso _
                           (type.Height >= CapHeight - MaxSizeDiff AndAlso type.Height <= CapHeight + MaxSizeDiff) AndAlso _
@@ -412,10 +415,10 @@ Partial Public Class TypeSuggestor
                           Score = MaxSizeDiff - Math.Abs(type.Height - CapHeight) + _
                                   MaxSizeDiff - Math.Abs(type.Size - Size1) + _
                                   If(String.IsNullOrEmpty(Shape.Size2Name) OrElse Not type.Size2.HasValue, 0, MaxSizeDiff - Math.Abs(type.Size2.Value - Size2)) + _
-                                  If(If(Material Is Nothing, New Integer?, Material.MaterialID) = type.MaterialID, MaxSizeDiff, 0) + _
-                                  If(If(TargetObject Is Nothing, New Integer?, TargetObject.TargetID) = type.TargetID, MaxSizeDiff, 0) _
+                                  If(CurrentMaterialID = type.MaterialID, MaxSizeDiff, 0) +
+                                  If(CurrentTargetObjectID = type.TargetID, MaxSizeDiff, 0)
                    Order By Score Descending _
-                   Take 10      'TODO: There's probably bug in LINQ-to-SQL. If If(If( above is rewritten using single If(x IsNot Nothing AndAlso x.xID = type.xID ... it throws NullReferenceException upon ToList() call
+                   Take 10
                 Try
                     Dim exTypes = (From item In exTypesQ Select item.Type).ToList
                     AnyExType = exTypes.Count > 0
@@ -436,9 +439,9 @@ Partial Public Class TypeSuggestor
                                           Into Group, Size = Average(item.Size), Height = Average(item.Height), Size2 = Average(item.Size2), Count() _
                                           Where Count >= 3 _
                                           Select Caps = Group, _
-                                            Size1 = CInt(Math.Round(Size, MidpointRounding.AwayFromZero)), _
-                                            Size2 = If(Size2.hasvalue, New Integer?(Math.Round(Size2.value, MidpointRounding.AwayFromZero)), Nothing), _
-                                            Height = CInt(Math.Round(Height, MidpointRounding.AwayFromZero)), Count = Count, _
+                                            Size1 = CInt(Math.Round(Size)), _
+                                            Size2 = If(Size2.hasvalue, New Integer?(Math.Round(Size2.value)), Nothing), _
+                                            Height = CInt(Math.Round(Height)), Count = Count, _
                                             MaterialID, ShapeID = Group.First.ShapeID, MainTypeID = Group.First.MainTypeID _
                                           Order By Count Descending
                     Dim suggTypesQ = From agg In newAggregationsQ _

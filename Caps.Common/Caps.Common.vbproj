@@ -116,20 +116,9 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CapsData.Designer.vb</LastGenOutput>
     </EntityDeploy>
-    <None Include="DAL\CapsData.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CapsData.edmx</DependentUpon>
-      <CustomToolNamespace>Data</CustomToolNamespace>
-      <LastGenOutput>CapsData.tt.vb</LastGenOutput>
-    </None>
     <Compile Include="DAL\CapsData.vb">
       <DesignTime>True</DesignTime>
       <DependentUpon>CapsData.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="DAL\CapsData.tt.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CapsData.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +149,7 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
     <None Include="My Project\DataSources\Caps.Data.CapsDataContext.datasource" />
+    <None Include="My Project\DataSources\CapsDataContext.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

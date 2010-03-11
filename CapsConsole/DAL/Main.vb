@@ -5,8 +5,10 @@ Imports Microsoft.SqlServer.Management.Common
 Imports Caps.Data
 
 Friend Module Main
-    ''' <summary>Current con nection to database</summary>
-    Public Connection As System.Data.SqlClient.SqlConnection
+    ''' <summary>Current connection to database</summary>
+    Public SqlConnection As System.Data.SqlClient.SqlConnection
+    ''' <summary>Current connection used by entity framework</summary>
+    Public EntityConnection As EntityClient.EntityConnection
 
     ''' <summary>Gets change script to alter database represent by connection to newer one</summary>
     ''' <param name="Connection">Connection to database to alter</param>

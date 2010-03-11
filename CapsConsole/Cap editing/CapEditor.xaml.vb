@@ -9,7 +9,7 @@ Imports Caps.Data
 ''' <summary>Creates a new cap</summary>
 Partial Public Class CapEditor
     ''' <summary>Context to be used when <see cref="Context"/> is not set</summary>
-    Private OriginalContext As CapsDataContext = If(Main.Connection Is Nothing, Nothing, New CapsDataContext(Main.Connection)) 'If(...) - for designer
+    Private OriginalContext As CapsDataContext = If(Main.EntityConnection Is Nothing, Nothing, New CapsDataContext(Main.EntityConnection)) 'If(...) - for designer
     ''' <summary>Contains value of the <see cref="Context"/> proeprty</summary>
     Private _Context As CapsDataContext = OriginalContext
     Private UnderConstruction As Boolean = True
@@ -68,7 +68,7 @@ Partial Public Class CapEditor
             Dim CompaniesList As ListWithEvents(Of Company) = New ListWithEvents(Of Company)(From item In Context.Companies Order By item.CompanyName)
             CompaniesList.Add(Nothing)
             cmbCompany.ItemsSource = CompaniesList
-            lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item))
+            lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In (From iitem In Context.Categories Order By iitem.CategoryName).AsEnumerable Select New CategoryProxy(item))
             kweKeywords.AutoCompleteStable = New ListWithEvents(Of String)(From item In Context.Keywords Order By item.KeywordName Select item.KeywordName)
             'lvwImages.ItemTemplate = My.Application.Resources("ImageListDataTemplate")
             DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(Nothing)
@@ -2673,7 +2673,7 @@ Partial Public Class CapEditor
         If OriginalContext IsNot Nothing Then OriginalContext.Dispose()
         OriginalContext = Nothing
         If Context Is Nothing Then
-            OriginalContext = New CapsDataContext(Main.Connection)
+            OriginalContext = New CapsDataContext(Main.EntityConnection)
             Context = OriginalContext
         End If
 
@@ -2875,7 +2875,7 @@ CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
                         End If
                         IPTC.Keywords = keywords.ToArray
                         If Country <> "" Then
-                            Dim cox As New CapsDataContext(Main.Connection)
+                            Dim cox As New CapsDataContext(Main.EntityConnection)
                             Dim Code = (From c In cox.ISO_3166_1 Where c.Alpha_2 = Country Select c.Alpha_3).FirstOrDefault
                             If Code IsNot Nothing Then
                                 IPTC.CountryPrimaryLocationCode = Code
