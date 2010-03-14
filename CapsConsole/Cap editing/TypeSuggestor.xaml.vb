@@ -440,19 +440,19 @@ Partial Public Class TypeSuggestor
                                           Where Count >= 3 _
                                           Select Caps = Group, _
                                             Size1 = CInt(Math.Round(Size)), _
-                                            Size2 = If(Size2.hasvalue, New Integer?(Math.Round(Size2.value)), Nothing), _
+                                            Size2 = If(Size2.hasvalue, CType(Math.Round(Size2.value), Integer?), Nothing), _
                                             Height = CInt(Math.Round(Height)), Count = Count, _
-                                            MaterialID, ShapeID = Group.First.ShapeID, MainTypeID = Group.First.MainTypeID _
+                                            MaterialID, ShapeID = Group.FirstOrDefault.ShapeID, MainTypeID = Group.FirstOrDefault.MainTypeID _
                                           Order By Count Descending
                     Dim suggTypesQ = From agg In newAggregationsQ _
                                      Select MainTypeID = agg.MainTypeID, ShapeID = agg.ShapeID, _
                                            Size = agg.Size1, Size2 = agg.Size2, Height = agg.Height, _
                                            MaterialID = agg.MaterialID, _
-                                           TargetID = If((From cap In agg.Caps Select cap.TargetID Distinct).Count = 1, agg.Caps.First.TargetID, New Integer?), _
+                                           TargetID = If((From cap In agg.Caps Select cap.TargetID Distinct).Count = 1, agg.Caps.FirstOrDefault.TargetID, New Integer?), _
                                            Caps = agg.Caps,
                                            MainType = (From mt In Context.MainTypes Where mt.MainTypeID = agg.MainTypeID).FirstOrDefault,
                                            Shape = (From sh In Context.Shapes Where sh.ShapeID = agg.ShapeID).FirstOrDefault,
-                                           Target = If((From cap In agg.Caps Select cap.TargetID Distinct).Count = 1, agg.Caps.First.Target, Nothing),
+                                           Target = If((From cap In agg.Caps Select cap.TargetID Distinct).Count = 1, agg.Caps.FirstOrDefault.Target, Nothing),
                                            Material = (From mat In Context.Materials Where mat.MaterialID = agg.MaterialID).FirstOrDefault
                     Try
                         Dim suggTypes = suggTypesQ.ToList

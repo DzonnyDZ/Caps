@@ -260,7 +260,7 @@
                         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding Target.MaterialID, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
                     </Grid>
                     <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Sign}"/>
-                    <ItemsControl Grid.Column="1" Grid.Row="8" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" ItemsSource="{Binding Cap_CapSign_Ints, Mode=OneWay}" Grid.IsSharedSizeScope="True">
+                    <ItemsControl Grid.Column="1" Grid.Row="8" VerticalAlignment="Top" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" ItemsSource="{Binding CapSigns, Mode=OneWay}" Grid.IsSharedSizeScope="True">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Vertical" IsItemsHost="True"/>
@@ -268,7 +268,7 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid HorizontalAlignment="Stretch" ToolTip="{Binding CapSign.Description, Mode=OneWay}">
+                                <Grid HorizontalAlignment="Stretch" ToolTip="{Binding Description, Mode=OneWay}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto" MaxWidth="35" SharedSizeGroup="c1" />
                                         <ColumnDefinition Width="*" SharedSizeGroup="c2"/>
@@ -277,9 +277,9 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
-                                    <Image Width="auto" MaxWidth="35" Height="32" VerticalAlignment="Center" Source="{Binding CapSign.CapSignID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
-                                    <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding CapSign.Name, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
-                                    <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding CapSign.CapSignID, Mode=OneWay}" Grid.Column="2" Grid.Row="0"/>
+                                    <Image Width="auto" MaxWidth="35" Height="32" VerticalAlignment="Center" Source="{Binding CapSignID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
+                                    <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding Name, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
+                                    <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding CapSignID, Mode=OneWay}" Grid.Column="2" Grid.Row="0"/>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -451,14 +451,14 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Header="{x:Static res:Resources.txt_Categories}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0">
-                        <ListBox ItemsSource="{Binding Cap_Category_Ints, Mode=OneWay}" Height="auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" BorderThickness="0">
+                        <ListBox ItemsSource="{Binding Categories, Mode=OneWay}" Height="auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" BorderThickness="0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Label ToolTip="{Binding Category.Description, Mode=OneWay}">
+                                    <Label ToolTip="{Binding Description, Mode=OneWay}">
                                         <Label.Content>
                                             <TextBlock>
-                                                <TextBlock Text="{Binding Category.CategoryName, Mode=OneWay}"/>
-                                                (<TextBlock Text="{Binding Category.CategoryID, Mode=OneWay}"/>)
+                                                <TextBlock Text="{Binding CategoryName, Mode=OneWay}"/>
+                                                (<TextBlock Text="{Binding CategoryID, Mode=OneWay}"/>)
                                             </TextBlock>
                                         </Label.Content>
                                     </Label>
@@ -472,10 +472,10 @@
                         </ListBox>
                     </GroupBox>
                     <GroupBox Header="{x:Static res:Resources.txt_Keywords}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="1" >
-                        <ListBox ItemsSource="{Binding Cap_Keyword_Ints, Mode=OneWay}" Height="auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" BorderThickness="0">
+                        <ListBox ItemsSource="{Binding Keywords, Mode=OneWay}" Height="auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" BorderThickness="0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <Label Content="{Binding Keyword.Keyword, Mode=OneWay}"/>
+                                    <Label Content="{Binding Keyword, Mode=OneWay}"/>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                             <ListBox.ItemsPanel>

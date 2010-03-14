@@ -1111,7 +1111,7 @@
         <!-- CSDL content -->
         <edmx:ConceptualModels>
             <Schema Namespace="Data" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-                <EntityContainer Name="CapsDataContext">
+                <EntityContainer Name="CapsDataContext" annotation:LazyLoadingEnabled="true">
                     <Documentation>
                         <Summary>Entity Framework data context for Caps database</Summary>
                     </Documentation>

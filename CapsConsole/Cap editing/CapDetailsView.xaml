@@ -137,7 +137,7 @@
                             <Label Content="{x:Static res:Resources.lbl_Target}" Grid.Row="7" Grid.Column="0"/>
                             <Label Content="{Binding Target.Name}" Grid.Row="7" Grid.Column="1"/>
                             <Label Content="{x:Static res:Resources.lbl_Sign}" Grid.Row="8" Grid.Column="0"/>
-                            <ItemsControl ItemsSource="{Binding Cap_CapSign_Ints, Mode=OneWay}" Grid.Row="8" Grid.Column="1">
+                            <ItemsControl ItemsSource="{Binding CapSigns, Mode=OneWay}" Grid.Row="8" Grid.Column="1">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel Orientation="Horizontal" Height="Auto" IsItemsHost="True"/>
@@ -147,8 +147,8 @@
                                     <DataTemplate>
                                         <Label HorizontalAlignment="Stretch">
                                             <TextBlock>
-                                                <Image Source="{Binding CapSign.CapSignID, Mode=OneWay, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign'}" MaxWidth="16" MaxHeight="16"/>
-                                            <TextBlock Text="{Binding CapSign.Name, Mode=OneWay}"/>
+                                                <Image Source="{Binding CapSignID, Mode=OneWay, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign'}" MaxWidth="16" MaxHeight="16"/>
+                                            <TextBlock Text="{Binding Name, Mode=OneWay}"/>
                                             </TextBlock>
                                         </Label>
                                     </DataTemplate>
@@ -260,9 +260,9 @@
                     <my:AttachedProperties.ItemsWithAutomaticRows>
                         <x:Array Type="UIElement">
                             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="{x:Static res:Resources.txt_Categories}"/>
-                            <TextBlock TextWrapping="Wrap" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Path=Cap_Category_Ints/Category/CategoryName, Mode=OneWay, Converter={StaticResource ConcatConverter}}"/>
+                            <TextBlock TextWrapping="Wrap" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Path=Categories/CategoryName, Mode=OneWay, Converter={StaticResource ConcatConverter}}"/>
                             <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="{x:Static res:Resources.txt_Keywords}"/>
-                            <TextBlock TextWrapping="Wrap" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Text="{Binding Path=Cap_Keyword_Ints/Keyword/Keyword, Mode=OneWay, Converter={StaticResource ConcatConverter}}"/>
+                            <TextBlock TextWrapping="Wrap" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Text="{Binding Path=Keywords/Keyword, Mode=OneWay, Converter={StaticResource ConcatConverter}}"/>
                         </x:Array>
                     </my:AttachedProperties.ItemsWithAutomaticRows>
                 </Grid>

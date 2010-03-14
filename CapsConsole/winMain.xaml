@@ -40,7 +40,7 @@
                         <Image MaxWidth="256" MaxHeight="256" Height="auto" Width="auto"
                             Source="{Binding Path=ImagesOrdered/RelativePath, Converter={StaticResource CapImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i256}}"                               
                             HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
-                        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding Cap_CapSign_Ints, Mode=OneWay}">
+                        <ItemsControl Grid.Row="1" Grid.Column="0" ItemsSource="{Binding CapSigns, Mode=OneWay}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxWidth="256" Height="auto" Width="auto" IsItemsHost="True"/>
@@ -57,7 +57,7 @@
                                             <RowDefinition Height="auto" MaxHeight="32"/>
                                         </Grid.RowDefinitions>
                                         <Image MaxWidth="256" MaxHeight="32" Height="auto" Width="auto" Grid.Row="0" Grid.Column="0"
-                                            Source="{Binding Path=CapSign.CapSignID, Converter={StaticResource MyImageIDConverter}, Mode=OneWay, ConverterParameter='CapSign'}"/>
+                                            Source="{Binding Path=CapSignID, Converter={StaticResource MyImageIDConverter}, Mode=OneWay, ConverterParameter='CapSign'}"/>
                                         <TextBlock Text="{Binding Path=CapName, Mode=OneWay}" Grid.Column="0" Grid.Row="1" TextWrapping="Wrap"/>
                                     </Grid>
                                 </DataTemplate>
@@ -70,7 +70,7 @@
                        HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Height="auto"  Grid.Column="0" Grid.Row="0" />
                 <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding CapName, Mode=OneWay}" TextWrapping="Wrap" MaxWidth="72" FontSize="10" />                   
                 <TextBlock Grid.Column="0" Grid.Row="2" TextAlignment="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top" Text="{Binding CapID, Mode=OneWay}" MaxWidth="72" FontSize="10"/>
-                <ItemsControl MaxHeight="18" Width="auto" Height="auto" MaxWidth="64" ItemsSource="{Binding Cap_CapSign_Ints, Mode=OneWay}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                <ItemsControl MaxHeight="18" Width="auto" Height="auto" MaxWidth="64" ItemsSource="{Binding CapSigns, Mode=OneWay}" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal" IsItemsHost="True"/>
@@ -80,7 +80,7 @@
                         <DataTemplate>
                             <Image MaxWidth="18" MaxHeight="18" Width="auto" Height="auto"
                                Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
-                               Source="{Binding Path=CapSign.CapSignID, Converter={StaticResource MyImageIDConverter}, Mode=OneWay, ConverterParameter='CapSign'}"/>
+                               Source="{Binding Path=CapSignID, Converter={StaticResource MyImageIDConverter}, Mode=OneWay, ConverterParameter='CapSign'}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

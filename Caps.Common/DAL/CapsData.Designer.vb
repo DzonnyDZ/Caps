@@ -16,7 +16,7 @@ Imports System.ComponentModel
 Imports System.Xml.Serialization
 Imports System.Runtime.Serialization
 
-<Assembly: EdmSchemaAttribute("111c1aa1-8a95-48dd-bce0-1e20cf349d7c")>
+<Assembly: EdmSchemaAttribute("1d028741-f7bb-4435-9363-bd6509880644")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Company), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
@@ -81,6 +81,7 @@ Namespace Data
         ''' </summary>
         Public Sub New()
             MyBase.New("name=CapsDataContext", "CapsDataContext")
+        MyBase.ContextOptions.LazyLoadingEnabled = true
             OnContextCreated()
         End Sub
     
@@ -89,6 +90,7 @@ Namespace Data
         ''' </summary>
         Public Sub New(ByVal connectionString As String)
             MyBase.New(connectionString, "CapsDataContext")
+        MyBase.ContextOptions.LazyLoadingEnabled = true
             OnContextCreated()
         End Sub
     
@@ -97,6 +99,7 @@ Namespace Data
         ''' </summary>
         Public Sub New(ByVal connection As EntityConnection)
             MyBase.New(connection, "CapsDataContext")
+        MyBase.ContextOptions.LazyLoadingEnabled = true
             OnContextCreated()
         End Sub
     

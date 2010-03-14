@@ -167,7 +167,7 @@ Public Class TopRandomConverter
             Finally
                 System.Threading.Thread.CurrentThread.CurrentCulture = oldc
             End Try
-            Return From item As Object In list Order By System.Data.Objects.SqlClient.SqlFunctions.Rand Take count
+            Return From item As Object In list Order By Guid.NewGuid Take count
         Else : Throw New NotSupportedException(My.Resources.ex_CanConvertOnlyFromValuesImplementingAndHaving.f(Me.GetType.Name, GetType(IQueryable).Name, GetType(System.Data.Objects.ObjectSet(Of )).Name, "Context", GetType(CapsDataContext).Name))
         End If
     End Function
@@ -214,7 +214,7 @@ Public Class GetCapsOfConverter
         If Context Is Nothing Then Throw New InvalidOperationException(My.Resources.err_ValueCannotBeNull.f("Context"))
         Dim Count = TypeTools.DynamicCast(Of Integer)(parameter)
         If TypeOf value Is IRelatedToCap Then
-            Return From item In DirectCast(value, IRelatedToCap).Caps Order By System.Data.Objects.SqlClient.SqlFunctions.Rand Take Count
+            Return From item In DirectCast(value, IRelatedToCap).Caps Order By Guid.NewGuid Take Count
           ElseIf value Is Nothing Then
             Return Nothing
         Else

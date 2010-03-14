@@ -79,7 +79,7 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
         lblNewestCap.Content = (From itm In Context.Caps Order By itm.DateCreated Descending Select CType(itm.DateCreated, Date?)).FirstOrDefault
         lblOldestcap.Content = (From itm In Context.Caps Order By itm.DateCreated Ascending Select CType(itm.DateCreated, Date?)).FirstOrDefault
         itmNewest.ItemsSource = From itm In Context.Caps Order By itm.DateCreated Descending Take 10
-        itmRandom.ItemsSource = From itm In Context.Caps Order By System.Data.Objects.SqlClient.SqlFunctions.Rand Take 10
+        itmRandom.ItemsSource = From itm In Context.Caps Order By Guid.NewGuid Take 10
         Dim BiggestCategory = (From itm In Context.Categories Order By itm.Caps.Count Descending Select CType(itm.Caps.Count, Integer?)).FirstOrDefault
         Dim SmallestCategory = If((From itm In Context.Categories Order By itm.Caps.Count Ascending Select CType(itm.Caps.Count, Integer?)).FirstOrDefault, 0)
         Dim BiggestKeyword = (From itm In Context.Keywords Order By itm.Caps.Count Descending Select CType(itm.Caps.Count, Integer?)).FirstOrDefault

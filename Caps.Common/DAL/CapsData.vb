@@ -1,5 +1,6 @@
 Imports System.Globalization
 Imports System.Data.EntityClient
+Imports System.ComponentModel
 
 Namespace Data
 #Region "Localization"
@@ -559,6 +560,20 @@ Namespace Data
             Me.New()
             Me.KeywordName = Keyword
         End Sub
+
+
+        ''' <summary>Gets or sets text of the keyword.</summary>
+        ''' <remarks>Due to Enitity Framework limitations, this property cannot be used in LINQ queries. Use <see cref="KeywordName"/> instead</remarks>
+        <EditorBrowsable(EditorBrowsableState.Never), Obsolete("Due to EF limitations this property cannot be used in LINQ queries. Use KeywordName instead.")> _
+        Public Property Keyword() As Global.System.String
+            Get
+                Return KeywordName
+            End Get
+            Set(ByVal value As Global.System.String)
+                KeywordName = value
+            End Set
+        End Property
+
 #Region "ISimpleObject"
         Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
             <DebuggerStepThrough()> Get
@@ -596,39 +611,6 @@ Namespace Data
             End Get
         End Property
     End Class
-#End Region
-
-#Region "Relations"
-    '<DebuggerDisplay("Cap {CapID} <-> CapSign {CapSignID}")>
-    'Partial Class Cap_CapSign_Int
-    '    Public Sub New(ByVal Cap As Cap, ByVal CapSign As CapSign)
-    '        Me.New()
-    '        Me.Cap = Cap
-    '        Me.CapSign = CapSign
-    '    End Sub
-    'End Class
-
-    '<DebuggerDisplay("Cap {CapID} <-> PseudoCategory {PseudoCategoryID}")> _
-    'Partial Class Cap_PseudoCategory_Int
-    'End Class
-
-    '<DebuggerDisplay("Cap {CapID} <-> Category {CategoryID}")> _
-    'Partial Class Cap_Category_Int
-    '    Public Sub New(ByVal Cap As Cap, ByVal Category As Category)
-    '        Me.New()
-    '        Me.Cap = Cap
-    '        Me.Category = Category
-    '    End Sub
-    'End Class
-
-    '<DebuggerDisplay("Cap {CapID} <-> Keyword {KeywordID}")> _
-    'Partial Class Cap_Keyword_Int
-    '    Public Sub New(ByVal Cap As Cap, ByVal Keyword As Keyword)
-    '        Me.New()
-    '        Me.Cap = Cap
-    '        Me.Keyword = Keyword
-    '    End Sub
-    'End Class
 #End Region
 
     Partial Class CapsDataContext
