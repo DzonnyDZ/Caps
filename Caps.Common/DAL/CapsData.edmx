@@ -225,9 +225,9 @@
                         <PropertyRef Name="CapID" />
                     </Key>
                     <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="CapTypeID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="MainTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="ShapeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="CapTypeID" Type="int"  />
+                    <Property Name="MainTypeID" Type="int" Nullable="false" />
+                    <Property Name="ShapeID" Type="int" Nullable="false" />
                     <Property Name="CapName" Type="nvarchar" Nullable="false" MaxLength="255" />
                     <Property Name="MainText" Type="nvarchar" MaxLength="255" />
                     <Property Name="SubTitle" Type="nvarchar" MaxLength="255" />
@@ -238,7 +238,7 @@
                     <Property Name="TopText" Type="nvarchar(max)" />
                     <Property Name="SideText" Type="nvarchar(max)" />
                     <Property Name="BottomText" Type="nvarchar(max)" />
-                    <Property Name="MaterialID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="MaterialID" Type="int" Nullable="false"  />
                     <Property Name="Surface" Type="char" Nullable="false" MaxLength="1" />
                     <Property Name="Size" Type="int" Nullable="false" />
                     <Property Name="Size2" Type="int" />
@@ -248,10 +248,10 @@
                     <Property Name="CountryCode" Type="char" MaxLength="2" />
                     <Property Name="DateCreated" Type="datetime" Nullable="false" />
                     <Property Name="Note" Type="nvarchar(max)" />
-                    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="ProductTypeID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="StorageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="CompanyID" Type="int"  />
+                    <Property Name="ProductID" Type="int"  />
+                    <Property Name="ProductTypeID" Type="int"  />
+                    <Property Name="StorageID" Type="int" Nullable="false"  />
                     <Property Name="ForeColor2" Type="int" />
                     <Property Name="PictureType" Type="char" MaxLength="1" />
                     <Property Name="HasBottom" Type="bit" Nullable="false" />
@@ -260,7 +260,7 @@
                     <Property Name="CountryOfOrigin" Type="char" MaxLength="2" />
                     <Property Name="IsDrink" Type="bit" />
                     <Property Name="State" Type="smallint" Nullable="false" />
-                    <Property Name="TargetID" Type="int" StoreGeneratedPattern="Identity" />
+                    <Property Name="TargetID" Type="int"  />
                     <Property Name="IsAlcoholic" Type="bit" />
                 </EntityType>
                 <EntityType Name="Cap_CapSign_Int">
@@ -268,32 +268,32 @@
                         <PropertyRef Name="CapID" />
                         <PropertyRef Name="CapSignID" />
                     </Key>
-                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="CapSignID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="CapID" Type="int" Nullable="false" />
+                    <Property Name="CapSignID" Type="int" Nullable="false"  />
                 </EntityType>
                 <EntityType Name="Cap_Category_Int">
                     <Key>
                         <PropertyRef Name="CapID" />
                         <PropertyRef Name="CategoryID" />
                     </Key>
-                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="CapID" Type="int" Nullable="false"  />
+                    <Property Name="CategoryID" Type="int" Nullable="false"  />
                 </EntityType>
                 <EntityType Name="Cap_Keyword_Int">
                     <Key>
                         <PropertyRef Name="CapID" />
                         <PropertyRef Name="KeywordID" />
                     </Key>
-                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="KeywordID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="CapID" Type="int" Nullable="false"  />
+                    <Property Name="KeywordID" Type="int" Nullable="false" />
                 </EntityType>
                 <EntityType Name="CapInstance">
                     <Key>
                         <PropertyRef Name="CapInstanceID" />
                     </Key>
                     <Property Name="CapInstanceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="StorageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="CapID" Type="int" Nullable="false"  />
+                    <Property Name="StorageID" Type="int" Nullable="false"  />
                     <Property Name="State" Type="smallint" Nullable="false" />
                     <Property Name="Year" Type="int" />
                     <Property Name="CountryCode" Type="char" MaxLength="2" />
@@ -313,7 +313,7 @@
                         <PropertyRef Name="CapTranslationID" />
                     </Key>
                     <Property Name="CapTranslationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="CapID" Type="int" Nullable="false"  />
                     <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="15" />
                     <Property Name="CapName" Type="nvarchar" MaxLength="255" />
                     <Property Name="MainPicture" Type="nvarchar" MaxLength="255" />
@@ -326,14 +326,14 @@
                     </Key>
                     <Property Name="CapTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
                     <Property Name="TypeName" Type="nvarchar" Nullable="false" MaxLength="50" />
-                    <Property Name="ShapeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="ShapeID" Type="int" Nullable="false"  />
                     <Property Name="Size" Type="int" Nullable="false" />
                     <Property Name="Size2" Type="int" />
                     <Property Name="Height" Type="int" Nullable="false" />
-                    <Property Name="MaterialID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="MainTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="MaterialID" Type="int" Nullable="false"  />
+                    <Property Name="MainTypeID" Type="int" Nullable="false"  />
                     <Property Name="Description" Type="nvarchar(max)" />
-                    <Property Name="TargetID" Type="int" StoreGeneratedPattern="Identity" />
+                    <Property Name="TargetID" Type="int"  />
                 </EntityType>
                 <EntityType Name="Category">
                     <Key>
@@ -357,7 +357,7 @@
                     </Key>
                     <Property Name="ImageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
                     <Property Name="RelativePath" Type="nvarchar" Nullable="false" MaxLength="256" />
-                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="CapID" Type="int" Nullable="false"  />
                     <Property Name="IsMain" Type="bit" Nullable="false" />
                 </EntityType>
                 <EntityType Name="ISO 3166-1">
@@ -396,8 +396,8 @@
                     </Key>
                     <Property Name="ProductID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
                     <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="50" />
-                    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="ProductTypeID" Type="int" StoreGeneratedPattern="Identity" />
+                    <Property Name="CompanyID" Type="int"  />
+                    <Property Name="ProductTypeID" Type="int"  />
                     <Property Name="Description" Type="nvarchar(max)" />
                 </EntityType>
                 <EntityType Name="ProductType">
@@ -434,7 +434,7 @@
                         <PropertyRef Name="ShapeTranslationID" />
                     </Key>
                     <Property Name="ShapeTranslationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="ShapeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="ShapeID" Type="int" Nullable="false"  />
                     <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="15" />
                     <Property Name="Name" Type="nvarchar" MaxLength="50" />
                     <Property Name="Size1Name" Type="nvarchar" MaxLength="50" />
@@ -446,19 +446,19 @@
                         <PropertyRef Name="SimpleTranslationID" />
                     </Key>
                     <Property Name="SimpleTranslationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="KeywordID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="CompanyID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="ProductTypeID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="TargetID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="MaterialID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="CapTypeID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="MainTypeID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="CapSignID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="StorageID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="StorageTypeID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="CapInstanceID" Type="int" StoreGeneratedPattern="Identity" />
+                    <Property Name="CategoryID" Type="int"  />
+                    <Property Name="KeywordID" Type="int"  />
+                    <Property Name="ProductID" Type="int"  />
+                    <Property Name="CompanyID" Type="int"  />
+                    <Property Name="ProductTypeID" Type="int"  />
+                    <Property Name="TargetID" Type="int"  />
+                    <Property Name="MaterialID" Type="int"  />
+                    <Property Name="CapTypeID" Type="int"  />
+                    <Property Name="MainTypeID" Type="int"  />
+                    <Property Name="CapSignID" Type="int"  />
+                    <Property Name="StorageID" Type="int"  />
+                    <Property Name="StorageTypeID" Type="int"  />
+                    <Property Name="CapInstanceID" Type="int"  />
                     <Property Name="Culture" Type="varchar" Nullable="false" MaxLength="15" />
                     <Property Name="Name" Type="nvarchar" MaxLength="50" />
                     <Property Name="Description" Type="nvarchar(max)" />
@@ -470,8 +470,8 @@
                     <Property Name="StorageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
                     <Property Name="StorageNumber" Type="nvarchar" Nullable="false" MaxLength="10" />
                     <Property Name="Description" Type="nvarchar(max)" />
-                    <Property Name="StorageTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-                    <Property Name="ParentStorage" Type="int" StoreGeneratedPattern="Identity" />
+                    <Property Name="StorageTypeID" Type="int" Nullable="false"  />
+                    <Property Name="ParentStorage" Type="int"  />
                     <Property Name="HasCaps" Type="bit" Nullable="false" />
                 </EntityType>
                 <EntityType Name="StorageType">
@@ -492,12 +492,12 @@
                     <Property Name="Size" Type="int" Nullable="false" />
                     <Property Name="Width" Type="int" Nullable="false" />
                     <Property Name="Height" Type="int" Nullable="false" />
-                    <Property Name="ImageID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="CapSignID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="CapTypeID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="MainTypeID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="ShapeID" Type="int" StoreGeneratedPattern="Identity" />
-                    <Property Name="StorageID" Type="int" StoreGeneratedPattern="Identity" />
+                    <Property Name="ImageID" Type="int"  />
+                    <Property Name="CapSignID" Type="int"  />
+                    <Property Name="CapTypeID" Type="int"  />
+                    <Property Name="MainTypeID" Type="int"  />
+                    <Property Name="ShapeID" Type="int"  />
+                    <Property Name="StorageID" Type="int"  />
                     <Property Name="Data" Type="varbinary(max)" Nullable="false" />
                 </EntityType>
                 <EntityType Name="Target">
@@ -1320,6 +1320,9 @@
                     </FunctionImport>
                 </EntityContainer>
                 <EntityType Name="Cap">
+                    <Documentation>
+                        <Summary>Represents a cap item</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="CapID" />
                     </Key>
@@ -1378,6 +1381,9 @@
                     <NavigationProperty Name="Keywords" Relationship="Data.Cap_Keyword_Int" FromRole="Cap" ToRole="Keyword" />
                 </EntityType>
                 <EntityType Name="CapInstance">
+                    <Documentation>
+                        <Summary>In case one cap is present more than once in collection this class represents non-primary presence of cap in collection</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="CapInstanceID" />
                     </Key>
@@ -1394,6 +1400,9 @@
                     <NavigationProperty Name="SimpleTranslations" Relationship="Data.FK_SimpleTranslation_CapInstance" FromRole="CapInstance" ToRole="SimpleTranslation" />
                 </EntityType>
                 <EntityType Name="CapSign">
+                    <Documentation>
+                        <Summary>Sign of cap - a small pictogram on it</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="CapSignID" />
                     </Key>
@@ -1405,6 +1414,9 @@
                     <NavigationProperty Name="Caps" Relationship="Data.Cap_CapSign_Int" FromRole="CapSign" ToRole="Cap" />
                 </EntityType>
                 <EntityType Name="CapTranslation">
+                    <Documentation>
+                        <Summary>Translates localizable properties of Cap</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="CapTranslationID" />
                     </Key>
@@ -1418,6 +1430,9 @@
                     <NavigationProperty Name="Cap" Relationship="Data.FK_CapTranslation_Cap" FromRole="CapTranslation" ToRole="Cap" />
                 </EntityType>
                 <EntityType Name="CapType">
+                    <Documentation>
+                        <Summary>Detailed type of cap</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="CapTypeID" />
                     </Key>
@@ -1440,6 +1455,9 @@
                     <NavigationProperty Name="StoredImages" Relationship="Data.FK_StoredImage_CapType" FromRole="CapType" ToRole="StoredImage" />
                 </EntityType>
                 <EntityType Name="Category">
+                    <Documentation>
+                        <Summary>Predefined cap category</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="CategoryID" />
                     </Key>
@@ -1450,6 +1468,9 @@
                     <NavigationProperty Name="Caps" Relationship="Data.Cap_Category_Int" FromRole="Category" ToRole="Cap" />
                 </EntityType>
                 <EntityType Name="Company">
+                    <Documentation>
+                        <Summary>Represents company. The company usually produces content of bottle cap is placed on.</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="CompanyID" />
                     </Key>
@@ -1461,6 +1482,9 @@
                     <NavigationProperty Name="SimpleTranslations" Relationship="Data.FK_SimpleTranslation_Company" FromRole="Company" ToRole="SimpleTranslation" />
                 </EntityType>
                 <EntityType Name="Image">
+                    <Documentation>
+                        <Summary>Represents image of cap. Image can be stored in database or in file system.</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="ImageID" />
                     </Key>
@@ -1472,6 +1496,9 @@
                     <NavigationProperty Name="StoredImages" Relationship="Data.FK_StoredImage_Image" FromRole="Image" ToRole="StoredImage" />
                 </EntityType>
                 <EntityType Name="ISO_3166_1">
+                    <Documentation>
+                        <Summary>Contains ISO-3166-1 country codes</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="Alpha_2" />
                     </Key>
@@ -1479,6 +1506,9 @@
                     <Property Name="Alpha_3" Type="String" Nullable="false" MaxLength="3" Unicode="false" FixedLength="true" />
                 </EntityType>
                 <EntityType Name="Keyword">
+                    <Documentation>
+                        <Summary>Represents keword text</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="KeywordID" />
                     </Key>
@@ -1488,6 +1518,9 @@
                     <NavigationProperty Name="Caps" Relationship="Data.Cap_Keyword_Int" FromRole="Keyword" ToRole="Cap" />
                 </EntityType>
                 <EntityType Name="MainType">
+                    <Documentation>
+                        <Summary>General type of cap</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="MainTypeID" />
                     </Key>
@@ -1500,6 +1533,9 @@
                     <NavigationProperty Name="StoredImages" Relationship="Data.FK_StoredImage_MainType" FromRole="MainType" ToRole="StoredImage" />
                 </EntityType>
                 <EntityType Name="Material">
+                    <Documentation>
+                        <Summary>Material cap is made from</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="MaterialID" />
                     </Key>
@@ -1511,6 +1547,9 @@
                     <NavigationProperty Name="SimpleTranslations" Relationship="Data.FK_SimpleTranslation_Material" FromRole="Material" ToRole="SimpleTranslation" />
                 </EntityType>
                 <EntityType Name="Product">
+                    <Documentation>
+                        <Summary>Product bottled in pottle cap is applied on</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="ProductID" />
                     </Key>
@@ -1525,6 +1564,9 @@
                     <NavigationProperty Name="SimpleTranslations" Relationship="Data.FK_SimpleTranslation_Product" FromRole="Product" ToRole="SimpleTranslation" />
                 </EntityType>
                 <EntityType Name="ProductType">
+                    <Documentation>
+                        <Summary>Type of product in buttle</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="ProductTypeID" />
                     </Key>
@@ -1538,6 +1580,9 @@
                     <NavigationProperty Name="SimpleTranslations" Relationship="Data.FK_SimpleTranslation_ProductType" FromRole="ProductType" ToRole="SimpleTranslation" />
                 </EntityType>
                 <EntityType Name="PseudoCategory">
+                    <Documentation>
+                        <Summary>Special category created dynamically based on conditions</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="PseudoCategoryID" />
                     </Key>
@@ -1561,6 +1606,9 @@
                     <NavigationProperty Name="StoredImages" Relationship="Data.FK_StoredImage_Shape" FromRole="Shape" ToRole="StoredImage" />
                 </EntityType>
                 <EntityType Name="ShapeTranslation">
+                    <Documentation>
+                        <Summary>Translates localizable properties of Shape</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="ShapeTranslationID" />
                     </Key>
@@ -1574,6 +1622,9 @@
                     <NavigationProperty Name="Shape" Relationship="Data.FK_ShapeTranslation_Shape" FromRole="ShapeTranslation" ToRole="Shape" />
                 </EntityType>
                 <EntityType Name="SimpleTranslation">
+                    <Documentation>
+                        <Summary>Translation of simple object</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="SimpleTranslationID" />
                     </Key>
@@ -1609,6 +1660,9 @@
                     <NavigationProperty Name="Target" Relationship="Data.FK_SimpleTranslation_Target" FromRole="SimpleTranslation" ToRole="Target" />
                 </EntityType>
                 <EntityType Name="Storage">
+                    <Documentation>
+                        <Summary>Storage caps are stored in</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="StorageID" />
                     </Key>
@@ -1627,6 +1681,9 @@
                     <NavigationProperty Name="StoredImages" Relationship="Data.FK_StoredImage_Storage" FromRole="Storage" ToRole="StoredImage" />
                 </EntityType>
                 <EntityType Name="StorageType">
+                    <Documentation>
+                        <Summary>Type of storage</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="StorageTypeID" />
                     </Key>
@@ -1637,6 +1694,9 @@
                     <NavigationProperty Name="Storages" Relationship="Data.FK_Storage_StorageType" FromRole="StorageType" ToRole="Storage" />
                 </EntityType>
                 <EntityType Name="StoredImage">
+                    <Documentation>
+                        <Summary>Represent image stored in database</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="StoredImageID" />
                     </Key>
@@ -1661,6 +1721,9 @@
                     <NavigationProperty Name="Storage" Relationship="Data.FK_StoredImage_Storage" FromRole="StoredImage" ToRole="Storage" />
                 </EntityType>
                 <EntityType Name="Target">
+                    <Documentation>
+                        <Summary>Type of target object cap can be used to close</Summary>
+                    </Documentation>
                     <Key>
                         <PropertyRef Name="TargetID" />
                     </Key>
@@ -2526,7 +2589,7 @@
                         </ResultMapping>
                     </FunctionImportMapping>
                     <FunctionImportMapping FunctionImportName="GetCapsOfPseudoCategory" FunctionName="Data.Store.GetCapsOfPseudoCategory" />
-         
+
                 </EntityContainerMapping>
             </Mapping>
         </edmx:Mappings>
@@ -2548,7 +2611,7 @@
         </Options>
         <!-- Diagram content (shape and connector positions) -->
         <Diagrams>
-            <Diagram Name="CapsData" ZoomLevel="44">
+            <Diagram Name="CapsData" ZoomLevel="92">
                 <EntityTypeShape EntityType="Data.Cap" Width="1.5" PointX="5.375" PointY="5.375" Height="11.210755208333335" IsExpanded="true" />
                 <EntityTypeShape EntityType="Data.CapInstance" Width="1.5" PointX="7.25" PointY="12.375" Height="3.1340950520833353" IsExpanded="true" />
                 <EntityTypeShape EntityType="Data.CapSign" Width="1.5" PointX="1.875" PointY="7.75" Height="2.1725878906249996" IsExpanded="true" />
@@ -2577,8 +2640,8 @@
                     <ConnectorPoint PointX="6.628994459431139" PointY="5.375" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_Cap_Company" ManuallyRouted="false">
-                    <ConnectorPoint PointX="4.125" PointY="18.1746752058599" />
-                    <ConnectorPoint PointX="4.5" PointY="18.1746752058599" />
+                    <ConnectorPoint PointX="4.125" PointY="18.711293945312498" />
+                    <ConnectorPoint PointX="4.5" PointY="18.711293945312498" />
                     <ConnectorPoint PointX="4.5" PointY="15.838762935086262" />
                     <ConnectorPoint PointX="5.375" PointY="15.838762935086262" />
                 </AssociationConnector>
@@ -2597,12 +2660,14 @@
                 <AssociationConnector Association="Data.FK_Cap_ProductType" ManuallyRouted="false">
                     <ConnectorPoint PointX="7.7266883218840521" PointY="16.75" />
                     <ConnectorPoint PointX="7.7266883218840521" PointY="16.365718955498178" />
+                    <ConnectorPoint PointX="7.208333333333333" PointY="16.365718955498178" />
+                    <ConnectorPoint PointX="7.041666666666667" PointY="16.365718955498178" />
                     <ConnectorPoint PointX="6.875" PointY="16.365718955498178" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_Cap_Shape" ManuallyRouted="false">
                     <ConnectorPoint PointX="7.625" PointY="7.6247460937500025" />
-                    <ConnectorPoint PointX="7.2068799676600905" PointY="7.6247460937500016" />
-                    <ConnectorPoint PointX="7.0402133009934245" PointY="7.6247460937500025" />
+                    <ConnectorPoint PointX="7.333333333333333" PointY="7.6247460937500016" />
+                    <ConnectorPoint PointX="7.166666666666667" PointY="7.6247460937500025" />
                     <ConnectorPoint PointX="6.875" PointY="7.6247460937500025" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_Cap_Storage" ManuallyRouted="true">
@@ -2616,6 +2681,8 @@
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_CapInstance_Cap" ManuallyRouted="false">
                     <ConnectorPoint PointX="6.875" PointY="15.699104717244177" />
+                    <ConnectorPoint PointX="7.041666666666667" PointY="15.699104717244177" />
+                    <ConnectorPoint PointX="7.208333333333333" PointY="15.699104717244177" />
                     <ConnectorPoint PointX="7.73263055190331" PointY="15.699104717244177" />
                     <ConnectorPoint PointX="7.73263055190331" PointY="15.509095052083335" />
                 </AssociationConnector>
@@ -2631,22 +2698,24 @@
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_CapInstance_Storage" ManuallyRouted="false">
                     <ConnectorPoint PointX="9.5" PointY="13.642361465780645" />
-                    <ConnectorPoint PointX="9.125" PointY="13.642361465780645" />
-                    <ConnectorPoint PointX="9.125" PointY="13.643647349202379" />
+                    <ConnectorPoint PointX="9.0833332108524054" PointY="13.643075845669381" />
+                    <ConnectorPoint PointX="8.9166667891475946" PointY="13.643361597120888" />
                     <ConnectorPoint PointX="8.75" PointY="13.643647349202379" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_CapInstance" ManuallyRouted="true">
                     <ConnectorPoint PointX="8.75" PointY="14.20993322663835" />
+                    <ConnectorPoint PointX="8.9166666666666661" PointY="14.20993322663835" />
+                    <ConnectorPoint PointX="9.0833333333333339" PointY="14.20993322663835" />
                     <ConnectorPoint PointX="9.25" PointY="14.20993322663835" />
-                    <ConnectorPoint PointX="9.25" PointY="16.757968174297215" />
-                    <ConnectorPoint PointX="13.375" PointY="16.757968174297215" />
+                    <ConnectorPoint PointX="9.25" PointY="16.954180277094032" />
+                    <ConnectorPoint PointX="13.375" PointY="16.954180277094032" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_CapSign" ManuallyRouted="true">
-                    <ConnectorPoint PointX="1.875" PointY="9.2543649564226076" />
-                    <ConnectorPoint PointX="1.5" PointY="9.2543649564226076" />
-                    <ConnectorPoint PointX="1.5" PointY="21.104123209472593" />
-                    <ConnectorPoint PointX="14.65303538923521" PointY="21.104123209472593" />
-                    <ConnectorPoint PointX="14.65303538923521" PointY="20.287822265625003" />
+                    <ConnectorPoint PointX="1.875" PointY="8.8362939453125" />
+                    <ConnectorPoint PointX="1.5" PointY="8.8362939453125" />
+                    <ConnectorPoint PointX="1.5" PointY="21.253396324377384" />
+                    <ConnectorPoint PointX="14.773359384450949" PointY="21.253396324377384" />
+                    <ConnectorPoint PointX="14.773359384450949" PointY="20.287822265625003" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_StoredImage_CapSign" ManuallyRouted="true">
                     <ConnectorPoint PointX="2.1686708987006371" PointY="7.75" />
@@ -2693,18 +2762,18 @@
                     <ConnectorPoint PointX="10.875" PointY="3.6056266276041664" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_Category" ManuallyRouted="false">
-                    <ConnectorPoint PointX="12.375" PointY="17.699263301589394" />
-                    <ConnectorPoint PointX="13.375" PointY="17.699263301589394" />
+                    <ConnectorPoint PointX="12.375" PointY="17.953708704856453" />
+                    <ConnectorPoint PointX="13.375" PointY="17.953708704856453" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_Product_Company" ManuallyRouted="false">
                     <ConnectorPoint PointX="4.125" PointY="19.048631548242447" />
                     <ConnectorPoint PointX="5.375" PointY="19.048631548242447" />
                 </AssociationConnector>
-                <AssociationConnector Association="Data.FK_SimpleTranslation_Company" ManuallyRouted="false">
-                    <ConnectorPoint PointX="2.817181225095247" PointY="19.797587890625" />
-                    <ConnectorPoint PointX="2.817181225095247" PointY="20.662822265625003" />
-                    <ConnectorPoint PointX="14.070917540717758" PointY="20.662822265625003" />
-                    <ConnectorPoint PointX="14.070917540717758" PointY="20.287822265625003" />
+                <AssociationConnector Association="Data.FK_SimpleTranslation_Company" ManuallyRouted="true">
+                    <ConnectorPoint PointX="3.2010471335400474" PointY="19.797587890625" />
+                    <ConnectorPoint PointX="3.2010471335400474" PointY="20.810683600032338" />
+                    <ConnectorPoint PointX="14.027784987821747" PointY="20.810683600032338" />
+                    <ConnectorPoint PointX="14.027784987821747" PointY="20.287822265625003" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_StoredImage_Image" ManuallyRouted="false">
                     <ConnectorPoint PointX="3.5696281275347403" PointY="4.875" />
@@ -2715,10 +2784,9 @@
                     <ConnectorPoint PointX="11.038914951251643" PointY="2.5" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_Keyword" ManuallyRouted="true">
-                    <ConnectorPoint PointX="10.375" PointY="19.7873248871203" />
-                    <ConnectorPoint PointX="10.75" PointY="19.7873248871203" />
-                    <ConnectorPoint PointX="10.75" PointY="19.792972366301747" />
-                    <ConnectorPoint PointX="13.375" PointY="19.792972366301747" />
+                    <ConnectorPoint PointX="9.7395988201655843" PointY="19.653382161458335" />
+                    <ConnectorPoint PointX="9.7395988201655843" PointY="19.895169161453396" />
+                    <ConnectorPoint PointX="13.375" PointY="19.895169161453396" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_MainType" ManuallyRouted="false">
                     <ConnectorPoint PointX="9.125" PointY="11.117290039062503" />
@@ -2741,20 +2809,28 @@
                     <ConnectorPoint PointX="14.099135352561106" PointY="13.5" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_Product_ProductType" ManuallyRouted="false">
-                    <ConnectorPoint PointX="7.5881601244706056" PointY="19.307190755208339" />
-                    <ConnectorPoint PointX="7.5881601244706056" PointY="19.653341971354173" />
+                    <ConnectorPoint PointX="7.6326493114710132" PointY="19.307190755208339" />
+                    <ConnectorPoint PointX="7.6326493114710132" PointY="19.653341971354173" />
+                    <ConnectorPoint PointX="7.208333333333333" PointY="19.653341971354173" />
+                    <ConnectorPoint PointX="7.041666666666667" PointY="19.653341971354173" />
                     <ConnectorPoint PointX="6.875" PointY="19.653341971354173" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_Product" ManuallyRouted="true">
-                    <ConnectorPoint PointX="6.2326583369540733" PointY="19.999492187500003" />
-                    <ConnectorPoint PointX="6.2326583369540733" PointY="20.507645144928549" />
-                    <ConnectorPoint PointX="13.714625843677421" PointY="20.507645144928549" />
-                    <ConnectorPoint PointX="13.714625843677421" PointY="20.287822265625003" />
+                    <ConnectorPoint PointX="5.9253647113799017" PointY="19.999492187500003" />
+                    <ConnectorPoint PointX="5.9253647113799017" PointY="20.662822265625003" />
+                    <ConnectorPoint PointX="7.041666666666667" PointY="20.662822265625003" />
+                    <ConnectorPoint PointX="7.208333333333333" PointY="20.662822265625003" />
+                    <ConnectorPoint PointX="10.541666666666666" PointY="20.662822265625003" />
+                    <ConnectorPoint PointX="10.708333333333334" PointY="20.662822265625003" />
+                    <ConnectorPoint PointX="13.566046802504829" PointY="20.662822265625003" />
+                    <ConnectorPoint PointX="13.566046802504829" PointY="20.287822265625003" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_ProductType" ManuallyRouted="true">
-                    <ConnectorPoint PointX="8.0592768350752877" PointY="19.307190755208339" />
-                    <ConnectorPoint PointX="8.0592768350752877" PointY="20.139290410775764" />
-                    <ConnectorPoint PointX="13.375" PointY="20.139290410775764" />
+                    <ConnectorPoint PointX="8.1371182441872616" PointY="19.307190755208339" />
+                    <ConnectorPoint PointX="8.1371182441872616" PointY="20.199460161448435" />
+                    <ConnectorPoint PointX="10.541666666666666" PointY="20.199460161448435" />
+                    <ConnectorPoint PointX="10.708333333333334" PointY="20.199460161448435" />
+                    <ConnectorPoint PointX="13.375" PointY="20.199460161448435" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_ShapeTranslation_Shape" ManuallyRouted="false">
                     <ConnectorPoint PointX="9.125" PointY="8.3747460937500016" />
@@ -2765,19 +2841,22 @@
                     <ConnectorPoint PointX="10.875" PointY="6.7521362507884293" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_Storage" ManuallyRouted="true">
-                    <ConnectorPoint PointX="11" PointY="13.901550353276663" />
-                    <ConnectorPoint PointX="13.375" PointY="13.9006721684318" />
+                    <ConnectorPoint PointX="11" PointY="13.835354459555825" />
+                    <ConnectorPoint PointX="11.192" PointY="13.835354459555825" />
+                    <ConnectorPoint PointX="11.192" PointY="13.832559449054189" />
+                    <ConnectorPoint PointX="13.375" PointY="13.832559449054189" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_StorageType" ManuallyRouted="true">
-                    <ConnectorPoint PointX="12.875" PointY="15.293681420562628" />
-                    <ConnectorPoint PointX="13.375" PointY="15.288583290435238" />
+                    <ConnectorPoint PointX="11.915801171324681" PointY="16.105286458333339" />
+                    <ConnectorPoint PointX="11.915801171324681" PointY="16.6348365204094" />
+                    <ConnectorPoint PointX="13.375" PointY="16.6348365204094" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_Target" ManuallyRouted="true">
-                    <ConnectorPoint PointX="3.25" PointY="11.910692917968753" />
-                    <ConnectorPoint PointX="2.30950286056985" PointY="11.910692917968753" />
-                    <ConnectorPoint PointX="2.30950286056985" PointY="20.927771855400067" />
-                    <ConnectorPoint PointX="14.354293049233254" PointY="20.927771855400067" />
-                    <ConnectorPoint PointX="14.354293049233254" PointY="20.287822265625003" />
+                    <ConnectorPoint PointX="3.25" PointY="12.067233133936178" />
+                    <ConnectorPoint PointX="2.0643365764915531" PointY="12.067233133936178" />
+                    <ConnectorPoint PointX="2.0643365764915531" PointY="21.037161425340521" />
+                    <ConnectorPoint PointX="14.400813393583242" PointY="21.037161425340521" />
+                    <ConnectorPoint PointX="14.400813393583242" PointY="20.287822265625003" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_Storage_ParentStorage" ManuallyRouted="true">
                     <ConnectorPoint PointX="11" PointY="13.196462665332469" />
@@ -2803,12 +2882,18 @@
                 </AssociationConnector>
                 <AssociationConnector Association="Data.Cap_Category_Int" ManuallyRouted="true">
                     <ConnectorPoint PointX="6.875" PointY="15.963248762743273" />
+                    <ConnectorPoint PointX="7.041666666666667" PointY="15.963248762743273" />
+                    <ConnectorPoint PointX="7.208333333333333" PointY="15.963248762743273" />
+                    <ConnectorPoint PointX="8.9166666666666661" PointY="15.963248762743273" />
+                    <ConnectorPoint PointX="9.0833333333333339" PointY="15.963248762743273" />
                     <ConnectorPoint PointX="9.12442106411719" PointY="15.963248762743273" />
                     <ConnectorPoint PointX="9.12442106411719" PointY="17.6159611845162" />
                     <ConnectorPoint PointX="10.875" PointY="17.6159611845162" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.Cap_Keyword_Int" ManuallyRouted="false">
                     <ConnectorPoint PointX="6.875" PointY="16.138073954289418" />
+                    <ConnectorPoint PointX="7.041666666666667" PointY="16.138073954289418" />
+                    <ConnectorPoint PointX="7.208333333333333" PointY="16.138073954289418" />
                     <ConnectorPoint PointX="8.92996706640349" PointY="16.138073954289418" />
                     <ConnectorPoint PointX="8.92996706640349" PointY="18.25" />
                 </AssociationConnector>

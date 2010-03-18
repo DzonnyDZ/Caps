@@ -122,10 +122,10 @@ Partial Public Class CapEditor
     Private Sub btnNewMainType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMainType.Click
         Using win As New winNewMainType()
             If win.ShowDialog Then
-                Context.Attach(win.NewObject)
-                DirectCast(cmbMainType.ItemsSource, ListWithEvents(Of MainType)).Add(win.NewObject)
+                Dim newObject As MainType = win.GetNewObject(Context)
+                DirectCast(cmbMainType.ItemsSource, ListWithEvents(Of MainType)).Add(newObject)
                 cmbMainType.Items.Refresh()
-                cmbMainType.SelectedItem = win.NewObject
+                cmbMainType.SelectedItem = newObject
             End If
         End Using
     End Sub
@@ -133,21 +133,22 @@ Partial Public Class CapEditor
     Private Sub cmbNewShape_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmdNewShape.Click
         Using win As New winNewShape()
             If win.ShowDialog Then
-                Context.Attach(win.NewObject)
-                DirectCast(cmbShape.ItemsSource, ListWithEvents(Of Shape)).Add(win.NewObject)
+                Dim newObject As Shape = win.GetNewObject(Context)
+                DirectCast(cmbShape.ItemsSource, ListWithEvents(Of Shape)).Add(newObject)
                 cmbShape.Items.Refresh()
-                cmbShape.SelectedItem = win.NewObject
+                cmbShape.SelectedItem = newObject
             End If
         End Using
     End Sub
 
     Private Sub btnNewMaterial_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMaterial.Click
-        Using win As New winNewSimple(winNewSimple.SimpleTypes.Material)
+        Using win As New winNewSimple(Of Material)
             If win.ShowDialog Then
-                Context.Attach(win.NewObject)
-                DirectCast(cmbMaterial.ItemsSource, ListWithEvents(Of Material)).Add(DirectCast(win.NewObject, Material))
+                Dim newObject As Material = win.GetNewObject(Context)
+                Context.Attach(newObject)
+                DirectCast(cmbMaterial.ItemsSource, ListWithEvents(Of Material)).Add(newObject)
                 cmbMaterial.Items.Refresh()
-                cmbMaterial.SelectedItem = win.NewObject
+                cmbMaterial.SelectedItem = newObject
             End If
         End Using
     End Sub
@@ -155,41 +156,41 @@ Partial Public Class CapEditor
     Private Sub btnNewStorage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewStorage.Click
         Using win As New winNewStorage()
             If win.ShowDialog Then
-                Context.Attach(win.NewObject)
-                DirectCast(cmbStorage.ItemsSource, ListWithEvents(Of Storage)).Add(win.NewObject)
+                Dim newObject As Storage = win.GetNewObject(Context)
+                DirectCast(cmbStorage.ItemsSource, ListWithEvents(Of Storage)).Add(newObject)
                 cmbStorage.Items.Refresh()
-                cmbStorage.SelectedItem = win.NewObject
+                cmbStorage.SelectedItem = newObject
             End If
         End Using
     End Sub
 
     Private Sub btnNewProductType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewProductType.Click
-        Using win As New winNewSimple(winNewSimple.SimpleTypes.ProductType)
+        Using win As New winNewSimple(Of ProductType)
             If win.ShowDialog Then
-                Context.Attach(win.NewObject)
-                DirectCast(cmbProductType.ItemsSource, ListWithEvents(Of ProductType)).Add(DirectCast(win.NewObject, ProductType))
+                Dim newObject As ProductType = win.GetNewObject(Context)
+                DirectCast(cmbProductType.ItemsSource, ListWithEvents(Of ProductType)).Add(newObject)
                 cmbProductType.Items.Refresh()
-                cmbProductType.SelectedItem = win.NewObject
+                cmbProductType.SelectedItem = newObject
             End If
         End Using
     End Sub
 
     Private Sub btnNewCompany_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCompany.Click
-        Using win As New winNewSimple(winNewSimple.SimpleTypes.Company)
+        Using win As New winNewSimple(Of Company)
             If win.ShowDialog Then
-                Context.Attach(win.NewObject)
-                DirectCast(cmbCompany.ItemsSource, ListWithEvents(Of Company)).Add(DirectCast(win.NewObject, Company))
+                Dim newObject As Company = win.GetNewObject(Context)
+                DirectCast(cmbCompany.ItemsSource, ListWithEvents(Of Company)).Add(newObject)
                 cmbCompany.Items.Refresh()
-                cmbCompany.SelectedItem = win.NewObject
+                cmbCompany.SelectedItem = newObject
             End If
         End Using
     End Sub
 
     Private Sub btnNewCategory_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCategory.Click
-        Using win As New winNewSimple(winNewSimple.SimpleTypes.Category)
+        Using win As New winNewSimple(Of Category)
             If win.ShowDialog Then
-                Context.Attach(win.NewObject)
-                DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(New CategoryProxy(win.NewObject, True))
+                Dim newObject As Category = win.GetNewObject(Context)
+                DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(newObject)
                 lstCategories.Items.Refresh()
                 lstCategories_CheckedChanged(lstCategories.Items(lstCategories.Items.Count - 1), New RoutedEventArgs(CheckBox.CheckedEvent, lstCategories.Items(lstCategories.Items.Count - 1)))
             End If
@@ -198,17 +199,17 @@ Partial Public Class CapEditor
     Private Sub btnNewSign_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewSign.Click
         Using win As New winNewSign()
             If win.ShowDialog Then
-                Context.Attach(win.NewObject)
-                AllCapSigns.Add(win.NewObject)
+                Dim newObject As CapSign = win.GetNewObject(Context)
+                AllCapSigns.Add(newObject)
                 Try
                     Dim i% = 0
                     For Each item In _SelectedCapSigns
                         If item.CapSign Is Nothing Then
-                            item.CapSign = win.NewObject
+                            item.CapSign = newObject
                             Exit Sub
                         End If
                     Next
-                    _SelectedCapSigns.Add(win.NewObject)
+                    _SelectedCapSigns.Add(newObject)
                 Finally
                     InternalSetSelectedCapSigns()
                 End Try
@@ -2708,7 +2709,7 @@ Partial Public Class CapEditor
             cmbCompany.ItemsSource = CompaniesList
             If .Company.HasValue Then cmbCompany.SelectedItem = (From itm As Company In cmbCompany.ItemsSource Where itm.CompanyID = .Company).FirstOrDefault Else cmbCompany.SelectedItem = Nothing
             'Categories
-            lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In Context.Categories Order By item.CategoryName Select New CategoryProxy(item, .Categories.Contains(item.CategoryID)))
+            lstCategories.ItemsSource = New ListWithEvents(Of CategoryProxy)(From item In (From item In Context.Categories Order By item.CategoryName).AsEnumerable Select New CategoryProxy(item, .Categories.Contains(item.CategoryID)))
             lstCategories_CheckedChanged(Nothing, Nothing)
             'CapSigns
             AllCapSigns.Clear()
@@ -2741,6 +2742,7 @@ Partial Public Class CapEditor
         If txtSideText.Text <> "" AndAlso Not chkHasSide.IsChecked Then mBox.Modal_PTIW(My.Resources.msg_SideText_HasSide, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : chkHasSide.Focus() : Exit Function
         If txtBottomText.Text <> "" AndAlso Not chkHasBottom.IsChecked Then mBox.Modal_PTIW(My.Resources.msg_BottomText_HasBottom, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : chkHasBottom.Focus() : Exit Function
         If txtMainPicture.Text <> "" AndAlso (cmbPictureType.SelectedItem Is cmiImageNo OrElse cmbPictureType.SelectedItem Is Nothing) Then mBox.Modal_PTIW(My.Resources.msg_MainPicture_PictureType, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : cmbPictureType.Focus() : Exit Function
+        If (cmbPictureType.SelectedItem IsNot Nothing AndAlso cmbPictureType.SelectedItem IsNot cmiImageNo) AndAlso txtMainPicture.Text = "" Then mBox.Modal_PTIW("When picture type is selected main picture description must be entered.", My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : txtMainPicture.Focus() : Exit Function
         If txtAnotherPictures.Text <> "" AndAlso txtMainPicture.Text = "" Then mBox.Modal_PTIW(My.Resources.msg_AnotherPictures_MainPicture, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : txtMainPicture.Focus() : Exit Function
         If copForeground2.Color.HasValue AndAlso Not copForeground.Color.HasValue Then mBox.Modal_PTIW(My.Resources.msg_ForeColor_ForeColor2, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : copForeground.Focus() : Exit Function
         If optProductSelected.IsChecked AndAlso cmbProduct.SelectedItem Is Nothing Then mBox.Modal_PTIW(My.Resources.msg_NoProductSelected, My.Resources.txt_InvalidInput, mBox.MessageBoxIcons.Exclamation, Me) : cmbProduct.Focus() : Exit Function
@@ -3070,12 +3072,12 @@ Resize256:      Try
     End Sub
 
     Private Sub btnNewTarget_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewTarget.Click
-        Using win As New winNewSimple(winNewSimple.SimpleTypes.Target)
+        Using win As New winNewSimple(Of Target)
             If win.ShowDialog Then
-                Context.Attach(win.NewObject)
-                DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(DirectCast(win.NewObject, Target))
+                Dim newObject = win.GetNewObject(Context)
+                DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(newObject)
                 cmbTarget.Items.Refresh()
-                cmbTarget.SelectedItem = win.NewObject
+                cmbTarget.SelectedItem = newObject
             End If
         End Using
     End Sub

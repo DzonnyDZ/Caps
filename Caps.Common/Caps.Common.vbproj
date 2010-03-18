@@ -150,6 +150,7 @@
     </None>
     <None Include="My Project\DataSources\Caps.Data.CapsDataContext.datasource" />
     <None Include="My Project\DataSources\CapsDataContext.datasource" />
+    <None Include="My Project\DataSources\Entities.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

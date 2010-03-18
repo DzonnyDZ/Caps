@@ -89,7 +89,7 @@ Namespace Data
 
     <DebuggerDisplay("Material {Name} ({MaterialID})")> _
     Partial Class Material
-        Implements ISimpleObject
+        Implements ISimpleObject, IRelatedToCap
 #Region "ISimpleObject"
         Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
             <DebuggerStepThrough()> Get
@@ -120,6 +120,12 @@ Namespace Data
             End Get
         End Property
 #End Region
+        ''' <summary>Gets caps this item is related to</summary>
+        Private ReadOnly Property IRelatedToCap_Caps As System.Collections.Generic.IEnumerable(Of Cap) Implements IRelatedToCap.Caps
+            Get
+                Return Caps
+            End Get
+        End Property
     End Class
 
     <DebuggerDisplay("CapType {TypeName} ({CapTypeID})")> _
@@ -393,7 +399,7 @@ Namespace Data
         End Property
     End Class
 
-    <DebuggerDisplay("ProductType {ProducTypeName} ({ProductTypeID})")> _
+    <DebuggerDisplay("ProductType {ProductTypeName} ({ProductTypeID})")> _
     Partial Class ProductType
         Implements ISimpleObject, IRelatedToCap
 #Region "ISimpleObject"

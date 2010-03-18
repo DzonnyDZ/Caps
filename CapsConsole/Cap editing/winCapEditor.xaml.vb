@@ -2,6 +2,7 @@
 Imports Caps.Data
 Partial Public Class winCapEditor
     Private Cap As Cap
+    Private CapID%
     Private Context As CapsDataContext
     ''' <summary>CTor</summary>
     ''' <param name="CapID">ID of Cap to edit</param>
@@ -11,6 +12,11 @@ Partial Public Class winCapEditor
         'If Context Is Nothing Then Throw New ArgumentNullException("Context")
         InitializeComponent()
         Context = caeEditor.Context
+        Me.CapID = CapID
+        Init()
+    End Sub
+    ''' <summary>Initializes controls to show <see cref="Cap"/> with given <see cref="CapID"/></summary>
+    Private Sub Init()
         Me.Cap = Context.Caps.First(Function(cap) cap.CapID = CapID)
         If Cap Is Nothing Then Throw New ArgumentException(My.Resources.ex_CapIDNotFound.f(CapID))
         'Me.Context = New CapsDataDataContext(Main.Connection)
@@ -77,9 +83,9 @@ Partial Public Class winCapEditor
             'Keywords
             Cap.Keywords.RemoveAll((From kw In OldKeywords Where Not caeEditor.Keywords.Contains(kw.KeywordName)))
             Dim KeywordsToAssociate = (From kw In caeEditor.Keywords Where Not (From oldKw In OldKeywords Select oldKw.KeywordName).Contains(kw) Select kw, DbKw = (From kwdb In Context.Keywords Where kwdb.KeywordName = kw).FirstOrDefault).ToArray
-            Cap.Keywords.AddRange(KeywordsToAssociate)
+            Cap.Keywords.AddRange(From item In KeywordsToAssociate Where item.DbKw IsNot Nothing Select item.DbKw)
             Dim NewKeywords = (From kw In KeywordsToAssociate Where kw.DbKw Is Nothing Select New Keyword(kw.kw)).ToArray
-            Context.Keywords.AddObjects(NewKeywords)
+            'Context.Keywords.AddObjects(NewKeywords)
             Cap.Keywords.AddRange(NewKeywords)
             'Images
             For Each img In IntroducedImages
@@ -95,6 +101,7 @@ Partial Public Class winCapEditor
             Catch ex As Exception
                 mBox.Error_XTW(ex, My.Resources.txt_ErrorUpdatingCap, Me)
                 'Undo
+                Me.DataContext = Nothing
                 Context = caeEditor.ResetContext
                 Dim OldCap = Cap
                 Cap = Context.Caps.FirstOrDefault(Function(cap) cap.CapID = OldCap.CapID)

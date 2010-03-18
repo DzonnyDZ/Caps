@@ -328,6 +328,7 @@
     <Compile Include="Resources\Countries.vb">
       <DependentUpon>Countries.resx</DependentUpon>
     </Compile>
+    <Compile Include="winNew\CreateNewObjectDialog.vb" />
     <Compile Include="winNew\winNewSign.xaml.vb">
       <DependentUpon>winNewSign.xaml</DependentUpon>
     </Compile>

@@ -1,12 +1,17 @@
-﻿<Window x:Class="winNewStorage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+﻿    <my:CreateNewObjectDialogBase 
+        x:TypeArguments="data:Storage"
+        x:Class="winNewStorage"
+        xmlns:data="clr-namespace:Caps.Data;assembly=Caps.Common"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Tools="clr-namespace:Tools.WindowsT.WPF.ControlsT;assembly=Tools.Windows"
         xmlns:res="clr-namespace:Caps.Console.My.Resources"
-    Title="{x:Static res:Resources.txt_NewStorage}" Height="188" Width="372" SizeToContent="Height" MinWidth="300"
+        Title="{x:Static res:Resources.txt_NewStorage}" Height="188" Width="372" SizeToContent="Height" MinWidth="300"
         ShowInTaskbar="False" Icon="{x:Null}"
-        FocusManager.FocusedElement="{Binding ElementName=txtNumber}">
-    <Window.Resources>
+        FocusManager.FocusedElement="{Binding ElementName=txtNumber}"
+        xmlns:my="clr-namespace:Caps.Console"
+    >
+    <my:CreateNewObjectDialogBase.Resources>
         <Style TargetType="ComboBox" x:Key="StorageTypeTemplate" BasedOn="{StaticResource GenericComboBoxTemplate}">
             <Setter Property="ItemTemplate">
                 <Setter.Value>
@@ -28,7 +33,7 @@
             <Setter Property="TextSearch.TextPath" Value="Name"/>
             <Setter Property="ToolTip" Value="{Binding Description}"/>
         </Style>
-    </Window.Resources>
+    </my:CreateNewObjectDialogBase.Resources>
     <Grid>
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="auto"/>
@@ -61,4 +66,4 @@
             <Button Name="btnCancel" IsCancel="True" Grid.Column="1" Grid.Row="0" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="auto" Content="{x:Static res:Resources.cmd_Cancel}"/>
         </Grid>
     </Grid>
-</Window>
+</my:CreateNewObjectDialogBase>

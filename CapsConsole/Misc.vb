@@ -2,6 +2,7 @@
 Imports System.ComponentModel, Tools
 Imports System.Data.Objects
 Imports System.Data.Objects.DataClasses
+Imports System.Reflection
 
 ''' <summary>Miscelaneous functions</summary>
 Friend Module Misc
@@ -67,7 +68,7 @@ Friend Module Misc
         Return Nothing
     End Function
 
-    
+
     ''' <summary>Sets windows position and size. Prevents window from leaking out of screen.</summary>
     ''' <param name="Window">Window to set position of</param>
     ''' <param name="Position">Proposed position and size of <paramref name="Window"/> in window client coordinates</param>
@@ -262,5 +263,44 @@ Friend Module Misc
         For Each item In objects
             collection.Add(item)
         Next
+    End Sub
+
+    ''' <summary>Adds given entity to given object context</summary>
+    ''' <param name="context">Context to add entity to</param>
+    ''' <param name="entity">Entity to be added. Method does nothing if this paraparameter is null.</param>
+    ''' <remarks>This method uses reflection to find property of type <see cref="IObjectSet(Of T)"/> of gtype of <paramref name="entity"/>. If such property is found, <paramref name="entity"/> is added to the <see cref="IObjectSet(Of T)"/></remarks>
+    ''' <exception cref="ArgumentNullException"><paramref name="context"/> is null.</exception>
+    ''' <exception cref="AmbiguousMatchException">More than one <see cref="IObjectSet(Of T)"/> properties are found and none is most specific.</exception>
+    ''' <exception cref="MissingMemberException">No suitable <see cref="IObjectSet(Of T)"/> property is found</exception>
+    <Extension()>
+    Public Sub AddObject(ByVal context As ObjectContext, ByVal entity As EntityObject)
+        If context Is Nothing Then Throw New ArgumentNullException("context")
+        If entity Is Nothing Then Exit Sub
+        Dim TargetProperties As New List(Of PropertyInfo)
+        Dim iObjectSet = GetType(IObjectSet(Of )).MakeGenericType(entity.GetType)
+        For Each prp In context.GetType.GetProperties
+            If iObjectSet.IsAssignableFrom(prp.PropertyType) AndAlso prp.CanRead Then
+                TargetProperties.Add(prp)
+            End If
+        Next
+        Dim eqPrps = From prp In TargetProperties Where prp.PropertyType.Equals(entity.GetType)
+        Dim eq2prp = From prp In TargetProperties Where prp.PropertyType.Equals(entity.GetType.BaseType)
+        Dim tPrp As PropertyInfo
+        If eqPrps.Count = 1 Then
+            tPrp = eqPrps(0)
+        ElseIf eqPrps.Count > 1 Then
+            Throw New AmbiguousMatchException("No ObjectSet property is most specific")
+        ElseIf eq2prp.Count = 1 Then
+            tPrp = eq2prp(0)
+        ElseIf eq2prp.Count > 1 Then
+            Throw New AmbiguousMatchException("No ObjectSet property is most specific")
+        ElseIf TargetProperties.Count = 1 Then
+            tPrp = TargetProperties(0)
+        ElseIf TargetProperties.Count > 0 Then
+            Throw New AmbiguousMatchException("No ObjectSet property is most specific")
+        Else
+            Throw New MissingMemberException("No suitable ObjectSet property found")
+        End If
+        tPrp.GetValue(context, Nothing).AddObject(entity)
     End Sub
 End Module

@@ -3,17 +3,15 @@ Imports System.ComponentModel
 Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Caps.Data
 
+
+''' <summary>Dialog used to create a new instance of <see cref="MainType"/> class</summary>
 Partial Public Class winNewMainType
-    Implements IDisposable
+    Inherits CreateNewObjectDialogBase(Of MainType)
     ''' <summary>CTor</summary>
     ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
     Public Sub New()
         InitializeComponent()
-        Me.Context = New CapsDataContext(Main.EntityConnection)
     End Sub
-    ''' <summary>Data context</summary>
-    Private Context As CapsDataContext
-    Private _NewObject As MainType
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
         If Not IO.File.Exists(txtImagePath.Text) Then
             Select Case mBox.ModalF_PTWBIa(My.Resources.msg_FileNotExists_ContinueWOImage, My.Resources.txt_MainTypeImage, Me, mBox.MessageBoxButton.Buttons.Yes Or WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.No, mBox.GetIcon(mBox.MessageBoxIcons.Question), txtImagePath.Text)
@@ -24,9 +22,9 @@ Partial Public Class winNewMainType
             mBox.Modal_PTIW(My.Resources.msg_OnlyPNG, My.Resources.txt_MainTypeImage, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation, Me)
             Exit Sub
         End If
-        _NewObject = New MainType With {.Description = txtDescription.Text, .TypeName = txtName.Text}
+        NewObject = New MainType With {.Description = txtDescription.Text, .TypeName = txtName.Text}
         Try
-            Context.MainTypes.AddObject(_NewObject)
+            Context.MainTypes.AddObject(NewObject)
         Catch ex As Exception
             mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Exit Sub
@@ -58,12 +56,6 @@ Partial Public Class winNewMainType
         Me.Close()
     End Sub
 
-    Public ReadOnly Property NewObject() As MainType
-        Get
-            Return _NewObject
-        End Get
-    End Property
-
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnCancel.Click
         Me.DialogResult = False
         Me.Close()
@@ -79,28 +71,4 @@ Partial Public Class winNewMainType
             txtImagePath.Text = dlg.FileName
         End If
     End Sub
-
-#Region "IDisposable Support"
-    ''' <summary>To detect redundant calls</summary>
-    Private disposedValue As Boolean
-
-    ''' <summary>Implements <see cref="IDisposable.Dispose"/></summary>
-    ''' <param name="disposing">Trie whan called from <see cref="Dispose"/></param>
-    Protected Overridable Sub Dispose(ByVal disposing As Boolean)
-        If Not Me.disposedValue Then
-            If disposing Then
-                If Context IsNot Nothing Then Context.Dispose()
-            End If
-        End If
-        Me.disposedValue = True
-    End Sub
-
-
-    ''' <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
-    ''' <filterpriority>2</filterpriority>
-    Public Sub Dispose() Implements IDisposable.Dispose
-        Dispose(True)
-        GC.SuppressFinalize(Me)
-    End Sub
-#End Region
 End Class

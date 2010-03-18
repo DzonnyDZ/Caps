@@ -16,7 +16,7 @@ Imports System.ComponentModel
 Imports System.Xml.Serialization
 Imports System.Runtime.Serialization
 
-<Assembly: EdmSchemaAttribute("1d028741-f7bb-4435-9363-bd6509880644")>
+<Assembly: EdmSchemaAttribute("3ba3082d-11e0-450c-95dd-d465588625e5")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Company), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
@@ -645,7 +645,7 @@ Namespace Data
     #Region "Entities"
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Represents a cap item
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Cap")>
     <Serializable()>
@@ -2041,7 +2041,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' In case one cap is present more than once in collection this class represents non-primary presence of cap in collection
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="CapInstance")>
     <Serializable()>
@@ -2360,7 +2360,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Sign of cap - a small pictogram on it
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="CapSign")>
     <Serializable()>
@@ -2522,7 +2522,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Translates localizable properties of Cap
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="CapTranslation")>
     <Serializable()>
@@ -2763,7 +2763,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Detailed type of cap
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="CapType")>
     <Serializable()>
@@ -3234,7 +3234,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Predefined cap category
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Category")>
     <Serializable()>
@@ -3378,7 +3378,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Represents company. The company usually produces content of bottle cap is placed on.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Company")>
     <Serializable()>
@@ -3540,7 +3540,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Represents image of cap. Image can be stored in database or in file system.
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Image")>
     <Serializable()>
@@ -3726,7 +3726,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Contains ISO-3166-1 country codes
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="ISO_3166_1")>
     <Serializable()>
@@ -3806,7 +3806,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Represents keword text
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Keyword")>
     <Serializable()>
@@ -3925,7 +3925,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' General type of cap
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="MainType")>
     <Serializable()>
@@ -4105,7 +4105,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Material cap is made from
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Material")>
     <Serializable()>
@@ -4267,7 +4267,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Product bottled in pottle cap is applied on
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Product")>
     <Serializable()>
@@ -4523,7 +4523,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Type of product in buttle
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="ProductType")>
     <Serializable()>
@@ -4735,7 +4735,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Special category created dynamically based on conditions
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="PseudoCategory")>
     <Serializable()>
@@ -5099,7 +5099,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Translates localizable properties of Shape
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="ShapeTranslation")>
     <Serializable()>
@@ -5340,7 +5340,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Translation of simple object
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="SimpleTranslation")>
     <Serializable()>
@@ -6201,7 +6201,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Storage caps are stored in
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Storage")>
     <Serializable()>
@@ -6540,7 +6540,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Type of storage
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="StorageType")>
     <Serializable()>
@@ -6684,7 +6684,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Represent image stored in database
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="StoredImage")>
     <Serializable()>
@@ -7238,7 +7238,7 @@ Namespace Data
     End Class
     
     ''' <summary>
-    ''' No Metadata Documentation available.
+    ''' Type of target object cap can be used to close
     ''' </summary>
     <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Target")>
     <Serializable()>
