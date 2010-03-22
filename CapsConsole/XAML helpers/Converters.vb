@@ -1,4 +1,4 @@
-﻿Imports Tools, Tools.ExtensionsT, Tools.TypeTools
+﻿Imports Tools, Tools.ExtensionsT, Tools.TypeTools, Tools.ReflectionT
 Imports System.ComponentModel, System.Linq
 
 ''' <summary>Converter thet returns value being converted if tagret type of conversion <see cref="Type.IsAssignableFrom">is assignable from</see> it, null otherwise.</summary>
@@ -171,38 +171,37 @@ Public Class PlusConverter
 End Class
 
 ''' <summary>Converter that converts null values to false and non-null values to true.</summary>
-''' <remarks>Additionally if targetType is <see cref="Visibility"/> it converts null to <see cref="Visibility.Collapsed"/> and non-null to <see cref="Visibility.Visible"/>.
+''' <remarks>Additionally if targetType is <see cref="Windows.Visibility"/> it converts null to <see cref="Windows.Visibility.Collapsed"/> and non-null to <see cref="Windows.Visibility.Visible"/>.
 ''' <para>This converter is designed as one-way.</para></remarks>
 Public Class NullFalseConverter
     Implements IValueConverter
-
     ''' <summary>Converts a value.</summary>
     ''' <returns>
     ''' If <paramref name="targetType"/> <see cref="Type.IsAssignableFrom">is assignable from</see> <see cref="Boolean"/> returns true when <paramref name="value"/> is not null; false when <paramref name="value"/> is null.
-    ''' If <paramref name="targetType"/> <see cref="Type.IsAssignableFrom">is not assignable from</see> from <see cref="Boolean"/> but it <see cref="Type.IsAssignableFrom">is assignable from</see> <see cref="Visibility"/> returns <see cref="Visibility.Visible"/> when <paramref name="parameter"/> is not null; <see cref="Visibility.Collapsed"/> when <paramref name="value"/> is null.
+    ''' If <paramref name="targetType"/> <see cref="Type.IsAssignableFrom">is not assignable from</see> from <see cref="Boolean"/> but it <see cref="Type.IsAssignableFrom">is assignable from</see> <see cref="Windows.Visibility"/> returns <see cref="Windows.Visibility.Visible"/> when <paramref name="parameter"/> is not null; <see cref="Windows.Visibility.Collapsed"/> when <paramref name="value"/> is null.
     ''' </returns>
     ''' <param name="value">The value produced by the binding source.</param>
-    ''' <param name="targetType">The type of the binding target property. Must <see cref="Type.IsAssignableFrom">be assignable from</see> either <see cref="Boolean"/> or <see cref="Visibility"/>.</param>
+    ''' <param name="targetType">The type of the binding target property. Must <see cref="Type.IsAssignableFrom">be assignable from</see> either <see cref="Boolean"/> or <see cref="Windows.Visibility"/>.</param>
     ''' <param name="parameter">ignored</param>
     ''' <param name="culture">ignored</param>
-    ''' <exception cref="NotSupportedException"><paramref name="targetType"/> <see cref="Type.IsAssignableFrom">is assignable from</see> neither <see cref="Boolean"/> nor <see cref="Visibility"/>.</exception>
+    ''' <exception cref="NotSupportedException"><paramref name="targetType"/> <see cref="Type.IsAssignableFrom">is assignable from</see> neither <see cref="Boolean"/> nor <see cref="Windows.Visibility"/>.</exception>
     Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
         If targetType.IsAssignableFrom(GetType(Boolean)) Then
             Return value IsNot Nothing
-        ElseIf targetType.IsAssignableFrom(GetType(Visibility)) Then
-            Return If(value Is Nothing, Visibility.Collapsed, Visibility.Visible)
+        ElseIf targetType.IsAssignableFrom(GetType(Windows.Visibility)) Then
+            Return If(value Is Nothing, Windows.Visibility.Collapsed, Windows.Visibility.Visible)
         Else
             Throw New NotSupportedException(My.Resources.ex_ConvertsOnlyToBool.f(Me.GetType.Name))
         End If
     End Function
 
     ''' <summary>Converts a value.</summary>
-    ''' <returns>A converted value. If <paramref name="value"/> is <see cref="Boolean"/> false or <paramref name="value"/> is <see cref="Visibility.Collapsed"/> returns null. Otherwise an exception is thrown.</returns>
+    ''' <returns>A converted value. If <paramref name="value"/> is <see cref="Boolean"/> false or <paramref name="value"/> is <see cref="Windows.Visibility.Collapsed"/> returns null. Otherwise an exception is thrown.</returns>
     ''' <param name="value">The value that is produced by the binding target.</param>
     ''' <param name="targetType">ignored</param>
     ''' <param name="parameter">ignored</param>
     ''' <param name="culture">ignored</param>
-    ''' <exception cref="NotSupportedException"><paramref name="value"/> is neither false nor <see cref="Visibility.Collapsed"/> - this converter is not designed to be used with <see cref="ConvertBack"/></exception>
+    ''' <exception cref="NotSupportedException"><paramref name="value"/> is neither false nor <see cref="Windows.Visibility.Collapsed"/> - this converter is not designed to be used with <see cref="ConvertBack"/></exception>
     <EditorBrowsable(EditorBrowsableState.Advanced)> _
     Public Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
         If TypeOf value Is Boolean AndAlso DirectCast(value, Boolean) = False Then Return Nothing
@@ -567,7 +566,7 @@ End Class
 
 
 
-''' <summary>Converter tha converts <see cref="Boolean"/> to <see cref="Visibility"/></summary>
+''' <summary>Converter tha converts <see cref="Boolean"/> to <see cref="Windows.Visibility"/></summary>
 Public Class BooleanVisibilityConverter
     Implements IValueConverter
 
@@ -577,16 +576,16 @@ Public Class BooleanVisibilityConverter
     ''' <param name="targetType">The type of the binding target property.</param>
     ''' <param name="parameter">The converter parameter to use. If string "!" converter negates <paramref name="value"/> first.</param>
     ''' <param name="culture">The culture to use in the converter.</param>
-    ''' <exception cref="NotSupportedException"><paramref name="value"/> is not <see cref="Boolean"/> or <paramref name="targetType"/> is not <see cref="Visibility"/> or one of its base types.</exception>
+    ''' <exception cref="NotSupportedException"><paramref name="value"/> is not <see cref="Boolean"/> or <paramref name="targetType"/> is not <see cref="Windows.Visibility"/> or one of its base types.</exception>
     Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
-        If TypeOf value Is Boolean AndAlso targetType.IsAssignableFrom(GetType(Visibility)) Then
+        If TypeOf value Is Boolean AndAlso targetType.IsAssignableFrom(GetType(Windows.Visibility)) Then
             If If(TypeOf parameter Is String AndAlso DirectCast(parameter, String) = "!", Not DirectCast(value, Boolean), DirectCast(value, Boolean)) Then
-                Return Visibility.Visible
+                Return Windows.Visibility.Visible
             Else
-                Return Visibility.Collapsed
+                Return Windows.Visibility.Collapsed
             End If
         End If
-        Throw New NotSupportedException(My.Resources.ex_ConverterCanConvertOnlyFromTo.f(Me.GetType.Name, GetType(Boolean).Name, GetType(Visibility).Name))
+        Throw New NotSupportedException(My.Resources.ex_ConverterCanConvertOnlyFromTo.f(Me.GetType.Name, GetType(Boolean).Name, GetType(Windows.Visibility).Name))
     End Function
 
     ''' <summary>Converts a value.</summary>
@@ -595,18 +594,18 @@ Public Class BooleanVisibilityConverter
     ''' <param name="targetType">The type to convert to.</param>
     ''' <param name="parameter">The converter parameter to use. If string "!" converter negates return value.</param>
     ''' <param name="culture">The culture to use in the converter.</param>
-    ''' <exception cref="ArgumentException"><paramref name="value"/> is  neither <see cref="Visibility.Collapsed"/> nor <see cref="Visibility.Visible"/></exception> 
-    ''' <exception cref="NotSupportedException"><paramref name="value"/> is not <see cref="Visibility"/> or <paramref name="targetType"/> is not <see cref="Boolean"/> or one of its base types.</exception>
+    ''' <exception cref="ArgumentException"><paramref name="value"/> is  neither <see cref="Windows.Visibility.Collapsed"/> nor <see cref="Windows.Visibility.Visible"/></exception> 
+    ''' <exception cref="NotSupportedException"><paramref name="value"/> is not <see cref="Windows.Visibility"/> or <paramref name="targetType"/> is not <see cref="Boolean"/> or one of its base types.</exception>
     Public Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
         Dim ret As Boolean
-        If TypeOf value Is Visibility AndAlso targetType.IsAssignableFrom(GetType(Boolean)) Then
-            Select Case DirectCast(value, Visibility)
-                Case Visibility.Collapsed : ret = False
-                Case Visibility.Visible : ret = True
-                Case Else : Throw New ArgumentException(My.Resources.ex_ConverterCannotConvertValueBack.f(Me.GetType, GetType(Visibility).Name, value))
+        If TypeOf value Is Windows.Visibility AndAlso targetType.IsAssignableFrom(GetType(Boolean)) Then
+            Select Case DirectCast(value, Windows.Visibility)
+                Case Windows.Visibility.Collapsed : ret = False
+                Case Windows.Visibility.Visible : ret = True
+                Case Else : Throw New ArgumentException(My.Resources.ex_ConverterCannotConvertValueBack.f(Me.GetType, GetType(Windows.Visibility).Name, value))
             End Select
         Else
-            Throw New NotSupportedException(My.Resources.ex_ConverterCanConvertBackOnlyFromTo.f(Me.GetType.Name, GetType(Visibility).Name, GetType(Boolean).Name))
+            Throw New NotSupportedException(My.Resources.ex_ConverterCanConvertBackOnlyFromTo.f(Me.GetType.Name, GetType(Windows.Visibility).Name, GetType(Boolean).Name))
         End If
         Return If(TypeOf parameter Is String AndAlso DirectCast(parameter, String) = "!", Not ret, ret)
     End Function
@@ -647,40 +646,40 @@ Public Class StringFormatConverter
     End Function
 End Class
 
-''' <summary>Comnverter of type <see cref="Visibility"/> that converts is to oposite value</summary>
+''' <summary>Comnverter of type <see cref="Windows.Visibility"/> that converts is to oposite value</summary>
 ''' <remarks>Both, <see cref="IValueConverter.Convert"/> and <see cref="IValueConverter.ConvertBack"/> functions are implemented by the same <see cref="NotVisibilityConverter.Convert"/> function</remarks>
 Public Class NotVisibilityConverter
     Implements IValueConverter
 
     ''' <summary>Converts a value</summary>
-    ''' <param name="value">A value to be converted. It must be either <see cref="Visibility"/> or <see cref="Boolean"/></param>
-    ''' <param name="targetType">Type to return. It must be assignable from <see cref="Visibility"/> or <see cref="Boolean"/>.</param>
+    ''' <param name="value">A value to be converted. It must be either <see cref="Windows.Visibility"/> or <see cref="Boolean"/></param>
+    ''' <param name="targetType">Type to return. It must be assignable from <see cref="Windows.Visibility"/> or <see cref="Boolean"/>.</param>
     ''' <param name="parameter">ignored</param>
     ''' <param name="culture">ignored</param>
     ''' <returns>
-    ''' If <paramref name="value"/> is <see cref="Boolean"/> it's treated as <see cref="Visibility.Collapsed"/> (false) or <see cref="Visibility.Visible"/> (true).
-    ''' <paramref name="value"/> is converted to output: <see cref="Visibility.Visible"/> to <see cref="Visibility.Collapsed"/>; <see cref="Visibility.Collapsed"/> to <see cref="Visibility.Visible"/>; any other value is left unchanged.
-    ''' If <paramref name="targetType"/> <see cref="Type.IsAssignableFrom">is assignable from</see> <see cref="Boolean"/> but not from <see cref="Visibility"/>, <see cref="Boolean"/> (true for <see cref="Visibility.Visible"/>, false for <see cref="Visibility.Collapsed"/>); otherwise <see cref="Visibility"/> is returned.
+    ''' If <paramref name="value"/> is <see cref="Boolean"/> it's treated as <see cref="Windows.Visibility.Collapsed"/> (false) or <see cref="Windows.Visibility.Visible"/> (true).
+    ''' <paramref name="value"/> is converted to output: <see cref="Windows.Visibility.Visible"/> to <see cref="Windows.Visibility.Collapsed"/>; <see cref="Windows.Visibility.Collapsed"/> to <see cref="Windows.Visibility.Visible"/>; any other value is left unchanged.
+    ''' If <paramref name="targetType"/> <see cref="Type.IsAssignableFrom">is assignable from</see> <see cref="Boolean"/> but not from <see cref="Windows.Visibility"/>, <see cref="Boolean"/> (true for <see cref="Windows.Visibility.Visible"/>, false for <see cref="Windows.Visibility.Collapsed"/>); otherwise <see cref="Windows.Visibility"/> is returned.
     ''' </returns>
-    ''' <exception cref="TypeMismatchException"><paramref name="value"/> is neither <see cref="Visibility"/> nor <see cref="Boolean"/></exception>
-    ''' <exception cref="ArgumentException"><paramref name="targetType"/> is neither <see cref="Visibility"/> nor <see cref="Boolean"/> or <paramref name="targetType"/> is <see cref="Boolean"/> and <paramref name="value"/> is neither <see cref="Boolean"/>, <see cref="Visibility.Visible"/> nor <see cref="Visibility.Collapsed"/>.</exception>
+    ''' <exception cref="TypeMismatchException"><paramref name="value"/> is neither <see cref="Windows.Visibility"/> nor <see cref="Boolean"/></exception>
+    ''' <exception cref="ArgumentException"><paramref name="targetType"/> is neither <see cref="Windows.Visibility"/> nor <see cref="Boolean"/> or <paramref name="targetType"/> is <see cref="Boolean"/> and <paramref name="value"/> is neither <see cref="Boolean"/>, <see cref="Windows.Visibility.Visible"/> nor <see cref="Windows.Visibility.Collapsed"/>.</exception>
     Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert, System.Windows.Data.IValueConverter.ConvertBack
-        If TypeOf value Is Boolean Then value = If(DirectCast(value, Boolean), Visibility.Visible, Visibility.Collapsed)
-        If Not TypeOf value Is Visibility Then Throw New TypeMismatchException("value", value, GetType(Visibility))
-        Dim ret As Visibility
-        Select Case DirectCast(value, Visibility)
-            Case Visibility.Collapsed : ret = Visibility.Visible
-            Case Visibility.Visible : ret = Visibility.Collapsed
+        If TypeOf value Is Boolean Then value = If(DirectCast(value, Boolean), Windows.Visibility.Visible, Windows.Visibility.Collapsed)
+        If Not TypeOf value Is Windows.Visibility Then Throw New TypeMismatchException("value", value, GetType(Windows.Visibility))
+        Dim ret As Windows.Visibility
+        Select Case DirectCast(value, Windows.Visibility)
+            Case Windows.Visibility.Collapsed : ret = Windows.Visibility.Visible
+            Case Windows.Visibility.Visible : ret = Windows.Visibility.Collapsed
             Case Else
-                If Not targetType.IsAssignableFrom(GetType(Visibility)) Then Throw New ArgumentException(My.Resources.ex_IsNotAssignableFrom.f("targetType", GetType(Visibility).Name))
+                If Not targetType.IsAssignableFrom(GetType(Windows.Visibility)) Then Throw New ArgumentException(My.Resources.ex_IsNotAssignableFrom.f("targetType", GetType(Windows.Visibility).Name))
                 Return value
         End Select
-        If targetType.IsAssignableFrom(GetType(Boolean)) AndAlso Not targetType.IsAssignableFrom(GetType(Visibility)) Then
-            Return If(ret = Visibility.Visible, True, False)
-        ElseIf targetType.IsAssignableFrom(GetType(Visibility)) Then
+        If targetType.IsAssignableFrom(GetType(Boolean)) AndAlso Not targetType.IsAssignableFrom(GetType(Windows.Visibility)) Then
+            Return If(ret = Windows.Visibility.Visible, True, False)
+        ElseIf targetType.IsAssignableFrom(GetType(Windows.Visibility)) Then
             Return ret
         Else
-            Throw New ArgumentNullException(My.Resources.ex_IsAssignableFromNeither, "targetType".f(GetType(Visibility).Name, GetType(Boolean).Name))
+            Throw New ArgumentNullException(My.Resources.ex_IsAssignableFromNeither, "targetType".f(GetType(Windows.Visibility).Name, GetType(Boolean).Name))
         End If
     End Function
 
@@ -998,20 +997,39 @@ End Class
 ''' <remarks>This converter is designed as one-way, howver <see cref="IValueConverter.ConvertBack"/> is implemented.</remarks>
 Public Class ConcatConverter
     Implements IValueConverter
+    ''' <summary>Gets or sets name of property of item in collection to caoncat value got from. If null (default) entire object is used.</summary>
+    Public Property PropertyName As String
     ''' <summary>Converts value</summary>
     ''' <param name="value">Value to be converted. Shall be null or <see cref="IEnumerable"/></param>
     ''' <param name="targetType">Ignored. This method always returns null or <see cref="String"/></param>
     ''' <param name="parameter">Any objects which string representation will be used as item seperator. If null ', ' is used.</param>
     ''' <param name="culture">Ignored</param>
     ''' <returns>Stirng representations of objects obrained form <see cref="IEnumerable"/> <paramref name="value"/> concatenated to string using <paramref name="parameter"/> (or ', ' if parameter is null).</returns>
-    ''' <exception cref="TypeMismatchException"><paramref name="value"/> is neithjer null nor <see cref="IEnumerable"/>.</exception>
+    ''' <exception cref="TypeMismatchException"><paramref name="value"/> is neither null nor <see cref="IEnumerable"/>.</exception>
+    ''' <exception cref="MissingMemberException">Property name is specified in <paramref name="parameter"/>, but there is no such property or field on item in <paramref name="value"/> collection.</exception>
+    ''' <exception cref="Reflection.AmbiguousMatchException">Property name is specified in <paramref name="parameter"/> and the property is overloaded</exception>
+    ''' <exception cref="Reflection.TargetParameterCountException">Property name is specified in <paramref name="parameter"/> and property is indexed</exception>
+    ''' <exception cref="MethodAccessException">Property name is specified in <paramref name="parameter"/> and property getter is not public</exception>
+    ''' <exception cref="Reflection.TargetInvocationException">Property name is specified in <paramref name="parameter"/> and an error occurred while retrieving the property value. The <see cref="System.Exception.InnerException"/> property indicates the reason for the error.</exception>
     Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
         If value Is Nothing Then Return ""
         If Not TypeOf value Is IEnumerable Then Throw New TypeMismatchException("value", value, GetType(IEnumerable))
         Dim sb As New Text.StringBuilder
+        Dim separator$
+        separator = If(parameter, ", ").ToString
         For Each item As Object In DirectCast(value, IEnumerable)
-            If sb.Length <> 0 Then sb.Append(If(parameter, ", ").ToString)
-            sb.Append(item.ToString)
+            If sb.Length <> 0 Then sb.Append(separator)
+            If item Is Nothing Then
+                'DoNothing
+            ElseIf propertyName = "" Then
+                sb.Append(item.ToString)
+            Else
+                Dim prp = item.GetType.GetProperty(propertyName, Reflection.BindingFlags.Public Or Reflection.BindingFlags.Instance)
+                Dim field = If(prp Is Nothing, item.GetType.GetField(propertyName, Reflection.BindingFlags.Public Or Reflection.BindingFlags.Instance), Nothing)
+                If prp Is Nothing AndAlso field Is Nothing Then Throw New MissingMemberException(item.GetType.FullName, propertyName)
+                Dim pvalue = prp.GetValue(item, Nothing)
+                If pvalue IsNot Nothing Then sb.Append(pvalue.ToString) 'Else DoNothing
+            End If
         Next
         Return sb.ToString
     End Function

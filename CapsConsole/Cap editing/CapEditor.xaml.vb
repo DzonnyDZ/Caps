@@ -190,7 +190,7 @@ Partial Public Class CapEditor
         Using win As New winNewSimple(Of Category)
             If win.ShowDialog Then
                 Dim newObject As Category = win.GetNewObject(Context)
-                DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(newObject)
+                DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(New CategoryProxy(newObject, True))
                 lstCategories.Items.Refresh()
                 lstCategories_CheckedChanged(lstCategories.Items(lstCategories.Items.Count - 1), New RoutedEventArgs(CheckBox.CheckedEvent, lstCategories.Items(lstCategories.Items.Count - 1)))
             End If

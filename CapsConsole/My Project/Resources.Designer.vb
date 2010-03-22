@@ -556,6 +556,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to {0} can convert only from {1}.
+        '''</summary>
+        Public ReadOnly Property err_CanConvertOnlyFrom() As String
+            Get
+                Return ResourceManager.GetString("err_CanConvertOnlyFrom", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to {0} can convert only to {1}.
         '''</summary>
         Public ReadOnly Property err_CanConvertOnlyTo() As String

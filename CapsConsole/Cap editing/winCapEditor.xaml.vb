@@ -54,13 +54,16 @@ Partial Public Class winCapEditor
             Dim NewType As CapType = Nothing
             If caeEditor.CapTypeSelection = CapEditor.CreatableItemSelection.NewItem Then
                 If Not caeEditor.TestNewCapType Then Exit Sub
-                NewType = New CapType With {.TypeName = caeEditor.CapTypeName, _
-                                                 .Description = caeEditor.CapTypeDescription, _
-                                                 .MainType = caeEditor.CapMainType, _
-                                                 .Height = caeEditor.CapHeight, _
-                                                 .Material = caeEditor.Material, _
-                                                 .Size = caeEditor.Size1, _
-                                                 .Size2 = caeEditor.Size2}
+                NewType = New CapType With {.TypeName = caeEditor.CapTypeName,
+                                            .Description = caeEditor.CapTypeDescription,
+                                            .MainType = caeEditor.CapMainType,
+                                            .Height = caeEditor.CapHeight,
+                                            .Material = caeEditor.Material,
+                                            .Size = caeEditor.Size1,
+                                            .Size2 = caeEditor.Size2,
+                                            .Shape = caeEditor.CapShape}
+            ElseIf caeEditor.CapTypeSelection = CapEditor.CreatableItemSelection.AnonymousItem Then
+                Cap.CapType = Nothing
             End If
             'Introduce product
             Dim NewProduct As Product = Nothing
@@ -70,6 +73,8 @@ Partial Public Class winCapEditor
                                                .Description = caeEditor.ProductDescription, _
                                                .Company = caeEditor.CapCompany, _
                                                .ProductType = caeEditor.CapProductType}
+            ElseIf caeEditor.ProductSelection = CapEditor.CreatableItemSelection.AnonymousItem Then
+                Cap.Product = Nothing
             End If
             'Image files
             Dim IntroducedImages = caeEditor.CopyImages()
@@ -93,7 +98,7 @@ Partial Public Class winCapEditor
             Next
             Context.Images.AddObjects(IntroducedImages)
             Context.Images.DeleteObjects((From img In OldImages Where Not caeEditor.Images.Contains(img)).ToArray)
-            'Prepare for commit                                                                                      
+            'Prepare for commit
             If NewType IsNot Nothing Then Cap.CapType = NewType : Context.CapTypes.AddObject(NewType)
             If NewProduct IsNot Nothing Then Cap.Product = NewProduct : Context.Products.AddObject(NewProduct)
             Try

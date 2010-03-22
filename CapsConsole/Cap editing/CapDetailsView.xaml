@@ -22,7 +22,8 @@
         <convertersT:NullInvisibleConverter x:Key="NullInvisibleConverter"/>
         <my:CountryCodeNameConverter x:Key="CountryCodeNameConverter"/>
         <my:CountryCodeFlagConverter x:Key="CountryCodeFlagConverter"/>
-        <my:ConcatConverter x:Key="ConcatConverter"/>
+        <my:ConcatConverter x:Key="ConcatConverter_CategoryName" PropertyName="CategoryName"/>
+        <my:ConcatConverter x:Key="ConcatConverter_KeywordName" PropertyName="KeywordName"/>
         <my:NotColorConverter x:Key="NotColorConverter"/>
         <sys:Int32 x:Key="i64">64</sys:Int32>
         <sys:Int32 x:Key="i128">128</sys:Int32>
@@ -260,9 +261,9 @@
                     <my:AttachedProperties.ItemsWithAutomaticRows>
                         <x:Array Type="UIElement">
                             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="{x:Static res:Resources.txt_Categories}"/>
-                            <TextBlock TextWrapping="Wrap" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Path=Categories/CategoryName, Mode=OneWay, Converter={StaticResource ConcatConverter}}"/>
+                            <TextBlock TextWrapping="Wrap" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Path=Categories, Mode=OneWay, Converter={StaticResource ConcatConverter_CategoryName}}"/>
                             <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Content="{x:Static res:Resources.txt_Keywords}"/>
-                            <TextBlock TextWrapping="Wrap" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Text="{Binding Path=Keywords/Keyword, Mode=OneWay, Converter={StaticResource ConcatConverter}}"/>
+                            <TextBlock TextWrapping="Wrap" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Text="{Binding Path=Keywords, Mode=OneWay, Converter={StaticResource ConcatConverter_KeywordName}}"/>
                         </x:Array>
                     </my:AttachedProperties.ItemsWithAutomaticRows>
                 </Grid>

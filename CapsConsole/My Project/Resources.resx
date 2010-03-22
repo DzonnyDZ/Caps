@@ -1013,7 +1013,6 @@
     <value>Attempt to set storage that is not in combo box.</value>
     <comment>Inner exception message</comment>
   </data>
-
   <data name="err_DeleteingOfSomeImagesFailed" xml:space="preserve">
     <value>Deleteing of some images failed:</value>
     <comment>Error message</comment>
@@ -1540,5 +1539,8 @@ Doubleclick to edit.</value>
   <data name="txt_ToManyCapSigns" xml:space="preserve">
     <value>A sing is selected multiple times. Each sign can be selected maximally once.</value>
     <comment>Error message</comment>
+  </data>
+  <data name="err_CanConvertOnlyFrom" xml:space="preserve">
+    <value>{0} can convert only from {1}</value>
   </data>
 </root>

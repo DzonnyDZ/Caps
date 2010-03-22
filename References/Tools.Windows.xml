@@ -3260,6 +3260,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<version version="1.5.2" stage="Nightly"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
 	<version version="1.5.2">Fixed: Some static functions throws exception when icon is not set or when default button is used (even implicitly)</version>
 	<version version="1.5.3">All owner parameters changed form <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support more types of owners - <see cref="T:System.Windows.Forms.IWin32Window"/>, <see cref="T:System.Windows.Window"/> and <see cref="T:System.Windows.Interop.IWin32Window"/>. Changes are required in derived classes to support this change and those new owners.</version>
+	<version version="1.5.4">WPF (<see cref="T:Tools.WindowsT.WPF.DialogsT.MessageBox"/>) and WinForms (<see cref="T:Tools.WindowsT.FormsT.MessageBox"/>) implementations changed to support any <see cref="T:System.Windows.DependencyObject"/> hosted in <see cref="T:System.Windows.Window"/> as owner.</version>
 </member><member name="F:Tools.WindowsT.FormsT.LinkLabel._Items">
 	<summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.LinkLabel.Items"/> property</summary>
 </member><member name="M:Tools.WindowsT.FormsT.LinkLabel.#ctor">
@@ -4776,10 +4777,11 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="M:Tools.WindowsT.FormsT.MessageBox.PerformDialog(System.Boolean,System.Object)">
 	<summary>Shows the dialog</summary>
 	<param name="Modal">Indicates if dialog should be shown modally (true) or modells (false)</param>
-	<param name="Owner">Parent window of dialog (may be null). This implementation recognizes values of type <see cref="T:System.Windows.Forms.IWin32Window"/>, <see cref="T:System.Windows.Interop.IWin32Window"/> and <see cref="T:System.Windows.Window"/>. Unrecognized owners are treated as null.</param>
+	<param name="Owner">Parent window of dialog (may be null). This implementation recognizes values of type <see cref="T:System.Windows.Forms.IWin32Window"/>, <see cref="T:System.Windows.Interop.IWin32Window"/>, <see cref="T:System.Windows.Window"/> and <see cref="T:System.Windows.DependencyObject"/> (if hosted in <see cref="T:System.Windows.Window"/>). Unrecognized owners are treated as null.</param>
 	<remarks>Note for inheritors: If you override thie method and do not call base class method, you must set value of the <see cref="P:Tools.WindowsT.FormsT.MessageBox.Form"/> property</remarks>
 	<exception cref="T:System.InvalidOperationException"><see cref="P:Tools.WindowsT.IndependentT.MessageBox.State"/> is not <see cref="F:Tools.WindowsT.IndependentT.MessageBox.States.Created"/></exception>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support <see cref="T:System.Windows.Forms.IWin32Window"/>, <see cref="T:System.Windows.Interop.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
+	<version version="1.5.4" stage="Beta">The <paramref name="Owner"/> parameter acceps <see cref="T:System.Windows.DependencyObject"/> for which <see cref="M:System.Windows.Window.GetWindow(System.Windows.DependencyObject)"/> returns non-null value.</version>
 </member><member name="M:Tools.WindowsT.FormsT.MessageBox.ShowDialogOn(System.Windows.Forms.Control)">
 	<summary>Shows dialog in sync with thread ow given control modally to give control</summary>
 	<param name="Owner">Control to show dialog on thread of and modally to (null to ignore)</param>
@@ -4834,6 +4836,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<version version="1.5.2">Fixed: When custom control (<see cref="P:Tools.WindowsT.IndependentT.MessageBox.TopControl"/>, <see cref="P:Tools.WindowsT.IndependentT.MessageBox.MidControl"/>, <see cref="P:Tools.WindowsT.IndependentT.MessageBox.BottomControl"/>) is replaced wne message box is shown, the change does not take effect.</version>
 	<version version="1.5.2">Fixed: Dialog closes even when button click operation is cancelled (see <see cref="E:Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.ClickPreview"/>)</version>
 	<version version="1.5.3" stage="Beta">Added support for <see cref="T:System.Windows.Window"/> as message box owner required by changes in <see cref="T:Tools.WindowsT.IndependentT.MessageBox"/></version>
+	<version version="1.5.4" stage="Beta">Owner of dialog now can be any <see cref="T:System.Windows.DependencyObject"/> hosted in <see cref="T:System.Windows.Window"/>.</version>
 </member><member name="F:Tools.WindowsT.FormsT.UtilitiesT.ControlState.Enabled">
 	<summary>Enabled and visible</summary>
 </member><member name="F:Tools.WindowsT.FormsT.UtilitiesT.ControlState.Disabled">
@@ -7534,9 +7537,10 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.MessageBox.PerformDialog(System.Boolean,System.Object)">
 	<summary>Shows the dialog</summary>
 	<param name="Modal">Indicates if dialog should be shown modally (true) or modells (false)</param>
-	<param name="Owner">Parent window of dialog (may be null).  This implementation recognizes values of type <see cref="T:System.Windows.Forms.IWin32Window"/>, <see cref="T:System.Windows.Interop.IWin32Window"/> and <see cref="T:System.Windows.Window"/>. Unrecognized owners are treated as null.</param>
+	<param name="Owner">Parent window of dialog (may be null).  This implementation recognizes values of type <see cref="T:System.Windows.Forms.IWin32Window"/>, <see cref="T:System.Windows.Interop.IWin32Window"/>, <see cref="T:System.Windows.Window"/> and <see cref="T:System.Windows.DependencyObject"/> (if hosted in <see cref="T:System.Windows.Window"/>). Unrecognized owners are treated as null.</param>
 	<exception cref="T:System.InvalidOperationException"><see cref="P:Tools.WindowsT.IndependentT.MessageBox.State"/> is not <see cref="F:Tools.WindowsT.IndependentT.MessageBox.States.Created"/>. Overriding method shall check this condition and thrown an exception if condition is vialoted.</exception>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support <see cref="T:System.Windows.Forms.IWin32Window"/>, <see cref="T:System.Windows.Interop.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
+	<version version="1.5.4" stage="Beta">The <paramref name="Owner"/> parameter acceps <see cref="T:System.Windows.DependencyObject"/> for which <see cref="M:System.Windows.Window.GetWindow(System.Windows.DependencyObject)"/> returns non-null value.</version>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.MessageBox.OnChanged(System.EventArgs)">
 	<summary>Raises the <see cref="E:Tools.WindowsT.IndependentT.MessageBox.Changed"/> event</summary>
 	<param name="e">Event parameters</param>
@@ -7609,6 +7613,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<remarks>Message box user interface is implemented by <see cref="T:Tools.WindowsT.WPF.DialogsT.MessageBoxImplementationControl"/>. To change style or template of message box, use that control.</remarks>
 	<version version="1.5.2" stage="Nightly">Class introduced</version>
 	<version version="1.5.3" stage="Beta">Added support for <see cref="T:System.Windows.Window"/> as message box owner required by changes in <see cref="T:Tools.WindowsT.IndependentT.MessageBox"/></version>
+	<version version="1.5.4" stage="Beta">Owner of dialog now can be any <see cref="T:System.Windows.DependencyObject"/> hosted in <see cref="T:System.Windows.Window"/>.</version>
 </member><member name="F:Tools.WindowsT.WPF.MarkupT.GenericExtension._typeArguments">
 	<summary>Contains value of the <see cref="P:Tools.WindowsT.WPF.MarkupT.GenericExtension.TypeArguments"/> proeprty</summary>
 </member><member name="P:Tools.WindowsT.WPF.MarkupT.GenericExtension.TypeArguments">
