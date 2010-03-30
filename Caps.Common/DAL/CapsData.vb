@@ -854,7 +854,7 @@ Namespace Data
                     ByVal HasBottom As Boolean?, ByVal HasSide As Boolean?, ByVal AnotherPictures$, ByVal CategoryIDs%(),
                     ByVal Keywords$(), ByVal CountryOfOrigin$, ByVal IsDrink As Boolean?, ByVal State As Short?,
                     ByVal TargetID%?, ByVal IsAlcoholic%?, ByVal CapSignIDs%()) As IEnumerable(Of Cap)
-            Dim ta As New HelperDataSetTableAdapters.GetSimilarCapsTableAdapter With {.Connection = Me.Connection}
+            Dim ta As New HelperDataSetTableAdapters.GetSimilarCapsTableAdapter With {.Connection = If(TypeOf Me.Connection Is EntityConnection, DirectCast(Me.Connection, EntityConnection).StoreConnection, Me.Connection)}
             Using r = ta.ReadSimilarCaps(CapTypeID:=CapTypeID, MainTypeID:=MainTypeID, ShapeID:=ShapeID, CapName:=CapName,
                                          MainText:=MainText, SubTitle:=SubTitle, BackColor1:=BackColor1, BackColor2:=BackColor2,
                                          ForeColor:=ForeColor, MainPicture:=MainPicture, TopText:=TopText, SideText:=SideText,
@@ -867,7 +867,7 @@ Namespace Data
                                          HasBottom:=HasBottom, HasSide:=HasSide, AnotherPictures:=AnotherPictures, CategoryIDs:=CategoryIDs,
                                          Keywords:=Keywords, CountryOfOrigin:=CountryOfOrigin, IsDrink:=IsDrink, State:=State,
                                          TargetID:=TargetID, IsAlcoholic:=IsAlcoholic, CapSignIDs:=CapSignIDs)
-                Return Me.Translate(Of Cap)(r)
+                Return Me.Translate(Of Cap)(r).ToArray
             End Using
         End Function
 

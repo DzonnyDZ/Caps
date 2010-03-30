@@ -2549,7 +2549,7 @@ Partial Public Class CapEditor
     End Property
     ''' <summary>Metadata of the <see cref="SelectedCategories"/> property</summary>
     <EditorBrowsable(EditorBrowsableState.Advanced)> _
-    Public Shared ReadOnly SelectedCategoriesProperty As DependencyProperty = DependencyProperty.Register("SelectedCategories", GetType(IEnumerable(Of Category)), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnSelectedCategoriesChanged, AddressOf CoerceSelectedCategories))
+    Public Shared ReadOnly SelectedCategoriesProperty As DependencyProperty = DependencyProperty.Register("SelectedCategories", GetType(IEnumerable(Of Category)), GetType(CapEditor), New FrameworkPropertyMetadata(CType({}, Category()), AddressOf OnSelectedCategoriesChanged, AddressOf CoerceSelectedCategories))
     ''' <summary>COerces value of the <see cref="SelectedCategories"/> property</summary>
     ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
@@ -2607,7 +2607,7 @@ Partial Public Class CapEditor
     End Property
     ''' <summary>Metadata of the <see cref="Keywords"/> property</summary>
     <EditorBrowsable(EditorBrowsableState.Advanced)> _
-    Public Shared ReadOnly KeywordsProperty As DependencyProperty = DependencyProperty.Register("Keywords", GetType(IEnumerable(Of String)), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnKeywordsChanged, AddressOf CoerceKeywords))
+    Public Shared ReadOnly KeywordsProperty As DependencyProperty = DependencyProperty.Register("Keywords", GetType(IEnumerable(Of String)), GetType(CapEditor), New FrameworkPropertyMetadata(New String() {}, AddressOf OnKeywordsChanged, AddressOf CoerceKeywords))
     ''' <summary>COerces value of the <see cref="Keywords"/> property</summary>
     ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
@@ -2681,7 +2681,7 @@ Partial Public Class CapEditor
     End Property
     ''' <summary>Metadata of the <see cref="SelectedCapSigns"/> property</summary>
     <EditorBrowsable(EditorBrowsableState.Advanced)> _
-    Public Shared ReadOnly SelectedCapSignsProperty As DependencyProperty = DependencyProperty.Register("SelectedCapSigns", GetType(IEnumerable(Of CapSign)), GetType(CapEditor), New FrameworkPropertyMetadata(AddressOf OnSelectedCapSignsChanged, AddressOf CoerceSelectedCapSigns))
+    Public Shared ReadOnly SelectedCapSignsProperty As DependencyProperty = DependencyProperty.Register("SelectedCapSigns", GetType(IEnumerable(Of CapSign)), GetType(CapEditor), New FrameworkPropertyMetadata(New CapSign() {}, AddressOf OnSelectedCapSignsChanged, AddressOf CoerceSelectedCapSigns))
     ''' <summary>COerces value of the <see cref="SelectedCapSigns"/> property</summary>
     ''' <param name="d">The object that the property exists on. When the callback is invoked, the property system will pass this value.</param>
     ''' <param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
