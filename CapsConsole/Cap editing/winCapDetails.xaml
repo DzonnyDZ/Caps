@@ -19,8 +19,6 @@
         <my:MyImageIDConverter x:Key="MyImageIDConverter"/>
         <my:IntColorConverter x:Key="IntColorConverter"/>
         <my:CompareConverter x:Key="CompareConverter"/>
-        <sys:Char x:Key="charM">M</sys:Char>
-        <sys:Char x:Key="charG">G</sys:Char>
         <sys:Int32 x:Key="iOne">1</sys:Int32>
         <my:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
         <my:CountryCodeFlagConverter x:Key="CountryCodeFlagConverter"/>
@@ -161,8 +159,8 @@
                     <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{x:Static res:Resources.lbl_Foreground2}"/>
                     <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{Binding ForeColor2, Mode=OneWay, Converter={StaticResource IntColorConverter}}" Content="{Binding ForeColor2, Mode=OneWay, Converter={StaticResource IntColorNameConverter}}" Foreground="{Binding ForeColor2, Mode=OneWay, Converter={StaticResource NotColorConverter}}"/>
                     <CheckBox Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Name="chk3D" Content="{x:Static res:Resources.lbl_3D2}" IsChecked="{Binding Is3D, Mode=OneWay}" IsEnabled="False" />
-                    <RadioButton Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" IsChecked="{Binding Surface, Mode=OneWay, Converter={StaticResource CompareConverter}, ConverterParameter={StaticResource charM}}" Name="optMatting" Content="{x:Static res:Resources.lbl_Matting2}" IsEnabled="False"/>
-                    <RadioButton Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" IsChecked="{Binding Surface, Mode=OneWay, Converter={StaticResource CompareConverter}, ConverterParameter={StaticResource charG}}" Name="optGlossy" Content="{x:Static res:Resources.lbl_Glossy2}" IsEnabled="False"/>
+                    <RadioButton Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" IsChecked="{Binding Surface, Mode=OneWay, Converter={StaticResource CompareConverter}, ConverterParameter='M'}" Name="optMatting" Content="{x:Static res:Resources.lbl_Matting2}" IsEnabled="False"/>
+                    <RadioButton Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Width="auto" IsChecked="{Binding Surface, Mode=OneWay, Converter={StaticResource CompareConverter}, ConverterParameter='G'}" Name="optGlossy" Content="{x:Static res:Resources.lbl_Glossy2}" IsEnabled="False"/>
                 </Grid>
             </GroupBox>
             <!--Type and size-->

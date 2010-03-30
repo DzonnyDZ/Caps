@@ -228,13 +228,13 @@ GetNextCap:
         If value Is Nothing Then Return CapEditor.CreatableItemSelection.AnonymousItem Else Return CapEditor.CreatableItemSelection.SelectedItem
     End Function
     Public Shared Function GetGlossy(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object
-        Return TypeOf value Is Char AndAlso DirectCast(value, Char) = "G"c
+        Return TypeOf value Is String AndAlso DirectCast(value, String) = "G"
     End Function
     Public Shared Function GetGlossyBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object
         If DirectCast(value, Boolean) Then
-            Return "G"c
+            Return "G"
         Else
-            Return "M"c
+            Return "M"
         End If
     End Function
 

@@ -268,7 +268,7 @@
                         <PropertyRef Name="CapID" />
                         <PropertyRef Name="CapSignID" />
                     </Key>
-                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="CapID" Type="int" Nullable="false"/>
                     <Property Name="CapSignID" Type="int" Nullable="false"  />
                 </EntityType>
                 <EntityType Name="Cap_Category_Int">
@@ -276,7 +276,7 @@
                         <PropertyRef Name="CapID" />
                         <PropertyRef Name="CategoryID" />
                     </Key>
-                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity"  />
+                    <Property Name="CapID" Type="int" Nullable="false"/>
                     <Property Name="CategoryID" Type="int" Nullable="false"  />
                 </EntityType>
                 <EntityType Name="Cap_Keyword_Int">
@@ -284,7 +284,7 @@
                         <PropertyRef Name="CapID" />
                         <PropertyRef Name="KeywordID" />
                     </Key>
-                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity"  />
+                    <Property Name="CapID" Type="int" Nullable="false"/>
                     <Property Name="KeywordID" Type="int" Nullable="false" />
                 </EntityType>
                 <EntityType Name="CapInstance">
