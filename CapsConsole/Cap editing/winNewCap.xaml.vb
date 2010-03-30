@@ -78,7 +78,7 @@ Partial Public Class winNewCap
                 Cap.AnotherPictures = .AnotherPictures
                 Cap.HasBottom = .HasBottom
                 Cap.HasSide = .HasSide
-                Cap.PictureType = .PictureType
+                Cap.PictureType = If(.PictureType.HasValue, CStr(.PictureType), Nothing)
                 If .CountryOfOrigin <> "" Then Cap.CountryOfOrigin = .CountryOfOrigin
                 Cap.IsDrink = .IsDrink
                 Cap.State = .State
@@ -100,11 +100,11 @@ Partial Public Class winNewCap
                     Dim Keywords = From kw In .Keywords
                                    Select existingKw = (From indbkw In .Context.Keywords Where indbkw.KeywordName = kw).FirstOrDefault, kw
                                    Select existing = existingKw IsNot Nothing, keyword = If(existingKw, New Keyword(kw))
-                    .Context.Keywords.AddObjects(From kw In Keywords Where kw.existing Select kw.keyword)
+                    '.Context.Keywords.AddObjects(From kw In Keywords Where kw.existing Select kw.keyword)
                     Cap.Keywords.AddRange(From kw In Keywords Select kw.keyword)
                 End If
                 Cap.Categories.AddRange(.SelectedCategories)
-                Cap.CapSigns.Add(.SelectedCapSigns)
+                Cap.CapSigns.AddRange(.SelectedCapSigns)
                 If NewType IsNot Nothing Then .Context.CapTypes.AddObject(NewType)
                 If NewProduct IsNot Nothing Then .Context.Products.AddObject(NewProduct)
                 .Context.Caps.AddObject(Cap)

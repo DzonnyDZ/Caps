@@ -246,7 +246,7 @@
                     <Property Name="Is3D" Type="bit" Nullable="false" />
                     <Property Name="Year" Type="int" />
                     <Property Name="CountryCode" Type="char" MaxLength="2" />
-                    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+                    <Property Name="DateCreated" Type="datetime" Nullable="false" StoreGeneratedPattern="Identity" />
                     <Property Name="Note" Type="nvarchar(max)" />
                     <Property Name="CompanyID" Type="int"  />
                     <Property Name="ProductID" Type="int"  />
@@ -268,7 +268,7 @@
                         <PropertyRef Name="CapID" />
                         <PropertyRef Name="CapSignID" />
                     </Key>
-                    <Property Name="CapID" Type="int" Nullable="false" />
+                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
                     <Property Name="CapSignID" Type="int" Nullable="false"  />
                 </EntityType>
                 <EntityType Name="Cap_Category_Int">
@@ -276,7 +276,7 @@
                         <PropertyRef Name="CapID" />
                         <PropertyRef Name="CategoryID" />
                     </Key>
-                    <Property Name="CapID" Type="int" Nullable="false"  />
+                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity"  />
                     <Property Name="CategoryID" Type="int" Nullable="false"  />
                 </EntityType>
                 <EntityType Name="Cap_Keyword_Int">
@@ -284,7 +284,7 @@
                         <PropertyRef Name="CapID" />
                         <PropertyRef Name="KeywordID" />
                     </Key>
-                    <Property Name="CapID" Type="int" Nullable="false"  />
+                    <Property Name="CapID" Type="int" Nullable="false" StoreGeneratedPattern="Identity"  />
                     <Property Name="KeywordID" Type="int" Nullable="false" />
                 </EntityType>
                 <EntityType Name="CapInstance">
@@ -1348,7 +1348,7 @@
                     <Property Name="Is3D" Type="Boolean" Nullable="false" />
                     <Property Name="Year" Type="Int32" Nullable="true" />
                     <Property Name="CountryCode" Type="String" MaxLength="2" Unicode="false" FixedLength="true" Nullable="true" />
-                    <Property Name="DateCreated" Type="DateTime" Nullable="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+                    <Property Name="DateCreated" Type="DateTime" Nullable="false" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" annotation:StoreGeneratedPattern="Identity" />
                     <Property Name="Note" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" Nullable="true" />
                     <Property Name="CompanyID" Type="Int32" />
                     <Property Name="ProductID" Type="Int32" />
@@ -2611,7 +2611,7 @@
         </Options>
         <!-- Diagram content (shape and connector positions) -->
         <Diagrams>
-            <Diagram Name="CapsData" ZoomLevel="92">
+            <Diagram Name="CapsData" ZoomLevel="137">
                 <EntityTypeShape EntityType="Data.Cap" Width="1.5" PointX="5.375" PointY="5.375" Height="11.210755208333335" IsExpanded="true" />
                 <EntityTypeShape EntityType="Data.CapInstance" Width="1.5" PointX="7.25" PointY="12.375" Height="3.1340950520833353" IsExpanded="true" />
                 <EntityTypeShape EntityType="Data.CapSign" Width="1.5" PointX="1.875" PointY="7.75" Height="2.1725878906249996" IsExpanded="true" />
@@ -2698,24 +2698,20 @@
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_CapInstance_Storage" ManuallyRouted="false">
                     <ConnectorPoint PointX="9.5" PointY="13.642361465780645" />
-                    <ConnectorPoint PointX="9.0833332108524054" PointY="13.643075845669381" />
-                    <ConnectorPoint PointX="8.9166667891475946" PointY="13.643361597120888" />
                     <ConnectorPoint PointX="8.75" PointY="13.643647349202379" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_CapInstance" ManuallyRouted="true">
                     <ConnectorPoint PointX="8.75" PointY="14.20993322663835" />
-                    <ConnectorPoint PointX="8.9166666666666661" PointY="14.20993322663835" />
-                    <ConnectorPoint PointX="9.0833333333333339" PointY="14.20993322663835" />
                     <ConnectorPoint PointX="9.25" PointY="14.20993322663835" />
-                    <ConnectorPoint PointX="9.25" PointY="16.954180277094032" />
-                    <ConnectorPoint PointX="13.375" PointY="16.954180277094032" />
+                    <ConnectorPoint PointX="9.25" PointY="17.116978638758376" />
+                    <ConnectorPoint PointX="13.375" PointY="17.116978638758376" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_CapSign" ManuallyRouted="true">
                     <ConnectorPoint PointX="1.875" PointY="8.8362939453125" />
                     <ConnectorPoint PointX="1.5" PointY="8.8362939453125" />
-                    <ConnectorPoint PointX="1.5" PointY="21.253396324377384" />
-                    <ConnectorPoint PointX="14.773359384450949" PointY="21.253396324377384" />
-                    <ConnectorPoint PointX="14.773359384450949" PointY="20.287822265625003" />
+                    <ConnectorPoint PointX="1.5" PointY="21.172402630001681" />
+                    <ConnectorPoint PointX="14.657093107190711" PointY="21.172402630001681" />
+                    <ConnectorPoint PointX="14.657093107190711" PointY="20.287822265625003" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_StoredImage_CapSign" ManuallyRouted="true">
                     <ConnectorPoint PointX="2.1686708987006371" PointY="7.75" />
@@ -2749,13 +2745,15 @@
                     <ConnectorPoint PointX="7.75" PointY="1.8369266233763215" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_CapType" ManuallyRouted="false">
-                    <ConnectorPoint PointX="9.25" PointY="1.8053621220091625" />
-                    <ConnectorPoint PointX="10.955581617918309" PointY="1.8053621220091618" />
-                    <ConnectorPoint PointX="11.122248284584977" PointY="1.8053621220091625" />
-                    <ConnectorPoint PointX="11.461566220144764" PointY="1.8053621220091618" />
-                    <ConnectorPoint PointX="11.628232886811432" PointY="1.8053621220091625" />
-                    <ConnectorPoint PointX="13.790583122559157" PointY="1.8053621220091625" />
-                    <ConnectorPoint PointX="13.790583122559157" PointY="13.5" />
+                    <ConnectorPoint PointX="9.25" PointY="1.9687499999999996" />
+                    <ConnectorPoint PointX="10.955581617918309" PointY="1.9687499999999989" />
+                    <ConnectorPoint PointX="11.122248284584977" PointY="1.9687499999999996" />
+                    <ConnectorPoint PointX="11.461566220144764" PointY="1.9687499999999989" />
+                    <ConnectorPoint PointX="11.628232886811432" PointY="1.9687499999999996" />
+                    <ConnectorPoint PointX="14.015802019227772" PointY="1.9687499999999989" />
+                    <ConnectorPoint PointX="14.18246868589444" PointY="1.9687499999999996" />
+          <ConnectorPoint PointX="14.518320176280554" PointY="1.9687499999999996" />
+          <ConnectorPoint PointX="14.518320176280554" PointY="13.5" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_StoredImage_CapType" ManuallyRouted="false">
                     <ConnectorPoint PointX="9.25" PointY="3.6056266276041664" />
@@ -2770,10 +2768,10 @@
                     <ConnectorPoint PointX="5.375" PointY="19.048631548242447" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_Company" ManuallyRouted="true">
-                    <ConnectorPoint PointX="3.2010471335400474" PointY="19.797587890625" />
-                    <ConnectorPoint PointX="3.2010471335400474" PointY="20.810683600032338" />
-                    <ConnectorPoint PointX="14.027784987821747" PointY="20.810683600032338" />
-                    <ConnectorPoint PointX="14.027784987821747" PointY="20.287822265625003" />
+                    <ConnectorPoint PointX="3.4351238506627331" PointY="19.797587890625" />
+                    <ConnectorPoint PointX="3.4351238506627331" PointY="20.912822265625003" />
+                    <ConnectorPoint PointX="14.204930304561767" PointY="20.912822265625003" />
+          <ConnectorPoint PointX="14.204930304561767" PointY="20.287822265625003" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_StoredImage_Image" ManuallyRouted="false">
                     <ConnectorPoint PointX="3.5696281275347403" PointY="4.875" />
@@ -2784,18 +2782,15 @@
                     <ConnectorPoint PointX="11.038914951251643" PointY="2.5" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_Keyword" ManuallyRouted="true">
-                    <ConnectorPoint PointX="9.7395988201655843" PointY="19.653382161458335" />
-                    <ConnectorPoint PointX="9.7395988201655843" PointY="19.895169161453396" />
-                    <ConnectorPoint PointX="13.375" PointY="19.895169161453396" />
+                    <ConnectorPoint PointX="10.375" PointY="19.7278857421875" />
+                    <ConnectorPoint PointX="13.375" PointY="19.7278857421875" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_MainType" ManuallyRouted="false">
-                    <ConnectorPoint PointX="9.125" PointY="11.117290039062503" />
-                    <ConnectorPoint PointX="11.659936596551003" PointY="11.117290039062503" />
-                    <ConnectorPoint PointX="11.659936596551003" PointY="11.117290039062503" />
-                    <ConnectorPoint PointX="11.82660326321767" PointY="11.117290039062503" />
-                    <ConnectorPoint PointX="11.82660326321767" PointY="11.117290039062503" />
-                    <ConnectorPoint PointX="13.531355155457812" PointY="11.117290039062503" />
-                    <ConnectorPoint PointX="13.531355155457812" PointY="13.5" />
+                    <ConnectorPoint PointX="9.125" PointY="11.319816110026046" />
+                    <ConnectorPoint PointX="11.659936596551003" PointY="11.319816110026046" />
+                    <ConnectorPoint PointX="11.82660326321767" PointY="11.319816110026046" />
+                    <ConnectorPoint PointX="13.705815176280552" PointY="11.319816110026046" />
+                    <ConnectorPoint PointX="13.705815176280552" PointY="13.5" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_StoredImage_MainType" ManuallyRouted="false">
                     <ConnectorPoint PointX="9.125" PointY="10.712237897135417" />
@@ -2808,29 +2803,21 @@
                     <ConnectorPoint PointX="14.099135352561106" PointY="0.70600366943563331" />
                     <ConnectorPoint PointX="14.099135352561106" PointY="13.5" />
                 </AssociationConnector>
-                <AssociationConnector Association="Data.FK_Product_ProductType" ManuallyRouted="false">
-                    <ConnectorPoint PointX="7.6326493114710132" PointY="19.307190755208339" />
-                    <ConnectorPoint PointX="7.6326493114710132" PointY="19.653341971354173" />
-                    <ConnectorPoint PointX="7.208333333333333" PointY="19.653341971354173" />
-                    <ConnectorPoint PointX="7.041666666666667" PointY="19.653341971354173" />
-                    <ConnectorPoint PointX="6.875" PointY="19.653341971354173" />
+                <AssociationConnector Association="Data.FK_Product_ProductType" ManuallyRouted="true">
+                    <ConnectorPoint PointX="7.58906283461552" PointY="19.307190755208339" />
+                    <ConnectorPoint PointX="7.58906283461552" PointY="19.642056019631454" />
+                    <ConnectorPoint PointX="6.875" PointY="19.642056019631454" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_Product" ManuallyRouted="true">
-                    <ConnectorPoint PointX="5.9253647113799017" PointY="19.999492187500003" />
-                    <ConnectorPoint PointX="5.9253647113799017" PointY="20.662822265625003" />
-                    <ConnectorPoint PointX="7.041666666666667" PointY="20.662822265625003" />
-                    <ConnectorPoint PointX="7.208333333333333" PointY="20.662822265625003" />
-                    <ConnectorPoint PointX="10.541666666666666" PointY="20.662822265625003" />
-                    <ConnectorPoint PointX="10.708333333333334" PointY="20.662822265625003" />
-                    <ConnectorPoint PointX="13.566046802504829" PointY="20.662822265625003" />
-                    <ConnectorPoint PointX="13.566046802504829" PointY="20.287822265625003" />
+                    <ConnectorPoint PointX="6.10968491143476" PointY="19.999492187500003" />
+                    <ConnectorPoint PointX="6.10968491143476" PointY="20.662822265625003" />
+                    <ConnectorPoint PointX="13.638332688341919" PointY="20.662822265625003" />
+          <ConnectorPoint PointX="13.638332688341919" PointY="20.287822265625003" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_ProductType" ManuallyRouted="true">
-                    <ConnectorPoint PointX="8.1371182441872616" PointY="19.307190755208339" />
-                    <ConnectorPoint PointX="8.1371182441872616" PointY="20.199460161448435" />
-                    <ConnectorPoint PointX="10.541666666666666" PointY="20.199460161448435" />
-                    <ConnectorPoint PointX="10.708333333333334" PointY="20.199460161448435" />
-                    <ConnectorPoint PointX="13.375" PointY="20.199460161448435" />
+                    <ConnectorPoint PointX="8.11562966923104" PointY="19.307190755208339" />
+                    <ConnectorPoint PointX="8.11562966923104" PointY="20.151846146531973" />
+                    <ConnectorPoint PointX="13.375" PointY="20.151846146531973" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_ShapeTranslation_Shape" ManuallyRouted="false">
                     <ConnectorPoint PointX="9.125" PointY="8.3747460937500016" />
@@ -2841,22 +2828,20 @@
                     <ConnectorPoint PointX="10.875" PointY="6.7521362507884293" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_Storage" ManuallyRouted="true">
-                    <ConnectorPoint PointX="11" PointY="13.835354459555825" />
-                    <ConnectorPoint PointX="11.192" PointY="13.835354459555825" />
-                    <ConnectorPoint PointX="11.192" PointY="13.832559449054189" />
-                    <ConnectorPoint PointX="13.375" PointY="13.832559449054189" />
+                    <ConnectorPoint PointX="11" PointY="13.977218849700433" />
+                    <ConnectorPoint PointX="13.375" PointY="13.977218849700433" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_StorageType" ManuallyRouted="true">
                     <ConnectorPoint PointX="11.915801171324681" PointY="16.105286458333339" />
-                    <ConnectorPoint PointX="11.915801171324681" PointY="16.6348365204094" />
-                    <ConnectorPoint PointX="13.375" PointY="16.6348365204094" />
+                    <ConnectorPoint PointX="11.915801171324681" PointY="16.879463854591879" />
+                    <ConnectorPoint PointX="13.375" PointY="16.879463854591879" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_SimpleTranslation_Target" ManuallyRouted="true">
-                    <ConnectorPoint PointX="3.25" PointY="12.067233133936178" />
-                    <ConnectorPoint PointX="2.0643365764915531" PointY="12.067233133936178" />
-                    <ConnectorPoint PointX="2.0643365764915531" PointY="21.037161425340521" />
-                    <ConnectorPoint PointX="14.400813393583242" PointY="21.037161425340521" />
-                    <ConnectorPoint PointX="14.400813393583242" PointY="20.287822265625003" />
+                    <ConnectorPoint PointX="3.25" PointY="11.505114765534849" />
+                    <ConnectorPoint PointX="2.2996502537954164" PointY="11.505114765534849" />
+                    <ConnectorPoint PointX="2.2996502537954164" PointY="21.065845607974477" />
+                    <ConnectorPoint PointX="14.412962316807109" PointY="21.065845607974477" />
+                    <ConnectorPoint PointX="14.412962316807109" PointY="20.287822265625003" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.FK_Storage_ParentStorage" ManuallyRouted="true">
                     <ConnectorPoint PointX="11" PointY="13.196462665332469" />
@@ -2882,18 +2867,12 @@
                 </AssociationConnector>
                 <AssociationConnector Association="Data.Cap_Category_Int" ManuallyRouted="true">
                     <ConnectorPoint PointX="6.875" PointY="15.963248762743273" />
-                    <ConnectorPoint PointX="7.041666666666667" PointY="15.963248762743273" />
-                    <ConnectorPoint PointX="7.208333333333333" PointY="15.963248762743273" />
-                    <ConnectorPoint PointX="8.9166666666666661" PointY="15.963248762743273" />
-                    <ConnectorPoint PointX="9.0833333333333339" PointY="15.963248762743273" />
                     <ConnectorPoint PointX="9.12442106411719" PointY="15.963248762743273" />
                     <ConnectorPoint PointX="9.12442106411719" PointY="17.6159611845162" />
                     <ConnectorPoint PointX="10.875" PointY="17.6159611845162" />
                 </AssociationConnector>
                 <AssociationConnector Association="Data.Cap_Keyword_Int" ManuallyRouted="false">
                     <ConnectorPoint PointX="6.875" PointY="16.138073954289418" />
-                    <ConnectorPoint PointX="7.041666666666667" PointY="16.138073954289418" />
-                    <ConnectorPoint PointX="7.208333333333333" PointY="16.138073954289418" />
                     <ConnectorPoint PointX="8.92996706640349" PointY="16.138073954289418" />
                     <ConnectorPoint PointX="8.92996706640349" PointY="18.25" />
                 </AssociationConnector>
