@@ -3061,6 +3061,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Sound">Sound to be played whne message box is shown.</param>
 	<returns>Instance of message box. The instance is alredy closed when this function returns.</returns>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
+	<version version="1.5.4" stage="Beta">Fixed: Values in <paramref name="Items"/> are not processed. This bug affected may methods depending on this one.</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTIOWMHE(System.String,System.String,System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},System.Object[])">
 	<summary>Displays modal messagebox with given prompt, title, items, icon, options, owner, timer and show handler</summary>
 	<param name="Prompt">Prompt to be shown</param>
@@ -3073,6 +3074,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="ShownHandler">Delegate that will handle the <see cref="E:Tools.WindowsT.IndependentT.MessageBox.Shown"/> event of message box</param>
 	<returns>Instance of message box. The instance is alredy closed when this function returns.</returns>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
+	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that objects in <paramref name="Items"/> were not processed.</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTIWMHE(System.String,System.String,System.Drawing.Image,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},System.Object[])">
 	<summary>Displays modal message box with given prompt, title, icon, owner, timer, show ahndler and items</summary>
 	<param name="Prompt">Prompt to be shown</param>
@@ -3084,6 +3086,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="ShownHandler">Delegate that will handle the <see cref="E:Tools.WindowsT.IndependentT.MessageBox.Shown"/> event of message box</param>
 	<returns>Instance of message box. The instance is alredy closed when this function returns.</returns>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
+	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that objects in <paramref name="Items"/> were not processed.</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTIWMHB(System.String,System.String,System.Drawing.Image,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton[])">
 	<summary>Displays modal message box with given prompt, title, icon, owner, timer, show ahndler and buttons</summary>
 	<param name="Prompt">Prompt to be shown</param>
@@ -3096,6 +3099,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="ShownHandler">Delegate that will handle the <see cref="E:Tools.WindowsT.IndependentT.MessageBox.Shown"/> event of message box</param>
 	<returns>Instance of message box. The instance is alredy closed when this function returns.</returns>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
+	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that objects in <paramref name="Buttons"/> were not processed.</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTIWS(System.String,System.String,System.Drawing.Image,System.Object,System.Object[])">
 	<summary>Displays modal message box with given prompt, title, icon, owner and items</summary>
 	<param name="Prompt">Prompt to be shown</param>
@@ -3105,6 +3109,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Owner">The window message box window will be modal to (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/> If implementation does not recognize type of owner it ignores it.</param>
 	<returns>Instance of message box. The instance is alredy closed when this function returns.</returns>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
+	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that objects in <paramref name="Items"/> were not processed.</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTIWB(System.String,System.String,System.Drawing.Image,System.Object,Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton[])">
 	<summary>Displays modal message box with given prompt, title, icon and owner and buttons</summary>
 	<param name="Prompt">Prompt to be shown</param>
@@ -3115,12 +3120,14 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Owner">The window message box window will be modal to (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/> If implementation does not recognize type of owner it ignores it.</param>
 	<returns>Instance of message box. The instance is alredy closed when this function returns.</returns>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
+	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that objects in <paramref name="Buttons"/> were not processed.</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTS(System.String,System.String,System.Object[])">
 	<summary>Displays modal message box with given prompt, title and items</summary>
 	<param name="Prompt">Prompt to be shown</param>
 	<param name="Title">Message box title</param>
 	<param name="Items">Items to be shown in message box. Place items of type <see cref="T:Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton"/>, <see cref="T:Tools.WindowsT.IndependentT.MessageBox.MessageBoxCheckBox"/>, <see cref="T:Tools.WindowsT.IndependentT.MessageBox.MessageBoxRadioButton"/> and <see cref="T:System.String"/> here. <see cref="T:System.String"/> items are placed inside <see cref="P:Tools.WindowsT.IndependentT.MessageBox.ComboBox"/>. Items of other types are ignored.</param>
 	<returns>Instance of message box. The instance is alredy closed when this function returns.</returns>
+	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that objects in <paramref name="Items"/> were not processed.</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTB(System.String,System.String,Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton[])">
 	<summary>Displays modal message box with given prompt, title and buttons</summary>
 	<param name="Prompt">Prompt to be shown</param>
@@ -3128,6 +3135,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Buttons">Custom buttons. Each button should have different <see cref="P:Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Result"/>, so you can distinguish which button was clicked.</param>
 	<exception cref="T:System.ArgumentNullException"><paramref name="Buttons"/> is null</exception>
 	<returns>Instance of message box. The instance is alredy closed when this function returns.</returns>
+	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that objects in <paramref name="Buttons"/> were not processed.</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.Error_X(System.Exception)">
 	<summary>Displays modal message box with information about <see cref="T:System.Exception"/></summary>
 	<param name="ex">Exception to show <see cref="P:System.Exception.Message"/> of</param>
@@ -3167,6 +3175,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Owner">The window message box window will be modal to (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/> If implementation does not recognize type of owner it ignores it.</param>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
 	<version version="1.5.3" stage="Beta">Fix: <paramref name="Buttons"/> goes to prompt rather than forming buttons. Only OK button si always show.</version>
+	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that that messagebox was rendered without buttons.</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.Error_XTBWI(System.Exception,System.String,Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons,System.Object,Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons)">
 	<summary>Displays modal message box with information about <see cref="T:System.Exception"/></summary>
 	<param name="ex">Exception to show <see cref="P:System.Exception.Message"/> of</param>
@@ -3177,6 +3186,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Owner">The window message box window will be modal to (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/> If implementation does not recognize type of owner it ignores it.</param>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
 	<version version="1.5.3" stage="Beta">Fix: <paramref name="Buttons"/> goes to prompt rather than forming buttons. Only OK button si always show.</version>
+	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that messagebox was shown without buttons.</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.Error_XPTIBWO(System.Exception,System.String,System.String,Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons,Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons,System.Object,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions)">
 	<summary>Displays modal message box with information about <see cref="T:System.Exception"/></summary>
 	<param name="ex">Exception to show <see cref="P:System.Exception.Message"/> of</param>
@@ -3188,6 +3198,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Prompt">Prompt to be shown</param>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
 	<version version="1.5.3" stage="Beta">Fix: <paramref name="Buttons"/> goes to prompt rather than forming buttons. Only OK button si always show.</version>
+	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that messagebox was rendered without buttons.</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.SetButtons(Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton[])">
 	<summary>Replaces <see cref="P:Tools.WindowsT.IndependentT.MessageBox.Buttons"/> with given buttons</summary>
 	<param name="Buttons">New buttons</param>
@@ -3261,6 +3272,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<version version="1.5.2">Fixed: Some static functions throws exception when icon is not set or when default button is used (even implicitly)</version>
 	<version version="1.5.3">All owner parameters changed form <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support more types of owners - <see cref="T:System.Windows.Forms.IWin32Window"/>, <see cref="T:System.Windows.Window"/> and <see cref="T:System.Windows.Interop.IWin32Window"/>. Changes are required in derived classes to support this change and those new owners.</version>
 	<version version="1.5.4">WPF (<see cref="T:Tools.WindowsT.WPF.DialogsT.MessageBox"/>) and WinForms (<see cref="T:Tools.WindowsT.FormsT.MessageBox"/>) implementations changed to support any <see cref="T:System.Windows.DependencyObject"/> hosted in <see cref="T:System.Windows.Window"/> as owner.</version>
+	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> caused that some functions rendered messagebox without buttons (or checkboxes/radios/combobox items).</version>
 </member><member name="F:Tools.WindowsT.FormsT.LinkLabel._Items">
 	<summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.LinkLabel.Items"/> property</summary>
 </member><member name="M:Tools.WindowsT.FormsT.LinkLabel.#ctor">

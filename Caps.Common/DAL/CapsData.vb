@@ -867,7 +867,11 @@ Namespace Data
                                          HasBottom:=HasBottom, HasSide:=HasSide, AnotherPictures:=AnotherPictures, CategoryIDs:=CategoryIDs,
                                          Keywords:=Keywords, CountryOfOrigin:=CountryOfOrigin, IsDrink:=IsDrink, State:=State,
                                          TargetID:=TargetID, IsAlcoholic:=IsAlcoholic, CapSignIDs:=CapSignIDs)
-                Return Me.Translate(Of Cap)(r).ToArray
+                Dim ret = Me.Translate(Of Cap)(r, Caps.EntitySet.Name, Objects.MergeOption.AppendOnly).ToArray
+                'For Each entity In ret
+                '    Me.Attach(entity)
+                'Next
+                Return ret
             End Using
         End Function
 
