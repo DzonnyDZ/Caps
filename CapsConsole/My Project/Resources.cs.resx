@@ -786,7 +786,6 @@
   <data name="ex_SetUnknownStorage" xml:space="preserve">
     <value>Pokus o nastavení úložiště, který není v combo boxu.</value>
   </data>
-
   <data name="err_DeleteingOfSomeImagesFailed" xml:space="preserve">
     <value>Mazání některých obrázků selhalo:</value>
   </data>
@@ -956,7 +955,7 @@
     <value>Víčko uloženo</value>
   </data>
   <data name="msg_DatabaseVersionUpgrade" xml:space="preserve">
-    <value>Verze databáze je {0}. Aplikace {1} {2} požaduje databázi verze {3}. K dispozici je aktualizační skript pro verzi {0}. Přejete si upgradovat databázi?{4}Poznámka: Je možné, že po provedení upgradu bude verze databáze stále nekompatibilní s aktuální verzí aplikace a bude potřeba spustit další aktualizašní skript. Po upgradu již nebude možné používat databázi se starší verzí aplikace.</value>
+    <value>Verze databáze je {0}. Aplikace {1} {2} požaduje databázi verze {3}. K dispozici je aktualizační skript pro verzi {0}. Přejete si upgradovat databázi?{4}Poznámka: Je možné, že po provedení upgradu bude verze databáze stále nekompatibilní s aktuální verzí aplikace a bude potřeba spustit další aktualizační skript. Po upgradu již nebude možné používat databázi se starší verzí aplikace.</value>
   </data>
   <data name="txt_UpgradeDatabase" xml:space="preserve">
     <value>Upgrade databáze</value>
@@ -1223,5 +1222,8 @@ Dvakrát klikněte pro editaci.</value>
   </data>
   <data name="txt_ToManyCapSigns" xml:space="preserve">
     <value>Jedna značka byla vybrána vícekrát. Každá značka může být vybrána maximálně jednou.</value>
+  </data>
+  <data name="err_CanConvertOnlyFrom" xml:space="preserve">
+    <value>{0} může konvertovat jen z {1}</value>
   </data>
 </root>

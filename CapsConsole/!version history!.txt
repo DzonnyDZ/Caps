@@ -82,6 +82,8 @@
     * Supporting librarties from ĐTools project (http://tools.codeplex.com) are now compiled as part of project. This allows them to be always actual.
     * Fix: Check does not catch situation when image type is selected, but main imaghe description is not entered.
     * Actualized database version and database model.
+0.1.5.0
+    * Actualized and fixed Czech localization
     
 Pending issues:
 ===============

@@ -1076,7 +1076,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_D33BBBD8C97E41FC8030C96A52C2A540"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFiles64Folder][Manufacturer]\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
@@ -1136,7 +1136,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:CapsConsole"
         "ProductCode" = "8:{A314FFCE-FB21-4B1A-84AB-3D99322604F0}"
-        "PackageCode" = "8:{E7D72482-E4A9-42FA-860F-43A2BB4C95A9}"
+        "PackageCode" = "8:{D8075F7D-4AB1-4E27-94AA-99D7245AEA64}"
         "UpgradeCode" = "8:{9422DC31-0426-4AD4-BF27-D9914FF89259}"
         "AspNetVersion" = "8:4.0.21006.0"
         "RestartWWWService" = "11:FALSE"
@@ -1157,7 +1157,7 @@
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
-        "TargetPlatform" = "3:0"
+        "TargetPlatform" = "3:1"
         "PreBuildEvent" = "8:"
         "PostBuildEvent" = "8:"
         "RunPostBuildEvent" = "3:0"
