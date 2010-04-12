@@ -16,7 +16,7 @@ Imports System.ComponentModel
 Imports System.Xml.Serialization
 Imports System.Runtime.Serialization
 
-<Assembly: EdmSchemaAttribute("5f6d59c0-a345-4780-8319-10d8b1ad2b0f")>
+<Assembly: EdmSchemaAttribute("f56b5a44-0a3f-485b-8a4b-428b3426719b")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Company), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
@@ -60,6 +60,7 @@ Imports System.Runtime.Serialization
 <Assembly: EdmRelationshipAttribute("Data", "FK_Storage_StorageType", "StorageType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.StorageType), "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Storage), True)>
 <Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_Storage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Storage), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage), True)>
 <Assembly: EdmRelationshipAttribute("Data", "Cap_CapSign_Int", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), "CapSign", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapSign))>
+<Assembly: EdmRelationshipAttribute("Data", "Cap_PseudoCategory_Int", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), "PseudoCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.PseudoCategory))>
 <Assembly: EdmRelationshipAttribute("Data", "Cap_Category_Int", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Category))>
 <Assembly: EdmRelationshipAttribute("Data", "Cap_Keyword_Int", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), "Keyword", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Keyword))>
 
@@ -585,8 +586,8 @@ Namespace Data
         ''' <summary>
         ''' No Metadata Documentation available.
         ''' </summary>
-        Public Function Get_Cap_PseudoCategory_Int() As ObjectResult(Of Cap_PseudoCategory_Int)
-            Return MyBase.ExecuteFunction(Of Cap_PseudoCategory_Int)("Get_Cap_PseudoCategory_Int")
+        Public Function Get_Cap_PseudoCategory_Int() As Integer
+            Return MyBase.ExecuteFunction("Get_Cap_PseudoCategory_Int")
     
         End Function
     
@@ -635,6 +636,14 @@ Namespace Data
             End If
     
             Return MyBase.ExecuteFunction(Of Cap)("GetCapsOfPseudoCategory", mergeOption, pseudoCategoryIDParameter, sELECTParameter)
+    
+        End Function
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        Public Function AssignPseudocategories() As Integer
+            Return MyBase.ExecuteFunction("AssignPseudocategories")
     
         End Function
 
@@ -1997,6 +2006,24 @@ Namespace Data
             Set
                 If (Not value Is Nothing)
                     CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of CapSign)("Data.Cap_CapSign_Int", "CapSign", value)
+                End If
+            End Set
+        End Property
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <XmlIgnoreAttribute()>
+        <SoapIgnoreAttribute()>
+        <DataMemberAttribute()>
+        <EdmRelationshipNavigationPropertyAttribute("Data", "Cap_PseudoCategory_Int", "PseudoCategory")>
+         Public Property PseudoCategories() As EntityCollection(Of PseudoCategory)
+            Get
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of PseudoCategory)("Data.Cap_PseudoCategory_Int", "PseudoCategory")
+            End Get
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of PseudoCategory)("Data.Cap_PseudoCategory_Int", "PseudoCategory", value)
                 End If
             End Set
         End Property
@@ -4864,6 +4891,27 @@ Namespace Data
         End Sub
 
         #End Region
+        #Region "Navigation Properties"
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <XmlIgnoreAttribute()>
+        <SoapIgnoreAttribute()>
+        <DataMemberAttribute()>
+        <EdmRelationshipNavigationPropertyAttribute("Data", "Cap_PseudoCategory_Int", "Cap")>
+         Public Property Caps() As EntityCollection(Of Cap)
+            Get
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Cap)("Data.Cap_PseudoCategory_Int", "Cap")
+            End Get
+            Set
+                If (Not value Is Nothing)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Cap)("Data.Cap_PseudoCategory_Int", "Cap", value)
+                End If
+            End Set
+        End Property
+
+        #End Region
     End Class
     
     ''' <summary>
@@ -7395,112 +7443,6 @@ Namespace Data
                 End If
             End Set
         End Property
-
-        #End Region
-    End Class
-
-    #End Region
-    #Region "ComplexTypes"
-    
-    ''' <summary>
-    ''' No Metadata Documentation available.
-    ''' </summary>
-    <EdmComplexTypeAttribute(NamespaceName:="Data", Name:="Cap_PseudoCategory_Int")>
-    <DataContractAttribute(IsReference:=True)>
-    <Serializable()>
-    Public Partial Class Cap_PseudoCategory_Int
-        Inherits ComplexObject
-        #Region "Factory Method"
-    
-        ''' <summary>
-        ''' Create a new Cap_PseudoCategory_Int object.
-        ''' </summary>
-        ''' <param name="capID">Initial value of the CapID property.</param>
-        ''' <param name="pseudoCategoryID">Initial value of the PseudoCategoryID property.</param>
-        Public Shared Function CreateCap_PseudoCategory_Int(capID As Global.System.Int32, pseudoCategoryID As Global.System.Int32) As Cap_PseudoCategory_Int
-            Dim cap_PseudoCategory_Int as Cap_PseudoCategory_Int = New Cap_PseudoCategory_Int
-            cap_PseudoCategory_Int.CapID = capID
-            cap_PseudoCategory_Int.PseudoCategoryID = pseudoCategoryID
-            Return cap_PseudoCategory_Int
-        End Function
-
-        #End Region
-        #Region "Primitive Properties"
-    
-        ''' <summary>
-        ''' No Metadata Documentation available.
-        ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
-        <DataMemberAttribute()>
-        Public Property CapID() As Global.System.Int32
-            Protected Get
-                Return _CapID
-            End Get
-            Set
-                OnCapIDChanging(value)
-                ReportPropertyChanging("CapID")
-                _CapID = StructuralObject.SetValidValue(value)
-                ReportPropertyChanged("CapID")
-                OnCapIDChanged()
-            End Set
-        End Property
-    
-        Private _CapID As Global.System.Int32
-        Private Partial Sub OnCapIDChanging(value As Global.System.Int32)
-        End Sub
-    
-        Private Partial Sub OnCapIDChanged()
-        End Sub
-    
-        ''' <summary>
-        ''' No Metadata Documentation available.
-        ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
-        <DataMemberAttribute()>
-        Public Property PseudoCategoryID() As Global.System.Int32
-            Protected Get
-                Return _PseudoCategoryID
-            End Get
-            Set
-                OnPseudoCategoryIDChanging(value)
-                ReportPropertyChanging("PseudoCategoryID")
-                _PseudoCategoryID = StructuralObject.SetValidValue(value)
-                ReportPropertyChanged("PseudoCategoryID")
-                OnPseudoCategoryIDChanged()
-            End Set
-        End Property
-    
-        Private _PseudoCategoryID As Global.System.Int32
-        Private Partial Sub OnPseudoCategoryIDChanging(value As Global.System.Int32)
-        End Sub
-    
-        Private Partial Sub OnPseudoCategoryIDChanged()
-        End Sub
-    
-        ''' <summary>
-        ''' No Metadata Documentation available.
-        ''' </summary>
-        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
-        <DataMemberAttribute()>
-        Public Property Info() As Global.System.String
-            Protected Get
-                Return _Info
-            End Get
-            Set
-                OnInfoChanging(value)
-                ReportPropertyChanging("Info")
-                _Info = StructuralObject.SetValidValue(value, true)
-                ReportPropertyChanged("Info")
-                OnInfoChanged()
-            End Set
-        End Property
-    
-        Private _Info As Global.System.String
-        Private Partial Sub OnInfoChanging(value As Global.System.String)
-        End Sub
-    
-        Private Partial Sub OnInfoChanged()
-        End Sub
 
         #End Region
     End Class

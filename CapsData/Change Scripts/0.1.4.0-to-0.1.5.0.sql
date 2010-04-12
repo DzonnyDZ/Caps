@@ -59,179 +59,131 @@ CREATE PROCEDURE usp_RethrowError AS
         @ErrorLine       -- parameter: original error line number.
         );
 GO
-
----------------------------- Dependency --------------------------------------------------------------------------------
-PRINT 'CREATE TABLE dbo.Dependency';
+------------------------------- Procedure AssignPseudoCategories ---------------------------------------------
+PRINT 'CREATE PROCEDURE dbo.AssignPseudocategories';
 GO
-CREATE TABLE dbo.Dependency(
-	DependencyID int NOT NULL IDENTITY (1, 1),
-	PseudoCategoryID int NOT NULL,
-	[Table] nvarchar(255) NOT NULL,
-	[Column] nvarchar(255) NULL);
-GO
-ALTER TABLE dbo.Dependency ADD CONSTRAINT PK_Dependency PRIMARY KEY (DependencyID);
-GO
-ALTER TABLE dbo.Dependency ADD CONSTRAINT FK_Dependency_PseudoCategory FOREIGN KEY (PseudoCategoryID)
-	REFERENCES dbo.PseudoCategory (PseudoCategoryID) ON DELETE  CASCADE ;	
-GO
-ALTER TABLE [dbo].Dependency WITH CHECK ADD CONSTRAINT [CHK_Dependency_NoEmptyString]
-	CHECK ([Table] <> '' AND [Column] <> '');
-GO
-ALTER TABLE [dbo].Dependency CHECK CONSTRAINT [CHK_Dependency_NoEmptyString];
-GO
---Triggers
-PRINT 'CREATE TRIGGER [dbo].[Dependency_Instead_Ins]';
-GO
-CREATE TRIGGER [dbo].[Dependency_Instead_Ins] 
-   ON  [dbo].[Dependency] 
-   INSTEAD OF INSERT
-AS 
+--- <summary>Refreshes all <see cref="Cap"/>-<see cref="PseudoCategory"/> relations in the <see cref="Cap_PseudoCategory_Int"/> table</summary>
+CREATE PROCEDURE dbo.AssignPseudocategories
+AS
 BEGIN
-	SET NOCOUNT ON;
-	INSERT INTO dbo.Dependency (PseudoCategoryID,[Table], [Column])
-		OUTPUT INSERTED.*
-		SELECT PseudoCategoryID, dbo.EmptyStrToNull([Table]), dbo.EmptyStrToNull([Column])
-			FROM INSERTED;
-END;
-GO
-PRINT 'CREATE TRIGGER [dbo].[Dependency_Instead_Upd]';
-GO
-CREATE TRIGGER [dbo].[Dependency_Instead_Upd]
-   ON  [dbo].[Dependency] 
-   INSTEAD OF UPDATE
-AS 
-BEGIN
-	SET NOCOUNT ON;
-	UPDATE [dbo].Dependency
-		SET	PseudoCategoryID = i.PseudoCategoryID,
-			[Table] = dbo.EmptyStrToNull(i.[Table]),
-			[Column] = dbo.EmptyStrToNull(i.[Column])
-		FROM INSERTED AS i
-			WHERE Dependency.DependencyID = i.DependencyID;
-END;
-GO
-
------------------------ new Trigger on PseudoCategory -------------------------------------------------------------------------
-PRINT 'CREATE TRIGGER dbo.PseudoCategory_af_ins_upd';
-GO
-CREATE TRIGGER dbo.PseudoCategory_af_ins_upd
-   ON  [dbo].[PseudoCategory] 
-   AFTER INSERT, UPDATE
-AS 
-BEGIN
-	SET NOCOUNT ON;
-	IF NOT UPDATE(Condition) RETURN;
 	BEGIN TRANSACTION;
 	BEGIN TRY
-		DELETE FROM dbo.Cap_PseudoCategory_Int WHERE Cap_PseudoCategory_Int.PseudoCategoryID IN(SELECT PseudoCategoryID FROM INSERTED);
-		DECLARE ins CURSOR FOR SELECT i.PseudoCategoryID, i.Condition FROM INSERTED i;
-		OPEN ins;
-		DECLARE @PseudoCategoryID INT;
-		DECLARE @Condition NVARCHAR(1024);
-		FETCH ins INTO @PseudoCategoryID, @Condition;
-		WHILE @@FETCH_STATUS = 0 BEGIN
-			DECLARE @SELECT NVARCHAR = N'CapID, ' + CAST(@PseudoCategoryID AS NVARCHAR);
-			INSERT INTO dbo.Cap_PseudoCategory_Int (CapID, PseudoCategoryID)
-				EXEC dbo.GetCapsOfPseudoCategory @PseudoCategoryID, @SELECT;
-			FETCH ins INTO @PseudoCategoryID, @Condition;
-		END; 
-		CLOSE ins;
-		DEALLOCATE ins;
+		DELETE FROM dbo.Cap_PseudoCategory_Int;
+		INSERT INTO dbo.Cap_PseudoCategory_Int (CapID,PseudoCategoryID)
+			SELECT c.CapID, psc.PseudoCategoryID FROM dbo.Cap c CROSS JOIN dbo.PseudoCategory psc
+				WHERE dbo.IsCapInPseudoCategory(c.CapID,psc.Condition) = 1
 		COMMIT;
 	END TRY
 	BEGIN CATCH
 		ROLLBACK;
-		EXEC dbo.usp_RethrowError;
+		EXEC usp_RethrowError;
 		RETURN;
-	END CATCH;
-END;
+	END CATCH;			
+END
 GO
------------------------ Procedure GetPseudoCategoriesOfCap -------------------------
-PRINT 'CREATE PROCEDURE [dbo].[GetPseudoCategoriesOfCap]';
+----------------------------- Function IsCapInPseudoCategory -----------------------------------------------------------------------
+PRINT 'CREATE FUNCTION dbo.IsCapInPseudoCategory';
 GO
---- <summary>For given Cap gets all the pseudocategories it belongs to</summary>
---- <param name="CapID">ID of cap to get pseudocategories of</param>
---- <param name="SELECT">Text of SELECT clause of SELECT statement. Indicates column list to be returned from this procedure</param>
---- <returns>Result set containing all the categories of cap <paramref name="CapID"/>. Columns in result set depends on value of the <paramref name="SELECT"/> parameter</returns>
-CREATE PROCEDURE [dbo].[GetPseudoCategoriesOfCap]
+--- <summary>Tests if given Cap (represented by ID) belongs to given PseudoCategory (represented by condition)</summary>
+--- <param name="CapID">ID of Cap (<see cref="Cap.CapID"/>) to test</param>
+--- <param name="PseudoCategoryCondition">PseudoCategory condition - valid SQL code for WHERE clause</param>
+--- <returns>True when <paramref name="PseudoCategoryCondition"/> is tru for Cap <paramref name="CapID"/>; false otherwise</returns>
+CREATE FUNCTION dbo.IsCapInPseudoCategory
 (
 	@CapID INT,
-	@SELECT NVARCHAR(MAX) = '*'
+	@PseudoCategoryCondition NVARCHAR(1024)
 )
+RETURNS BIT
 AS
 BEGIN
-	DECLARE @PseudoCategoryIDs TABLE(PseudoCategoryID INT);
-	DECLARE @Cmd NVARCHAR(MAX);
-	DECLARE psc CURSOR FOR SELECT PseudoCategoryID, Condition FROM dbo.PseudoCategory;
-	DECLARE @PseudoCategoryID INT;
-	DECLARE @Condition NVARCHAR(1024);
-	OPEN psc;
-	FETCH psc INTO @PseudoCategoryID, @Condition;
-	WHILE @@FETCH_STATUS = 0 BEGIN
-		SET @Cmd = N'SELECT CASE
-			WHEN EXISTS(SELECT * FROM dbo.Cap WHERE CapID = ' + CAST(@CapID AS NVARCHAR) + N' (' + @Condition + N')) THEN
-				' + CAST(@PseudoCategoryID AS NVARCHAR) + '
-			ELSE NULL END';
-		INSERT INTO @PseudoCategoryIDs (PseudoCategoryID)
-			EXEC (@Cmd);
-		FETCH psc INTO @PseudoCategoryID, @Condition;
-	END;
-	CLOSE psc;
-	DEALLOCATE psc;
-	DECLARE @IDs dbo.IntTable;
-	INSERT INTO @IDs (Value) SELECT DISTINCT PseudoCategoryID FROM @PseudoCategoryIDs pci WHERE pci.PseudoCategoryID IS NOT NULL;
-	SET @Cmd = 'SELECT ' + @SELECT + ' FROM dbo.PseudoCategory WHERE PseudoCategoryID IN (SELECT Value FROM @IDs)';
-	EXEC sp_executesql @Cmd, N'@PseudoCategoryIDs dbo.IntTable READONLY', @IDs; 
+	DECLARE @Cmd NVARCHAR(MAX) = 'SELECT COUNT(*) INTO @Count FROM dbo.CapEx c WHERE c.CapID = @CapID AND (' + @PseudoCategoryCondition + ')'
+	DECLARE @Count INT;
+	EXEC sp_executesql @Cmd, N'@CapID INT, @Count INT OUT', @CapID, @Count;
+	IF @Count > 0 RETURN 1;
+	RETURN 0;
 END;
 GO
------------------------------- Procedure ResetCapPseudoCategories ----------------------------------------------------
-PRINT 'CREATE PROCEDURE dbo.ResetCapPseudoCategories';
-GO
---- <summary>Removes all pseudocategories of given caps and creates new pseudocategories based on current cap state</summary>
---- <param name="CapID">ID of cap to reset pseudocategories associations of</param>
-CREATE PROCEDURE dbo.ResetCapPseudoCategories
-(@CapID INT)
-AS
-BEGIN
-	SET NOCOUNT ON;
-	BEGIN TRANSACTION;
-	BEGIN TRY
-		DELETE FROM dbo.Cap_PseudoCategory_Int WHERE CapID = @CapID;
-		DECLARE @SELECT NVARCHAR(1024) = CAST(@CapID AS NVARCHAR) + ', PseudoCategoryID';
-		INSERT INTO dbo.Cap_PseudoCategory_Int (CapID, PseudoCategoryID)
-			EXEC dbo.GetPseudoCategoriesOfCap @CapID, @SELECT;
-		COMMIT;
-	END TRY
-	BEGIN CATCH
-		ROLLBACK;
-		EXEC dbo.usp_RethrowError;
-		RETURN;
-	END CATCH;	
-END;
-GO
----------------------------------- Procedure GetCapsOfPseudoCategory --------------------------------------------------
-PRINT 'ALTER PROCEDURE [dbo].[GetCapsOfPseudoCategory]';
-GO
---- <summary>Gets all the caps belonging to given pseudocategory</summary>
---- <param name="PseudoCategoryID">ID of pseudocategory to get caps of</param>
---- <param name="SELECT">Test of SELECT clause of SELECT command - column list of columns to be retireved from the <see cref="Cap"/> table</param>
---- <returns>Resultset containing all the caps belonging to pseudocategory <paramref name="PseudoCategoryID"/>. Columns in result set are defined by value of the <paramref name="SELECT"/> parameter</param>
-ALTER PROCEDURE [dbo].[GetCapsOfPseudoCategory] 
-(
-	@PseudoCategoryID int,
-	@SELECT NVARCHAR(MAX) = '*'
-)
+--------------------------------------- Function ColumnUpdated ------------------------------------------------------------------------------
+--PRINT  'CREATE FUNCTION ColumnUpdated';
+--GO
+----- <summary>Gets value indicating if column with given name of given table was updated by recent command</summary>
+----- <param name="Table">Name of table</param>
+----- <param name="Column">Name of column in table <paramref name="Table"/></param>
+----- <param name="UpdatedColumns">Value returned by <c>COLUMNS_UPDATED</c> inicating which columns were updated by recent commanmd</param>
+----- <param name="TableSchema">Name of schema table belongs to</param>
+----- <returns>True when column was updated by query, false otherwise</returns>
+--CREATE FUNCTION dbo.ColumnUpdated
+--(
+--	@Table NVARCHAR(256),
+--	@Column NVARCHAR(256),
+--	@UpdatedColumns VARBINARY,
+--	@TableSchema NVARCHAR(256) = 'dbo'
+--)
+--RETURNS BIT
+--AS
+--BEGIN
+--	DECLARE @ColumnID INT = COLUMNPROPERTY(OBJECT_ID(@TableSchema + '.' + @Table), @Column, 'ColumnID');
+--	DECLARE @ByteNumber INT = (@ColumnID - 1) % 8;
+--	DECLARE @Byte VARBINARY	= SUBSTRING(@UpdatedColumns, @ByteNumber + 1, 1);
+--	DECLARE @ColumnID_inByte INT = POWER(2, (@ColumnID - 1) % 8);
+--	IF @Byte & @ColumnID_inByte <> 0 RETURN 1;
+--	RETURN 0;
 
-AS
-BEGIN
-	DECLARE @Condition NVARCHAR(1024);
-	SET @Condition = (SELECT Condition FROM dbo.PseudoCategory pc  WHERE pc.PseudoCategoryID = @PseudoCategoryID);
-	DECLARE @Cmd NVARCHAR(MAX);
-	SET @Cmd = 'SELECT ' + @SELECT + ' FROM dbo.Cap WHERE ' + @Condition + '';
-	EXEC (@Cmd);
-END;
+--END;
 GO
-
+-------------------------------------------------- View CapEx -----------------------------------------------------------
+PRINT 'CREATE VIEW dbo.CapEx';
+GO
+CREATE VIEW [dbo].[CapEx]
+AS
+SELECT
+	c.*,
+	mt.TypeName AS [MainType.TypeName], mt.[Description] AS [MainType.Description],
+	ct.TypeName AS [CapType.TypeName], ct.Height AS [CapType.Height], ct.Size AS [CapType.Size], ct.Size2 AS [CapType.Size2],
+		ct.MainTypeID AS [CapType.MainTypeID], ct.MaterialID AS [CapType.MaterialID], ct.ShapeID AS [CapType.ShapeID],
+		ct.TargetID AS [CapType.TargetID],
+	[ct.mt].TypeName AS [CapType.MainType.TypeName], [ct.mt].[Description] AS [CapType.MainType.Description],
+	[ct.s].Name AS [CapType.Shape.Name], [ct.s].Size1Name AS [CapType.Shape.Size1Name], [ct.s].Size2Name AS [CapType.Shape.Size2Name],
+		[ct.s].[Description] AS [CapType.Shape.Description],
+	[ct.m].Name AS [CapType.Material.Name], [ct.m].[Description] AS [CapType.Material.Description],
+	[ct.t].Name AS [CapType.Target.Name], [ct.t].[Description] AS [CapType.Target.Description],
+	s.Name AS [Shape.Name], s.Size1Name AS [Shape.Size1Name], s.Size2Name AS [Shape.Size2Name], s.[Description] AS [Shape.Description],
+	m.Name AS [Material.Name], m.[Description] AS [Material.Description],
+	t.Name AS [Target.Name], t.[Description] AS [Target.Description],
+	cmp.CompanyName AS [Company.CompanyName], cmp.[Description] AS [Company.Description],
+	p.ProductName AS [Product.Name], p.ProductTypeID AS [Product.ProductTypeID], p.[Description] AS [Product.Description],
+	pt.ProductTypeName AS [ProductType.ProductTypeName], pt.IsAlcoholic AS [ProductType.IsAlcoholic], pt.IsDrink AS [ProductType.IsDrink],
+		pt.[Description] AS [ProductType.Description],
+	strg.StorageNumber AS [Storage.StorageNumber], strg.HasCaps AS [Storage.HasCaps], strg.StorageTypeID AS [Storage.StorageTypeID],
+		strg.ParentStorage AS [Storage.ParentStorage], strg.[Description] AS [Storage.Description],
+	st.Name AS [Storage.StorageType.Name], st.[Description] AS [Storage.StorageType.Description],
+	[strg.ps].StorageNumber AS [Storage.ParentStorage.StorageNumber], [strg.ps].HasCaps AS [Storage.ParentStorage.HasCaps],
+		[strg.ps].StorageTypeID AS [Storage.ParentStorage.StorageTypeID], [strg.ps].ParentStorage AS [Storage.ParentStorage.ParentStorage],
+		[strg.ps].[Description] AS [Storage.ParentStorage.Description]	
+	FROM dbo.Cap c
+		INNER JOIN dbo.MainType mt ON(c.MainTypeID = mt.MainTypeID)
+		LEFT OUTER JOIN dbo.CapType ct ON(c.CapTypeID = ct.CapTypeID)
+			LEFT OUTER JOIN dbo.MainType [ct.mt] ON (ct.MainTypeID = [ct.mt].MainTypeID)
+			LEFT OUTER JOIN dbo.Shape [ct.s] ON (ct.ShapeID = [ct.s].ShapeID)
+			LEFT OUTER JOIN dbo.Material [ct.m] ON (ct.MaterialID = [ct.m].MaterialID)
+			LEFT OUTER JOIN dbo.Target [ct.t] ON (ct.TargetID = [ct.t].TargetID)
+		INNER JOIN dbo.Shape s ON(c.ShapeID = s.ShapeID)
+		INNER JOIN dbo.Material m ON (c.MaterialID = m.MaterialID)
+		LEFT OUTER JOIN dbo.[Target] t ON(c.TargetID = t.TargetID)
+		
+		LEFT OUTER JOIN dbo.Company cmp ON(c.CompanyID = cmp.CompanyID)
+		LEFT OUTER JOIN dbo.Product p ON(p.ProductID = c.ProductID)
+		LEFT OUTER JOIN dbo.ProductType pt ON(c.ProductTypeID = pt.ProductTypeID)
+		
+		INNER JOIN dbo.Storage strg ON (c.StorageID = strg.StorageID)
+			INNER JOIN dbo.StorageType st ON(strg.StorageTypeID = st.StorageTypeID)
+			LEFT OUTER JOIN dbo.Storage [strg.ps] ON(strg.ParentStorage = [strg.ps].StorageID);
+GO
+---------------------------------------- DROPPING ------------------------------------------------------------------------------
+PRINT 'Dropping';
+DROP PROCEDURE dbo.[Get_Cap_PseudoCategory_Int];
+DROP PROCEDURE dbo.[Get_Cap_PseudoCategory_Int];
+--==============================================================================================================================
 --------------------------------------------------------------------------------------------------------------------------------
 --Increase version
 PRINT 'ALTER FUNCTION [dbo].[GetDatabaseVersion]';
