@@ -128,7 +128,7 @@ Partial Public Class winNewCap
             Select Case e.Mode
                 Case CapEditor.SaveMode.SaveAndClose : Me.Close()
                 Case CapEditor.SaveMode.SaveAndNext, CapEditor.SaveMode.SaveAndNew, CapEditor.SaveMode.NextNoSave, CapEditor.SaveMode.Reset
-                    .Reset()
+                    .Reset(False)
                 Case CapEditor.SaveMode.PreviousNoSave, CapEditor.SaveMode.SaveAndPrevious
                     If PrevLastSavedID.HasValue Then
                         Dim SubDialog As winCapEditor
@@ -136,7 +136,7 @@ Partial Public Class winNewCap
                             SubDialog = New winCapEditor(PrevLastSavedID)
                         Catch ex As ArgumentException
                             mBox.Error_XTW(ex, ex.GetType.Name, Me)
-                            .Reset()
+                            .Reset(False)
                             Exit Sub
                         End Try
                         My.Settings.winNewCapLoc = Me.GetWindowPosition
@@ -147,7 +147,7 @@ Partial Public Class winNewCap
                         Me.Close()
                     Else
                         mBox.MsgBox(My.Resources.err_NoPrevItem, MsgBoxStyle.Exclamation, My.Resources.txt_PreviousCap, Me)
-                        .Reset()
+                        .Reset(False)
                     End If
                 Case CapEditor.SaveMode.SaveAndNextNoClean
                     .ActualizeChangedLists()

@@ -84,6 +84,13 @@
     * Actualized database version and database model.
 0.1.5.0
     * Actualized and fixed Czech localization
+    * Fix: Create new ... findows in Cap editor aren't truly modal.
+    * When add sign button is clicked, newly added combobox gets focus.
+    * When creating new cap and Save & Next is pressed, window contains (after clear), one empty combobox for CapSign.
+    * Fix: Crash when deleting Cap
+    * Fix: Crash when deleting unused images
+    * Fix: Unused images of Cap Signs are not deleted
+    * Fix: Crash when deleting unused images and some folder does not exist
     
 Pending issues:
 ===============

@@ -31,6 +31,7 @@ Partial Public Class winEditors
         cmcProduct_ProductType.ItemsSource = CapsContext.ProductTypes
         cmcStorage_StorageType.ItemsSource = CapsContext.StorageTypes
         cmcTypes_Target.ItemsSource = CapsContext.Targets
+        cmcStorage_Parent.ItemsSource = CapsContext.Storages
     End Sub
 
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click

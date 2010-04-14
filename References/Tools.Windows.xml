@@ -684,6 +684,10 @@ resource lookups using this strongly typed resource class.
 	<summary>
 Looks up a localized string similar to 'About {0}'.
 </summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.InnerException">
+	<summary>
+Looks up a localized string similar to 'Inner exception: '.
+</summary>
 </member><member name="P:Tools.WindowsT.FormsT.Dialogs.NoEncodingSelected">
 	<summary>
 Looks up a localized string similar to 'No encoding selected'.
@@ -746,6 +750,11 @@ Formats a localized string similar to 'About {0}'.
 </summary>
 	<param name="arg0">An object (0) to format.</param>
 	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.InnerExceptionFormat">
+	<summary>
+The stub formatting method returning the InnerException property value.
+</summary>
+	<returns>The InnerException property value.</returns>
 </member><member name="M:Tools.WindowsT.FormsT.Dialogs.NoEncodingSelectedFormat">
 	<summary>
 The stub formatting method returning the NoEncodingSelected property value.
@@ -3141,24 +3150,36 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="ex">Exception to show <see cref="P:System.Exception.Message"/> of</param>
 	<returns>Indicates button clicked by user</returns>
 	<remarks>Title will contain <see cref="P:System.Reflection.MemberInfo.Name"/> of exception</remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="ex"/> is nulll</exception>
+	<version version="1.5.4">Message from inner exceptions is shown as well</version>
+	<version version="1.5.4"><see cref="T:System.ArgumentNullException"/> is thrown when <paramref name="ex"/> is null (instead of <see cref="T:System.NullReferenceException"/>)</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.Error_XT(System.Exception,System.String)">
 	<summary>Displays modal message box with information about <see cref="T:System.Exception"/> and custom title</summary>
 	<param name="ex">Exception to show <see cref="P:System.Exception.Message"/> of</param>
 	<param name="Title">Message box title</param>
 	<returns>Indicates button clicked by user</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="ex"/> is nulll</exception>
+	<version version="1.5.4">Message from inner exceptions is shown as well</version>
+	<version version="1.5.4"><see cref="T:System.ArgumentNullException"/> is thrown when <paramref name="ex"/> is null (instead of <see cref="T:System.NullReferenceException"/>)</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.Error_XTW(System.Exception,System.String,System.Object)">
 	<summary>Displays modal message box with information about <see cref="T:System.Exception"/> with given title and owner</summary>
 	<param name="ex">Exception to show <see cref="P:System.Exception.Message"/> of</param>
 	<param name="Title">Message box title</param>
 	<param name="Owner">The window message box window will be modal to (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/> If implementation does not recognize type of owner it ignores it.</param>
 	<returns>Indicates button clicked by user</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="ex"/> is nulll</exception>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
+	<version version="1.5.4">Message from inner exceptions is shown as well</version>
+	<version version="1.5.4"><see cref="T:System.ArgumentNullException"/> is thrown when <paramref name="ex"/> is null (instead of <see cref="T:System.NullReferenceException"/>)</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.Error_XBI(System.Exception,Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons,Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons)">
 	<summary>Displays modal message box with information about <see cref="T:System.Exception"/></summary>
 	<param name="ex">Exception to show <see cref="P:System.Exception.Message"/> of</param>
 	<param name="Buttons">Defines which buttons will be available to user</param>
 	<param name="Icon">Defines one of predefined icons to show to user. Actual image is obtained via <see cref="P:Tools.WindowsT.IndependentT.MessageBox.GetIconDelegate"/></param>
 	<returns>Indicates button clicked by user</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="ex"/> is nulll</exception>
+	<version version="1.5.4">Message from inner exceptions is shown as well</version>
+	<version version="1.5.4"><see cref="T:System.ArgumentNullException"/> is thrown when <paramref name="ex"/> is null (instead of <see cref="T:System.NullReferenceException"/>)</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.Error_XTBI(System.Exception,System.String,Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons,Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons)">
 	<summary>Displays modal message box with information about <see cref="T:System.Exception"/></summary>
 	<param name="ex">Exception to show <see cref="P:System.Exception.Message"/> of</param>
@@ -3166,6 +3187,9 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Buttons">Defines which buttons will be available to user</param>
 	<param name="Icon">Defines one of predefined icons to show to user. Actual image is obtained via <see cref="P:Tools.WindowsT.IndependentT.MessageBox.GetIconDelegate"/></param>
 	<returns>Indicates button clicked by user</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="ex"/> is nulll</exception>
+	<version version="1.5.4">Message from inner exceptions is shown as well</version>
+	<version version="1.5.4"><see cref="T:System.ArgumentNullException"/> is thrown when <paramref name="ex"/> is null (instead of <see cref="T:System.NullReferenceException"/>)</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.Error_XBWI(System.Exception,Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons,System.Object,Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons)">
 	<summary>Displays modal message box with information about <see cref="T:System.Exception"/></summary>
 	<param name="ex">Exception to show <see cref="P:System.Exception.Message"/> of</param>
@@ -3173,20 +3197,26 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Icon">Defines one of predefined icons to show to user. Actual image is obtained via <see cref="P:Tools.WindowsT.IndependentT.MessageBox.GetIconDelegate"/></param>
 	<returns>Indicates button clicked by user</returns>
 	<param name="Owner">The window message box window will be modal to (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/> If implementation does not recognize type of owner it ignores it.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="ex"/> is null</exception>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
 	<version version="1.5.3" stage="Beta">Fix: <paramref name="Buttons"/> goes to prompt rather than forming buttons. Only OK button si always show.</version>
 	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that that messagebox was rendered without buttons.</version>
+	<version version="1.5.4">Message from inner exceptions is shown as well</version>
+	<version version="1.5.4"><see cref="T:System.ArgumentNullException"/> is thrown when <paramref name="ex"/> is null (instead of <see cref="T:System.NullReferenceException"/>)</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.Error_XTBWI(System.Exception,System.String,Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons,System.Object,Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons)">
 	<summary>Displays modal message box with information about <see cref="T:System.Exception"/></summary>
 	<param name="ex">Exception to show <see cref="P:System.Exception.Message"/> of</param>
 	<param name="Title">Message box title</param>
 	<param name="Buttons">Defines which buttons will be available to user</param>
 	<param name="Icon">Defines one of predefined icons to show to user. Actual image is obtained via <see cref="P:Tools.WindowsT.IndependentT.MessageBox.GetIconDelegate"/></param>
-	<returns>Indicates button clicked by user</returns>
 	<param name="Owner">The window message box window will be modal to (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/> If implementation does not recognize type of owner it ignores it.</param>
+	<returns>Indicates button clicked by user</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="ex"/> is nulll</exception>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
 	<version version="1.5.3" stage="Beta">Fix: <paramref name="Buttons"/> goes to prompt rather than forming buttons. Only OK button si always show.</version>
 	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that messagebox was shown without buttons.</version>
+	<version version="1.5.4">Message from inner exceptions is shown as well</version>
+	<version version="1.5.4"><see cref="T:System.ArgumentNullException"/> is thrown when <paramref name="ex"/> is null (instead of <see cref="T:System.NullReferenceException"/>)</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.Error_XPTIBWO(System.Exception,System.String,System.String,Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons,Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons,System.Object,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions)">
 	<summary>Displays modal message box with information about <see cref="T:System.Exception"/></summary>
 	<param name="ex">Exception to show <see cref="P:System.Exception.Message"/> of</param>
@@ -3196,9 +3226,18 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<returns>Indicates button clicked by user</returns>
 	<param name="Owner">The window message box window will be modal to (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/> If implementation does not recognize type of owner it ignores it.</param>
 	<param name="Prompt">Prompt to be shown</param>
+	<param name="Options">Dialog options</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="ex"/> is null</exception>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
 	<version version="1.5.3" stage="Beta">Fix: <paramref name="Buttons"/> goes to prompt rather than forming buttons. Only OK button si always show.</version>
 	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> (which this method depends on) caused that messagebox was rendered without buttons.</version>
+	<version version="1.5.4">Message from inner exceptions is shown as well</version>
+	<version version="1.5.4"><see cref="T:System.ArgumentNullException"/> is thrown when <paramref name="ex"/> is null (instead of <see cref="T:System.NullReferenceException"/>)</version>
+</member><member name="M:Tools.WindowsT.IndependentT.MessageBox.GetErrorMessage(System.Exception)">
+	<summary>Gets composed error message for given <see cref="T:System.Exception"/> and all inner exceptions</summary>
+	<param name="ex">Exception to get message for</param>
+	<returns><paramref name="ex"/>.<see cref="P:System.Exception.Message">Message</see> and <see cref="P:System.Exception.Message">messages</see> of all <see cref="P:System.Exception.InnerException">inner exceptions</see>, separated by new line and localized text "Inner exception: ".</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="ex"/> is null</exception>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.SetButtons(Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton[])">
 	<summary>Replaces <see cref="P:Tools.WindowsT.IndependentT.MessageBox.Buttons"/> with given buttons</summary>
 	<param name="Buttons">New buttons</param>
@@ -3273,6 +3312,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<version version="1.5.3">All owner parameters changed form <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support more types of owners - <see cref="T:System.Windows.Forms.IWin32Window"/>, <see cref="T:System.Windows.Window"/> and <see cref="T:System.Windows.Interop.IWin32Window"/>. Changes are required in derived classes to support this change and those new owners.</version>
 	<version version="1.5.4">WPF (<see cref="T:Tools.WindowsT.WPF.DialogsT.MessageBox"/>) and WinForms (<see cref="T:Tools.WindowsT.FormsT.MessageBox"/>) implementations changed to support any <see cref="T:System.Windows.DependencyObject"/> hosted in <see cref="T:System.Windows.Window"/> as owner.</version>
 	<version version="1.5.4">Fix: Bug in <see cref="M:Tools.WindowsT.IndependentT.MessageBox.ModalEx_PTEIOWMHS(System.String,System.String,System.Collections.Generic.IEnumerable{System.Object},System.Drawing.Image,Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions,System.Object,System.Int32,Tools.EventHandler{Tools.WindowsT.IndependentT.MessageBox,System.EventArgs},Tools.MediaT.Sound)"/> caused that some functions rendered messagebox without buttons (or checkboxes/radios/combobox items).</version>
+	<version version="1.5.4">The <c>Error_xxx</c> methods now show inner exception message as well and throw <see cref="T:System.ArgumentNullException"/> (instead of <see cref="T:System.NullReferenceException"/>) when exception is null.</version>
 </member><member name="F:Tools.WindowsT.FormsT.LinkLabel._Items">
 	<summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.LinkLabel.Items"/> property</summary>
 </member><member name="M:Tools.WindowsT.FormsT.LinkLabel.#ctor">
@@ -4323,6 +4363,28 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Owner">Owner <see cref="T:System.Windows.Window"/> or element in <see cref="T:System.Windows.Window"/> to show <paramref name="Window"/> modally against.</param>
 	<remarks>If <paramref name="Owner"/> is null or <paramref name="Owner"/> is not of type <see cref="T:System.Windows.Window"/> and function <see cref="M:Tools.WindowsT.WPF.WpfExtensions.GetParent(System.Windows.DependencyObject)"/> cannot find parent <see cref="T:System.Windows.Window"/> of <paramref name="Owner"/>, <paramref name="Owner"/> is ignored and original <see cref="P:System.Windows.Window.Owner"/> is kept.</remarks>
 	<version stage="Nightly" version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.FindVisualChild(System.Windows.DependencyObject,System.Func{System.Windows.DependencyObject,System.Boolean})">
+	<summary>Finds first visual child of given <see cref="T:System.Windows.DependencyObject"/> which conforms to given condition</summary>
+	<param name="parent">A <see cref="T:System.Windows.DependencyObject"/> to search for visual child of</param>
+	<param name="condition">Function evaluated for each visual child of <paramref name="parent"/> until conforming child is found</param>
+	<returns>First visual child of <paramref name="parent"/> for which <paramref name="condition"/> returns true; null when no such child can be found</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="parent"/> is null -or- <paramref name="condition"/> is null</exception>
+	<version version="1.3.5" stage="Nightly">This function is new in version 1.3.5</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.FindVisualChild``1(System.Windows.DependencyObject)">
+	<summary>Finds first visual child of given <see cref="T:System.Windows.DependencyObject"/> of specific type</summary>
+	<param name="parent">A <see cref="T:System.Windows.DependencyObject"/> to search for visual child of</param>
+	<typeparam name="T">Type of child to search for</typeparam>
+	<returns>First visual child of <paramref name="parent"/> which is of type <typeparamref name="T"/>; null when no such child can be found</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="parent"/> is null</exception>
+	<version version="1.3.5" stage="Nightly">This function is new in version 1.3.5</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.FindVisualChild``1(System.Windows.DependencyObject,System.Func{``0,System.Boolean})">
+	<summary>Finds first visual child of given <see cref="T:System.Windows.DependencyObject"/> of specific type which conforms to given condition</summary>
+	<param name="parent">A <see cref="T:System.Windows.DependencyObject"/> to search for visual child of</param>
+	<param name="condition">Function evaluated for each visual child of <paramref name="parent"/> which is of type <typeparamref name="T"/> until conforming child is found</param>
+	<typeparam name="T">Type of child to search for</typeparam>
+	<returns>First visual child of <paramref name="parent"/> which is of type <typeparamref name="T"/> and which conforms to <paramref name="condition"/>; null when no such child can be found</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="parent"/> is null -or- <paramref name="condition"/> is null</exception>
+	<version version="1.3.5" stage="Nightly">This function is new in version 1.3.5</version>
 </member><member name="T:Tools.WindowsT.WPF.WpfExtensions">
 	<summary>Contains varios extenstion functions related to Windows Presentation Foundation</summary>
 	<version version="1.5.2">Module introduced</version>

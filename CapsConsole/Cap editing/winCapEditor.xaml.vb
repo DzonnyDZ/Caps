@@ -190,7 +190,7 @@ GetNextCap:
                     Me.Close()
                 Else
                     Me.Cap = CapToLoad
-                    caeEditor.Reset()
+                    caeEditor.Reset(True)
                     caeEditor.Initialize(True)
                     Me.DataContext = Cap
                     caeEditor.Keywords = From kw In Cap.Keywords Select kw.KeywordName

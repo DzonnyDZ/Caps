@@ -163,7 +163,7 @@ Partial Public Class CapEditor
             cmbMainType.ItemsSource = New ListWithEvents(Of MainType)(From item In Context.MainTypes Order By item.TypeName)
             cmbShape.ItemsSource = New ListWithEvents(Of Shape)(From item In Context.Shapes Order By item.Name)
             cmbMaterial.ItemsSource = New ListWithEvents(Of Material)(From item In Context.Materials Order By item.Name)
-            cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Order By item.StorageNumber)
+            cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Where Storage.HasCaps Order By item.StorageNumber)
             cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
             cmbTarget.ItemsSource = New ListWithEvents(Of Target)(From item In Context.Targets Order By item.Name)
             AllCapSigns.Clear()
@@ -218,7 +218,7 @@ Partial Public Class CapEditor
 
 #Region "New..."
     Private Sub btnNewMainType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMainType.Click
-        Using win As New winNewMainType()
+        Using win As New winNewMainType() With {.Owner = Me.FindAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As MainType = win.GetNewObject(Context)
                 DirectCast(cmbMainType.ItemsSource, ListWithEvents(Of MainType)).Add(newObject)
@@ -229,7 +229,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub cmbNewShape_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmdNewShape.Click
-        Using win As New winNewShape()
+        Using win As New winNewShape() With {.Owner = Me.FindAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As Shape = win.GetNewObject(Context)
                 DirectCast(cmbShape.ItemsSource, ListWithEvents(Of Shape)).Add(newObject)
@@ -240,7 +240,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewMaterial_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMaterial.Click
-        Using win As New winNewSimple(Of Material)
+        Using win As New winNewSimple(Of Material) With {.Owner = Me.FindAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As Material = win.GetNewObject(Context)
                 Context.Attach(newObject)
@@ -252,7 +252,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewStorage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewStorage.Click
-        Using win As New winNewStorage()
+        Using win As New winNewStorage(CheckBoxState.Checked Or CheckBoxState.Visible) With {.Owner = Me.FindAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As Storage = win.GetNewObject(Context)
                 DirectCast(cmbStorage.ItemsSource, ListWithEvents(Of Storage)).Add(newObject)
@@ -263,7 +263,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewProductType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewProductType.Click
-        Using win As New winNewSimple(Of ProductType)
+        Using win As New winNewSimple(Of ProductType) With {.Owner = Me.FindAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As ProductType = win.GetNewObject(Context)
                 DirectCast(cmbProductType.ItemsSource, ListWithEvents(Of ProductType)).Add(newObject)
@@ -274,7 +274,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewCompany_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCompany.Click
-        Using win As New winNewSimple(Of Company)
+        Using win As New winNewSimple(Of Company) With {.Owner = Me.FindAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As Company = win.GetNewObject(Context)
                 DirectCast(cmbCompany.ItemsSource, ListWithEvents(Of Company)).Add(newObject)
@@ -285,7 +285,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewCategory_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCategory.Click
-        Using win As New winNewSimple(Of Category)
+        Using win As New winNewSimple(Of Category) With {.Owner = Me.FindAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As Category = win.GetNewObject(Context)
                 DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(New CategoryProxy(newObject, True))
@@ -296,7 +296,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewSign_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewSign.Click
-        Using win As New winNewSign()
+        Using win As New winNewSign() With {.Owner = Me.FindAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As CapSign = win.GetNewObject(Context)
                 AllCapSigns.Add(newObject)
@@ -317,9 +317,9 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewTarget_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewTarget.Click
-        Using win As New winNewSimple(Of Target)
+        Using win As New winNewSimple(Of Target) With {.Owner = Me.FindAncestor(Of Window)()}
             If win.ShowDialog Then
-                Dim newObject = win.GetNewObject(Context)
+                Dim newObject As Target = win.GetNewObject(Context)
                 DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(newObject)
                 cmbTarget.Items.Refresh()
                 cmbTarget.SelectedItem = newObject
@@ -348,6 +348,10 @@ Partial Public Class CapEditor
     Private Sub btnAddSign_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnAddSign.Click
         _SelectedCapSigns.Add(New CapSignProxy)
         InternalSetSelectedCapSigns()
+        AddHandler DirectCast(icSigns.ItemContainerGenerator.ContainerFromIndex(icSigns.Items.Count - 1), ContentPresenter).Loaded,
+            Sub(isender As ContentPresenter, ie As RoutedEventArgs)
+                isender.FindVisualChild(Of ComboBox).Focus()
+            End Sub
     End Sub
 
     Private Sub cmbSign_SelectionChanged(ByVal sender As System.Object, ByVal e As System.Windows.Controls.SelectionChangedEventArgs)
@@ -2723,9 +2727,10 @@ Partial Public Class CapEditor
         Try
             Dim iSelectedCapSigns As ListWithEvents(Of CapSignProxy) = icSigns.ItemsSource
             iSelectedCapSigns.Clear()
-            iSelectedCapSigns.AddRange(From itm In AllCapSigns
-                                   Where (From base In DirectCast(e.NewValue, IEnumerable(Of CapSign)) Select base.CapSignID).Contains(itm.CapSignID)
-                                   Select CType(itm, CapSignProxy))
+            iSelectedCapSigns.AddRange(
+            From itm In AllCapSigns
+                Where (From base In DirectCast(e.NewValue, IEnumerable(Of CapSign)) Select base.CapSignID).Contains(itm.CapSignID)
+                Select CType(itm, CapSignProxy))
         Finally
             OnSelectedCapSignsChangedOnStack = False
         End Try
@@ -3249,7 +3254,8 @@ Resize256:      Try
     End Sub
 
     ''' <summary>Resets values of editor</summary>
-    Public Sub Reset()
+    ''' <param name="ForBinding">True whan this instance will be databound, false if not</param>
+    Public Sub Reset(ByVal ForBinding As Boolean)
         txtCapName.Text = ""
         txtMainText.Text = ""
         txtSubTitle.Text = ""
@@ -3302,7 +3308,10 @@ Resize256:      Try
 
         SelectedCategories = New Category() {}
         Keywords = New String() {}
+
         SelectedCapSigns = New CapSign() {}
+        If Not ForBinding Then _SelectedCapSigns.Add(New CapSignProxy) : InternalSetSelectedCapSigns()
+
         Images.Clear()
         ActualizeChangedLists()
 

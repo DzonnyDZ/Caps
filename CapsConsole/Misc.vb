@@ -304,3 +304,15 @@ Friend Module Misc
         tPrp.GetValue(context, Nothing).AddObject(entity)
     End Sub
 End Module
+
+
+''' <summary>Flags defining various propertires of <see cref="CheckBox"/></summary>
+<Flags()>
+Public Enum CheckBoxState
+    ''' <summary><see cref="CheckBox.IsChecked"/></summary>
+    Checked = 1
+    ''' <summary><see cref="CheckBox.IsEnabled"/></summary>
+    Enabled = 2
+    ''' <summary><see cref="CheckBox.Visibility"/></summary>
+    Visible = 4
+End Enum

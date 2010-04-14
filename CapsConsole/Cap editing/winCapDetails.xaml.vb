@@ -25,7 +25,8 @@ Partial Public Class winCapDetails
 
         Dim osi As Integer = lstCaps.SelectedIndex
         Dim Context As New CapsDataContext(Main.EntityConnection)
-        Dim CapsToDel = (From ccap In Context.Caps Where (From cap As Cap In lstCaps.SelectedItems Select cap.CapID).Contains(ccap.CapID)).ToArray
+        Dim selectedIDs = (From cap As Cap In lstCaps.SelectedItems Select cap.CapID).ToArray
+        Dim CapsToDel = (From ccap In Context.Caps Where selectedIDs.Contains(ccap.CapID)).ToArray
         Context.Caps.DeleteObjects(CapsToDel)
         Try
             Context.SaveChanges()

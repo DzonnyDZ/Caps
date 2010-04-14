@@ -183,6 +183,11 @@ GO
 PRINT 'Dropping';
 DROP PROCEDURE dbo.[Get_Cap_PseudoCategory_Int];
 DROP PROCEDURE dbo.[Get_Cap_PseudoCategory_Int];
+
+------------------------------------------------- Constraints   ----------------------------------------------------------------
+PRINT 'Constraints';
+EXECUTE sp_rename N'dbo.Storage.ParentStorage', N'ParentStorageID', 'COLUMN';
+ALTER TABLE dbo.Storage ADD CONSTRAINT CHK_Storage_NoSelfParent CHECK (StorageID <> ParentStorage);
 --==============================================================================================================================
 --------------------------------------------------------------------------------------------------------------------------------
 --Increase version

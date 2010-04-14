@@ -1543,4 +1543,23 @@ Doubleclick to edit.</value>
   <data name="err_CanConvertOnlyFrom" xml:space="preserve">
     <value>{0} can convert only from {1}</value>
   </data>
+  <data name="lbl_SignImages" xml:space="preserve">
+    <value>Cap sing images ({0})</value>
+  </data>
+  <data name="coh_HasCaps" xml:space="preserve">
+    <value>Has caps</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Parent" xml:space="preserve">
+    <value>Parent</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="lbl_HasCaps" xml:space="preserve">
+    <value>Has caps</value>
+    <comment>Check box label</comment>
+  </data>
+  <data name="lbl_Parent" xml:space="preserve">
+    <value>Parent</value>
+    <comment>Label text</comment>
+  </data>
 </root>

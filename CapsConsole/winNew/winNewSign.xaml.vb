@@ -7,7 +7,6 @@ Imports Caps.Data
 Partial Public Class winNewSign
     Inherits CreateNewObjectDialogBase(Of CapSign)
     ''' <summary>CTor</summary>
-    ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
     Public Sub New()
         InitializeComponent()
     End Sub
@@ -70,4 +69,6 @@ Partial Public Class winNewSign
             txtImagePath.Text = dlg.FileName
         End If
     End Sub
+
+
 End Class

@@ -16,7 +16,7 @@ Imports System.ComponentModel
 Imports System.Xml.Serialization
 Imports System.Runtime.Serialization
 
-<Assembly: EdmSchemaAttribute("f56b5a44-0a3f-485b-8a4b-428b3426719b")>
+<Assembly: EdmSchemaAttribute("c800abcd-783a-4ce5-941a-74908acc10df")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Company), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
@@ -56,7 +56,7 @@ Imports System.Runtime.Serialization
 <Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Storage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Storage), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
 <Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_StorageType", "StorageType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.StorageType), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
 <Assembly: EdmRelationshipAttribute("Data", "FK_SimpleTranslation_Target", "Target", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Target), "SimpleTranslation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.SimpleTranslation), True)>
-<Assembly: EdmRelationshipAttribute("Data", "FK_Storage_ParentStorage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Storage), "Storage1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Storage), True)>
+<Assembly: EdmRelationshipAttribute("Data", "FK_Storage_ParentStorage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Storage), "ParentStorage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Storage), True)>
 <Assembly: EdmRelationshipAttribute("Data", "FK_Storage_StorageType", "StorageType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, GetType(Data.StorageType), "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Storage), True)>
 <Assembly: EdmRelationshipAttribute("Data", "FK_StoredImage_Storage", "Storage", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Storage), "StoredImage", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.StoredImage), True)>
 <Assembly: EdmRelationshipAttribute("Data", "Cap_CapSign_Int", "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), "CapSign", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.CapSign))>
@@ -2259,7 +2259,7 @@ Namespace Data
             Get
                 Return _DateCreated
             End Get
-            Set
+            Private Set
                 OnDateCreatedChanging(value)
                 ReportPropertyChanging("DateCreated")
                 _DateCreated = StructuralObject.SetValidValue(value)
@@ -6384,24 +6384,24 @@ Namespace Data
         ''' </summary>
         <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
         <DataMemberAttribute()>
-        Public Property ParentStorage() As Nullable(Of Global.System.Int32)
+        Public Property ParentStorageID() As Nullable(Of Global.System.Int32)
             Get
-                Return _ParentStorage
+                Return _ParentStorageID
             End Get
             Set
-                OnParentStorageChanging(value)
-                ReportPropertyChanging("ParentStorage")
-                _ParentStorage = StructuralObject.SetValidValue(value)
-                ReportPropertyChanged("ParentStorage")
-                OnParentStorageChanged()
+                OnParentStorageIDChanging(value)
+                ReportPropertyChanging("ParentStorageID")
+                _ParentStorageID = StructuralObject.SetValidValue(value)
+                ReportPropertyChanged("ParentStorageID")
+                OnParentStorageIDChanged()
             End Set
         End Property
     
-        Private _ParentStorage As Nullable(Of Global.System.Int32)
-        Private Partial Sub OnParentStorageChanging(value As Nullable(Of Global.System.Int32))
+        Private _ParentStorageID As Nullable(Of Global.System.Int32)
+        Private Partial Sub OnParentStorageIDChanging(value As Nullable(Of Global.System.Int32))
         End Sub
     
-        Private Partial Sub OnParentStorageChanged()
+        Private Partial Sub OnParentStorageIDChanged()
         End Sub
     
         ''' <summary>
@@ -6492,14 +6492,14 @@ Namespace Data
         <XmlIgnoreAttribute()>
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
-        <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Storage_ParentStorage", "Storage1")>
-         Public Property Storage1() As EntityCollection(Of Storage)
+        <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Storage_ParentStorage", "ParentStorage")>
+         Public Property ChildStorages() As EntityCollection(Of Storage)
             Get
-                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Storage)("Data.FK_Storage_ParentStorage", "Storage1")
+                Return CType(Me,IEntityWithRelationships).RelationshipManager.GetRelatedCollection(Of Storage)("Data.FK_Storage_ParentStorage", "ParentStorage")
             End Get
             Set
                 If (Not value Is Nothing)
-                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Storage)("Data.FK_Storage_ParentStorage", "Storage1", value)
+                    CType(Me, IEntityWithRelationships).RelationshipManager.InitializeRelatedCollection(Of Storage)("Data.FK_Storage_ParentStorage", "ParentStorage", value)
                 End If
             End Set
         End Property
@@ -6511,7 +6511,7 @@ Namespace Data
         <SoapIgnoreAttribute()>
         <DataMemberAttribute()>
         <EdmRelationshipNavigationPropertyAttribute("Data", "FK_Storage_ParentStorage", "Storage")>
-        Public Property Storage2() As Storage
+        Public Property ParentStorage() As Storage
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_Storage_ParentStorage", "Storage").Value
             End Get
@@ -6524,7 +6524,7 @@ Namespace Data
         ''' </summary>
         <BrowsableAttribute(False)>
         <DataMemberAttribute()>
-        Public Property Storage2Reference() As EntityReference(Of Storage)
+        Public Property ParentStorageReference() As EntityReference(Of Storage)
             Get
                 Return CType(Me, IEntityWithRelationships).RelationshipManager.GetRelatedReference(Of Storage)("Data.FK_Storage_ParentStorage", "Storage")
             End Get

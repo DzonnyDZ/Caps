@@ -205,13 +205,15 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
         Dim pCapType = IO.Path.Combine(My.Settings.ImageRoot, "CapType")
         Dim pMainType = IO.Path.Combine(My.Settings.ImageRoot, "MainType")
         Dim pShape = IO.Path.Combine(My.Settings.ImageRoot, "Shape")
+        Dim pCapSign = IO.Path.Combine(My.Settings.ImageRoot, "CapSign")
 
-        Dim del256 = From file In IO.Directory.GetFiles(p256) Where (From img In Me.Context.Images Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0
-        Dim del64 = From file In IO.Directory.GetFiles(p64) Where (From img In Me.Context.Images Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0
-        Dim delOriginal = From file In IO.Directory.GetFiles(pOriginal) Where (From img In Me.Context.Images Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0
-        Dim delCapType = From file In IO.Directory.GetFiles(pCapType) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From ct In Me.Context.CapTypes Where ct.CapTypeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0
-        Dim delMainType = From file In IO.Directory.GetFiles(pMainType) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From mt In Me.Context.MainTypes Where mt.MainTypeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0
-        Dim delShape = From file In IO.Directory.GetFiles(pShape) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From sh In Me.Context.Shapes Where sh.ShapeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0
+        Dim del256 = If(IO.Directory.Exists(p256), From file In IO.Directory.GetFiles(p256) Where (From img In Me.Context.Images.AsEnumerable Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0, {})
+        Dim del64 = If(IO.Directory.Exists(p64), From file In IO.Directory.GetFiles(p64) Where (From img In Me.Context.Images.AsEnumerable Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0, {})
+        Dim delOriginal = If(IO.Directory.Exists(pOriginal), From file In IO.Directory.GetFiles(pOriginal) Where (From img In Me.Context.Images.AsEnumerable Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0, {})
+        Dim delCapType = If(IO.Directory.Exists(pCapType), From file In IO.Directory.GetFiles(pCapType) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From ct In Me.Context.CapTypes.AsEnumerable Where ct.CapTypeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0, {})
+        Dim delMainType = If(IO.Directory.Exists(pMainType), From file In IO.Directory.GetFiles(pMainType) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From mt In Me.Context.MainTypes.AsEnumerable Where mt.MainTypeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0, {})
+        Dim delShape = If(IO.Directory.Exists(pShape), From file In IO.Directory.GetFiles(pShape) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From sh In Me.Context.Shapes.AsEnumerable Where sh.ShapeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0, {})
+        Dim delCapSign = If(IO.Directory.Exists(pCapSign), From file In IO.Directory.GetFiles(pCapSign) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From sg In Me.Context.CapSigns.AsEnumerable Where sg.CapSignID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0, {})
 
         If del256.IsEmpty AndAlso del64.IsEmpty AndAlso delOriginal.IsEmpty AndAlso delCapType.IsEmpty AndAlso delMainType.IsEmpty AndAlso delShape.IsEmpty Then
             mBox.MsgBox(My.Resources.msg_NoFilesToDelete, MsgBoxStyle.Information, My.Resources.txt_ImageCleanup, Me)
@@ -224,7 +226,8 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
             Dim chkCapType = New mBox.MessageBoxCheckBox(My.Resources.lbl_CapTypeImages.f(delCapType.Count), If(delCapType.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delCapType.IsEmpty}
             Dim chkMainType = New mBox.MessageBoxCheckBox(My.Resources.lbl_MainTypeImages.f(delMainType.Count), If(delMainType.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delMainType.IsEmpty}
             Dim chkShape = New mBox.MessageBoxCheckBox(My.Resources.lbl_ShapeImages.f(delShape.Count), If(delShape.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delShape.IsEmpty}
-            msg.CheckBoxes.AddRange(New mBox.MessageBoxCheckBox() {chkOriginal, chk256, chk64, chkCapType, chkMainType, chkShape})
+            Dim chkCapSign = New mBox.MessageBoxCheckBox(My.Resources.lbl_SignImages.f(delCapSign.Count), If(delCapSign.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delCapSign.IsEmpty}
+            msg.CheckBoxes.AddRange(New mBox.MessageBoxCheckBox() {chkOriginal, chk256, chk64, chkCapType, chkMainType, chkShape, chkCapSign})
             msg.MidControl = New TextBlock() With {.Text = My.Resources.txt_ClearImagesNote, .TextWrapping = TextWrapping.Wrap, .HorizontalAlignment = Windows.HorizontalAlignment.Stretch, .TextAlignment = TextAlignment.Left}
             msg.SetButtons(mBox.MessageBoxButton.Buttons.OK Or mBox.MessageBoxButton.Buttons.Cancel)
             msg.Title = My.Resources.txt_ImageCleanup
@@ -236,6 +239,7 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
                 If chkCapType.State = Forms.CheckState.Checked Then todel = todel.Union(delCapType)
                 If chkMainType.State = Forms.CheckState.Checked Then todel = todel.Union(delMainType)
                 If chkShape.State = Forms.CheckState.Checked Then todel = todel.Union(delShape)
+                If chkCapSign.State = Forms.CheckState.Checked Then todel = todel.Union(delCapSign)
                 Dim ErrNo% = 0
                 For Each file In todel
                     Try

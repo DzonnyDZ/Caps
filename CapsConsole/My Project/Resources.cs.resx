@@ -998,7 +998,7 @@ K jednomu víčku byste měli mít maximálně jeden hlavní obrázek</value>
     <value>Obrázky tvarů ({0})</value>
   </data>
   <data name="txt_ClearImagesNote" xml:space="preserve">
-    <value>Čísla výše zahrnují také jakékoliv případné neobrazové soubory ve složkách z obrázky. Podsložky jsou ignorovány.</value>
+    <value>Čísla výše zahrnují také jakékoliv případné neobrazové soubory ve složkách s obrázky. Podsložky jsou ignorovány.</value>
   </data>
   <data name="msg_AllFilesDeleted" xml:space="preserve">
     <value>Všechny soubory byly úspěšně smazány.</value>
@@ -1225,5 +1225,20 @@ Dvakrát klikněte pro editaci.</value>
   </data>
   <data name="err_CanConvertOnlyFrom" xml:space="preserve">
     <value>{0} může konvertovat jen z {1}</value>
+  </data>
+  <data name="lbl_SignImages" xml:space="preserve">
+    <value>Obrázky značek víček ({0})</value>
+  </data>
+  <data name="coh_HasCaps" xml:space="preserve">
+    <value>Má víčka</value>
+  </data>
+  <data name="coh_Parent" xml:space="preserve">
+    <value>Rodič</value>
+  </data>
+  <data name="lbl_HasCaps" xml:space="preserve">
+    <value>Má víčka</value>
+  </data>
+  <data name="lbl_Parent" xml:space="preserve">
+    <value>Rodič</value>
   </data>
 </root>

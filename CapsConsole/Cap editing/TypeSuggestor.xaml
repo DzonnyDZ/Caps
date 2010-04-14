@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:res="clr-namespace:Caps.Console.My.Resources"
     xmlns:my="clr-namespace:Caps.Console"
-    xmlns:toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
+    xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     BorderThickness="0">
     <UserControl.Resources>

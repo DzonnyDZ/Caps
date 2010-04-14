@@ -6,7 +6,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Tools="clr-namespace:Tools.WindowsT.WPF.ControlsT;assembly=Tools.Windows"
         xmlns:res="clr-namespace:Caps.Console.My.Resources"
-        Title="{x:Static res:Resources.txt_NewStorage}" Height="188" Width="372" SizeToContent="Height" MinWidth="300"
+        Title="{x:Static res:Resources.txt_NewStorage}" Width="372" SizeToContent="Height" MinWidth="300"
         ShowInTaskbar="False" Icon="{x:Null}"
         FocusManager.FocusedElement="{Binding ElementName=txtNumber}"
         xmlns:my="clr-namespace:Caps.Console"
@@ -46,15 +46,26 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="{x:Static res:Resources.lbl_Number}"/>
         <TextBox MaxLength="10"  Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch"  Grid.ColumnSpan="2" VerticalAlignment="Center" Name="txtNumber" />
+ 
         <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="{x:Static res:Resources.lbl_Type}"/>
         <ComboBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="cmbStorageType" Style="{StaticResource StorageTypeTemplate}" SelectedValuePath="StorageTypeID" />
         <Button Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="cmdNewType" Content="{x:Static res:Resources.cmd_New}"/>
-        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{x:Static res:Resources.lbl_Description}"/>
-        <TextBox  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True" MinLines="3" Name="txtDescription" />
-        <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3">
+        
+        <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="{x:Static res:Resources.lbl_Parent}"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="cmbParent" my:AttachedProperties.SelectNullOnDelete="True" SelectedValuePath="StorageID"/>
+        <Button Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Content="{x:Static res:Resources.cmd_New}" Name="cmdNewParent"/>
+
+        <CheckBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Name="chkHasCaps" Content="{x:Static res:Resources.lbl_HasCaps}" IsChecked="True"/>
+
+        <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{x:Static res:Resources.lbl_Description}"/>
+        <TextBox  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True" MinLines="3" Name="txtDescription" />
+        
+        <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
