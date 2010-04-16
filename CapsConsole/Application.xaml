@@ -418,5 +418,26 @@
             <Setter Property="TextSearch.TextPath" Value="Name"/>
             <Setter Property="ToolTip" Value="{x:Static res:Resources.tot_Sign}"/>
         </Style>
+        <Style TargetType="ComboBox" x:Key="StorageTypeTemplate" BasedOn="{StaticResource GenericComboBoxTemplate}">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Text="{Binding Name, Mode=OneWay}" Grid.Column="0"/>
+                            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Text="{Binding StorageTypeID, Mode=OneWay}" Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="TextSearch.TextPath" Value="Name"/>
+            <Setter Property="ToolTip" Value="{Binding Description}"/>
+        </Style>
     </Application.Resources>
 </Application>

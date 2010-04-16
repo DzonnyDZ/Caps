@@ -19146,6 +19146,18 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<typeparam name="T">Enumeration to be tested</typeparam>
 	<exception cref="T:System.ArgumentException"><paramref name="T"/> is not <see cref="T:System.Enum"/></exception>
 	<seelaso cref="M:Tools.TypeTools.IsDefined(System.Enum)"/>
+</member><member name="M:Tools.TypeTools.IsFlags(System.Type)">
+	<summary>Gets value indicating if given type <see cref="P:System.Type.IsEnum">is enum</see> and has <see cref="T:System.FlagsAttribute"/> applied</summary>
+	<param name="enumType">Type to check if it's flags enum or not</param>
+	<returns>True if <paramref name="enumType"/>
+		<see cref="P:System.Type.IsEnum">is enum</see> and has <see cref="T:System.FlagsAttribute"/> applied; false otherwise</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="enumType"/> is null</exception>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.TypeTools.IsFlags(System.Enum)">
+	<summary>Gets value indicating if given value is of enum type which has <see cref="T:System.FlagsAttribute"/> applied</summary>
+	<param name="enumValue">Value of type <see cref="T:System.Enum"/></param>
+	<returns>True if type of <paramref name="enumValue"/> has <see cref="T:System.FlagsAttribute"/> applied; false otherwise</returns>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="M:Tools.TypeTools.GetConstant``1(``0)">
 	<summary>Gets <see cref="T:System.Reflection.FieldInfo"/> that represent given constant within an enum</summary>
 	<param name="value">Constant to be found</param>
@@ -19341,6 +19353,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<remarks>See <see cref="M:Tools.TypeTools.DynamicCast(System.Object,System.Type"/> non-generic method fro details on how casting is done.</remarks>
 	<seealso cref="M:Tools.TypeTools.DynamicCast(System.Object,System.Type)"/>
 	<version version="1.5.2">Function introduced</version>
+	<version version="1.5.3">The <see cref="T:System.Runtime.CompilerServices.ExtensionAttribute"/> attribute removed. This method is no longe extension method. This change was done because .NET languages does not support extension methods on <see cref="T:System.Object"/>.</version>
 </member><member name="M:Tools.TypeTools.DynamicCast(System.Object,System.Type)">
 	<summary>Attempts to cast given tobject to given type</summary>
 	<param name="obj">Object to cast</param>
@@ -19387,6 +19400,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
  There is no specific support for <see cref="T:System.Nullable`1"/></para></remarks>
 	<seealso cref="M:Tools.TypeTools.DynamicCast`1(System.Object)"/>
 	<version version="1.5.2">Function introduced</version>
+	<version version="1.5.3">The <see cref="T:System.Runtime.CompilerServices.ExtensionAttribute"/> attribute removed. This method is no longe extension method. This change was done because .NET languages does not support extension methods on <see cref="T:System.Object"/>.</version>
 </member><member name="M:Tools.TypeTools.IsGenericParentOf(System.Type,System.Type)">
 	<summary>Gets value indicating if given type is generic type definition from which another given type was created</summary>
 	<param name="Parent">Generic type definition to test if <paramref name="Child"/> is created from</param>

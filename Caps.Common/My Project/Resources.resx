@@ -123,4 +123,32 @@
   <data name="err_PropertyIsReadOnly" xml:space="preserve">
     <value>Property {0} on {1} is read-only</value>
   </data>
+  <data name="stg_Images_CapsInDatabase" xml:space="preserve">
+    <value>Sizes of cap images stored in databse. Use 0 for original image size.</value>
+    <comment>Database config description</comment>
+  </data>
+  <data name="stg_Images_CapsInFileSystem" xml:space="preserve">
+    <value>Sizes of cap images stored in file system. Use 0 for original imnage size.</value>
+    <comment>Database config description</comment>
+  </data>
+  <data name="stg_Images_CapsSignStorage" xml:space="preserve">
+    <value>Defines where images of cap signs are stored. Use 'filesystem' for filesystem and 'database' for database.</value>
+    <comment>Database config description</comment>
+  </data>
+  <data name="stg_Images_CapTypeStorage" xml:space="preserve">
+    <value>Defines where images of cap types are stored. Use 'filesystem' for filesystem and 'database' for database.</value>
+    <comment>Database config description</comment>
+  </data>
+  <data name="stg_Images_MainTypeStorage" xml:space="preserve">
+    <value>Defines where images of main types are stored. Use 'filesystem' for filesystem and 'database' for database.</value>
+    <comment>Database config description</comment>
+  </data>
+  <data name="stg_Images_ShapeStorage" xml:space="preserve">
+    <value>Defines where images of shapes are stored. Use 'filesystem' for filesystem and 'database' for database.</value>
+    <comment>Database config description</comment>
+  </data>
+  <data name="stg_Images_StorageStorage" xml:space="preserve">
+    <value>Defines where images of storages are stored. Use 'filesystem' for filesystem and 'database' for database.</value>
+    <comment>Database config description</comment>
+  </data>
 </root>

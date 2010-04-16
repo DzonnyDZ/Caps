@@ -116,6 +116,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="{x:Static res:Resources.mni_Settings}" Name="mniSettings" />
+                <MenuItem Header="{x:Static res:Resources.mni_DbSettings}" Name="mniDbSettings" />
             </MenuItem>
             <MenuItem Name="mniTools" Header="{x:Static res:Resources.mni_Tools}">
                 <MenuItem Name="mniRefresh"  Header="{x:Static res:Resources.mni_Refresh}" Command="NavigationCommands.Refresh" >

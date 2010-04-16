@@ -16,7 +16,7 @@ Imports System.ComponentModel
 Imports System.Xml.Serialization
 Imports System.Runtime.Serialization
 
-<Assembly: EdmSchemaAttribute("c800abcd-783a-4ce5-941a-74908acc10df")>
+<Assembly: EdmSchemaAttribute("5600cf02-05da-4d10-b412-dadf1c72a282")>
 #Region "EDM Relationship Metadata"
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_CapType", "CapType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.CapType), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
 <Assembly: EdmRelationshipAttribute("Data", "FK_Cap_Company", "Company", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, GetType(Data.Company), "Cap", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, GetType(Data.Cap), True)>
@@ -422,6 +422,20 @@ Namespace Data
         End Property
     
         Private _Targets As ObjectSet(Of Target)
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        Public ReadOnly Property Settings() As ObjectSet(Of Setting)
+            Get
+                If (_Settings Is Nothing) Then
+                    _Settings = MyBase.CreateObjectSet(Of Setting)("Settings")
+                End If
+                Return _Settings
+            End Get
+        End Property
+    
+        Private _Settings As ObjectSet(Of Setting)
 
         #End Region
         #Region "AddTo Methods"
@@ -578,6 +592,13 @@ Namespace Data
         ''' </summary>
         Public Sub AddToTargets(ByVal target As Target)
             MyBase.AddObject("Targets", target)
+        End Sub
+    
+        ''' <summary>
+        ''' Deprecated Method for adding a new object to the Settings EntitySet. Consider using the .Add method of the associated ObjectSet(Of T) property instead.
+        ''' </summary>
+        Public Sub AddToSettings(ByVal setting As Setting)
+            MyBase.AddObject("Settings", setting)
         End Sub
 
         #End Region
@@ -4910,6 +4931,111 @@ Namespace Data
                 End If
             End Set
         End Property
+
+        #End Region
+    End Class
+    
+    ''' <summary>
+    ''' No Metadata Documentation available.
+    ''' </summary>
+    <EdmEntityTypeAttribute(NamespaceName:="Data", Name:="Setting")>
+    <Serializable()>
+    <DataContractAttribute(IsReference:=True)>
+    Public Partial Class Setting
+        Inherits EntityObject
+        #Region "Factory Method"
+    
+        ''' <summary>
+        ''' Create a new Setting object.
+        ''' </summary>
+        ''' <param name="settingID">Initial value of the SettingID property.</param>
+        ''' <param name="key">Initial value of the Key property.</param>
+        Public Shared Function CreateSetting(settingID As Global.System.Int32, key As Global.System.String) As Setting
+            Dim setting as Setting = New Setting
+            setting.SettingID = settingID
+            setting.Key = key
+            Return setting
+        End Function
+
+        #End Region
+        #Region "Primitive Properties"
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=true, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property SettingID() As Global.System.Int32
+            Get
+                Return _SettingID
+            End Get
+            Private Set
+                If (_SettingID <> Value) Then
+                    OnSettingIDChanging(value)
+                    ReportPropertyChanging("SettingID")
+                    _SettingID = StructuralObject.SetValidValue(value)
+                    ReportPropertyChanged("SettingID")
+                    OnSettingIDChanged()
+                End If
+            End Set
+        End Property
+    
+        Private _SettingID As Global.System.Int32
+        Private Partial Sub OnSettingIDChanging(value As Global.System.Int32)
+        End Sub
+    
+        Private Partial Sub OnSettingIDChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=false)>
+        <DataMemberAttribute()>
+        Public Property Key() As Global.System.String
+            Get
+                Return _Key
+            End Get
+            Set
+                OnKeyChanging(value)
+                ReportPropertyChanging("Key")
+                _Key = StructuralObject.SetValidValue(value, false)
+                ReportPropertyChanged("Key")
+                OnKeyChanged()
+            End Set
+        End Property
+    
+        Private _Key As Global.System.String
+        Private Partial Sub OnKeyChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnKeyChanged()
+        End Sub
+    
+        ''' <summary>
+        ''' No Metadata Documentation available.
+        ''' </summary>
+        <EdmScalarPropertyAttribute(EntityKeyProperty:=false, IsNullable:=true)>
+        <DataMemberAttribute()>
+        Public Property Value() As Global.System.String
+            Get
+                Return _Value
+            End Get
+            Set
+                OnValueChanging(value)
+                ReportPropertyChanging("Value")
+                _Value = StructuralObject.SetValidValue(value, true)
+                ReportPropertyChanged("Value")
+                OnValueChanged()
+            End Set
+        End Property
+    
+        Private _Value As Global.System.String
+        Private Partial Sub OnValueChanging(value As Global.System.String)
+        End Sub
+    
+        Private Partial Sub OnValueChanged()
+        End Sub
 
         #End Region
     End Class

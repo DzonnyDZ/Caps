@@ -25,6 +25,7 @@
                     <EntitySet Name="Product" EntityType="Data.Store.Product" store:Type="Tables" Schema="dbo" />
                     <EntitySet Name="ProductType" EntityType="Data.Store.ProductType" store:Type="Tables" Schema="dbo" />
                     <EntitySet Name="PseudoCategory" EntityType="Data.Store.PseudoCategory" store:Type="Tables" Schema="dbo" />
+                    <EntitySet Name="Settings" EntityType="Data.Store.Settings" store:Type="Tables" Schema="dbo" />
                     <EntitySet Name="Shape" EntityType="Data.Store.Shape" store:Type="Tables" Schema="dbo" />
                     <EntitySet Name="ShapeTranslation" EntityType="Data.Store.ShapeTranslation" store:Type="Tables" Schema="dbo" />
                     <EntitySet Name="SimpleTranslation" EntityType="Data.Store.SimpleTranslation" store:Type="Tables" Schema="dbo" />
@@ -280,14 +281,6 @@
                     <Property Name="CapID" Type="int" Nullable="false" />
                     <Property Name="CapSignID" Type="int" Nullable="false" />
                 </EntityType>
-                <EntityType Name="Cap_PseudoCategory_Int">
-                    <Key>
-                        <PropertyRef Name="CapID" />
-                        <PropertyRef Name="PseudoCategoryID" />
-                    </Key>
-                    <Property Name="CapID" Type="int" Nullable="false" />
-                    <Property Name="PseudoCategoryID" Type="int" Nullable="false" />
-                </EntityType>
                 <EntityType Name="Cap_Category_Int">
                     <Key>
                         <PropertyRef Name="CapID" />
@@ -303,6 +296,14 @@
                     </Key>
                     <Property Name="CapID" Type="int" Nullable="false" />
                     <Property Name="KeywordID" Type="int" Nullable="false" />
+                </EntityType>
+                <EntityType Name="Cap_PseudoCategory_Int">
+                    <Key>
+                        <PropertyRef Name="CapID" />
+                        <PropertyRef Name="PseudoCategoryID" />
+                    </Key>
+                    <Property Name="CapID" Type="int" Nullable="false" />
+                    <Property Name="PseudoCategoryID" Type="int" Nullable="false" />
                 </EntityType>
                 <EntityType Name="CapInstance">
                     <Key>
@@ -436,6 +437,14 @@
                     <Property Name="Description" Type="nvarchar(max)" />
                     <Property Name="Condition" Type="nvarchar" Nullable="false" MaxLength="1024" />
                 </EntityType>
+                <EntityType Name="Settings">
+                    <Key>
+                        <PropertyRef Name="SettingID" />
+                    </Key>
+                    <Property Name="SettingID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+                    <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="255" />
+                    <Property Name="Value" Type="nvarchar(max)" />
+                </EntityType>
                 <EntityType Name="Shape">
                     <Key>
                         <PropertyRef Name="ShapeID" />
@@ -488,7 +497,7 @@
                     <Property Name="StorageNumber" Type="nvarchar" Nullable="false" MaxLength="10" />
                     <Property Name="Description" Type="nvarchar(max)" />
                     <Property Name="StorageTypeID" Type="int" Nullable="false" />
-                    <Property Name="ParentStorageID" Type="int" Nullable="true" />
+                    <Property Name="ParentStorageID" Type="int" />
                     <Property Name="HasCaps" Type="bit" Nullable="false" />
                 </EntityType>
                 <EntityType Name="StorageType">
@@ -1368,6 +1377,7 @@
                         <Parameter Name="SELECT" Mode="In" Type="String" />
                     </FunctionImport>
                     <FunctionImport Name="AssignPseudocategories" />
+                    <EntitySet Name="Settings" EntityType="Data.Setting" />
                 </EntityContainer>
                 <EntityType Name="Cap">
                     <Documentation>
@@ -2312,6 +2322,14 @@
                     <End Role="Cap" Type="Data.Cap" Multiplicity="*" />
                     <End Role="Keyword" Type="Data.Keyword" Multiplicity="*" />
                 </Association>
+                <EntityType Name="Setting">
+                    <Key>
+                        <PropertyRef Name="SettingID" />
+                    </Key>
+                    <Property Type="Int32" Name="SettingID" Nullable="false" annotation:StoreGeneratedPattern="Identity" a:SetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+                    <Property Type="String" Name="Key" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+                    <Property Type="String" Name="Value" MaxLength="Max" FixedLength="false" Unicode="true" />
+                </EntityType>
             </Schema>
         </edmx:ConceptualModels>
         <!-- C-S mapping content -->
@@ -2641,6 +2659,15 @@
                         </EndProperty>
                     </AssociationSetMapping>
                     <FunctionImportMapping FunctionImportName="AssignPseudocategories" FunctionName="Data.Store.AssignPseudocategories" />
+                    <EntitySetMapping Name="Settings">
+                        <EntityTypeMapping TypeName="Data.Setting">
+                            <MappingFragment StoreEntitySet="Settings">
+                                <ScalarProperty Name="Value" ColumnName="Value" />
+                                <ScalarProperty Name="Key" ColumnName="Key" />
+                                <ScalarProperty Name="SettingID" ColumnName="SettingID" />
+                            </MappingFragment>
+                        </EntityTypeMapping>
+                    </EntitySetMapping>
                 </EntityContainerMapping>
             </Mapping>
         </edmx:Mappings>
@@ -2662,7 +2689,7 @@
         </Options>
         <!-- Diagram content (shape and connector positions) -->
         <Diagrams>
-            <Diagram Name="CapsData" ZoomLevel="109">
+            <Diagram Name="CapsData" ZoomLevel="81">
                 <EntityTypeShape EntityType="Data.Cap" Width="1.5" PointX="5.375" PointY="5.375" Height="11.210755208333335" IsExpanded="true" />
                 <EntityTypeShape EntityType="Data.CapInstance" Width="1.5" PointX="7.25" PointY="12.375" Height="3.1340950520833353" IsExpanded="true" />
                 <EntityTypeShape EntityType="Data.CapSign" Width="1.5" PointX="1.875" PointY="7.75" Height="2.1725878906249996" IsExpanded="true" />
@@ -2947,6 +2974,7 @@
                     <ConnectorPoint PointX="4.385416666666667" PointY="13.615143229166666" />
                     <ConnectorPoint PointX="4.125" PointY="13.615143229166666" />
                 </AssociationConnector>
+                <EntityTypeShape EntityType="Data.Setting" Width="1.5" PointX="0.5" PointY="0.5" Height="1.5956835937500102" />
             </Diagram>
         </Diagrams>
     </Designer>

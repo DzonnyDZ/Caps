@@ -163,7 +163,7 @@ Partial Public Class CapEditor
             cmbMainType.ItemsSource = New ListWithEvents(Of MainType)(From item In Context.MainTypes Order By item.TypeName)
             cmbShape.ItemsSource = New ListWithEvents(Of Shape)(From item In Context.Shapes Order By item.Name)
             cmbMaterial.ItemsSource = New ListWithEvents(Of Material)(From item In Context.Materials Order By item.Name)
-            cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Where Storage.HasCaps Order By item.StorageNumber)
+            cmbStorage.ItemsSource = New ListWithEvents(Of Storage)(From item In Context.Storages Where item.HasCaps Order By item.StorageNumber)
             cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
             cmbTarget.ItemsSource = New ListWithEvents(Of Target)(From item In Context.Targets Order By item.Name)
             AllCapSigns.Clear()

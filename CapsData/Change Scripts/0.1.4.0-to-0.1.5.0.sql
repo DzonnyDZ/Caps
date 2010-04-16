@@ -179,6 +179,64 @@ SELECT
 			INNER JOIN dbo.StorageType st ON(strg.StorageTypeID = st.StorageTypeID)
 			LEFT OUTER JOIN dbo.Storage [strg.ps] ON(strg.ParentStorage = [strg.ps].StorageID);
 GO
+------------------------------------ TRIGGER Storage_Instead_Ins -------------------------------------------
+PRINT 'ALTER TRIGGER dbo.Storage_Instead_Ins';
+GO
+ALTER TRIGGER dbo.Storage_Instead_Ins 
+   ON  dbo.Storage
+   INSTEAD OF INSERT
+AS 
+BEGIN
+	SET NOCOUNT ON;
+    INSERT INTO dbo.Storage (StorageNumber,[Description],StorageTypeID, HasCaps, ParentStorageID)
+        OUTPUT INSERTED.*
+		SELECT StorageNumber, dbo.EmptyStrToNull([Description]), StorageTypeID, HasCaps, ParentStorageID
+  FROM INSERTED;
+END
+GO
+------------------------------- Trigger Storage_Instead_Upd ----------------------------------------------
+PRINT 'ALTER TRIGGER [dbo].Storage_Instead_Upd';
+GO
+ALTER TRIGGER [dbo].Storage_Instead_Upd
+    ON  [dbo].Storage 
+    INSTEAD OF UPDATE
+AS 
+BEGIN
+    SET NOCOUNT ON;
+	UPDATE [dbo].Storage	
+    SET	StorageNumber = i.StorageNumber,
+        [Description] = dbo.EmptyStrToNull(i.[Description]),
+        StorageTypeid = i.StorageTypeid,
+        HasCaps = i.HasCaps,
+        ParentStorageID = i.ParentStorageID
+     FROM INSERTED AS i
+     WHERE Storage.StorageID = i.StorageID;
+END
+GO
+--------------------------------------------- Table Settings -----------------------------------------------------------------------
+PRINT 'CREATE TABLE dbo.Settings';
+GO
+CREATE TABLE dbo.Settings(
+	SettingID int NOT NULL IDENTITY (1, 1),
+	[Key] nvarchar(255) NOT NULL,
+	Value nvarchar(MAX) NULL
+);
+GO
+ALTER TABLE dbo.Settings ADD CONSTRAINT PK_Settings PRIMARY KEY(SettingID);
+GO
+ALTER TABLE dbo.Settings ADD CONSTRAINT UNQ_Settings_Key UNIQUE ([Key]);
+GO
+ALTER TABLE dbo.Settings ADD CONSTRAINT CHK_Setting_NoEmptyKey CHECK ([Key] <> '');
+GO
+INSERT INTO dbo.Settings ([Key], Value)
+    VALUES('Images.CapsInDatabase', NULL),
+          ('Images.CapsInFileSystem', '256,64,0'),
+          ('Images.CapSignStorage', 'filesystem'),
+          ('Images.CapTypeStorage', 'filesystem'),
+          ('Images.MainTypeStorage', 'filesystem'),
+          ('Images.ShapeStorage', 'filesystem'),
+          ('Images.StorageStorage', 'filesystem');
+GO
 ---------------------------------------- DROPPING ------------------------------------------------------------------------------
 PRINT 'Dropping';
 DROP PROCEDURE dbo.[Get_Cap_PseudoCategory_Int];

@@ -91,6 +91,11 @@
     * Fix: Crash when deleting unused images
     * Fix: Unused images of Cap Signs are not deleted
     * Fix: Crash when deleting unused images and some folder does not exist
+    * Structured storage
+    * Removed dependency on WPF Toolkit (because controls used from WPF Toolkit are now built-in in .NET 4.0)
+    * Added Test button do database selection dialog
+    * Added text box for image folder selection to database selection dialog
+    * Database settings introduced
     
 Pending issues:
 ===============
@@ -103,14 +108,16 @@ Pending issues:
 * List editor: Sortable headers
 * Storage images (images of storages)
 * Save & previous in new cap window does not work
-* Structured storage
 * New (without saving) in editor window
-* Images in caps editor
 * Pseudocategories (defined in db)
 * Save and goto in editor window
 * When color is gray or transparent, color name is not visible
-* When editing existing cap and request to create sth. is made creating st. commits changes in cap.
 * Cap editor - Cap checkboxes are cropped
 * When new cap is created via TypeSuggestor, it'sn't applied on checked caps
 * Tooltip in list in cap detail 
 * Cap sign image does not fit to given space in cap detail
+* Bug in list editor when changing parent of storage causes application crash
+* Formatted version history
+* DB Wizard
+* Translations
+* Images in DB and/or File System

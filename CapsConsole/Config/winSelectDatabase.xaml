@@ -10,17 +10,33 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <wfi:WindowsFormsHost Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3">
+        <wfi:WindowsFormsHost Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
             <wf:PropertyGrid Name="prgProperties" Dock="Fill" x:Name="prgProperties"/>
         </wfi:WindowsFormsHost>
-        <Button Grid.Column="0" Grid.Row="1" Padding="3,0,3,0" HorizontalAlignment="Center" Name="btnOK" IsDefault="True" Content="{x:Static res:Resources.cmd_OK}"/>
-        <Button Grid.Column="2" Grid.Row="1" Padding="3,0,3,0" HorizontalAlignment="Center" Name="btnCancel" IsCancel="True" Content="{x:Static res:Resources.cmd_Cancel}"/>
-        <Button Grid.Column="1" Grid.ColumnSpan="1" Grid.Row="1"  Name="btnWizard" VerticalAlignment="center" HorizontalAlignment="Center" Width="auto" Height="auto" Content="{x:Static res:Resources.cmd_UseWizard}"/>
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Height="auto" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="{x:Static res:Resources.lbl_ImageRoot}" HorizontalAlignment="Right" VerticalAlignment="Center" ToolTip="{x:Static res:Resources.tot_ImageRootLeaveEmpty}" />
+            <TextBox Grid.Column="1" Name="txtImageRoot" HorizontalAlignment="Stretch" VerticalAlignment="Center" ToolTip="{x:Static res:Resources.tot_ImageRootLeaveEmpty}"/>
+            <Button Grid.Column="2" Name="btnImageRoot" Content="..." HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Grid>
+        <Button Grid.Column="0" Grid.Row="2" Padding="3,0,3,0" HorizontalAlignment="Center" Name="btnOK" IsDefault="True" Content="{x:Static res:Resources.cmd_OK}"/>
+        <Button Grid.Column="1" Grid.Row="2" Padding="3,0,3,0" HorizontalAlignment="Center" Name="btnTest" Content="{x:Static res:Resources.cmd_Test}" ToolTip="{x:Static res:Resources.tot_Test}"/>
+        <Button Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="2"  Name="btnWizard" VerticalAlignment="center" HorizontalAlignment="Center" Width="auto" Height="auto" Content="{x:Static res:Resources.cmd_UseWizard}"/>
+        <Button Grid.Column="3" Grid.Row="2" Padding="3,0,3,0" HorizontalAlignment="Center" Name="btnCancel" IsCancel="True" Content="{x:Static res:Resources.cmd_Cancel}"/>
     </Grid>
 </Window>

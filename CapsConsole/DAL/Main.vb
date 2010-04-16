@@ -62,6 +62,31 @@ Friend Module Main
             Throw New ApplicationException(My.Resources.err_IncorrectDatabaseVersion)
         End If
     End Sub
+
+    ''' <summary>Gets typed value of configuration node</summary>
+    ''' <param name="key">Key of node to get vallue of</param>
+    ''' <param name="default">Default value to return when configuration node with given <paramref name="key"/> does not exist</param>
+    ''' <returns>Value of configuration node converted to type <typeparamref name="T"/>; <paramref name="default"/> when node with given <paramref name="key"/> does not exist.</returns>
+    ''' <typeparam name="T">Type of value to convert node value to. <see cref="String"/> must be convertible to this type.</typeparam>
+    ''' <exception cref="InvalidCastException">Value of configuration node cannot be converted to type <typeparamref name="T"/></exception>
+    Public Function GetConfigNodeValue(Of T)(ByVal key As String, Optional ByVal [default] As T = Nothing) As T
+        Using context As New CapsDataContext(Main.EntityConnection)
+            Dim setting = (From item In context.Settings Where item.Key = key).FirstOrDefault
+            If setting Is Nothing Then Return [default]
+            Return CTypeDynamic(Of T)(setting.Value)
+        End Using
+    End Function
+
+    ''' <summary>Gets value of configuration node</summary>
+    ''' <param name="key">Key of node to get value of</param>
+    ''' <returns>Value of configuration node with given <paramref name="key"/>; null where there is no such node (or node value is null)</returns>
+    Public Function GetConfigNodeValue(ByVal key As String) As String
+        Using context As New CapsDataContext(Main.EntityConnection)
+            Dim setting = (From item In context.Settings Where item.Key = key).FirstOrDefault
+            If setting Is Nothing Then Return Nothing
+            Return setting.Value
+        End Using
+    End Function
 End Module
 ''' <summary>Result of <see cref="VerifyDatabaseVersion"/></summary>
 Public Structure DatabaseVerificationResult

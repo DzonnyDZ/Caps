@@ -168,11 +168,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Config\Database wizard\4-pgSummary.xaml">
+    <Page Include="Config\Database wizard\5-pgSummary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Config\Database wizard\4-pgImageStorage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Config\winDatabaseSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="winNew\winNewSign.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -277,6 +285,12 @@
       <DependentUpon>Application.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Config\Database wizard\4-pgImageStorage.xaml.vb">
+      <DependentUpon>4-pgImageStorage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Config\winDatabaseSettings.xaml.vb">
+      <DependentUpon>winDatabaseSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DAL\CapsDataDataContext.vb" />
     <Compile Include="DAL\Main.vb" />
     <Compile Include="winMain.xaml.vb">
@@ -315,8 +329,8 @@
     <Compile Include="Config\Database wizard\3-pgDatabaseAndFileInfo.xaml.vb">
       <DependentUpon>3-pgDatabaseAndFileInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Config\Database wizard\4-pgSummary.xaml.vb">
-      <DependentUpon>4-pgSummary.xaml</DependentUpon>
+    <Compile Include="Config\Database wizard\5-pgSummary.xaml.vb">
+      <DependentUpon>5-pgSummary.xaml</DependentUpon>
     </Compile>
     <Compile Include="Config\Database wizard\Wizard helpers.vb" />
     <Compile Include="Resources\Countries.Designer.vb">
@@ -435,6 +449,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <AppDesigner Include="My Project\" />
+    <Compile Include="XAML helpers\Converters.multi.vb" />
     <Resource Include="Resources\Flags\AD.png" />
     <Resource Include="Resources\Flags\AE.png" />
     <Resource Include="Resources\Flags\AF.png" />
@@ -750,6 +765,10 @@
     <Resource Include="Resources\Flags\HN.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Tools\Tools Win\Tools.Win.vbproj">
+      <Project>{9E0E6221-AD3B-47C8-B528-C9941BBFD663}</Project>
+      <Name>Tools.Win</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Tools\Tools.Metadata\Tools.Metadata.vbproj">
       <Project>{F2E3DDFB-EEDB-4F85-8AE8-CBE6B18A5ED0}</Project>
       <Name>Tools.Metadata</Name>

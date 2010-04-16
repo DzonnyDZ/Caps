@@ -5,9 +5,12 @@ Imports System.Windows.Controls
 Public Class pgCredentials
     Inherits PageFunction(Of Boolean)
 
+    Private wizardData As WizardData
+
     Public Sub New(ByVal wizardData As WizardData)
         Me.InitializeComponent()
         MyBase.DataContext = wizardData
+        Me.wizardData = wizardData
     End Sub
 
     Private Sub backButton_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
@@ -23,7 +26,7 @@ Public Class pgCredentials
     End Sub
 
     Private Sub nextButton_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles nextButton.Click
-        Dim nextPage As New pgSummary(DirectCast(MyBase.DataContext, WizardData))
+        Dim nextPage = New pgImageStorage(wizardData)
         AddHandler nextPage.Return, New ReturnEventHandler(Of Boolean)(AddressOf Me.wizardPage_Return)
         MyBase.NavigationService.Navigate(nextPage)
     End Sub

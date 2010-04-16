@@ -4,6 +4,7 @@ Imports Caps.Data
 
 ''' <summary>Main application window</summary>
 Class winMain
+    ''' <summary>Connection string to database</summary>
     Private Const ConnectionString$ = "ConnectionString"
     ''' <summary>CTor</summary>
     Public Sub New()
@@ -19,6 +20,7 @@ Class winMain
         win.ShowDialog()
     End Sub
 
+    ''' <summary>Data context</summary>
     Private Context As CapsDataContext
 
     Private Sub winMain_Closed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Closed
@@ -36,17 +38,20 @@ Class winMain
         End If
 
         Dim Redo As Boolean = False
+        Dim ImageRoot As String = My.Settings.ImageRoot
 Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
             Dim win = If(Main.SqlConnection Is Nothing, New winSelectDatabase, New winSelectDatabase(Main.SqlConnection.ConnectionString))
+            win.ImageRoot = ImageRoot
             win.Owner = Me
             If win.ShowDialog Then
                 Main.SqlConnection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)
+                ImageRoot = win.ImageRoot
             Else
                 Environment.Exit(1)
             End If
         End If
         Try
-            Main.EntityConnection = New System.Data.EntityClient.EntityConnection(CapsDataContext.DefaultMetadataWorkspace,Main.SqlConnection)
+            Main.EntityConnection = New System.Data.EntityClient.EntityConnection(CapsDataContext.DefaultMetadataWorkspace, Main.SqlConnection)
             EntityConnection.Open()
             VerifyDatabaseVersionWithUpgrade(SqlConnection, Me)
         Catch ex As Exception
@@ -69,10 +74,12 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
                 Environment.Exit(3)
             End If
         End If
+        My.Settings.ImageRoot = ImageRoot
         Me.Title = Me.Title & " - " & "{0} {1}".f(My.Application.Info.Title, My.Application.Info.Version)
         Bind()
     End Sub
 
+    ''' <summary>Binds data to form</summary>
     Private Sub Bind()
         Me.Context = New CapsDataContext(Main.EntityConnection)
         lblCapsCount.Content = Context.Caps.Count
@@ -125,6 +132,12 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
                 End Select
             End If
         End If
+    End Sub
+
+    Private Sub mniDbSettings_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniDbSettings.Click
+        Using dlg As New winDatabaseSettings With {.Owner = Me}
+            dlg.ShowDialog()
+        End Using
     End Sub
 
     Private Sub cmdClose_CanExecute(ByVal sender As System.Object, ByVal e As System.Windows.Input.CanExecuteRoutedEventArgs) Handles cmdClose.CanExecute

@@ -358,6 +358,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Test.
+        '''</summary>
+        Public ReadOnly Property cmd_Test() As String
+            Get
+                Return ResourceManager.GetString("cmd_Test", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Use wizard....
         '''</summary>
         Public ReadOnly Property cmd_UseWizard() As String
@@ -426,6 +435,15 @@ Namespace My.Resources
         Public ReadOnly Property coh_IsDrink() As String
             Get
                 Return ResourceManager.GetString("coh_IsDrink", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Key.
+        '''</summary>
+        Public ReadOnly Property coh_Key() As String
+            Get
+                Return ResourceManager.GetString("coh_Key", resourceCulture)
             End Get
         End Property
         
@@ -543,6 +561,15 @@ Namespace My.Resources
         Public ReadOnly Property coh_Type() As String
             Get
                 Return ResourceManager.GetString("coh_Type", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Value.
+        '''</summary>
+        Public ReadOnly Property coh_Value() As String
+            Get
+                Return ResourceManager.GetString("coh_Value", resourceCulture)
             End Get
         End Property
         
@@ -1906,6 +1933,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Database settings....
+        '''</summary>
+        Public ReadOnly Property mni_DbSettings() As String
+            Get
+                Return ResourceManager.GetString("mni_DbSettings", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Edit _lists ....
         '''</summary>
         Public ReadOnly Property mni_EditLists() As String
@@ -2239,6 +2275,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Directory {0} does not exist..
+        '''</summary>
+        Public ReadOnly Property msg_DirectoryDoesNotExist() As String
+            Get
+                Return ResourceManager.GetString("msg_DirectoryDoesNotExist", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Enter type name, please.
         '''</summary>
         Public ReadOnly Property msg_EnterTypeName() As String
@@ -2464,6 +2509,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Test connection succeeded..
+        '''</summary>
+        Public ReadOnly Property msg_TestConnectionSucceeded() As String
+            Get
+                Return ResourceManager.GetString("msg_TestConnectionSucceeded", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to There are images that do not belong to any cap!.
         '''</summary>
         Public ReadOnly Property msg_ThereAreImagesThatDoNotBelongToAnyCap() As String
@@ -2506,6 +2560,15 @@ Namespace My.Resources
         Public ReadOnly Property tot_FavoriteCharacters() As String
             Get
                 Return ResourceManager.GetString("tot_FavoriteCharacters", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Leave empty if images are stored in database.
+        '''</summary>
+        Public ReadOnly Property tot_ImageRootLeaveEmpty() As String
+            Get
+                Return ResourceManager.GetString("tot_ImageRootLeaveEmpty", resourceCulture)
             End Get
         End Property
         
@@ -2561,6 +2624,15 @@ Namespace My.Resources
         Public ReadOnly Property tot_Sign() As String
             Get
                 Return ResourceManager.GetString("tot_Sign", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Test connection to database.
+        '''</summary>
+        Public ReadOnly Property tot_Test() As String
+            Get
+                Return ResourceManager.GetString("tot_Test", resourceCulture)
             End Get
         End Property
         
@@ -2732,6 +2804,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_DatabaseError() As String
             Get
                 Return ResourceManager.GetString("txt_DatabaseError", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Database settings.
+        '''</summary>
+        Public ReadOnly Property txt_DatabaseSettings() As String
+            Get
+                Return ResourceManager.GetString("txt_DatabaseSettings", resourceCulture)
             End Get
         End Property
         
@@ -3362,6 +3443,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_Targets() As String
             Get
                 Return ResourceManager.GetString("txt_Targets", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Test connection.
+        '''</summary>
+        Public ReadOnly Property txt_TestConnection() As String
+            Get
+                Return ResourceManager.GetString("txt_TestConnection", resourceCulture)
             End Get
         End Property
         

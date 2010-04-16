@@ -11,30 +11,7 @@
         FocusManager.FocusedElement="{Binding ElementName=txtNumber}"
         xmlns:my="clr-namespace:Caps.Console"
     >
-    <my:CreateNewObjectDialogBase.Resources>
-        <Style TargetType="ComboBox" x:Key="StorageTypeTemplate" BasedOn="{StaticResource GenericComboBoxTemplate}">
-            <Setter Property="ItemTemplate">
-                <Setter.Value>
-                    <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="auto" Text="{Binding Name, Mode=OneWay}" Grid.Column="0"/>
-                            <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" Height="auto" Text="{Binding StorageTypeID, Mode=OneWay}" Grid.Column="1"/>
-                        </Grid>
-                    </DataTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="TextSearch.TextPath" Value="Name"/>
-            <Setter Property="ToolTip" Value="{Binding Description}"/>
-        </Style>
-    </my:CreateNewObjectDialogBase.Resources>
-    <Grid>
+   <Grid>
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
@@ -57,7 +34,7 @@
         <Button Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Name="cmdNewType" Content="{x:Static res:Resources.cmd_New}"/>
         
         <Label Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="{x:Static res:Resources.lbl_Parent}"/>
-        <ComboBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="cmbParent" my:AttachedProperties.SelectNullOnDelete="True" SelectedValuePath="StorageID"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="cmbParent" my:AttachedProperties.SelectNullOnDelete="True" SelectedValuePath="StorageID" Style="{StaticResource StorageTemplate}"/>
         <Button Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Content="{x:Static res:Resources.cmd_New}" Name="cmdNewParent"/>
 
         <CheckBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Name="chkHasCaps" Content="{x:Static res:Resources.lbl_HasCaps}" IsChecked="True"/>

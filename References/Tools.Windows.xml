@@ -2781,7 +2781,28 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<exception cref="T:System.Reflection.TargetInvocationException">There was an error working working with customized static properties such as <see cref="P:Tools.WindowsT.IndependentT.MessageBox.DefaultImplementation"/> or message box implementation failed.</exception>
 	<remarks>This function mimisc behaviour of the <see cref="M:Microsoft.VisualBasic.Interaction.MsgBox(System.Object,Microsoft.VisualBasic.MsgBoxStyle,System.Object)"/> function</remarks>
 	<param name="Owner">Owner window (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/> If implementation does not recognize type of owner it ignores it.</param>
-	<version version="1.5.3" stage="Beta">Added parameter <paramref name="owner"/> because using <see cref="M:Tools.WindowsT.IndependentT.MessageBox.MsgBox(System.Object,Microsoft.VisualBasic.MsgBoxStyle,System.Object,System.Object)"/> without pwner caused bad behavior in WPF applications.</version>
+	<version version="1.5.3" stage="Beta">Added parameter <paramref name="owner"/> because using <see cref="M:Tools.WindowsT.IndependentT.MessageBox.MsgBox(System.Object,Microsoft.VisualBasic.MsgBoxStyle,System.Object,System.Object)"/> without owner caused bad behavior in WPF applications.</version>
+</member><member name="M:Tools.WindowsT.IndependentT.MessageBox.MsgBoxF(System.String,Microsoft.VisualBasic.MsgBoxStyle,System.String,System.Object[])">
+	<summary>Displays a formatted message in a dialog box, waits for the user to click a button, and then returns an integer indicating which button the user clicked.</summary>
+	<param name="Prompt">Required. String expression displayed as the message in the dialog box.</param>
+	<param name="Buttons">Optional. Numeric expression that is the sum of values specifying the number and type of buttons to display, the icon style to use, the identity of the default button, and the modality of the message box. If you omit Buttons, the default value is zero. Values <see cref="F:Microsoft.VisualBasic.MsgBoxStyle.Critical"/>, <see cref="F:Microsoft.VisualBasic.MsgBoxStyle.Exclamation"/> and <see cref="F:Microsoft.VisualBasic.MsgBoxStyle.Question"/> are associated with appropriate <see cref="T:System.Media.SystemSounds"/>.</param>
+	<param name="Title">Optional. String expression displayed in the title bar of the dialog box. If you omit Title, the application name is placed in the title bar.</param>
+	<returns>The result of message box indicatin pressed button.</returns>
+	<exception cref="T:System.Reflection.TargetInvocationException">There was an error working working with customized static properties such as <see cref="P:Tools.WindowsT.IndependentT.MessageBox.DefaultImplementation"/> or message box implementation failed.</exception>
+	<remarks>This function mimisc and extends behaviour of the <see cref="M:Microsoft.VisualBasic.Interaction.MsgBox(System.Object,Microsoft.VisualBasic.MsgBoxStyle,System.Object)"/> function</remarks>
+	<param name="args">Formatting arguments passed to <see cref="T:System.String"/> along with <paramref name="prompt"/> to form message</param>
+	<version version="1.5.3" stage="Beta">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.IndependentT.MessageBox.MsgBoxFW(System.String,Microsoft.VisualBasic.MsgBoxStyle,System.String,System.Object,System.Object[])">
+	<summary>Displays a formatted message in a dialog box modal to given object, waits for the user to click a button, and then returns an integer indicating which button the user clicked.</summary>
+	<param name="Prompt">Required. String expression displayed as the message in the dialog box.</param>
+	<param name="Buttons">Optional. Numeric expression that is the sum of values specifying the number and type of buttons to display, the icon style to use, the identity of the default button, and the modality of the message box. If you omit Buttons, the default value is zero. Values <see cref="F:Microsoft.VisualBasic.MsgBoxStyle.Critical"/>, <see cref="F:Microsoft.VisualBasic.MsgBoxStyle.Exclamation"/> and <see cref="F:Microsoft.VisualBasic.MsgBoxStyle.Question"/> are associated with appropriate <see cref="T:System.Media.SystemSounds"/>.</param>
+	<param name="Title">Optional. String expression displayed in the title bar of the dialog box. If you omit Title, the application name is placed in the title bar.</param>
+	<returns>The result of message box indicatin pressed button.</returns>
+	<exception cref="T:System.Reflection.TargetInvocationException">There was an error working working with customized static properties such as <see cref="P:Tools.WindowsT.IndependentT.MessageBox.DefaultImplementation"/> or message box implementation failed.</exception>
+	<remarks>This function mimisc and extends behaviour of the <see cref="M:Microsoft.VisualBasic.Interaction.MsgBox(System.Object,Microsoft.VisualBasic.MsgBoxStyle,System.Object)"/> function</remarks>
+	<param name="Owner">Owner window (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/> If implementation does not recognize type of owner it ignores it.</param>
+	<param name="args">Formatting arguments passed to <see cref="T:System.String"/> along with <paramref name="prompt"/> to form message</param>
+	<version version="1.5.3" stage="Beta">This function is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.Modal_P(System.String)">
 	<summary>Displays modal message box with given prompt</summary>
 	<param name="Prompt">Prompt to be shown</param>

@@ -929,4 +929,14 @@ Namespace Data
     '        End Sub
     '    End Class
     '#End If
+
+    Partial Class Setting
+        ''' <summary>Gets localized description of this setting</summary>
+        ''' <returns>Localized description of this setting, nulll when there is no localized description for this setting</returns>
+        Public ReadOnly Property Description
+            Get
+                Return My.Resources.ResourceManager.GetString(String.Format("stg_{0}", Me.Key.Replace("."c, "_"c)))
+            End Get
+        End Property
+    End Class
 End Namespace

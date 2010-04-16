@@ -1562,4 +1562,41 @@ Doubleclick to edit.</value>
     <value>Parent</value>
     <comment>Label text</comment>
   </data>
+  <data name="cmd_Test" xml:space="preserve">
+    <value>Test</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="coh_Key" xml:space="preserve">
+    <value>Key</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="coh_Value" xml:space="preserve">
+    <value>Value</value>
+    <comment>Column header</comment>
+  </data>
+  <data name="tot_ImageRootLeaveEmpty" xml:space="preserve">
+    <value>Leave empty if images are stored in database</value>
+    <comment>Tool tip</comment>
+  </data>
+  <data name="tot_Test" xml:space="preserve">
+    <value>Test connection to database</value>
+    <comment>Button tooltip</comment>
+  </data>
+  <data name="txt_DatabaseSettings" xml:space="preserve">
+    <value>Database settings</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="msg_TestConnectionSucceeded" xml:space="preserve">
+    <value>Test connection succeeded.</value>
+  </data>
+  <data name="txt_TestConnection" xml:space="preserve">
+    <value>Test connection</value>
+  </data>
+  <data name="msg_DirectoryDoesNotExist" xml:space="preserve">
+    <value>Directory {0} does not exist.</value>
+  </data>
+  <data name="mni_DbSettings" xml:space="preserve">
+    <value>Database settings...</value>
+    <comment>Menu item text</comment>
+  </data>
 </root>

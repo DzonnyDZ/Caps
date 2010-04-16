@@ -75,10 +75,6 @@ End Enum
 Public Class WizardData
     Implements INotifyPropertyChanged
 
-
-
-
-
     Private _DatabaseType As DatabaseType = Console.DatabaseType.UserInstance
     Public Property DatabaseType() As DatabaseType
         Get
@@ -280,6 +276,9 @@ Public Class WizardData
     Private _UserName$
     Private _Password$
     Private _DatabaseName$
+    Private _ImageRoot$
+    Private _CapImagesInDb As Boolean
+    Private _OtherImagesInDb As Boolean
 
     Public Property FilePath$()
         Get
@@ -324,6 +323,36 @@ Public Class WizardData
         Set(ByVal value$)
             _DatabaseName = value
             OnPropertyChanged("DatabaseName")
+        End Set
+    End Property
+
+    Public Property ImageRoot$
+        Get
+            Return _ImageRoot
+        End Get
+        Set(ByVal value$)
+            _ImageRoot = value
+            OnPropertyChanged("ImageRoot")
+        End Set
+    End Property
+
+    Public Property CapImagesInDb As Boolean
+        Get
+            Return _CapImagesInDb
+        End Get
+        Set(ByVal value As Boolean)
+            _CapImagesInDb = value
+            OnPropertyChanged("CapImagesInDb")
+        End Set
+    End Property
+
+    Public Property OtherImagesInDb As Boolean
+        Get
+            Return _OtherImagesInDb
+        End Get
+        Set(ByVal value As Boolean)
+            _OtherImagesInDb = value
+            OnPropertyChanged("OtherImagesInDb")
         End Set
     End Property
 
