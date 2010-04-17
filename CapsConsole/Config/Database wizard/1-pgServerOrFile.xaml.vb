@@ -2,10 +2,12 @@ Imports System
 Imports System.Windows
 Imports System.Windows.Controls
 Imports System.Windows.Navigation
-'Page 1
+''' <summary>A wizard page used to get basic information about database</summary>
 Public Class pgServerOrFile
     Inherits PageFunction(Of Boolean)
 
+    ''' <summary>CTor - creates a new instance of the <see cref="pgServerOrFile"/> class</summary>
+    ''' <param name="wizardData">Wizard data partially initialized by previous steps</param>
     Public Sub New(ByVal wizardData As WizardData)
         Me.InitializeComponent()
         MyBase.DataContext = wizardData

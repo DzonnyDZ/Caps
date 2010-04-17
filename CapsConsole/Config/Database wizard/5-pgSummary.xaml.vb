@@ -3,10 +3,14 @@ Imports System.Windows
 Imports System.Windows.Controls
 Imports System.Data.SqlClient, Caps.Data
 
+''' <summary>This wizard step shows summary information and when confirmed performs necessary tasks to apply settings chosen in wizard</summary>
 Public Class pgSummary
     Inherits PageFunction(Of Boolean)
+    ''' <summary>Wizard data filled by previosu steps</summary>
     Private data As WizardData
 
+    ''' <summary>CTor - creates a new instance of the <see cref="pgSummary"/> class</summary>
+    ''' <param name="wizardData">Wizard data partially initialized by previous steps</param>
     Public Sub New(ByVal wizardData As WizardData)
         Me.InitializeComponent()
         MyBase.DataContext = wizardData

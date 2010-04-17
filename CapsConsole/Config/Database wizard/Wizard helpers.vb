@@ -1,15 +1,19 @@
 ﻿Imports System.ComponentModel
 Imports System.Data.SqlClient
 
+''' <summary>Launches Database wizard</summary>
 Public Class WizardLauncher
     Inherits PageFunction(Of Boolean)
 
+    ''' <summary>Raised once wizard is completed</summary>
     Public Event WizardReturn As WizardReturnEventHandler
 
+    ''' <summary>CTor - creates a new instance of the <see cref="WizardLauncher"/> class</summary>
     Public Sub New()
         Me.wizardData = New WizardData
     End Sub
 
+    ''' <summary>Initializes a <see cref="T:System.Windows.Navigation.PageFunction`1" /> when it is navigated to for the first time.</summary>
     Protected Overrides Sub Start()
         MyBase.Start()
         MyBase.KeepAlive = True
@@ -23,59 +27,74 @@ Public Class WizardLauncher
         Me.OnReturn(Nothing)
     End Sub
 
+    ''' <summary>A wizard data to be filled by the wizard</summary>
     Private wizardData As WizardData
-
 End Class
 
-
-
+''' <summary>Event arguments of the <see cref="WizardLauncher.WizardReturn"/> event</summary>
 Public Class WizardReturnEventArgs
-
-    Public Sub New(ByVal result As Boolean, ByVal data As Object)
+    ''' <summary>CTor - creates a new instance of the <see cref="WizardReturnEventArgs"/> class</summary>
+    ''' <param name="result">Indicates if wizard was cancelled (false) or not (true)</param>
+    ''' <param name="data">Wizard data</param>
+    Public Sub New(ByVal result As Boolean, ByVal data As WizardData)
         Me._result = result
         Me._data = data
     End Sub
 
-    Public ReadOnly Property Data() As Object
+    ''' <summary>Gets a wizard data</summary>
+    Public ReadOnly Property Data() As WizardData
         Get
             Return Me._data
         End Get
     End Property
 
+    ''' <summary>Gets result of the wizard</summary>
+    ''' <returns>True if a wizard was completed successfully, false whan it was cancelled by user</returns>
     Public ReadOnly Property Result() As Boolean
         Get
             Return Me._result
         End Get
     End Property
-
-    Private _data As Object
+    ''' <summary>Contains value of the <see cref="Data"/> property</summary>
+    Private _data As WizardData
+    ''' <summary>Contains value of the <see cref="Result"/> property</summary>
     Private _result As Boolean
-
 End Class
 
-
-
+''' <summary>Types of database storage</summary>
 Public Enum DatabaseType
+    ''' <summary>SQL Server 2008 Express User instance</summary>
     UserInstance
+    ''' <summary>Attach database file to SQL Server 2008</summary>
     AttachFile
+    ''' <summary>SQL Server 2008 database</summary>
     ServerDatabase
 End Enum
 
+''' <summary>Types of database file</summary>
 Public Enum FileConnectionType
+    ''' <summary>Create a new database file</summary>
     [New]
+    ''' <summary>Use an existing database file</summary>
     Existing
 End Enum
 
+''' <summary>Types of server database</summary>
 Public Enum DatabaseConnectionType
+    ''' <summary>Create a new server database</summary>
     [New]
+    ''' <summary>Use existing server database</summary>
     Existing
+    ''' <summary>Connect to existing server database and create tables etc. there</summary>
     Empty
 End Enum
 
+''' <summary>Data of Database wizard</summary>
 Public Class WizardData
     Implements INotifyPropertyChanged
-
+    ''' <summary>COntains value of the <see cref="DatabaseType"/> property</summary>
     Private _DatabaseType As DatabaseType = Console.DatabaseType.UserInstance
+    ''' <summary>Gets or sets type of database to connect to (User instance, attach db file, server database)</summary>
     Public Property DatabaseType() As DatabaseType
         Get
             Return _DatabaseType
@@ -93,6 +112,7 @@ Public Class WizardData
         End Set
     End Property
 #Region "Database type helpers"
+    ''' <summary>Gets or sets value indicating if database file will be attached to database server</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public Property DatabaseTypeIsAttachFile() As Boolean
         Get
@@ -102,6 +122,7 @@ Public Class WizardData
             If value Then DatabaseType = Console.DatabaseType.AttachFile
         End Set
     End Property
+    ''' <summary>Gets or sets value indicating if server-side tabase will be used</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public Property DatabaseTypeIsServerDatabase() As Boolean
         Get
@@ -111,6 +132,7 @@ Public Class WizardData
             If value Then DatabaseType = Console.DatabaseType.ServerDatabase
         End Set
     End Property
+    ''' <summary>Gets or sets value indicating if User instances will be used</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public Property DatabaseTypeIsUserInstance() As Boolean
         Get
@@ -120,12 +142,14 @@ Public Class WizardData
             If value Then DatabaseType = Console.DatabaseType.UserInstance
         End Set
     End Property
+    ''' <summary>Gets value indicating if database type requires file selection</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public ReadOnly Property FileSelectionVisibility() As Visibility
         Get
             Return If(DatabaseTypeIsAttachFile OrElse DatabaseTypeIsUserInstance, Visibility.Visible, Visibility.Collapsed)
         End Get
     End Property
+    ''' <summary>gets value indicating if database type requires database selection</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public ReadOnly Property DatabaseSelectionVisibility() As Visibility
         Get
@@ -133,8 +157,11 @@ Public Class WizardData
         End Get
     End Property
 #End Region
+    ''' <summary>Contains value of the <see cref="FileConnectionType"/> property</summary>
     Private _FileConnectionType As FileConnectionType = Console.FileConnectionType.Existing
+    ''' <summary>Contains value of the <see cref="DatabaseConnectionType"/> property</summary>
     Private _DatabaseConnectionType As DatabaseConnectionType = Console.DatabaseConnectionType.Existing
+    ''' <summary>Gets or sets type of database file (new/existing)</summary>
     Public Property FileConnectionType() As FileConnectionType
         Get
             Return _FileConnectionType
@@ -147,6 +174,7 @@ Public Class WizardData
             OnPropertyChanged("ConnectionTypeDesc")
         End Set
     End Property
+    ''' <summary>Gets or sets type of database (new/existing/empty)</summary>
     Public Property DatabaseConnectionType() As DatabaseConnectionType
         Get
             Return _DatabaseConnectionType
@@ -161,6 +189,7 @@ Public Class WizardData
         End Set
     End Property
 #Region "Connection type helpers"
+    ''' <summary>Gets or sets value indicating if a new database file will be created.</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public Property IsFileConnectionTypeNew() As Boolean
         Get
@@ -170,6 +199,7 @@ Public Class WizardData
             If value Then FileConnectionType = Console.FileConnectionType.New
         End Set
     End Property
+    ''' <summary>Gets or sets value indicating if existing database file will be used</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public Property IsFileConnectionTypeExisting() As Boolean
         Get
@@ -179,6 +209,7 @@ Public Class WizardData
             If value Then FileConnectionType = Console.FileConnectionType.Existing
         End Set
     End Property
+    ''' <summary>Gets or sets value indicating if a new database will be created on server</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public Property IsDatabaseConnectionTypeNew() As Boolean
         Get
@@ -188,6 +219,7 @@ Public Class WizardData
             If value Then DatabaseConnectionType = Console.DatabaseConnectionType.New
         End Set
     End Property
+    ''' <summary>Gets or sets value indicating if existing database will be used from sever</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public Property IsDatabaseConnectionTypeExisting() As Boolean
         Get
@@ -197,6 +229,7 @@ Public Class WizardData
             If value Then DatabaseConnectionType = Console.DatabaseConnectionType.Existing
         End Set
     End Property
+    ''' <summary>gets or sets value indicating if an empty database will be used from server and tables etc. will be created in that database</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public Property IsDatabaseConnectionTypeEmpty() As Boolean
         Get
@@ -208,18 +241,21 @@ Public Class WizardData
     End Property
 #End Region
 #Region "Step 3 helpers"
+    ''' <summary>Gets value indicating if current database type requires file name to be selected</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public ReadOnly Property RequiresFileNameVisibility() As Visibility
         Get
             Return If(DatabaseType = Console.DatabaseType.ServerDatabase, Visibility.Collapsed, Visibility.Visible)
         End Get
     End Property
+    ''' <summary>Gets value indicating if current database type requires database name to be selected</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public ReadOnly Property RequiresDatabaseNameVisibility() As Visibility
         Get
             Return If(DatabaseType = Console.DatabaseType.ServerDatabase, Visibility.Visible, Visibility.Collapsed)
         End Get
     End Property
+    ''' <summary>Gets value indicating if SQL Server authentication is used</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public ReadOnly Property UseSqlServerAuth() As Boolean
         Get
@@ -227,39 +263,43 @@ Public Class WizardData
         End Get
     End Property
 #End Region
-#Region "Step 4 helpers"
+#Region "Step 5 helpers"
+    ''' <summary>Gets human-readable description of <see cref="DatabaseType"/></summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public ReadOnly Property DatabseTypeDesc$()
         Get
             Select Case DatabaseType
-                Case Console.DatabaseType.AttachFile : Return "Attach datbase file to server. File with given path must exist on server!"
-                Case Console.DatabaseType.ServerDatabase : Return "Connect to database server"
-                Case Console.DatabaseType.UserInstance : Return "Use SQL Server Express User Instances"
-                Case Else : Return "unknown"
+                Case Console.DatabaseType.AttachFile : Return My.Resources.wiz_txt_AttachDatabaseToServer
+                Case Console.DatabaseType.ServerDatabase : Return My.Resources.wiz_txt_ConnectToDatabaseServer
+                Case Console.DatabaseType.UserInstance : Return My.Resources.wiz_txt_UseUserInstances
+                Case Else : Return My.Resources.txt_Unknown
             End Select
         End Get
     End Property
+    ''' <summary>gets human-readable description of connection type</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
     Public ReadOnly Property ConnectionTypeDesc$()
         Get
             Select Case DatabaseType
                 Case Console.DatabaseType.AttachFile, Console.DatabaseType.UserInstance
                     Select Case FileConnectionType
-                        Case Console.FileConnectionType.Existing : Return "Use existing database file"
-                        Case Console.FileConnectionType.New : Return "Create new database file"
+                        Case Console.FileConnectionType.Existing : Return My.Resources.wiz_txt_UseExistingDatabaseFile
+                        Case Console.FileConnectionType.New : Return My.Resources.wiz_txt_NewDatabaseFile
                     End Select
                 Case Console.DatabaseType.ServerDatabase
                     Select Case DatabaseConnectionType
-                        Case Console.DatabaseConnectionType.Existing : Return "Use existing datbase"
-                        Case Console.DatabaseConnectionType.Empty : Return "Connect to existing empty database and create required structures there"
-                        Case Console.DatabaseConnectionType.New : Return "Create a new database"
+                        Case Console.DatabaseConnectionType.Existing : Return My.Resources.wiz_txt_UseExistingDatbase
+                        Case Console.DatabaseConnectionType.Empty : Return My.Resources.wiz_txt_ConnectToEmptyDatabase
+                        Case Console.DatabaseConnectionType.New : Return My.Resources.wiz_txt_NewDatabase
                     End Select
             End Select
-            Return "unknown"
+            Return My.Resources.txt_Unknown
         End Get
     End Property
 #End Region
+    ''' <summary>Contains value of the <see cref="UseIntegratedSecurity"/> property</summary>
     Private _UseIntegratedSecurity As Boolean = True
+    ''' <summary>Gets or sets value indicating if Windows authetication (integrated security) is used to connect to database</summary>
     <DefaultValue(True)> _
     Public Property UseIntegratedSecurity() As Boolean
         Get
@@ -271,15 +311,24 @@ Public Class WizardData
             OnPropertyChanged("UseSqlServerAuth")
         End Set
     End Property
+    ''' <summary>Contains value of the <see cref="FilePath"/> property</summary>
     Private _FilePath$
+    ''' <summary>Contains value of the <see cref="ServerName"/> property</summary>
     Private _ServerName$
+    ''' <summary>Contains value of the <see cref="UserName"/> property</summary>
     Private _UserName$
+    ''' <summary>Contains value of the <see cref="Password"/> property</summary>
     Private _Password$
+    ''' <summary>Contains value of the <see cref="DatabaseName"/> property</summary>
     Private _DatabaseName$
+    ''' <summary>Contains value of the <see cref="ImageRoot"/> property</summary>
     Private _ImageRoot$
+    ''' <summary>Contains value of the <see cref="CapImagesInDb"/> property</summary>
     Private _CapImagesInDb As Boolean
+    ''' <summary>Contains value of the <see cref="OtherImagesInDb"/> property</summary>
     Private _OtherImagesInDb As Boolean
 
+    ''' <summary>Gets or sets path of database file</summary>
     Public Property FilePath$()
         Get
             Return _FilePath
@@ -289,6 +338,7 @@ Public Class WizardData
             OnPropertyChanged("FilePath")
         End Set
     End Property
+    ''' <summary>Gets or sets name (i.e. address and instance name, domain name or IP address) of database server</summary>
     Public Property ServerName$()
         Get
             Return _ServerName
@@ -298,6 +348,7 @@ Public Class WizardData
             OnPropertyChanged("ServerName")
         End Set
     End Property
+    ''' <summary>Gets ore sets user name used to connect to database</summary>
     Public Property UserName$()
         Get
             Return _UserName
@@ -307,6 +358,7 @@ Public Class WizardData
             OnPropertyChanged("UserName")
         End Set
     End Property
+    ''' <summary>Gats or sets password used to connect to database</summary>
     Public Property Password$()
         Get
             Return _Password
@@ -316,6 +368,7 @@ Public Class WizardData
             OnPropertyChanged("Password")
         End Set
     End Property
+    ''' <summary>Gets or sets name of server database</summary>
     Public Property DatabaseName$()
         Get
             Return _DatabaseName
@@ -326,6 +379,7 @@ Public Class WizardData
         End Set
     End Property
 
+    ''' <summary>Gets or sets path of folder to store images in file system in</summary>
     Public Property ImageRoot$
         Get
             Return _ImageRoot
@@ -336,6 +390,7 @@ Public Class WizardData
         End Set
     End Property
 
+    ''' <summary>Gets or sets value indicating if images of caps will be stored in database</summary>
     Public Property CapImagesInDb As Boolean
         Get
             Return _CapImagesInDb
@@ -346,6 +401,7 @@ Public Class WizardData
         End Set
     End Property
 
+    ''' <summary>gets or sets value indicating if other images will be store din database</summary>
     Public Property OtherImagesInDb As Boolean
         Get
             Return _OtherImagesInDb
@@ -356,11 +412,15 @@ Public Class WizardData
         End Set
     End Property
 
+    ''' <summary>Occurs when a property value changes.</summary>
     Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+    ''' <summary>Raises the <see cref="PropertyChanged"/> event</summary>
     Protected Overridable Sub OnPropertyChanged(ByVal PropertyName$)
         RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(PropertyName))
     End Sub
 
+    ''' <summary>Gets file connection string</summary>
+    ''' <returns>A connection string to connect to caps database</returns>
     Public Function GetFinalConnectionString() As SqlConnectionStringBuilder
         Dim b As New SqlConnectionStringBuilder
         With b

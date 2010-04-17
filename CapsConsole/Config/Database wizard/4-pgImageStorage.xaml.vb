@@ -30,7 +30,7 @@ Public Class pgImageStorage
 
     Private Sub nextButton_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles nextButton.Click
         If (chkCapImages.IsChecked OrElse chkOtherImages.IsChecked) AndAlso (txtImageRoot.Text = "" OrElse Not IO.Directory.Exists(txtImageRoot.Text)) Then
-            mBox.MsgBox("Select folder to store images in, please", MsgBoxStyle.Information, "Image root")
+            mBox.MsgBox(My.Resources.wiz_msg_SeleftImageRoot, MsgBoxStyle.Information, My.Resources.txt_ImageRoot)
             Return
         End If
 

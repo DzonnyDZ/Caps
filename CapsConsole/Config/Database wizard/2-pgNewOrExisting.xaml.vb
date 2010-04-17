@@ -2,9 +2,12 @@ Imports System
 Imports System.Windows
 Imports System.Windows.Controls
 
+''' <summary>A wizard page used to let usere chose whether to use existing or create a new database</summary>
 Public Class pgNewOrExisting
     Inherits PageFunction(Of Boolean)
 
+    ''' <summary>CTor - creates a new instance of the <see cref="pgNewOrExisting"/> class</summary>
+    ''' <param name="wizardData">Wizard data partially initialized by previous steps</param>
     Public Sub New(ByVal wizardData As WizardData)
         Me.InitializeComponent()
         MyBase.DataContext = wizardData

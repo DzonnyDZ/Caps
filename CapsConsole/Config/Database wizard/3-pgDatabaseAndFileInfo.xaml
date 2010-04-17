@@ -1,13 +1,14 @@
 ﻿<PageFunction
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"        
+    xmlns:res="clr-namespace:Caps.Console.My.Resources"
     x:Class="pgCredentials"
     x:TypeArguments="sys:Boolean"
     KeepAlive="True"
-    WindowTitle="Database and file selection">
+    WindowTitle="{x:Static res:Resources.wiz_txt_DatabaseAndFileSelection}"
+>
     <Grid>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10" />
             <ColumnDefinition Width="Auto" />
@@ -29,26 +30,26 @@
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="23">Database and file information</Label>
-        <Label Grid.Column="1" Grid.Row="2" Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}">File path:</Label>
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="23" Content="{x:Static res:Resources.wiz_txt_DatabaseAndFileInformation}"/>
+        <Label Grid.Column="1" Grid.Row="2" Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}" Content="{x:Static res:Resources.wiz_txt_FilePath}"/>
         <TextBox Grid.Column="2" Grid.Row="2"  Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}"/>
         <Button Grid.Column="3" Grid.Row="2"  Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}">...</Button>
-        <Label Grid.Column="1" Grid.Row="3">Database server: </Label>
+        <Label Grid.Column="1" Grid.Row="3" Content="{x:Static res:Resources.wiz_txt_DatabaseServer}"/>
         <TextBox Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"/>
-        <RadioButton Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" IsChecked="{Binding UseIntegratedsecurity, Mode=TwoWay}" >Use Windows authentification</RadioButton>
-        <RadioButton Name="optSQLAuth" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="5" IsChecked="{Binding UseqlerverAuth, Mode=TwoWay}">Use SQL Server authentification</RadioButton>
-        <Label Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}" >User name:</Label>
+        <RadioButton Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" IsChecked="{Binding UseIntegratedsecurity, Mode=TwoWay}" Content="{x:Static res:Resources.wiz_txt_WindowsAuthentification}"/>
+        <RadioButton Name="optSQLAuth" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="5" IsChecked="{Binding UseqlerverAuth, Mode=TwoWay}" Content="{x:Static res:Resources.wiz_txt_SQLServerAuthentification}"/>
+        <Label Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.wiz_txt_UserName}"/>
         <TextBox Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}"/>
-        <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Right" IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}">Password:</Label>
+        <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Right" IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.wiz_txt_Password}"/>
         <PasswordBox Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}" PasswordChar="✮" />
-        <Label Grid.Column="1" Grid.Row="8" Visibility="{Binding PropertyChanged, Mode=OneWay}">Database name:</Label>
+        <Label Grid.Column="1" Grid.Row="8" Visibility="{Binding PropertyChanged, Mode=OneWay}" Content="{x:Static res:Resources.wiz_txt_DatabaseName}"/>
         <TextBox Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Visibility="{Binding PropertyChanged, Mode=OneWay}"/>
-        <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-            <Button Name="backButton" Click="backButton_Click" Width="50" xml:space="preserve">&lt; _Back</Button>
-            <Button Name="nextButton" IsEnabled="True" Width="50" Margin="10,0,0,0" xml:space="preserve">_Next &gt;</Button>
-            <Button Name="cancelButton" Click="cancelButton_Click" Width="50" Margin="10,0,0,0" IsCancel="True">_Cancel</Button>
-            <Button Name="finishButton" Click="finishButton_Click" Width="50" Margin="10,0,0,0" IsDefault="True" IsEnabled="False">_Finish</Button>
-        </StackPanel>
 
+        <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Name="backButton" Click="backButton_Click" Width="50" xml:space="preserve" Content="{x:Static res:Resources.wiz_cmd_Back}"/>
+            <Button Name="nextButton" IsEnabled="True" Width="50" Margin="10,0,0,0" xml:space="preserve" Content="{x:Static res:Resources.wiz_cmd_Next}"/>
+            <Button Name="cancelButton" Click="cancelButton_Click" Width="50" Margin="10,0,0,0" IsCancel="True" Content="{x:Static res:Resources.wiz_cmd_Cancel}"/>
+            <Button Name="finishButton" Click="finishButton_Click" Width="50" Margin="10,0,0,0" IsDefault="True" IsEnabled="False" Content="{x:Static res:Resources.wiz_cmd_Finish}"/>
+        </StackPanel>
     </Grid>
 </PageFunction>

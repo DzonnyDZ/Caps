@@ -2,11 +2,15 @@ Imports System
 Imports System.Windows
 Imports System.Windows.Controls
 
+''' <summary>A wizard page used to collect creadentials to connect to a database</summary>
 Public Class pgCredentials
     Inherits PageFunction(Of Boolean)
 
+    ''' <summary>Wizard data used and filled by this wizard step</summary>
     Private wizardData As WizardData
 
+    ''' <summary>CTor - creates a new instance of the <see cref="pgCredentials"/> class</summary>
+    ''' <param name="wizardData">Wizard data partially initialized by previous steps</param>
     Public Sub New(ByVal wizardData As WizardData)
         Me.InitializeComponent()
         MyBase.DataContext = wizardData
