@@ -1124,6 +1124,7 @@ Public Class EnumInConverter
         ElseIf Not TypeOf value Is [Enum] Then
             Throw New TypeMismatchException("value", value, GetType([Enum]))
         Else
+            ret = False
             For Each name In Parts
                 Dim enmVal As [Enum]
                 Try
@@ -1137,7 +1138,6 @@ Public Class EnumInConverter
                     Exit For
                 End If
             Next
-            ret = False
         End If
         If targetType.IsAssignableFrom(GetType(Boolean)) OrElse targetType.IsAssignableFrom(GetType(Boolean?)) Then
             Return ret

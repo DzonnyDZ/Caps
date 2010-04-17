@@ -2817,6 +2817,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Database wizard.
+        '''</summary>
+        Public ReadOnly Property txt_DatabaseWizard() As String
+            Get
+                Return ResourceManager.GetString("txt_DatabaseWizard", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Delete cap.
         '''</summary>
         Public ReadOnly Property txt_DeleteCap() As String
@@ -3501,6 +3510,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to unknown.
+        '''</summary>
+        Public ReadOnly Property txt_Unknown() As String
+            Get
+                Return ResourceManager.GetString("txt_Unknown", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Unsupported image type.
         '''</summary>
         Public ReadOnly Property txt_UnsupportedImageType() As String
@@ -3515,6 +3533,420 @@ Namespace My.Resources
         Public ReadOnly Property txt_UpgradeDatabase() As String
             Get
                 Return ResourceManager.GetString("txt_UpgradeDatabase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to &lt; _Back.
+        '''</summary>
+        Public ReadOnly Property wiz_cmd_Back() As String
+            Get
+                Return ResourceManager.GetString("wiz_cmd_Back", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to _Cancel.
+        '''</summary>
+        Public ReadOnly Property wiz_cmd_Cancel() As String
+            Get
+                Return ResourceManager.GetString("wiz_cmd_Cancel", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to _Finish.
+        '''</summary>
+        Public ReadOnly Property wiz_cmd_Finish() As String
+            Get
+                Return ResourceManager.GetString("wiz_cmd_Finish", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to _Next &gt;.
+        '''</summary>
+        Public ReadOnly Property wiz_cmd_Next() As String
+            Get
+                Return ResourceManager.GetString("wiz_cmd_Next", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Select folder to store images in, please.
+        '''</summary>
+        Public ReadOnly Property wiz_msg_SeleftImageRoot() As String
+            Get
+                Return ResourceManager.GetString("wiz_msg_SeleftImageRoot", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Attach database file to Miscroft SQL Server 2008.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_AttachDatabase() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_AttachDatabase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Attach datbase file to server. File with given path must exist on server!.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_AttachDatabaseToServer() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_AttachDatabaseToServer", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Image storage cannot be changed for existing database. Proceed to next step..
+        '''</summary>
+        Public ReadOnly Property wiz_txt_CannotChangeImageStorage() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_CannotChangeImageStorage", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Store cap images in database.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_CapImagesInDB() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_CapImagesInDB", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Connection type.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_ConnectionType() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_ConnectionType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Connect to database server.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_ConnectToDatabaseServer() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_ConnectToDatabaseServer", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Connect to existing empty database and create required structures there.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_ConnectToEmptyDatabase() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_ConnectToEmptyDatabase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Connect to Microsft SQL Server 2008 database server.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_ConnectToServer() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_ConnectToServer", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Database and file information.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_DatabaseAndFileInformation() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_DatabaseAndFileInformation", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Database and file selection.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_DatabaseAndFileSelection() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_DatabaseAndFileSelection", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Database file.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_DatabaseFile() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_DatabaseFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Database name:.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_DatabaseName() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_DatabaseName", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Database name.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_DatabaseName2() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_DatabaseName2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Database server:.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_DatabaseServer() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_DatabaseServer", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Database type.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_DatabaseType() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_DatabaseType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Connect to an empty database and prepare it for use.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_EmptyDatabase() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_EmptyDatabase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Connect to an existing database.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_ExistingDatabase() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_ExistingDatabase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Use an existing database file.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_ExistingDatabaseFile() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_ExistingDatabaseFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to File path:.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_FilePath() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_FilePath", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Image storage selection.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_ImageStorageSelection() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_ImageStorageSelection", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to More detailed configuration can be done later in Database settings dialog..
+        '''</summary>
+        Public ReadOnly Property wiz_txt_MoreDetailedImageConfig() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_MoreDetailedImageConfig", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Create a new database.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_NewDatabase() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_NewDatabase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Create a new database file.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_NewDatabaseFile() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_NewDatabaseFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to New or existing.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_NewOrExisting() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_NewOrExisting", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to New or existing?.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_NewOrExistingQ() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_NewOrExistingQ", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Store other images in database.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_OtherImagesInDB() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_OtherImagesInDB", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Password:.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_Password() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_Password", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Select where you&apos;d like to store images.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_SelectImageStorage() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_SelectImageStorage", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Server name.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_ServerName() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_ServerName", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Server or file.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_ServerOrFile() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_ServerOrFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Server or file?.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_ServerOrFileQ() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_ServerOrFileQ", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Use SQL Server authentification.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_SQLServerAuthentification() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_SQLServerAuthentification", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Summary.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_Summary() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_Summary", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Database wizard summary.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_SummaryTitle() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_SummaryTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Use existing database file.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_UseExistingDatabaseFile() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_UseExistingDatabaseFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Use existing datbase.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_UseExistingDatbase() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_UseExistingDatbase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Use database in file with Microsft SQL Server 2008 Express user instances.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_UserInstance() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_UserInstance", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to User name:.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_UserName() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_UserName", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Use SQL Server Express User Instances.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_UseUserInstances() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_UseUserInstances", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Welcome to database wizard. This wizard will help you to select existing or create new database for your caps..
+        '''</summary>
+        Public ReadOnly Property wiz_txt_Wellcome() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_Wellcome", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Use Windows authentification.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_WindowsAuthentification() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_WindowsAuthentification", resourceCulture)
             End Get
         End Property
     End Module

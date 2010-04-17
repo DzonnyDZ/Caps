@@ -1599,4 +1599,188 @@ Doubleclick to edit.</value>
     <value>Database settings...</value>
     <comment>Menu item text</comment>
   </data>
+  <data name="wiz_cmd_Back" xml:space="preserve">
+    <value>&lt; _Back</value>
+    <comment>Wizard button text</comment>
+  </data>
+  <data name="wiz_cmd_Cancel" xml:space="preserve">
+    <value>_Cancel</value>
+    <comment>Wizard button text</comment>
+  </data>
+  <data name="wiz_cmd_Finish" xml:space="preserve">
+    <value>_Finish</value>
+    <comment>Wizard button text</comment>
+  </data>
+  <data name="wiz_cmd_Next" xml:space="preserve">
+    <value>_Next &gt;</value>
+    <comment>Wizard button text</comment>
+  </data>
+  <data name="wiz_txt_AttachDatabase" xml:space="preserve">
+    <value>Attach database file to Miscroft SQL Server 2008</value>
+    <comment>Radio button text in wizard</comment>
+  </data>
+  <data name="wiz_txt_CannotChangeImageStorage" xml:space="preserve">
+    <value>Image storage cannot be changed for existing database. Proceed to next step.</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_CapImagesInDB" xml:space="preserve">
+    <value>Store cap images in database</value>
+    <comment>Check box text in wizard</comment>
+  </data>
+  <data name="wiz_txt_ConnectToServer" xml:space="preserve">
+    <value>Connect to Microsft SQL Server 2008 database server</value>
+    <comment>Radio button text in wizard</comment>
+  </data>
+  <data name="wiz_txt_DatabaseAndFileInformation" xml:space="preserve">
+    <value>Database and file information</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_DatabaseAndFileSelection" xml:space="preserve">
+    <value>Database and file selection</value>
+    <comment>Wizard window title</comment>
+  </data>
+  <data name="wiz_txt_DatabaseName" xml:space="preserve">
+    <value>Database name:</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_DatabaseServer" xml:space="preserve">
+    <value>Database server:</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_EmptyDatabase" xml:space="preserve">
+    <value>Connect to an empty database and prepare it for use</value>
+    <comment>Radio button text in wizard</comment>
+  </data>
+  <data name="wiz_txt_ExistingDatabase" xml:space="preserve">
+    <value>Connect to an existing database</value>
+    <comment>Radio button text in wizard</comment>
+  </data>
+  <data name="wiz_txt_ExistingDatabaseFile" xml:space="preserve">
+    <value>Use an existing database file</value>
+    <comment>Radio button text in wizard</comment>
+  </data>
+  <data name="wiz_txt_FilePath" xml:space="preserve">
+    <value>File path:</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_ImageStorageSelection" xml:space="preserve">
+    <value>Image storage selection</value>
+    <comment>Wizard window title</comment>
+  </data>
+  <data name="wiz_txt_MoreDetailedImageConfig" xml:space="preserve">
+    <value>More detailed configuration can be done later in Database settings dialog.</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_NewDatabase" xml:space="preserve">
+    <value>Create a new database</value>
+    <comment>Radio button text in wizard</comment>
+  </data>
+  <data name="wiz_txt_NewDatabaseFile" xml:space="preserve">
+    <value>Create a new database file</value>
+    <comment>Radio button text in wizard</comment>
+  </data>
+  <data name="wiz_txt_NewOrExisting" xml:space="preserve">
+    <value>New or existing</value>
+    <comment>Wizard window title</comment>
+  </data>
+  <data name="wiz_txt_NewOrExistingQ" xml:space="preserve">
+    <value>New or existing?</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_OtherImagesInDB" xml:space="preserve">
+    <value>Store other images in database</value>
+    <comment>Check box text in wizard</comment>
+  </data>
+  <data name="wiz_txt_Password" xml:space="preserve">
+    <value>Password:</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_SelectImageStorage" xml:space="preserve">
+    <value>Select where you'd like to store images</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_ServerOrFile" xml:space="preserve">
+    <value>Server or file</value>
+    <comment>Wizard window title</comment>
+  </data>
+  <data name="wiz_txt_ServerOrFileQ" xml:space="preserve">
+    <value>Server or file?</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_SQLServerAuthentification" xml:space="preserve">
+    <value>Use SQL Server authentification</value>
+    <comment>Radio button text in wizard</comment>
+  </data>
+  <data name="wiz_txt_UserInstance" xml:space="preserve">
+    <value>Use database in file with Microsft SQL Server 2008 Express user instances</value>
+    <comment>Radio button text in wizard</comment>
+  </data>
+  <data name="wiz_txt_UserName" xml:space="preserve">
+    <value>User name:</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_Wellcome" xml:space="preserve">
+    <value>Welcome to database wizard. This wizard will help you to select existing or create new database for your caps.</value>
+    <comment>Wizard wellcome text</comment>
+  </data>
+  <data name="wiz_txt_WindowsAuthentification" xml:space="preserve">
+    <value>Use Windows authentification</value>
+    <comment>Radio button text in wizard</comment>
+  </data>
+  <data name="wiz_txt_ConnectionType" xml:space="preserve">
+    <value>Connection type</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_DatabaseFile" xml:space="preserve">
+    <value>Database file</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_DatabaseName2" xml:space="preserve">
+    <value>Database name</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_DatabaseType" xml:space="preserve">
+    <value>Database type</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_ServerName" xml:space="preserve">
+    <value>Server name</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_Summary" xml:space="preserve">
+    <value>Summary</value>
+    <comment>Label in wizard</comment>
+  </data>
+  <data name="wiz_txt_SummaryTitle" xml:space="preserve">
+    <value>Database wizard summary</value>
+    <comment>Wizard window title</comment>
+  </data>
+  <data name="wiz_msg_SeleftImageRoot" xml:space="preserve">
+    <value>Select folder to store images in, please</value>
+  </data>
+  <data name="txt_DatabaseWizard" xml:space="preserve">
+    <value>Database wizard</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="wiz_txt_AttachDatabaseToServer" xml:space="preserve">
+    <value>Attach datbase file to server. File with given path must exist on server!</value>
+  </data>
+  <data name="wiz_txt_ConnectToDatabaseServer" xml:space="preserve">
+    <value>Connect to database server</value>
+  </data>
+  <data name="wiz_txt_UseUserInstances" xml:space="preserve">
+    <value>Use SQL Server Express User Instances</value>
+  </data>
+  <data name="wiz_txt_UseExistingDatabaseFile" xml:space="preserve">
+    <value>Use existing database file</value>
+  </data>
+  <data name="wiz_txt_UseExistingDatbase" xml:space="preserve">
+    <value>Use existing datbase</value>
+  </data>
+  <data name="wiz_txt_ConnectToEmptyDatabase" xml:space="preserve">
+    <value>Connect to existing empty database and create required structures there</value>
+  </data>
+  <data name="txt_Unknown" xml:space="preserve">
+    <value>unknown</value>
+  </data>
 </root>

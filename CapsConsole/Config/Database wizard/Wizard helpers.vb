@@ -109,6 +109,7 @@ Public Class WizardData
             OnPropertyChanged("DatabaseSelectionVisibility")
             OnPropertyChanged("RequiresFileNameVisibility")
             OnPropertyChanged("DatabaseTypeDesc")
+            OnPropertyChanged("ImageStorageSettingsVisible")
         End Set
     End Property
 #Region "Database type helpers"
@@ -172,6 +173,7 @@ Public Class WizardData
             OnPropertyChanged("IsFileConnectionTypeExisting")
             OnPropertyChanged("IsFileConnectionTypeNew")
             OnPropertyChanged("ConnectionTypeDesc")
+            OnPropertyChanged("ImageStorageSettingsVisible")
         End Set
     End Property
     ''' <summary>Gets or sets type of database (new/existing/empty)</summary>
@@ -186,6 +188,7 @@ Public Class WizardData
             OnPropertyChanged("IsDatabaseConnectionTypeEmpty")
             OnPropertyChanged("IsDatabaseConnectionTypeNew")
             OnPropertyChanged("ConnectionTypeDesc")
+            OnPropertyChanged("ImageStorageSettingsVisible")
         End Set
     End Property
 #Region "Connection type helpers"
@@ -257,9 +260,29 @@ Public Class WizardData
     End Property
     ''' <summary>Gets value indicating if SQL Server authentication is used</summary>
     <EditorBrowsable(EditorBrowsableState.Never)> _
-    Public ReadOnly Property UseSqlServerAuth() As Boolean
+    Public Property UseSqlServerAuth() As Boolean
         Get
             Return Not UseIntegratedSecurity
+        End Get
+        Set(ByVal value As Boolean)
+            UseIntegratedSecurity = Not value
+        End Set
+    End Property
+#End Region
+#Region "Step 4 helpers"
+    ''' <summary>Gets value indicating if image store selecdtion controls are visible</summary>
+    <EditorBrowsable(EditorBrowsableState.Never)>
+    Public ReadOnly Property ImageStorageSettingsVisible As Boolean
+        Get
+            Return ((DatabaseType = Console.DatabaseType.AttachFile OrElse DatabaseType = Console.DatabaseType.UserInstance) AndAlso FileConnectionType = Console.FileConnectionType.New) OrElse
+                (DatabaseType = Console.DatabaseType.ServerDatabase AndAlso (DatabaseConnectionType = Console.DatabaseConnectionType.New OrElse DatabaseConnectionType = Console.DatabaseConnectionType.Empty))
+        End Get
+    End Property
+    ''' <summary>it is necessary to specify image root folder</summary>
+    <EditorBrowsable(EditorBrowsableState.Never)>
+    Public ReadOnly Property ImageRootRequired As Boolean
+        Get
+            Return Not CapImagesInDb OrElse Not OtherImagesInDb
         End Get
     End Property
 #End Region
@@ -398,6 +421,7 @@ Public Class WizardData
         Set(ByVal value As Boolean)
             _CapImagesInDb = value
             OnPropertyChanged("CapImagesInDb")
+            OnPropertyChanged("ImageRootRequired")
         End Set
     End Property
 
@@ -409,6 +433,7 @@ Public Class WizardData
         Set(ByVal value As Boolean)
             _OtherImagesInDb = value
             OnPropertyChanged("OtherImagesInDb")
+            OnPropertyChanged("ImageRootRequired")
         End Set
     End Property
 

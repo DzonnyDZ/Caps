@@ -21,7 +21,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
@@ -32,7 +32,7 @@
         <RadioButton Grid.Column="1" Grid.Row="4" Content="{x:Static res:Resources.wiz_txt_AttachDatabase}" IsChecked="{Binding Path=DatabaseTypeIsAttachFile, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <RadioButton Grid.Column="1" Grid.Row="5" Content="{x:Static res:Resources.wiz_txt_ConnectToServer}" IsChecked="{Binding Path=DatabaseTypeIsServerDatabase, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         
-        <StackPanel Grid.Column="1"  Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+        <StackPanel Grid.Column="1"  Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,10,0,0">
             <Button Name="backButton" IsEnabled="False" Width="50" xml:space="preserve" Content="{x:Static res:Resources.wiz_cmd_Back}"/>
             <Button Name="nextButton" Click="nextButton_Click" Width="50" Margin="10,0,0,0" xml:space="preserve" IsDefault="True" Content="{x:Static res:Resources.wiz_cmd_Next}"/>
             <Button Name="cancelButton" Click="cancelButton_Click" Width="50" Margin="10,0,0,0" IsCancel="True" Content="{x:Static res:Resources.wiz_cmd_Cancel}"/>

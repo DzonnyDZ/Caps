@@ -16,6 +16,13 @@ Public Class pgImageStorage
         MyBase.DataContext = wizardData
     End Sub
 
+    ''' <summary>Gets wizard data used by this instance</summary>
+    Public ReadOnly Property WizardData As WizardData
+        Get
+            Return Me.DataContext
+        End Get
+    End Property
+
     Private Sub backButton_Click(ByVal sender As Object, ByVal e As RoutedEventArgs)
         MyBase.NavigationService.GoBack()
     End Sub
@@ -29,7 +36,7 @@ Public Class pgImageStorage
     End Sub
 
     Private Sub nextButton_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles nextButton.Click
-        If (chkCapImages.IsChecked OrElse chkOtherImages.IsChecked) AndAlso (txtImageRoot.Text = "" OrElse Not IO.Directory.Exists(txtImageRoot.Text)) Then
+        If WizardData.ImageStorageSettingsVisible AndAlso ((Not chkCapImages.IsChecked OrElse Not chkOtherImages.IsChecked) AndAlso (txtImageRoot.Text = "" OrElse Not IO.Directory.Exists(txtImageRoot.Text))) Then
             mBox.MsgBox(My.Resources.wiz_msg_SeleftImageRoot, MsgBoxStyle.Information, My.Resources.txt_ImageRoot)
             Return
         End If
@@ -42,13 +49,7 @@ Public Class pgImageStorage
         Me.OnReturn(e)
     End Sub
 
-    Private Sub chkCapImages_CheckedChanged(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles chkCapImages.Checked, chkOtherImages.Checked, chkCapImages.Unchecked, chkOtherImages.Unchecked
-        lblImageRoot.IsEnabled = chkCapImages.IsChecked OrElse chkOtherImages.IsChecked
-        txtImageRoot.IsEnabled = chkCapImages.IsChecked OrElse chkOtherImages.IsChecked
-        btnImageRoot.IsEnabled = chkCapImages.IsChecked OrElse chkOtherImages.IsChecked
-    End Sub
-
-    Private Sub btnImageRoot_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnImageRoot.Click
+   Private Sub btnImageRoot_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnImageRoot.Click
         Dim dlg As New FolderBrowserDialog
         Try
             dlg.SelectedPath = txtImageRoot.Text

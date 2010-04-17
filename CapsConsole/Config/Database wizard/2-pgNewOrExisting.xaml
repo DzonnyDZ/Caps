@@ -22,7 +22,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
 
@@ -33,8 +33,8 @@
         <RadioButton GroupName="Database" Grid.Column="1" Grid.Row="4" Content="{x:Static res:Resources.wiz_txt_ExistingDatabase}" IsChecked="{Binding Path=IsDatabaseConnectionTypeExisting, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding Path=DatabaseSelectionVisibility, Mode=OneWay}"/>
         <RadioButton GroupName="Database" Grid.Column="1" Grid.Row="5" Content="{x:Static res:Resources.wiz_txt_NewDatabase}" IsChecked="{Binding Path=IsDatabaseConnectionTypeNew, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding Path=DatabaseSelectionVisibility, Mode=OneWay}"/>
         <RadioButton GroupName="Database" Grid.Column="1" Grid.Row="6" Content="{x:Static res:Resources.wiz_txt_EmptyDatabase}" IsChecked="{Binding Path=IsDatabaseConnectionTypeEmpty, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding Path=DatabaseSelectionVisibility, Mode=OneWay}"/>
-             
-        <StackPanel Grid.Column="1"  Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+
+        <StackPanel Grid.Column="1"  Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,10,0,0">
             <Button Name="backButton" Click="backButton_Click" Width="50" xml:space="preserve" Content="{x:Static res:Resources.wiz_cmd_Back}"/>
             <Button Name="nextButton" Click="nextButton_Click" Width="50" Margin="10,0,0,0" xml:space="preserve" IsDefault="True" Content="{x:Static res:Resources.wiz_cmd_Next}"/>
             <Button Name="cancelButton" Click="cancelButton_Click" Width="50" Margin="10,0,0,0" IsCancel="True" Content="{x:Static res:Resources.wiz_cmd_Cancel}"/>
