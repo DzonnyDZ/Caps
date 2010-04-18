@@ -35,11 +35,7 @@ Public Class pgSummary
                             testOnly = True
                             Using Connection As SqlConnection = New SqlConnection(b.ToString)
                                 Connection.Open()
-                                If Not VerifyDatabaseVersion(Connection) Then
-                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError, Me)
-                                    'TODO: Upgrade?
-                                    Exit Sub
-                                End If
+                               VerifyDatabaseVersionWithUpgrade(Connection, Me.FindAncestor(Of Window))
                             End Using
                         Case FileConnectionType.New 'Create new database file to attach
                             'TODO: Create file and create database in there
@@ -49,16 +45,15 @@ Public Class pgSummary
                         Case DatabaseConnectionType.New 'Create a new database
                             'TODO: Create database and create database in threre
                         Case DatabaseConnectionType.Empty  'Create structures in exisitng database
-                            'TODO: Create database inthere
+                            Using Connection As SqlConnection = New SqlConnection(b.ToString)
+                                Connection.Open()
+                                InitDatabase(Connection)
+                            End Using
                         Case DatabaseConnectionType.Existing  'Test connection to database
                             testOnly = True
                             Using Connection As SqlConnection = New SqlConnection(b.ToString)
                                 Connection.Open()
-                                If Not VerifyDatabaseVersion(Connection) Then
-                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError, Me)
-                                    'TODO: Upgrade?
-                                    Exit Sub
-                                End If
+                                VerifyDatabaseVersionWithUpgrade(Connection, Me.FindAncestor(Of Window))
                             End Using
                     End Select
                 Case DatabaseType.UserInstance
@@ -69,11 +64,7 @@ Public Class pgSummary
                             testOnly = True
                             Using Connection As SqlConnection = New SqlConnection(b.ToString)
                                 Connection.Open()
-                                If Not VerifyDatabaseVersion(Connection) Then
-                                    mBox.MsgBox(My.Resources.err_IncorrectDatabaseVersion, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError, Me)
-                                    'TODO: Upgrade?
-                                    Exit Sub
-                                End If
+                               VerifyDatabaseVersionWithUpgrade(Connection, Me.FindAncestor(Of Window))
                             End Using
                     End Select
             End Select
@@ -86,6 +77,13 @@ Public Class pgSummary
             Exit Sub
         End Try
         Me.OnReturn(New ReturnEventArgs(Of Boolean)(True))
+    End Sub
+
+    ''' <summary>Creates tables etc. in database</summary>
+    ''' <param name="connection">Connection to a database</param>
+    ''' <exception cref="SqlException">Failed to create database objects</exception>
+    Private Sub InitDatabase(ByVal connection As SqlConnection)
+        'TODO:
     End Sub
 
 End Class

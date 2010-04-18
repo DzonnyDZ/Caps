@@ -74,10 +74,10 @@ Partial Public Class winSelectDatabase
                 conn.Open()
             End Using
         Catch ex As Exception
-            mBox.Error_X(ex)
+            mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Return
         End Try
-        mBox.Modal_PTI(My.Resources.msg_TestConnectionSucceeded, My.Resources.txt_TestConnection, mBox.MessageBoxIcons.OK)
+        mBox.Modal_PTIW(My.Resources.msg_TestConnectionSucceeded, My.Resources.txt_TestConnection, mBox.MessageBoxIcons.OK, Me)
     End Sub
 
     Private Sub btnImageRoot_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnImageRoot.Click

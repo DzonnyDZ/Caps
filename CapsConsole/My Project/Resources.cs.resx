@@ -1241,4 +1241,201 @@ Dvakrát klikněte pro editaci.</value>
   <data name="lbl_Parent" xml:space="preserve">
     <value>Rodič</value>
   </data>
+  <data name="cmd_Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="coh_Key" xml:space="preserve">
+    <value>Klíč</value>
+  </data>
+  <data name="coh_Value" xml:space="preserve">
+    <value>Hodnota</value>
+  </data>
+  <data name="tot_ImageRootLeaveEmpty" xml:space="preserve">
+    <value>Ponechte prázdné, pokud jsou obrázky ukládány v databázi</value>
+  </data>
+  <data name="tot_Test" xml:space="preserve">
+    <value>Otestuje spojení s databází</value>
+  </data>
+  <data name="txt_DatabaseSettings" xml:space="preserve">
+    <value>Nastavení databáze</value>
+  </data>
+  <data name="msg_TestConnectionSucceeded" xml:space="preserve">
+    <value>Spojení s databází úspěšné.</value>
+  </data>
+  <data name="txt_TestConnection" xml:space="preserve">
+    <value>Test spojení</value>
+  </data>
+  <data name="msg_DirectoryDoesNotExist" xml:space="preserve">
+    <value>Složka {0} neexistuje.</value>
+  </data>
+  <data name="mni_DbSettings" xml:space="preserve">
+    <value>Nastavení databáze...</value>
+  </data>
+  <data name="wiz_cmd_Back" xml:space="preserve">
+    <value>&lt; _Zpět</value>
+  </data>
+  <data name="wiz_cmd_Cancel" xml:space="preserve">
+    <value>_Storno</value>
+  </data>
+  <data name="wiz_cmd_Finish" xml:space="preserve">
+    <value>_Dokončit</value>
+  </data>
+  <data name="wiz_cmd_Next" xml:space="preserve">
+    <value>_Další &gt;</value>
+  </data>
+  <data name="wiz_txt_AttachDatabase" xml:space="preserve">
+    <value>Připojit databázový soubor k Microsoft SQL Serveru 2008</value>
+  </data>
+  <data name="wiz_txt_CannotChangeImageStorage" xml:space="preserve">
+    <value>Úložiště obrázků nemůže být změněno pro existující databázi. Pokračujte k dalšímu kroku.</value>
+  </data>
+  <data name="wiz_txt_CapImagesInDB" xml:space="preserve">
+    <value>Ukládat obrázky víček v databázi.</value>
+  </data>
+  <data name="wiz_txt_ConnectToServer" xml:space="preserve">
+    <value>Připojit k databázovému serveru Microsoft SQL Server 2008</value>
+  </data>
+  <data name="wiz_txt_DatabaseAndFileInformation" xml:space="preserve">
+    <value>Informace o databázi a souboru</value>
+  </data>
+  <data name="wiz_txt_DatabaseAndFileSelection" xml:space="preserve">
+    <value>Výběr databáze a souboru</value>
+  </data>
+  <data name="wiz_txt_DatabaseName" xml:space="preserve">
+    <value>Název datbáze:</value>
+  </data>
+  <data name="wiz_txt_DatabaseServer" xml:space="preserve">
+    <value>Databázový server:</value>
+  </data>
+  <data name="wiz_txt_EmptyDatabase" xml:space="preserve">
+    <value>Připojit se k prázdné databázi a připravit ji pro použití</value>
+  </data>
+  <data name="wiz_txt_ExistingDatabase" xml:space="preserve">
+    <value>Připojit se k existující databázi</value>
+  </data>
+  <data name="wiz_txt_ExistingDatabaseFile" xml:space="preserve">
+    <value>Použít existující databázový soubor</value>
+  </data>
+  <data name="wiz_txt_FilePath" xml:space="preserve">
+    <value>Adresa souboru:</value>
+  </data>
+  <data name="wiz_txt_ImageStorageSelection" xml:space="preserve">
+    <value>Výběr úložiště obrázků</value>
+  </data>
+  <data name="wiz_txt_MoreDetailedImageConfig" xml:space="preserve">
+    <value>Detailnější konfigurace může být provedena později v dialogu Nastavení databáze.</value>
+  </data>
+  <data name="wiz_txt_NewDatabase" xml:space="preserve">
+    <value>Vytvořit novou databázi</value>
+  </data>
+  <data name="wiz_txt_NewDatabaseFile" xml:space="preserve">
+    <value>Vytvořit nový databázový soubor</value>
+  </data>
+  <data name="wiz_txt_NewOrExisting" xml:space="preserve">
+    <value>Nová nebo existující</value>
+  </data>
+  <data name="wiz_txt_NewOrExistingQ" xml:space="preserve">
+    <value>Nová nebo existující?</value>
+  </data>
+  <data name="wiz_txt_OtherImagesInDB" xml:space="preserve">
+    <value>Ukládat ostatní obrázky v datbázi</value>
+  </data>
+  <data name="wiz_txt_Password" xml:space="preserve">
+    <value>Heslo:</value>
+  </data>
+  <data name="wiz_txt_SelectImageStorage" xml:space="preserve">
+    <value>Vyberte, kde chcete ukládat obrázky</value>
+  </data>
+  <data name="wiz_txt_ServerOrFile" xml:space="preserve">
+    <value>Server nebo soubor</value>
+  </data>
+  <data name="wiz_txt_ServerOrFileQ" xml:space="preserve">
+    <value>Server nebo soubor?</value>
+  </data>
+  <data name="wiz_txt_SQLServerAuthentification" xml:space="preserve">
+    <value>Použít autentifikaci na straně SQL Serveru</value>
+  </data>
+  <data name="wiz_txt_UserInstance" xml:space="preserve">
+    <value>Použít databázi v souboru s Microsoft SQL Server 2008 Express uživatelskými instancemi</value>
+  </data>
+  <data name="wiz_txt_UserName" xml:space="preserve">
+    <value>Uživatelské jméno:</value>
+  </data>
+  <data name="wiz_txt_Wellcome" xml:space="preserve">
+    <value>Vítejte v průvodci databází. Tento průvodce vám pomůže vybrat existující nebo založit novou databázi pro vače víčka.</value>
+  </data>
+  <data name="wiz_txt_WindowsAuthentification" xml:space="preserve">
+    <value>Použít Windows autentifikaci</value>
+  </data>
+  <data name="wiz_txt_ConnectionType" xml:space="preserve">
+    <value>Typ připojení</value>
+  </data>
+  <data name="wiz_txt_DatabaseFile" xml:space="preserve">
+    <value>Databázový soubor</value>
+  </data>
+  <data name="wiz_txt_DatabaseName2" xml:space="preserve">
+    <value>Název databáze</value>
+  </data>
+  <data name="wiz_txt_DatabaseType" xml:space="preserve">
+    <value>Typ databáze</value>
+  </data>
+  <data name="wiz_txt_ServerName" xml:space="preserve">
+    <value>Název serveru</value>
+  </data>
+  <data name="wiz_txt_Summary" xml:space="preserve">
+    <value>Shrnutí</value>
+  </data>
+  <data name="wiz_txt_SummaryTitle" xml:space="preserve">
+    <value>Shrnutí průvodce databází</value>
+  </data>
+  <data name="wiz_msg_SeleftImageRoot" xml:space="preserve">
+    <value>Vyberte složku pro ukládání obrázků, prosím</value>
+  </data>
+  <data name="txt_DatabaseWizard" xml:space="preserve">
+    <value>Průvodce databází</value>
+  </data>
+  <data name="wiz_txt_AttachDatabaseToServer" xml:space="preserve">
+    <value>Připojit databázový soubor k serveru. Soubor se zadanou cestou musí existovat na serveru!</value>
+  </data>
+  <data name="wiz_txt_ConnectToDatabaseServer" xml:space="preserve">
+    <value>Připojit k databázovému serveru</value>
+  </data>
+  <data name="wiz_txt_UseUserInstances" xml:space="preserve">
+    <value>Použít SQL Server Express uživatelské instance</value>
+  </data>
+  <data name="wiz_txt_UseExistingDatabaseFile" xml:space="preserve">
+    <value>Použít existující databázový soubor</value>
+  </data>
+  <data name="wiz_txt_UseExistingDatbase" xml:space="preserve">
+    <value>Použít existující databázi</value>
+  </data>
+  <data name="wiz_txt_ConnectToEmptyDatabase" xml:space="preserve">
+    <value>Připojit k existující prázdné databázi a vytvořit v ní požadované struktury</value>
+  </data>
+  <data name="txt_Unknown" xml:space="preserve">
+    <value>neznámý</value>
+  </data>
+  <data name="wiz_txt_SelectExistingDbFile" xml:space="preserve">
+    <value>Vyberze existující databázový soubor, prosím</value>
+  </data>
+  <data name="wiz_txt_EnterDbName" xml:space="preserve">
+    <value>Zadejte název databáze, prosím</value>
+  </data>
+  <data name="wiz_txt_EnterUserNameAndPassword" xml:space="preserve">
+    <value>Zadejte uživetelské jméno a heslo, prosím</value>
+  </data>
+  <data name="wiz_txt_SQLServerAuthentification2" xml:space="preserve">
+    <value>SQL Server autentifikace</value>
+  </data>
+  <data name="txt_DatabaseSettingInfo" xml:space="preserve">
+    <value>Buďte opatrní❢
+Nastavení databáze jsou pokročilou možností konfigurace aplikace. Neplatná nodnoty konfiguračních klíčů mohou způsobit, že aplikace přestane fungovat, nebo že nebude možno pracovat s vaší databází!
+Nastavení databáze jsou platná pouze pro databázi, ke které jste zrovna připojeni.</value>
+  </data>
+  <data name="wiz_txt_SelectDbFile" xml:space="preserve">
+    <value>Vyberte databázový soubor, prosím</value>
+  </data>
+  <data name="fil_MDF" xml:space="preserve">
+    <value>Databázové soubory Microsoft SQL Server (*.mdf)|*.mdf</value>
+  </data>
 </root>

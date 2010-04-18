@@ -957,5 +957,22 @@
     <Build Include="Create Scripts\Tables\Keys\PK_Cap_PseudoCategory_Int.pkey.sql">
       <SubType>Code</SubType>
     </Build>
+    <Build Include="Create Scripts\Tables\Settings.table.sql">
+      <SubType>Code</SubType>
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
+    <Build Include="Create Scripts\Tables\Indexes\UNQ_Settings_Key.ukey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Keys\PK_Settings.pkey.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Setting_NoEmptyKey.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
+    <Build Include="Create Scripts\Tables\Constraints\CHK_Storage_NoSelfParent.chkconst.sql">
+      <SubType>Code</SubType>
+    </Build>
   </ItemGroup>
 </Project>

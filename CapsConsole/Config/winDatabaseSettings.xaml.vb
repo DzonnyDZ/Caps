@@ -50,6 +50,6 @@ Public Class winDatabaseSettings : Implements IDisposable
     End Sub
 
     Private Sub Window_Loaded(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles MyBase.Loaded
-        dgrData.DataContext = context.settings
+        dgrData.ItemsSource = context.Settings
     End Sub
 End Class

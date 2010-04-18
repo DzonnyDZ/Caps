@@ -59,7 +59,7 @@ insert into dbo.cap
       ,[Is3D]
       ,[Year]
       ,dbo.EmptyStrToNull([CountryCode])
-      ,isnull([DateCreated],getdate())
+      ,getdate()
       ,dbo.EmptyStrToNull([Note])
       ,[CompanyID]
       ,[ProductID]

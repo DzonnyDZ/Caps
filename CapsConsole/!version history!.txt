@@ -96,6 +96,8 @@
     * Added Test button do database selection dialog
     * Added text box for image folder selection to database selection dialog
     * Database settings introduced
+    * Cap signs in cap editor scrolls when there are so many caps isngns that comboboxes don't fit to available space.
+    * Fix: Maximum number of visible lines in multiline textboxes in caps editor is 4 and text boxes may have enormous padding.
     
 Pending issues:
 ===============

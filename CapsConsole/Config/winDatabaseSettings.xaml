@@ -4,9 +4,10 @@
         xmlns:res="clr-namespace:Caps.Console.My.Resources"
         Title="{x:Static res:Resources.txt_DatabaseSettings}" 
         Width="300"
-        Height="300"
+        Height="450"
     >
     <DockPanel>
+        <TextBlock TextWrapping="Wrap" DockPanel.Dock="Top" Text="{x:Static res:Resources.txt_DatabaseSettingInfo}" TextAlignment="Justify"/>
         <Grid DockPanel.Dock="Bottom" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -18,7 +19,7 @@
             <Button Name="btnOK" Content="{x:Static res:Resources.cmd_OK}" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Button Name="btnCancel" Content="{x:Static res:Resources.cmd_Cancel}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
-        <TextBlock DockPanel.Dock="Bottom" DataContext="{Binding ElementName=dgrData, Path=SelectedItem, Mode=OneWay}" Text="{Binding Description, Mode=OneWay}" Height="Auto" MinHeight="0"/>
+        <TextBlock DockPanel.Dock="Bottom" DataContext="{Binding ElementName=dgrData, Path=SelectedItem, Mode=OneWay}" Text="{Binding Description, Mode=OneWay}" Height="Auto" MinHeight="0" TextWrapping="Wrap" />
         <DataGrid Name="dgrData" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="{x:Static res:Resources.coh_ID}" Binding="{Binding SettingID, Mode=OneWay}"  IsReadOnly="True" Width="auto" />

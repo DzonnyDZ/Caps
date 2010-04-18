@@ -1,30 +1,15 @@
-﻿
-
-
-CREATE TRIGGER [dbo].[Storage_Instead_Upd]
-   ON  [dbo].storage 
-   instead of update
+﻿CREATE TRIGGER [dbo].Storage_Instead_Upd
+    ON  [dbo].Storage 
+    INSTEAD OF UPDATE
 AS 
 BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-
-	  UPDATE [dbo].storage	
-   SET	
-   --name=dbo.EmptyStrToNull(i.name)   ,
-			storagenumber=i.storagenumber,
-      Description=dbo.EmptyStrToNull(i.description),
-      storagetypeid=i.storagetypeid
-     
-
- from inserted	as i
- WHERE storage.storageid=i.storageid
-
-					;
-
-
-
-			 
+    SET NOCOUNT ON;
+	UPDATE [dbo].Storage	
+    SET	StorageNumber = i.StorageNumber,
+        [Description] = dbo.EmptyStrToNull(i.[Description]),
+        StorageTypeid = i.StorageTypeid,
+        HasCaps = i.HasCaps,
+        ParentStorageID = i.ParentStorageID
+     FROM INSERTED AS i
+     WHERE Storage.StorageID = i.StorageID;
 END

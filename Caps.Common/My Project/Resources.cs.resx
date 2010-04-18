@@ -123,4 +123,25 @@
   <data name="err_PropertyIsReadOnly" xml:space="preserve">
     <value>Vlastnost {0} na {1} je jen pro čtení</value>
   </data>
+  <data name="stg_Images_CapsInDatabase" xml:space="preserve">
+    <value>Velikosti obrázků víček ukládané v databázi. Pro původní velikost obrázku použijte 0.</value>
+  </data>
+  <data name="stg_Images_CapsInFileSystem" xml:space="preserve">
+    <value>Velikosti obrázků víček ukládané v souborovém systému. Pro původní velikost použijte 0.</value>
+  </data>
+  <data name="stg_Images_CapsSignStorage" xml:space="preserve">
+    <value>Určuje, kde jsou ukládány obrázky značek víček. Použijte 'filesystem' pro souborový systém a 'database' pro databázi.</value>
+  </data>
+  <data name="stg_Images_CapTypeStorage" xml:space="preserve">
+    <value>Určuje, kde jsou ukládány obrázky typů víček. Použijte 'filesystem' pro souborový systém a 'database' pro databázi.</value>
+  </data>
+  <data name="stg_Images_MainTypeStorage" xml:space="preserve">
+    <value>Určuje, kde jsou ukládány obrázky hlavních typů. Použijte 'filesystem' pro souborový systém a 'database' pro databázi.</value>
+  </data>
+  <data name="stg_Images_ShapeStorage" xml:space="preserve">
+    <value>Určuje, kde jsou ukládány obrázky tvarů. Použijte 'filesystem' pro souborový systém a 'database' pro databázi.</value>
+  </data>
+  <data name="stg_Images_StorageStorage" xml:space="preserve">
+    <value>Určuje, kde jsou ukládány obrázky úložišť. Použijte 'filesystem' pro souborový systém a 'database' pro databázi.</value>
+  </data>
 </root>

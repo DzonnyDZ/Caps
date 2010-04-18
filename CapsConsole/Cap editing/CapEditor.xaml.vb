@@ -155,7 +155,7 @@ Partial Public Class CapEditor
         'cmbCapType.ItemsSource = New ListWithEvents(Of CapType)(From item In Context.CapTypes Order By item.TypeName)
         'cmbProduct.ItemsSource = New ListWithEvents(Of Product)(From item In Context.Products Order By item.ProductName)
         'DirectCast(cmbProduct.ItemsSource, ListWithEvents(Of Product)).Add(Nothing)
-
+        If System.ComponentModel.DesignerProperties.GetIsInDesignMode(Me) Then Exit Sub
         Dim oldInitializing = initializing
         initializing = True
         Try
@@ -253,11 +253,12 @@ Partial Public Class CapEditor
 
     Private Sub btnNewStorage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewStorage.Click
         Using win As New winNewStorage(CheckBoxState.Checked Or CheckBoxState.Visible) With {.Owner = Me.FindAncestor(Of Window)()}
-            If win.ShowDialog Then
-                Dim newObject As Storage = win.GetNewObject(Context)
-                DirectCast(cmbStorage.ItemsSource, ListWithEvents(Of Storage)).Add(newObject)
-                cmbStorage.Items.Refresh()
-                cmbStorage.SelectedItem = newObject
+            Dim result = win.ShowDialog
+            Dim newObjects = win.GetNewObjects(Context)
+            DirectCast(cmbStorage.ItemsSource, ListWithEvents(Of Storage)).AddRange(From item In newObjects Where item.HasCaps)
+            cmbStorage.Items.Refresh()
+            If result Then
+                cmbStorage.SelectedItem = newObjects.Last
             End If
         End Using
     End Sub

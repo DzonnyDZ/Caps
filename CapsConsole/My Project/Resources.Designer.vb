@@ -1222,6 +1222,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Microsoft SQL Server database file (*.mdf)|*.mdf.
+        '''</summary>
+        Public ReadOnly Property fil_MDF() As String
+            Get
+                Return ResourceManager.GetString("fil_MDF", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to PNG images (*.png)|*.png.
         '''</summary>
         Public ReadOnly Property fil_PNG() As String
@@ -2808,6 +2817,17 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Be carefull❢
+        '''Database settings are advanced way of configuring the application. Invalid value of a configuration node can cause application crash and may cause that you will not be alble to access your database!
+        '''Database setting apply to currently opened database only..
+        '''</summary>
+        Public ReadOnly Property txt_DatabaseSettingInfo() As String
+            Get
+                Return ResourceManager.GetString("txt_DatabaseSettingInfo", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Database settings.
         '''</summary>
         Public ReadOnly Property txt_DatabaseSettings() As String
@@ -3582,7 +3602,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Attach database file to Miscroft SQL Server 2008.
+        '''  Looks up a localized string similar to Attach database file to Microsoft SQL Server 2008.
         '''</summary>
         Public ReadOnly Property wiz_txt_AttachDatabase() As String
             Get
@@ -3645,7 +3665,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Connect to Microsft SQL Server 2008 database server.
+        '''  Looks up a localized string similar to Connect to Microsoft SQL Server 2008 database server.
         '''</summary>
         Public ReadOnly Property wiz_txt_ConnectToServer() As String
             Get
@@ -3722,6 +3742,24 @@ Namespace My.Resources
         Public ReadOnly Property wiz_txt_EmptyDatabase() As String
             Get
                 Return ResourceManager.GetString("wiz_txt_EmptyDatabase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Enter name of database, plese.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_EnterDbName() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_EnterDbName", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Enter user name and password, please.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_EnterUserNameAndPassword() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_EnterUserNameAndPassword", resourceCulture)
             End Get
         End Property
         
@@ -3825,6 +3863,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Select database file, pelase.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_SelectDbFile() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_SelectDbFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Select an existing database file, please.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_SelectExistingDbFile() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_SelectExistingDbFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Select where you&apos;d like to store images.
         '''</summary>
         Public ReadOnly Property wiz_txt_SelectImageStorage() As String
@@ -3870,6 +3926,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to SQL Server authetification.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_SQLServerAuthentification2() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_SQLServerAuthentification2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Summary.
         '''</summary>
         Public ReadOnly Property wiz_txt_Summary() As String
@@ -3906,7 +3971,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Use database in file with Microsft SQL Server 2008 Express user instances.
+        '''  Looks up a localized string similar to Use database in file with Microsoft SQL Server 2008 Express user instances.
         '''</summary>
         Public ReadOnly Property wiz_txt_UserInstance() As String
             Get

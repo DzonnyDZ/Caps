@@ -1616,7 +1616,7 @@ Doubleclick to edit.</value>
     <comment>Wizard button text</comment>
   </data>
   <data name="wiz_txt_AttachDatabase" xml:space="preserve">
-    <value>Attach database file to Miscroft SQL Server 2008</value>
+    <value>Attach database file to Microsoft SQL Server 2008</value>
     <comment>Radio button text in wizard</comment>
   </data>
   <data name="wiz_txt_CannotChangeImageStorage" xml:space="preserve">
@@ -1628,7 +1628,7 @@ Doubleclick to edit.</value>
     <comment>Check box text in wizard</comment>
   </data>
   <data name="wiz_txt_ConnectToServer" xml:space="preserve">
-    <value>Connect to Microsft SQL Server 2008 database server</value>
+    <value>Connect to Microsoft SQL Server 2008 database server</value>
     <comment>Radio button text in wizard</comment>
   </data>
   <data name="wiz_txt_DatabaseAndFileInformation" xml:space="preserve">
@@ -1712,7 +1712,7 @@ Doubleclick to edit.</value>
     <comment>Radio button text in wizard</comment>
   </data>
   <data name="wiz_txt_UserInstance" xml:space="preserve">
-    <value>Use database in file with Microsft SQL Server 2008 Express user instances</value>
+    <value>Use database in file with Microsoft SQL Server 2008 Express user instances</value>
     <comment>Radio button text in wizard</comment>
   </data>
   <data name="wiz_txt_UserName" xml:space="preserve">
@@ -1782,5 +1782,29 @@ Doubleclick to edit.</value>
   </data>
   <data name="txt_Unknown" xml:space="preserve">
     <value>unknown</value>
+  </data>
+  <data name="wiz_txt_SelectExistingDbFile" xml:space="preserve">
+    <value>Select an existing database file, please</value>
+  </data>
+  <data name="wiz_txt_EnterDbName" xml:space="preserve">
+    <value>Enter name of database, plese</value>
+  </data>
+  <data name="wiz_txt_EnterUserNameAndPassword" xml:space="preserve">
+    <value>Enter user name and password, please</value>
+  </data>
+  <data name="wiz_txt_SQLServerAuthentification2" xml:space="preserve">
+    <value>SQL Server authetification</value>
+  </data>
+  <data name="txt_DatabaseSettingInfo" xml:space="preserve">
+    <value>Be carefull❢
+Database settings are advanced way of configuring the application. Invalid value of a configuration node can cause application crash and may cause that you will not be alble to access your database!
+Database setting apply to currently opened database only.</value>
+    <comment>Warning in Database Setting dialog</comment>
+  </data>
+  <data name="wiz_txt_SelectDbFile" xml:space="preserve">
+    <value>Select database file, pelase</value>
+  </data>
+  <data name="fil_MDF" xml:space="preserve">
+    <value>Microsoft SQL Server database file (*.mdf)|*.mdf</value>
   </data>
 </root>

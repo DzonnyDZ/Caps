@@ -6,13 +6,12 @@
     xmlns:Tools="clr-namespace:Tools.WindowsT.WPF.ControlsT;assembly=Tools.Windows"
     xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
     xmlns:ToolsWF="clr-namespace:Tools.WindowsT.FormsT;assembly=Tools.Windows"
-    xmlns:Toolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolkit"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:MyMy="clr-namespace:Caps.Console.My"
     xmlns:ToolsC="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
     xmlns:m="clr-namespace:Wpf.Controls;assembly=Wpf.SplitButton"
     FocusManager.FocusedElement="{Binding ElementName=txtCapName}"             
-   >
+>
     <UserControl.Resources>
         <my:NullFalseConverter x:Key="NullFalseConverter"/>
         <my:MyImageIDConverter x:Key="MyImageIDConverter"/>
@@ -50,7 +49,7 @@
 
     </UserControl.Resources>
 
-    <Grid >
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -59,8 +58,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <!--Naming-->
@@ -145,7 +144,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
@@ -211,18 +210,17 @@
                 <Button Grid.Column="2" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch"  Width="auto" Name="btnNewTarget" Margin="0" Content="{x:Static res:Resources.cmd_New}"/>
 
                 <Label Grid.Column="0" Grid.Row="8" VerticalAlignment="Top" HorizontalAlignment="Right"  Width="auto" Content="{x:Static res:Resources.lbl_Sign}" Target="{Binding ElementName=icSigns}"/>
-                <ItemsControl Name="icSigns" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" MaxHeight="99"
-                              ComboBox.SelectionChanged="cmbSign_SelectionChanged">
+                <ItemsControl Name="icSigns" ComboBox.SelectionChanged="cmbSign_SelectionChanged" Template="{StaticResource ScrollableItemsControl}" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                                    <StackPanel Orientation="Vertical" IsItemsHost="True"/>
+                            <StackPanel Orientation="Vertical" IsItemsHost="True" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <ComboBox HorizontalAlignment="Stretch" Name="cmbSign" Style="{StaticResource SignTemplate}"
-                                      SelectedValuePath="CapSignID" KeyDown="cmbSign_KeyDown" Loaded="cmbSign_Loaded"
-                                      SelectedItem="{Binding CapSign, Mode=TwoWay}"  />
+                                        SelectedValuePath="CapSignID" KeyDown="cmbSign_KeyDown" Loaded="cmbSign_Loaded"
+                                        SelectedItem="{Binding CapSign, Mode=TwoWay}"  />
                             <!--SelectionChanged="cmbSign_SelectionChanged"-->
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -253,7 +251,7 @@
             </Grid>
         </GroupBox>
         <!--Texts-->
-        <GroupBox Grid.Row="1" Grid.Column="1" Header="{x:Static res:Resources.txt_Texts}" Grid.RowSpan="2" >
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="{x:Static res:Resources.txt_Texts}" Grid.RowSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid>
                 <Grid.RowDefinitions >
                     <RowDefinition Height="auto"/>
@@ -269,13 +267,13 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Content="{x:Static res:Resources.lbl_TopText}" Target="{Binding ElementName=txtTopText}"/>
-                <TextBox Grid.Row="1" AcceptsReturn="True" MinLines="4" TextWrapping="Wrap" Name="txtTopText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
+                <TextBox Grid.Row="1" AcceptsReturn="True" TextWrapping="Wrap" Name="txtTopText" VerticalScrollBarVisibility="Auto" my:AttachedProperties.SelectAllOnFocus="true" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 <Label Grid.Row="2" Content="{x:Static res:Resources.lbl_SideText}" Target="{Binding ElementName=txtSideText}"/>
-                <TextBox Grid.Row="3" AcceptsReturn="True" MinLines="4" TextWrapping="Wrap" Name="txtSideText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
+                <TextBox Grid.Row="3" AcceptsReturn="True" TextWrapping="Wrap" Name="txtSideText" VerticalScrollBarVisibility="Auto" my:AttachedProperties.SelectAllOnFocus="true" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                 <Label Grid.Row="4" Content="{x:Static res:Resources.lbl_BottomText}" Target="{Binding ElementName=txtBottomText}"/>
-                <TextBox Grid.Row="5" AcceptsReturn="True" MinLines="4" TextWrapping="Wrap" Name="txtBottomText" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
+                <TextBox Grid.Row="5" AcceptsReturn="True" TextWrapping="Wrap" Name="txtBottomText" VerticalScrollBarVisibility="Auto" my:AttachedProperties.SelectAllOnFocus="true" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                 <Label Grid.Row="6" Content="{x:Static res:Resources.lbl_Note}" Target="{Binding ElementName=txtNote}"/>
-                <TextBox Grid.Row="7" AcceptsReturn="True" MinLines="4" TextWrapping="Wrap" Name="txtNote" VerticalScrollBarVisibility="Auto" MaxLines="4" my:AttachedProperties.SelectAllOnFocus="true"/>
+                <TextBox Grid.Row="7" AcceptsReturn="True" TextWrapping="Wrap" Name="txtNote" VerticalScrollBarVisibility="Auto" my:AttachedProperties.SelectAllOnFocus="true" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             </Grid>
         </GroupBox>
         <!--Misc-->
@@ -376,15 +374,15 @@
 
         </GroupBox>
         <!--Categories and keywords-->
-        <GroupBox Grid.Column="2" Grid.Row="2" Header="{x:Static res:Resources.txt_CategoriesKeywords}">
-            <Grid>
+        <GroupBox Grid.Column="2" Grid.Row="2" Header="{x:Static res:Resources.txt_CategoriesKeywords}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/> 
                 </Grid.ColumnDefinitions>
                 <ItemsControl Grid.ColumnSpan="2"  Grid.Column="0" Grid.Row="0" Name="lstCategories" MinHeight="48pt" Height="auto" MaxHeight="96pt" TextSearch.TextPath="Category.CategoryName" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  ScrollViewer.VerticalScrollBarVisibility="Auto" IsTabStop="False" Template="{StaticResource ScrollableItemsControl}" >
@@ -408,7 +406,7 @@
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
-                <Button Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Name="btnNewCategory" Content="{x:Static res:Resources.cmd_NewCategory}"/>
+                <Button Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Right" Width="auto" Name="btnNewCategory" Content="{x:Static res:Resources.cmd_NewCategory}"/>
                 <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="auto" Content="{x:Static res:Resources.lbl_Keywords}" Target="{Binding ElementName=wfhKeywords}"/>
                 <wfi:WindowsFormsHost Grid.Column="0" Grid.Row="2" Height="auto" HorizontalAlignment="Stretch" MinHeight="100" Name="wfhKeywords" Grid.ColumnSpan="2">
                     <ToolsWF:KeyWordsEditor Dock="Fill" Name="kweKeywords" x:Name="kweKeywords" ThesaurusButtonState="Hidden" MergeButtonState="Hidden" StatusState="Hidden"/>
@@ -484,13 +482,13 @@
         <!--Buttons-->
         <Grid Grid.Column="2" Grid.Row="3" Height="auto" Width="auto" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Button Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Name="btnSearch" Content="{x:Static res:Resources.cmd_CapsSearchSimilar}"/>
             <Button Margin="3" Padding="3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" Name="btnSave" Content="{x:Static res:Resources.cmd_SaveCap}"/>
