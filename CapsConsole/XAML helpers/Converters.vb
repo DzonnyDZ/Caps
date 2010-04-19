@@ -1,5 +1,6 @@
 ﻿Imports Tools, Tools.ExtensionsT, Tools.TypeTools, Tools.ReflectionT
 Imports System.ComponentModel, System.Linq
+Imports System.Security
 
 ''' <summary>Converter thet returns value being converted if tagret type of conversion <see cref="Type.IsAssignableFrom">is assignable from</see> it, null otherwise.</summary>
 Public Class SameTypeOrNullConverter
@@ -1021,12 +1022,12 @@ Public Class ConcatConverter
             If sb.Length <> 0 Then sb.Append(separator)
             If item Is Nothing Then
                 'DoNothing
-            ElseIf propertyName = "" Then
+            ElseIf PropertyName = "" Then
                 sb.Append(item.ToString)
             Else
-                Dim prp = item.GetType.GetProperty(propertyName, Reflection.BindingFlags.Public Or Reflection.BindingFlags.Instance)
-                Dim field = If(prp Is Nothing, item.GetType.GetField(propertyName, Reflection.BindingFlags.Public Or Reflection.BindingFlags.Instance), Nothing)
-                If prp Is Nothing AndAlso field Is Nothing Then Throw New MissingMemberException(item.GetType.FullName, propertyName)
+                Dim prp = item.GetType.GetProperty(PropertyName, Reflection.BindingFlags.Public Or Reflection.BindingFlags.Instance)
+                Dim field = If(prp Is Nothing, item.GetType.GetField(PropertyName, Reflection.BindingFlags.Public Or Reflection.BindingFlags.Instance), Nothing)
+                If prp Is Nothing AndAlso field Is Nothing Then Throw New MissingMemberException(item.GetType.FullName, PropertyName)
                 Dim pvalue = prp.GetValue(item, Nothing)
                 If pvalue IsNot Nothing Then sb.Append(pvalue.ToString) 'Else DoNothing
             End If
@@ -1155,5 +1156,52 @@ Public Class EnumInConverter
     ''' <exception cref="NotSupportedException">This function always throws a <see cref="NotSupportedException"/>, because <see cref="EnumInConverter"/> does not support backward conversion.</exception>
     Private Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
         Throw New NotSupportedException("{0} cannot convert back".f([GetType].Name))
+    End Function
+End Class
+
+
+''' <summary><see cref="IValueConverter"/> which performs conversion between <see cref="String"/> and <see cref="SecureString"/></summary>
+''' <remarks>Converting <see cref="SecureString"/> to plain <see cref="String"/> causes string data to be stored plain in memory which can be security risk.</remarks>
+''' <seelaso cref="String"/><seelaso cref="SecureString"/>
+Public Class SecureStringConverter
+    Implements IValueConverter
+
+    ''' <summary>Converts a value.</summary>
+    ''' <returns>A converted value.
+    ''' When <paramref name="value"/> is <see cref="String"/> it's converted to <see cref="SecureString"/> (unless <paramref name="targetType"/> is <see cref="String"/>).
+    ''' When <paramref name="value"/> is <see cref="SecureString"/> it's converted to <see cref="String"/> (unless <paramref name="targetType"/> is <see cref="SecureString"/>).
+    ''' Returns null whan <paramref name="value"/> is null.
+    ''' </returns>
+    ''' <param name="value">The value produced by the binding source (value to be converted). It must be either <see cref="String"/> or <see cref="SecureString"/>.</param>
+    ''' <param name="targetType">The type of the binding target property. The type must <see cref="Type.IsAssignableFrom">be assignable form</see> either <see cref="String"/> or <see cref="SecureString"/>.</param>
+    ''' <param name="parameter">The converter parameter to use. Ignored.</param>
+    ''' <param name="culture">The culture to use in the converter. Ignored.</param>
+    ''' <exception cref="NotSupportedException"><paramref name="value"/> is neither <see cref="String"/>, <see cref="SecureString"/> or null. -or- <paramref name="targetType"/> <see cref="Type.IsAssignableFrom">is assignable</see> neither from <see cref="String"/> nor from <see cref="SecureString"/>.</exception>
+    ''' <remarks>This method implements both - <see cref="IValueConverter.Convert"/> and <see cref="IValueConverter.ConvertBack"/>.</remarks>
+    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements IValueConverter.Convert, IValueConverter.ConvertBack
+        If value Is Nothing Then Return Nothing
+        If TypeOf value Is String Then
+            If targetType.IsAssignableFrom(GetType(SecureString)) Then
+                Dim ret As New SecureString
+                For Each ch In DirectCast(value, String)
+                    ret.AppendChar(ch)
+                Next
+                Return ret
+            ElseIf targetType.IsAssignableFrom(GetType(String)) Then
+                Return value
+            Else
+                Throw New NotSupportedException("{0} can convert only to {1} and {2}".f([GetType].Name, GetType(String).Name, GetType(SecureString).Name))
+            End If
+        ElseIf TypeOf value Is SecureString Then
+            If targetType.IsAssignableFrom(GetType(String)) Then
+                Return DirectCast(value, SecureString).ToString
+            ElseIf targetType.IsAssignableFrom(GetType(SecureString)) Then
+                Return value
+            Else
+                Throw New NotSupportedException("{0} can convert only to {1} and {2}".f([GetType].Name, GetType(String).Name, GetType(SecureString).Name))
+            End If
+        Else
+            Throw New NotSupportedException("{0} can convert only from {1} and {2}".f([GetType].Name, GetType(String).Name, GetType(SecureString).Name))
+        End If
     End Function
 End Class

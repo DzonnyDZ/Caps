@@ -3,10 +3,10 @@
   <Version>1</Version>
   <SourceModelProvider>
     <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=.\SQLEXPRESS2008;AttachDbFilename=D:\Users\Honza\Documents\Programy\Caps\CapsData.mdf;Integrated Security=True;Password=;User Instance=True</ConnectionString>
+      <ConnectionString>Data Source=.\SQLEXPRESS2008;Initial Catalog=D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF;Integrated Security=True;Password=</ConnectionString>
       <DatabaseName>D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF</DatabaseName>
       <DspFamilyName>sql</DspFamilyName>
-      <Name>[BIGGERBOOK\SQLEXPRESS2008.]</Name>
+      <Name>[BIGGERBOOK\SQLEXPRESS2008.D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF]</Name>
     </ConnectionBasedModelProvider>
   </SourceModelProvider>
   <TargetModelProvider>

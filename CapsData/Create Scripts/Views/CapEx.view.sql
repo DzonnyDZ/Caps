@@ -19,10 +19,10 @@ SELECT
 	pt.ProductTypeName AS [ProductType.ProductTypeName], pt.IsAlcoholic AS [ProductType.IsAlcoholic], pt.IsDrink AS [ProductType.IsDrink],
 		pt.[Description] AS [ProductType.Description],
 	strg.StorageNumber AS [Storage.StorageNumber], strg.HasCaps AS [Storage.HasCaps], strg.StorageTypeID AS [Storage.StorageTypeID],
-		strg.ParentStorage AS [Storage.ParentStorage], strg.[Description] AS [Storage.Description],
+		strg.ParentStorageID AS [Storage.ParentStorage], strg.[Description] AS [Storage.Description],
 	st.Name AS [Storage.StorageType.Name], st.[Description] AS [Storage.StorageType.Description],
 	[strg.ps].StorageNumber AS [Storage.ParentStorage.StorageNumber], [strg.ps].HasCaps AS [Storage.ParentStorage.HasCaps],
-		[strg.ps].StorageTypeID AS [Storage.ParentStorage.StorageTypeID], [strg.ps].ParentStorage AS [Storage.ParentStorage.ParentStorage],
+		[strg.ps].StorageTypeID AS [Storage.ParentStorage.StorageTypeID], [strg.ps].ParentStorageID AS [Storage.ParentStorage.ParentStorage],
 		[strg.ps].[Description] AS [Storage.ParentStorage.Description]	
 	FROM dbo.Cap c
 		INNER JOIN dbo.MainType mt ON(c.MainTypeID = mt.MainTypeID)
@@ -41,4 +41,4 @@ SELECT
 		
 		INNER JOIN dbo.Storage strg ON (c.StorageID = strg.StorageID)
 			INNER JOIN dbo.StorageType st ON(strg.StorageTypeID = st.StorageTypeID)
-			LEFT OUTER JOIN dbo.Storage [strg.ps] ON(strg.ParentStorage = [strg.ps].StorageID)
+			LEFT OUTER JOIN dbo.Storage [strg.ps] ON(strg.ParentStorageID = [strg.ps].StorageID)

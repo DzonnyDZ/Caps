@@ -68,5 +68,9 @@ Public Class pgCredentials
             txtDatabaseFile.Text = dlg.FileName
         End If
     End Sub
+
+    Private Sub txtPassword_PasswordChanged(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles txtPassword.PasswordChanged
+        wizardData.Password = txtPassword.Password
+    End Sub
 End Class
 

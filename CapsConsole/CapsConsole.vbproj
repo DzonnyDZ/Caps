@@ -87,6 +87,10 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Data.Schema, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VSTSDB\Deploy\Microsoft.Data.Schema.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
@@ -442,6 +446,10 @@
       <LastGenOutput>Countries.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\CapsData\sql\debug\CapsData.dbschema">
+      <Link>DAL\Deploy\CapsData.dbschema</Link>
+        <LogicalName>Deploy/CapsData.dbschema</LogicalName>
+    </EmbeddedResource>
     <None Include="app.config" />
     <Compile Include="XAML helpers\Converters.Specialized.vb" />
     <None Include="My Project\Settings.settings">
@@ -792,6 +800,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="CommandLineArguments.txt" />
+  </ItemGroup>
+  <ItemGroup>
+      <EmbeddedResource Include="..\CapsData\sql\debug\CapsData_Post-deploy.sql">
+          <Link>DAL\Deploy\CapsData_Post-deploy.sql</Link>
+          <LogicalName>Deploy/CapsData_Post-deploy.sql</LogicalName>
+      </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

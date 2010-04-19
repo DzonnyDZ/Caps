@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"        
     xmlns:res="clr-namespace:Caps.Console.My.Resources"
+    xmlns:my="clr-namespace:Caps.Console"
     x:Class="pgCredentials"
     x:TypeArguments="sys:Boolean"
     KeepAlive="True"
@@ -35,15 +36,15 @@
         <TextBox Grid.Column="2" Grid.Row="2"  Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}" Name="txtDatabaseFile"/>
         <Button Grid.Column="3" Grid.Row="2"  Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}" Name="btnDbBrowse">...</Button>
         <Label Grid.Column="1" Grid.Row="3" Content="{x:Static res:Resources.wiz_txt_DatabaseServer}"/>
-        <TextBox Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding ServerName, Mode=TwoWay}"/>
         <RadioButton Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" IsChecked="{Binding UseIntegratedSecurity, Mode=TwoWay}" Content="{x:Static res:Resources.wiz_txt_WindowsAuthentification}"/>
         <RadioButton Name="optSQLAuth" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="5" IsChecked="{Binding UseSqlServerAuth, Mode=TwoWay}" Content="{x:Static res:Resources.wiz_txt_SQLServerAuthentification}"/>
         <Label Grid.Column="1" Grid.Row="6" HorizontalAlignment="Right" IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.wiz_txt_UserName}"/>
-        <TextBox Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}" Name="txtUserName" />
+        <TextBox Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="2" IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}" Name="txtUserName" Text="{Binding UserName, Mode=TwoWay}" />
         <Label Grid.Column="1" Grid.Row="7" HorizontalAlignment="Right" IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.wiz_txt_Password}"/>
         <PasswordBox Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}" PasswordChar="✮" Name="txtPassword" />
         <Label Grid.Column="1" Grid.Row="8" Visibility="{Binding RequiresDatabaseNameVisibility, Mode=OneWay}" Content="{x:Static res:Resources.wiz_txt_DatabaseName}"/>
-        <TextBox Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Visibility="{Binding RequiresDatabaseNameVisibility, Mode=OneWay}" Name="txtDatabaseName" />
+        <TextBox Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Visibility="{Binding RequiresDatabaseNameVisibility, Mode=OneWay}" Name="txtDatabaseName" Text="{Binding DatabaseName, Mode=TwoWay}" />
 
         <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,10,0,0">
             <Button Name="backButton" Click="backButton_Click" Width="50" xml:space="preserve" Content="{x:Static res:Resources.wiz_cmd_Back}"/>

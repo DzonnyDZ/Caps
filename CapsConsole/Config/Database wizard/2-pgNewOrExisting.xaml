@@ -27,8 +27,8 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Column="1" Grid.Row="1" Content="{x:Static res:Resources.wiz_txt_NewOrExistingQ}"/>
-        <RadioButton GroupName="File" Grid.Column="1" Grid.Row="2" Content="{x:Static res:Resources.wiz_txt_NewDatabaseFile}" IsChecked="{Binding Path=IsFileConnectionTypeNew, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding Path=FileSelectionVisibility, Mode=OneWay}"/>
-        <RadioButton GroupName="File" Grid.Column="1" Grid.Row="3" Content="{x:Static res:Resources.wiz_txt_ExistingDatabaseFile}" IsChecked="{Binding Path=IsFileConnectionTypeExisting, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding Path=FileSelectionVisibility, Mode=OneWay}"/>
+        <RadioButton GroupName="File" Grid.Column="1" Grid.Row="2" Content="{x:Static res:Resources.wiz_txt_ExistingDatabaseFile}" IsChecked="{Binding Path=IsFileConnectionTypeExisting, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding Path=FileSelectionVisibility, Mode=OneWay}"/>
+        <RadioButton GroupName="File" Grid.Column="1" Grid.Row="3" Content="{x:Static res:Resources.wiz_txt_NewDatabaseFile}" IsChecked="{Binding Path=IsFileConnectionTypeNew, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding Path=FileSelectionVisibility, Mode=OneWay}"/>                  
 
         <RadioButton GroupName="Database" Grid.Column="1" Grid.Row="4" Content="{x:Static res:Resources.wiz_txt_ExistingDatabase}" IsChecked="{Binding Path=IsDatabaseConnectionTypeExisting, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding Path=DatabaseSelectionVisibility, Mode=OneWay}"/>
         <RadioButton GroupName="Database" Grid.Column="1" Grid.Row="5" Content="{x:Static res:Resources.wiz_txt_NewDatabase}" IsChecked="{Binding Path=IsDatabaseConnectionTypeNew, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Visibility="{Binding Path=DatabaseSelectionVisibility, Mode=OneWay}"/>

@@ -84,6 +84,7 @@
     <Folder Include="Create Scripts\Functions" />
     <Folder Include="Create Scripts\Stored Procedures" />
     <Folder Include="Create Scripts\User Defined Types" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
     <NotInBuild Include="Change Scripts\0.0.1.0-to-0.0.2.0.sql" />
@@ -101,6 +102,9 @@
     <NotInBuild Include="Change Scripts\0.1.4.0-to-0.1.5.0.sql">
       <SubType>NotInBuild</SubType>
     </NotInBuild>
+    <PostDeploy Include="Scripts\Post-deploy.sql">
+      <SubType>NotInBuild</SubType>
+    </PostDeploy>
   </ItemGroup>
   <ItemGroup>
     <BuildContributorArgument Include="OutDir=$(OutDir)" />

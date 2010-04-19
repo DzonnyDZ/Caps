@@ -47,7 +47,6 @@ Friend Module Main
             mBox.MsgBox(My.Resources.msg_DatabaseVersionUpgrade.f( _
                              checkResult.DatabaseVersion, My.Application.Info.Title, My.Application.Info.Version, DatabaseVersion, vbCrLf), _
                              MsgBoxStyle.YesNo Or MsgBoxStyle.Question, My.Resources.txt_UpgradeDatabase, owner) = MsgBoxResult.Yes Then
-            Dim cmd = Connection.CreateCommand
             Dim Server = New Microsoft.SqlServer.Management.Smo.Server(New ServerConnection(Connection))
             Server.ConnectionContext.ExecuteNonQuery(Script)
             Dim WasOnStack = VerifyDatabaseVersionWithUpgradeOnStack
