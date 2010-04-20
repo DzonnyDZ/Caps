@@ -87,6 +87,7 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Data.Schema, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VSTSDB\Deploy\Microsoft.Data.Schema.dll</HintPath>
@@ -450,6 +451,22 @@
       <Link>DAL\Deploy\CapsData.dbschema</Link>
         <LogicalName>Deploy/CapsData.dbschema</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="..\CapsData\sql\debug\CapsData.deploymanifest">
+      <Link>DAL\Deploy\CapsData.deploymanifest</Link>
+        <LogicalName>Deploy/CapsData.deploymanifest</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\CapsData\sql\debug\CapsData_Database.sqlcmdvars">
+      <Link>DAL\Deploy\CapsData_Database.sqlcmdvars</Link>
+        <LogicalName>Deploy/CapsData_Database.sqlcmdvars</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\CapsData\sql\debug\CapsData_Database.sqldeployment">
+      <Link>DAL\Deploy\CapsData_Database.sqldeployment</Link>
+        <LogicalName>Deploy/CapsData_Database.sqldeployment</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\CapsData\sql\debug\CapsData_Database.sqlsettings">
+      <Link>DAL\Deploy\CapsData_Database.sqlsettings</Link>
+        <LogicalName>Deploy/CapsData_Database.sqlsettings</LogicalName>
+    </EmbeddedResource>
     <None Include="app.config" />
     <Compile Include="XAML helpers\Converters.Specialized.vb" />
     <None Include="My Project\Settings.settings">
@@ -802,10 +819,10 @@
     <Resource Include="CommandLineArguments.txt" />
   </ItemGroup>
   <ItemGroup>
-      <EmbeddedResource Include="..\CapsData\sql\debug\CapsData_Post-deploy.sql">
-          <Link>DAL\Deploy\CapsData_Post-deploy.sql</Link>
-          <LogicalName>Deploy/CapsData_Post-deploy.sql</LogicalName>
-      </EmbeddedResource>
+    <EmbeddedResource Include="..\CapsData\sql\debug\CapsData_Post-deploy.sql">
+      <Link>DAL\Deploy\CapsData_Post-deploy.sql</Link>
+        <LogicalName>Deploy/CapsData_Post-deploy.sql</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
