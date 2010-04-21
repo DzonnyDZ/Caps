@@ -449,23 +449,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\CapsData\sql\debug\CapsData.dbschema">
       <Link>DAL\Deploy\CapsData.dbschema</Link>
-        <LogicalName>Deploy/CapsData.dbschema</LogicalName>
+      <LogicalName>Deploy/CapsData.dbschema</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="..\CapsData\sql\debug\CapsData.deploymanifest">
       <Link>DAL\Deploy\CapsData.deploymanifest</Link>
-        <LogicalName>Deploy/CapsData.deploymanifest</LogicalName>
+      <LogicalName>Deploy/CapsData.deploymanifest</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="..\CapsData\sql\debug\CapsData_Database.sqlcmdvars">
       <Link>DAL\Deploy\CapsData_Database.sqlcmdvars</Link>
-        <LogicalName>Deploy/CapsData_Database.sqlcmdvars</LogicalName>
+      <LogicalName>Deploy/CapsData_Database.sqlcmdvars</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="..\CapsData\sql\debug\CapsData_Database.sqldeployment">
       <Link>DAL\Deploy\CapsData_Database.sqldeployment</Link>
-        <LogicalName>Deploy/CapsData_Database.sqldeployment</LogicalName>
+      <LogicalName>Deploy/CapsData_Database.sqldeployment</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="..\CapsData\sql\debug\CapsData_Database.sqlsettings">
       <Link>DAL\Deploy\CapsData_Database.sqlsettings</Link>
-        <LogicalName>Deploy/CapsData_Database.sqlsettings</LogicalName>
+      <LogicalName>Deploy/CapsData_Database.sqlsettings</LogicalName>
     </EmbeddedResource>
     <None Include="app.config" />
     <Compile Include="XAML helpers\Converters.Specialized.vb" />
@@ -821,8 +821,11 @@
   <ItemGroup>
     <EmbeddedResource Include="..\CapsData\sql\debug\CapsData_Post-deploy.sql">
       <Link>DAL\Deploy\CapsData_Post-deploy.sql</Link>
-        <LogicalName>Deploy/CapsData_Post-deploy.sql</LogicalName>
+      <LogicalName>Deploy/CapsData_Post-deploy.sql</LogicalName>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Database.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>

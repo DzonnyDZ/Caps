@@ -42,7 +42,7 @@ Public Class pgSummary
             Select Case data.DatabaseType
                 Case DatabaseType.AttachFile
                     Select Case data.FileConnectionType
-                        Case FileConnectionType.Existing 'Test connection to file
+                        Case FileConnectionType.Existing 'Test connrection to file
                             testOnly = True
                             Using Connection As SqlConnection = New SqlConnection(b.ToString)
                                 Connection.Open()
