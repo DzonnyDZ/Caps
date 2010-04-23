@@ -15,7 +15,7 @@
     <AutoUpdateStatisticsAsynchronously>False</AutoUpdateStatisticsAsynchronously>
     <CloseCursorOnCommitEnabled>False</CloseCursorOnCommitEnabled>
     <CompatibilityMode>100</CompatibilityMode>
-    <ConcatNullYieldsNull>False</ConcatNullYieldsNull>
+    <ConcatNullYieldsNull>True</ConcatNullYieldsNull>
     <DatabaseAccess>MULTI_USER</DatabaseAccess>
     <DatabaseChaining>False</DatabaseChaining>
     <DatabaseState>ONLINE</DatabaseState>
