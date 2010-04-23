@@ -246,6 +246,14 @@ DROP PROCEDURE dbo.[Get_Cap_PseudoCategory_Int];
 PRINT 'Constraints';
 EXECUTE sp_rename N'dbo.Storage.ParentStorage', N'ParentStorageID', 'COLUMN';
 ALTER TABLE dbo.Storage ADD CONSTRAINT CHK_Storage_NoSelfParent CHECK (StorageID <> ParentStorage);
+------------------------------------------- Misc -------------------------------------------------------------------------------
+GO
+BEGIN
+	DECLARE @Cmd NVARCHAR(1024) =
+		'ALTER DATABASE [' + db_name() + '] SET CONCAT_NULL_YIELDS_NULL ON WITH NO_WAIT';
+	EXEC(@Cmd);
+END;
+GO
 --==============================================================================================================================
 --------------------------------------------------------------------------------------------------------------------------------
 --Increase version
@@ -260,5 +268,6 @@ BEGIN
 	RETURN @dbGuid + @dbversion;
 END;   
 GO
+COMMIT;
 PRINT 'Done!';
 GO

@@ -3,10 +3,10 @@
   <Version>1</Version>
   <SourceModelProvider>
     <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=.\SQLEXPRESS2008;Initial Catalog=D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF;Integrated Security=True;Password=</ConnectionString>
+      <ConnectionString>Data Source=BIGGERBOOK\SQLEXPRESS2008;AttachDbFilename=D:\Users\Honza\Documents\Programy\Caps\CapsData.mdf;Integrated Security=True;Password=;User Instance=True</ConnectionString>
       <DatabaseName>D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF</DatabaseName>
       <DspFamilyName>sql</DspFamilyName>
-      <Name>[BIGGERBOOK\SQLEXPRESS2008.D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF]</Name>
+      <Name>[BIGGERBOOK\SQLEXPRESS2008.]</Name>
     </ConnectionBasedModelProvider>
   </SourceModelProvider>
   <TargetModelProvider>
@@ -221,7 +221,7 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>OverrideSevenSetOptions</Name>
-        <Value>True</Value>
+        <Value>False</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>SetAnsiNulls</Name>
@@ -229,11 +229,11 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>SetAnsiPadding</Name>
-        <Value>True</Value>
+        <Value>False</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>SetAnsiWarnings</Name>
-        <Value>True</Value>
+        <Value>False</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>SetArithAbort</Name>
@@ -300,25 +300,129 @@
         <Value>True</Value>
       </PropertyElementName>
       <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlStatistic</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlUser</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlRole</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlApplicationRole</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlRoleMembership</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
         <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlPermissionStatement</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlLogin</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlServerRoleMembership</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlLinkedServer</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlLinkedServerLogin</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlFile</Name>
         <Value>ExcludedType</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlExtendedProperty</Name>
         <Value>ExcludedType</Value>
       </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90AsymmetricKey</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90SymmetricKey</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90MasterKey</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Certificate</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Credential</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Signature</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Contract</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Route</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90EventNotification</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90RemoteServiceBinding</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Endpoint</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100DatabaseAuditSpecification</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100ServerAudit</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100ServerAuditSpecification</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100CryptographicProvider</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100DatabaseEncryptionKey</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100BrokerPriority</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100EventSession</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100DataCompressionOption</Name>
+        <Value>ExcludedType</Value>
+      </PropertyElementName>
     </ConfigurationOptionsElement>
   </SchemaCompareSettingsService>
-  <ExcludedSourceElements>
-    <SelectedItem Type="Microsoft.Data.Schema.Sql.SchemaModel.Sql100SchemaModel+Sql100Route, Microsoft.Data.Schema.Sql, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <Name>AutoCreatedLocal</Name>
-    </SelectedItem>
-    <SelectedItem Type="Microsoft.Data.Schema.Sql.SchemaModel.Sql100SchemaModel+Sql100File, Microsoft.Data.Schema.Sql, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <Name>CapsData</Name>
-    </SelectedItem>
-    <SelectedItem Type="Microsoft.Data.Schema.Sql.SchemaModel.Sql100SchemaModel+Sql100File, Microsoft.Data.Schema.Sql, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <Name>CapsData_log</Name>
-    </SelectedItem>
-  </ExcludedSourceElements>
-  <ExcludedTargetElements />
 </SchemaComparison>
