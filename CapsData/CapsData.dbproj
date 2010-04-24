@@ -30,20 +30,6 @@
     <LoadSqlClrTypes>True</LoadSqlClrTypes>
     <PreviousProjectVersion>4.0</PreviousProjectVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>.\sql\release\</OutputPath>
-    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
-    <TargetConnectionString>
-    </TargetConnectionString>
-    <TargetDatabase>
-    </TargetDatabase>
-    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
-    <SuppressWarnings>
-    </SuppressWarnings>
-    <DeploymentConfigFile>Properties\Database.sqldeployment</DeploymentConfigFile>
-    <SqlCommandVariablesFile>Properties\Database.sqlcmdvars</SqlCommandVariablesFile>
-    <DeployToDatabase>False</DeployToDatabase>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>.\sql\debug\</OutputPath>
     <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>

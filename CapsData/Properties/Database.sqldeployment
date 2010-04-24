@@ -8,14 +8,15 @@
     <DeploymentCollationPreference>UseTargetModelCollation</DeploymentCollationPreference>
     <DoNotUseAlterAssemblyStatementsToUpdateCLRTypes>False</DoNotUseAlterAssemblyStatementsToUpdateCLRTypes>
     <GenerateDropsIfNotInProject>True</GenerateDropsIfNotInProject>
-    <IgnoreAnsiNulls>True</IgnoreAnsiNulls>
+    <IgnoreAnsiNulls>False</IgnoreAnsiNulls>
     <IgnorePermissions>True</IgnorePermissions>
     <IgnoreQuotedIdentifiers>True</IgnoreQuotedIdentifiers>
     <IgnoreRoleMembership>True</IgnoreRoleMembership>
-    <IgnoreTableOptions>True</IgnoreTableOptions>
-    <IgnoreUserSettingsObjects>True</IgnoreUserSettingsObjects>
+    <IgnoreTableOptions>False</IgnoreTableOptions>
+    <IgnoreUserSettingsObjects>False</IgnoreUserSettingsObjects>
     <IncludeTransactionalScripts>True</IncludeTransactionalScripts>
     <PerformDatabaseBackup>False</PerformDatabaseBackup>
+    <ScriptDatabaseCollation>False</ScriptDatabaseCollation>
     <SingleUserMode>False</SingleUserMode>
   </Properties>
 </DeploymentConfigurationSettings>
