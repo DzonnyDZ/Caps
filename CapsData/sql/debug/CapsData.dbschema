@@ -8,10 +8,10 @@
 			<Metadata Name="ClrTypesDbSchema" Value="True" />
 		</CustomData>
 		<CustomData Category="AnsiNulls">
-			<Metadata Name="AnsiNulls" Value="False" />
+			<Metadata Name="AnsiNulls" Value="True" />
 		</CustomData>
 		<CustomData Category="QuotedIdentifier">
-			<Metadata Name="QuotedIdentifier" Value="False" />
+			<Metadata Name="QuotedIdentifier" Value="True" />
 		</CustomData>
 		<CustomData Category="CompatibilityMode">
 			<Metadata Name="CompatibilityMode" Value="100" />
@@ -23,8 +23,10 @@
 	<Model>
 		<Element Type="ISql100DatabaseOptions">
 			<Property Name="Collation" Value="Czech_CI_AS" />
-			<Property Name="IsAnsiPaddingOn" Value="False" />
-			<Property Name="IsQuotedIdentifierOn" Value="False" />
+			<Property Name="IsAnsiNullDefaultOn" Value="True" />
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="IsAnsiWarningsOn" Value="True" />
+			<Property Name="IsConcatNullYieldsNullOn" Value="True" />
 			<Property Name="IsCursorDefaultScopeGlobal" Value="True" />
 			<Property Name="IsAutoCloseOn" Value="True" />
 			<Property Name="IsTornPageProtectionOn" Value="False" />
