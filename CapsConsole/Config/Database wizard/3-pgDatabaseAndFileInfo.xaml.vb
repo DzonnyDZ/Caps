@@ -65,7 +65,7 @@ Public Class pgCredentials
             dlg.FileName = txtDatabaseFile.Text
         Catch :End Try
         If dlg.ShowDialog(Me.FindAncestor(Of Window)) Then
-            txtDatabaseFile.Text = dlg.FileName
+            wizardData.FilePath = dlg.FileName
         End If
     End Sub
 

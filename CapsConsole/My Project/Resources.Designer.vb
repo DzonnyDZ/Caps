@@ -772,24 +772,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Error setting up database:{0}{1}{0}Please verify connection settings and try again..
-        '''</summary>
-        Public ReadOnly Property err_SetupDatabase() As String
-            Get
-                Return ResourceManager.GetString("err_SetupDatabase", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Error while testing connection to database:{0}{1}{0}Please verify connection settings and try again..
-        '''</summary>
-        Public ReadOnly Property err_TestConnection() As String
-            Get
-                Return ResourceManager.GetString("err_TestConnection", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to You have not entered type image. Do you want to create cap type without image?.
         '''</summary>
         Public ReadOnly Property err_TypeImageNotEnteredContinue() As String
@@ -1236,6 +1218,13 @@ Namespace My.Resources
         Public ReadOnly Property fil_PNG() As String
             Get
                 Return ResourceManager.GetString("fil_PNG", resourceCulture)
+            End Get
+        End Property
+        
+        Public ReadOnly Property ico_Database() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("ico_Database", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
             End Get
         End Property
         
@@ -3593,11 +3582,75 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Error setting up database:
+        '''{0}    
+        '''Please verify connection settings and try again..
+        '''</summary>
+        Public ReadOnly Property wiz_err_SetupDatabase() As String
+            Get
+                Return ResourceManager.GetString("wiz_err_SetupDatabase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Error while testing connection to database:
+        '''{0}
+        '''Please verify connection settings and try again..
+        '''</summary>
+        Public ReadOnly Property wiz_err_TestConnection() As String
+            Get
+                Return ResourceManager.GetString("wiz_err_TestConnection", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to An error occured after database deployment. Schema was deployed to the database {0}, but the database was left in undefined state (probably confuguration of database options failed). You can try to connect to database and do configuration manually in Database options dialog, but you should consider claning the database manually and runing deployment again..
+        '''</summary>
+        Public ReadOnly Property wiz_msg_DeployErrorExistingDb() As String
+            Get
+                Return ResourceManager.GetString("wiz_msg_DeployErrorExistingDb", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to There was an error while initializeng the database. However the datbase was created and it cannot be removed due to another error. You must delete the database {0} manually.
+        '''
+        '''Original error:
+        '''{1}
+        '''
+        '''Error when deleting the database:
+        '''{2}.
+        '''</summary>
+        Public ReadOnly Property wiz_msg_DropError() As String
+            Get
+                Return ResourceManager.GetString("wiz_msg_DropError", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to An error occured while deleting created database. You have to delete the database {0} manually..
+        '''</summary>
+        Public ReadOnly Property wiz_msg_DropErrorSimple() As String
+            Get
+                Return ResourceManager.GetString("wiz_msg_DropErrorSimple", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to There was an error deploying database. You can see error details in console window. Your database may be in unexpected state. If you have chosen to initialize existing SQL server database you may need to clean it up manually..
+        '''</summary>
+        Public ReadOnly Property wiz_msg_ErrorInConsole() As String
+            Get
+                Return ResourceManager.GetString("wiz_msg_ErrorInConsole", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Select folder to store images in, please.
         '''</summary>
-        Public ReadOnly Property wiz_msg_SeleftImageRoot() As String
+        Public ReadOnly Property wiz_msg_SelectImageRoot() As String
             Get
-                Return ResourceManager.GetString("wiz_msg_SeleftImageRoot", resourceCulture)
+                Return ResourceManager.GetString("wiz_msg_SelectImageRoot", resourceCulture)
             End Get
         End Property
         
@@ -3674,6 +3727,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Creating database (do not close this window).
+        '''</summary>
+        Public ReadOnly Property wiz_txt_CreatingDatbase() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_CreatingDatbase", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Database and file information.
         '''</summary>
         Public ReadOnly Property wiz_txt_DatabaseAndFileInformation() As String
@@ -3733,6 +3795,15 @@ Namespace My.Resources
         Public ReadOnly Property wiz_txt_DatabaseType() As String
             Get
                 Return ResourceManager.GetString("wiz_txt_DatabaseType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Deploy database.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_DeployDatabase() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_DeployDatabase", resourceCulture)
             End Get
         End Property
         

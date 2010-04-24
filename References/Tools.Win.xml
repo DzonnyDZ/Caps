@@ -73,6 +73,12 @@ Tools.Win
  If the function fails, the return value is zero. To get extended error information, call GetLastError.
  </returns>
 	<remarks>The application must call the <see cref="M:Tools.API.GUI.DrawMenuBar(System.IntPtr)"/> function whenever a menu changes, whether or not the menu is in a displayed window.</remarks>
+</member><member name="M:Tools.API.GUI.DeleteMenu(System.IntPtr,System.Int32,Tools.API.GUI.enmSelectMenuMethod)">
+	<summary>Deletes an item from the specified menu. If the menu item opens a menu or submenu, this function destroys the handle to the menu or submenu and frees the memory used by the menu or submenu.</summary>
+	<param name="hMenu">Handle to the menu to be changed. </param>
+	<param name="uPosition">Specifies the menu item to be deleted, as determined by the <paramref name="uFlags"/> parameter. </param>
+	<param name="uFlags">Specifies how the <paramref name="uPosition"/> parameter is interpreted. This parameter must be one of the <see cref="T:Tools.API.GUI.enmSelectMenuMethod"/> values. </param>
+	<returns>If the function succeeds, the return value is True. If the function fails, the return value is False.</returns>
 </member><member name="F:Tools.API.GUI.enmSelectMenuMethod.MF_BYCOMMAND">
 	<summary>Indicates that uIDEnableItem gives the identifier of the menu item. If neither the MF_BYCOMMAND nor MF_BYPOSITION flag is specified, the MF_BYCOMMAND flag is the default flag.</summary>
 </member><member name="F:Tools.API.GUI.enmSelectMenuMethod.MF_BYPOSITION">

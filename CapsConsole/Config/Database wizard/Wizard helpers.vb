@@ -471,4 +471,18 @@ Public Class WizardData
         End With
         Return b
     End Function
+
+    ''' <summary>Raised when database wizard is successfully finished</summary>
+    ''' <param name="connectionString">Connection string to connect to database selected or created in wizard</param>
+    ''' <param name="imageRoot">gets image root directory (only for newly created databases when images are stored in file system)</param>
+    Friend Event Finished(ByVal connectionString As SqlConnectionStringBuilder, ByVal imageRoot$)
+    ''' <summary>Raises the <see cref="Finished"/> event</summary>
+    ''' <param name="connectionString">Connection string to connect to database selected or created in wizard</param>
+    ''' <param name="imageRoot">gets image root directory (only for newly created databases when images are stored in file system)</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="connectionString"/> is null</exception>
+    Protected Friend Overridable Sub OnFinished(ByVal connectionString As SqlConnectionStringBuilder, ByVal imageRoot$)
+        If connectionString Is Nothing Then Throw New ArgumentNullException("connectionString")
+        RaiseEvent Finished(connectionString, imageRoot)
+    End Sub
+
 End Class

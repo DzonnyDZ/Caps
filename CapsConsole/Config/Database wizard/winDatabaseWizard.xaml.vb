@@ -2,6 +2,7 @@
 Imports System.Runtime.CompilerServices
 Imports System.Windows.Navigation
 Imports System.ComponentModel
+Imports System.Data.SqlClient
 
 ''' <summary>Delegate of event returning <see cref="WizardData"/></summary>
 Public Delegate Sub WizardReturnEventHandler(ByVal sender As Object, ByVal e As WizardReturnEventArgs)
@@ -31,7 +32,31 @@ Public Class winDatabaseWizard
         End Get
     End Property
     ''' <summary>Contains value of the <see cref="WizardData"/> property</summary>
-    Private _wizardData As WizardData
+    Private WithEvents _wizardData As WizardData
+
+    Private _FinalConnectionString As SqlConnectionStringBuilder
+    Private _ImageRoot As String
+    ''' <summary>Once wizard is successfully finished gets connection string to connect to database selected or created in wizard</summary>
+    Public ReadOnly Property FinalConnectionString() As SqlConnectionStringBuilder
+        Get
+            Return _FinalConnectionString
+        End Get
+    End Property
+    ''' <summary>Once wizard is successfully finished gets image root directory (only for newly created databases when images are stored in file system)</summary>
+    Public ReadOnly Property ImageRoot() As String
+        Get
+            Return _ImageRoot
+        End Get
+    End Property
+    ''' <summary>Handles the <see cref="WizardData"/>.<see cref="WizardData.Finished">Finished</see> event</summary>
+    ''' <param name="connectionString">Connection string to connect to database selected or created in wizard</param>
+    ''' <param name="imageRoot">gets image root directory (only for newly created databases when images are stored in file system)</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="connectionString"/> is null</exception>
+    Private Sub OnFinished(ByVal connectionString As SqlConnectionStringBuilder, ByVal imageRoot$) Handles _wizardData.Finished
+        If connectionString Is Nothing Then Throw New ArgumentNullException("connectionString")
+        _FinalConnectionString = connectionString
+        _ImageRoot = imageRoot
+    End Sub
 End Class
 
 

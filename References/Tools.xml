@@ -6,7 +6,15 @@ Tools
 </name>
 </assembly>
 <members>
-<member name="M:Tools.ComponentModelT.SettingsInheritDescriptionAttribute.#ctor(System.Type,System.String,System.String)">
+<member name="M:Tools.ComponentModelT.HandledException.#ctor(System.Exception)">
+	<summary>CTor - Creates a new instance of the <see cref="T:Tools.ComponentModelT.HandledException"/> class</summary>
+	<param name="innerException"> The exception that is the cause of the current exception.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="innerException"/> is null</exception>
+</member><member name="T:Tools.ComponentModelT.HandledException">
+	<summary>Spacial kind of exception intended to be thown by application when exception occured during some process and it was reported to user by the process itself, so the place exception is caught should not report it to user again.</summary>
+	<remarks>Intended use of this exception is as follows: Some processs is going on. Something bad happens in the process (an exception occurs). The exception is reported to user (mesage box, console, log etc.) and it needs to be rethrown but upper catch should be notified that it should not report the error to user again.</remarks>
+	<version version="1.5.3" stage="Beta">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.ComponentModelT.SettingsInheritDescriptionAttribute.#ctor(System.Type,System.String,System.String)">
 	<summary>CTor</summary>
 	<param name="Settings">The data type that contains property with name specified in <paramref name="Property"/></param>
 	<param name="Property">Name of the property which's <see cref="T:System.Configuration.SettingsDescriptionAttribute"/> initializes this attribute</param>

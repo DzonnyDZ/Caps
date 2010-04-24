@@ -33,7 +33,7 @@
 
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="23" Content="{x:Static res:Resources.wiz_txt_DatabaseAndFileInformation}"/>
         <Label Grid.Column="1" Grid.Row="2" Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}" Content="{x:Static res:Resources.wiz_txt_FilePath}"/>
-        <TextBox Grid.Column="2" Grid.Row="2"  Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}" Name="txtDatabaseFile"/>
+        <TextBox Grid.Column="2" Grid.Row="2"  Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}" Name="txtDatabaseFile" Text="{Binding FilePath, Mode=TwoWay}"/>
         <Button Grid.Column="3" Grid.Row="2"  Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}" Name="btnDbBrowse">...</Button>
         <Label Grid.Column="1" Grid.Row="3" Content="{x:Static res:Resources.wiz_txt_DatabaseServer}"/>
         <TextBox Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding ServerName, Mode=TwoWay}"/>

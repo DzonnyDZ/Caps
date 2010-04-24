@@ -51,7 +51,7 @@
             <CheckBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Content="{x:Static res:Resources.wiz_txt_CapImagesInDB}" Name="chkCapImages" IsChecked="{Binding CapImagesInDb, Mode=TwoWay}"/>
             <CheckBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Content="{x:Static res:Resources.wiz_txt_OtherImagesInDB}" Name="chkOtherImages" IsChecked="{Binding OtherImagesInDb, Mode=TwoWay}"/>
             <Label Grid.Column="0" Grid.Row="2" Content="{x:Static res:Resources.txt_ImageRoot}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="lblImageRoot" IsEnabled="{Binding ImageRootRequired, Mode=OneWay}"/>
-            <TextBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="txtImageRoot" Text="{Binding ImageRoot, Mode=TwoWay}" IsEnabled="{Binding ImageRootRequired, Mode=OneWay}"/>
+            <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Name="txtImageRoot" Text="{Binding ImageRoot, Mode=TwoWay}" IsEnabled="{Binding ImageRootRequired, Mode=OneWay}" Margin="0,2" />
             <Button Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="btnImageRoot" Content="..." IsEnabled="{Binding ImageRootRequired, Mode=OneWay}"/>
         </Grid>
 

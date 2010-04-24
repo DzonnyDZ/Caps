@@ -891,11 +891,15 @@
   <data name="txt_Targets" xml:space="preserve">
     <value>Objekty</value>
   </data>
-  <data name="err_TestConnection" xml:space="preserve">
-    <value>Chyba při testování spojení s databází:{0}{1}{0}Prosím ověřtě připojovací řetězec a zkuste to znovu.</value>
+  <data name="wiz_err_TestConnection" xml:space="preserve">
+    <value>Chyba při testování spojení s databází:
+{0}
+Prosím ověřtě připojovací řetězec a zkuste to znovu.</value>
   </data>
-  <data name="err_SetupDatabase" xml:space="preserve">
-    <value>Chyba při nastavování databáze:{0}{1}{0}Prosím ověřtě připojovací řetězec a zkuste to znovu.</value>
+  <data name="wiz_err_SetupDatabase" xml:space="preserve">
+    <value>Chyba při nastavování databáze:
+{0}
+Prosím ověřtě připojovací řetězec a zkuste to znovu.</value>
   </data>
   <data name="err_IncorrectDatabaseVersion" xml:space="preserve">
     <value>Databáze není databáze aplikace Caps nebo je určena pro jinou verzi této aplikace.</value>
@@ -1388,7 +1392,7 @@ Dvakrát klikněte pro editaci.</value>
   <data name="wiz_txt_SummaryTitle" xml:space="preserve">
     <value>Shrnutí průvodce databází</value>
   </data>
-  <data name="wiz_msg_SeleftImageRoot" xml:space="preserve">
+  <data name="wiz_msg_SelectImageRoot" xml:space="preserve">
     <value>Vyberte složku pro ukládání obrázků, prosím</value>
   </data>
   <data name="txt_DatabaseWizard" xml:space="preserve">

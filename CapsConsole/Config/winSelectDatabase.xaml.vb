@@ -65,7 +65,9 @@ Partial Public Class winSelectDatabase
         Dim wiz As New winDatabaseWizard
         wiz.Owner = Me
         wiz.ShowDialog()
-        'TODO: Read connection string
+        _ConnectionString = wiz.FinalConnectionString
+        prgProperties.SelectedObject = _ConnectionString
+        txtImageRoot.Text = wiz.ImageRoot
     End Sub
 
     Private Sub btnTest_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnTest.Click

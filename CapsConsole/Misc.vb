@@ -4,6 +4,8 @@ Imports System.Data.Objects
 Imports System.Data.Objects.DataClasses
 Imports System.Reflection
 
+'TODO: Move to ĐTool
+
 ''' <summary>Miscelaneous functions</summary>
 Friend Module Misc
     ''' <summary>Gets the 32-bit ARGB value of given <see cref="Color"/> structure.</summary>
@@ -56,9 +58,13 @@ Friend Module Misc
     ''' <typeparam name="TAncestor">Type of ancestor to find. This type must be or derive from <see cref="DependencyObject"/>.</typeparam>
     ''' <returns>The closest ancestor of object <paramref name="obj"/> which's type is <typeparamref name="TAncestor"/>. Null where there is no such ancestor.</returns>
     ''' <exception cref="ArgumentNullException"><paramref name="obj"/> is null</exception>
-    ''' <remarks>This function uses <see cref="ContentOperations.GetParent"/> to walk visual tree upwards from <paramref name="obj"/>.</remarks>
+    ''' <remarks>
+    ''' This function uses <see cref="ContentOperations.GetParent"/> to walk visual tree upwards from <paramref name="obj"/>.
+    ''' <para>If <typeparamref name="TAncestor"/> is <see cref="Window"/> (not type derived from <see cref="Window"/>) <see cref="Window.GetWindow"/> is used instead.</para>
+    ''' </remarks>
     <Extension()> Public Function FindAncestor(Of TAncestor As DependencyObject)(ByVal obj As DependencyObject) As TAncestor
         If obj Is Nothing Then Throw New ArgumentNullException("obj")
+        If GetType(TAncestor).Equals(GetType(Window)) Then Return CObj(Window.GetWindow(obj))
         Dim currobj As DependencyObject = obj
         Do
             currobj = LogicalTreeHelper.GetParent(obj)

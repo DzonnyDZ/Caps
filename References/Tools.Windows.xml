@@ -614,7 +614,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="M:Tools.WindowsT.FormsT.Wizard`1.#ctor">
 	<summary>CTor</summary>
 </member><member name="T:Tools.WindowsT.FormsT.Wizard`1">
-	<summary>Implements <see cref="T:Tools.WindowsT.FormsT.Wizard`1"/> with specific first-step control</summary>
+	<summary>Implements <see cref="T:Tools.WindowsT.FormsT.Wizard"/> with specific first-step control</summary>
 	<typeparam name="T">Type of control of firts step</typeparam>
 	<version version="1.5.2" stage="Nightly">Class moved from experimental (namespace <see cref="N:Tools.Experimental.GUI"/>)</version>
 </member><member name="M:Tools.WindowsT.FormsT.TransparentTextBox.#ctor">
@@ -3945,7 +3945,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Asks wizard control for control that follows after it.</summary>
 	<remarks>Control returned by this function should implement <see cref="T:Tools.WindowsT.FormsT.IWizardControl"/>.</remarks>
 </member><member name="T:Tools.WindowsT.FormsT.IWizardControl">
-	<summary>Provides basic interface for wizard steps of <see cref="T:Tools.WindowsT.FormsT.Wizard`1"/>.</summary>
+	<summary>Provides basic interface for wizard steps of <see cref="T:Tools.WindowsT.FormsT.Wizard"/>.</summary>
 	<version version="1.5.2" stage="Nightly">Interface moved from experimental (namespace <see cref="N:Tools.Experimental.GUI"/>)</version>
 </member><member name="M:Tools.WindowsT.InteropT.SizeChangedInfoEventArgs.#ctor(System.Windows.SizeChangedInfo)">
 	<summary>CTor from <see cref="T:System.Windows.SizeChangedInfo"/></summary>

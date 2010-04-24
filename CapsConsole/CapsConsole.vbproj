@@ -87,7 +87,6 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Build" />
     <Reference Include="Microsoft.Data.Schema, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 10.0\VSTSDB\Deploy\Microsoft.Data.Schema.dll</HintPath>
@@ -297,6 +296,7 @@
       <DependentUpon>winDatabaseSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="DAL\CapsDataDataContext.vb" />
+    <Compile Include="DAL\ConfigNodeProvider.vb" />
     <Compile Include="DAL\Main.vb" />
     <Compile Include="winMain.xaml.vb">
       <DependentUpon>winMain.xaml</DependentUpon>
@@ -793,6 +793,10 @@
     <ProjectReference Include="..\..\Tools\Tools Win\Tools.Win.vbproj">
       <Project>{9E0E6221-AD3B-47C8-B528-C9941BBFD663}</Project>
       <Name>Tools.Win</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tools\Tools.Data.Schema.Deploy\Tools.Data.Schema.Deploy.vbproj">
+      <Project>{4FA454BC-332A-4226-A229-38D87C504F8F}</Project>
+      <Name>Tools.Data.Schema.Deploy</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Tools\Tools.Metadata\Tools.Metadata.vbproj">
       <Project>{F2E3DDFB-EEDB-4F85-8AE8-CBE6B18A5ED0}</Project>

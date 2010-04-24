@@ -37,7 +37,7 @@ Public Class pgImageStorage
 
     Private Sub nextButton_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles nextButton.Click
         If WizardData.ImageStorageSettingsVisible AndAlso ((Not chkCapImages.IsChecked OrElse Not chkOtherImages.IsChecked) AndAlso (txtImageRoot.Text = "" OrElse Not IO.Directory.Exists(txtImageRoot.Text))) Then
-            mBox.MsgBox(My.Resources.wiz_msg_SeleftImageRoot, MsgBoxStyle.Information, My.Resources.txt_ImageRoot)
+            mBox.MsgBox(My.Resources.wiz_msg_SelectImageRoot, MsgBoxStyle.Information, My.Resources.txt_ImageRoot)
             Return
         End If
 
@@ -56,7 +56,7 @@ Public Class pgImageStorage
         Catch : End Try
         Me.FindAncestor(Of Window)()
         If dlg.ShowDialog(New Win32Window(Me.FindAncestor(Of Window))) = Forms.DialogResult.OK Then
-            txtImageRoot.Text = dlg.SelectedPath
+            WizardData.ImageRoot = dlg.SelectedPath
         End If
     End Sub
 End Class
