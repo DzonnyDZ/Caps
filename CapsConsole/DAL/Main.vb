@@ -1,6 +1,5 @@
-﻿Imports System.Data, System.Reflection, Tools.ExtensionsT
+﻿Imports System.Data, System.Reflection
 Imports System.Data.SqlClient
-Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Microsoft.SqlServer.Management.Common
 Imports Caps.Data
 

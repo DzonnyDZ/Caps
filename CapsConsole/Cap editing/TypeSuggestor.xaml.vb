@@ -1,5 +1,4 @@
-﻿Imports Tools
-Imports Caps.Data
+﻿Imports Caps.Data
 
 ''' <summary>Suggests cap types based on cap properties</summary>
 Partial Public Class TypeSuggestor

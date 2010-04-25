@@ -3294,6 +3294,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Please wait ....
+        '''</summary>
+        Public ReadOnly Property txt_PleaseWait() As String
+            Get
+                Return ResourceManager.GetString("txt_PleaseWait", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Previous cap.
         '''</summary>
         Public ReadOnly Property txt_PreviousCap() As String
@@ -3582,6 +3591,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Error while obtaining list of databases..
+        '''</summary>
+        Public ReadOnly Property wiz_err_DatabaseList() As String
+            Get
+                Return ResourceManager.GetString("wiz_err_DatabaseList", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Error setting up database:
         '''{0}    
         '''Please verify connection settings and try again..
@@ -3664,7 +3682,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Attach datbase file to server. File with given path must exist on server!.
+        '''  Looks up a localized string similar to Attach database file to server..
         '''</summary>
         Public ReadOnly Property wiz_txt_AttachDatabaseToServer() As String
             Get
@@ -3763,6 +3781,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Database list.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_DatabaseList() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_DatabaseList", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Database name:.
         '''</summary>
         Public ReadOnly Property wiz_txt_DatabaseName() As String
@@ -3795,6 +3822,15 @@ Namespace My.Resources
         Public ReadOnly Property wiz_txt_DatabaseType() As String
             Get
                 Return ResourceManager.GetString("wiz_txt_DatabaseType", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Data source enumerator.
+        '''</summary>
+        Public ReadOnly Property wiz_txt_DataSourceEnumerator() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_DataSourceEnumerator", resourceCulture)
             End Get
         End Property
         
@@ -3912,6 +3948,24 @@ Namespace My.Resources
         Public ReadOnly Property wiz_txt_NewOrExistingQ() As String
             Get
                 Return ResourceManager.GetString("wiz_txt_NewOrExistingQ", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to No databases found using current connection..
+        '''</summary>
+        Public ReadOnly Property wiz_txt_NoDatabasesFound() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_NoDatabasesFound", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to If you can&apos;t see any instances, either SQL Server Browser service is not running or there are no SQL servers available..
+        '''</summary>
+        Public ReadOnly Property wiz_txt_NoInstances() As String
+            Get
+                Return ResourceManager.GetString("wiz_txt_NoInstances", resourceCulture)
             End Get
         End Property
         

@@ -1,11 +1,12 @@
-﻿Imports mBox = Tools.WindowsT.IndependentT.MessageBox
-Imports Tools.ExtensionsT, Tools.LinqT
+﻿Imports Tools.LinqT
 Imports Caps.Data
 
 ''' <summary>Main application window</summary>
 Class winMain
-    ''' <summary>Connection string to database</summary>
+    ''' <summary>Command line argument name for connection string</summary>
     Private Const ConnectionString$ = "ConnectionString"
+    ''' <summary>Command line argument name for image root</summary>
+    Private Const ImageRoot$ = "ImageRoot"
     ''' <summary>CTor</summary>
     Public Sub New()
         InitializeComponent()
@@ -38,7 +39,10 @@ Class winMain
         End If
 
         Dim Redo As Boolean = False
-        Dim ImageRoot As String = My.Settings.ImageRoot
+        Dim ImageRoot As String = If(Args.ContainsKey(Console.winMain.ImageRoot) AndAlso Args(Console.winMain.ImageRoot).Count > 0,
+                                     Args(Console.winMain.ImageRoot)(0),
+                                     My.Settings.ImageRoot
+                                    )
 Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
             Dim win = If(Main.SqlConnection Is Nothing, New winSelectDatabase, New winSelectDatabase(Main.SqlConnection.ConnectionString))
             win.ImageRoot = ImageRoot
@@ -115,12 +119,20 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
                 Select Case mBox.MsgBox(My.Resources.msg_LanguageChangedRestart, MsgBoxStyle.YesNo Or MsgBoxStyle.Question, My.Resources.txt_LanguageChange, Me)
                     Case MsgBoxResult.Yes
                         Dim newP As New Process
-                        newP.StartInfo.Arguments = (From param In Environment.GetCommandLineArgs.Skip(1) Select If(param.Contains(" "c) OrElse param.Contains(""""c), """" & param.Replace("""", """""") & """", param)).Join(" ")
                         Dim OrigArgs = ParseParameters(Environment.GetCommandLineArgs, True)
-                        If Not OrigArgs.ContainsKey(ConnectionString) AndAlso newP.StartInfo.Arguments <> "" Then newP.StartInfo.Arguments &= " "
-                        If Not OrigArgs.ContainsKey(ConnectionString) Then
-                            newP.StartInfo.Arguments &= """" & ConnectionString & "=" & Main.EntityConnection.ConnectionString.Replace("""", """""") & """"
-                        End If
+                        Dim newArgs As New Text.StringBuilder
+                        For Each arg In OrigArgs
+                            Dim vals As IEnumerable(Of String) = arg.Value
+                            Select Case arg.Key
+                                Case ConnectionString : vals = {SqlConnection.ConnectionString}
+                                Case ImageRoot : vals = {My.Settings.ImageRoot}
+                            End Select
+                            For Each Val As String In vals
+                                If newArgs.Length > 0 Then newArgs.Append(" ")
+                                newArgs.AppendFormat("""{0}={1}""", arg.Key.Replace("""", """"""), Val.Replace("""", """"""))
+                            Next
+                        Next
+                        newP.StartInfo.Arguments = newArgs.ToString
                         newP.StartInfo.FileName = IO.Path.Combine(Reflection.Assembly.GetEntryAssembly.Location)
                         newP.StartInfo.WorkingDirectory = Environment.CurrentDirectory
                         Try

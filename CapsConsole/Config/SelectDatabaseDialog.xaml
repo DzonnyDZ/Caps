@@ -1,0 +1,19 @@
+﻿<Window x:Class="SelectDatabaseDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:res="clr-namespace:Caps.Console.My.Resources"
+    Title="{x:Static res:Resources.wiz_txt_DatabaseList}" Height="300" Width="300" ShowInTaskbar="False">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.ColumnSpan="2" Name="lstDatabases" />
+        <Button IsEnabled="False"  Name="cmdOk" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static res:Resources.cmd_OK}" IsDefault="True" />
+        <Button Name="cmdCancel" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{x:Static res:Resources.cmd_Cancel}" IsCancel="True" />
+    </Grid>
+</Window>

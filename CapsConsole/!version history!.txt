@@ -98,6 +98,10 @@
     * Database settings introduced
     * Cap signs in cap editor scrolls when there are so many caps isngns that comboboxes don't fit to available space.
     * Fix: Maximum number of visible lines in multiline textboxes in caps editor is 4 and text boxes may have enormous padding.
+    * Addeed ImageRoot command line argument.
+    * Fix: When application is restarted due to language change, connection string is not recognized.
+    * Database wizard now works!
+    * Select database window is no longer shown in taskbar
     
 Pending issues:
 ===============

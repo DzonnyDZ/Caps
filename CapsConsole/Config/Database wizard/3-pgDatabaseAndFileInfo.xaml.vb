@@ -1,8 +1,8 @@
 Imports System
 Imports System.Windows
 Imports System.Windows.Controls
-Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Microsoft.Win32
+Imports System.Data.SqlClient
 
 ''' <summary>A wizard page used to collect creadentials to connect to a database</summary>
 Public Class pgCredentials
@@ -63,7 +63,7 @@ Public Class pgCredentials
         dlg.Filter = My.Resources.fil_MDF
         Try
             dlg.FileName = txtDatabaseFile.Text
-        Catch :End Try
+        Catch : End Try
         If dlg.ShowDialog(Me.FindAncestor(Of Window)) Then
             wizardData.FilePath = dlg.FileName
         End If
@@ -71,6 +71,21 @@ Public Class pgCredentials
 
     Private Sub txtPassword_PasswordChanged(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles txtPassword.PasswordChanged
         wizardData.Password = txtPassword.Password
+    End Sub
+
+    Private Sub btnDbServerBrowse_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnDbServerBrowse.Click
+        Dim dlg As New DataSourceEnumeratorDialog With {.Owner = Me.FindAncestor(Of Window)(), .SelectedServer = wizardData.ServerName}
+        If dlg.ShowDialog Then wizardData.ServerName = dlg.SelectedServer
+    End Sub
+
+    Private Sub btnDatabaseName_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnDatabaseName.Click
+        Dim b As New SqlConnectionStringBuilder() With {.DataSource = wizardData.ServerName, .IntegratedSecurity = wizardData.UseIntegratedSecurity}
+        If Not wizardData.UseIntegratedSecurity Then
+            b.UserID = wizardData.UserName
+            b.Password = wizardData.Password
+        End If
+        Dim dlg As New SelectDatabaseDialog(b.ToString) With {.Owner = Me.FindAncestor(Of Window)(), .DatabaseName = wizardData.DatabaseName}
+        If dlg.ShowDialog Then wizardData.DatabaseName = dlg.DatabaseName
     End Sub
 End Class
 

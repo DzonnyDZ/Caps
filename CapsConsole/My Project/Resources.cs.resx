@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="txt_Caps" xml:space="preserve">
     <value>Víčka</value>
@@ -1399,7 +1399,7 @@ Dvakrát klikněte pro editaci.</value>
     <value>Průvodce databází</value>
   </data>
   <data name="wiz_txt_AttachDatabaseToServer" xml:space="preserve">
-    <value>Připojit databázový soubor k serveru. Soubor se zadanou cestou musí existovat na serveru!</value>
+    <value>Připojit databázový soubor k serveru.</value>
   </data>
   <data name="wiz_txt_ConnectToDatabaseServer" xml:space="preserve">
     <value>Připojit k databázovému serveru</value>
@@ -1441,5 +1441,47 @@ Nastavení databáze jsou platná pouze pro databázi, ke které jste zrovna př
   </data>
   <data name="fil_MDF" xml:space="preserve">
     <value>Databázové soubory Microsoft SQL Server (*.mdf)|*.mdf</value>
+  </data>
+  <data name="wiz_txt_NoDatabasesFound" xml:space="preserve">
+    <value>Za použití aktuálního spojení se nepodařilo najít žádnou databázi.</value>
+  </data>
+  <data name="wiz_txt_DatabaseList" xml:space="preserve">
+    <value>Seznam databází</value>
+  </data>
+  <data name="wiz_err_DatabaseList" xml:space="preserve">
+    <value>Chyba při získávání seznamu databází.</value>
+  </data>
+  <data name="wiz_txt_NoInstances" xml:space="preserve">
+    <value>Pokud nevidíte žádné instance, tak buďto služba SQL Server Browser neběží nebo není dostupný žádný SQL server.</value>
+  </data>
+  <data name="txt_PleaseWait" xml:space="preserve">
+    <value>Prosím počkejte ...</value>
+  </data>
+  <data name="wiz_txt_DataSourceEnumerator" xml:space="preserve">
+    <value>Výčet datových zdrojů</value>
+  </data>
+  <data name="wiz_msg_DeployErrorExistingDb" xml:space="preserve">
+    <value>Došlo k chybě po nasazení databáze. Schéma bylo nasazeno do databáze {0}, ale databáze se nachází v nedefinovaném stavu (nejspíše selhala konfigurace nastavení databáze). Můžete se pokusit připojit k databázi a provést konfiguraci ručně v dialogu Nastavení databáze. Nejlépe však uděláte vyčistíte-li ručně databázi a provedete nasazení znovu.</value>
+  </data>
+  <data name="wiz_msg_DropErrorSimple" xml:space="preserve">
+    <value>Došlo k chybě při mazání vytvořené databáze. Musíte databázi {0} odstranit ručně.</value>
+  </data>
+  <data name="wiz_txt_DeployDatabase" xml:space="preserve">
+    <value>Nasazení databáze</value>
+  </data>
+  <data name="wiz_msg_ErrorInConsole" xml:space="preserve">
+    <value>Došlo k chybě během nasazení databáze. Cybu si můžete prohlédnout v okně konzole. Vaše databáze se pravděpodobně nachází v neočekávaném stavu. Pokud jste zvolili volbu inicializace existující databáze na SQL serveru, může být potřeba ji manuálně vyčistit.</value>
+  </data>
+  <data name="wiz_msg_DropError" xml:space="preserve">
+    <value>Došlo k chybě při inicializaci databáze. Jenomže databáze již byla vytvořena a nemůže být odstraněna kvůli další chybě. Musíte databázi {0} odstranit ručně.
+
+Původní chyba:
+{1}
+
+Chyba při odstraňování databáze:
+{2}</value>
+  </data>
+  <data name="wiz_txt_CreatingDatbase" xml:space="preserve">
+    <value>Vytváření databáze (nezavírejte toto okno)</value>
   </data>
 </root>

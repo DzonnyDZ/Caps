@@ -1,6 +1,4 @@
-﻿Imports Tools.ExtensionsT, Tools
-
-''' <summary>Implemenst <see cref="IMultiValueConverter"/> which ORs given boolean values</summary>
+﻿''' <summary>Implemenst <see cref="IMultiValueConverter"/> which ORs given boolean values</summary>
 Public Class OrBooleanConverter
     Implements IMultiValueConverter
 

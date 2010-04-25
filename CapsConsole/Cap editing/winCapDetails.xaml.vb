@@ -1,5 +1,4 @@
-﻿Imports mBox = Tools.WindowsT.IndependentT.MessageBox
-Imports Tools.CollectionsT.GenericT, Caps.Data
+﻿Imports Tools.CollectionsT.GenericT, Caps.Data
 
 Partial Public Class winCapDetails
     '''' <summary>Data context</summary>

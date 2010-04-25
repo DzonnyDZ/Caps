@@ -1,4 +1,4 @@
-﻿Imports Tools.CollectionsT.GenericT, Tools.ExtensionsT
+﻿Imports Tools.CollectionsT.GenericT
 
 ''' <summary>Picks common colors, allows to pick any color</summary>
 Partial Public Class ColorPicker

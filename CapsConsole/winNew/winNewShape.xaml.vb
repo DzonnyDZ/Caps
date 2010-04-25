@@ -1,6 +1,5 @@
-﻿Imports Tools, Tools.TypeTools, Tools.ExtensionsT
+﻿Imports Tools.TypeTools
 Imports System.ComponentModel, Caps.Data
-Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 
 ''' <summary>Dialog used to create a new instance of <see cref="Shape"/> class</summary>
 Partial Public Class winNewShape

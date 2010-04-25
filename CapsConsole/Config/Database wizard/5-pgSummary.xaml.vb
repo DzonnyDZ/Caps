@@ -2,7 +2,7 @@ Imports System, mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports System.Windows
 Imports System.Windows.Controls
 Imports System.Data.SqlClient, Caps.Data
-Imports Tools, Tools.ExtensionsT, Tools.IOt
+Imports Tools.IOt
 Imports System.Data.EntityClient
 Imports Microsoft.Data.Schema
 Imports Tools.ComponentModelT
@@ -114,11 +114,11 @@ Public Class pgSummary
                         settings.Images.CapsInDatabase = Nothing
                     End If
                     settings.Images.SetOtherImagesStorage(If(data.OtherImagesInDb, ConfigNodeProvider.ImagesProvider.Storage.Database, ConfigNodeProvider.ImagesProvider.Storage.FileSystem))
-                    If data.OtherImagesInDb OrElse data.CapImagesInDb Then imageRoot = data.ImageRoot
+                    If Not data.OtherImagesInDb OrElse Not data.CapImagesInDb Then imageRoot = data.ImageRoot
                 End Using
             End If
         Catch ex As Exception
-            If databaseCreated Then
+            If databaseCreated <> "" Then
                 'Database was created but deploy, post-deplyment script, test or confuguration failed
                 Using dropConn As New SqlConnection(createDatabaseConnectionString.ToString)
                     Try
@@ -138,8 +138,7 @@ Public Class pgSummary
             ElseIf DatabaseDeployed Then
                 'Deploy was done to existing database but test or configuration failed
                 mBox.MsgBoxFW(My.Resources.wiz_msg_DeployErrorExistingDb & vbCrLf & ex.Message, MsgBoxStyle.Critical, My.Resources.wiz_txt_DeployDatabase, Me, b.InitialCatalog)
-            End If
-            If testOnly Then 'Connection test failed
+            ElseIf testOnly Then 'Connection test failed
                 mBox.MsgBoxFW(My.Resources.wiz_err_TestConnection, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError, Me, ex.Message)
             ElseIf Not TypeOf ex Is HandledException Then 'Connection, creation or some other initialization failed
                 mBox.MsgBoxFW(My.Resources.wiz_err_SetupDatabase, MsgBoxStyle.Critical, My.Resources.txt_DatabaseError, Me, ex.Message)
@@ -147,7 +146,8 @@ Public Class pgSummary
             Exit Sub
         End Try
         'Done
-        data.OnFinished(b, imageRoot)
+        data.FinalConnectionString = b
+        data.FinalImageRoot = imageRoot
         Me.OnReturn(New ReturnEventArgs(Of Boolean)(True))
     End Sub
 
@@ -201,8 +201,7 @@ Public Class pgSummary
     ''' <exception cref="HandledException">An exception occured during database deployment and was reported to user. See <see cref="HandledException.InnerException"/> for details.</exception>
     ''' <exception cref="UnauthorizedAccessException">The caller does not have the required permission for writing to temporary directory.</exception>
     ''' <exception cref="IO.IOException">An I/O error occured while writing schema files to temporary directory</exception>
-    Private Shared Sub InitDatabase(ByVal connectionString As String, ByVal databaseName$)
-        Dim errors As New Text.StringBuilder
+    Private Sub InitDatabase(ByVal connectionString As String, ByVal databaseName$)
         Dim directory = ExtractDatabaseSchema()
         Dim handler As EventHandler(Of Tools.ConsoleT.ConsoleClosingEventArgs) = Sub(sender, e) e.Cancel = True
         Try
@@ -230,7 +229,7 @@ Public Class pgSummary
                 Try
                     engine.Deploy()
                 Catch ex As Exception
-                    mBox.MsgBox(My.Resources.wiz_msg_ErrorInConsole & vbCrLf & vbCrLf & ex.Message, MsgBoxStyle.Critical, My.Resources.wiz_txt_DeployDatabase)
+                    mBox.MsgBox(My.Resources.wiz_msg_ErrorInConsole & vbCrLf & vbCrLf & ex.Message, MsgBoxStyle.Critical, My.Resources.wiz_txt_DeployDatabase, Me)
                     Throw New HandledException(ex)
                 End Try
             End Using

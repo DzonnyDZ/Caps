@@ -1,5 +1,4 @@
-﻿Imports mBox = Tools.WindowsT.WPF.DialogsT.MessageBox
-Imports Tools.DrawingT.ImageTools, Tools.ExtensionsT, Caps.Data
+﻿Imports Tools.DrawingT.ImageTools, Caps.Data
 ''' <summary>Allows to create new cap type based on suggestion</summary>
 Public Class winCreateNewType : Implements IDisposable
     ''' <summary>CTor</summary>

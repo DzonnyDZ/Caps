@@ -6,15 +6,7 @@ Tools
 </name>
 </assembly>
 <members>
-<member name="M:Tools.ComponentModelT.HandledException.#ctor(System.Exception)">
-	<summary>CTor - Creates a new instance of the <see cref="T:Tools.ComponentModelT.HandledException"/> class</summary>
-	<param name="innerException"> The exception that is the cause of the current exception.</param>
-	<exception cref="T:System.ArgumentNullException"><paramref name="innerException"/> is null</exception>
-</member><member name="T:Tools.ComponentModelT.HandledException">
-	<summary>Spacial kind of exception intended to be thown by application when exception occured during some process and it was reported to user by the process itself, so the place exception is caught should not report it to user again.</summary>
-	<remarks>Intended use of this exception is as follows: Some processs is going on. Something bad happens in the process (an exception occurs). The exception is reported to user (mesage box, console, log etc.) and it needs to be rethrown but upper catch should be notified that it should not report the error to user again.</remarks>
-	<version version="1.5.3" stage="Beta">This class is new in version 1.5.3</version>
-</member><member name="M:Tools.ComponentModelT.SettingsInheritDescriptionAttribute.#ctor(System.Type,System.String,System.String)">
+<member name="M:Tools.ComponentModelT.SettingsInheritDescriptionAttribute.#ctor(System.Type,System.String,System.String)">
 	<summary>CTor</summary>
 	<param name="Settings">The data type that contains property with name specified in <paramref name="Property"/></param>
 	<param name="Property">Name of the property which's <see cref="T:System.Configuration.SettingsDescriptionAttribute"/> initializes this attribute</param>
@@ -15180,6 +15172,11 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="s">A string that specifies a time interval.</param>
 	<param name="result">When this method returns, contains an object that represents the time interval specified by s, or <see cref="F:System.TimeSpan.Zero"/> if the conversion failed. This parameter is passed uninitialized.</param>
 	<returns>true if s was converted successfully; otherwise, false. This operation returns false if the s parameter is null, has an invalid format,represents a time interval less than <see cref="F:System.TimeSpan.MinValue"/> or greater than <see cref="F:System.TimeSpan.MaxValue"/>, or has at least one days, hours, minutes, or seconds component outside its valid range.</returns>
+</member><member name="M:Tools.TimeSpanFormattable.TryParse(System.String,System.IFormatProvider,Tools.TimeSpanFormattable@)">
+	<summary>Constructs a new <see cref="T:Tools.TimeSpanFormattable"/> object from a time interval specified in a string. Parameters specify the time interval and the variable where the new <see cref="T:Tools.TimeSpanFormattable"/> object is returned.</summary>
+	<param name="s">A string that specifies a time interval.</param>
+	<param name="result">When this method returns, contains an object that represents the time interval specified by s, or <see cref="F:System.TimeSpan.Zero"/> if the conversion failed. This parameter is passed uninitialized.</param>
+	<returns>true if s was converted successfully; otherwise, false. This operation returns false if the s parameter is null, has an invalid format,represents a time interval less than <see cref="F:System.TimeSpan.MinValue"/> or greater than <see cref="F:System.TimeSpan.MaxValue"/>, or has at least one days, hours, minutes, or seconds component outside its valid range.</returns>
 </member><member name="P:Tools.TimeSpanFormattable.Ticks">
 	<summary>Gets the number of ticks that represent the value of the current <see cref="T:Tools.TimeSpanFormattable"/> structure.</summary>
 	<returns>Value of <see cref="P:System.TimeSpan.Ticks"/> of internal <see cref="T:System.TimeSpan"/></returns>
@@ -18982,6 +18979,14 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary><see cref="T:System.ComponentModel.CategoryAttribute"/> which's value is one of known values</summary>
 	<author www="http://dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Nightly"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
+</member><member name="M:Tools.ComponentModelT.HandledException.#ctor(System.Exception)">
+	<summary>CTor - Creates a new instance of the <see cref="T:Tools.ComponentModelT.HandledException"/> class</summary>
+	<param name="innerException"> The exception that is the cause of the current exception.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="innerException"/> is null</exception>
+</member><member name="T:Tools.ComponentModelT.HandledException">
+	<summary>Spacial kind of exception intended to be thown by application when exception occured during some process and it was reported to user by the process itself, so the place exception is caught should not report it to user again.</summary>
+	<remarks>Intended use of this exception is as follows: Some processs is going on. Something bad happens in the process (an exception occurs). The exception is reported to user (mesage box, console, log etc.) and it needs to be rethrown but upper catch should be notified that it should not report the error to user again.</remarks>
+	<version version="1.5.3" stage="Beta">This class is new in version 1.5.3</version>
 </member><member name="M:Tools.DrawingT.ImageTools.ThumbSize(System.Drawing.Size,System.Drawing.Size)">
 	<summary>Gets thumbnail size that best fits into given size</summary>
 	<param name="ImgSize">Size of original image</param>

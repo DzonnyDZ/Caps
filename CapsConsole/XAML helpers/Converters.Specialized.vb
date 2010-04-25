@@ -1,6 +1,5 @@
 ﻿Imports Caps.Data
-
-Imports Tools, Tools.ExtensionsT, Tools.TypeTools
+Imports Tools.TypeTools
 Imports System.ComponentModel
 
 ''' <summary>Converts relative path of caps image to absolute path to image of given size or to <see cref="BitmapImage"/> based on such path</summary>

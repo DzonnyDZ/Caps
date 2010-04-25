@@ -111,6 +111,7 @@ Tools.Data.Schema.Deploy
 	<summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
 </member><member name="T:Tools.DataT.SchemaT.DeployT.DatabaseDeployment">
 	<summary>Encapsulates functionality of programatic deployment of database schema to MIcrosft SQL Server database</summary>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DataSchemaErrorEventArgs.#ctor(Microsoft.Data.Schema.DataSchemaError)">
 	<summary>CTor</summary>
 	<param name="error">An arrot ahich has occured</param>
@@ -130,6 +131,7 @@ Tools.Data.Schema.Deploy
 	<returns><see cref="P:Tools.DataT.SchemaT.DeployT.DataSchemaErrorEventArgs.Error"/>.<see cref="P:Microsoft.Data.Schema.DataSchemaError.Message">Message</see></returns>
 </member><member name="T:Tools.DataT.SchemaT.DeployT.DataSchemaErrorEventArgs">
 	<summary>Event argumens of the <see cref="E:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.ErrorOccured"/> event</summary>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
 </member><member name="P:Tools.DataT.SchemaT.DeployT.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.

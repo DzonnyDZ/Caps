@@ -1,5 +1,4 @@
 ﻿Imports Caps.Data
-Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 ''' <summary>Edits settings stored in database</summary>
 Public Class winDatabaseSettings : Implements IDisposable
     ''' <summary>Data context</summary>

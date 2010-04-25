@@ -1,4 +1,4 @@
-﻿Imports Tools, Tools.LinqT
+﻿Imports Tools.LinqT
 
 ''' <summary>Contains various attached dependency  properties</summary>
 Public Module AttachedProperties

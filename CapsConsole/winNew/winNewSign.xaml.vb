@@ -1,6 +1,5 @@
-﻿Imports Tools, Tools.TypeTools, Tools.ExtensionsT
+﻿Imports Tools.TypeTools
 Imports System.ComponentModel
-Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Caps.Data
 
 ''' <summary>Dialog used to create a new instance of <see cref="CapSign"/> class</summary>

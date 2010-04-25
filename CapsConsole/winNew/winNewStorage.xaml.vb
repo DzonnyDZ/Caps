@@ -1,6 +1,5 @@
-﻿Imports Tools, Tools.TypeTools, Tools.ExtensionsT
+﻿Imports Tools.TypeTools
 Imports System.ComponentModel
-Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Tools.CollectionsT.GenericT
 Imports Caps.Data
 

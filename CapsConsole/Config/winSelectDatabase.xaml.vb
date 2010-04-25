@@ -1,5 +1,4 @@
 ﻿Imports System.Data.SqlClient
-Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Microsoft.Win32
 Imports Tools.WindowsT.NativeT
 
@@ -64,10 +63,11 @@ Partial Public Class winSelectDatabase
     Private Sub btnWizard_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnWizard.Click
         Dim wiz As New winDatabaseWizard
         wiz.Owner = Me
-        wiz.ShowDialog()
-        _ConnectionString = wiz.FinalConnectionString
-        prgProperties.SelectedObject = _ConnectionString
-        txtImageRoot.Text = wiz.ImageRoot
+        If wiz.ShowDialog() Then
+            _ConnectionString = wiz.WizardData.FinalConnectionString
+            prgProperties.SelectedObject = _ConnectionString
+            txtImageRoot.Text = wiz.WizardData.FinalImageRoot
+        End If
     End Sub
 
     Private Sub btnTest_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnTest.Click

@@ -1,4 +1,4 @@
-﻿Imports System.Windows.Markup, Tools.ExtensionsT
+﻿Imports System.Windows.Markup
 Imports System.ComponentModel, System.ComponentModel.Design.Serialization
 Imports System.Reflection
 

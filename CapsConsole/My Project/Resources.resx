@@ -1767,7 +1767,7 @@ Doubleclick to edit.</value>
     <comment>Window title</comment>
   </data>
   <data name="wiz_txt_AttachDatabaseToServer" xml:space="preserve">
-    <value>Attach datbase file to server. File with given path must exist on server!</value>
+    <value>Attach database file to server.</value>
   </data>
   <data name="wiz_txt_ConnectToDatabaseServer" xml:space="preserve">
     <value>Connect to database server</value>
@@ -1839,5 +1839,26 @@ Error when deleting the database:
   </data>
   <data name="wiz_msg_DeployErrorExistingDb" xml:space="preserve">
     <value>An error occured after database deployment. Schema was deployed to the database {0}, but the database was left in undefined state (probably confuguration of database options failed). You can try to connect to database and do configuration manually in Database options dialog, but you should consider claning the database manually and runing deployment again.</value>
+  </data>
+  <data name="wiz_txt_DataSourceEnumerator" xml:space="preserve">
+    <value>Data source enumerator</value>
+    <comment>Dialog title</comment>
+  </data>
+  <data name="txt_PleaseWait" xml:space="preserve">
+    <value>Please wait ...</value>
+    <comment>Label text</comment>
+  </data>
+  <data name="wiz_txt_NoInstances" xml:space="preserve">
+    <value>If you can't see any instances, either SQL Server Browser service is not running or there are no SQL servers available.</value>
+    <comment>Text in dialog</comment>
+  </data>
+  <data name="wiz_err_DatabaseList" xml:space="preserve">
+    <value>Error while obtaining list of databases.</value>
+  </data>
+  <data name="wiz_txt_DatabaseList" xml:space="preserve">
+    <value>Database list</value>
+  </data>
+  <data name="wiz_txt_NoDatabasesFound" xml:space="preserve">
+    <value>No databases found using current connection.</value>
   </data>
 </root>

@@ -1,9 +1,8 @@
-﻿Imports Tools.CollectionsT.GenericT, Tools.ExtensionsT
+﻿Imports Tools.CollectionsT.GenericT
 Imports Tools.DrawingT.ImageTools
-Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports System.ComponentModel
 Imports Tools.ComponentModelT, Tools.LinqT
-Imports Tools, Tools.WindowsT.WPF.WpfExtensions
+Imports Tools.WindowsT.WPF.WpfExtensions
 Imports Caps.Data
 
 ''' <summary>Creates a new cap</summary>

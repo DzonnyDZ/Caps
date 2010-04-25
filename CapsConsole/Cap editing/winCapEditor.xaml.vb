@@ -1,5 +1,4 @@
-﻿Imports mBox = Tools.WindowsT.IndependentT.MessageBox, Tools.ExtensionsT
-Imports Caps.Data
+﻿Imports Caps.Data
 Partial Public Class winCapEditor
     Private Cap As Cap
     Private CapID%

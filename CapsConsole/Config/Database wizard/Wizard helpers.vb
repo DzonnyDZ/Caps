@@ -107,6 +107,8 @@ Public Class WizardData
             OnPropertyChanged("DatabaseTypeIsUserInstance")
             OnPropertyChanged("FileSelectionVisibility")
             OnPropertyChanged("DatabaseSelectionVisibility")
+            OnPropertyChanged("RequiresDatabaseNameVisibility")
+            OnPropertyChanged("RequiresExistingDatabaseNameVisibility")
             OnPropertyChanged("RequiresFileNameVisibility")
             OnPropertyChanged("DatabaseTypeDesc")
             OnPropertyChanged("ImageStorageSettingsVisible")
@@ -189,6 +191,7 @@ Public Class WizardData
             OnPropertyChanged("IsDatabaseConnectionTypeNew")
             OnPropertyChanged("ConnectionTypeDesc")
             OnPropertyChanged("ImageStorageSettingsVisible")
+            OnPropertyChanged("RequiresExistingDatabaseNameVisibility")
         End Set
     End Property
 #Region "Connection type helpers"
@@ -256,6 +259,15 @@ Public Class WizardData
     Public ReadOnly Property RequiresDatabaseNameVisibility() As Visibility
         Get
             Return If(DatabaseType = Console.DatabaseType.ServerDatabase, Visibility.Visible, Visibility.Collapsed)
+        End Get
+    End Property
+    ''' <summary>Gets value indicating if current database type requires database name to be selected from existing databases</summary>
+    <EditorBrowsable(EditorBrowsableState.Never)> _
+    Public ReadOnly Property RequiresExistingDatabaseNameVisibility() As Visibility
+        Get
+            Return If(DatabaseType = Console.DatabaseType.ServerDatabase AndAlso
+                      (DatabaseConnectionType = Console.DatabaseConnectionType.Empty OrElse DatabaseConnectionType = Console.DatabaseConnectionType.Existing),
+                      Visibility.Visible, Visibility.Collapsed)
         End Get
     End Property
     ''' <summary>Gets value indicating if SQL Server authentication is used</summary>
@@ -439,6 +451,29 @@ Public Class WizardData
 
     ''' <summary>Occurs when a property value changes.</summary>
     Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+    Private _FinalConnectionString As SqlConnectionStringBuilder
+    ''' <summary>Gets or sets final connection string established once wizard has finished</summary>
+    Property FinalConnectionString As SqlConnectionStringBuilder
+        Get
+            Return _FinalConnectionString
+        End Get
+        Set(ByVal value As SqlConnectionStringBuilder)
+            _FinalConnectionString = value
+            OnPropertyChanged("FinalConnectionString")
+        End Set
+    End Property
+    Private _FinalImageRoot$
+    ''' <summary>Gets or sets final image root path</summary>
+    Property FinalImageRoot As String
+        Get
+            Return _FinalImageRoot
+        End Get
+        Set(ByVal value As String)
+            _FinalImageRoot = value
+            OnPropertyChanged("FinalImageRoot")
+        End Set
+    End Property
+
     ''' <summary>Raises the <see cref="PropertyChanged"/> event</summary>
     Protected Overridable Sub OnPropertyChanged(ByVal PropertyName$)
         RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(PropertyName))
@@ -471,18 +506,4 @@ Public Class WizardData
         End With
         Return b
     End Function
-
-    ''' <summary>Raised when database wizard is successfully finished</summary>
-    ''' <param name="connectionString">Connection string to connect to database selected or created in wizard</param>
-    ''' <param name="imageRoot">gets image root directory (only for newly created databases when images are stored in file system)</param>
-    Friend Event Finished(ByVal connectionString As SqlConnectionStringBuilder, ByVal imageRoot$)
-    ''' <summary>Raises the <see cref="Finished"/> event</summary>
-    ''' <param name="connectionString">Connection string to connect to database selected or created in wizard</param>
-    ''' <param name="imageRoot">gets image root directory (only for newly created databases when images are stored in file system)</param>
-    ''' <exception cref="ArgumentNullException"><paramref name="connectionString"/> is null</exception>
-    Protected Friend Overridable Sub OnFinished(ByVal connectionString As SqlConnectionStringBuilder, ByVal imageRoot$)
-        If connectionString Is Nothing Then Throw New ArgumentNullException("connectionString")
-        RaiseEvent Finished(connectionString, imageRoot)
-    End Sub
-
 End Class

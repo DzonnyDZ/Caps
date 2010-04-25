@@ -1,6 +1,5 @@
 ﻿Imports Caps.Data
 Imports System.ComponentModel
-Imports Tools, Tools.ExtensionsT
 
 ''' <summary>Provides access to database-stored configuration nodes</summary>
 Public Class ConfigNodeProvider
@@ -283,7 +282,7 @@ Public Class ConfigNodeSubProvider
     ''' <summary>Gets data context used by this instance</summary>
     Public Overrides ReadOnly Property Context As Data.CapsDataContext
         Get
-            Return MyBase.Context
+            Return Parent.Context
         End Get
     End Property
     ''' <summary>Gets parent provider this provider provides access to subset of nodes of</summary>

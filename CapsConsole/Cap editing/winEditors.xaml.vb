@@ -1,5 +1,4 @@
 ﻿Imports System.Data.SqlClient
-Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports Caps.Data
 
 Partial Public Class winEditors

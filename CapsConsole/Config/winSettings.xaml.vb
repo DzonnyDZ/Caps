@@ -1,7 +1,6 @@
-﻿Imports mBox = Tools.WindowsT.IndependentT.MessageBox
-Imports System.Globalization
+﻿Imports System.Globalization
 Imports System.Reflection
-Imports Tools.ReflectionT, Tools.ExtensionsT, Tools
+Imports Tools.ReflectionT
 
 Partial Public Class winSettings
 

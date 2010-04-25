@@ -3,7 +3,6 @@ Imports System.Windows
 Imports System.Windows.Controls
 Imports Tools.WindowsT.NativeT
 Imports System.Windows.Forms
-Imports mBox = Tools.WindowsT.IndependentT.MessageBox
 
 ''' <summary>This wizard step is sued to define image storage</summary>
 Public Class pgImageStorage
