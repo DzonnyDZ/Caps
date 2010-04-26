@@ -2,7 +2,7 @@
 Imports System.ComponentModel, System.Linq
 Imports System.Security
 Imports System.Numerics
-Imports System.Net
+Imports System.Net, Tools.WindowsT.InteropT
 
 ''' <summary>Converter thet returns value being converted if tagret type of conversion <see cref="Type.IsAssignableFrom">is assignable from</see> it, null otherwise.</summary>
 Public Class SameTypeOrNullConverter

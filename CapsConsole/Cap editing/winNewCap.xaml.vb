@@ -1,6 +1,6 @@
-﻿Imports Tools.CollectionsT.GenericT
+﻿Imports Tools.CollectionsT.GenericT, Tools.WindowsT.WPF
 Imports Tools.DrawingT.ImageTools
-Imports Caps.Data
+Imports Caps.Data, Tools.DataT.ObjectsT
 
 ''' <summary>Creates a new cap</summary>
 Partial Public Class winNewCap

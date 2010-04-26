@@ -3,7 +3,7 @@ Imports Tools.DrawingT.ImageTools
 Imports System.ComponentModel
 Imports Tools.ComponentModelT, Tools.LinqT
 Imports Tools.WindowsT.WPF.WpfExtensions
-Imports Caps.Data
+Imports Caps.Data, Tools.WindowsT.InteropT.InteropExtensions
 
 ''' <summary>Creates a new cap</summary>
 Partial Public Class CapEditor

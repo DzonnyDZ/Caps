@@ -1,4 +1,4 @@
-Imports System
+Imports System, Tools.WindowsT.WPF
 Imports System.Windows
 Imports System.Windows.Controls
 Imports Microsoft.Win32

@@ -2,7 +2,7 @@ Imports System, mBox = Tools.WindowsT.IndependentT.MessageBox
 Imports System.Windows
 Imports System.Windows.Controls
 Imports System.Data.SqlClient, Caps.Data
-Imports Tools.IOt
+Imports Tools.IOt, Tools.WindowsT.WPF
 Imports System.Data.EntityClient
 Imports Microsoft.Data.Schema
 Imports Tools.ComponentModelT

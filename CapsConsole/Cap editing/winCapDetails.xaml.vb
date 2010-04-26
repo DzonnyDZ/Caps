@@ -1,4 +1,5 @@
-﻿Imports Tools.CollectionsT.GenericT, Caps.Data
+﻿Imports Tools.CollectionsT.GenericT, Caps.Data, Tools.DataT.ObjectsT
+Imports Tools.WindowsT.WPF
 
 Partial Public Class winCapDetails
     '''' <summary>Data context</summary>

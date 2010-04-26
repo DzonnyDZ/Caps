@@ -1,6 +1,6 @@
 ﻿Imports Tools.TypeTools
 Imports System.ComponentModel
-Imports Caps.Data
+Imports Caps.Data, Tools.DataT.ObjectsT.EntityFrameworkExtensions
 Imports System.Data.Objects.DataClasses
 
 ''' <summary>Base class of generic dialogs used to create a new instance of classes implementing <see cref="ISimpleObject"/> interface</summary>

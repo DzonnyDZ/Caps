@@ -1,5 +1,5 @@
-﻿Imports Tools.LinqT
-Imports Caps.Data
+﻿Imports Tools.LinqT, Tools.WindowsT.WPF
+Imports Caps.Data, Tools.ApplicationServicesT.ApplicationServices
 
 ''' <summary>Main application window</summary>
 Class winMain

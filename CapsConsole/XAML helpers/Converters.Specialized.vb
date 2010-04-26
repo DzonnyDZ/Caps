@@ -1,6 +1,6 @@
 ﻿Imports Caps.Data
 Imports Tools.TypeTools
-Imports System.ComponentModel
+Imports System.ComponentModel, Tools.WindowsT.InteropT
 
 ''' <summary>Converts relative path of caps image to absolute path to image of given size or to <see cref="BitmapImage"/> based on such path</summary>
 Public Class CapImageConverter

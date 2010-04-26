@@ -1,7 +1,7 @@
 ﻿Imports Tools.TypeTools
 Imports System.ComponentModel
 Imports Tools.CollectionsT.GenericT
-Imports Caps.Data
+Imports Caps.Data, Tools.WindowsT.WPF
 
 ''' <summary>Dialog used to create a new instance of <see cref="Storage"/> class</summary>
 Partial Public Class winNewStorage

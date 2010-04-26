@@ -1,4 +1,4 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient, Tools.WindowsT.WPF
 Imports Caps.Data
 
 Partial Public Class winEditors

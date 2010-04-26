@@ -1,4 +1,4 @@
-﻿Imports Caps.Data
+﻿Imports Caps.Data, Tools.DataT.ObjectsT, Tools.WindowsT.WPF
 Partial Public Class winCapEditor
     Private Cap As Cap
     Private CapID%
