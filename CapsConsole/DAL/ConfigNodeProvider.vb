@@ -1,6 +1,17 @@
 ﻿Imports Caps.Data
 Imports System.ComponentModel
 
+''' <summary>Provides access to database ssettings</summary>
+<HideModuleName()>
+Public Module DbSettings
+    ''' <summary>Gets default instance of <see cref="ConfigNodeProvider"/></summary>
+    Public ReadOnly Property Settings As ConfigNodeProvider
+        Get
+            Return ConfigNodeProvider.Default
+        End Get
+    End Property
+End Module
+
 ''' <summary>Provides access to database-stored configuration nodes</summary>
 Public Class ConfigNodeProvider
     Implements IDisposable

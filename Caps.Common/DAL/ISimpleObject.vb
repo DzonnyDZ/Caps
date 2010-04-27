@@ -21,6 +21,21 @@
         Property Description$
     End Interface
 
+    ''' <summary>Represents object which has relation to image stored in database</summary>
+    Public Interface IObjectWithImage
+        ''' <summary>Gets ID of current object</summary>
+        ReadOnly Property ID%
+        ''' <summary>Gets images stored in database associated with current objects</summary>
+        ''' <param name="context">Data context to get images from</param>
+        ''' <exception cref="ArgumentNullException"><paramref name="context"/> is null</exception>
+        Function GetStoredImages(ByVal context As CapsDataContext) As IEnumerable(Of StoredImage)
+        ''' <summary>Associates an image with current object</summary>
+        ''' <param name="image">Image to associate with current object</param>
+        ''' <remarks>Association is done besd on object ID not by referenceing the object, so it's save do make association across data contexts.</remarks>
+        ''' <exception cref="ArgumentNullException"><paramref name="image"/> is null</exception>
+        Sub AssociateImage(ByVal image As StoredImage)
+    End Interface
+
     ''' <summary>An item related to <see cref="Cap"/></summary>
     Public Interface IRelatedToCap
         ''' <summary>Gets caps this item is related to</summary>

@@ -308,6 +308,7 @@
       <DependentUpon>winDatabaseSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="DAL\CapsDataDataContext.vb" />
+    <Compile Include="DAL\CapsDataExtensions.vb" />
     <Compile Include="DAL\ConfigNodeProvider.vb" />
     <Compile Include="DAL\Main.vb" />
     <Compile Include="winMain.xaml.vb">

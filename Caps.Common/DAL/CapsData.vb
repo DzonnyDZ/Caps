@@ -47,7 +47,24 @@ Namespace Data
     End Class
     <DebuggerDisplay("Image {RelativePath} ({ImageID})")> _
     Partial Class Image
+        Implements IObjectWithImage
+#Region "IObjectWithIMage"
+        Private Sub AssociateImage_AssociateImage(ByVal image As StoredImage) Implements IObjectWithImage.AssociateImage
+            If image Is Nothing Then Throw New ArgumentNullException("image")
+            image.ImageID = Me.ImageID
+        End Sub
 
+        Private Function AssociateImage_GetStoredImages(ByVal context As CapsDataContext) As System.Collections.Generic.IEnumerable(Of StoredImage) Implements IObjectWithImage.GetStoredImages
+            If context Is Nothing Then Throw New ArgumentNullException("context")
+            Return From item In context.StoredImages Where item.ImageID = Me.ImageID
+        End Function
+        Private ReadOnly Property IObjectWithImage_ID As Integer Implements IObjectWithImage.ID
+            Get
+                Return ImageID
+            End Get
+        End Property
+
+#End Region
     End Class
 #End Region
 
@@ -130,9 +147,9 @@ Namespace Data
 
     <DebuggerDisplay("CapType {TypeName} ({CapTypeID})")> _
     Partial Class CapType
-        Implements ISimpleObject, IRelatedToCap
+        Implements ISimpleObject, IRelatedToCap, IObjectWithImage
 
-#Region "ISimpleObject"
+#Region "ISimpleObject, IObjectWithIMage"
         Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
             <DebuggerStepThrough()> Get
                 Return Description
@@ -141,7 +158,7 @@ Namespace Data
                 Description = value
             End Set
         End Property
-        Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID, IObjectWithImage.ID
             <DebuggerStepThrough()> Get
                 Return CapTypeID
             End Get
@@ -161,6 +178,15 @@ Namespace Data
                 Return "CapType"
             End Get
         End Property
+        Private Sub AssociateImage_AssociateImage(ByVal image As StoredImage) Implements IObjectWithImage.AssociateImage
+            If image Is Nothing Then Throw New ArgumentNullException("image")
+            image.CapTypeID = Me.CapTypeID
+        End Sub
+
+        Private Function AssociateImage_GetStoredImages(ByVal context As CapsDataContext) As System.Collections.Generic.IEnumerable(Of StoredImage) Implements IObjectWithImage.GetStoredImages
+            If context Is Nothing Then Throw New ArgumentNullException("context")
+            Return From item In context.StoredImages Where item.CapTypeID = Me.CapTypeID
+        End Function
 #End Region
 
 
@@ -185,19 +211,36 @@ Namespace Data
 
     <DebuggerDisplay("Shape {Name} ({ShapeID})")> _
     Partial Class Shape
-        Implements IRelatedToCap
+        Implements IRelatedToCap, IObjectWithImage
         ''' <summary>Gets caps this item is related to</summary>
         Private ReadOnly Property IRelatedToCap_Caps As System.Collections.Generic.IEnumerable(Of Cap) Implements IRelatedToCap.Caps
             Get
                 Return Caps
             End Get
         End Property
+#Region "IObjectWithImage"
+        Private Sub AssociateImage_AssociateImage(ByVal image As StoredImage) Implements IObjectWithImage.AssociateImage
+            If image Is Nothing Then Throw New ArgumentNullException("image")
+            image.ShapeID = Me.ShapeID
+        End Sub
+
+        Private Function AssociateImage_GetStoredImages(ByVal context As CapsDataContext) As System.Collections.Generic.IEnumerable(Of StoredImage) Implements IObjectWithImage.GetStoredImages
+            If context Is Nothing Then Throw New ArgumentNullException("context")
+            Return From item In context.StoredImages Where item.ShapeID = Me.ShapeID
+        End Function
+        Private ReadOnly Property IObjectWithIMage_ID As Integer Implements IObjectWithImage.ID
+            Get
+                Return ShapeID
+            End Get
+        End Property
+#End Region
+
     End Class
 
     <DebuggerDisplay("MainType {TypeName} ({MainTypeID})")> _
     Partial Class MainType
-        Implements ISimpleObject, IRelatedToCap
-#Region "ISimpleObject"
+        Implements ISimpleObject, IRelatedToCap, IObjectWithImage
+#Region "ISimpleObject, IObjectWithImage"
         Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
             <DebuggerStepThrough()> Get
                 Return Description
@@ -206,7 +249,7 @@ Namespace Data
                 Description = value
             End Set
         End Property
-        Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID, IObjectWithImage.ID
             <DebuggerStepThrough()> Get
                 Return MainTypeID
             End Get
@@ -226,6 +269,15 @@ Namespace Data
                 Return "MainType"
             End Get
         End Property
+        Private Sub AssociateImage_AssociateImage(ByVal image As StoredImage) Implements IObjectWithImage.AssociateImage
+            If image Is Nothing Then Throw New ArgumentNullException("image")
+            image.MainTypeID = Me.MainTypeID
+        End Sub
+
+        Private Function AssociateImage_GetStoredImages(ByVal context As CapsDataContext) As System.Collections.Generic.IEnumerable(Of StoredImage) Implements IObjectWithImage.GetStoredImages
+            If context Is Nothing Then Throw New ArgumentNullException("context")
+            Return From item In context.StoredImages Where item.MainTypeID = Me.MainTypeID
+        End Function
 #End Region
         ''' <summary>Gets caps this item is related to</summary>
         Private ReadOnly Property IRelatedToCap_Caps As System.Collections.Generic.IEnumerable(Of Cap) Implements IRelatedToCap.Caps
@@ -237,8 +289,8 @@ Namespace Data
 
     <DebuggerDisplay("CapSign {Name} ({CapSignID})")>
     Partial Class CapSign
-        Implements ISimpleObject, IRelatedToCap
-#Region "ISimpleObject"
+        Implements ISimpleObject, IRelatedToCap, IObjectWithImage
+#Region "ISimpleObject, IObjectWithImage"
         Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
             <DebuggerStepThrough()> Get
                 Return Description
@@ -247,7 +299,7 @@ Namespace Data
                 Description = value
             End Set
         End Property
-        Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID, IObjectWithImage.ID
             <DebuggerStepThrough()> Get
                 Return CapSignID
             End Get
@@ -267,6 +319,17 @@ Namespace Data
                 Return "CapSign"
             End Get
         End Property
+
+
+        Private Sub AssociateImage_AssociateImage(ByVal image As StoredImage) Implements IObjectWithImage.AssociateImage
+            If image Is Nothing Then Throw New ArgumentNullException("image")
+            image.CapSignID = Me.CapSignID
+        End Sub
+
+        Private Function AssociateImage_GetStoredImages(ByVal context As CapsDataContext) As System.Collections.Generic.IEnumerable(Of StoredImage) Implements IObjectWithImage.GetStoredImages
+            If context Is Nothing Then Throw New ArgumentNullException("context")
+            Return From item In context.StoredImages Where item.CapSignID = Me.CapSignID
+        End Function
 #End Region
         ''' <summary>Gets caps this item is related to</summary>
         Private ReadOnly Property IRelatedToCap_Caps As System.Collections.Generic.IEnumerable(Of Cap) Implements IRelatedToCap.Caps
@@ -274,6 +337,7 @@ Namespace Data
                 Return Caps
             End Get
         End Property
+
     End Class
 
     <DebuggerDisplay("Category {CategoryName} ({CategoryID})")> _
@@ -483,8 +547,8 @@ Namespace Data
 
     <DebuggerDisplay("Storage {StorageNumber} ({StorageID})")> _
     Partial Class Storage
-        Implements ISimpleObject, IRelatedToCap
-#Region "ISimpleObject"
+        Implements ISimpleObject, IRelatedToCap, IObjectWithImage
+#Region "ISimpleObject, IObjectWithIMage"
         Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
             <DebuggerStepThrough()> Get
                 Return Description
@@ -493,7 +557,7 @@ Namespace Data
                 Description = value
             End Set
         End Property
-        Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID
+        Private ReadOnly Property ISimpleObject_ID As Integer Implements ISimpleObject.ID, IObjectWithImage.ID
             <DebuggerStepThrough()> Get
                 Return StorageID
             End Get
@@ -513,6 +577,15 @@ Namespace Data
                 Return "Storage"
             End Get
         End Property
+        Private Sub AssociateImage_AssociateImage(ByVal image As StoredImage) Implements IObjectWithImage.AssociateImage
+            If image Is Nothing Then Throw New ArgumentNullException("image")
+            image.StorageID = Me.StorageID
+        End Sub
+
+        Private Function AssociateImage_GetStoredImages(ByVal context As CapsDataContext) As System.Collections.Generic.IEnumerable(Of StoredImage) Implements IObjectWithImage.GetStoredImages
+            If context Is Nothing Then Throw New ArgumentNullException("context")
+            Return From item In context.StoredImages Where item.StorageID = Me.StorageID
+        End Function
 #End Region
         ''' <summary>Gets caps this item is related to</summary>
         Private ReadOnly Property IRelatedToCap_Caps As System.Collections.Generic.IEnumerable(Of Cap) Implements IRelatedToCap.Caps

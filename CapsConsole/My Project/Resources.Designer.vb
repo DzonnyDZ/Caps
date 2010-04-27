@@ -709,6 +709,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to The file {0} already exists..
+        '''</summary>
+        Public ReadOnly Property err_FileExists() As String
+            Get
+                Return ResourceManager.GetString("err_FileExists", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to File not found.
+        '''</summary>
+        Public ReadOnly Property err_FileNotFound() As String
+            Get
+                Return ResourceManager.GetString("err_FileNotFound", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Icon has already been encoded..
         '''</summary>
         Public ReadOnly Property err_IconHasAlreadyBeenEncoded() As String
@@ -759,6 +777,15 @@ Namespace My.Resources
         Public ReadOnly Property err_PNGThumbnailFailed() As String
             Get
                 Return ResourceManager.GetString("err_PNGThumbnailFailed", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Cannot save image for object with id 0.
+        '''</summary>
+        Public ReadOnly Property err_SaveImageForId0() As String
+            Get
+                Return ResourceManager.GetString("err_SaveImageForId0", resourceCulture)
             End Get
         End Property
         

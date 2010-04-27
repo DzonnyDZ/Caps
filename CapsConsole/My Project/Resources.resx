@@ -1861,4 +1861,13 @@ Error when deleting the database:
   <data name="wiz_txt_NoDatabasesFound" xml:space="preserve">
     <value>No databases found using current connection.</value>
   </data>
+  <data name="err_SaveImageForId0" xml:space="preserve">
+    <value>Cannot save image for object with id 0</value>
+  </data>
+  <data name="err_FileExists" xml:space="preserve">
+    <value>The file {0} already exists.</value>
+  </data>
+  <data name="err_FileNotFound" xml:space="preserve">
+    <value>File not found</value>
+  </data>
 </root>

@@ -17,7 +17,6 @@ Friend Module Misc
             Case Else : Return False
         End Select
     End Function
-
 End Module
 
 
