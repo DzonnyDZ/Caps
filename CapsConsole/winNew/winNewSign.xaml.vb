@@ -35,9 +35,9 @@ Partial Public Class winNewSign
             Exit Sub
         End Try
         If IO.File.Exists(txtImagePath.Text) Then
-            If Not IO.Directory.Exists(IO.Path.Combine(My.Settings.ImageRoot, "CapSign")) Then
+            If Not IO.Directory.Exists(IO.Path.Combine(My.Settings.ImageRoot, CapSign.ImageStorageFolderName)) Then
                 Try
-                    IO.Directory.CreateDirectory(IO.Path.Combine(My.Settings.ImageRoot, "CapSign"))
+                    IO.Directory.CreateDirectory(IO.Path.Combine(My.Settings.ImageRoot, CapSign.ImageStorageFolderName))
                 Catch ex As Exception
                     mBox.Error_XPTIBWO(ex, My.Resources.err_CreatingDirectorySign, My.Resources.txt_FileSystemError, mBox.MessageBoxIcons.Exclamation, , Me)
                     Me.DialogResult = True
@@ -45,7 +45,7 @@ Partial Public Class winNewSign
                 End Try
             End If
             Try
-                IO.File.Copy(txtImagePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "CapSign"), NewObject.CapSignID & ".png"))
+                IO.File.Copy(txtImagePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, CapSign.ImageStorageFolderName), NewObject.CapSignID & ".png"))
             Catch ex As Exception
                 mBox.Error_XPTIBWO(ex, My.Resources.msg_CopyCapSignImageError, My.Resources.txt_FileSystemError, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation, , Me)
             End Try

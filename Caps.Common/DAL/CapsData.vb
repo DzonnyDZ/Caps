@@ -39,7 +39,30 @@ Namespace Data
 #Region "Support"
     <DebuggerDisplay("StoredImage {FileName} ({StoredImageID})")> _
     Partial Class StoredImage
-
+        ''' <summary>Gets <see cref="System.Drawing.Bitmap"/> displaying this image</summary>
+        ''' <returns>Object containing image data</returns>
+        Public Function GetImageBitmap() As System.Drawing.Bitmap
+            Using str = GetImageStream()
+                Return New System.Drawing.Bitmap(str)
+            End Using
+        End Function
+        ''' <summary>Gets stream containing the image data</summary>
+        ''' <returns>Stream that can be used to read image data</returns>
+        Public Function GetImageStream() As IO.Stream
+            Return New IO.MemoryStream(Data)
+        End Function
+        ''' <summary>Gets <see cref="Windows.Media.Imaging.BitmapImage"/> displayling this image</summary>
+        ''' <returns>Object containing image data</returns>
+        Public Function GetImageSource() As Windows.Media.Imaging.BitmapImage
+            Dim ret = New Windows.Media.Imaging.BitmapImage()
+            ret.BeginInit()
+            ret.CacheOption = Windows.Media.Imaging.BitmapCacheOption.OnLoad
+            Using str = GetImageStream()
+                ret.StreamSource = str
+                ret.EndInit()
+            End Using
+            Return ret
+        End Function
     End Class
     <DebuggerDisplay("PseudoCategory {Name} ({PseudoCategoryID}) Condition: {Condition}")>
     Partial Class PseudoCategory
@@ -48,6 +71,7 @@ Namespace Data
     <DebuggerDisplay("Image {RelativePath} ({ImageID})")> _
     Partial Class Image
         Implements IObjectWithImage
+        Public Const OriginalSizeImageStorageFolderName$ = "original"
 #Region "IObjectWithIMage"
         Private Sub AssociateImage_AssociateImage(ByVal image As StoredImage) Implements IObjectWithImage.AssociateImage
             If image Is Nothing Then Throw New ArgumentNullException("image")
@@ -63,7 +87,21 @@ Namespace Data
                 Return ImageID
             End Get
         End Property
-
+        Private ReadOnly Property IObjectWithImage_Images As IEnumerable(Of StoredImage) Implements IObjectWithImage.StoredImages
+            Get
+                Return StoredImages
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_ImageStorageFolderName As String Implements IObjectWithImage.ImageStorageFolderName
+            Get
+                Return OriginalSizeImageStorageFolderName$
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_FileSystemStorageFileName As String Implements IObjectWithImage.FileSystemStorageFileName
+            Get
+                Return Me.RelativePath
+            End Get
+        End Property
 #End Region
     End Class
 #End Region
@@ -148,7 +186,7 @@ Namespace Data
     <DebuggerDisplay("CapType {TypeName} ({CapTypeID})")> _
     Partial Class CapType
         Implements ISimpleObject, IRelatedToCap, IObjectWithImage
-
+        Public Const ImageStorageFolderName$ = "CapType"
 #Region "ISimpleObject, IObjectWithIMage"
         Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
             <DebuggerStepThrough()> Get
@@ -187,6 +225,21 @@ Namespace Data
             If context Is Nothing Then Throw New ArgumentNullException("context")
             Return From item In context.StoredImages Where item.CapTypeID = Me.CapTypeID
         End Function
+        Private ReadOnly Property IObjectWithImage_Images As IEnumerable(Of StoredImage) Implements IObjectWithImage.StoredImages
+            Get
+                Return StoredImages
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_ImageStorageFolderName As String Implements IObjectWithImage.ImageStorageFolderName
+            Get
+                Return ImageStorageFolderName
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_FileSystemStorageFileName As String Implements IObjectWithImage.FileSystemStorageFileName
+            Get
+                Return String.Format(Globalization.CultureInfo.InvariantCulture, "{0}.png", CapTypeID)
+            End Get
+        End Property
 #End Region
 
 
@@ -212,6 +265,7 @@ Namespace Data
     <DebuggerDisplay("Shape {Name} ({ShapeID})")> _
     Partial Class Shape
         Implements IRelatedToCap, IObjectWithImage
+        Public Const ImageStorageFolderName$ = "Shape"
         ''' <summary>Gets caps this item is related to</summary>
         Private ReadOnly Property IRelatedToCap_Caps As System.Collections.Generic.IEnumerable(Of Cap) Implements IRelatedToCap.Caps
             Get
@@ -233,13 +287,28 @@ Namespace Data
                 Return ShapeID
             End Get
         End Property
+        Private ReadOnly Property IObjectWithImage_Images As IEnumerable(Of StoredImage) Implements IObjectWithImage.StoredImages
+            Get
+                Return StoredImages
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_ImageStorageFolderName As String Implements IObjectWithImage.ImageStorageFolderName
+            Get
+                Return ImageStorageFolderName
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_FileSystemStorageFileName As String Implements IObjectWithImage.FileSystemStorageFileName
+            Get
+                Return String.Format(Globalization.CultureInfo.InvariantCulture, "{0}.png", ShapeID)
+            End Get
+        End Property
 #End Region
-
     End Class
 
     <DebuggerDisplay("MainType {TypeName} ({MainTypeID})")> _
     Partial Class MainType
         Implements ISimpleObject, IRelatedToCap, IObjectWithImage
+        Public Const ImageStorageFolderName$ = "MainType"
 #Region "ISimpleObject, IObjectWithImage"
         Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
             <DebuggerStepThrough()> Get
@@ -278,6 +347,21 @@ Namespace Data
             If context Is Nothing Then Throw New ArgumentNullException("context")
             Return From item In context.StoredImages Where item.MainTypeID = Me.MainTypeID
         End Function
+        Private ReadOnly Property IObjectWithImage_Images As IEnumerable(Of StoredImage) Implements IObjectWithImage.StoredImages
+            Get
+                Return StoredImages
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_ImageStorageFolderName As String Implements IObjectWithImage.ImageStorageFolderName
+            Get
+                Return ImageStorageFolderName
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_FileSystemStorageFileName As String Implements IObjectWithImage.FileSystemStorageFileName
+            Get
+                Return String.Format(Globalization.CultureInfo.InvariantCulture, "{0}.png", MainTypeID)
+            End Get
+        End Property
 #End Region
         ''' <summary>Gets caps this item is related to</summary>
         Private ReadOnly Property IRelatedToCap_Caps As System.Collections.Generic.IEnumerable(Of Cap) Implements IRelatedToCap.Caps
@@ -290,6 +374,7 @@ Namespace Data
     <DebuggerDisplay("CapSign {Name} ({CapSignID})")>
     Partial Class CapSign
         Implements ISimpleObject, IRelatedToCap, IObjectWithImage
+        Public Const ImageStorageFolderName$ = "CapSign"
 #Region "ISimpleObject, IObjectWithImage"
         Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
             <DebuggerStepThrough()> Get
@@ -330,6 +415,22 @@ Namespace Data
             If context Is Nothing Then Throw New ArgumentNullException("context")
             Return From item In context.StoredImages Where item.CapSignID = Me.CapSignID
         End Function
+
+        Private ReadOnly Property IObjectWithImage_Images As IEnumerable(Of StoredImage) Implements IObjectWithImage.StoredImages
+            Get
+                Return StoredImages
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_ImageStorageFolderName As String Implements IObjectWithImage.ImageStorageFolderName
+            Get
+                Return ImageStorageFolderName
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_FileSystemStorageFileName As String Implements IObjectWithImage.FileSystemStorageFileName
+            Get
+                Return String.Format(Globalization.CultureInfo.InvariantCulture, "{0}.png", CapSignID)
+            End Get
+        End Property
 #End Region
         ''' <summary>Gets caps this item is related to</summary>
         Private ReadOnly Property IRelatedToCap_Caps As System.Collections.Generic.IEnumerable(Of Cap) Implements IRelatedToCap.Caps
@@ -337,7 +438,6 @@ Namespace Data
                 Return Caps
             End Get
         End Property
-
     End Class
 
     <DebuggerDisplay("Category {CategoryName} ({CategoryID})")> _
@@ -548,6 +648,7 @@ Namespace Data
     <DebuggerDisplay("Storage {StorageNumber} ({StorageID})")> _
     Partial Class Storage
         Implements ISimpleObject, IRelatedToCap, IObjectWithImage
+        Public Const ImageStorageFolderName$ = "Storage"
 #Region "ISimpleObject, IObjectWithIMage"
         Private Property ISimpleObject_Description As String Implements ISimpleObject.Description
             <DebuggerStepThrough()> Get
@@ -586,6 +687,21 @@ Namespace Data
             If context Is Nothing Then Throw New ArgumentNullException("context")
             Return From item In context.StoredImages Where item.StorageID = Me.StorageID
         End Function
+        Private ReadOnly Property IObjectWithImage_Images As IEnumerable(Of StoredImage) Implements IObjectWithImage.StoredImages
+            Get
+                Return StoredImages
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_ImageStorageFolderName As String Implements IObjectWithImage.ImageStorageFolderName
+            Get
+                Return ImageStorageFolderName
+            End Get
+        End Property
+        Private ReadOnly Property IObjectWithImage_FileSystemStorageFileName As String Implements IObjectWithImage.FileSystemStorageFileName
+            Get
+                Return String.Format(Globalization.CultureInfo.InvariantCulture, "{0}.png", StorageID)
+            End Get
+        End Property
 #End Region
         ''' <summary>Gets caps this item is related to</summary>
         Private ReadOnly Property IRelatedToCap_Caps As System.Collections.Generic.IEnumerable(Of Cap) Implements IRelatedToCap.Caps

@@ -87,7 +87,7 @@ Partial Public Class winCapDetails
             If IO.Path.IsPathRooted(item.RelativePath) Then
                 path = item.RelativePath
             Else
-                path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "original"), item.RelativePath)
+                path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, Image.OriginalSizeImageStorageFolderName), item.RelativePath)
             End If
             Try
                 Process.Start(path)

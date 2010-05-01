@@ -22,11 +22,11 @@ Public Class CapImageConverter
         If Not TypeOf value Is String Then Throw New TypeMismatchException("value", value, GetType(String))
         Dim folders$()
         If parameter Is Nothing OrElse (TypeOf parameter Is Integer AndAlso DirectCast(parameter, Integer) > 256) Then
-            folders = New String() {"original", "256_256", "64_64"}
+            folders = New String() {Image.OriginalSizeImageStorageFolderName, "256_256", "64_64"}
         ElseIf TypeOf parameter Is Integer AndAlso DirectCast(parameter, Integer) <= 64 Then
-            folders = New String() {"64_64", "256_256", "original"}
+            folders = New String() {"64_64", "256_256", Image.OriginalSizeImageStorageFolderName}
         ElseIf TypeOf parameter Is Integer AndAlso DirectCast(parameter, Integer) <= 256 Then
-            folders = New String() {"256_256", "64_64", "original"}
+            folders = New String() {"256_256", "64_64", Image.OriginalSizeImageStorageFolderName}
         Else
             Throw New ArgumentException(My.Resources.ex_CapImageConverterParameter, "parameter")
         End If
@@ -36,7 +36,7 @@ Public Class CapImageConverter
             path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, folder), value)
             If IO.File.Exists(path) Then found = True : Exit For
         Next
-        If Not found Then path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "original"), value)
+        If Not found Then path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, Image.OriginalSizeImageStorageFolderName), value)
         If targetType.Equals(GetType(String)) Then Return path
         If Not targetType.IsAssignableFrom(GetType(BitmapImage)) Then Throw New NotSupportedException(My.Resources.err_CanConvertOnlyTo1And2.f(Me.GetType.Name, GetType(String).Name, GetType(BitmapImage).Name))
         If path IsNot Nothing AndAlso IO.File.Exists(path) Then

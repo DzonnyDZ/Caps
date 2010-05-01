@@ -21,7 +21,7 @@ Public Class winCreateNewType : Implements IDisposable
     Private TemporaryFiles As New List(Of String)
 
     Private Sub mniImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs)
-        Dim sourcePath = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "original"), DirectCast(DirectCast(sender, MenuItem).DataContext, Image).RelativePath)
+        Dim sourcePath = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, Image.OriginalSizeImageStorageFolderName), DirectCast(DirectCast(sender, MenuItem).DataContext, Image).RelativePath)
         Try
             Dim img As New System.Drawing.Bitmap(sourcePath)
             Dim targImage As System.Drawing.Bitmap
@@ -92,7 +92,7 @@ Public Class winCreateNewType : Implements IDisposable
         End Try
         'Image                                                                   
         Try
-            IO.File.Copy(txtPicturePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "CapType"), Type.CapTypeID & ".png"))
+            IO.File.Copy(txtPicturePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, CapType.ImageStorageFolderName), Type.CapTypeID & ".png"))
         Catch ex As Exception
             mBox.Error_XPTIBWO(ex, My.Resources.msg_CopyCapTypeImageError, My.Resources.txt_CopyFile, Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons.Error, , Me)
         End Try

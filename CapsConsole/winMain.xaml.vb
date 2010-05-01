@@ -226,11 +226,11 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
     Private Sub mniImagesClear_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniImagesClear.Click
         Dim p256 = IO.Path.Combine(My.Settings.ImageRoot, "256_256")
         Dim p64 = IO.Path.Combine(My.Settings.ImageRoot, "64_64")
-        Dim pOriginal = IO.Path.Combine(My.Settings.ImageRoot, "original")
-        Dim pCapType = IO.Path.Combine(My.Settings.ImageRoot, "CapType")
-        Dim pMainType = IO.Path.Combine(My.Settings.ImageRoot, "MainType")
-        Dim pShape = IO.Path.Combine(My.Settings.ImageRoot, "Shape")
-        Dim pCapSign = IO.Path.Combine(My.Settings.ImageRoot, "CapSign")
+        Dim pOriginal = IO.Path.Combine(My.Settings.ImageRoot, Image.OriginalSizeImageStorageFolderName)
+        Dim pCapType = IO.Path.Combine(My.Settings.ImageRoot, CapType.ImageStorageFolderName)
+        Dim pMainType = IO.Path.Combine(My.Settings.ImageRoot, MainType.ImageStorageFolderName)
+        Dim pShape = IO.Path.Combine(My.Settings.ImageRoot, Shape.ImageStorageFolderName)
+        Dim pCapSign = IO.Path.Combine(My.Settings.ImageRoot, CapSign.ImageStorageFolderName)
 
         Dim del256 = If(IO.Directory.Exists(p256), From file In IO.Directory.GetFiles(p256) Where (From img In Me.Context.Images.AsEnumerable Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0, {})
         Dim del64 = If(IO.Directory.Exists(p64), From file In IO.Directory.GetFiles(p64) Where (From img In Me.Context.Images.AsEnumerable Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0, {})

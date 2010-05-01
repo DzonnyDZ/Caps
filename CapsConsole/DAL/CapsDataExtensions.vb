@@ -3,7 +3,7 @@ Imports Caps.Data, System.Globalization.CultureInfo
 Imports System.Drawing, Tools.ExtensionsT
 Imports System.Drawing.Imaging
 Imports System.Data.Objects.DataClasses
-Imports Tools.DrawingT
+Imports Tools.DrawingT, Tools.LinqT
 
 ''' <summary>Contains extension foctions for Caps data entities</summary>
 Module CapsDataExtensions
@@ -90,7 +90,7 @@ Module CapsDataExtensions
     ''' <exception cref="IO.IOException">Images are saved in file system and: The directory for storing images of particular type does not exists and parent directory is read-only or is not empty or a file with the same name and location exists. -or- An I/O error occured while copying file to destionation directory.</exception>
     ''' <exception cref="IO.DirectoryNotFoundException">Images are stored in file system and: The directory for storing images does not exist and it's path is invalid (for example, it is on an unmapped drive).</exception>
     <Extension()>
-    Function SaveImage(ByVal image As Data.Image, ByVal source As String) As SaveImageUndoOperation
+    Public Function SaveImage(ByVal image As Data.Image, ByVal source As String) As SaveImageUndoOperation
         If image Is Nothing Then Throw New ArgumentNullException("capSign")
         If image.ImageID = 0 Then Throw New ArgumentException(My.Resources.err_SaveImageForId0)
         If source Is Nothing Then Throw New ArgumentNullException("source")
@@ -108,7 +108,9 @@ Module CapsDataExtensions
                 Dim minSize As Integer = Integer.MaxValue
                 For Each dimension In storeInFS
                     minSize = Math.Min(minSize, dimension)
-                    Dim targetFolder = IO.Path.Combine(My.Settings.ImageRoot, If(dimension = 0, "original", String.Format(InvariantCulture, "{0}_{0}", dimension)))
+                    Dim targetFolder = IO.Path.Combine(My.Settings.ImageRoot, If(dimension = 0,
+                                                                                 Data.Image.OriginalSizeImageStorageFolderName,
+                                                                                 String.Format(InvariantCulture, "{0}_{0}", dimension)))
                     While IO.File.Exists(IO.Path.Combine(targetFolder, filename))
                         i += 1
                         filename = String.Format(InvariantCulture, "{0}_{1}{2}", IO.Path.GetFileNameWithoutExtension(source), i, IO.Path.GetExtension(source))
@@ -117,7 +119,9 @@ Module CapsDataExtensions
                 Dim savedImages As New List(Of String)(storeInFS.Length)
                 Try
                     For Each dimension In storeInFS
-                        Dim targetFolder As IOt.Path = IO.Path.Combine(My.Settings.ImageRoot, If(dimension = 0, "original", String.Format(InvariantCulture, "{0}_{0}", dimension)))
+                        Dim targetFolder As IOt.Path = IO.Path.Combine(My.Settings.ImageRoot, If(dimension = 0,
+                                                                                                 Data.Image.OriginalSizeImageStorageFolderName,
+                                                                                                 String.Format(InvariantCulture, "{0}_{0}", dimension)))
                         Dim targetFile = IO.Path.Combine(targetFolder, filename)
                         If Not targetFolder.IsDirectory Then targetFolder.CreateDirectory()
                         If dimension = 0 Then
@@ -198,7 +202,7 @@ Module CapsDataExtensions
 
         If Settings.Images.CapSignStorage = ConfigNodeProvider.ImagesProvider.Storage.FileSystem Then
             'Save image in file system
-            Dim targetPath = IO.Path.Combine(My.Settings.ImageRoot, "CapSign", obj.ID.ToString(InvariantCulture) & ".png")
+            Dim targetPath = IO.Path.Combine(My.Settings.ImageRoot, obj.ImageStorageFolderName, obj.ID.ToString(InvariantCulture) & ".png")
             Dim targDir As New IOt.Path(IO.Path.GetDirectoryName(targetPath))
             If Not targDir.IsDirectory Then targDir.CreateDirectory()
             If IO.Path.GetExtension(source).ToLowerInvariant = ".png" Then
@@ -254,8 +258,265 @@ Module CapsDataExtensions
         End Select
     End Function
 #End Region
+
+#Region "Get Image"
+#Region "Typed functions"
+    ''' <summary>Gets images associated with given object</summary>
+    ''' <param name="capSign">Object to get images associated with</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="capSign"/> is null</exception>
+    <Extension()>
+    Public Function GetImages(ByVal capSign As CapSign) As IEnumerable(Of ImageProvider)
+        Return GetImages(Of CapSign)(capSign)
+    End Function
+    ''' <summary>Gets images associated with given object</summary>
+    ''' <param name="capType">Object to get images associated with</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="capType"/> is null</exception>
+    <Extension()>
+    Public Function GetImages(ByVal capType As CapType) As IEnumerable(Of ImageProvider)
+        Return GetImages(Of CapType)(capType)
+    End Function
+    ''' <summary>Gets images associated with given object</summary>
+    ''' <param name="mainType">Object to get images associated with</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="mainType"/> is null</exception>
+    <Extension()>
+    Public Function GetImages(ByVal mainType As MainType) As IEnumerable(Of ImageProvider)
+        Return GetImages(Of MainType)(mainType)
+    End Function
+    ''' <summary>Gets images associated with given object</summary>
+    ''' <param name="shape">Object to get images associated with</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="shape"/> is null</exception>
+    <Extension()>
+    Public Function GetImages(ByVal shape As Shape) As IEnumerable(Of ImageProvider)
+        Return GetImages(Of Shape)(shape)
+    End Function
+    ''' <summary>Gets images associated with given object</summary>
+    ''' <param name="storage">Object to get images associated with</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="storage"/> is null</exception>
+    <Extension()>
+    Public Function GetImages(ByVal storage As Storage) As IEnumerable(Of ImageProvider)
+        Return GetImages(Of Storage)(storage)
+    End Function
+#End Region
+
+    ''' <summary>Regular expression matching folder name for storing images</summary>
+    Private imageFolderNameRegExp As New System.Text.RegularExpressions.Regex(
+        "^(?<Size>\d+)_\k<Size>$", System.Text.RegularExpressions.RegexOptions.Compiled Or System.Text.RegularExpressions.RegexOptions.CultureInvariant Or System.Text.RegularExpressions.RegexOptions.ExplicitCapture)
+
+    ''' <summary>Gets images associated with given image</summary>
+    ''' <param name="image">Object to get images associated with</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="image"/> is null</exception>
+    <Extension()>
+    Public Function GetImages(ByVal image As Data.Image) As IEnumerable(Of ImageProvider)
+        If image Is Nothing Then Throw New ArgumentNullException("obj")
+        Dim retFS As IEnumerable(Of ImageProvider) = Nothing
+        If My.Settings.ImageRoot <> "" AndAlso IO.Directory.Exists(My.Settings.ImageRoot) Then
+            retFS = From dir In IO.Directory.EnumerateDirectories(My.Settings.ImageRoot)
+                    Let dirname = IO.Path.GetFileName(dir), match = imageFolderNameRegExp.Match(dirname)
+                    Where (dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName OrElse imageFolderNameRegExp.IsMatch(match.Success)) AndAlso
+                          IO.File.Exists(IO.Path.Combine(dir, image.RelativePath))
+                    Select New FileSystemImageProvider(IO.Path.Combine(dir, image.RelativePath),
+                                                    If(dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName, 0, Integer.Parse(match.Groups!size.Value)))
+        End If
+        Dim retDB = From item In image.StoredImages.AsEnumerable
+                    Select New DatabaseImageProvider(item)
+        If retFS Is Nothing Then Return retDB
+        Return retFS.UnionAll(retDB)
+    End Function
+    ''' <summary>Gets images associated with given image of given size</summary>
+    ''' <param name="image">Object to get images associated with</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="image"/> is null</exception>
+    <Extension()>
+    Public Function GetImages(ByVal image As Data.Image, ByVal expectedSize As Integer) As ImageProvider
+        If image Is Nothing Then Throw New ArgumentNullException("obj")
+        Dim retFS As FileSystemImageProvider = Nothing
+        If My.Settings.ImageRoot <> "" AndAlso IO.Directory.Exists(My.Settings.ImageRoot) Then
+            'Get file system images
+            Dim fsImage = (
+                From dir In IO.Directory.EnumerateDirectories(My.Settings.ImageRoot)
+                Let dirname = IO.Path.GetFileName(dir),
+                    match = imageFolderNameRegExp.Match(dirname),
+                    file = IO.Path.Combine(dir, image.RelativePath)
+                Where (dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName OrElse imageFolderNameRegExp.IsMatch(match.Success)) AndAlso
+                      IO.File.Exists(IO.Path.Combine(dir, image.RelativePath))
+                Let size = If(dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName, 0, Integer.Parse(match.Groups!size.Value))
+                Select size, file
+                Order By If(size = expectedSize, 0, 1) Ascending,
+                         If(size = 0 OrElse size > expectedSize, 0, 1) Ascending,
+                         If(size = 0, Integer.MaxValue, size) Ascending
+                    ).FirstOrDefault
+            If fsImage IsNot Nothing Then retFS = New FileSystemImageProvider(fsImage.file, fsImage.size)
+        End If
+        'Get database images
+        Dim dbImage = (
+            From item In image.StoredImages
+            Order By If(item.Width = expectedSize OrElse item.Height = expectedSize, 0, 1) Ascending,
+                      If(item.Width > expectedSize OrElse item.Height > expectedSize, 0, 1) Ascending,
+                      Math.Max(item.Height, item.Width) Ascending
+                    ).FirstOrDefault
+        Dim retDB As DatabaseImageProvider = Nothing
+        If dbImage IsNot Nothing Then retDB = New DatabaseImageProvider(dbImage)
+        If retDB Is Nothing Then Return retFS
+        If retFS Is Nothing Then Return retDB
+        'Both - DB & FS suitable - get the best one
+        Return (
+            From item In New ImageProvider() {retFS, retDB}
+            Order By If(item.Height = expectedSize OrElse item.Width = expectedSize, 0, 1) Ascending,
+                     If(item.Height > expectedSize OrElse item.Width > expectedSize, 0, 1) Ascending,
+                     item.Height Ascending,
+                     If(TypeOf item Is FileSystemImageProvider, 0, 1) Ascending
+               ).First
+    End Function
+
+    ''' <summary>Gets images associated with given object</summary>
+    ''' <param name="obj">Object to get images associated with</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="obj"/> is null</exception>
+    Private Function GetImages(Of T As {IObjectWithImage, EntityObject})(ByVal obj As T) As IEnumerable(Of ImageProvider)
+        If obj Is Nothing Then Throw New ArgumentNullException("obj")
+        Dim retFS As IEnumerable(Of ImageProvider) = Nothing
+        If My.Settings.ImageRoot <> "" Then
+            Dim path As String = IO.Path.Combine(My.Settings.ImageRoot, obj.ImageStorageFolderName, obj.FileSystemStorageFileName)
+            If IO.File.Exists(path) Then
+                retFS = {New FileSystemImageProvider(path, 0)}
+            End If
+        End If
+        Dim retDB = From item In obj.StoredImages Select New DatabaseImageProvider(item)
+        If retFS Is Nothing Then Return retDB
+        Return retFS.UnionAll(retDB)
+    End Function
+#End Region
 End Module
 
+#Region "Image providers"
+''' <summary>Base class for image providers</summary>
+Public MustInherit Class ImageProvider
+    ''' <summary>CTor - creates a new instance of the <see cref="ImageProvider"/> class</summary>
+    ''' <param name="width">Width of image in pixels</param>
+    ''' <param name="height">height of image in pixels</param>
+    Protected Sub New(ByVal width%, ByVal height%)
+        Me._width = width
+        Me._height = height
+    End Sub
+#Region "Image retrieval"
+    ''' <summary>When overriden in base class gets stream containing image data</summary>
+    ''' <returns>Stream containing image data</returns>
+    Public MustOverride Function GetImageStream() As IO.Stream
+    ''' <summary>Gets <see cref="System.Drawing.Bitmap"/> displaying this image</summary>
+    ''' <returns>Object containing image data</returns>
+    Public Overridable Function GetImageBitmap() As System.Drawing.Bitmap
+        Using str = GetImageStream()
+            Return New System.Drawing.Bitmap(str)
+        End Using
+    End Function
+    ''' <summary>Gets <see cref="Windows.Media.Imaging.BitmapImage"/> displayling this image</summary>
+    ''' <returns>Object containing image data</returns>
+    Public Overridable Function GetImageSource() As Windows.Media.Imaging.BitmapImage
+        Dim ret = New Windows.Media.Imaging.BitmapImage()
+        ret.BeginInit()
+        ret.CacheOption = Windows.Media.Imaging.BitmapCacheOption.OnLoad
+        Using str = GetImageStream()
+            ret.StreamSource = str
+            ret.EndInit()
+        End Using
+        Return ret
+    End Function
+#End Region
+
+#Region "Properties"
+    Private ReadOnly _width%
+    ''' <summary>Gets actual width of image in pixels</summary>
+    Public ReadOnly Property Width As Integer
+        Get
+            Return _width
+        End Get
+    End Property
+    Private ReadOnly _height%
+    ''' <summary>Gets actual height of image in pixels</summary>
+    Public ReadOnly Property Height As Integer
+        Get
+            Return _height
+        End Get
+    End Property
+#End Region
+End Class
+
+''' <summary>Provides image stored in database</summary>
+Friend NotInheritable Class DatabaseImageProvider
+    Inherits ImageProvider
+    ''' <summary>CTor - creates a new instance of the <see cref="DatabaseImageProvider"/> class</summary>
+    ''' <param name="image">Database-stored image</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="image"/> is null</exception>
+    Public Sub New(ByVal image As StoredImage)
+        MyBase.New(image.ThrowIfNull("image").Width, image.Height)
+    End Sub
+    ''' <summary>database image</summary>
+    Private image As StoredImage
+    ''' <summary>Gets stream containing image data</summary>
+    ''' <returns>Stream containing image data</returns>
+    Public Overrides Function GetImageStream() As System.IO.Stream
+        Return image.GetImageStream
+    End Function
+    ''' <summary>Gets <see cref="System.Drawing.Bitmap"/> displaying this image</summary>
+    ''' <returns>Object containing image data</returns>
+    Public Overrides Function GetImageBitmap() As System.Drawing.Bitmap
+        Return image.GetImageBitmap
+    End Function
+    ''' <summary>Gets <see cref="Windows.Media.Imaging.BitmapImage"/> displayling this image</summary>
+    ''' <returns>Object containing image data</returns>
+    Public Overrides Function GetImageSource() As System.Windows.Media.Imaging.BitmapImage
+        Return image.GetImageSource
+    End Function
+End Class
+
+''' <summary>Provides image stored in file system</summary>
+Friend NotInheritable Class FileSystemImageProvider
+    Inherits ImageProvider
+    ''' <summary>Path of file image is stored in</summary>
+    Private imagePath As String
+    ''' <summary>Helper CTor - calls base class constructor witz <see cref="System.Drawing.Size"/> deimensions</summary>
+    ''' <param name="size">Size of current image. {0, 0} means original image (used only whan determination of actual image size failed)</param>
+    Private Sub New(ByVal size As System.Drawing.Size)
+        MyBase.New(size.width, size.height)
+    End Sub
+    ''' <summary>CTor - creates a new instance of the <see cref="FileSystemImageProvider"/> class</summary>
+    ''' <param name="imagePath">Path to file image is stored in</param>
+    ''' <param name="expectedSize">Expected size of image (0 means original size); used when image size determination from file fails</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="expectedSize"/> is null</exception>
+    ''' <exception cref="ArgumentException"><paramref name="expectedSize"/> is an empty string</exception>
+    ''' <exception cref="ArgumentOutOfRangeException"><paramref name="expectedSize"/> is less than zero</exception>
+    Public Sub New(ByVal imagePath$, ByVal expectedSize%)
+        Me.New(GetImageSize(imagePath, expectedSize))
+    End Sub
+
+    ''' <summary>When overriden in base class gets stream containing image data</summary>
+    ''' <returns>Stream containing image data</returns>
+    Public Overrides Function GetImageStream() As System.IO.Stream
+        Return IO.File.Open(imagePath, IO.FileMode.Open, IO.FileAccess.Read, IO.FileShare.Read)
+    End Function
+    ''' <summary>Gets <see cref="System.Drawing.Bitmap"/> displaying this image</summary>
+    ''' <returns>Object containing image data</returns>
+    Public Overrides Function GetImageBitmap() As System.Drawing.Bitmap
+        Return New Bitmap(imagePath)
+    End Function
+    ''' <summary>Gets size of image in given file in pixels</summary>
+    ''' <param name="imagePath">Path to file to get size of image stored in</param>
+    ''' <param name="expectedSize">Expected size of image. Used as image size in case an error occurs while reading image file. 0 means original size of image.</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="expectedSize"/> is null</exception>
+    ''' <exception cref="ArgumentException"><paramref name="expectedSize"/> is an empty string</exception>
+    ''' <exception cref="ArgumentOutOfRangeException"><paramref name="expectedSize"/> is less than zero</exception>
+    Private Shared Function GetImageSize(ByVal imagePath As String, ByVal expectedSize%) As System.Drawing.Size
+        If imagePath Is Nothing Then Throw New ArgumentNullException("imagePath")
+        If imagePath = "" Then Throw New ArgumentException("{0} cannot be an empty string", "imagePath")
+        If expectedSize < 0 Then Throw New ArgumentOutOfRangeException("expectedSize")
+        Try
+            Using bmp As New Bitmap(imagePath)
+                Return bmp.Size
+            End Using
+        Catch
+            Return New System.Drawing.Size(expectedSize, expectedSize)
+        End Try
+    End Function
+End Class
+#End Region
 
 #Region "Save image undo classes"
 ''' <summary>This class can undo operation of image saving</summary>

@@ -497,7 +497,7 @@ Partial Public Class CapEditor
             If IO.Path.IsPathRooted(item.RelativePath) Then
                 path = item.RelativePath
             Else
-                path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "original"), item.RelativePath)
+                path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, Image.OriginalSizeImageStorageFolderName), item.RelativePath)
             End If
             Try
                 Process.Start(path)
@@ -2767,7 +2767,7 @@ Partial Public Class CapEditor
     ''' <param name="NewType">Newly created cap type</param>
     Public Sub CopyTypeImage(ByVal NewType As CapType)
         If IO.File.Exists(CapTypeImagePath) Then
-            Dim CapTypeDir = IO.Path.Combine(My.Settings.ImageRoot, "CapType")
+            Dim CapTypeDir = IO.Path.Combine(My.Settings.ImageRoot, CapType.ImageStorageFolderName)
             If Not IO.Directory.Exists(CapTypeDir) Then
                 Try
                     IO.Directory.CreateDirectory(CapTypeDir)
@@ -2817,7 +2817,7 @@ Partial Public Class CapEditor
         Dim Imgs = New List(Of Image)
         CopyImages = Imgs
         If Images Is Nothing Then Exit Function
-        Dim folOrig = IO.Path.Combine(My.Settings.ImageRoot, "original")
+        Dim folOrig = IO.Path.Combine(My.Settings.ImageRoot, Image.OriginalSizeImageStorageFolderName)
         Dim fol64 = IO.Path.Combine(My.Settings.ImageRoot, "64_64")
         Dim fol256 = IO.Path.Combine(My.Settings.ImageRoot, "256_256")
         Dim FolTBC = folOrig
@@ -3041,7 +3041,7 @@ Resize256:      Try
     Public Sub UndoCopyImages(ByVal IntroducedImages As IEnumerable(Of String))
         Dim FaildedDeletes As New System.Text.StringBuilder
         For Each img In IntroducedImages
-            For Each folder In New String() {"original", "64_64", "256_256"}
+            For Each folder In New String() {Image.OriginalSizeImageStorageFolderName, "64_64", "256_256"}
                 Dim imgpath = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, folder), img)
                 If IO.File.Exists(imgpath) Then
                     Try

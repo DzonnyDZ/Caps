@@ -36,9 +36,9 @@ Partial Public Class winNewMainType
             Exit Sub
         End Try
         If IO.File.Exists(txtImagePath.Text) Then
-            If Not IO.Directory.Exists(IO.Path.Combine(My.Settings.ImageRoot, "MainType")) Then
+            If Not IO.Directory.Exists(IO.Path.Combine(My.Settings.ImageRoot, MainType.ImageStorageFolderName)) Then
                 Try
-                    IO.Directory.CreateDirectory(IO.Path.Combine(My.Settings.ImageRoot, "MainType"))
+                    IO.Directory.CreateDirectory(IO.Path.Combine(My.Settings.ImageRoot, MainType.ImageStorageFolderName))
                 Catch ex As Exception
                     mBox.Error_XPTIBWO(ex, My.Resources.err_CreatingDirectoryMainType, My.Resources.txt_FileSystemError, mBox.MessageBoxIcons.Exclamation, , Me)
                     Me.DialogResult = True
@@ -46,7 +46,7 @@ Partial Public Class winNewMainType
                 End Try
             End If
             Try
-                IO.File.Copy(txtImagePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "MainType"), NewObject.MainTypeID & ".png"))
+                IO.File.Copy(txtImagePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, MainType.ImageStorageFolderName), NewObject.MainTypeID & ".png"))
             Catch ex As Exception
                 mBox.Error_XPTIBWO(ex, My.Resources.msg_CopyMainTypeImageError, My.Resources.txt_FileSystemError, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation, , Me)
             End Try

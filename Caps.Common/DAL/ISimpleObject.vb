@@ -25,15 +25,23 @@
     Public Interface IObjectWithImage
         ''' <summary>Gets ID of current object</summary>
         ReadOnly Property ID%
-        ''' <summary>Gets images stored in database associated with current objects</summary>
+        ''' <summary>Gets images stored in database associated with current objects in given data context</summary>
         ''' <param name="context">Data context to get images from</param>
         ''' <exception cref="ArgumentNullException"><paramref name="context"/> is null</exception>
         Function GetStoredImages(ByVal context As CapsDataContext) As IEnumerable(Of StoredImage)
+        ''' <summary>Gets images associated with current object in object's data context</summary>
+        ReadOnly Property StoredImages As IEnumerable(Of StoredImage)
         ''' <summary>Associates an image with current object</summary>
         ''' <param name="image">Image to associate with current object</param>
         ''' <remarks>Association is done besd on object ID not by referenceing the object, so it's save do make association across data contexts.</remarks>
         ''' <exception cref="ArgumentNullException"><paramref name="image"/> is null</exception>
         Sub AssociateImage(ByVal image As StoredImage)
+        ''' <summary>Gets name of folder images for current class are stored in</summary>
+        ''' <returns>Implementing class can return null from this property whan there is no common storage folder for all images of this class</returns>
+        ''' <remarks>Single implementing class should return same value for across all instances (value of this property should be static-like)</remarks>
+        ReadOnly Property ImageStorageFolderName$
+        ''' <summary>Gets name of file image of this object is stored in when images are stored in file system</summary>
+        ReadOnly Property FileSystemStorageFileName$
     End Interface
 
     ''' <summary>An item related to <see cref="Cap"/></summary>

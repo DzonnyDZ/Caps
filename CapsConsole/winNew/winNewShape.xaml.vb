@@ -34,9 +34,9 @@ Partial Public Class winNewShape
             Exit Sub
         End Try
         If IO.File.Exists(txtImagePath.Text) Then
-            If Not IO.Directory.Exists(IO.Path.Combine(My.Settings.ImageRoot, "Shape")) Then
+            If Not IO.Directory.Exists(IO.Path.Combine(My.Settings.ImageRoot, Shape.ImageStorageFolderName)) Then
                 Try
-                    IO.Directory.CreateDirectory(IO.Path.Combine(My.Settings.ImageRoot, "Shape"))
+                    IO.Directory.CreateDirectory(IO.Path.Combine(My.Settings.ImageRoot, Shape.ImageStorageFolderName))
                 Catch ex As Exception
                     mBox.Error_XPTIBWO(ex, My.Resources.err_CreatingDirectoryShape, My.Resources.txt_FileSystemError, mBox.MessageBoxIcons.Exclamation, , Me)
                     Me.DialogResult = True
@@ -44,7 +44,7 @@ Partial Public Class winNewShape
                 End Try
             End If
             Try
-                IO.File.Copy(txtImagePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, "Shape"), NewObject.ShapeID & ".png"))
+                IO.File.Copy(txtImagePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, Shape.ImageStorageFolderName), NewObject.ShapeID & ".png"))
             Catch ex As Exception
                 mBox.Error_XPTIBWO(ex, My.Resources.msg_CopyShapeImageError, My.Resources.txt_FileSystemError, mBox.MessageBoxIcons.Exclamation, , Me)
             End Try
