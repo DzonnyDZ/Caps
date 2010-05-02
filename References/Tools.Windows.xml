@@ -4369,11 +4369,19 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<author www="http://dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Beta"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
 </member><member name="M:Tools.WindowsT.WPF.WpfExtensions.GetParent(System.Windows.DependencyObject)">
-	<summary>Gets parent of given <see cref="T:System.Windows.DependencyObject"/></summary>
+	<summary>Gets parent (in visual tree) of given <see cref="T:System.Windows.DependencyObject"/></summary>
 	<param name="obj"><see cref="T:System.Windows.DependencyObject"/> to get parent of</param>
 	<returns>Parent of given dependency object; null when <paramref name="obj"/> is null or no parent can be found</returns>
 	<remarks>Parent is obtained either via <see cref="M:System.Windows.ContentOperations.GetParent(System.Windows.ContentElement)"/> for <see cref="T:System.Windows.ContentElement">ContentElement</see> or via <see cref="M:System.Windows.Media.VisualTreeHelper.GetParent(System.Windows.DependencyObject)"/>.</remarks>
 	<author www="http://code.logos.com/blog/2008/02/finding_ancestor_elements_in_w.html">Ed Ball</author>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.GetParent``1(System.Windows.DependencyObject)">
+	<summary>Looks for visual tree ancestor of given <see cref="T:System.Windows.DependencyObject"/> of given type</summary>
+	<param name="obj">A <see cref="T:System.Windows.DependencyObject"/> to get ancestor of</param>
+	<typeparam name="TParent">Type of ancestor to get</typeparam>
+	<returns>Nearest ancestor of <paramref name="obj"/> which of type <typeparamref name="TParent"/>; null when such ancestor cannot be found.</returns>
+	<remarks>This function uses <see cref="M:Tools.WindowsT.WPF.WpfExtensions.GetParent(System.Windows.DependencyObject)"/> to get parents of investigated <see cref="T:System.Windows.DependencyObject">DependencyObjects</see>.</remarks>
+	<seelaso cref="M:Tools.WindowsT.WPF.WpfExtensions.GetParent(System.Windows.DependencyObject)"/>
+	<version stage="Nightly" version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.WpfExtensions.ShowDialog(System.Windows.Window,System.Windows.UIElement)">
 	<summary>Sets window owner and opens it and returns only when the newly opened window is closed.</summary>
 	<returns>A <see cref="T:System.Nullable`1"/> value of type <see cref="T:System.Boolean"/> that signifies how a window was closed by the user.</returns>
@@ -4406,6 +4414,29 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<returns>First visual child of <paramref name="parent"/> which is of type <typeparamref name="T"/> and which conforms to <paramref name="condition"/>; null when no such child can be found</returns>
 	<exception cref="T:System.ArgumentNullException"><paramref name="parent"/> is null -or- <paramref name="condition"/> is null</exception>
 	<version version="1.3.5" stage="Nightly">This function is new in version 1.3.5</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.FindAncestor``1(System.Windows.DependencyObject)">
+	<summary>Searches for ancestor of given WPF object of given type in logical tree</summary>
+	<param name="obj">Object to find ancestor of</param>
+	<typeparam name="TAncestor">Type of ancestor to find. This type must be or derive from <see cref="T:System.Windows.DependencyObject"/>.</typeparam>
+	<returns>The closest ancestor of object <paramref name="obj"/> which's type is <typeparamref name="TAncestor"/>. Null where there is no such ancestor.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="obj"/> is null</exception>
+	<remarks>
+ This function uses <see cref="M:System.Windows.ContentOperations.GetParent(System.Windows.ContentElement)"/> to walk visual tree upwards from <paramref name="obj"/>.
+ <para>If <typeparamref name="TAncestor"/> is <see cref="T:System.Windows.Window"/> (not type derived from <see cref="T:System.Windows.Window"/>) <see cref="M:System.Windows.Window.GetWindow(System.Windows.DependencyObject)"/> is used instead.</para>
+	</remarks>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.SetWindowPosition(System.Windows.Window,System.Drawing.Rectangle)">
+	<summary>Sets windows position and size. Prevents window from leaking out of screen.</summary>
+	<param name="Window">Window to set position of</param>
+	<param name="Position">Proposed position and size of <paramref name="Window"/> in window client coordinates</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="Window"/> is null</exception>
+	<remarks>If <paramref name="Position"/>
+		<see cref="P:System.Drawing.Rectangle.IsEmpty">is empty</see>, neither window position nor size is set, but off-screen prevention alghoritm is run for window current position.</remarks>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.GetWindowPosition(System.Windows.Window)">
+	<summary>Gtes size and location of the <see cref="T:System.Windows.Window"/></summary>
+	<param name="Window">A <see cref="T:System.Windows.Window"/> to get size and location of</param>
+	<returns>Rectangle of <paramref name="Window"/> in window coordinates</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="Window"/> is null</exception>
 </member><member name="T:Tools.WindowsT.WPF.WpfExtensions">
 	<summary>Contains varios extenstion functions related to Windows Presentation Foundation</summary>
 	<version version="1.5.2">Module introduced</version>
@@ -4968,8 +4999,28 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Control">Control to serach for child of</param>
 	<param name="DoNotExpand">Optional. Call back function delegate. The function returns true for controls that should be treated as controls withoud child controls. If such control contains has or focus it is returned. This ¨function is called for <paramref name="Control"/> (passed in paramater) as well.</param>
 	<returns>The inner most control that contain focus. Null when there is no such control and <paramref name="Control"/> also has not focus.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.UtilitiesT.WinFormsExtensions.GetNeighbourScreen(System.Windows.Forms.Screen,Tools.Direction)">
+	<summary>Gets neighbouring screen to given screen in given direction</summary>
+	<param name="Screen">Screen to get neighbour of</param>
+	<param name="Direction">Direction in which (on which side) get neighbour</param>
+	<returns>Screen that directly neighbours with <paramref name="Screen"/> in given <paramref name="Direction"/>.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="Screen"/> is null</exception>
+	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="Direction"/> is not one of <see cref="T:Tools.Direction"/> values</exception>
+	<remarks>Maximal allowed gap or overlap between screens is 5px. For screen (B) to be considered neighbour with <paramref name="Screen"/> (A) screen edges must either share at least 25% of appropriate edge of <paramref name="Screen"/> (A) or screen (B) must share 100% of it's appropriate edge with <paramref name="Screen"/> (A).</remarks>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="T:Tools.WindowsT.FormsT.UtilitiesT.WinFormsExtensions">
-	<summary>Miscaleneous small Windows Forms realetd tools</summary>
+	<summary>Contains extension methods related to WinForms</summary>
+</member><member name="F:Tools.Direction.Left">
+	<summary>Left neighbour</summary>
+</member><member name="F:Tools.Direction.Right">
+	<summary>Right neighbour</summary>
+</member><member name="F:Tools.Direction.Top">
+	<summary>Top (front) neighbour</summary>
+</member><member name="F:Tools.Direction.Bottom">
+	<summary>Bottom (back) neighbour</summary>
+</member><member name="T:Tools.Direction">
+	<summary>Neighbourhood directions</summary>
+	<version version="1.5.3">This enumeration is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.#ctor">
 	<summary>Default CTor</summary>
 	<remarks>Value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker"/> property is populated with new instance of <see cref="T:System.ComponentModel.BackgroundWorker"/></remarks>
@@ -6799,6 +6850,36 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Source">A <see cref="T:System.Windows.Media.Imaging.BitmapSource"/></param>
 	<returns><see cref="T:System.Drawing.Bitmap"/> created from <paramref name="Source"/>; null when <paramref name="Source"/> is null.</returns>
 	<remarks>Uses <see cref="M:System.Windows.Media.Imaging.BitmapEncoder.Save(System.IO.Stream)"/>.</remarks>
+</member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.ToArgb(System.Windows.Media.Color)">
+	<summary>Gets the 32-bit ARGB value of given <see cref="T:System.Windows.Media.Color"/> structure.</summary>
+	<param name="Color">Color to get ARGB value of</param>
+	<returns>The 32-bit ARGB value of <paramref name="Color"/>.</returns>
+	<version version="1.5.3.">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.ToArgb(System.Nullable{System.Windows.Media.Color})">
+	<summary>Gets the 32-bit ARGB value of given <see cref="T:System.Windows.Media.Color"/> structure.</summary>
+	<param name="Color">COlor to get ARGB value of or null</param>
+	<returns>The 32-bit ARGB value of <paramref name="Color"/>, or null when <paramref name="Color"/> is null.</returns>
+	<version version="1.5.3.">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.ToColor(System.Windows.Media.Color)">
+	<summary>Gets <see cref="T:System.Drawing.Color"/> equivalent to given <see cref="T:System.Windows.Media.Color"/></summary>
+	<param name="Color"><see cref="T:System.Windows.Media.Color"/> to get <see cref="T:System.Drawing.Color"/> for</param>
+	<returns><see cref="T:System.Drawing.Color"/> initialized to same ARGB as <paramref name="Color"/></returns>
+	<version version="1.5.3.">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.ToColor(System.Nullable{System.Windows.Media.Color})">
+	<summary>Gets <see cref="T:System.Drawing.Color"/> equivalent to given <see cref="T:System.Windows.Media.Color"/></summary>
+	<param name="Color"><see cref="T:System.Windows.Media.Color"/> to get <see cref="T:System.Drawing.Color"/> for</param>
+	<returns><see cref="T:System.Drawing.Color"/> initialized to same ARGB as <paramref name="Color"/>; null when <paramref name="Color"/> is null</returns>
+	<version version="1.5.3.">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.ToColor(System.Drawing.Color)">
+	<summary>Gets <see cref="T:System.Windows.Media.Color"/> equivalent to given <see cref="T:System.Drawing.Color"/></summary>
+	<param name="Color"><see cref="T:System.Drawing.Color"/> to get <see cref="T:System.Windows.Media.Color"/> for</param>
+	<returns><see cref="T:System.Windows.Media.Color"/> initialized to same ARGB as <paramref name="Color"/></returns>
+	<version version="1.5.3.">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.ToColor(System.Nullable{System.Drawing.Color})">
+	<summary>Gets <see cref="T:System.Windows.Media.Color"/> equivalent to given <see cref="T:System.Drawing.Color"/></summary>
+	<param name="Color"><see cref="T:System.Drawing.Color"/> to get <see cref="T:System.Windows.Media.Color"/> for</param>
+	<returns><see cref="T:System.Windows.Media.Color"/> initialized to same ARGB as <paramref name="Color"/>; null when <paramref name="Color"/> is null</returns>
+	<version version="1.5.3.">This function is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.Show(System.Windows.Forms.Form,System.Windows.Window)">
 	<summary>Shows <see cref="T:System.Windows.Forms.Form"/> floating over <see cref="T:System.Windows.Window"/></summary>
 	<param name="Form"><see cref="T:System.Windows.Forms.Form"/> to be shown</param>

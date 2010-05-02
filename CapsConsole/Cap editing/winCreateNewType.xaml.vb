@@ -127,7 +127,7 @@ Public Class winCreateNewType : Implements IDisposable
     Private Sub cmdPicturePath_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmdPicturePath.Click
         Dim dlg As New System.Windows.Forms.OpenFileDialog() With {
             .DefaultExt = "png",
-            .Filter = My.Resources.fil_PNG
+            .Filter = My.Resources.fil_BitmapImages
         }
         If txtPicturePath.Text <> "" Then
             Try

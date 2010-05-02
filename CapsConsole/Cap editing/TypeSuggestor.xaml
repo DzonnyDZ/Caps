@@ -7,7 +7,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     BorderThickness="0">
     <UserControl.Resources>
-        <my:MyImageIDConverter x:Key="MyImageIDConverter"/>
+        <my:ObjectImageConverter x:Key="ObjectImageConverter"/>
         <my:GetCapsOfConverter x:Key="GetCapsOfConverter"/>
     </UserControl.Resources>
     <Grid Name="grMain" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -41,7 +41,7 @@
                             <RowDefinition Height="32"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Image Source="{Binding CapTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapType', Mode=OneWay}" MaxWidth="32" MaxHeight="32" Grid.Column="0" Grid.Row="0"/>
+                        <Image Source="{Binding CapType, Converter={StaticResource ObjectImageConverter}, Mode=OneWay}" MaxWidth="32" MaxHeight="32" Grid.Column="0" Grid.Row="0"/>
                         <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding TypeName, Mode=OneWay}" TextAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Top"
                                   MaxWidth="32" FontSize="8" TextWrapping="Wrap"/>
                         <Grid.ToolTip>
@@ -72,11 +72,11 @@
                                 <TextBlock Grid.Column="1" Grid.Row="4" Text="{Binding Height, Mode=OneWay}" VerticalAlignment="Center"/>
                                 
                                 <Label Grid.Column="3" Grid.Row="2" Content="{x:Static res:Resources.lbl_MainType}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
-                                <Image Grid.Column="4" Grid.Row="2" Source="{Binding MainType.MainTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='MainType', Mode=OneWay}" MaxHeight="16" MaxWidth="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Image Grid.Column="4" Grid.Row="2" Source="{Binding MainType, Converter={StaticResource ObjectImageConverter}, Mode=OneWay}" MaxHeight="16" MaxWidth="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 <TextBlock Grid.Column="5" Grid.Row="2" Text="{Binding MainType.TypeName, Mode=OneWay}" VerticalAlignment="Center"/>
                                 
                                 <Label Grid.Column="3" Grid.Row="3" Content="{x:Static res:Resources.lbl_Shape}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
-                                <Image Grid.Column="4" Grid.Row="3" Source="{Binding Shape.ShapeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='Shape', Mode=OneWay}" MaxHeight="16" MaxWidth="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Image Grid.Column="4" Grid.Row="3" Source="{Binding Shape, Converter={StaticResource ObjectImageConverter}, Mode=OneWay}" MaxHeight="16" MaxWidth="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 <TextBlock Grid.Column="5" Grid.Row="3" Text="{Binding Shape.Name}" VerticalAlignment="Center"/>
                                 
                                 <Label Grid.Column="3" Grid.Row="4" Content="{x:Static res:Resources.lbl_Material}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,3,0"/>
@@ -107,7 +107,7 @@
                     <toolkit:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Image Width="16" Height="16" Source="{Binding MainType.MainTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='MainType', Mode=OneWay}"/>
+                                <Image Width="16" Height="16" Source="{Binding MainType, Converter={StaticResource ObjectImageConverter}, Mode=OneWay}"/>
                                 <TextBlock Text="{Binding MainType.TypeName, Mode=OneWay}"/>
                             </StackPanel>
                         </DataTemplate>
@@ -117,7 +117,7 @@
                     <toolkit:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Image Width="16" Height="16" Source="{Binding Shape.ShapeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='Shape', Mode=OneWay}"/>
+                                <Image Width="16" Height="16" Source="{Binding Shape, Converter={StaticResource ObjectImageConverter}, Mode=OneWay}"/>
                                 <TextBlock Text="{Binding Shape.Name, Mode=OneWay}"/>
                             </StackPanel>
                         </DataTemplate>

@@ -103,6 +103,22 @@ Public MustInherit Class CreateNewObjectDialogBase(Of T As {EntityObject})
         Return context.GetObjectByKey(NewObject.EntityKey)
     End Function
 
+    ''' <summary>Gets path of image using standard dialog</summary>
+    ''' <param name="recentPath">Path to preselect in the dialog</param>
+    ''' <returns>Path of image selected by user; null when user has canbcelled the operation</returns>
+    Protected Function GetImage(Optional ByVal recentPath$ = Nothing) As String
+        Dim dlg As New Microsoft.Win32.OpenFileDialog With {.DefaultExt = "png", .Filter = My.Resources.fil_BitmapImages}
+        Try
+            If recentPath$ <> "" Then
+                dlg.FileName = recentPath$
+                dlg.InitialDirectory = IO.Path.GetDirectoryName(recentPath)
+            End If
+        Catch : End Try
+        If dlg.ShowDialog(Me) Then
+            Return dlg.FileName
+        End If
+        Return Nothing
+    End Function
 
 
 End Class

@@ -2,7 +2,7 @@
 Imports Tools.DrawingT.ImageTools
 Imports System.ComponentModel
 Imports Tools.ComponentModelT, Tools.LinqT
-Imports Tools.WindowsT.WPF.WpfExtensions
+Imports Tools.WindowsT.WPF.WpfExtensions, Tools.IOt.StreamTools
 Imports Caps.Data, Tools.WindowsT.InteropT.InteropExtensions
 
 ''' <summary>Creates a new cap</summary>
@@ -458,7 +458,7 @@ Partial Public Class CapEditor
         "(?<Before>.*)(?<Number>[0-9]{4,8})(?<After>\..{3,4})", Text.RegularExpressions.RegexOptions.Compiled Or Text.RegularExpressions.RegexOptions.CultureInvariant Or Text.RegularExpressions.RegexOptions.ExplicitCapture)
 
     Private Sub btnAddImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnAddImage.Click
-        Dim dlg As New Forms.OpenFileDialog With {.Multiselect = True, .DefaultExt = "jpg", .Filter = My.Resources.fil_ImageTypes}
+        Dim dlg As New Forms.OpenFileDialog With {.Multiselect = True, .DefaultExt = "jpg", .Filter = My.Resources.fil_BitmapImages}
         If My.Settings.LastImageName <> "" Then
             Dim match = ImageNameRegExp.Match(My.Settings.LastImageName)
             If match.Success Then
@@ -2766,24 +2766,24 @@ Partial Public Class CapEditor
     ''' <summary>Attempts to copy image of cap type to images directory</summary>
     ''' <param name="NewType">Newly created cap type</param>
     Public Sub CopyTypeImage(ByVal NewType As CapType)
-        If IO.File.Exists(CapTypeImagePath) Then
-            Dim CapTypeDir = IO.Path.Combine(My.Settings.ImageRoot, CapType.ImageStorageFolderName)
-            If Not IO.Directory.Exists(CapTypeDir) Then
+        Dim imagePath = CapTypeImagePath
+SaveImage: Try
+            NewType.SaveImage(imagePath, True)
+        Catch ex As Exception
+            If mBox.Error_XPTIBWO(ex, My.Resources.err_CopyCapTypeImageFailed & vbCrLf & My.Resources.txt_SelectAnotherImageQ, My.Resources.txt_FileSystemError, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Yes Or mBox.MessageBoxButton.Buttons.Ignore, Me) = Forms.DialogResult.Yes Then
+                Dim dlg As New Microsoft.Win32.OpenFileDialog With {.DefaultExt = "png", .Filter = My.Resources.fil_BitmapImages}
                 Try
-                    IO.Directory.CreateDirectory(CapTypeDir)
-                Catch ex As Exception
-                    mBox.MsgBox(My.Resources.err_CreatingDirectoryCapType.f(CapTypeDir, vbCrLf, ex.Message), MsgBoxStyle.Exclamation, My.Resources.txt_CopyFile, Me)
-                    Exit Sub
-                End Try
+                    If imagePath <> "" Then
+                        dlg.FileName = imagePath
+                        dlg.InitialDirectory = IO.Path.GetDirectoryName(imagePath)
+                    End If
+                Catch : End Try
+                If dlg.ShowDialog(Me.FindAncestor(Of Window)) Then
+                    imagePath = dlg.FileName
+                    GoTo SaveImage
+                End If
             End If
-            Dim targpath = IO.Path.Combine(CapTypeDir, NewType.CapTypeID.ToString(System.Globalization.CultureInfo.InvariantCulture) & ".png")
-            If Not IO.File.Exists(targpath) OrElse mBox.MsgBox(My.Resources.msg_CapImageExistsOverwrite.f(CapTypeImagePath), MsgBoxStyle.Question Or MsgBoxStyle.YesNo, My.Resources.txt_OwervriteFile, Me) = MsgBoxResult.Yes Then
-                Try
-                    IO.File.Copy(CapTypeImagePath, targpath)
-                Catch ex As Exception
-                    mBox.MsgBox(My.Resources.err_CopyCapTypeImageFailed.f(vbCrLf, ex.Message), MsgBoxStyle.Exclamation, My.Resources.txt_CopyFile, Me)
-                End Try
-            End If : End If
+        End Try
     End Sub
     ''' <summary>Tests if newwly introduced cap type is OK</summary>
     ''' <remarks>True if it is OK or user is OK with it not being OK</remarks>
@@ -2793,13 +2793,14 @@ Partial Public Class CapEditor
                 Case Forms.DialogResult.Yes
                 Case Else : Return False
             End Select
-        ElseIf IO.Path.GetExtension(CapTypeImagePath).ToLower <> ".png" Then
-            mBox.Modal_PTIW(My.Resources.msg_OnlyPNG, My.Resources.txt_CapTypeImage, mBox.MessageBoxIcons.Exclamation, Me)
-            Return False
         End If
         If CapTypeName = "" Then mBox.Modal_PTIW(My.Resources.msg_CapTypeNameMustBeEntered, My.Resources.txt_IncompleteEntry, mBox.MessageBoxIcons.Exclamation, Me) : txtCapTypeName.Focus() : Return False
-        If (From CapType In Context.CapTypes Where CapType.TypeName = CapTypeName).Any Then _
-            mBox.Modal_PTIW(My.Resources.msg_CapTypeAreadyExists, My.Resources.txt_DuplicateEntry, mBox.MessageBoxIcons.Exclamation, Me) : txtCapTypeName.SelectAll() : txtCapName.Focus() : Return False
+        If (From CapType In Context.CapTypes Where CapType.TypeName = CapTypeName).Any Then
+            mBox.Modal_PTIW(My.Resources.msg_CapTypeAreadyExists, My.Resources.txt_DuplicateEntry, mBox.MessageBoxIcons.Exclamation, Me)
+            txtCapTypeName.SelectAll()
+            txtCapName.Focus()
+            Return False
+        End If
         Return True
     End Function
     ''' <summary>Tests newly introduced product</summary>
@@ -2813,67 +2814,30 @@ Partial Public Class CapEditor
 #Region "Copy images"
     ''' <summary>Copies images from <see cref="CapEditor.Images">Images</see> to image directory and creates resized images</summary>
     ''' <returns>List of copied images; null on error</returns>
-    Public Function CopyImages() As List(Of Image)
-        Dim Imgs = New List(Of Image)
-        CopyImages = Imgs
-        If Images Is Nothing Then Exit Function
-        Dim folOrig = IO.Path.Combine(My.Settings.ImageRoot, Image.OriginalSizeImageStorageFolderName)
-        Dim fol64 = IO.Path.Combine(My.Settings.ImageRoot, "64_64")
-        Dim fol256 = IO.Path.Combine(My.Settings.ImageRoot, "256_256")
-        Dim FolTBC = folOrig
-TryCreateDirsIfNotExist: Try
-            If Not IO.Directory.Exists(folOrig) Then IO.Directory.CreateDirectory(folOrig)
-            FolTBC = fol64
-            If Not IO.Directory.Exists(fol64) Then IO.Directory.CreateDirectory(fol64)
-            FolTBC = fol256
-            If Not IO.Directory.Exists(fol256) Then IO.Directory.CreateDirectory(fol256)
-        Catch ex As Exception
-            If mBox.Error_XPTIBWO(ex, "Error creating folder {0}".f(FolTBC), ex.GetType.Name, , mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Abort, Me) = Forms.DialogResult.Retry Then
-                GoTo TryCreateDirsIfNotExist
-            Else
+    Public Function CopyImages() As List(Of Tuple(Of Image, SaveImageUndoOperation))
+        Dim ret As New List(Of Tuple(Of Image, SaveImageUndoOperation))
+
+        For Each newImage As NewImage In Images.OfType(Of NewImage)()
+            If Not IO.File.Exists(newImage.RelativePath) Then
+                mBox.MsgBoxFW("File {0} not found", MsgBoxStyle.Critical, "Cap image", Me, newImage.RelativePath)
                 Return Nothing
             End If
-        End Try
-        Dim CreatedFiles As New List(Of String)
-        Dim Exception As Exception = Nothing
-        Try
-            For Each Item As NewImage In Images.OfType(Of NewImage)()
-                'Copy original size file
-CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
-                Dim newName1 = newName
-                Dim i As Integer = 0
-                While IO.File.Exists(IO.Path.Combine(folOrig, newName)) OrElse IO.File.Exists(IO.Path.Combine(fol64, newName)) OrElse IO.File.Exists(IO.Path.Combine(fol256, newName))
-                    i += 1
-                    newName = String.Format(System.Globalization.CultureInfo.InvariantCulture, _
-                                            "{0}_{1}{2}", IO.Path.GetFileNameWithoutExtension(newName1), i, IO.Path.GetExtension(newName1))
-                End While
-                Dim OrigFilePath As String = IO.Path.Combine(folOrig, newName)
-                Try
-                    IO.File.Copy(Item.RelativePath, OrigFilePath)
-                Catch ex As Exception
-                    If mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCopyingFile, My.Resources.txt_ImageCopyError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Abort, Me) = Forms.DialogResult.Retry Then GoTo CopyFile
-                    Exception = ex
-                    Return Nothing
-                End Try
-                Dim OrigFileInfo As New IO.FileInfo(OrigFilePath)
-                With OrigFileInfo 'If file is readonly, make it RW
-                    If (OrigFileInfo.Attributes And IO.FileAttributes.ReadOnly) = IO.FileAttributes.ReadOnly Then _
-                                        .Attributes = .Attributes And Not IO.FileAttributes.ReadOnly
-                End With
-
-                CreatedFiles.Add(OrigFilePath)
-                'Write metadata
+        Next
+        For Each newImage As NewImage In Images.OfType(Of NewImage)()
+            Try
                 Dim IPTC As Tools.MetadataT.IptcT.Iptc = Nothing
-                Try
-                    If IO.Path.GetExtension(OrigFilePath).ToLower = ".jpg" OrElse IO.Path.GetExtension(OrigFilePath).ToLower = ".jpeg" Then
-                        Using JPEG As New Tools.DrawingT.DrawingIOt.JPEG.JPEGReader(OrigFilePath, False)
+                'IPTC
+                If IO.Path.GetExtension(newImage.RelativePath).ToLower = ".jpg" OrElse IO.Path.GetExtension(newImage.RelativePath).ToLower = ".jpeg" OrElse IO.Path.GetExtension(newImage.RelativePath).ToLower = ".jfif" Then
+                    Try
+                        Dim iIPTC As Tools.MetadataT.IptcT.Iptc
+                        Using JPEG As New Tools.DrawingT.DrawingIOt.JPEG.JPEGReader(newImage.RelativePath, False)
                             If JPEG.ContainsIptc Then
-                                IPTC = New Tools.MetadataT.IptcT.Iptc(JPEG)
+                                iIPTC = New Tools.MetadataT.IptcT.Iptc(JPEG)
                             Else
-                                IPTC = New Tools.MetadataT.IptcT.Iptc
+                                iIPTC = New Tools.MetadataT.IptcT.Iptc
                             End If
                         End Using
-                        Dim keywords = New List(Of String)(If(IPTC.Keywords, New String() {}))
+                        Dim keywords = New List(Of String)(If(iIPTC.Keywords, New String() {}))
                         For Each NewKw In My.Resources.CapKeywords.Split(","c)
                             If Not keywords.Contains(NewKw) Then keywords.Add(NewKw)
                         Next
@@ -2885,90 +2849,195 @@ CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
                                 keywords.Add(cat.CategoryName)
                             Next
                         End If
-                        IPTC.Keywords = keywords.ToArray
+                        iIPTC.Keywords = keywords.ToArray
                         If Country <> "" Then
                             Dim cox As New CapsDataContext(Main.EntityConnection)
                             Dim Code = (From c In cox.ISO_3166_1 Where c.Alpha_2 = Country Select c.Alpha_3).FirstOrDefault
                             If Code IsNot Nothing Then
-                                IPTC.CountryPrimaryLocationCode = Code
+                                iIPTC.CountryPrimaryLocationCode = Code
                             End If
                         End If
-                        IPTC.ObjectName = CapName
-                        If MainText <> "" Then IPTC.Headline = MainText
+                        iIPTC.ObjectName = CapName
+                        If MainText <> "" Then iIPTC.Headline = MainText
                         If TopText <> "" OrElse SideText <> "" OrElse BottomText <> "" Then
                             Dim strlist As New List(Of String)
                             If TopText <> "" Then strlist.Add(TopText)
                             If SideText <> "" Then strlist.Add(SideText)
                             If BottomText <> "" Then strlist.Add(BottomText)
-                            IPTC.CaptionAbstract = strlist.Join(vbCrLf)
+                            iIPTC.CaptionAbstract = strlist.Join(vbCrLf)
                         End If
-                        If Year.HasValue > 0 Then IPTC.DateCreated = New Tools.MetadataT.IptcT.IptcDataTypes.OmmitableDate(Year)
-                        IPTC.ReleaseDate = Now.ToUniversalTime.Date
-                        IPTC.ReleaseTime = New Tools.MetadataT.IptcT.IptcDataTypes.Time(Now.ToUniversalTime.Date.TimeOfDay)
-                        If CapNote <> "" Then IPTC.SpecialInstructions = CapNote.Replace(vbCrLf, " ").Replace(vbCr, " ").Replace(vbLf, " ")
-                        Using JPEG As New Tools.DrawingT.DrawingIOt.JPEG.JPEGReader(OrigFilePath, True)
-                            JPEG.IPTCEmbed(IPTC.GetBytes)
-                        End Using
-                    End If
-                Catch ex As Exception
-                    If mBox.Error_XPTIBWO(ex, My.Resources.msg_IPTCError, My.Resources.txt_IPTC, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then
-                        Exception = ex
-                        Return Nothing
-                    End If
-                End Try
-                'Resize file to 64px
-                Dim File64 As String = IO.Path.Combine(fol64, newName)
-Resize64:       Try
-                    SaveResizedImage(OrigFilePath, File64, 64, CreatedFiles, IPTC)
-                Catch ex As Exception
-                    Dim result As System.Windows.Forms.DialogResult = mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCreatingResizedFile.f(64), My.Resources.txt_ImageResizeError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Ignore, Me)
-                    If result = Forms.DialogResult.Retry OrElse result = Forms.DialogResult.Ignore Then
-                        Try
-                            IO.File.Delete(File64)
-                        Catch ex2 As Exception
-                            mBox.Error_XPTIBWO(ex2, My.Resources.msg_CreatedFileWasNotDeleted.f(File64), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore, Me)
-                        End Try
-                        CreatedFiles.Remove(File64)
-                    End If
-                    Select Case result
-                        Case Forms.DialogResult.Retry : GoTo Resize64
-                        Case Forms.DialogResult.Ignore 'Do nothing
-                        Case Else : Exception = ex : Return Nothing
-                    End Select
-                End Try
-                'Resize file to 256px
-                Dim File256 As String = IO.Path.Combine(fol256, newName)
-Resize256:      Try
-                    SaveResizedImage(OrigFilePath, File256, 256, CreatedFiles, IPTC)
-                Catch ex As Exception
-                    Dim result As System.Windows.Forms.DialogResult = mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCreatingResizedFile.f(256), My.Resources.txt_ImageResizeError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Ignore, Me)
-                    If result = Forms.DialogResult.Retry OrElse result = Forms.DialogResult.Ignore Then
-                        Try
-                            IO.File.Delete(File256)
-                        Catch ex2 As Exception
-                            mBox.Error_XPTIBWO(ex2, My.Resources.msg_CreatedFileWasNotDeleted.f(File256), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore, Me)
-                        End Try
-                        CreatedFiles.Remove(File256)
-                    End If
-                    Select Case result
-                        Case Forms.DialogResult.Retry : GoTo Resize256
-                        Case Forms.DialogResult.Ignore 'Do nothing
-                        Case Else : Exception = ex : Return Nothing
-                    End Select
-                End Try
-                Imgs.Add(New Image With {.RelativePath = newName, .IsMain = Item.IsMain})
-            Next
-        Finally
-            If Exception IsNot Nothing Then
-                For Each file In CreatedFiles
-                    Try
-                        IO.File.Delete(file)
-                    Catch ex As Exception
-                        mBox.Error_XPTIBWO(ex, My.Resources.msg_CreatedFileWasNotDeleted.f(file), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore, Me)
-                    End Try
+                        If Year.HasValue > 0 Then iIPTC.DateCreated = New Tools.MetadataT.IptcT.IptcDataTypes.OmmitableDate(Year)
+                        iIPTC.ReleaseDate = Now.ToUniversalTime.Date
+                        iIPTC.ReleaseTime = New Tools.MetadataT.IptcT.IptcDataTypes.Time(Now.ToUniversalTime.Date.TimeOfDay)
+                        If CapNote <> "" Then iIPTC.SpecialInstructions = CapNote.Replace(vbCrLf, " ").Replace(vbCr, " ").Replace(vbLf, " ")
+                        IPTC = iIPTC
+                    Catch : End Try
+                End If
+                Dim dbImage As New Image With {.IsMain = newImage.IsMain}
+                Dim undo = dbImage.SaveImage(newImage.RelativePath, False, Context, IPTC)
+                ret.Add(New Tuple(Of Image, SaveImageUndoOperation)(dbImage, undo))
+            Catch
+                For Each item In ret
+                    item.Item2.Undo()
                 Next
-            End If
-        End Try
+            End Try
+        Next
+        Return ret
+        '        Dim Imgs = New List(Of Image)
+        '        CopyImages = Imgs
+        '        If Images Is Nothing Then Exit Function
+        '        Dim folOrig = IO.Path.Combine(My.Settings.ImageRoot, Image.OriginalSizeImageStorageFolderName)
+        '        Dim fol64 = IO.Path.Combine(My.Settings.ImageRoot, "64_64")
+        '        Dim fol256 = IO.Path.Combine(My.Settings.ImageRoot, "256_256")
+        '        Dim FolTBC = folOrig
+        'TryCreateDirsIfNotExist: Try
+        '            If Not IO.Directory.Exists(folOrig) Then IO.Directory.CreateDirectory(folOrig)
+        '            FolTBC = fol64
+        '            If Not IO.Directory.Exists(fol64) Then IO.Directory.CreateDirectory(fol64)
+        '            FolTBC = fol256
+        '            If Not IO.Directory.Exists(fol256) Then IO.Directory.CreateDirectory(fol256)
+        '        Catch ex As Exception
+        '            If mBox.Error_XPTIBWO(ex, "Error creating folder {0}".f(FolTBC), ex.GetType.Name, , mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Abort, Me) = Forms.DialogResult.Retry Then
+        '                GoTo TryCreateDirsIfNotExist
+        '            Else
+        '                Return Nothing
+        '            End If
+        '        End Try
+        '        Dim CreatedFiles As New List(Of String)
+        '        Dim Exception As Exception = Nothing
+        '        Try
+        '            For Each Item As NewImage In Images.OfType(Of NewImage)()
+        '                'Copy original size file
+        'CopyFile:       Dim newName = IO.Path.GetFileName(Item.RelativePath)
+        '                Dim newName1 = newName
+        '                Dim i As Integer = 0
+        '                While IO.File.Exists(IO.Path.Combine(folOrig, newName)) OrElse IO.File.Exists(IO.Path.Combine(fol64, newName)) OrElse IO.File.Exists(IO.Path.Combine(fol256, newName))
+        '                    i += 1
+        '                    newName = String.Format(System.Globalization.CultureInfo.InvariantCulture, _
+        '                                            "{0}_{1}{2}", IO.Path.GetFileNameWithoutExtension(newName1), i, IO.Path.GetExtension(newName1))
+        '                End While
+        '                Dim OrigFilePath As String = IO.Path.Combine(folOrig, newName)
+        '                Try
+        '                    IO.File.Copy(Item.RelativePath, OrigFilePath)
+        '                Catch ex As Exception
+        '                    If mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCopyingFile, My.Resources.txt_ImageCopyError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Abort, Me) = Forms.DialogResult.Retry Then GoTo CopyFile
+        '                    Exception = ex
+        '                    Return Nothing
+        '                End Try
+        '                Dim OrigFileInfo As New IO.FileInfo(OrigFilePath)
+        '                With OrigFileInfo 'If file is readonly, make it RW
+        '                    If (OrigFileInfo.Attributes And IO.FileAttributes.ReadOnly) = IO.FileAttributes.ReadOnly Then _
+        '                                        .Attributes = .Attributes And Not IO.FileAttributes.ReadOnly
+        '                End With
+
+        '                CreatedFiles.Add(OrigFilePath)
+        '                'Write metadata
+        '                Dim IPTC As Tools.MetadataT.IptcT.Iptc = Nothing
+        '                Try
+        '                    If IO.Path.GetExtension(OrigFilePath).ToLower = ".jpg" OrElse IO.Path.GetExtension(OrigFilePath).ToLower = ".jpeg" Then
+        '                        Using JPEG As New Tools.DrawingT.DrawingIOt.JPEG.JPEGReader(OrigFilePath, False)
+        '                            If JPEG.ContainsIptc Then
+        '                                IPTC = New Tools.MetadataT.IptcT.Iptc(JPEG)
+        '                            Else
+        '                                IPTC = New Tools.MetadataT.IptcT.Iptc
+        '                            End If
+        '                        End Using
+        '                        Dim keywords = New List(Of String)(If(IPTC.Keywords, New String() {}))
+        '                        For Each NewKw In My.Resources.CapKeywords.Split(","c)
+        '                            If Not keywords.Contains(NewKw) Then keywords.Add(NewKw)
+        '                        Next
+        '                        For Each NewKw In keywords
+        '                            If Not keywords.Contains(NewKw) Then keywords.Add(NewKw)
+        '                        Next
+        '                        If SelectedCategories IsNot Nothing Then
+        '                            For Each cat As Category In SelectedCategories
+        '                                keywords.Add(cat.CategoryName)
+        '                            Next
+        '                        End If
+        '                        IPTC.Keywords = keywords.ToArray
+        '                        If Country <> "" Then
+        '                            Dim cox As New CapsDataContext(Main.EntityConnection)
+        '                            Dim Code = (From c In cox.ISO_3166_1 Where c.Alpha_2 = Country Select c.Alpha_3).FirstOrDefault
+        '                            If Code IsNot Nothing Then
+        '                                IPTC.CountryPrimaryLocationCode = Code
+        '                            End If
+        '                        End If
+        '                        IPTC.ObjectName = CapName
+        '                        If MainText <> "" Then IPTC.Headline = MainText
+        '                        If TopText <> "" OrElse SideText <> "" OrElse BottomText <> "" Then
+        '                            Dim strlist As New List(Of String)
+        '                            If TopText <> "" Then strlist.Add(TopText)
+        '                            If SideText <> "" Then strlist.Add(SideText)
+        '                            If BottomText <> "" Then strlist.Add(BottomText)
+        '                            IPTC.CaptionAbstract = strlist.Join(vbCrLf)
+        '                        End If
+        '                        If Year.HasValue > 0 Then IPTC.DateCreated = New Tools.MetadataT.IptcT.IptcDataTypes.OmmitableDate(Year)
+        '                        IPTC.ReleaseDate = Now.ToUniversalTime.Date
+        '                        IPTC.ReleaseTime = New Tools.MetadataT.IptcT.IptcDataTypes.Time(Now.ToUniversalTime.Date.TimeOfDay)
+        '                        If CapNote <> "" Then IPTC.SpecialInstructions = CapNote.Replace(vbCrLf, " ").Replace(vbCr, " ").Replace(vbLf, " ")
+        '                        Using JPEG As New Tools.DrawingT.DrawingIOt.JPEG.JPEGReader(OrigFilePath, True)
+        '                            JPEG.IPTCEmbed(IPTC.GetBytes)
+        '                        End Using
+        '                    End If
+        '                Catch ex As Exception
+        '                    If mBox.Error_XPTIBWO(ex, My.Resources.msg_IPTCError, My.Resources.txt_IPTC, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then
+        '                        Exception = ex
+        '                        Return Nothing
+        '                    End If
+        '                End Try
+        '                'Resize file to 64px
+        '                Dim File64 As String = IO.Path.Combine(fol64, newName)
+        'Resize64:       Try
+        '                    SaveResizedImage(OrigFilePath, File64, 64, CreatedFiles, IPTC)
+        '                Catch ex As Exception
+        '                    Dim result As System.Windows.Forms.DialogResult = mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCreatingResizedFile.f(64), My.Resources.txt_ImageResizeError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Ignore, Me)
+        '                    If result = Forms.DialogResult.Retry OrElse result = Forms.DialogResult.Ignore Then
+        '                        Try
+        '                            IO.File.Delete(File64)
+        '                        Catch ex2 As Exception
+        '                            mBox.Error_XPTIBWO(ex2, My.Resources.msg_CreatedFileWasNotDeleted.f(File64), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore, Me)
+        '                        End Try
+        '                        CreatedFiles.Remove(File64)
+        '                    End If
+        '                    Select Case result
+        '                        Case Forms.DialogResult.Retry : GoTo Resize64
+        '                        Case Forms.DialogResult.Ignore 'Do nothing
+        '                        Case Else : Exception = ex : Return Nothing
+        '                    End Select
+        '                End Try
+        '                'Resize file to 256px
+        '                Dim File256 As String = IO.Path.Combine(fol256, newName)
+        'Resize256:      Try
+        '                    SaveResizedImage(OrigFilePath, File256, 256, CreatedFiles, IPTC)
+        '                Catch ex As Exception
+        '                    Dim result As System.Windows.Forms.DialogResult = mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCreatingResizedFile.f(256), My.Resources.txt_ImageResizeError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Ignore, Me)
+        '                    If result = Forms.DialogResult.Retry OrElse result = Forms.DialogResult.Ignore Then
+        '                        Try
+        '                            IO.File.Delete(File256)
+        '                        Catch ex2 As Exception
+        '                            mBox.Error_XPTIBWO(ex2, My.Resources.msg_CreatedFileWasNotDeleted.f(File256), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore, Me)
+        '                        End Try
+        '                        CreatedFiles.Remove(File256)
+        '                    End If
+        '                    Select Case result
+        '                        Case Forms.DialogResult.Retry : GoTo Resize256
+        '                        Case Forms.DialogResult.Ignore 'Do nothing
+        '                        Case Else : Exception = ex : Return Nothing
+        '                    End Select
+        '                End Try
+        '                Imgs.Add(New Image With {.RelativePath = newName, .IsMain = Item.IsMain})
+        '            Next
+        '        Finally
+        '            If Exception IsNot Nothing Then
+        '                For Each file In CreatedFiles
+        '                    Try
+        '                        IO.File.Delete(file)
+        '                    Catch ex As Exception
+        '                        mBox.Error_XPTIBWO(ex, My.Resources.msg_CreatedFileWasNotDeleted.f(file), My.Resources.txt_ErrorRemovingFile, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Ignore, Me)
+        '                    End Try
+        '                Next
+        '            End If
+        '        End Try
     End Function
     ''' <summary>Resizes image and saves it under given name</summary>
     ''' <param name="OrigFilePath">Path of image to be resized</param>
@@ -3037,20 +3106,15 @@ Resize256:      Try
         End If
     End Sub
     ''' <summary>Undos copying images</summary>
-    ''' <param name="IntroducedImages">Images returned by <see cref="CopyImages"/></param>
-    Public Sub UndoCopyImages(ByVal IntroducedImages As IEnumerable(Of String))
+    ''' <param name="images">Images and undo operations returned by <see cref="CopyImages"/></param>
+    Public Sub UndoCopyImages(ByVal images As IEnumerable(Of Tuple(Of Image, SaveImageUndoOperation)))
         Dim FaildedDeletes As New System.Text.StringBuilder
-        For Each img In IntroducedImages
-            For Each folder In New String() {Image.OriginalSizeImageStorageFolderName, "64_64", "256_256"}
-                Dim imgpath = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, folder), img)
-                If IO.File.Exists(imgpath) Then
-                    Try
-                        IO.File.Delete(imgpath)
-                    Catch delex As Exception
-                        FaildedDeletes.AppendLine(String.Format("{0}{1}{2}{1}({3})", img, vbTab, delex.Message, imgpath))
-                    End Try
-                End If
-            Next
+        For Each img In Images
+            Try
+                img.Item2.Undo()
+            Catch delex As Exception
+                FaildedDeletes.AppendLine(String.Format("{0}{1}{2}{1}({3})", img.Item1.ImageID, vbTab, delex.Message, img.Item1.RelativePath))
+            End Try
         Next
         If FaildedDeletes.Length > 0 Then
             mBox.Modal_PTIW(My.Resources.err_DeleteingOfSomeImagesFailed & vbCrLf & FaildedDeletes.ToString & vbCrLf & My.Resources.msg_ThereAreImagesThatDoNotBelongToAnyCap, My.Resources.txt_Error, mBox.MessageBoxIcons.Error, Me)
@@ -3193,7 +3257,7 @@ Resize256:      Try
     End Enum
 
     Private Sub btnBrowseForCapTypeImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnBrowseForCapTypeImage.Click
-        Dim dlg As New Forms.OpenFileDialog With {.DefaultExt = "png", .Filter = My.Resources.fil_PNG}
+        Dim dlg As New Forms.OpenFileDialog With {.DefaultExt = "png", .Filter = My.Resources.fil_BitmapImages}
         Try
             If txtCapTypeImagePath.Text <> "" Then dlg.FileName = txtCapTypeImagePath.Text
         Catch : End Try

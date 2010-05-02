@@ -2,125 +2,6 @@
 Imports Tools.TypeTools
 Imports System.ComponentModel, Tools.WindowsT.InteropT
 
-''' <summary>Converts relative path of caps image to absolute path to image of given size or to <see cref="BitmapImage"/> based on such path</summary>
-Public Class CapImageConverter
-    Implements IValueConverter
-
-    ''' <summary>Converts a value. </summary>
-    ''' <returns>A converted value. Either <see cref="String"/> or <see cref="BitmapSource"/> depending on <paramref name="targetType"/>. Null if <paramref name="targetType"/> <see cref="Type.IsAssignableFrom">is assignable from</see> <see cref="BitmapSource"/> but requested image file does not exist.</returns>
-    ''' <param name="value">The value produced by the binding source. It must be <see cref="String"/>.</param>
-    ''' <param name="targetType">The type of the binding target property. If this parameter is <see cref="String"/>, <see cref="String"/> is returned; otherwise if type passed to this parameters <see cref="Type.IsAssignableFrom">is assignable from</see> <see cref="BitmapImage"/>, <see cref="BitmapImage"/> is returned.</param>
-    ''' <param name="parameter">Can define <see cref="Integer"/> value - maximum size of image.</param>
-    ''' <param name="culture">The culture to use in the converter. (ignored)</param>
-    ''' <exception cref="TypeMismatchException"><paramref name="value"/> is not string</exception>
-    ''' <exception cref="ArgumentException"><paramref name="parameter"/> is neither null nor <see cref="Integer"/>.</exception>
-    ''' <exception cref="NotSupportedException"><paramref name="targetType"/> is neither <see cref="String"/> nor type <see cref="Type.IsAssignableFrom">assignable from</see> <see cref="BitmapImage"/>.</exception>
-    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
-        If value Is Nothing Then Return Nothing
-        'If Not TypeOf value Is String AndAlso TypeOf value Is IConvertible Then _
-        '    value = DirectCast(value, IConvertible).ToString(culture)
-        If Not TypeOf value Is String Then Throw New TypeMismatchException("value", value, GetType(String))
-        Dim folders$()
-        If parameter Is Nothing OrElse (TypeOf parameter Is Integer AndAlso DirectCast(parameter, Integer) > 256) Then
-            folders = New String() {Image.OriginalSizeImageStorageFolderName, "256_256", "64_64"}
-        ElseIf TypeOf parameter Is Integer AndAlso DirectCast(parameter, Integer) <= 64 Then
-            folders = New String() {"64_64", "256_256", Image.OriginalSizeImageStorageFolderName}
-        ElseIf TypeOf parameter Is Integer AndAlso DirectCast(parameter, Integer) <= 256 Then
-            folders = New String() {"256_256", "64_64", Image.OriginalSizeImageStorageFolderName}
-        Else
-            Throw New ArgumentException(My.Resources.ex_CapImageConverterParameter, "parameter")
-        End If
-        Dim path$ = Nothing
-        Dim found As Boolean = False
-        For Each folder In folders
-            path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, folder), value)
-            If IO.File.Exists(path) Then found = True : Exit For
-        Next
-        If Not found Then path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, Image.OriginalSizeImageStorageFolderName), value)
-        If targetType.Equals(GetType(String)) Then Return path
-        If Not targetType.IsAssignableFrom(GetType(BitmapImage)) Then Throw New NotSupportedException(My.Resources.err_CanConvertOnlyTo1And2.f(Me.GetType.Name, GetType(String).Name, GetType(BitmapImage).Name))
-        If path IsNot Nothing AndAlso IO.File.Exists(path) Then
-            Try
-                Dim img As New BitmapImage
-                img.BeginInit()
-                img.CacheOption = BitmapCacheOption.OnLoad
-                img.UriSource = New Uri(path)
-                img.EndInit()
-                Return img
-            Catch : End Try
-        End If
-        Return Nothing
-    End Function
-
-    ''' <summary>Converts a value back.</summary>
-    ''' <returns>A converted value. Filename obtained from <paramref name="value"/> either as filename forom string path or as last segment of <see cref="BitmapImage.UriSource"/>.</returns>
-    ''' <param name="value">The value that is produced by the binding target. This shall be <see cref="String"/> representing path or <see cref="BitmapImage"/></param>
-    ''' <param name="targetType">Ignored - this method always returns <see cref="String"/>.</param>
-    ''' <param name="parameter">Ignored</param>
-    ''' <param name="culture">Ignored</param>
-    ''' <exception cref="TypeMismatchException"><paramref name="value"/> is neithrt <see cref="BitmapSource"/> nor <see cref="String"/>.</exception>
-    Public Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
-        If value Is Nothing Then Return Nothing
-        If TypeOf value Is BitmapImage Then
-            Dim uri = DirectCast(value, BitmapImage).UriSource
-            If uri Is Nothing Then Return Nothing
-            Return uri.Segments.Last
-        End If
-        If Not TypeOf value Is String Then Throw New TypeMismatchException("value", value, GetType(String))
-        Return IO.Path.GetFileName(value)
-    End Function
-End Class
-
-''' <summary>Converts image ID of given type to path to that image or <see cref="BitmapSource"/> of that image</summary>
-Public Class MyImageIDConverter
-    Implements IValueConverter
-
-    ''' <summary>Converts a value. </summary>
-    ''' <returns>A converted value. Depending on <paramref name="targetType"/> its path to image file of <see cref="BitmapImage"/> initialized to that path. If <paramref name="targetType"/> <see cref="Type.IsAssignableFrom">is assignable from</see> <see cref="BitmapImage"/> and requested file does not exist, returns null.</returns>
-    ''' <param name="value">The value produced by the binding source. String representation of this value shall be intergal number.</param>
-    ''' <param name="targetType">The type of the binding target property. It shall be <see cref="String"/> or type <see cref="Type.IsAssignableFrom">assignable from</see> <see cref="BitmapImage"/>.</param>
-    ''' <param name="parameter">String value indicating type of object to get image for. In non-string is passes <see cref="[Object].ToString"/> is used.</param>
-    ''' <param name="culture">Ignored - <see cref="System.Globalization.CultureInfo.InvariantCulture"/> is used.</param>
-    ''' <exception cref="ArgumentNullException"><paramref name="parameter"/> is null.</exception>
-    ''' <exception cref="NotSupportedException"><paramref name="targetType"/> is neither <see cref="String"/> nor type <see cref="Type.IsAssignableFrom">assignable from</see> <see cref="BitmapImage"/></exception>
-    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
-        If parameter Is Nothing Then Throw New ArgumentNullException("parameter")
-        Dim Path = IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, parameter.ToString), String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}", value) & ".png")
-        If targetType.Equals(GetType(String)) Then Return Path
-        If Not targetType.IsAssignableFrom(GetType(BitmapImage)) Then Throw New NotSupportedException(My.Resources.err_CanConvertOnlyTo1And2.f(Me.GetType.Name, GetType(String).Name, GetType(BitmapImage).Name))
-        If targetType.IsAssignableFrom(GetType(BitmapImage)) AndAlso IO.File.Exists(Path) Then
-            Try
-                Dim img As New BitmapImage
-                img.BeginInit()
-                img.CacheOption = BitmapCacheOption.OnLoad
-                img.UriSource = New Uri(Path)
-                img.EndInit()
-                Return img
-            Catch : End Try
-        End If
-        Return Nothing
-    End Function
-
-    ''' <summary>Converts a value back.</summary>
-    ''' <returns>A converted value. <see cref="Integer"/> obtained as file name (without extension) from <paramref name="value"/>.</returns>
-    ''' <param name="value">The value that is produced by the binding target. It shall be <see cref="String"/> or <see cref="BitmapImage"/></param>
-    ''' <param name="targetType">Ignored - this method always returns <see cref="String"/>.</param>
-    ''' <param name="parameter">Ignored</param>
-    ''' <param name="culture">Ignored</param>
-    Private Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
-        Dim path As String
-        If TypeOf value Is String Then
-            path = value
-        ElseIf TypeOf value Is BitmapImage Then
-            If DirectCast(value, BitmapImage).UriSource Is Nothing Then Return Nothing
-            path = DirectCast(value, BitmapImage).UriSource.Segments.Last
-        Else
-            Throw New TypeMismatchException("value", value, GetType(String))
-        End If
-        Return Integer.Parse(IO.Path.GetFileNameWithoutExtension(path), System.Globalization.CultureInfo.InvariantCulture)
-    End Function
-End Class
-
 ''' <summary>Converts picture type code to description</summary>
 Public Class PictureTypeConverter
     Implements IValueConverter
@@ -347,4 +228,66 @@ Public Class CountryCodeNameConverter
         Throw New NotImplementedException("{0} cannot convert back".f(Me.GetType.Name))
     End Function
 
+End Class
+
+''' <summary>COnverter which converts <see cref="IObjectWithImage"/> to immage</summary>
+''' <remarks>This converter is one-way</remarks>
+Public Class ObjectImageConverter
+    Implements IValueConverter
+
+    ''' <summary>Converts a value.</summary>
+    ''' <returns>A converted value - image of <paramref name="value"/>; null when image is not available or <paramref name="value"/> is null.</returns>
+    ''' <param name="value">The value produced by the binding source. It must be one of known types implementing <see cref="IObjectWithImage"/> or <see cref="Cap"/> or <see cref="StoredImage"/>.</param>
+    ''' <param name="targetType">The type of the binding target property. Type must be assignable from either <see cref="BitmapImage"/>, <see cref="System.Drawing.Bitmap"/> or <see cref="IO.Stream"/>.</param>
+    ''' <param name="parameter">The converter parameter to use. Used only when <paramref name="value"/> is <see cref="Cap"/> or <see cref="Image"/>. Then it must contain string (parseable to integer), integer or value convertible to integer representing requested size of image to be got.</param>
+    ''' <param name="culture">ignored</param>
+    ''' <exception cref="InvalidCastException"><paramref name="value"/> is <see cref="Cap"/> or <see cref="Image"/> and <paramref name="parameter"/> is neither null nor can be converted to <see cref="Integer"/>.</exception>
+    ''' <exception cref="FormatException"><paramref name="value"/> is <see cref="Cap"/> or <see cref="Image"/> and <paramref name="parameter"/> is <see cref="String"/> which cannot be parsed as <see cref="Integer"/></exception>
+    ''' <exception cref="OverflowException"><paramref name="value"/> is <see cref="Cap"/> or <see cref="Image"/> and <paramref name="parameter"/> is neither null nor <see cref="Integer"/> and arithmetic overflow occured while converting it to <see cref="Integer"/>.</exception>
+    ''' <exception cref="NotSupportedException"><paramref name="value"/> is neither one of supported types nor null. -or- <paramref name="targetType"/> is neither null nor <see cref="Type.IsAssignableFrom">is assignable from</see> one of supported types.</exception>
+    Public Function Convert(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.Convert
+        If value Is Nothing Then Return Nothing
+        Dim source As ImageProvider
+        If TypeOf value Is Image Then
+            Dim expectedSize As Integer = 0
+            If TypeOf parameter Is String Then : expectedSize = Int32.Parse(parameter, Globalization.CultureInfo.InvariantCulture)
+            ElseIf TypeOf parameter Is Integer Then : expectedSize = DirectCast(parameter, Integer)
+            ElseIf parameter IsNot Nothing Then : expectedSize = DynamicCast(Of Integer)(parameter)
+            End If
+            source = DirectCast(value, Image).GetImage(expectedSize)
+        ElseIf TypeOf value Is CapSign Then
+            source = DirectCast(value, CapSign).GetImages.FirstOrDefault
+        ElseIf TypeOf value Is CapType Then
+            source = DirectCast(value, CapType).GetImages.FirstOrDefault
+        ElseIf TypeOf value Is MainType Then
+            source = DirectCast(value, MainType).GetImages.FirstOrDefault
+        ElseIf TypeOf value Is Storage Then
+            source = DirectCast(value, Storage).GetImages.FirstOrDefault
+        ElseIf TypeOf value Is Shape Then
+            source = DirectCast(value, Shape).GetImages.FirstOrDefault
+        ElseIf (TypeOf value Is StoredImage) Then
+            source = New DatabaseImageProvider(value)
+        ElseIf TypeOf value Is Cap Then
+            Dim cap As Cap = value
+            Dim capImage = (From image In cap.ImagesOrdered Take 1).FirstOrDefault
+            If capImage IsNot Nothing Then Return Convert(capImage, targetType, parameter, culture)
+            Return Nothing
+        Else
+            Throw New NotSupportedException(My.Resources.err_TypeIsNotSupported.f(value.GetType.Name, Me.GetType.Name))
+        End If
+        If source Is Nothing Then Return Nothing
+        If targetType.IsAssignableFrom(GetType(BitmapImage)) Then
+            Return source.GetImageSource
+        ElseIf targetType.IsAssignableFrom(GetType(System.Drawing.Bitmap)) Then
+            Return source.GetImageBitmap
+        ElseIf targetType.IsAssignableFrom(GetType(IO.Stream)) Then
+            Return source.GetImageStream
+        Else
+            Throw New NotSupportedException(My.Resources.err_TargetTypeNotSupported.f(targetType.FullName))
+        End If
+    End Function
+
+    Private Function ConvertBack(ByVal value As Object, ByVal targetType As System.Type, ByVal parameter As Object, ByVal culture As System.Globalization.CultureInfo) As Object Implements System.Windows.Data.IValueConverter.ConvertBack
+        Throw New NotSupportedException(My.Resources.ex_CannotConvertBack.f(Me.GetType.Name))
+    End Function
 End Class

@@ -1,14 +1,7 @@
-﻿
-CREATE FUNCTION [dbo].[EmptyStrToNull] 
-(
-	-- Add the parameters for the function here
-	@str nvarchar(MAX) 
-)
-RETURNS nvarchar(MAX)
-AS
+﻿--- <summary>Converts an empty string to null value</summary>
+--- <param name="str">A string value</param>
+--- <returns>Null when <paramref name="str"/> is an empty string; <paramref name="str"/> unchanged otherwise</returns>
+CREATE FUNCTION [dbo].[EmptyStrToNull](@str nvarchar(MAX)) RETURNS nvarchar(MAX) AS
 BEGIN
-	
-
-	return case when  @str = '' then null else @str end;
-
-END
+	RETURN CASE WHEN @str = '' THEN NULL ELSE @str END;
+END;

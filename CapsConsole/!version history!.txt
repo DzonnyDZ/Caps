@@ -102,10 +102,15 @@
     * Fix: When application is restarted due to language change, connection string is not recognized.
     * Database wizard now works!
     * Select database window is no longer shown in taskbar
+    * Non-PNG files supported for cap type/main type/shape/sign images
+    * Possibility to store images in database (for cap images different sizes can be stored in database and different in file system)
+    * In New Main type/ShapeSign dialogs and when creating a new cap type in cap editor and first attempt to import an image fails, user is offered 2nd chance (and then 3rd etc. until cancel).
+    * Storage images (onew image per storage)
+    * Tooltips for browse (...) buttons
     
 Pending issues:
 ===============
-* ComboBox tooltip error (x32, x64 as well but not so often)
+* ComboBox tooltip error
 * Accelerators for numeric up-downs and keywords editor don't work
 * Edit cap by double click (in view details)
 * Details window: Enlarge sign image
@@ -124,6 +129,6 @@ Pending issues:
 * Cap sign image does not fit to given space in cap detail
 * Bug in list editor when changing parent of storage causes application crash
 * Formatted version history
-* DB Wizard
 * Translations
-* Images in DB and/or File System
+* More tooltips with cap images in cap editor (object, sign, storage, product, product type, company, category)
+* Utilize storage image (tooltip in cap editor)

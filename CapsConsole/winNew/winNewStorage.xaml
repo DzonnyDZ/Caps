@@ -11,7 +11,10 @@
         FocusManager.FocusedElement="{Binding ElementName=txtNumber}"
         xmlns:my="clr-namespace:Caps.Console"
     >
-   <Grid>
+    <my:CreateNewObjectDialogBase.Resources>
+        <my:CachedImageConverter x:Key="CachedImageConverter"/>
+    </my:CreateNewObjectDialogBase.Resources>
+    <Grid>
         <Grid.ColumnDefinitions >
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
@@ -19,6 +22,8 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -41,8 +46,14 @@
 
         <Label Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Top" Content="{x:Static res:Resources.lbl_Description}"/>
         <TextBox  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" AcceptsReturn="True" MinLines="3" Name="txtDescription" />
-        
-        <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="5">
+
+        <Label Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center" Content="{x:Static res:Resources.lbl_Image}"/>
+        <TextBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="txtImagePath" />
+        <Button Grid.Column="2" Grid.Row="5" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="btnImage" Content="{x:Static res:Resources.cmd_Browse}" ToolTip="{x:Static res:Resources.tot_Browse}"/>
+
+        <Image Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="6" HorizontalAlignment="Center" MaxWidth="32" MaxHeight="32" Source="{Binding ElementName=txtImagePath, Path=Text, Mode=OneWay, Converter={StaticResource CachedImageConverter}}"/>
+
+        <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="7">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>

@@ -56,7 +56,7 @@
             </CheckBox>
             <Label Grid.Column="0" Grid.Row="2" Content="{x:Static res:Resources.txt_ImageRoot}" HorizontalAlignment="Right" VerticalAlignment="Center" Name="lblImageRoot" IsEnabled="{Binding ImageRootRequired, Mode=OneWay}"/>
             <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Name="txtImageRoot" Text="{Binding ImageRoot, Mode=TwoWay}" IsEnabled="{Binding ImageRootRequired, Mode=OneWay}" Margin="0,2" />
-            <Button Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="btnImageRoot" Content="..." IsEnabled="{Binding ImageRootRequired, Mode=OneWay}"/>
+            <Button Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Name="btnImageRoot" Content="{x:Static res:Resources.cmd_Browse}" ToolTip="{x:Static res:Resources.tot_Browse}" IsEnabled="{Binding ImageRootRequired, Mode=OneWay}"/>
         </Grid>
 
         <TextBlock Grid.Row="3" Grid.Column="1" Text="{x:Static res:Resources.wiz_txt_MoreDetailedImageConfig}" TextWrapping="Wrap"/>

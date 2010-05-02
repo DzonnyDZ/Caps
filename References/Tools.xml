@@ -4382,6 +4382,12 @@ A strongly-typed resource class, for looking up localized strings, formatting th
  only properties are allowed here;
  because properties shouldn't be decorated with AuthorAttribute and VersionAttribute, it is not necessary to use these attribute here
  </remarks>
+</member><member name="M:Tools.ApplicationServicesT.ApplicationServices.ParseParameters(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+	<summary>Pareses command line arguments from string array to key-values dictionary</summary>
+	<param name="arguments">Application arguments</param>
+	<param name="ignore1st">True to indicate that 1st (index 0) arggument in <paramref name="arguments"/> contains application executable name and should be ignored by this method</param>
+	<returns>Dictionary containing values in front of = from each parameter as keys aand remainders of parameters as values.</returns>
+	<remarks>Each commmand line ergument is expected to have form <c>key</c> or <c>key=value</c></remarks>
 </member><member name="M:Tools.ComponentModelT.TypeConverter`1.ITypeConverterFrom`1.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,`1)">
 	<summary>Performs conversion from type <see cref="TOther"/> to type <see cref="T"/></summary>
 	<param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
@@ -16355,6 +16361,42 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Extension methods for working with type-unsafe collections</summary>
 	<author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Nightly"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
+</member><member name="M:Tools.DataT.ObjectsT.EntityFrameworkExtensions.DeleteObjects``1(System.Data.Objects.IObjectSet{``0},System.Collections.Generic.IEnumerable{``0})">
+	<summary>Marks all given entities for deletion from <see cref="T:System.Data.Objects.IObjectSet`1"/></summary>
+	<param name="objectSet">An <see cref="T:System.Data.Objects.IObjectSet`1"/> to delete entities from</param>
+	<param name="objects">Entities to be deleted</param>
+	<typeparam name="TEntity">Type of entities</typeparam>
+	<exception cref="T:System.ArgumentNullException"><paramref name="objectSet"/> is null</exception>
+</member><member name="M:Tools.DataT.ObjectsT.EntityFrameworkExtensions.AddObjects``1(System.Data.Objects.IObjectSet{``0},System.Collections.Generic.IEnumerable{``0})">
+	<summary>Notifies set than objects representing new entities must be added to the set</summary>
+	<param name="objectSet">&gt;An <see cref="T:System.Data.Objects.IObjectSet`1"/> to notify</param>
+	<param name="objects">Objects to be added to the set</param>
+	<typeparam name="TEntity">Type of entities</typeparam>
+	<exception cref="T:System.ArgumentNullException"><paramref name="objectSet"/> is null</exception>
+</member><member name="M:Tools.DataT.ObjectsT.EntityFrameworkExtensions.RemoveAll``1(System.Data.Objects.DataClasses.EntityCollection{``0},System.Collections.Generic.IEnumerable{``0})">
+	<summary>Removes all objects from collection and marks appropriate relations for deletion</summary>
+	<param name="collection">Collection to remove objects from</param>
+	<param name="objects">Objects to be removed</param>
+	<typeparam name="TEntity">Type of entities</typeparam>
+	<returns>True if all objects were removed; false if no object was removed; null if some objects were removed and some not. False is also returned in case <paramref name="objects"/> is null or empty.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="collection"/> is null</exception>
+</member><member name="M:Tools.DataT.ObjectsT.EntityFrameworkExtensions.AddRange``1(System.Data.Objects.DataClasses.EntityCollection{``0},System.Collections.Generic.IEnumerable{``0})">
+	<summary>Adds all given objects to the collection</summary>
+	<param name="collection">Collection to add objects to</param>
+	<param name="objects">Objects to be added</param>
+	<typeparam name="TEntity">Type of entities</typeparam>
+	<exception cref="T:System.ArgumentNullException"><paramref name="collection"/> is null</exception>
+</member><member name="M:Tools.DataT.ObjectsT.EntityFrameworkExtensions.AddObject(System.Data.Objects.ObjectContext,System.Data.Objects.DataClasses.EntityObject)">
+	<summary>Adds given entity to given object context</summary>
+	<param name="context">Context to add entity to</param>
+	<param name="entity">Entity to be added. Method does nothing if this paraparameter is null.</param>
+	<remarks>This method uses reflection to find property of type <see cref="T:System.Data.Objects.IObjectSet`1"/> of gtype of <paramref name="entity"/>. If such property is found, <paramref name="entity"/> is added to the <see cref="T:System.Data.Objects.IObjectSet`1"/></remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="context"/> is null.</exception>
+	<exception cref="T:System.Reflection.AmbiguousMatchException">More than one <see cref="T:System.Data.Objects.IObjectSet`1"/> properties are found and none is most specific.</exception>
+	<exception cref="T:System.MissingMemberException">No suitable <see cref="T:System.Data.Objects.IObjectSet`1"/> property is found</exception>
+</member><member name="T:Tools.DataT.ObjectsT.EntityFrameworkExtensions">
+	<summary>Contains extension methods related to Entity Framework</summary>
+	<version stage="Nightly" version="1.5.3">This module is new in version 1.5.3</version>
 </member><member name="M:Tools.ExtensionsT.General.NewIfNull``1(``0)">
 	<summary>If given object is null creates new instance of it</summary>
 	<param name="obj">Object to test</param>
@@ -19559,21 +19601,21 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="T:Tools.ComponentModelT.ReadOnlyObject">
 	<summary>Encapsulates any object and makes it read-only</summary>
 	<remarks>Supports both - <see cref="T:System.ComponentModel.TypeDescriptor"/> and <see cref="T:System.ComponentModel.ICustomTypeDescriptor"/></remarks>
-</member><member name="M:Tools.Data.LinqToSql.LinqToSqlExtensions.DeleteAllNew``1(System.Data.Linq.Table{``0})">
+</member><member name="M:Tools.DataT.LinqToSql.LinqToSqlExtensions.DeleteAllNew``1(System.Data.Linq.Table{``0})">
 	<summary>Undos all INSERTs performed with <see cref="T:System.Data.Linq.Table`1"/></summary>
 	<param name="Table">Table to delete all inserted not commited items of coresponding type from</param>
 	<typeparam name="TEntity">Type of items in table</typeparam>
 	<remarks>This methods delets all items in <paramref name="Table"/>.<see cref="P:System.Data.Linq.Table`1.Context">Context</see>.<see cref="M:System.Data.Linq.DataContext.GetChangeSet">GetChangeSet</see>.<see cref="P:System.Data.Linq.ChangeSet.Inserts">Inserts</see> which are of type <typeparamref name="TEntity"/>.</remarks>
 	<exception cref="T:System.ArgumentNullException"><paramref name="Table"/> is null</exception>
 	<exception cref="T:System.ArgumentException"><paramref name="Table"/>.<see cref="P:System.Data.Linq.Table`1.Context">Context</see> is null</exception>
-</member><member name="M:Tools.Data.LinqToSql.LinqToSqlExtensions.RecoverAllDeleted``1(System.Data.Linq.Table{``0})">
+</member><member name="M:Tools.DataT.LinqToSql.LinqToSqlExtensions.RecoverAllDeleted``1(System.Data.Linq.Table{``0})">
 	<summary>Undos all DELETEs performed with <see cref="T:System.Data.Linq.Table`1"/></summary>
 	<param name="Table">Table to insert (undelete) all deleted not commited items of coresponding type to</param>
 	<typeparam name="TEntity">Type of items in table</typeparam>
 	<remarks>This methods re-inserts all items in <paramref name="Table"/>.<see cref="P:System.Data.Linq.Table`1.Context">Context</see>.<see cref="M:System.Data.Linq.DataContext.GetChangeSet">GetChangeSet</see>.<see cref="P:System.Data.Linq.ChangeSet.Deletes">Deletes</see> which are of type <typeparamref name="TEntity"/>.</remarks>
 	<exception cref="T:System.ArgumentNullException"><paramref name="Table"/> is null</exception>
 	<exception cref="T:System.ArgumentException"><paramref name="Table"/>.<see cref="P:System.Data.Linq.Table`1.Context">Context</see> is null</exception>
-</member><member name="T:Tools.Data.LinqToSql.LinqToSqlExtensions">
+</member><member name="T:Tools.DataT.LinqToSql.LinqToSqlExtensions">
 	<summary>Contains extension methods related to LINQ-to-SQL technology</summary>
 	<version version="1.5.3" stage="Nightly">This module is new in version 1.5.3</version>
 </member><member name="M:Tools.ICloneable`1.Clone">

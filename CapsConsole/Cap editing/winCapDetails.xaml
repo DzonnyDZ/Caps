@@ -13,10 +13,8 @@
         <sys:Int32 x:Key="i64">64</sys:Int32>
         <sys:Int32 x:Key="i256">256</sys:Int32>
         <my:NullFalseConverter x:Key="NullFalseConverter"/>
-        <my:RelativePathConverter x:Key="RelativePathConverter"/>
-        <my:CapImageConverter x:Key="CapImageConverter"/>
+        <my:ObjectImageConverter x:Key="ObjectImageConverter"/>
         <my:PictureTypeConverter x:Key="PictureTypeConverter"/>
-        <my:MyImageIDConverter x:Key="MyImageIDConverter"/>
         <my:IntColorConverter x:Key="IntColorConverter"/>
         <my:CompareConverter x:Key="CompareConverter"/>
         <sys:Int32 x:Key="iOne">1</sys:Int32>
@@ -84,10 +82,7 @@
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <Image MaxWidth="64" MaxHeight="64"
-                            Source="{Binding Path=ImagesOrdered/RelativePath,
-                                             Converter={StaticResource CapImageConverter},
-                                             ConverterParameter={StaticResource i64},
-                                             Mode=OneWay}"
+                            Source="{Binding Path=., Converter={StaticResource ObjectImageConverter}, ConverterParameter={StaticResource i64}, Mode=OneWay}"
                             HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0"/>
                         <TextBlock Text="{Binding CapName, Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" MaxWidth="64" MaxHeight="36"  />
                     </Grid>
@@ -192,7 +187,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <Image Width="auto" MaxWidth="16" Height="19" VerticalAlignment="Center" Source="{Binding CapType.CapTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapType', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
+                        <Image Width="auto" MaxWidth="16" Height="19" VerticalAlignment="Center" Source="{Binding CapType, Converter={StaticResource ObjectImageConverter}, Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding CapType.TypeName, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding CapType.CapTypeID, Mode=OneWay}" Grid.Column="2" Grid.Row="0"/>
                     </Grid>
@@ -206,7 +201,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <Image Width="auto" MaxWidth="19" Height="16" VerticalAlignment="Center" Source="{Binding MainType.MainTypeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='MainType', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
+                        <Image Width="auto" MaxWidth="19" Height="16" VerticalAlignment="Center" Source="{Binding MainType, Converter={StaticResource ObjectImageConverter}, Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding MainType.TypeName, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding MainType.MainTypeID, Mode=OneWay}" Grid.Column="2" Grid.Row="0"/>
                     </Grid>
@@ -220,7 +215,7 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
-                        <Image Width="auto" MaxWidth="19" Height="16" VerticalAlignment="Center" Source="{Binding Shape.ShapeID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='Shape', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
+                        <Image Width="auto" MaxWidth="19" Height="16" VerticalAlignment="Center" Source="{Binding Shape, Converter={StaticResource ObjectImageConverter}, Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding Shape.Name, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
                         <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding Shape.ShapeID, Mode=OneWay}" Grid.Column="2" Grid.Row="0"/>
                     </Grid>
@@ -275,7 +270,7 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
-                                    <Image Width="auto" MaxWidth="35" Height="32" VerticalAlignment="Center" Source="{Binding CapSignID, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign', Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
+                                    <Image Width="auto" MaxWidth="35" Height="32" VerticalAlignment="Center" Source="{Binding ., Converter={StaticResource ObjectImageConverter}, Mode=OneWay}" Margin="0,0,3,0" Grid.Column="0" Grid.Row="0"/>
                                     <Label VerticalAlignment="Center" HorizontalAlignment="Left" Width="auto" Content="{Binding Name, Mode=OneWay}" Grid.Column="1" Grid.Row="0"/>
                                     <Label VerticalAlignment="Center" HorizontalAlignment="Right" Width="auto" Content="{Binding CapSignID, Mode=OneWay}" Grid.Column="2" Grid.Row="0"/>
                                 </Grid>
@@ -509,7 +504,7 @@
                                                 <RowDefinition Height="auto"/> 
                                             </Grid.RowDefinitions>
                                             <Image MaxWidth="256" MaxHeight="256" HorizontalAlignment="Center"  
-                                                Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i256}}"
+                                                Source="{Binding ., Mode=OneWay, Converter={StaticResource ObjectImageConverter}, ConverterParameter={StaticResource i256}}"
                                                 Width="auto" Height="auto"/>
                                             <TextBlock Text="{Binding RelativePath, Mode=OneWay}" Grid.Column="0" Grid.Row="1"/>
                                         </Grid>
@@ -521,7 +516,7 @@
                                         <RowDefinition Height="64"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-                                    <Image Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i64}}" MaxWidth="64" MaxHeight="64" Width="auto" Height="auto"/>
+                                    <Image Source="{Binding ., Mode=OneWay, Converter={StaticResource ObjectImageConverter}, ConverterParameter={StaticResource i64}}" MaxWidth="64" MaxHeight="64" Width="auto" Height="auto"/>
                                     <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Text="{Binding RelativePath, Mode=OneWay}" Width="auto" Height="auto" TextWrapping="Wrap" TextAlignment="Center"/>
                                     <CheckBox IsEnabled="False"
                                               IsChecked="{Binding IsMain, Mode=Oneway}"

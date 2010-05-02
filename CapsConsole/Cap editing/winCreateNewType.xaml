@@ -25,7 +25,7 @@
                                             <DataTemplate>
                                                 <MenuItem Click="mniImage_Click">
                                                     <MenuItem.Icon>
-                                                        <Image MaxWidth="64" MaxHeight="64" Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i64}}"/>
+                                                        <Image MaxWidth="64" MaxHeight="64" Source="{Binding ., Mode=OneWay, Converter={StaticResource ObjectImageConverter}, ConverterParameter={StaticResource i64}}"/>
                                                     </MenuItem.Icon>
                                                 </MenuItem>
                                             </DataTemplate>
@@ -45,7 +45,7 @@
                                 <RowDefinition Height="auto" MaxHeight="64"/>
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
-                            <Image Source="{Binding ImagesOrdered/RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i64}}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" MaxWidth="64" MaxHeight="64"/>
+                            <Image Source="{Binding ., Mode=OneWay, Converter={StaticResource ObjectImageConverter}, ConverterParameter={StaticResource i64}}" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" MaxWidth="64" MaxHeight="64"/>
                             <CheckBox HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" ToolTip="{x:Static res:Resources.tot_SetTypeToNew}" IsChecked="True" Checked="chkCap_Checked" Unchecked="chkCap_Unchecked"  />
                             <TextBlock TextWrapping="Wrap" Text="{Binding CapName, Mode=OneWay}" TextAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
                         </Grid>
@@ -97,7 +97,7 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <TextBox Grid.Column="0" Grid.Row="0" Name="txtPicturePath" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-                            <Button Grid.Column="1" Grid.Row="0" Name="cmdPicturePath" Padding="3,0" VerticalAlignment="Center">...</Button>
+                            <Button Grid.Column="1" Grid.Row="0" Name="cmdPicturePath" Padding="3,0" VerticalAlignment="Center" Content="{x:Static res:Resources.cmd_Browse}" ToolTip="{x:Static res:Resources.tot_Browse}"/>
                         </Grid>
                         <Image MaxWidth="64" MaxHeight="64" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Source="{Binding ElementName=txtPicturePath, Mode=OneWay, Path=Text, Converter={StaticResource CachedImageConverter}}"/>
                         <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">

@@ -93,7 +93,7 @@ Partial Public Class winCapEditor
             Cap.Keywords.AddRange(NewKeywords)
             'Images
             For Each img In IntroducedImages
-                img.Cap = Cap
+                img.Item1.Cap = Cap
             Next
             Context.Images.AddObjects(IntroducedImages)
             Context.Images.DeleteObjects((From img In OldImages Where Not caeEditor.Images.Contains(img)).ToArray)
@@ -105,6 +105,7 @@ Partial Public Class winCapEditor
             Catch ex As Exception
                 mBox.Error_XTW(ex, My.Resources.txt_ErrorUpdatingCap, Me)
                 'Undo
+                caeEditor.UndoCopyImages(IntroducedImages)
                 Me.DataContext = Nothing
                 Context = caeEditor.ResetContext
                 Dim OldCap = Cap
@@ -141,7 +142,6 @@ Partial Public Class winCapEditor
                 Cap.ProductType = Context.ProductTypes.FirstOrDefault(Function(itm) itm.ProductTypeID = OldCap.ProductTypeID)
                 Cap.Company = Context.Companies.FirstOrDefault(Function(itm) itm.CompanyID = OldCap.CompanyID)
                 Me.DataContext = Cap
-                caeEditor.UndoCopyImages(From img In IntroducedImages Select img.RelativePath)
                 Exit Sub
             End Try
             If NewType IsNot Nothing Then

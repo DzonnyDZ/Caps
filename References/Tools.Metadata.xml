@@ -4627,7 +4627,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
  -or- Length of stream this instance was created from and length of stream obtained from <paramref name="Target"/> differs.
  -or- The <see cref="M:Tools.MetadataT.ExifT.ExifWriter.Save(Tools.MetadataT.ExifT.Exif,Tools.MetadataT.ExifT.ExifWriter.RecordWrittenCallback)"/> method failed. Seee <see cref="P:System.Exception.InnerException"/> for details.
  -or- Stream obtained from <paramref name="Target"/> is null or zero-lenght.</exception>
-	<exception cref="!:Data.DBConcurrencyException">Content of stream this instance was created from differs from content of <paramref name="Stream"/>.</exception>
+	<exception cref="T:System.Data.DBConcurrencyException">Content of stream this instance was created from differs from content of <paramref name="Stream"/>.</exception>
 	<version version="1.5.2">Method introduced</version>
 </member><member name="M:Tools.MetadataT.ExifT.Exif.OnChanged(System.EventArgs)">
 	<summary>Raises the <see cref="M:Tools.MetadataT.ExifT.Exif.OnChanged(System.EventArgs)"/> event; caled when <see cref="P:Tools.MetadataT.ExifT.Exif.IFD0"/>.<see cref="E:Tools.MetadataT.ExifT.Ifd.Changed">Changed</see> occurs.</summary>

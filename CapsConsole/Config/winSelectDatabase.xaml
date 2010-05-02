@@ -34,7 +34,7 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="{x:Static res:Resources.lbl_ImageRoot}" HorizontalAlignment="Right" VerticalAlignment="Center" ToolTip="{x:Static res:Resources.tot_ImageRootLeaveEmpty}" />
             <TextBox Grid.Column="1" Name="txtImageRoot" HorizontalAlignment="Stretch" VerticalAlignment="Center" ToolTip="{x:Static res:Resources.tot_ImageRootLeaveEmpty}"/>
-            <Button Grid.Column="2" Name="btnImageRoot" Content="..." HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button Grid.Column="2" Name="btnImageRoot" Content="{x:Static res:Resources.cmd_Browse}" ToolTip="{x:Static res:Resources.tot_Browse}" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
         <Button Grid.Column="0" Grid.Row="2" Padding="3,0,3,0" HorizontalAlignment="Center" Name="btnOK" IsDefault="True" Content="{x:Static res:Resources.cmd_OK}"/>
         <Button Grid.Column="1" Grid.Row="2" Padding="3,0,3,0" HorizontalAlignment="Center" Name="btnTest" Content="{x:Static res:Resources.cmd_Test}" ToolTip="{x:Static res:Resources.tot_Test}"/>

@@ -315,12 +315,6 @@
   <data name="txt_MainTypeImage" xml:space="preserve">
     <value>Obrázek hlavního typu</value>
   </data>
-  <data name="msg_OnlyPNG" xml:space="preserve">
-    <value>Povoleny jsou jen obrázky typu PNG.</value>
-  </data>
-  <data name="fil_PNG" xml:space="preserve">
-    <value>PNG obrázky (*.png)|*.png</value>
-  </data>
   <data name="lbl_Size1Name" xml:space="preserve">
     <value>Název velikosti 1</value>
   </data>
@@ -337,10 +331,10 @@
     <value>Chyba souborového systému</value>
   </data>
   <data name="msg_CopyMainTypeImageError" xml:space="preserve">
-    <value>Nepodařilo se zkopírovat obrázek hlavního typu. Hlavní typ byl vytvořen bez obrázku.</value>
+    <value>Nepodařilo se ulložit obrázek hlavního typu. Hlavní typ byl vytvořen bez obrázku.</value>
   </data>
   <data name="msg_CopyShapeImageError" xml:space="preserve">
-    <value>Nepodařilo se zkopírovat obrázek tvaru. Tvar byl vytvořen bez obrázku.</value>
+    <value>Nepodařilo se uložit obrázek tvaru. Tvar byl vytvořen bez obrázku.</value>
   </data>
   <data name="txt_NewObject" xml:space="preserve">
     <value>Nový objekt</value>
@@ -524,9 +518,6 @@
   </data>
   <data name="txt_TypeInformation" xml:space="preserve">
     <value>Informace o typu</value>
-  </data>
-  <data name="fil_ImageTypes" xml:space="preserve">
-    <value>Všechny typy obrázků (*.jpg, *.png, *.bmp, *.gif, *.wmf, *.emf, *.tif, *.hdp)|*.jpg;*.jpeg;*.png;*.bmp;*.dib;*.gif;*.tif;*.tiff;*.hdp;*.wdp|JPEG obrázky (*.jpg, *.jpeg)|*.jpg;*.jpeg|PNG obrázky (*.png)|*.png|BMP obrázky (*.bmp, *.dib)|*.bmp;*.dib|GIF obrázky (*.gif)|*.gif|TIFF obrázky (*.tif, *.tiff)|*.tiff;*.tif|HD Photo (*.hdp, *.wdp)|*.hdp;*.wdp|Všechny soubory (*.*)|*.*</value>
   </data>
   <data name="txt_CapTypeImage" xml:space="preserve">
     <value>Obrázek typu víčka</value>
@@ -795,14 +786,11 @@
   <data name="txt_Error" xml:space="preserve">
     <value>Chyba</value>
   </data>
-  <data name="msg_CapImageExistsOverwrite" xml:space="preserve">
-    <value>Obrázek typu víčka {0} již existuje. Přepsat?</value>
-  </data>
   <data name="txt_OwervriteFile" xml:space="preserve">
     <value>Přepsat soubor</value>
   </data>
   <data name="err_CopyCapTypeImageFailed" xml:space="preserve">
-    <value>Kopírování souboru s obrázkem typu víčka selhalo.{0}{1}{0}Nový typ víčka je bez obrázku!</value>
+    <value>Ukládání obrázku typu víčka selhalo. Nový typ víčka je bez obrázku!</value>
   </data>
   <data name="txt_CopyFile" xml:space="preserve">
     <value>Kopírvat soubor</value>
@@ -913,9 +901,6 @@ Prosím ověřtě připojovací řetězec a zkuste to znovu.</value>
   <data name="ex_UnsupportedTypeOfEntity" xml:space="preserve">
     <value>Nepodporovaný typ entity</value>
   </data>
-  <data name="err_CreatingDirectoryCapType" xml:space="preserve">
-    <value>Chyba při vytváření složky {0}:{1}{2}{1}Typ víčka bude bez obrázku.</value>
-  </data>
   <data name="coh_Target" xml:space="preserve">
     <value>Objekt</value>
   </data>
@@ -945,12 +930,6 @@ Prosím ověřtě připojovací řetězec a zkuste to znovu.</value>
   </data>
   <data name="cmd_SaveNext" xml:space="preserve">
     <value>Uložit_ a další</value>
-  </data>
-  <data name="err_CreatingDirectoryMainType" xml:space="preserve">
-    <value>Chyba při vytváření složky {0}:{1}{2}{1}Hlavní typ bude bez obrázku.</value>
-  </data>
-  <data name="err_CreatingDirectoryShape" xml:space="preserve">
-    <value>Chyba při vytváření složky {0}:{1}{2}{1}Tvar bude bez obrázku.</value>
   </data>
   <data name="msg_CapsSavedID" xml:space="preserve">
     <value>Víčko uloženo pod ID {0}.</value>
@@ -1019,14 +998,11 @@ K jednomu víčku byste měli mít maximálně jeden hlavní obrázek</value>
   <data name="ex_UnsupportedSourceType" xml:space="preserve">
     <value>Nepodporovaný typ zdroje</value>
   </data>
-  <data name="err_CreatingDirectorySign" xml:space="preserve">
-    <value>Chyba při vytváření složky {0}:{1}{2}{1}Značka víčka bude bez obrázku.</value>
-  </data>
   <data name="lbl_Sign" xml:space="preserve">
     <value>Zna_čka</value>
   </data>
   <data name="msg_CopyCapSignImageError" xml:space="preserve">
-    <value>Nepodařilo se zkopírovat obrázek značky víčka. Značka víčka byla vytvořena bez obrázku.</value>
+    <value>Nepodařilo se ulložit obrázek značky víčka. Značka víčka byla vytvořena bez obrázku.</value>
   </data>
   <data name="tot_FavoriteCharacters" xml:space="preserve">
     <value>Zde můžete vložit znaky, které často používáte v popiskách víček, ale nejsou na klávesnici. Pak je můžete kopírovat nebo přetahávat do příslušných políček.
@@ -1180,7 +1156,7 @@ Dvakrát klikněte pro editaci.</value>
     <value>Nepodporovaný typ obrázku</value>
   </data>
   <data name="msg_CopyCapTypeImageError" xml:space="preserve">
-    <value>Nepodařilo se zkopírovat obrázek typu víčka. Typ víčka vytvořen bez obrázku.</value>
+    <value>Nepodařilo se uložit obrázek typu víčka. Typ víčka vytvořen bez obrázku.</value>
   </data>
   <data name="lbl_CapsCounts" xml:space="preserve">
     <value>Celkový počet víček:</value>

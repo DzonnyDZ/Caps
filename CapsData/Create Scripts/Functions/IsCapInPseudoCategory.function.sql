@@ -12,7 +12,7 @@ AS
 BEGIN
 	DECLARE @Cmd NVARCHAR(MAX) = 'SELECT COUNT(*) INTO @Count FROM dbo.CapEx c WHERE c.CapID = @CapID AND (' + @PseudoCategoryCondition + ')'
 	DECLARE @Count INT;
-	EXEC sp_executesql @Cmd, N'@CapID INT, @Count INT OUT', @CapID, @Count;
+	EXEC SYS.sp_executesql @Cmd, N'@CapID INT, @Count INT OUT', @CapID, @Count;
 	IF @Count > 0 RETURN 1;
 	RETURN 0;
 END

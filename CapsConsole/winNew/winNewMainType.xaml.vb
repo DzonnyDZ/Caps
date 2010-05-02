@@ -17,9 +17,6 @@ Partial Public Class winNewMainType
                 Case Forms.DialogResult.Yes
                 Case Else : Exit Sub
             End Select
-        ElseIf IO.Path.GetExtension(txtImagePath.Text).ToLower <> ".png" Then
-            mBox.Modal_PTIW(My.Resources.msg_OnlyPNG, My.Resources.txt_MainTypeImage, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation, Me)
-            Exit Sub
         End If
         NewObject = New MainType With {.Description = txtDescription.Text, .TypeName = txtName.Text}
         Try
@@ -36,19 +33,14 @@ Partial Public Class winNewMainType
             Exit Sub
         End Try
         If IO.File.Exists(txtImagePath.Text) Then
-            If Not IO.Directory.Exists(IO.Path.Combine(My.Settings.ImageRoot, MainType.ImageStorageFolderName)) Then
-                Try
-                    IO.Directory.CreateDirectory(IO.Path.Combine(My.Settings.ImageRoot, MainType.ImageStorageFolderName))
-                Catch ex As Exception
-                    mBox.Error_XPTIBWO(ex, My.Resources.err_CreatingDirectoryMainType, My.Resources.txt_FileSystemError, mBox.MessageBoxIcons.Exclamation, , Me)
-                    Me.DialogResult = True
-                    Me.Close()
-                End Try
-            End If
-            Try
-                IO.File.Copy(txtImagePath.Text, IO.Path.Combine(IO.Path.Combine(My.Settings.ImageRoot, MainType.ImageStorageFolderName), NewObject.MainTypeID & ".png"))
+            Dim imagePath = txtImagePath.Text
+SaveImage:  Try
+                NewObject.SaveImage(imagePath, True)
             Catch ex As Exception
-                mBox.Error_XPTIBWO(ex, My.Resources.msg_CopyMainTypeImageError, My.Resources.txt_FileSystemError, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation, , Me)
+                If mBox.Error_XPTIBWO(ex, My.Resources.msg_CopyMainTypeImageError & vbCrLf & My.Resources.txt_SelectAnotherImageQ, My.Resources.txt_FileSystemError, WindowsT.IndependentT.MessageBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Yes Or mBox.MessageBoxButton.Buttons.Ignore, Me) = Forms.DialogResult.Yes Then
+                    imagePath = GetImage(imagePath)
+                    If imagePath IsNot Nothing Then GoTo SaveImage
+                End If
             End Try
         End If
         Me.DialogResult = True
@@ -62,12 +54,6 @@ Partial Public Class winNewMainType
 
 
     Private Sub btnImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnImage.Click
-        Dim dlg As New Forms.OpenFileDialog With {.DefaultExt = "png", .Filter = My.Resources.fil_PNG}
-        Try
-            If txtImagePath.Text <> "" Then dlg.FileName = txtImagePath.Text
-        Catch : End Try
-        If dlg.ShowDialog = Forms.DialogResult.OK Then
-            txtImagePath.Text = dlg.FileName
-        End If
+        txtImagePath.Text = If(GetImage(txtImagePath.Text), txtImagePath.Text)
     End Sub
 End Class

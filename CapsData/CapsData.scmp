@@ -2,18 +2,18 @@
 <SchemaComparison>
   <Version>1</Version>
   <SourceModelProvider>
-    <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=.\SQLEXPRESS2008;Initial Catalog=D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF;Integrated Security=True;Password=</ConnectionString>
-      <DatabaseName>D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF</DatabaseName>
-      <DspFamilyName>sql</DspFamilyName>
-      <Name>[BIGGERBOOK\SQLEXPRESS2008.D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF]</Name>
-    </ConnectionBasedModelProvider>
-  </SourceModelProvider>
-  <TargetModelProvider>
     <ProjectBasedModelProvider>
       <ProjectGuid>{67cbc824-a49e-4e9b-a947-360f3dfe65c3}</ProjectGuid>
       <Name>CapsData</Name>
     </ProjectBasedModelProvider>
+  </SourceModelProvider>
+  <TargetModelProvider>
+    <ConnectionBasedModelProvider>
+      <ConnectionString>Data Source=.\SQLEXPRESS2008;Initial Catalog=D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF;Integrated Security=True;Password=;User Instance=True</ConnectionString>
+      <DatabaseName>D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF</DatabaseName>
+      <DspFamilyName>sql</DspFamilyName>
+      <Name>[BIGGERBOOK\SQLEXPRESS2008.D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF]</Name>
+    </ConnectionBasedModelProvider>
   </TargetModelProvider>
   <SchemaCompareSettingsService>
     <SchemaCompareSettingsService>
@@ -288,6 +288,14 @@
         <Value>True</Value>
       </PropertyElementName>
       <PropertyElementName>
+        <Name>TargetDatabaseName</Name>
+        <Value>D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF</Value>
+      </PropertyElementName>
+      <PropertyElementName>
+        <Name>TargetConnectionString</Name>
+        <Value>Data Source=.\SQLEXPRESS2008;Initial Catalog=D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF;Integrated Security=True;Pooling=False;User Instance=True</Value>
+      </PropertyElementName>
+      <PropertyElementName>
         <Name>VerifyDeployment</Name>
         <Value>True</Value>
       </PropertyElementName>
@@ -300,123 +308,11 @@
         <Value>True</Value>
       </PropertyElementName>
       <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlStatistic</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlErrorMessage</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlUser</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlRole</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlApplicationRole</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlRoleMembership</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
         <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlPermissionStatement</Name>
         <Value>ExcludedType</Value>
       </PropertyElementName>
       <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlLogin</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlServerRoleMembership</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlLinkedServer</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlLinkedServerLogin</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlFilegroup</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlFile</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
         <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISqlExtendedProperty</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90AsymmetricKey</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90SymmetricKey</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90MasterKey</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Certificate</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Credential</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Signature</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90MessageType</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Contract</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Route</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90EventNotification</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90RemoteServiceBinding</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql90Endpoint</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100CryptographicProvider</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100DatabaseEncryptionKey</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100BrokerPriority</Name>
-        <Value>ExcludedType</Value>
-      </PropertyElementName>
-      <PropertyElementName>
-        <Name>Microsoft.Data.Schema.Sql.SchemaModel.ISql100EventSession</Name>
         <Value>ExcludedType</Value>
       </PropertyElementName>
     </ConfigurationOptionsElement>

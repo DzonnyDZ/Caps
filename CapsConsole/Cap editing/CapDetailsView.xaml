@@ -18,7 +18,7 @@
         <my:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
         <my:NestedConverter x:Key="G-VisibleConverter" Outer="{StaticResource BooleanVisibilityConverter}" InnerParam="G" Inner="{StaticResource CompareConverter}"/>
         <my:NestedConverter x:Key="M-VisibleConverter" Outer="{StaticResource BooleanVisibilityConverter}" InnerParam="M" Inner="{StaticResource CompareConverter}"/>
-        <my:MyImageIDConverter x:Key="MyImageIDConverter"/>
+        <my:ObjectImageConverter x:Key="ObjectImageConverter"/>
         <convertersT:NullInvisibleConverter x:Key="NullInvisibleConverter"/>
         <my:CountryCodeNameConverter x:Key="CountryCodeNameConverter"/>
         <my:CountryCodeFlagConverter x:Key="CountryCodeFlagConverter"/>
@@ -109,21 +109,21 @@
                             <Label Content="{x:Static res:Resources.lbl_CapType}" Grid.Row="0" Grid.Column="0"/>
                             <Label Grid.Column="1" Grid.Row="0">
                                 <TextBlock>
-                                    <Image Source="{Binding CapType.CapTypeID, Mode=OneWay, Converter={StaticResource  MyImageIDConverter}, ConverterParameter='CapType'}" MaxWidth="16" MaxHeight="16"/>
+                                    <Image Source="{Binding CapType, Mode=OneWay, Converter={StaticResource  ObjectImageConverter}}" MaxWidth="16" MaxHeight="16"/>
                                     <TextBlock Text="{Binding CapType.TypeName, Mode=OneWay}"/>
                                 </TextBlock>
                             </Label>
                             <Label Content="{x:Static res:Resources.lbl_MainType}" Grid.Row="1" Grid.Column="0"/>
                             <Label Grid.Column="1" Grid.Row="1">
                                 <TextBlock>
-                                    <Image Source="{Binding MainType.MainTypeID, Mode=OneWay, Converter={StaticResource MyImageIDConverter}, ConverterParameter='MainType'}" MaxWidth="16" MaxHeight="16"/>
+                                    <Image Source="{Binding MainType, Mode=OneWay, Converter={StaticResource ObjectImageConverter}}" MaxWidth="16" MaxHeight="16"/>
                                     <TextBlock Text="{Binding MainType.TypeName, Mode=OneWay}"/>
                                 </TextBlock>
                             </Label>
                             <Label Content="{x:Static res:Resources.lbl_Shape}" Grid.Row="2" Grid.Column="0"/>
                             <Label Grid.Column="1" Grid.Row="2">
                                 <TextBlock>
-                                    <Image Source="{Binding Shape.ShapeID, Mode=OneWay, Converter={StaticResource MyImageIDConverter}, ConverterParameter='Shape'}" MaxWidth="16" MaxHeight="16"/>
+                                    <Image Source="{Binding Shape, Mode=OneWay, Converter={StaticResource ObjectImageConverter}}" MaxWidth="16" MaxHeight="16"/>
                                     <TextBlock Text="{Binding Shape.Name, Mode=OneWay}"/>
                                 </TextBlock>
                             </Label>
@@ -148,7 +148,7 @@
                                     <DataTemplate>
                                         <Label HorizontalAlignment="Stretch">
                                             <TextBlock>
-                                                <Image Source="{Binding CapSignID, Mode=OneWay, Converter={StaticResource MyImageIDConverter}, ConverterParameter='CapSign'}" MaxWidth="16" MaxHeight="16"/>
+                                                <Image Source="{Binding CapSign, Mode=OneWay, Converter={StaticResource ObjectImageConverter}}" MaxWidth="16" MaxHeight="16"/>
                                             <TextBlock Text="{Binding Name, Mode=OneWay}"/>
                                             </TextBlock>
                                         </Label>
@@ -277,9 +277,9 @@
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate >
                         <DataTemplate>
-                            <Image MaxWidth="32" MaxHeight="32" Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i64}}" ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}">
+                            <Image MaxWidth="32" MaxHeight="32" Source="{Binding ., Mode=OneWay, Converter={StaticResource ObjectImageConverter}, ConverterParameter={StaticResource i64}}" ToolTipService.ShowDuration="{x:Static sys:Int32.MaxValue}">
                                 <Image.ToolTip>
-                                    <Image MaxWidth="128" MaxHeight="128" Source="{Binding RelativePath, Mode=OneWay, Converter={StaticResource CapImageConverter}, ConverterParameter={StaticResource i128}}"/>
+                                    <Image MaxWidth="128" MaxHeight="128" Source="{Binding ., Mode=OneWay, Converter={StaticResource ObjectImageConverter}, ConverterParameter={StaticResource i128}}"/>
                                 </Image.ToolTip>
                             </Image>
                         </DataTemplate>    

@@ -37,10 +37,10 @@
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="23" Content="{x:Static res:Resources.wiz_txt_DatabaseAndFileInformation}"/>
         <Label Grid.Column="1" Grid.Row="2" Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}" Content="{x:Static res:Resources.wiz_txt_FilePath}"/>
         <TextBox Grid.Column="2" Grid.Row="2"  Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}" Name="txtDatabaseFile" Text="{Binding FilePath, Mode=TwoWay}"/>
-        <Button Grid.Column="3" Grid.Row="2"  Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}" Name="btnDbBrowse">...</Button>
+        <Button Grid.Column="3" Grid.Row="2"  Visibility="{Binding RequiresFileNameVisibility, Mode=OneWay}" Name="btnDbBrowse" Content="{x:Static res:Resources.cmd_Browse}" ToolTip="{x:Static res:Resources.tot_Browse}"/>
         <Label Grid.Column="1" Grid.Row="3" Content="{x:Static res:Resources.wiz_txt_DatabaseServer}"/>
         <TextBox Grid.Column="2" Grid.Row="3" Text="{Binding ServerName, Mode=TwoWay}" Name="txtServer"/>
-        <Button Grid.Column="3" Grid.Row="3" Name="btnDbServerBrowse">...</Button>
+        <Button Grid.Column="3" Grid.Row="3" Name="btnDbServerBrowse" Content="{x:Static res:Resources.cmd_Browse}" ToolTip="{x:Static res:Resources.tot_Browse}"/>
         <RadioButton Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="4" IsChecked="{Binding UseIntegratedSecurity, Mode=TwoWay}">
             <TextBlock Text="{x:Static res:Resources.wiz_txt_WindowsAuthentification}" TextWrapping="Wrap" />
         </RadioButton>
@@ -53,7 +53,7 @@
         <PasswordBox Grid.Column="2" Grid.Row="7"  IsEnabled="{Binding ElementName=optSQLAuth, Path=IsChecked, Mode=OneWay}" PasswordChar="✮" Name="txtPassword" />
         <Label Grid.Column="1" Grid.Row="8" Visibility="{Binding RequiresDatabaseNameVisibility, Mode=OneWay}" Content="{x:Static res:Resources.wiz_txt_DatabaseName}"/>
         <TextBox Grid.Column="2" Grid.Row="8"  Visibility="{Binding RequiresDatabaseNameVisibility, Mode=OneWay}" Name="txtDatabaseName" Text="{Binding DatabaseName, Mode=TwoWay}" />
-        <Button Grid.Column="3" Grid.Row="8"  Visibility="{Binding RequiresExistingDatabaseNameVisibility, Mode=OneWay}" Name="btnDatabaseName" IsEnabled="{Binding ElementName=txtServer, Path=Text, Converter={StaticResource CompareConverterEx}, ConverterParameter='&lt;&gt;&quot;&quot;'}">...</Button>
+        <Button Grid.Column="3" Grid.Row="8"  Visibility="{Binding RequiresExistingDatabaseNameVisibility, Mode=OneWay}" Name="btnDatabaseName" IsEnabled="{Binding ElementName=txtServer, Path=Text, Converter={StaticResource CompareConverterEx}, ConverterParameter='&lt;&gt;&quot;&quot;'}" Content="{x:Static res:Resources.cmd_Browse}" ToolTip="{x:Static res:Resources.tot_Browse}"/>
 
         <StackPanel Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,10,0,0">
             <Button Name="backButton" Click="backButton_Click" Padding="5,0,5,0" xml:space="preserve" Content="{x:Static res:Resources.wiz_cmd_Back}"/>

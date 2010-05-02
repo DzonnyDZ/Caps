@@ -5,7 +5,7 @@ Imports System.Drawing.Imaging
 Imports System.Data.Objects.DataClasses
 Imports Tools.DrawingT, Tools.LinqT
 
-''' <summary>Contains extension foctions for Caps data entities</summary>
+''' <summary>Contains extension functions for Caps data entities</summary>
 Module CapsDataExtensions
 #Region "Save image"
 #Region "Typed methods"
@@ -83,18 +83,23 @@ Module CapsDataExtensions
     ''' <summary>Stores image of <see cref="Data.Image"/> in appropriate storage</summary>
     ''' <param name="image">A <see cref="Data.Image"/> to save image of</param>
     ''' <param name="source">Path of image file to read image from</param>
-    ''' <exception cref="ArgumentNullException"><paramref name="capSign"/> or <paramref name="source"/> is null</exception>
+    ''' <param name="save">True to save changes to database immediatelly, false to just associate changes with <paramref name="image"/> (affects only database saving). When <paramref name="save"/> is true, <paramref name="image"/>.<see cref="Image.ImageID">ImageID</see> must not be zero.</param>
+    ''' <param name="iptc">Optional IPTC data to embded to each image (use only for JPEGs). <note>If it is not possible to embded IPTC data, failure is silent.</note></param>
+    ''' <param name="dataContext">Optional data context to provide operations in (required when <paramref name="save"/> is false)</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="capSign"/> or <paramref name="source"/> is null -or- <paramref name="save"/> is false and <paramref name="dataContext"/> is null</exception>
     ''' <exception cref="IO.FileNotFoundException">File <paramref name="source"/> does not exist</exception>
-    ''' <exception cref="ArgumentException">Images are saved in database and file extension of <paramref name="source"/> is none of recognized extensions (png, bmp, dib, jpg, jpeg, jfif, tif, tiff, gif, exif)</exception>
+    ''' <exception cref="ArgumentException">Images are saved in database and file extension of <paramref name="source"/> is none of recognized extensions (png, bmp, dib, jpg, jpeg, jfif, tif, tiff, gif, exif) -or- <paramref name="image"/>.<see cref="Image.ImageID">ImageID</see> is 0 and <paramref name="save"/> is true.</exception>
     ''' <exception cref="UnauthorizedAccessException">Images are stored in file system and the caller does not have the required permission.</exception>
     ''' <exception cref="IO.IOException">Images are saved in file system and: The directory for storing images of particular type does not exists and parent directory is read-only or is not empty or a file with the same name and location exists. -or- An I/O error occured while copying file to destionation directory.</exception>
     ''' <exception cref="IO.DirectoryNotFoundException">Images are stored in file system and: The directory for storing images does not exist and it's path is invalid (for example, it is on an unmapped drive).</exception>
+    ''' <remarks>When saving to file system this method may change <paramref name="image"/>.<see cref="Image.RelativePath">RelativePath</see>.</remarks>
     <Extension()>
-    Public Function SaveImage(ByVal image As Data.Image, ByVal source As String) As SaveImageUndoOperation
+    Public Function SaveImage(ByVal image As Data.Image, ByVal source As String, ByVal save As Boolean, Optional ByVal dataContext As CapsDataContext = Nothing, Optional ByVal iptc As Tools.MetadataT.IptcT.Iptc = Nothing) As SaveImageUndoOperation
         If image Is Nothing Then Throw New ArgumentNullException("capSign")
-        If image.ImageID = 0 Then Throw New ArgumentException(My.Resources.err_SaveImageForId0)
+        If save AndAlso image.ImageID = 0 Then Throw New ArgumentException(My.Resources.err_SaveImageForId0)
         If source Is Nothing Then Throw New ArgumentNullException("source")
         If Not IO.File.Exists(source) Then Throw New IO.FileNotFoundException(My.Resources.err_FileNotFound, source)
+        If Not save AndAlso dataContext Is Nothing Then Throw New ArgumentNullException("dataContext")
 
         Dim storeInFS = Settings.Images.CapsInFileSystem
         Dim storeInDB = Settings.Images.CapsInDatabase
@@ -126,12 +131,24 @@ Module CapsDataExtensions
                         If Not targetFolder.IsDirectory Then targetFolder.CreateDirectory()
                         If dimension = 0 Then
                             IO.File.Copy(source, targetFile)
+                            Dim newFI As New IO.FileInfo(targetFile)
+                            'If file is read-only make it read-write
+                            If (newFI.Attributes And IO.FileAttributes.ReadOnly) = IO.FileAttributes.ReadOnly Then _
+                                newFI.Attributes = newFI.Attributes And Not IO.FileAttributes.ReadOnly
                         ElseIf dimension = minSize OrElse dimension <= original.Width OrElse dimension <= original.Height Then  'Do not enlarge
                             Using thumb = original.GetThumbnail(New Size(dimension, dimension))
                                 thumb.Save(targetFile, original.RawFormat)
                             End Using
                         End If
+                        If iptc IsNot Nothing Then 'IPTC
+                            Try
+                                Using JPEG As New Tools.DrawingT.DrawingIOt.JPEG.JPEGReader(targetFile, True)
+                                    JPEG.IPTCEmbed(iptc.GetBytes)
+                                End Using
+                            Catch : End Try
+                        End If
                     Next
+                    image.RelativePath = filename
                 Catch When savedImages.Count > 0
                     Using undo As New UndoFileSystemImageSaveOperation(savedImages.ToArray)
                         undo.Undo()
@@ -146,7 +163,8 @@ Module CapsDataExtensions
             Dim originalUndo = ret
             Try
                 Using original As New Bitmap(source),
-                      context As New CapsDataContext(Main.EntityConnection)
+                      dispContext = If(save OrElse dataContext Is Nothing, New CapsDataContext(Main.EntityConnection), Nothing)
+                    Dim context = If(dispContext, dataContext)
                     Dim minSize = Integer.MaxValue
                     For Each dimension In storeInDB
                         minSize = Math.Min(dimension, minSize)
@@ -157,23 +175,36 @@ Module CapsDataExtensions
                         Try
                             Using saveStream As New IO.MemoryStream
                                 imgToSave.Save(saveStream, original.RawFormat)
+                                If iptc IsNot Nothing Then 'IPTC
+                                    saveStream.Position = 0
+                                    Try
+                                        Using JPEG As New Tools.DrawingT.DrawingIOt.JPEG.JPEGReader(saveStream)
+                                            JPEG.IPTCEmbed(iptc.GetBytes)
+                                        End Using
+                                    Catch : End Try
+                                End If
+                                'Database stored image
                                 Dim si As New StoredImage With {.FileName = IO.Path.GetFileName(source),
                                                                 .MIME = GetImageMimeType(IO.Path.GetExtension(source)),
                                                                 .Width = imgToSave.Width,
                                                                 .Height = imgToSave.Height,
                                                                 .Size = saveStream.Length,
-                                                                .Data = saveStream.GetBuffer,
-                                                                .ImageID = image.ImageID
+                                                                .Data = saveStream.GetBuffer
                                                                }
-                                context.StoredImages.AddObject(si)
-                                Dim undo = New UndoDatabaseImageSaveOperation(si)
+                                If image.ImageID <> 0 Then
+                                    si.ImageID = image.ImageID
+                                    context.StoredImages.AddObject(si)
+                                Else
+                                    image.StoredImages.Add(si)
+                                End If
+                                Dim undo = New UndoDatabaseImageSaveOperation(si, dataContext, save)
                                 If ret Is Nothing Then ret = undo Else ret += undo
                             End Using
                         Finally
                             If imgToSave IsNot original Then imgToSave.Dispose()
                         End Try
                     Next
-                    context.SaveChanges()
+                    If save Then context.SaveChanges()
                 End Using
             Catch When originalUndo IsNot Nothing
                 originalUndo.Undo()
@@ -326,7 +357,7 @@ Module CapsDataExtensions
     ''' <param name="image">Object to get images associated with</param>
     ''' <exception cref="ArgumentNullException"><paramref name="image"/> is null</exception>
     <Extension()>
-    Public Function GetImages(ByVal image As Data.Image, ByVal expectedSize As Integer) As ImageProvider
+    Public Function GetImage(ByVal image As Data.Image, ByVal expectedSize As Integer) As ImageProvider
         If image Is Nothing Then Throw New ArgumentNullException("obj")
         Dim retFS As FileSystemImageProvider = Nothing
         If My.Settings.ImageRoot <> "" AndAlso IO.Directory.Exists(My.Settings.ImageRoot) Then
@@ -336,14 +367,14 @@ Module CapsDataExtensions
                 Let dirname = IO.Path.GetFileName(dir),
                     match = imageFolderNameRegExp.Match(dirname),
                     file = IO.Path.Combine(dir, image.RelativePath)
-                Where (dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName OrElse imageFolderNameRegExp.IsMatch(match.Success)) AndAlso
+                Where (dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName OrElse match.Success) AndAlso
                       IO.File.Exists(IO.Path.Combine(dir, image.RelativePath))
-                Let size = If(dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName, 0, Integer.Parse(match.Groups!size.Value))
+                Let size = If(dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName, 0, Integer.Parse(match.Groups!Size.Value))
                 Select size, file
                 Order By If(size = expectedSize, 0, 1) Ascending,
                          If(size = 0 OrElse size > expectedSize, 0, 1) Ascending,
                          If(size = 0, Integer.MaxValue, size) Ascending
-                    ).FirstOrDefault
+                          ).FirstOrDefault
             If fsImage IsNot Nothing Then retFS = New FileSystemImageProvider(fsImage.file, fsImage.size)
         End If
         'Get database images
@@ -485,6 +516,7 @@ Friend NotInheritable Class FileSystemImageProvider
     ''' <exception cref="ArgumentOutOfRangeException"><paramref name="expectedSize"/> is less than zero</exception>
     Public Sub New(ByVal imagePath$, ByVal expectedSize%)
         Me.New(GetImageSize(imagePath, expectedSize))
+        Me.imagePath = imagePath
     End Sub
 
     ''' <summary>When overriden in base class gets stream containing image data</summary>
@@ -505,7 +537,7 @@ Friend NotInheritable Class FileSystemImageProvider
     ''' <exception cref="ArgumentOutOfRangeException"><paramref name="expectedSize"/> is less than zero</exception>
     Private Shared Function GetImageSize(ByVal imagePath As String, ByVal expectedSize%) As System.Drawing.Size
         If imagePath Is Nothing Then Throw New ArgumentNullException("imagePath")
-        If imagePath = "" Then Throw New ArgumentException("{0} cannot be an empty string", "imagePath")
+        If imagePath = "" Then Throw New ArgumentException(My.Resources.ex_CannotBeAnEmptyString, "imagePath")
         If expectedSize < 0 Then Throw New ArgumentOutOfRangeException("expectedSize")
         Try
             Using bmp As New Bitmap(imagePath)
@@ -523,7 +555,9 @@ End Class
 Public MustInherit Class SaveImageUndoOperation
     Implements IDisposable
     ''' <summary>Reverts the image saval action</summary>
-    Public MustOverride Sub Undo()
+    ''' <param name="throwException">True to throw an excpetion when something bad happends during undo operation</param>
+    ''' <exception cref="Exception">An error ocured during undo operation and <paramref name="throwException"/> was true</exception>
+    Public MustOverride Sub Undo(Optional ByVal throwException As Boolean = False)
 
 #Region "IDisposable Support"
     ''' <summary>Implements <see cref="IDisposable.Dispose"/></summary>
@@ -560,17 +594,29 @@ Friend NotInheritable Class CombinedSaveImageUndoOperation
     ''' <exception cref="ArgumentNullException"><paramref name="operations"/> is null</exception>
     Public Sub New(ByVal operations As IEnumerable(Of SaveImageUndoOperation))
         If operations Is Nothing Then Throw New ArgumentNullException("operations")
-        If operations.Count(Function(item) item Is Nothing) > 0 Then Throw New ArgumentException("An operation to combine cannot be null")
+        If operations.Count(Function(item) item Is Nothing) > 0 Then Throw New ArgumentException(My.Resources.err_OperationToCombineCannotBeNull)
         Me.operations = New List(Of SaveImageUndoOperation)(operations)
     End Sub
     ''' <summary>Contains operations this operation combines</summary>
     Private operations As List(Of SaveImageUndoOperation)
     ''' <summary>Reverts the image saval action</summary>
-    Public Overrides Sub Undo()
+    ''' <param name="throwException">True to throw an excpetion when something bad happends during undo operation</param>
+    ''' <exception cref="Tools.ComponentModelT.MultipleException">An error ocured during undo operation and <paramref name="throwException"/> was true</exception>
+    Public Overrides Sub Undo(Optional ByVal throwException As Boolean = False)
         If disposed Then Throw New ObjectDisposedException(Me.GetType.Name)
+        Dim exc As New List(Of Exception)
         For Each item In operations
-            item.Undo()
+            Try
+                item.Undo(throwException)
+            Catch ex As Tools.ComponentModelT.MultipleException When throwException
+                exc.AddRange(ex.Exceptions)
+            Catch ex As Exception When throwException
+                exc.Add(ex)
+            End Try
         Next
+        If throwException AndAlso exc.Count > 0 Then
+            Throw New Tools.ComponentModelT.MultipleException(exc)
+        End If
     End Sub
     ''' <summary>Indicate sif this object was already disposed or not</summary>
     Private disposed As Boolean
@@ -599,16 +645,18 @@ Friend NotInheritable Class UndoFileSystemImageSaveOperation
     ''' <exception cref="ArgumentException"><paramref name="imagePaths"/> is an empty array</exception>
     Public Sub New(ByVal ParamArray imagePaths$())
         If imagePaths Is Nothing Then Throw New ArgumentNullException("imagePaths")
-        If imagePaths.Length = 0 Then Throw New ArgumentException(String.Format("{0} cannot be empty", "imagePaths"), "imagePaths")
+        If imagePaths.Length = 0 Then Throw New ArgumentException(String.Format(My.Resources.err_CannotBeEmpty, "imagePaths"), "imagePaths")
         If imagePaths.Count(Function(item) item Is Nothing) > 0 Then Throw New ArgumentNullException("imagePaths")
     End Sub
-    ''' <summary>Deletes the files created when image was saved</summary>
-    Public Overrides Sub Undo()
+    ''' <summary>Reverts the image saval action</summary>
+    ''' <param name="throwException">True to throw an excpetion when something bad happends during undo operation</param>
+    ''' <exception cref="Exception">An error ocured during undo operation and <paramref name="throwException"/> was true</exception>
+    Public Overrides Sub Undo(Optional ByVal throwException As Boolean = False)
         If imagePaths Is Nothing Then Throw New ObjectDisposedException(Me.GetType.Name)
         For Each Path In imagePaths
             Try
                 IO.File.Delete(Path)
-            Catch : End Try
+            Catch When Not throwException : End Try
         Next
     End Sub
     ''' <summary>Implements <see cref="IDisposable.Dispose"/></summary>
@@ -627,36 +675,45 @@ Friend NotInheritable Class UndoDatabaseImageSaveOperation
     ''' <summary>CTor - creates a new instance of the <see cref="UndoDatabaseImageSaveOperation"/> class</summary>
     ''' <param name="image">An image do be deleted when <see cref="Undo"/> is called</param>
     ''' <param name="context">Optionally provides context in which image was created. If not provided, default context is used.</param>
+    ''' <param name="save">True to save context after undo</param>
     ''' <exception cref="ArgumentNullException"><paramref name="image"/> is null</exception>
-    Public Sub New(ByVal image As StoredImage, Optional ByVal context As CapsDataContext = Nothing)
+    Public Sub New(ByVal image As StoredImage, Optional ByVal context As CapsDataContext = Nothing, Optional ByVal save As Boolean = True)
         If image Is Nothing Then Throw New ArgumentNullException("image")
         Me.image = image
         Me.context = context
+        Me.save = save
     End Sub
+    ''' <summary>Indicates if context is saved after undo</summary>
+    Private save As Boolean
     ''' <summary>Context to be used to delete the image</summary>
     Private context As CapsDataContext
     ''' <summary>Image to be deleted</summary>
     Private image As StoredImage
-    ''' <summary>Deletes a stored image form database</summary>
-    Public Overrides Sub Undo()
+    ''' <summary>Reverts the image saval action</summary>
+    ''' <param name="throwException">True to throw an excpetion when something bad happends during undo operation</param>
+    ''' <exception cref="Exception">An error ocured during undo operation and <paramref name="throwException"/> was true</exception>
+    Public Overrides Sub Undo(Optional ByVal throwException As Boolean = False)
+        If disposed Then Throw New ObjectDisposedException(Me.GetType.Name)
         If context IsNot Nothing Then
-            If context.IsDisposed Then Throw New ObjectDisposedException(Me.GetType.Name)
             Try
                 context.DeleteObject(image)
-                context.SaveChanges()
-            Catch : End Try
+                If save Then context.SaveChanges()
+            Catch When Not throwException : End Try
         Else
             Using context As New CapsDataContext(Main.EntityConnection)
                 Try
                     context.DeleteObject((From item In context.StoredImages Where item.StoredImageID = image.StoredImageID).FirstOrDefault)
-                    context.SaveChanges()
-                Catch : End Try
+                    If save Then context.SaveChanges()
+                Catch When Not throwException : End Try
             End Using
         End If
     End Sub
+    ''' <summary>Indicates if this object is disposed</summary>
+    Private disposed As Boolean = False
     ''' <summary>Implements <see cref="IDisposable.Dispose"/></summary>
     ''' <param name="disposing">True to dispose managed state</param>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        disposed = True
         If disposing AndAlso context IsNot Nothing AndAlso Not context.IsDisposed Then
             context.Dispose()
         End If

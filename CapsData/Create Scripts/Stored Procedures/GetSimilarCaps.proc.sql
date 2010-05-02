@@ -1,4 +1,45 @@
-﻿CREATE PROCEDURE [dbo].[GetSimilarCaps] 
+﻿--- <summary>Searches for firts 100 caps similar to cap with given characteristics</summary>
+--- <param name="CapTypeID">ID of cap type (<see cref="Cap.CapTypeID"/>)</param>
+--- <param name="CapTypeID">ID of main type (<see cref="Cap.MainTypeID"/>)</param>
+--- <param name="CapTypeID">ID of shape (<see cref="Cap.ShapeID"/>)</param>
+--- <param name="CapName">Name of cap (<see cref="Cap.CapName"/>)</param>
+--- <param name="MainText">Main text of cap (<see cref="Cap.MainText"/>)</param>
+--- <param name="SubTitle">Secondary text of cap (<see cref="Cap.SubTitle"/>)</param>
+--- <param name="BackColor1">Primary background color (RGB value, <see cref="Cap.BackColor1"/>)</param>
+--- <param name="BackColor2">secondary background color (RGB value, <see cref="Cap.BackColor2"/>)</param>
+--- <param name="ForeColor">Primary fore color (RGB value, <see cref="Cap.ForeColor"/>)</param>
+--- <param name="MainPicture">Description of cap primary picture (<see cref="Cap.MainPicture"/>)</param>
+--- <param name="TopText">Text of top side of cap (<see cref="Cap.TopText"/>)</param>
+--- <param name="SideText">Text of side of cap (<see cref="Cap.SideText"/>)</param>
+--- <param name="BottomText">text of bottom side of cap (<see cref="Cap.BottomText"/>)</param>
+--- <param name="MaterialID">ID of material cap is made from (<see cref="Cap.MaterialID"/>)</param>
+--- <param name="Surface">Type of cap surface - G for glossy, M for matting (<see cref="Cap.Surface"/>)</param>
+--- <param name="Size">Primary dimension of cap in millimeters (<see cref="Cap.Size"/>)</param>
+--- <param name="Size2">Secondary dimension of cap in millimeters (<see cref="Cap.Size2"/>)</param>
+--- <param name="Height">Height of cap in millimeters (Z-size, <see cref="Cap.Heigh"/>)</param>
+--- <param name="Is3D">Indicates if cap surface contains 3-dimensional drawing or writing (<see cref="Cap.Is3D"/>)</param>
+--- <param name="MainText">The yaer cap was found (<see cref="Cap.Year"/>)</param>
+--- <param name="CountryCode">ISO 3166 2-letters country code of country cap was found in (<see cref="Cap.CountryCode"/>)</param>
+--- <param name="Note">Additional textual note on cap (<see cref="Cap.Note"/>)</param>
+--- <param name="CompanyID">ID of company which's product was contained in object (bottle) closed by this cap (<see cref="Cap.CompanyID"/>)</param>
+--- <param name="ProductID">ID of product contained in object (bottle) closed by this cap (<see cref="Cap.ProductID"/>)</param>
+--- <param name="ProductTypeID">Type of product contained in object (bottle) closed by this cap (<see cref="Cap.ProductTypeID"/>)</param>
+--- <param name="StorageID">ID of storage cap is stored in (<see cref="Cap.StorageID"/>)</param>
+--- <param name="ForeColor2">Secondary foreground color (RGB value, <see cref="Cap.ForeColor2"/>)</param>
+--- <param name="PictureType">Indicates type of the most complicated image shown on ca - G for geometry, L for logo, D for drawing, P for photo (<see cref="Cap.PictureType"/>)</param>
+--- <param name="HasBottom">Indicates if there is something notable at cap bottom side (<see cref="Cap.HasBottom"/>)</param>
+--- <param name="HasSide">Indicates if there is something notable at cap side (<see cref="Cap.HasSide"/>)</param>
+--- <param name="AnotherPictures">Describes all but main pictures show on cap (<see cref="Cap.AnotherPictures"/>)</param>
+--- <param name="CategoryIDs">IDs of categories this cap is flagged with (<see cref="Category.CategoryID"/>)</param>
+--- <param name="Keywords">Keywords this cap is tagged with (<see cref="Keyword.Keyword"/>)</param>
+--- <param name="CountryOfOrigin">ISO 3166 2-letters code of country the cap originates from (<see cref="Cap.CountryOfOrigin"/>)</param>
+--- <param name="IsDrink">Indicates whete cap cosed object (bottle) with drink (<see cref="Cap.IsDrink"/>)</param>
+--- <param name="State">Indicates state of cap from 1 best to 5 worst (<see cref="Cap.State"/>)</param>
+--- <param name="TargetID">ID of object type (e.g. bottle) tha cap was used on (<see cref="Cap.TargetID"/>)</param>
+--- <param name="IsAlcoholic">When <paramref name="IsDrink"/> is true indicate sif the tring was alcoholic (<see cref="Cap.IsAlcoholic"/>)</param>
+--- <param name="CapSignIDs">IDs of signs the cap is marked with (<see cref="CapSign.CapSignID"/>)</param>
+--- <returns>A resultset containing maximally 100 rows from the <see cref="Cap"/> table most similar to cap described by procedure parameters</returns>
+CREATE PROCEDURE [dbo].[GetSimilarCaps] 
 	-- Add the parameters for the stored procedure here
 	@CapTypeID int = null, 
 	@MainTypeID int = null,

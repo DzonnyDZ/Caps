@@ -381,14 +381,6 @@
     <value>Main type image</value>
     <comment>Message box title</comment>
   </data>
-  <data name="msg_OnlyPNG" xml:space="preserve">
-    <value>Only images of PNG type are allowed.</value>
-    <comment>Message box text</comment>
-  </data>
-  <data name="fil_PNG" xml:space="preserve">
-    <value>PNG images (*.png)|*.png</value>
-    <comment>PNG images filter</comment>
-  </data>
   <data name="lbl_Size1Name" xml:space="preserve">
     <value>Size 1 name</value>
     <comment>Label text</comment>
@@ -410,11 +402,11 @@
     <comment>Message box title</comment>
   </data>
   <data name="msg_CopyMainTypeImageError" xml:space="preserve">
-    <value>Failed to copy main type image. Main type created without image.</value>
+    <value>Failed to save main type image. Main type created without image.</value>
     <comment>Error message box text</comment>
   </data>
   <data name="msg_CopyShapeImageError" xml:space="preserve">
-    <value>Failed to copy shape image. Shape created without image.</value>
+    <value>Failed to save shape image. Shape created without image.</value>
     <comment>Error message box text</comment>
   </data>
   <data name="txt_NewObject" xml:space="preserve">
@@ -660,10 +652,6 @@
   <data name="txt_TypeInformation" xml:space="preserve">
     <value>Type information</value>
     <comment>Frame title</comment>
-  </data>
-  <data name="fil_ImageTypes" xml:space="preserve">
-    <value>All image types (*.jpg, *.png, *.bmp, *.gif, *.wmf, *.emf, *.tif, *.hdp)|*.jpg;*.jpeg;*.png;*.bmp;*.dib;*.gif;*.tif;*.tiff;*.hdp;*.wdp|JPEG images (*.jpg, *.jpeg)|*.jpg;*.jpeg|PNG images (*.png)|*.png|BMP images (*.bmp, *.dib)|*.bmp;*.dib|GIF images (*.gif)|*.gif|TIFF images (*.tif, *.tiff)|*.tiff;*.tif|HD Photo (*.hdp, *.wdp)|*.hdp;*.wdp|All files (*.*)|*.*</value>
-    <comment>All supported image types</comment>
   </data>
   <data name="txt_CapTypeImage" xml:space="preserve">
     <value>Cap type image</value>
@@ -1025,16 +1013,12 @@
     <value>Error</value>
     <comment>Error message box title</comment>
   </data>
-  <data name="msg_CapImageExistsOverwrite" xml:space="preserve">
-    <value>Cap type image file {0} already exists. Overwrite?</value>
-    <comment>Error message text</comment>
-  </data>
   <data name="txt_OwervriteFile" xml:space="preserve">
     <value>Owervrite file</value>
     <comment>Message box title</comment>
   </data>
   <data name="err_CopyCapTypeImageFailed" xml:space="preserve">
-    <value>Copy cap type image file failed.{0}{1}{0}New cap type is without image!</value>
+    <value>Save cap type image file failed. New cap type is without image!</value>
     <comment>Error message</comment>
   </data>
   <data name="txt_CopyFile" xml:space="preserve">
@@ -1172,10 +1156,6 @@ Please verify connection settings and try again.</value>
   <data name="ex_UnsupportedTypeOfEntity" xml:space="preserve">
     <value>Unsupported type of entity</value>
   </data>
-  <data name="err_CreatingDirectoryCapType" xml:space="preserve">
-    <value>Error creating directoty {0}:{1}{2}{1}Cap type will be imageless.</value>
-    <comment>Error message</comment>
-  </data>
   <data name="coh_Target" xml:space="preserve">
     <value>Target</value>
     <comment>Column header</comment>
@@ -1215,14 +1195,6 @@ Please verify connection settings and try again.</value>
   <data name="cmd_SaveNext" xml:space="preserve">
     <value>Save_ &amp; next</value>
     <comment>Button text</comment>
-  </data>
-  <data name="err_CreatingDirectoryMainType" xml:space="preserve">
-    <value>Error creating directoty {0}:{1}{2}{1}Main type will be imageless.</value>
-    <comment>Error message</comment>
-  </data>
-  <data name="err_CreatingDirectoryShape" xml:space="preserve">
-    <value>Error creating directoty {0}:{1}{2}{1}Shape type will be imageless.</value>
-    <comment>Error message</comment>
   </data>
   <data name="msg_CapsSavedID" xml:space="preserve">
     <value>Cap saved under ID {0}.</value>
@@ -1296,16 +1268,12 @@ You should have maximally one main image per cap.</value>
   <data name="ex_UnsupportedSourceType" xml:space="preserve">
     <value>Unsupported source type</value>
   </data>
-  <data name="err_CreatingDirectorySign" xml:space="preserve">
-    <value>Error creating directoty {0}:{1}{2}{1}Cap sign will be imageless.</value>
-    <comment>Error message text</comment>
-  </data>
   <data name="lbl_Sign" xml:space="preserve">
     <value>Sign mar_k</value>
     <comment>Label</comment>
   </data>
   <data name="msg_CopyCapSignImageError" xml:space="preserve">
-    <value>Failed to copy cap sign image. Cap sign created without image.</value>
+    <value>Failed to save cap sign image. Cap sign created without image.</value>
     <comment>Error message text</comment>
   </data>
   <data name="tot_FavoriteCharacters" xml:space="preserve">
@@ -1492,7 +1460,7 @@ Doubleclick to edit.</value>
     <comment>Message box header</comment>
   </data>
   <data name="msg_CopyCapTypeImageError" xml:space="preserve">
-    <value>Failed to copy cap type image. Cap type created without image.</value>
+    <value>Failed to save cap type image. Cap type created without image.</value>
   </data>
   <data name="lbl_CapsCounts" xml:space="preserve">
     <value>Total caps count:</value>
@@ -1869,5 +1837,44 @@ Error when deleting the database:
   </data>
   <data name="err_FileNotFound" xml:space="preserve">
     <value>File not found</value>
+  </data>
+  <data name="fil_BitmapImages" xml:space="preserve">
+    <value>Bitmap files (JPEG, PNG, BMP, GIF, TIFF)|*.jpg;*.jpeg;*.jfif;*.png;*.bmp;*.dib;*.gif;*.tif;*.tiff;*.exif|JPEG images (*.jpg, *.jpeg, *.jfif)|*.jpg;*.jpeg;*.jfif|PNG images (*.png)|*.png|GIF images (*.gif)|*.gif|TIFF images (*.tiff, *.tif)|*.tiff;*.tif|Windows bitmaps (*.bmp, *.dib)|*.bmp;*.dib</value>
+    <comment>Supported bitmap image types</comment>
+  </data>
+  <data name="cmd_Browse" xml:space="preserve">
+    <value>...</value>
+    <comment>Browse button text</comment>
+  </data>
+  <data name="tot_Browse" xml:space="preserve">
+    <value>Browse</value>
+    <comment>Browse button tooltip</comment>
+  </data>
+  <data name="cmd_More" xml:space="preserve">
+    <value>...</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="txt_SelectAnotherImageQ" xml:space="preserve">
+    <value>Do you like to select another image?</value>
+  </data>
+  <data name="msg_CopyStorageImageError" xml:space="preserve">
+    <value>Failed to save storage image. Storage created without image.</value>
+    <comment>Error message box text</comment>
+  </data>
+  <data name="txt_StorageImage" xml:space="preserve">
+    <value>Storage image</value>
+    <comment>Message box title</comment>
+  </data>
+  <data name="err_OperationToCombineCannotBeNull" xml:space="preserve">
+    <value>An operation to combine cannot be null</value>
+  </data>
+  <data name="err_CannotBeEmpty" xml:space="preserve">
+    <value>{0} cannot be empty</value>
+  </data>
+  <data name="err_TypeIsNotSupported" xml:space="preserve">
+    <value>Type {0} is not supported by {1}</value>
+  </data>
+  <data name="err_TargetTypeNotSupported" xml:space="preserve">
+    <value>Target type {0} is not supported</value>
   </data>
 </root>

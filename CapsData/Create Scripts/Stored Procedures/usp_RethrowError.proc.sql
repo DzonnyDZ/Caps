@@ -1,4 +1,6 @@
-﻿CREATE PROCEDURE usp_RethrowError AS
+﻿--- <summary>Rethrows the current error</summary>
+--- <remarks>Call this procedure in <c>CATCH</c> handler. It reconstructs current error caught by the handler and re-throws is</remarks>
+CREATE PROCEDURE usp_RethrowError AS
     -- Return if there is no error information to retrieve.
     IF ERROR_NUMBER() IS NULL
         RETURN;

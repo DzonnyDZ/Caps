@@ -4,7 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{611821ED-AD4A-42A0-90A5-F7F347CBC73F}"
 	ProjectSection(SolutionItems) = preProject
 		!version!.vb = !version!.vb
-		CapsData.mdf = CapsData.mdf
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{E5E3F6DB-D55E-47C2-9105-6FA26BAEA9A2}"
@@ -15,6 +14,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd party", "3rd party", "{DA79B2EB-8B1D-401E-B0CE-74CEB594D574}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CapsConsole", "CapsConsole\CapsConsole.vbproj", "{1F936FCC-85CA-4A63-AE42-1AD3A8E1B688}"
+	ProjectSection(ProjectDependencies) = postProject
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3} = {67CBC824-A49E-4E9B-A947-360F3DFE65C3}
+	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CapsConsole setup", "CapsConsole setup\CapsConsole setup.vdproj", "{225DF386-F844-4807-9ACB-B1CAE36598A7}"
 EndProject

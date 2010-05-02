@@ -89,7 +89,7 @@ Partial Public Class winNewCap
                 If IntroducedImages Is Nothing Then Exit Sub
                 'Prepare for commit
                 For Each img In IntroducedImages
-                    img.Cap = Cap
+                    img.Item1.Cap = Cap
                 Next
                 .Context.Images.AddObjects(IntroducedImages)
                 If .Keywords IsNot Nothing Then
@@ -113,8 +113,8 @@ Partial Public Class winNewCap
                 Catch ex As Exception
                     mBox.Error_XPTIBWO(ex, My.Resources.msg_ErrorCommittingChangesToDatabase, My.Resources.txt_DatabaseError, mBox.MessageBoxIcons.Error, mBox.MessageBoxButton.Buttons.OK, Me)
                     'Undo
+                    .UndoCopyImages(IntroducedImages)
                     .ResetContext()
-                    .UndoCopyImages(From img In IntroducedImages Select img.RelativePath)
                     Exit Sub
                 End Try
                 'For newly introduced cap type copy image

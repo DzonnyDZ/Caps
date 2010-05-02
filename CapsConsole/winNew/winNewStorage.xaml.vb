@@ -26,6 +26,12 @@ Partial Public Class winNewStorage
         chkHasCaps.Visibility = If(HasCapsState.HasFlag(CheckBoxState.Visible), Visibility.Visible, Visibility.Hidden)
     End Sub
     Private Sub btnOK_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnOK.Click
+        If Not IO.File.Exists(txtImagePath.Text) Then
+            Select Case mBox.ModalF_PTWBIa(My.Resources.msg_FileNotExists_ContinueWOImage, My.Resources.txt_StorageImage, Me, mBox.MessageBoxButton.Buttons.Yes Or WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons.No, mBox.GetIcon(mBox.MessageBoxIcons.Question), txtImagePath.Text)
+                Case Forms.DialogResult.Yes
+                Case Else : Exit Sub
+            End Select
+        End If
         Try
             NewObject = New Storage() With {
                 .StorageNumber = txtNumber.Text,
@@ -46,6 +52,17 @@ Partial Public Class winNewStorage
             mBox.Error_XTW(ex, ex.GetType.Name, Me)
             Exit Sub
         End Try
+        If IO.File.Exists(txtImagePath.Text) Then
+            Dim imagePath = txtImagePath.Text
+SaveImage:  Try
+                NewObject.SaveImage(imagePath, True)
+            Catch ex As Exception
+                If mBox.Error_XPTIBWO(ex, My.Resources.msg_CopyStorageImageError & vbCrLf & My.Resources.txt_SelectAnotherImageQ, My.Resources.txt_FileSystemError, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Yes Or mBox.MessageBoxButton.Buttons.Ignore, Me) = Forms.DialogResult.Yes Then
+                    imagePath = GetImage(imagePath)
+                    If imagePath IsNot Nothing Then GoTo SaveImage
+                End If
+            End Try
+        End If
         Me.DialogResult = True
         newObjects.Add(NewObject)
         Me.Close()
@@ -83,5 +100,9 @@ Partial Public Class winNewStorage
             End If
             Me.newObjects.AddRange(newObjects)
         End Using
+    End Sub
+
+    Private Sub btnImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnImage.Click
+        txtImagePath.Text = If(GetImage(txtImagePath.Text), txtImagePath.Text)
     End Sub
 End Class
