@@ -124,6 +124,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Name="mniImagesClear" Header="{x:Static res:Resources.mni_ImagesClear}" ToolTip="{x:Static res:Resources.tot_ImagesClear}" />
+                <MenuItem Name="mniSyncImg" Header="{x:Static res:Resources.mni_SyncImages}" ToolTip="{x:Static res:Resources.tot_SyncImages}"/>
             </MenuItem>
             <MenuItem Header="{x:Static res:Resources.mni_Help}"  Name="mniHelp">
                 <MenuItem Header="{x:Static res:Resources.mni_About}" Name="mniAbout"/>

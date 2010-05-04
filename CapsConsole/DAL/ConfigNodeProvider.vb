@@ -257,6 +257,16 @@ Public Class ConfigNodeProvider
                 Me!StorageStorage = value.ToString.ToLower
             End Set
         End Property
+
+        ''' <summary>Gets value indicating if any kind of image is stored in database</summary>
+        ''' <returns>True if any of small images are stored in database or any size of cap image is stored in database; false otherwise</returns>
+        Public ReadOnly Property StoreAnythingInDatabase As Boolean
+            Get
+                Return CapSignStorage = Storage.Database OrElse CapTypeStorage = Storage.Database OrElse MainTypeStorage = Storage.Database OrElse
+                       ShapeStorage = Storage.Database OrElse StorageStorage = Storage.Database OrElse CapsInDatabase.Length > 0
+            End Get
+        End Property
+
         ''' <summary>Sets value of <see cref="CapSignStorage"/>, <see cref="CapTypeStorage"/>, <see cref="MainTypeStorage"/>, <see cref="ShapeStorage"/> and <see cref="StorageStorage"/> to one common value</summary>
         ''' <param name="value">Vallue to set <see cref="CapSignStorage"/>, <see cref="CapTypeStorage"/>, <see cref="MainTypeStorage"/>, <see cref="ShapeStorage"/> and <see cref="StorageStorage"/> properties to.</param>
         Public Sub SetOtherImagesStorage(ByVal value As Storage)

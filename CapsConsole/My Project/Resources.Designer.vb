@@ -295,6 +295,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Change database settings ....
+        '''</summary>
+        Public ReadOnly Property cmd_DatabaseSettings() As String
+            Get
+                Return ResourceManager.GetString("cmd_DatabaseSettings", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to _Delete.
         '''</summary>
         Public ReadOnly Property cmd_Delete() As String
@@ -2129,6 +2138,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Migrate images ....
+        '''</summary>
+        Public ReadOnly Property mni_SyncImages() As String
+            Get
+                Return ResourceManager.GetString("mni_SyncImages", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to _Tools.
         '''</summary>
         Public ReadOnly Property mni_Tools() As String
@@ -2588,6 +2606,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Allows to change database settings without opening it in main window. Youse when you have changed database setttings and now you cannot open the database..
+        '''</summary>
+        Public ReadOnly Property tot_DatabaseSettings() As String
+            Get
+                Return ResourceManager.GetString("tot_DatabaseSettings", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Here you can paste characters that you often use in caps descriptions and that are not present on keyboard. Than you can Copy &amp; Paste or Drag &amp; Drop them to appropriate fields.
         '''Doubleclick to edit..
         '''</summary>
@@ -2658,6 +2685,15 @@ Namespace My.Resources
         Public ReadOnly Property tot_Sign() As String
             Get
                 Return ResourceManager.GetString("tot_Sign", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Migrates images stored in file system nad database.
+        '''</summary>
+        Public ReadOnly Property tot_SyncImages() As String
+            Get
+                Return ResourceManager.GetString("tot_SyncImages", resourceCulture)
             End Get
         End Property
         
@@ -3056,6 +3092,16 @@ Namespace My.Resources
         Public ReadOnly Property txt_ImageRoot() As String
             Get
                 Return ResourceManager.GetString("txt_ImageRoot", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to You have changed database sttings so some images are now stored in file system. Please select folder to store images in.
+        '''Note: If you cancel this dialog, you may have troubles seeing images..
+        '''</summary>
+        Public ReadOnly Property txt_ImageRootRequired() As String
+            Get
+                Return ResourceManager.GetString("txt_ImageRootRequired", resourceCulture)
             End Get
         End Property
         

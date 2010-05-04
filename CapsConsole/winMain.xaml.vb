@@ -70,7 +70,7 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
         My.Settings.UserConnectionString = SqlConnection.ConnectionString
         My.Settings.Save()
 
-        If Not IO.Directory.Exists(My.Settings.ImageRoot) Then
+        If (My.Settings.ImageRoot = "" OrElse Not IO.Directory.Exists(My.Settings.ImageRoot)) AndAlso (Settings.Images.StoreAnythingInDatabase) Then
             Dim dlg As New Forms.FolderBrowserDialog With {.Description = My.Resources.des_SelectImagesRootDirectory}
             If dlg.ShowDialog = Forms.DialogResult.OK Then
                 My.Settings.ImageRoot = dlg.SelectedPath
@@ -148,7 +148,20 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
 
     Private Sub mniDbSettings_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniDbSettings.Click
         Using dlg As New winDatabaseSettings With {.Owner = Me}
+            Dim oldAnythingInDatabase = Settings.Images.StoreAnythingInDatabase
             dlg.ShowDialog()
+            If Not oldAnythingInDatabase AndAlso Settings.Images.StoreAnythingInDatabase Then
+                Dim fdlg As New Forms.FolderBrowserDialog
+                fdlg.Description = My.Resources.txt_ImageRootRequired
+                Try
+                    fdlg.SelectedPath = My.Settings.ImageRoot
+                Catch :End Try
+                Dim iwindow As New Tools.WindowsT.NativeT.Win32Window(Me)
+                If fdlg.ShowDialog(iwindow) Then
+                    My.Settings.ImageRoot = fdlg.SelectedPath
+                    My.Settings.Save()
+                End If
+            End If
         End Using
     End Sub
 
@@ -313,5 +326,12 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
     End Sub
     Private Sub msgCapID_Shown(ByVal sender As mBox, ByVal e As EventArgs)
         DirectCast(sender.MidControl, TextBox).Focus()
+    End Sub
+
+    Private Sub mniSyncImg_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniSyncImg.Click
+        Using win As New winSyncImages
+            win.Owner = Me
+            win.ShowDialog()
+        End Using
     End Sub
 End Class

@@ -107,6 +107,7 @@
     * In New Main type/ShapeSign dialogs and when creating a new cap type in cap editor and first attempt to import an image fails, user is offered 2nd chance (and then 3rd etc. until cancel).
     * Storage images (onew image per storage)
     * Tooltips for browse (...) buttons
+    * "Change database settings" button in "Select database dialog"
     
 Pending issues:
 ===============

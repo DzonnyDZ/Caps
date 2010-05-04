@@ -198,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="winSyncImages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="XAML helpers\ColorPicker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -365,6 +369,9 @@
     <Compile Include="winNew\CreateNewObjectDialog.vb" />
     <Compile Include="winNew\winNewSign.xaml.vb">
       <DependentUpon>winNewSign.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="winSyncImages.xaml.vb">
+      <DependentUpon>winSyncImages.xaml</DependentUpon>
     </Compile>
     <Compile Include="XAML helpers\AttachedProperties.vb" />
     <Compile Include="XAML helpers\ColorPicker.xaml.vb">

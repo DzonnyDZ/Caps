@@ -13,6 +13,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -40,5 +41,6 @@
         <Button Grid.Column="1" Grid.Row="2" Padding="3,0,3,0" HorizontalAlignment="Center" Name="btnTest" Content="{x:Static res:Resources.cmd_Test}" ToolTip="{x:Static res:Resources.tot_Test}"/>
         <Button Grid.Column="2" Grid.ColumnSpan="1" Grid.Row="2"  Name="btnWizard" VerticalAlignment="center" HorizontalAlignment="Center" Width="auto" Height="auto" Content="{x:Static res:Resources.cmd_UseWizard}"/>
         <Button Grid.Column="3" Grid.Row="2" Padding="3,0,3,0" HorizontalAlignment="Center" Name="btnCancel" IsCancel="True" Content="{x:Static res:Resources.cmd_Cancel}"/>
+        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Padding="3,0,3,0" HorizontalAlignment="Center" VerticalAlignment="Center" Name="btnDbSettings" Content="{x:Static res:Resources.cmd_DatabaseSettings}" ToolTip="{x:Static res:Resources.tot_DatabaseSettings}"/>
     </Grid>
 </Window>

@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports Microsoft.Win32
 Imports Tools.WindowsT.NativeT
+Imports Caps.Data
 
 ''' <summary>Dialog to select database connection</summary>
 Partial Public Class winSelectDatabase
@@ -90,5 +91,16 @@ Partial Public Class winSelectDatabase
         If dlg.ShowDialog(New Win32Window(Me)) Then
             txtImageRoot.Text = dlg.SelectedPath
         End If
+    End Sub
+
+    Private Sub btnDbSettings_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnDbSettings.Click
+        Try
+            Using context As New CapsDataContext(New System.Data.EntityClient.EntityConnection(CapsDataContext.DefaultMetadataWorkspace, New SqlConnection(ConnectionString.ToString)))
+                Dim win As New winDatabaseSettings(context) With {.Owner = Me}
+                win.ShowDialog()
+            End Using
+        Catch ex As Exception
+            mBox.Error_XTW(ex, ex.GetType.Name, Me)
+        End Try
     End Sub
 End Class

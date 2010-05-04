@@ -1877,4 +1877,24 @@ Error when deleting the database:
   <data name="err_TargetTypeNotSupported" xml:space="preserve">
     <value>Target type {0} is not supported</value>
   </data>
+  <data name="cmd_DatabaseSettings" xml:space="preserve">
+    <value>Change database settings ...</value>
+    <comment>Button text</comment>
+  </data>
+  <data name="tot_DatabaseSettings" xml:space="preserve">
+    <value>Allows to change database settings without opening it in main window. Youse when you have changed database setttings and now you cannot open the database.</value>
+    <comment>Button tooltip</comment>
+  </data>
+  <data name="txt_ImageRootRequired" xml:space="preserve">
+    <value>You have changed database sttings so some images are now stored in file system. Please select folder to store images in.
+Note: If you cancel this dialog, you may have troubles seeing images.</value>
+  </data>
+  <data name="mni_SyncImages" xml:space="preserve">
+    <value>Migrate images ...</value>
+    <comment>Menu item text</comment>
+  </data>
+  <data name="tot_SyncImages" xml:space="preserve">
+    <value>Migrates images stored in file system nad database</value>
+    <comment>Manu item tool tip</comment>
+  </data>
 </root>
