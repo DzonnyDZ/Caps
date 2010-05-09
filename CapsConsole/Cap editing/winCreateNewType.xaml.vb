@@ -125,7 +125,7 @@ Public Class winCreateNewType : Implements IDisposable
     End Sub
 
     Private Sub cmdPicturePath_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmdPicturePath.Click
-        Dim dlg As New System.Windows.Forms.OpenFileDialog() With {
+        Dim dlg As New Microsoft.Win32.OpenFileDialog() With {
             .DefaultExt = "png",
             .Filter = My.Resources.fil_BitmapImages
         }
@@ -134,7 +134,7 @@ Public Class winCreateNewType : Implements IDisposable
                 dlg.FileName = txtPicturePath.Text
             Catch : End Try
         End If
-        If dlg.ShowDialog = Forms.DialogResult.OK Then
+        If dlg.ShowDialog Then
             txtPicturePath.Text = dlg.FileName
         End If
     End Sub

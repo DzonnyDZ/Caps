@@ -166,7 +166,7 @@ Public Class ConfigNodeProvider
             Get
                 Dim val = Me!CapsInDatabase
                 If val = "" Then Return New Integer() {}
-                Return (From item In val.Split(",") Select Integer.Parse(val.Trim, System.Globalization.CultureInfo.InvariantCulture)).Distinct.ToArray
+                Return (From item In val.Split(",") Select Integer.Parse(item.Trim, System.Globalization.CultureInfo.InvariantCulture)).Distinct.ToArray
             End Get
             Set(ByVal values As Integer())
                 Dim val$
@@ -182,7 +182,7 @@ Public Class ConfigNodeProvider
             Get
                 Dim val = Me!CapsInFileSystem
                 If val = "" Then Return New Integer() {}
-                Return (From item In val.Split(",") Select Integer.Parse(val.Trim, System.Globalization.CultureInfo.InvariantCulture)).Distinct.ToArray
+                Return (From item In val.Split(",") Select Integer.Parse(item.Trim, System.Globalization.CultureInfo.InvariantCulture)).Distinct.ToArray
             End Get
             Set(ByVal values As Integer())
                 Dim val$

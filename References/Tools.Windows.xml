@@ -6939,7 +6939,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<exception cref="T:System.ArgumentNullException"><paramref name="Window"/> is null</exception>
 	<version version="1.5.2">Method instroduced</version>
 </member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.GetOwner(System.Windows.Window)">
-	<summary>Gets owner of <see cref="T:System.Windows.Window"/> as native <see cref="!:IWin32Window"/></summary>
+	<summary>Gets owner of <see cref="T:System.Windows.Window"/> as native <see cref="T:System.Windows.Interop.IWin32Window"/></summary>
 	<param name="Window">Window to get owner of</param>
 	<returns><see cref="T:System.Windows.Forms.Control"/> such as <see cref="T:System.Windows.Forms.Form"/> that is owner of <paramref name="Window"/> or <see cref="T:System.Windows.Forms.NativeWindow"/> when owner of <paramref name="Window"/> is not <see cref="T:System.Windows.Forms.Control"/>; <see langword="null"/> when <paramref name="Window"/> has no owner.</returns>
 	<exception cref="T:System.ArgumentNullException"><paramref name="Window"/> is null</exception>
@@ -6956,6 +6956,33 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Owner">New owner of <paramref name="Window"/>; null to remove parent of <paramref name="Window"/></param>
 	<exception cref="T:System.ArgumentNullException"><paramref name="Window"/> is null</exception>
 	<version version="1.5.3">Method instroduced</version>
+</member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.ShowDialog(System.Windows.Forms.CommonDialog,System.Windows.Window)">
+	<summary>Runs a common dialog box with the specified owner (<see cref="T:System.Windows.Window"/>).</summary>
+	<param name="dlg">A dialog to be shown</param>
+	<param name="owner">A <see cref="T:System.Windows.Window"/> that will own modal dialog. If null modal dialog is shown without explicit parent.</param>
+	<returns>True if the user clicks OK in the dialog box; otherwise, False.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="dlg"/> is null</exception>
+	<version version="1.3.5">This function is new in version 1.3.5</version>
+</member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.ShowDialog(System.Windows.Forms.CommonDialog,System.Windows.Interop.IWin32Window)">
+	<summary>Runs a common dialog box with the specified owner (<see cref="T:System.Windows.Interop.IWin32Window"/>).</summary>
+	<param name="owner">An <see cref="T:System.Windows.Interop.IWin32Window"/> that will own modal dialog. If null modal dialog is shown without explicit parent.</param>
+	<param name="dlg">A dialog to be shown</param>
+	<returns>True if the user clicks OK in the dialog box; otherwise, False.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="dlg"/> is null</exception>
+	<version version="1.3.5">This function is new in version 1.3.5</version>
+</member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.Win32WindowHelper.#ctor(System.Windows.Window)">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.WindowsT.InteropT.InteropExtensions.Win32WindowHelper"/> class from <see cref="T:System.Windows.Window"/></summary>
+	<param name="window">A <see cref="T:System.Windows.Window"/></param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="window"/> is null</exception>
+</member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.Win32WindowHelper.#ctor(System.Windows.Interop.IWin32Window)">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.WindowsT.InteropT.InteropExtensions.Win32WindowHelper"/> class from <see cref="T:System.Windows.Interop.IWin32Window"/></summary>
+	<param name="window">A <see cref="T:System.Windows.Interop.IWin32Window"/></param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="window"/> is null</exception>
+</member><member name="P:Tools.WindowsT.InteropT.InteropExtensions.Win32WindowHelper.Handle">
+	<summary>Gets the handle to the window represented by the implementer.</summary>
+	<returns>A handle to the window represented by the implementer.</returns>
+</member><member name="T:Tools.WindowsT.InteropT.InteropExtensions.Win32WindowHelper">
+	<summary>Helper class which implements <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Interop.IWin32Window"/> interfaces for various purposes</summary>
 </member><member name="T:Tools.WindowsT.InteropT.InteropExtensions">
 	<summary>Contains extension methods for WPF - WinForms interoperability</summary>
 	<version version="1.5.3." stage="Alpha">Introduced new overloads to <see cref="M:Tools.WindowsT.InteropT.InteropExtensions.Show(System.Windows.Forms.Form,System.Windows.Window)"/> and <see cref="M:Tools.WindowsT.InteropT.InteropExtensions.ShowDialog(System.Windows.Forms.Form,System.Windows.Window)"/> methods to support <see cref="T:System.Windows.Interop.IWin32Window"/>.</version>

@@ -1,6 +1,6 @@
 ﻿Imports System.Globalization
 Imports System.Reflection
-Imports Tools.ReflectionT
+Imports Tools.ReflectionT, Tools.WindowsT.InteropT.InteropExtensions
 
 Partial Public Class winSettings
 
@@ -67,7 +67,7 @@ Partial Public Class winSettings
         Try
             dlg.SelectedPath = txtImageRoot.Text
         Catch : End Try
-        If dlg.ShowDialog = Forms.DialogResult.OK Then
+        If dlg.ShowDialog(Me) Then
             txtImageRoot.Text = dlg.SelectedPath
         End If
     End Sub

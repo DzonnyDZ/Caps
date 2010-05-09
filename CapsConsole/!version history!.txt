@@ -108,6 +108,7 @@
     * Storage images (onew image per storage)
     * Tooltips for browse (...) buttons
     * "Change database settings" button in "Select database dialog"
+    * File, folder and color dialogs should be fully modal now.
     
 Pending issues:
 ===============
@@ -133,3 +134,6 @@ Pending issues:
 * Translations
 * More tooltips with cap images in cap editor (object, sign, storage, product, product type, company, category)
 * Utilize storage image (tooltip in cap editor)
+* Save & next (w/o clearing) clears signs
+* Signs not loaded when editing existing cap
+* Search for similar to existing

@@ -7,7 +7,7 @@
 >
     <Window.Resources>
         <DataTemplate x:Key="NudTemplate">
-            <tc:NumericUpDown/>
+            <tc:NumericUpDown ToolTip="0 means original size of image" Value="{Binding ., Mode=TwoWay}"/>
         </DataTemplate>
     </Window.Resources>
 
@@ -25,41 +25,24 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" >
-            <GroupBox.Header >
-                <RadioButton Content="Migrate images from File System to Database" Grid.Row="0" Grid.ColumnSpan="2" IsChecked="True" GroupName="optMigrationDirection"/>
-            </GroupBox.Header>
-            <StackPanel Orientation="Vertical" >
-                <TextBlock Text="Sizes of images stored in file system"/>
-                <ItemsControl ItemTemplate="{StaticResource NudTemplate}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel IsItemsHost="True"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-                <WrapPanel Orientation="Horizontal" MinHeight="24"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="auto"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Orientation="Horizontal" >
-                        <Button Content="Save these settings" ToolTip="Stores these settings as preffered sizes of images stored in database"/>
-                        <Button Content="Delete other images" ToolTip="Deletes images from database which are not of given sizes"/>
-                    </StackPanel>
-                    <Button Content="+" HorizontalAlignment ="right" Grid.Column="1"/>
-                </Grid>
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Header="Image types">
+            <StackPanel Orientation="Vertical">
+                <CheckBox Content="Cap signs" Name="chkCapSigns" />
+                <CheckBox Content="Cap types" Name="chkCapTypes" />
+                <CheckBox Content="Main types" Name="chkMainTypes" />
+                <CheckBox Content="Shapes" Name="chkShapes" />
+                <CheckBox Content="Storages" Name="chkStorages" />
+                <CheckBox Content="Caps (according to size selection below)" Name="chkCaps" />
             </StackPanel>
         </GroupBox>
 
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" >
             <GroupBox.Header >
-                <RadioButton Content="Migrate images from Database to File System" GroupName="optMigrationDirection"/>
+                <RadioButton Content="Migrate images from File System to Database" Grid.Row="0" Grid.ColumnSpan="2" IsChecked="True" GroupName="optMigrationDirection"/>
             </GroupBox.Header>
             <StackPanel Orientation="Vertical" >
-                <TextBlock Text="Sizes of images stored in file system"/>
-                <ItemsControl ItemTemplate="{StaticResource NudTemplate}" MinHeight="24">
+                <TextBlock Text="Sizes of images stored in database"/>
+                <ItemsControl ItemTemplate="{StaticResource NudTemplate}" MinHeight="24" Name="icImagesInDb">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel IsItemsHost="True"/>
@@ -72,30 +55,47 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Horizontal" >
-                        <Button Content="Save these settings" ToolTip="Stores these settings as preffered sizes of images stored in file system"/>
-                        <Button Content="Delete other images" ToolTip="Deletes images from file system which are not of given sizes"/>
+                        <Button Content="Save these settings" ToolTip="Stores these settings as preffered sizes of images stored in database" Name="btnSaveDb" />
+                        <Button Content="Delete other images" ToolTip="Deletes images of caps from database which are not of given sizes" Name="btnDelDb" />
                     </StackPanel>
-                    <Button Content="+" HorizontalAlignment ="right" Grid.Column="1"/>
+                    <Button Content="+" HorizontalAlignment ="right" Grid.Column="1" Name="btnAddDb" ToolTip="Add size" />
                 </Grid>
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Header="Image types">
-            <StackPanel Orientation="Vertical">
-                <CheckBox Content="Cap signs"/>
-                <CheckBox Content="Cap types"/>
-                <CheckBox Content="Main types"/>
-                <CheckBox Content="Shapes"/>
-                <CheckBox Content="Storages"/>
-                <CheckBox Content="Caps (according to size selection above)"/>
+        <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" >
+            <GroupBox.Header >
+                <RadioButton Content="Migrate images from Database to File System" GroupName="optMigrationDirection"/>
+            </GroupBox.Header>
+            <StackPanel Orientation="Vertical" >
+                <TextBlock Text="Sizes of images stored in file system"/>
+                <ItemsControl ItemTemplate="{StaticResource NudTemplate}" MinHeight="24" Name="icImagesInFS">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" >
+                        <Button Content="Save these settings" ToolTip="Stores these settings as preffered sizes of images stored in file system" Name="btnSaveFS" />
+                        <Button Content="Delete other images" ToolTip="Deletes images of caps from file system which are not of given sizes" Name="btnDelFS" />
+                    </StackPanel>
+                    <Button Content="+" HorizontalAlignment ="right" Grid.Column="1" Name="btnAddFS" ToolTip="Add size" />
+                </Grid>
             </StackPanel>
         </GroupBox>
 
         <Label Content="Image root" Grid.Column="0" Grid.Row="3" FontFamily="Image root"/>
-        <Label Grid.Column="1" Grid.Row="3"/>
-        <Button Content="Change ..." Grid.Column="3" Grid.Row="3"/>
+        <Label Grid.Column="1" Grid.Row="3" Name="lblImageRoot" />
+        <Button Content="Change ..." Grid.Column="3" Grid.Row="3" Name="btnChangeImageRoot" />
 
-        <Button Grid.Row="4" HorizontalAlignment="Center" Content="Migrate" Grid.ColumnSpan="3"/>
-        <Button Grid.Row="4" HorizontalAlignment="Right" Content="Cancel" Grid.ColumnSpan="2" Grid.Column="1" IsCancel="True"/>
+        <CheckBox Grid.Column="0" Grid.Row="4" Content="Replace existing" Grid.ColumnSpan="2" Name="chkReplace"/>
+        <Button Grid.Row="4" HorizontalAlignment="Center" Content="Migrate" Grid.ColumnSpan="3" Name="btnMigrate" />
+        <Button Grid.Row="4" HorizontalAlignment="Right" Content="Cancel" Grid.ColumnSpan="2" Grid.Column="1" IsCancel="True" Name="btnCancel" />
     </Grid>
 </Window>

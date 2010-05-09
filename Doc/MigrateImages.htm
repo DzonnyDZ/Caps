@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Migrate Images</title>
+</head>
+<body>
+    <h1>Migrate Images</h1>
+    <p>
+        Primary use of this dialo is to copy images from file system to database and vice versa.
+        It can also remove images from file system or from datbase which sizes are compatible with sizes of images that should be stored in the storage.
+    </p>
+    <h2>Image storage</h2>
+    <p>
+        The Caps Console application allows you to store images of caps and other items either in database or in file system.
+        Storing images in file system has several advantages - mainly images in files system are easilly accessible and can be changed, replaced and otherwise managed from file and image management tools.
+        Storing images in database helps mainly when you have database on server and it's accessed from different machines (not meaning web access).
+    </p>
+    <p>
+        Images of simple items (cap signs, cap types, main types, shapes and storages) are stored only in one size - the original size of image provided by you when creating an item is kept.
+        Recomended size for all item types except storages is 32×32 or 64×64 pixels, PNG format.
+        Storages images should be bigger (about 1024px) and it's OK for them not to be square.
+    </p>
+    <p>
+        Images of caps are stored in a different way - several sizes of each image. Typically image in original size si stored, image for big preview (i.e. 1024px) and medium preview (i.e. 256px) and small preview (i.e. 64px).
+        It's recommended to store original image to preserve all details and 256px and 64px thumbnails to make application working faster and consuming less memory. Tooltips and image preview uses these two sizes.
+        Big preview can be used on web or can replace original image if you have limited disk space (i.e. on hosting server).
+    </p>
+    <h3>File system storage</h3>
+    <p>
+        When storing images in file system, you must select so-called <strong>Image root</strong>.
+        It's folder the application stores images in and looks for images when showing them.
+        Internal folder structure of Image root is governed by the application and you should not change it.
+        However you can edit and replace images stored there using file management tools and image editing tools.
+        You can also manually delete images if you don't wont them - but be carefull:
+        Deleting images of simple objects leads to images of those objects not being displayed.
+        Deleting 256px or 64px thumbnails of caps leads to application working slower and consuming much more memory (because it needs to load a big image and resize it).
+    </p>
+    <p>The Image root folder contains following subfolders:</p>
+    <dl>
+        <dt>CapSing</dt>
+        <dd>Contains images of Cap signs. All images are in PNG format. Size of image is kept unchanged whan you are creating or editing Cap sign.</dd>
+        <dd>Name of image is ID of Cap sign.</dd>
+        <dt>CapType</dt>
+        <dd>Contains images of Cap types. All images are in PNG format. Size of image is kept unchanged whan you are creating or editing Cap type.</dd>
+        <dd>Name of image is ID of Cap type.</dd>
+        <dt>MainType</dt>
+        <dd>Contains images of Main types. All images are in PNG format. Size of image is kept unchanged whan you are creating or editing Main type.</dd>
+        <dd>Name of image is ID of Main type.</dd>
+        <dt>Shape</dt>
+        <dd>Contains images of Shapes. All images are in PNG format. Size of image is kept unchanged whan you are creating or editing Shape.</dd>
+        <dd>Name of image is ID of Shape.</dd>
+        <dt>Storage</dt>
+        <dd>Contains images of Storages. All images are in PNG format. Size of image is kept unchanged whan you are creating or editing Storage.</dd>
+        <dd>Name of image is ID of Storage.</dd>
+        <dt>original</dt>
+        <dd>Contains images of Caps in original size. Images can be in many formats (JPEG, GIF, TIFF, BMP, PNG).</dd>
+        <dd>Name of image is kept same as name of image you've originally specified. In case of coflict with existing image, _ and number is added.</dd>
+        <dt>Several folders with names like 256_256, 64_64 etc.</dt>
+        <dd>Keeps down-sized thumbnails and previews of images. Numbers are sizes in pixels.</dd>
+        <dd>Both numbers are always equal, however images in those folders can be non-square. In such (common) case the image is scaled down proportionally so that longer side (width or height) is same as namber in folder name.</dd>
+    </dl>
+    <p>
+        You can specify in database configuration which sizes of images are stored in file system.
+        You can also specify in database configuration images of which simple obejcts are stored in database and of which in file system.
+    </p>
+    <h3>Database storage</h3>
+    <p>
+        When images are stored in database similar rules apply as when stored in file system:
+        Images of simple objects are stored in one size (the original one - 64×64 px is recommended for all simple items except storages) and images of caps are stored in sizes given in configuration and optionally in original size.
+        Images of caps as well as of simple objects are stored in their original format (JPEG, TIFF, GIF, BMP and PNG are supported).
+    </p>
+    <p>
+        While in file system image sizes of Cap images are identified in folder name as maximal size of longer side of image (and folder original is used for images in original size) in database size is determined for each image separatelly and both - width and height are stored.
+        So, in database storage, there is no explicit indication of original size image.
+    </p>
+    <p>
+        One rule apply whe storing cap images in file system and in database:
+        When storing resized images only downscaling is performed.
+        Images are not enlarged (with exception when original image is smaller than the smallest image size used).
+    </p>
+    <img src="prtsc/MigrateImages.png" alt="Migrate Images dialog" />
+    <h2>Dialog description</h2>
+    <dl>
+        <dt>Image types</dt>
+        <dd>This frame allows you to chose which types of images will be migrated whne <strong>Migrate</strong> is pressed.</dd>
+        <dd>
+            <dl>
+                <dt>Cap signs</dt>
+                <dd>Images of cap signs</dd>
+                <dt>Cap types</dt>
+                <dd>Images of cap types</dd>
+                <dt>Main types</dt>
+                <dd>Images of main types</dd>
+                <dt>Shapes</dt>
+                <dd>Images of shapes</dd>
+                <dt>Storages</dt>
+                <dd>Images of storages</dd>
+                <dt>Caps</dt>
+                <dd>Images of caps</dd>
+                <dd>Note: You should setup which sizes of cap images are stored in storage (below).</dd>
+            </dl>
+        </dd>
+        <dt>Migrate images from File System to Database</dt>
+        <dd>Check this option if you want to copy images currently stored in file system to database</dd>
+        <dd>
+            <dl>
+                <dt>Sizes of images stored in database</dt>
+                <dd>The list below contains sizes of images (in pixels of longer side) to be stored in database (0 means original size).</dd>
+                <dd>Initially the list contains setting from database settings. To remove item from list press delete.</dd>
+                <dt>Save these settings</dt>
+                <dd>Save this choice of image sizes to be stored in database to database settings.</dd>
+                <dt>Delete other images</dt>
+                <dd>Deletes images of caps from database which size (lenght of longer side in pixels) is not one of sizes selected above.</dd>
+                <dd>When original size (0) is specified as one of sizes of images stored in database, the biggest variant of each images is treated as the original one and is not deleted.</dd>
+                <dt>+</dt>
+                <dd>Adds a new numeric up-down control to list above.</dd>
+            </dl>
+        </dd>
+       <dt>Migrate images from Database to File System</dt>
+       <dd>Check this option if you want to copy images currently stored in database to file system</dd>
+        <dd>
+            <dl>
+                <dt>Sizes of images stored in file system</dt>
+                <dd>The list below contains sizes of images (in pixels of longer side) to be stored in file system (0 means original size).</dd>
+                <dd>Initially the list contains setting from database settings. To remove item from list press delete.</dd>
+                <dt>Save these settings</dt>
+                <dd>Save this choice of image sizes to be stored in file system to database settings.</dd>
+                <dt>Delete other images</dt>
+                <dd>Deletes images of caps from file system which size (lenght of longer side in pixels) is not one of sizes selected above.</dd>
+                <dt>+</dt>
+                <dd>Adds a new numeric up-down control to list above.</dd>
+            </dl>
+        </dd>
+        <dt>Image root</dt>
+        <dd>Shows path of folder where images are currently stored. Press <strong>Change</strong> to change it. Note: The change is stored to application settings (affects rest of application).</dd>
+        <dt>Replace existing</dt>
+        <dd>Check this box to force copy all images, even when they exist in target. This does not affect images not in source.</dd>
+        <dd>Note: You should only copy images from source to destination when source contains images of same or bigger size than destination, otherwise images are not copyied with exception of the smallest one (or original) because it does not make sense to enlage small images.</dd>
+        <dt>Migrate</dt>
+        <dd>
+            Performs image migration from file system to database of from database to file system.
+            For each image (of types selected in first box) the biggest available image is taken from source and resized to sizes required by destination (images are not enlarged).
+        </dd>
+        <dd>When copying images from database to file system and file system is set up to store images in original size, the biggest image stored in database is assumed to be original. So don't use this option when database stores only small images.</dd>
+        <dt>Cancel</dt>
+        <dd>Closes thw window without doing anything.</dd>
+    </dl>
+</body>
+</html>

@@ -1,5 +1,5 @@
 ﻿Imports System.Data.SqlClient
-Imports Microsoft.Win32
+Imports Microsoft.Win32, Tools.WindowsT.InteropT.InteropExtensions
 Imports Tools.WindowsT.NativeT
 Imports Caps.Data
 
@@ -88,7 +88,7 @@ Partial Public Class winSelectDatabase
         Try
             dlg.SelectedPath = txtImageRoot.Text
         Catch : End Try
-        If dlg.ShowDialog(New Win32Window(Me)) Then
+        If dlg.ShowDialog(Me) Then
             txtImageRoot.Text = dlg.SelectedPath
         End If
     End Sub

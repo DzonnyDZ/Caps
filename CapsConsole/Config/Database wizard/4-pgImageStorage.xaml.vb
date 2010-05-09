@@ -1,8 +1,9 @@
 Imports System, Tools.WindowsT.WPF
 Imports System.Windows
 Imports System.Windows.Controls
-Imports Tools.WindowsT.NativeT
+Imports Tools.WindowsT.NativeT, Tools.WindowsT.InteropT.InteropExtensions
 Imports System.Windows.Forms
+Imports System.ComponentModel
 
 ''' <summary>This wizard step is sued to define image storage</summary>
 Public Class pgImageStorage
@@ -48,15 +49,15 @@ Public Class pgImageStorage
         Me.OnReturn(e)
     End Sub
 
-   Private Sub btnImageRoot_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnImageRoot.Click
+    Private Sub btnImageRoot_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnImageRoot.Click
         Dim dlg As New FolderBrowserDialog
         Try
             dlg.SelectedPath = txtImageRoot.Text
         Catch : End Try
-        Me.FindAncestor(Of Window)()
-        If dlg.ShowDialog(New Win32Window(Me.FindAncestor(Of Window))) = Forms.DialogResult.OK Then
+        If dlg.ShowDialog(Me.FindAncestor(Of Window)) Then
             WizardData.ImageRoot = dlg.SelectedPath
         End If
     End Sub
+
 End Class
 

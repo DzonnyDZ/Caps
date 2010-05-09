@@ -458,7 +458,7 @@ Partial Public Class CapEditor
         "(?<Before>.*)(?<Number>[0-9]{4,8})(?<After>\..{3,4})", Text.RegularExpressions.RegexOptions.Compiled Or Text.RegularExpressions.RegexOptions.CultureInvariant Or Text.RegularExpressions.RegexOptions.ExplicitCapture)
 
     Private Sub btnAddImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnAddImage.Click
-        Dim dlg As New Forms.OpenFileDialog With {.Multiselect = True, .DefaultExt = "jpg", .Filter = My.Resources.fil_BitmapImages}
+        Dim dlg As New Microsoft.Win32.OpenFileDialog With {.Multiselect = True, .DefaultExt = "jpg", .Filter = My.Resources.fil_BitmapImages}
         If My.Settings.LastImageName <> "" Then
             Dim match = ImageNameRegExp.Match(My.Settings.LastImageName)
             If match.Success Then
@@ -470,7 +470,7 @@ Partial Public Class CapEditor
                 Catch : End Try
             End If
         End If
-        If dlg.ShowDialog() = Forms.DialogResult.OK Then
+        If dlg.ShowDialog() Then
             If dlg.FileNames.Length > 0 Then
                 Dim ImagesToAdd = From path In dlg.FileNames Order By IO.Path.GetFileName(path) Ascending _
                                          Select DirectCast(New NewImage(path), Image)
@@ -3257,7 +3257,7 @@ SaveImage: Try
     End Enum
 
     Private Sub btnBrowseForCapTypeImage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnBrowseForCapTypeImage.Click
-        Dim dlg As New Forms.OpenFileDialog With {.DefaultExt = "png", .Filter = My.Resources.fil_BitmapImages}
+        Dim dlg As New Microsoft.Win32.OpenFileDialog With {.DefaultExt = "png", .Filter = My.Resources.fil_BitmapImages}
         Try
             If txtCapTypeImagePath.Text <> "" Then dlg.FileName = txtCapTypeImagePath.Text
         Catch : End Try

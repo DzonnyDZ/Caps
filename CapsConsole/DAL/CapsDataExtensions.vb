@@ -330,7 +330,7 @@ Module CapsDataExtensions
 #End Region
 
     ''' <summary>Regular expression matching folder name for storing images</summary>
-    Private imageFolderNameRegExp As New System.Text.RegularExpressions.Regex(
+    Friend ReadOnly imageFolderNameRegExp As New System.Text.RegularExpressions.Regex(
         "^(?<Size>\d+)_\k<Size>$", System.Text.RegularExpressions.RegexOptions.Compiled Or System.Text.RegularExpressions.RegexOptions.CultureInvariant Or System.Text.RegularExpressions.RegexOptions.ExplicitCapture)
 
     ''' <summary>Gets images associated with given image</summary>

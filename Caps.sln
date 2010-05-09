@@ -38,6 +38,27 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Tools.Win", "..\Tools\Tools
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Tools.Data.Schema.Deploy", "..\Tools\Tools.Data.Schema.Deploy\Tools.Data.Schema.Deploy.vbproj", "{4FA454BC-332A-4226-A229-38D87C504F8F}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Doc", "Doc\", "{FEA28EBA-357C-42D9-892A-7D609775DCFF}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/Doc"
+		Debug.AspNetCompiler.PhysicalPath = "Doc\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Doc\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/Doc"
+		Release.AspNetCompiler.PhysicalPath = "Doc\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Doc\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1411"
+		DefaultWebSiteLanguage = "Visual Basic"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -129,6 +150,12 @@ Global
 		{4FA454BC-332A-4226-A229-38D87C504F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FA454BC-332A-4226-A229-38D87C504F8F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4FA454BC-332A-4226-A229-38D87C504F8F}.Release|x86.ActiveCfg = Release|Any CPU
+		{FEA28EBA-357C-42D9-892A-7D609775DCFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA28EBA-357C-42D9-892A-7D609775DCFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA28EBA-357C-42D9-892A-7D609775DCFF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FEA28EBA-357C-42D9-892A-7D609775DCFF}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA28EBA-357C-42D9-892A-7D609775DCFF}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{FEA28EBA-357C-42D9-892A-7D609775DCFF}.Release|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

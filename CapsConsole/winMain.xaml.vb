@@ -1,4 +1,4 @@
-﻿Imports Tools.LinqT, Tools.WindowsT.WPF
+﻿Imports Tools.LinqT, Tools.WindowsT.WPF, Tools.WindowsT.InteropT.InteropExtensions
 Imports Caps.Data, Tools.ApplicationServicesT.ApplicationServices
 
 ''' <summary>Main application window</summary>
@@ -72,7 +72,7 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
 
         If (My.Settings.ImageRoot = "" OrElse Not IO.Directory.Exists(My.Settings.ImageRoot)) AndAlso (Settings.Images.StoreAnythingInDatabase) Then
             Dim dlg As New Forms.FolderBrowserDialog With {.Description = My.Resources.des_SelectImagesRootDirectory}
-            If dlg.ShowDialog = Forms.DialogResult.OK Then
+            If dlg.ShowDialog(Me) Then
                 My.Settings.ImageRoot = dlg.SelectedPath
             Else
                 Environment.Exit(3)
@@ -156,8 +156,7 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
                 Try
                     fdlg.SelectedPath = My.Settings.ImageRoot
                 Catch :End Try
-                Dim iwindow As New Tools.WindowsT.NativeT.Win32Window(Me)
-                If fdlg.ShowDialog(iwindow) Then
+                If fdlg.ShowDialog(Me) Then
                     My.Settings.ImageRoot = fdlg.SelectedPath
                     My.Settings.Save()
                 End If
@@ -329,9 +328,8 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
     End Sub
 
     Private Sub mniSyncImg_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniSyncImg.Click
-        Using win As New winSyncImages
-            win.Owner = Me
-            win.ShowDialog()
-        End Using
+        Dim win As New winSyncImages
+        win.Owner = Me
+        win.ShowDialog()
     End Sub
 End Class

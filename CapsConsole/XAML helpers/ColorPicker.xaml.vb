@@ -1,4 +1,5 @@
 ﻿Imports Tools.CollectionsT.GenericT
+Imports Tools.WindowsT.InteropT.InteropExtensions
 
 ''' <summary>Picks common colors, allows to pick any color</summary>
 Partial Public Class ColorPicker
@@ -171,7 +172,7 @@ Partial Public Class ColorPicker
         Else
             'Select color via dialog
             Dim cdl As New Forms.ColorDialog
-            If cdl.ShowDialog = Forms.DialogResult.OK Then
+            If cdl.ShowDialog(Window.GetWindow(Me)) Then
                 cmbColors.Items.Insert(cmbColors.Items.IndexOf(cmiMoreColors), New ComboBoxItem With { _
                                        .Background = New SolidColorBrush(System.Windows.Media.Color.FromArgb(cdl.Color.A, cdl.Color.R, cdl.Color.G, cdl.Color.B)), _
                                        .Content = DirectCast(.Background, SolidColorBrush).Color.ToString, _
