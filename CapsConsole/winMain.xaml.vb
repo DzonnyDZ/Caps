@@ -236,43 +236,56 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
 
 
     Private Sub mniImagesClear_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniImagesClear.Click
-        Dim p256 = IO.Path.Combine(My.Settings.ImageRoot, "256_256")
-        Dim p64 = IO.Path.Combine(My.Settings.ImageRoot, "64_64")
+        Dim pSizes As IEnumerable(Of String) = {}
+        Try
+            pSizes = From fol In IO.Directory.EnumerateDirectories(My.Settings.ImageRoot) Where CapsDataExtensions.imageFolderNameRegExp.IsMatch(IO.Path.GetFileName(fol))
+        Catch : End Try
         Dim pOriginal = IO.Path.Combine(My.Settings.ImageRoot, Image.OriginalSizeImageStorageFolderName)
         Dim pCapType = IO.Path.Combine(My.Settings.ImageRoot, CapType.ImageStorageFolderName)
         Dim pMainType = IO.Path.Combine(My.Settings.ImageRoot, MainType.ImageStorageFolderName)
         Dim pShape = IO.Path.Combine(My.Settings.ImageRoot, Shape.ImageStorageFolderName)
         Dim pCapSign = IO.Path.Combine(My.Settings.ImageRoot, CapSign.ImageStorageFolderName)
-
-        Dim del256 = If(IO.Directory.Exists(p256), From file In IO.Directory.GetFiles(p256) Where (From img In Me.Context.Images.AsEnumerable Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0, {})
-        Dim del64 = If(IO.Directory.Exists(p64), From file In IO.Directory.GetFiles(p64) Where (From img In Me.Context.Images.AsEnumerable Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0, {})
+        Dim delSizes = From fol In pSizes
+                       Select
+                          files = From file In IO.Directory.EnumerateFiles(fol) Where (From img In Me.Context.Images.AsEnumerable Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0,
+                          size = Integer.Parse(CapsDataExtensions.imageFolderNameRegExp.Match(IO.Path.GetFileName(fol)).Groups!Size.Value)
+                       Where Not files.IsEmpty
+        delSizes = delSizes.ToList
         Dim delOriginal = If(IO.Directory.Exists(pOriginal), From file In IO.Directory.GetFiles(pOriginal) Where (From img In Me.Context.Images.AsEnumerable Where String.Compare(img.RelativePath, IO.Path.GetFileName(file), StringComparison.InvariantCultureIgnoreCase) = 0).Count = 0, {})
         Dim delCapType = If(IO.Directory.Exists(pCapType), From file In IO.Directory.GetFiles(pCapType) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From ct In Me.Context.CapTypes.AsEnumerable Where ct.CapTypeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0, {})
         Dim delMainType = If(IO.Directory.Exists(pMainType), From file In IO.Directory.GetFiles(pMainType) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From mt In Me.Context.MainTypes.AsEnumerable Where mt.MainTypeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0, {})
         Dim delShape = If(IO.Directory.Exists(pShape), From file In IO.Directory.GetFiles(pShape) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From sh In Me.Context.Shapes.AsEnumerable Where sh.ShapeID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0, {})
         Dim delCapSign = If(IO.Directory.Exists(pCapSign), From file In IO.Directory.GetFiles(pCapSign) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From sg In Me.Context.CapSigns.AsEnumerable Where sg.CapSignID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0, {})
 
-        If del256.IsEmpty AndAlso del64.IsEmpty AndAlso delOriginal.IsEmpty AndAlso delCapType.IsEmpty AndAlso delMainType.IsEmpty AndAlso delShape.IsEmpty Then
+        If delSizes.IsEmpty AndAlso delOriginal.IsEmpty AndAlso delCapType.IsEmpty AndAlso delMainType.IsEmpty AndAlso delShape.IsEmpty Then
             mBox.MsgBox(My.Resources.msg_NoFilesToDelete, MsgBoxStyle.Information, My.Resources.txt_ImageCleanup, Me)
         Else
             Dim msg = mBox.GetDefault()
             msg.Prompt = My.Resources.msg_ImagesToDelete
             Dim chkOriginal = New mBox.MessageBoxCheckBox(My.Resources.lbl_CapImagesOriginal.f(delOriginal.Count), If(delOriginal.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delOriginal.IsEmpty}
-            Dim chk256 = New mBox.MessageBoxCheckBox(My.Resources.lbl_CapImageThumbnails.f(256, del256.Count), If(del256.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not del256.IsEmpty}
-            Dim chk64 = New mBox.MessageBoxCheckBox(My.Resources.lbl_CapImageThumbnails.f(64, del64.Count), If(del64.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not del64.IsEmpty}
+            Dim chkSizes = From item In delSizes
+                           Select New mBox.MessageBoxCheckBox(My.Resources.lbl_CapImageThumbnails.f(item.size, item.files.Count),
+                                                              If(item.files.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)
+                                                             ) With {.Enabled = Not item.files.IsEmpty}
+            chkSizes = chkSizes.ToList
             Dim chkCapType = New mBox.MessageBoxCheckBox(My.Resources.lbl_CapTypeImages.f(delCapType.Count), If(delCapType.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delCapType.IsEmpty}
             Dim chkMainType = New mBox.MessageBoxCheckBox(My.Resources.lbl_MainTypeImages.f(delMainType.Count), If(delMainType.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delMainType.IsEmpty}
             Dim chkShape = New mBox.MessageBoxCheckBox(My.Resources.lbl_ShapeImages.f(delShape.Count), If(delShape.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delShape.IsEmpty}
             Dim chkCapSign = New mBox.MessageBoxCheckBox(My.Resources.lbl_SignImages.f(delCapSign.Count), If(delCapSign.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delCapSign.IsEmpty}
-            msg.CheckBoxes.AddRange(New mBox.MessageBoxCheckBox() {chkOriginal, chk256, chk64, chkCapType, chkMainType, chkShape, chkCapSign})
+            msg.CheckBoxes.Add(chkOriginal)
+            msg.CheckBoxes.AddRange(chkSizes)
+            msg.CheckBoxes.AddRange({chkCapType, chkMainType, chkShape, chkCapSign})
             msg.MidControl = New TextBlock() With {.Text = My.Resources.txt_ClearImagesNote, .TextWrapping = TextWrapping.Wrap, .HorizontalAlignment = Windows.HorizontalAlignment.Stretch, .TextAlignment = TextAlignment.Left}
             msg.SetButtons(mBox.MessageBoxButton.Buttons.OK Or mBox.MessageBoxButton.Buttons.Cancel)
             msg.Title = My.Resources.txt_ImageCleanup
             If msg.ShowDialog(Me) = Forms.DialogResult.OK Then
                 Dim todel As IEnumerable(Of String) = New String() {}
                 If chkOriginal.State = Forms.CheckState.Checked Then todel = todel.Union(delOriginal)
-                If chk256.State = Forms.CheckState.Checked Then todel = todel.Union(del256)
-                If chk64.State = Forms.CheckState.Checked Then todel = todel.Union(del64)
+                Dim i As Integer = 0
+                For Each chk In chkSizes
+                    If chk.State = Forms.CheckState.Checked Then todel.Union(delSizes(i).files)
+                    i += 1
+                Next
                 If chkCapType.State = Forms.CheckState.Checked Then todel = todel.Union(delCapType)
                 If chkMainType.State = Forms.CheckState.Checked Then todel = todel.Union(delMainType)
                 If chkShape.State = Forms.CheckState.Checked Then todel = todel.Union(delShape)
