@@ -38,7 +38,7 @@
 
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" >
             <GroupBox.Header >
-                <RadioButton Content="Migrate images from File System to Database" Grid.Row="0" Grid.ColumnSpan="2" IsChecked="True" GroupName="optMigrationDirection"/>
+                <RadioButton Content="Migrate images from File System to Database" Grid.Row="0" Grid.ColumnSpan="2" IsChecked="True" GroupName="optMigrationDirection" Name="optMigrateFS2Db" />
             </GroupBox.Header>
             <StackPanel Orientation="Vertical" >
                 <TextBlock Text="Sizes of images stored in database"/>
@@ -65,7 +65,7 @@
 
         <GroupBox Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" >
             <GroupBox.Header >
-                <RadioButton Content="Migrate images from Database to File System" GroupName="optMigrationDirection"/>
+                <RadioButton Content="Migrate images from Database to File System" GroupName="optMigrationDirection" Name="optMigrateDb2FS" />
             </GroupBox.Header>
             <StackPanel Orientation="Vertical" >
                 <TextBlock Text="Sizes of images stored in file system"/>

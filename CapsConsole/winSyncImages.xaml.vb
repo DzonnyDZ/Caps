@@ -1,5 +1,6 @@
 ﻿Imports Caps.Data, Tools.WindowsT.InteropT.InteropExtensions
 Imports Tools.DataT.ObjectsT.EntityFrameworkExtensions
+Imports Tools.LinqT, Tools.DataT.ObjectsT
 
 ''' <summary>Window used to migrate images between database and file system</summary>
 Public Class winSyncImages
@@ -114,5 +115,166 @@ DeleteFolder:               Try
             End Try
             mBox.MsgBoxFW("{0} images deleted successfully", MsgBoxStyle.Information, "Delete images", Me, cnt)
         End If
+    End Sub
+
+  
+    Private Sub btnMigrate_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnMigrate.Click
+        'Validation
+        If Not chkCapSigns.IsChecked AndAlso Not chkCapTypes.IsChecked AndAlso Not chkMainTypes.IsChecked AndAlso Not chkShapes.IsChecked AndAlso Not chkStorages.IsChecked AndAlso Not chkCaps.IsChecked Then
+            mBox.MsgBox("No image type selected. Select at least one image type, please.", MsgBoxStyle.Information, "Migrate images", Me)
+            chkCapSigns.Focus()
+            Return
+        ElseIf My.Settings.ImageRoot = "" Then
+            mBox.MsgBox("Image root directory is not set. Please set it before migration", MsgBoxStyle.Information, "Migrate images", Me)
+            btnChangeImageRoot.Focus()
+            Return
+        ElseIf Not IO.Directory.Exists(My.Settings.ImageRoot) Then
+            If mBox.MsgBoxFW("Image root directory {0} does not exists." & " " & If(optMigrateDb2FS.IsChecked, "Create it now?", "Select existing directory to migrate images from, please."),
+                             If(optMigrateDb2FS.IsChecked, MsgBoxStyle.Exclamation Or MsgBoxStyle.OkCancel, MsgBoxStyle.Information),
+                             "Migrate images", Me, My.Settings.ImageRoot) = MsgBoxResult.Ok AndAlso optMigrateDb2FS.IsChecked Then
+                Try
+                    IO.Directory.CreateDirectory(My.Settings.ImageRoot)
+                Catch ex As Exception
+                    mBox.Error_XW(ex, Me)
+                    Return
+                End Try
+            Else
+                btnChangeImageRoot.Focus()
+                Return
+            End If
+        ElseIf optMigrateFS2Db.IsChecked AndAlso chkCaps.IsChecked AndAlso DirectCast(icImagesInDb.ItemsSource, Integer()).Length = 0 Then
+            mBox.MsgBox("No image sizes to be stored in database are selected. Please select some or do not migrate cap images.", MsgBoxStyle.Information, "Migrate images", Me)
+            icImagesInDb.Focus()
+            Exit Sub
+        ElseIf optMigrateFS2Db.IsChecked AndAlso chkCaps.IsChecked AndAlso (From size In DirectCast(icImagesInDb.ItemsSource, Integer()) Group By size Into count = Count() Where count > 1).Exists Then
+            mBox.MsgBox("Duplicate size of images is selected for database storage.", MsgBoxStyle.Information, "Migrate images", Me)
+            icImagesInDb.Focus()
+            Exit Sub
+        ElseIf optMigrateDb2FS.IsChecked AndAlso chkCaps.IsChecked AndAlso DirectCast(icImagesInFS.ItemsSource, Integer()).Length = 0 Then
+            mBox.MsgBox("No image sizes to be stored in file system are selected. Please select some or do not migrate cap images.", MsgBoxStyle.Information, "Migrate images", Me)
+            icImagesInFS.Focus()
+            Exit Sub
+        ElseIf optMigrateDb2FS.IsChecked AndAlso chkCaps.IsChecked AndAlso (From size In DirectCast(icImagesInFS.ItemsSource, Integer()) Group By size Into count = Count() Where count > 1).Exists Then
+            mBox.MsgBox("Duplicate size of images is selected for file system storage.", MsgBoxStyle.Information, "Migrate images", Me)
+            icImagesInFS.Focus()
+            Exit Sub
+        End If
+
+        'Migration
+        Using context As New CapsDataContext(Main.EntityConnection)
+            If optMigrateFS2Db.IsChecked Then
+                'File System -> Database
+                If chkCapSigns.IsChecked Then
+                    'CapSigns
+                    For Each item In context.CapSigns
+                        Dim itemImages = item.GetImages(ImageSources.FileSystem)
+                        If Not itemImages.IsEmpty Then
+                            If item.StoredImages.Count > 0 Then
+                                If chkReplace.IsChecked Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                            End If
+                            Try
+                                StoreImageToDb(item)
+                            Catch ex As Exception
+                                If mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
+                                  Exit Sub
+                            End Try
+                        End If
+                    Next
+                End If
+                If chkCapTypes.IsChecked Then
+                    'CapTypes
+                    For Each item In context.CapTypes
+                        Dim itemImages = item.GetImages(ImageSources.FileSystem)
+                        If Not itemImages.IsEmpty Then
+                            If item.StoredImages.Count > 0 Then
+                                If chkReplace.IsChecked Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                            End If
+                            Try
+                                StoreImageToDb(item)
+                            Catch ex As Exception
+                                If mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
+                                  Exit Sub
+                            End Try
+                        End If
+                    Next
+                End If
+                If chkMainTypes.IsChecked Then
+                    'MainTypes
+                    For Each item In context.MainTypes
+                        Dim itemImages = item.GetImages(ImageSources.FileSystem)
+                        If Not itemImages.IsEmpty Then
+                            If item.StoredImages.Count > 0 Then
+                                If chkReplace.IsChecked Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                            End If
+                            Try
+                                StoreImageToDb(item)
+                            Catch ex As Exception
+                                If mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
+                                  Exit Sub
+                            End Try
+                        End If
+                    Next
+                End If
+                If chkShapes.IsChecked Then
+                    'Shapes
+                    For Each item In context.Shapes
+                        Dim itemImages = item.GetImages(ImageSources.FileSystem)
+                        If Not itemImages.IsEmpty Then
+                            If item.StoredImages.Count > 0 Then
+                                If chkReplace.IsChecked Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                            End If
+                            Try
+                                StoreImageToDb(item)
+                            Catch ex As Exception
+                                If mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
+                                  Exit Sub
+                            End Try
+                        End If
+                    Next
+                    If chkStorages.IsChecked Then
+                        'Storages
+                        For Each item In context.Storages
+                            Dim itemImages = item.GetImages(ImageSources.FileSystem)
+                            If Not itemImages.IsEmpty Then
+                                If item.StoredImages.Count > 0 Then
+                                    If chkReplace.IsChecked Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                                End If
+                                Try
+                                    StoreImageToDb(item)
+                                Catch ex As Exception
+                                    If mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
+                                      Exit Sub
+                                End Try
+                            End If
+                        Next
+                    End If
+                End If
+                If chkCaps.IsChecked Then
+                    'TODO:
+                End If
+            ElseIf optMigrateDb2FS.IsChecked Then
+                'Database -> File System
+                'TODO:
+            End If
+        End Using
+    End Sub
+    ''' <summary>Stores image of given item to database</summary>
+    ''' <param name="item">Item to store image of</param>
+    ''' <exception cref="ArgumentNullException"><paramref name="item"/> is null</exception>
+    Private Sub StoreImageToDb(ByVal item As IObjectWithImage)
+        If item Is Nothing Then Throw New ArgumentNullException("item")
+        Using bitmap As New System.Drawing.Bitmap(IO.Path.Combine(My.Settings.ImageRoot, item.ImageStorageFolderName, item.FileSystemStorageFileName)),
+                                              ms As New IO.MemoryStream
+            bitmap.Save(ms, bitmap.RawFormat)
+            ms.Flush()
+            Dim si As New StoredImage With {.FileName = item.FileSystemStorageFileName,
+                          .MIME = CapsDataExtensions.GetImageMimeType(IO.Path.GetExtension(item.FileSystemStorageFileName)),
+                          .Width = bitmap.Width,
+                          .Height = bitmap.Height,
+                          .Size = ms.Length,
+                          .Data = ms.GetBuffer
+                         }
+            item.AssociateImage(si)
+        End Using
     End Sub
 End Class

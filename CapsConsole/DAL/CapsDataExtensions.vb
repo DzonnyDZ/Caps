@@ -275,7 +275,7 @@ Module CapsDataExtensions
     ''' <returns>MIME type of image type represented by extension</returns>
     ''' <exception cref="ArgumentNullException"><paramref name="extension"/> is null</exception>
     ''' <exception cref="ArgumentException"><paramref name="extension"/> is not of one of types recoginized by the <see cref="Bitmap"/> class (PNG, BMP, JPEG, GIF, Exif)</exception>
-    Private Function GetImageMimeType(ByVal extension As String) As String
+    Friend Function GetImageMimeType(ByVal extension As String) As String
         If extension Is Nothing Then Throw New ArgumentNullException("extension")
         If extension.StartsWith("."c) Then extension = extension.Substring(1)
         Select Case extension.ToLowerInvariant
@@ -294,38 +294,43 @@ Module CapsDataExtensions
 #Region "Typed functions"
     ''' <summary>Gets images associated with given object</summary>
     ''' <param name="capSign">Object to get images associated with</param>
+    ''' <param name="sources">Sources to get images from</param>
     ''' <exception cref="ArgumentNullException"><paramref name="capSign"/> is null</exception>
     <Extension()>
-    Public Function GetImages(ByVal capSign As CapSign) As IEnumerable(Of ImageProvider)
-        Return GetImages(Of CapSign)(capSign)
+    Public Function GetImages(ByVal capSign As CapSign, Optional ByVal sources As ImageSources = ImageSources.Any) As IEnumerable(Of ImageProvider)
+        Return GetImages(Of CapSign)(capSign, sources)
     End Function
     ''' <summary>Gets images associated with given object</summary>
     ''' <param name="capType">Object to get images associated with</param>
+    ''' <param name="sources">Sources to get images from</param>
     ''' <exception cref="ArgumentNullException"><paramref name="capType"/> is null</exception>
     <Extension()>
-    Public Function GetImages(ByVal capType As CapType) As IEnumerable(Of ImageProvider)
-        Return GetImages(Of CapType)(capType)
+    Public Function GetImages(ByVal capType As CapType, Optional ByVal sources As ImageSources = ImageSources.Any) As IEnumerable(Of ImageProvider)
+        Return GetImages(Of CapType)(capType, sources)
     End Function
     ''' <summary>Gets images associated with given object</summary>
     ''' <param name="mainType">Object to get images associated with</param>
+    ''' <param name="sources">Sources to get images from</param>
     ''' <exception cref="ArgumentNullException"><paramref name="mainType"/> is null</exception>
     <Extension()>
-    Public Function GetImages(ByVal mainType As MainType) As IEnumerable(Of ImageProvider)
-        Return GetImages(Of MainType)(mainType)
+    Public Function GetImages(ByVal mainType As MainType, Optional ByVal sources As ImageSources = ImageSources.Any) As IEnumerable(Of ImageProvider)
+        Return GetImages(Of MainType)(mainType, sources)
     End Function
     ''' <summary>Gets images associated with given object</summary>
     ''' <param name="shape">Object to get images associated with</param>
+    ''' <param name="sources">Sources to get images from</param>
     ''' <exception cref="ArgumentNullException"><paramref name="shape"/> is null</exception>
     <Extension()>
-    Public Function GetImages(ByVal shape As Shape) As IEnumerable(Of ImageProvider)
-        Return GetImages(Of Shape)(shape)
+    Public Function GetImages(ByVal shape As Shape, Optional ByVal sources As ImageSources = ImageSources.Any) As IEnumerable(Of ImageProvider)
+        Return GetImages(Of Shape)(shape, sources)
     End Function
     ''' <summary>Gets images associated with given object</summary>
     ''' <param name="storage">Object to get images associated with</param>
+    ''' <param name="sources">Sources to get images from</param>
     ''' <exception cref="ArgumentNullException"><paramref name="storage"/> is null</exception>
     <Extension()>
-    Public Function GetImages(ByVal storage As Storage) As IEnumerable(Of ImageProvider)
-        Return GetImages(Of Storage)(storage)
+    Public Function GetImages(ByVal storage As Storage, Optional ByVal sources As ImageSources = ImageSources.Any) As IEnumerable(Of ImageProvider)
+        Return GetImages(Of Storage)(storage, sources)
     End Function
 #End Region
 
@@ -335,12 +340,13 @@ Module CapsDataExtensions
 
     ''' <summary>Gets images associated with given image</summary>
     ''' <param name="image">Object to get images associated with</param>
+    ''' <param name="sources">Possible sources to get images from</param>
     ''' <exception cref="ArgumentNullException"><paramref name="image"/> is null</exception>
     <Extension()>
-    Public Function GetImages(ByVal image As Data.Image) As IEnumerable(Of ImageProvider)
+    Public Function GetImages(ByVal image As Data.Image, Optional ByVal sources As ImageSources = ImageSources.Any) As IEnumerable(Of ImageProvider)
         If image Is Nothing Then Throw New ArgumentNullException("obj")
         Dim retFS As IEnumerable(Of ImageProvider) = Nothing
-        If My.Settings.ImageRoot <> "" AndAlso IO.Directory.Exists(My.Settings.ImageRoot) Then
+        If sources.HasFlag(ImageSources.FileSystem) AndAlso My.Settings.ImageRoot <> "" AndAlso IO.Directory.Exists(My.Settings.ImageRoot) Then
             retFS = From dir In IO.Directory.EnumerateDirectories(My.Settings.ImageRoot)
                     Let dirname = IO.Path.GetFileName(dir), match = imageFolderNameRegExp.Match(dirname)
                     Where (dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName OrElse imageFolderNameRegExp.IsMatch(match.Success)) AndAlso
@@ -348,19 +354,23 @@ Module CapsDataExtensions
                     Select New FileSystemImageProvider(IO.Path.Combine(dir, image.RelativePath),
                                                     If(dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName, 0, Integer.Parse(match.Groups!size.Value)))
         End If
-        Dim retDB = From item In image.StoredImages.AsEnumerable
-                    Select New DatabaseImageProvider(item)
-        If retFS Is Nothing Then Return retDB
+        Dim retDB As IEnumerable(Of DatabaseImageProvider) = Nothing
+        If sources.HasFlag(ImageSources.Database) Then
+            retDB = From item In image.StoredImages.AsEnumerable
+                                        Select New DatabaseImageProvider(item)
+        End If
+        If retFS Is Nothing Then Return If(retDB, DirectCast(New ImageProvider() {}, IEnumerable(Of ImageProvider)))
+        If retDB Is Nothing Then Return If(retFS, DirectCast(New ImageProvider() {}, IEnumerable(Of ImageProvider)))
         Return retFS.UnionAll(retDB)
     End Function
     ''' <summary>Gets images associated with given image of given size</summary>
     ''' <param name="image">Object to get images associated with</param>
     ''' <exception cref="ArgumentNullException"><paramref name="image"/> is null</exception>
     <Extension()>
-    Public Function GetImage(ByVal image As Data.Image, ByVal expectedSize As Integer) As ImageProvider
+    Public Function GetImage(ByVal image As Data.Image, ByVal expectedSize As Integer, Optional ByVal sources As ImageSources = ImageSources.Any) As ImageProvider
         If image Is Nothing Then Throw New ArgumentNullException("obj")
         Dim retFS As FileSystemImageProvider = Nothing
-        If My.Settings.ImageRoot <> "" AndAlso IO.Directory.Exists(My.Settings.ImageRoot) Then
+        If sources.HasFlag(ImageSources.FileSystem) AndAlso My.Settings.ImageRoot <> "" AndAlso IO.Directory.Exists(My.Settings.ImageRoot) Then
             'Get file system images
             Dim fsImage = (
                 From dir In IO.Directory.EnumerateDirectories(My.Settings.ImageRoot)
@@ -378,14 +388,17 @@ Module CapsDataExtensions
             If fsImage IsNot Nothing Then retFS = New FileSystemImageProvider(fsImage.file, fsImage.size)
         End If
         'Get database images
-        Dim dbImage = (
-            From item In image.StoredImages
-            Order By If(item.Width = expectedSize OrElse item.Height = expectedSize, 0, 1) Ascending,
-                      If(item.Width > expectedSize OrElse item.Height > expectedSize, 0, 1) Ascending,
-                      Math.Max(item.Height, item.Width) Ascending
-                    ).FirstOrDefault
         Dim retDB As DatabaseImageProvider = Nothing
-        If dbImage IsNot Nothing Then retDB = New DatabaseImageProvider(dbImage)
+        If sources.HasFlag(ImageSources.Database) Then
+            Dim dbImage = (
+                From item In image.StoredImages
+                Order By If(item.Width = expectedSize OrElse item.Height = expectedSize, 0, 1) Ascending,
+                          If(item.Width > expectedSize OrElse item.Height > expectedSize, 0, 1) Ascending,
+                          Math.Max(item.Height, item.Width) Ascending
+                        ).FirstOrDefault
+            If dbImage IsNot Nothing Then retDB = New DatabaseImageProvider(dbImage)
+        End If
+
         If retDB Is Nothing Then Return retFS
         If retFS Is Nothing Then Return retDB
         'Both - DB & FS suitable - get the best one
@@ -401,17 +414,21 @@ Module CapsDataExtensions
     ''' <summary>Gets images associated with given object</summary>
     ''' <param name="obj">Object to get images associated with</param>
     ''' <exception cref="ArgumentNullException"><paramref name="obj"/> is null</exception>
-    Private Function GetImages(Of T As {IObjectWithImage, EntityObject})(ByVal obj As T) As IEnumerable(Of ImageProvider)
+    Private Function GetImages(Of T As {IObjectWithImage, EntityObject})(ByVal obj As T, ByVal sources As ImageSources) As IEnumerable(Of ImageProvider)
         If obj Is Nothing Then Throw New ArgumentNullException("obj")
         Dim retFS As IEnumerable(Of ImageProvider) = Nothing
-        If My.Settings.ImageRoot <> "" Then
+        If sources.HasFlag(ImageSources.FileSystem) AndAlso My.Settings.ImageRoot <> "" Then
             Dim path As String = IO.Path.Combine(My.Settings.ImageRoot, obj.ImageStorageFolderName, obj.FileSystemStorageFileName)
             If IO.File.Exists(path) Then
                 retFS = {New FileSystemImageProvider(path, 0)}
             End If
         End If
-        Dim retDB = From item In obj.StoredImages Select New DatabaseImageProvider(item)
-        If retFS Is Nothing Then Return retDB
+        Dim retDB As IEnumerable(Of DatabaseImageProvider) = Nothing
+        If sources.HasFlag(ImageSources.Database) Then
+            retDB = From item In obj.StoredImages Select New DatabaseImageProvider(item)
+        End If
+        If retFS Is Nothing Then Return If(retDB, DirectCast(New ImageProvider() {}, IEnumerable(Of ImageProvider)))
+        If retDB Is Nothing Then Return If(retFS, DirectCast(New ImageProvider() {}, IEnumerable(Of ImageProvider)))
         Return retFS.UnionAll(retDB)
     End Function
 #End Region
@@ -721,3 +738,14 @@ Friend NotInheritable Class UndoDatabaseImageSaveOperation
     End Sub
 End Class
 #End Region
+
+''' <summary>Possible storages of iamges</summary>
+<Flags()>
+Public Enum ImageSources
+    ''' <summary>File system storage</summary>
+    FileSystem = 1
+    ''' <summary>Database storage</summary>
+    Database = 2
+    ''' <summary>Any known storage</summary>
+    Any = FileSystem Or Database
+End Enum
