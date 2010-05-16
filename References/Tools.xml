@@ -22251,6 +22251,12 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="collection">Collection to check emptyness of</param>
 	<returns>True if first element of collection cannot be enumerated using <paramref name="collection"/>.<see cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator">GetEnumerator</see>.<see cref="M:System.Collections.IEnumerator.MoveNext">MoveNext</see>.</returns>
 	<exception cref="T:System.ArgumentNullException"><paramref name="collection"/> is null</exception>
+</member><member name="M:Tools.LinqT.EnumerableT.Exists(System.Collections.IEnumerable)">
+	<summary>Gets value indicating if given collection is non-empty</summary>
+	<param name="collection">Collection to check non-emptyness of</param>
+	<returns>True if first element of collection can be enumerated using <paramref name="collection"/>.<see cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator">GetEnumerator</see>.<see cref="M:System.Collections.IEnumerator.MoveNext">MoveNext</see>.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="collection"/> is null</exception>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="T:Tools.LinqT.EnumerableT">
 	<summary>Tools for working with <see cref="T:System.Collections.Generic.IEnumerable`1"/></summary>
 </member><member name="M:Tools.LinqT.LinqExtensions.AddRange``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{``0,``1}})">
