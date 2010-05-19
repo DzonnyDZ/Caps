@@ -91,7 +91,7 @@ Partial Public Class winNewCap
                 For Each img In IntroducedImages
                     img.Item1.Cap = Cap
                 Next
-                .Context.Images.AddObjects(IntroducedImages)
+                .Context.Images.AddObjects(From ii In IntroducedImages Select ii.Item1)
                 If .Keywords IsNot Nothing Then
                     'Dim AllCapKeywords = (From kw In .Keywords Select If( _
                     '                        (From InDbKw In .Context.Keywords Where InDbKw.Keyword = kw Select New With {.Keyword = InDbKw, .IsNew = False}).FirstOrDefault, _

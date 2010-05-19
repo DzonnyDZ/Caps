@@ -111,16 +111,21 @@ Module CapsDataExtensions
                 filename = IO.Path.GetFileName(source)
                 Dim i% = 0
                 Dim minSize As Integer = Integer.MaxValue
-                For Each dimension In storeInFS
-                    minSize = Math.Min(minSize, dimension)
-                    Dim targetFolder = IO.Path.Combine(My.Settings.ImageRoot, If(dimension = 0,
-                                                                                 Data.Image.OriginalSizeImageStorageFolderName,
-                                                                                 String.Format(InvariantCulture, "{0}_{0}", dimension)))
-                    While IO.File.Exists(IO.Path.Combine(targetFolder, filename))
-                        i += 1
-                        filename = String.Format(InvariantCulture, "{0}_{1}{2}", IO.Path.GetFileNameWithoutExtension(source), i, IO.Path.GetExtension(source))
-                    End While
-                Next
+                Dim changed As Boolean = False
+                Do
+                    changed = False
+                    For Each dimension In storeInFS
+                        minSize = Math.Min(minSize, dimension)
+                        Dim targetFolder = IO.Path.Combine(My.Settings.ImageRoot, If(dimension = 0,
+                                                                                     Data.Image.OriginalSizeImageStorageFolderName,
+                                                                                     String.Format(InvariantCulture, "{0}_{0}", dimension)))
+                        While IO.File.Exists(IO.Path.Combine(targetFolder, filename))
+                            i += 1
+                            filename = String.Format(InvariantCulture, "{0}_{1}{2}", IO.Path.GetFileNameWithoutExtension(source), i, IO.Path.GetExtension(source))
+                            changed = True
+                        End While
+                    Next
+                Loop While changed
                 Dim savedImages As New List(Of String)(storeInFS.Length)
                 Try
                     For Each dimension In storeInFS
@@ -131,6 +136,7 @@ Module CapsDataExtensions
                         If Not targetFolder.IsDirectory Then targetFolder.CreateDirectory()
                         If dimension = 0 Then
                             IO.File.Copy(source, targetFile)
+                            savedImages.Add(targetFile)
                             Dim newFI As New IO.FileInfo(targetFile)
                             'If file is read-only make it read-write
                             If (newFI.Attributes And IO.FileAttributes.ReadOnly) = IO.FileAttributes.ReadOnly Then _
@@ -138,7 +144,10 @@ Module CapsDataExtensions
                         ElseIf dimension = minSize OrElse dimension <= original.Width OrElse dimension <= original.Height Then  'Do not enlarge
                             Using thumb = original.GetThumbnail(New Size(dimension, dimension))
                                 thumb.Save(targetFile, original.RawFormat)
+                                savedImages.Add(targetFile)
                             End Using
+                        Else
+                            Continue For
                         End If
                         If iptc IsNot Nothing Then 'IPTC
                             Try
@@ -346,7 +355,7 @@ Module CapsDataExtensions
     Public Function GetImages(ByVal image As Data.Image, Optional ByVal sources As ImageSources = ImageSources.Any) As IEnumerable(Of ImageProvider)
         If image Is Nothing Then Throw New ArgumentNullException("obj")
         Dim retFS As IEnumerable(Of ImageProvider) = Nothing
-        If sources.HasFlag(ImageSources.FileSystem) AndAlso My.Settings.ImageRoot <> "" AndAlso IO.Directory.Exists(My.Settings.ImageRoot) Then
+        If sources.HasFlag(ImageSources.FileSystem) AndAlso image.SupportedSources.HasFlag(ImageSources.FileSystem) AndAlso My.Settings.ImageRoot <> "" AndAlso IO.Directory.Exists(My.Settings.ImageRoot) Then
             retFS = From dir In IO.Directory.EnumerateDirectories(My.Settings.ImageRoot)
                     Let dirname = IO.Path.GetFileName(dir), match = imageFolderNameRegExp.Match(dirname)
                     Where (dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName OrElse imageFolderNameRegExp.IsMatch(match.Success)) AndAlso
@@ -355,7 +364,7 @@ Module CapsDataExtensions
                                                     If(dirname.ToLowerInvariant = Data.Image.OriginalSizeImageStorageFolderName, 0, Integer.Parse(match.Groups!size.Value)))
         End If
         Dim retDB As IEnumerable(Of DatabaseImageProvider) = Nothing
-        If sources.HasFlag(ImageSources.Database) Then
+        If sources.HasFlag(ImageSources.Database) AndAlso image.SupportedSources.HasFlag(ImageSources.Database) Then
             retDB = From item In image.StoredImages.AsEnumerable
                                         Select New DatabaseImageProvider(item)
         End If
@@ -370,7 +379,7 @@ Module CapsDataExtensions
     Public Function GetImage(ByVal image As Data.Image, ByVal expectedSize As Integer, Optional ByVal sources As ImageSources = ImageSources.Any) As ImageProvider
         If image Is Nothing Then Throw New ArgumentNullException("obj")
         Dim retFS As FileSystemImageProvider = Nothing
-        If sources.HasFlag(ImageSources.FileSystem) AndAlso My.Settings.ImageRoot <> "" AndAlso IO.Directory.Exists(My.Settings.ImageRoot) Then
+        If sources.HasFlag(ImageSources.FileSystem) AndAlso image.SupportedSources.HasFlag(ImageSources.FileSystem) AndAlso My.Settings.ImageRoot <> "" AndAlso IO.Directory.Exists(My.Settings.ImageRoot) Then
             'Get file system images
             Dim fsImage = (
                 From dir In IO.Directory.EnumerateDirectories(My.Settings.ImageRoot)
@@ -389,7 +398,7 @@ Module CapsDataExtensions
         End If
         'Get database images
         Dim retDB As DatabaseImageProvider = Nothing
-        If sources.HasFlag(ImageSources.Database) Then
+        If sources.HasFlag(ImageSources.Database) AndAlso image.SupportedSources.HasFlag(ImageSources.Database) Then
             Dim dbImage = (
                 From item In image.StoredImages
                 Order By If(item.Width = expectedSize OrElse item.Height = expectedSize, 0, 1) Ascending,
@@ -738,14 +747,3 @@ Friend NotInheritable Class UndoDatabaseImageSaveOperation
     End Sub
 End Class
 #End Region
-
-''' <summary>Possible storages of iamges</summary>
-<Flags()>
-Public Enum ImageSources
-    ''' <summary>File system storage</summary>
-    FileSystem = 1
-    ''' <summary>Database storage</summary>
-    Database = 2
-    ''' <summary>Any known storage</summary>
-    Any = FileSystem Or Database
-End Enum

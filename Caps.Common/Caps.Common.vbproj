@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="DAL\DALProperties.vb" />
     <Compile Include="DAL\ISimpleObject.vb" />
+    <Compile Include="DAL\misc.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

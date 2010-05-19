@@ -3395,5 +3395,12 @@ Public Class NewImage : Inherits Image
         MyBase.New()
         Me.RelativePath = Path
     End Sub
+    ''' <summary>Gets value indicating which storeges of images are supported by current implementation</summary>
+    ''' <returns>This implementation always returns <see cref="ImageSources.FileSystem"/> - meaning that images are stored only in file system</returns>
+    Public Overrides ReadOnly Property SupportedSources As ImageSources
+        Get
+            Return ImageSources.FileSystem
+        End Get
+    End Property
 End Class
 

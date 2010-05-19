@@ -14,7 +14,7 @@ Partial Public Class winNewStorage
     ''' <returns><see cref="NewObject"/> transformed to <paramref name="context"/>. <see cref="NewObject"/> without transformation, when <paramref name="context"/> is null</returns>
     Public Shadows Function GetNewObjects(Optional ByVal context As CapsDataContext = Nothing) As IEnumerable(Of Storage)
         If context Is Nothing Then Return newObjects
-        Return (From item In newObjects Select context.GetObjectByKey(item.EntityKey)).ToArray
+        Return (From item In newObjects Select DirectCast(context.GetObjectByKey(item.EntityKey), Storage)).ToArray
     End Function
 
     ''' <summary>CTor</summary>

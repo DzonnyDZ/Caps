@@ -103,6 +103,13 @@ Namespace Data
             End Get
         End Property
 #End Region
+        ''' <summary>Gets value indicating which storeges of images are supported by current implementation</summary>
+        ''' <returns>This implementation always returns <see cref="ImageSources.Any"/> - meaning that all possible storages of images are supported by this implementation</returns>
+        Public Overridable ReadOnly Property SupportedSources As ImageSources
+            Get
+                Return ImageSources.Any
+            End Get
+        End Property
     End Class
 #End Region
 
