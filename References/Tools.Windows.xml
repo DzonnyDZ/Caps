@@ -10,6 +10,14 @@ Tools.Windows
 	<summary>
 InitializeComponent
 </summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow.Control">
+	<summary>
+Control Name Field
+</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow.InitializeComponent">
+	<summary>
+InitializeComponent
+</summary>
 </member><member name="M:Tools.XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
 	<summary>
 CreateInstance
@@ -667,168 +675,6 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<remarks>This control is 100% transaprent and cannot have any other than transparent <see cref="P:Tools.WindowsT.FormsT.TransparentTextBox.BackColor"/>. To make it semi-transparent, put it onto semitransparent panel.</remarks>
 	<author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Beta"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.InternalSyncObject">
-	<summary>
-Thread safe lock object used by this class.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.ResourceManager">
-	<summary>
-Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.Culture">
-	<summary>
-Overrides the current thread's CurrentUICulture property for all
-resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.About0">
-	<summary>
-Looks up a localized string similar to 'About {0}'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.InnerException">
-	<summary>
-Looks up a localized string similar to 'Inner exception: '.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.NoEncodingSelected">
-	<summary>
-Looks up a localized string similar to 'No encoding selected'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.OKClicked_d">
-	<summary>
-Looks up a localized string similar to 'Raised after user clicks OK and dialogs allows him to select encoding'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.Preselected_d">
-	<summary>
-Looks up a localized string similar to 'Specifies code page of encoding that will be preselected when dialog is shown (if available). Set to negative value in order to preselect no encoding'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.PreviewBytes_d">
-	<summary>
-Looks up a localized string similar to 'Text to decode using selected encoding and show as preview'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.PreviewString_d">
-	<summary>
-Looks up a localized string similar to 'Text to encode using selected encoding and inform user if all characters can be encoded'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.PropertyChanged_d">
-	<summary>
-Looks up a localized string similar to 'Occurs when a property value changes.'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.RequireCorrect_d">
-	<summary>
-Looks up a localized string similar to 'Defines if user can select encoding that can be used only with problems on given PreviewString on PreviewBytes'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.SelectEncodingPlease">
-	<summary>
-Looks up a localized string similar to 'Select encoding please.'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.ShowHelp_d">
-	<summary>
-Looks up a localized string similar to 'Determines if help button will be shown'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.Text_d">
-	<summary>
-Looks up a localized string similar to 'Text displayed in title of window'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.Text_dv">
-	<summary>
-Looks up a localized string similar to 'Select encoding'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.TextAlignmentOfPrompt">
-	<summary>
-Looks up a localized string similar to 'Text alignment of prompt'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.ValueIndicatingBidirectionlFlowDirection">
-	<summary>
-Looks up a localized string similar to 'Value indicating bidirectionl flow direction'.
-</summary>
-</member><member name="P:Tools.WindowsT.FormsT.Dialogs.WindowChanged_d">
-	<summary>
-Looks up a localized string similar to 'Raised when value of the Window property changes'.
-</summary>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.About0Format(System.Object)">
-	<summary>
-Formats a localized string similar to 'About {0}'.
-</summary>
-	<param name="arg0">An object (0) to format.</param>
-	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.InnerExceptionFormat">
-	<summary>
-The stub formatting method returning the InnerException property value.
-</summary>
-	<returns>The InnerException property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.NoEncodingSelectedFormat">
-	<summary>
-The stub formatting method returning the NoEncodingSelected property value.
-</summary>
-	<returns>The NoEncodingSelected property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.OKClicked_dFormat">
-	<summary>
-The stub formatting method returning the OKClicked_d property value.
-</summary>
-	<returns>The OKClicked_d property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.Preselected_dFormat">
-	<summary>
-The stub formatting method returning the Preselected_d property value.
-</summary>
-	<returns>The Preselected_d property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.PreviewBytes_dFormat">
-	<summary>
-The stub formatting method returning the PreviewBytes_d property value.
-</summary>
-	<returns>The PreviewBytes_d property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.PreviewString_dFormat">
-	<summary>
-The stub formatting method returning the PreviewString_d property value.
-</summary>
-	<returns>The PreviewString_d property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.PropertyChanged_dFormat">
-	<summary>
-The stub formatting method returning the PropertyChanged_d property value.
-</summary>
-	<returns>The PropertyChanged_d property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.RequireCorrect_dFormat">
-	<summary>
-The stub formatting method returning the RequireCorrect_d property value.
-</summary>
-	<returns>The RequireCorrect_d property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.SelectEncodingPleaseFormat">
-	<summary>
-The stub formatting method returning the SelectEncodingPlease property value.
-</summary>
-	<returns>The SelectEncodingPlease property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.ShowHelp_dFormat">
-	<summary>
-The stub formatting method returning the ShowHelp_d property value.
-</summary>
-	<returns>The ShowHelp_d property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.Text_dFormat">
-	<summary>
-The stub formatting method returning the Text_d property value.
-</summary>
-	<returns>The Text_d property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.Text_dvFormat">
-	<summary>
-The stub formatting method returning the Text_dv property value.
-</summary>
-	<returns>The Text_dv property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.TextAlignmentOfPromptFormat">
-	<summary>
-The stub formatting method returning the TextAlignmentOfPrompt property value.
-</summary>
-	<returns>The TextAlignmentOfPrompt property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.ValueIndicatingBidirectionlFlowDirectionFormat">
-	<summary>
-The stub formatting method returning the ValueIndicatingBidirectionlFlowDirection property value.
-</summary>
-	<returns>The ValueIndicatingBidirectionlFlowDirection property value.</returns>
-</member><member name="M:Tools.WindowsT.FormsT.Dialogs.WindowChanged_dFormat">
-	<summary>
-The stub formatting method returning the WindowChanged_d property value.
-</summary>
-	<returns>The WindowChanged_d property value.</returns>
-</member><member name="T:Tools.WindowsT.FormsT.Dialogs">
-	<summary>
-A strongly-typed resource class, for looking up localized strings, formatting them, etc.
-</summary>
 </member><member name="P:Tools.WindowsT.FormsT.DataBoundToolStripComboBox.DisplayMember">
 	<summary>Gets or sets the property to display for <see cref="P:System.Windows.Forms.ToolStripComboBox.ComboBox"/>.</summary>
 	<returns>A <see cref="T:System.String"/> specifying the name of an object property that is contained in the collection specified by the <see cref="P:System.Windows.Forms.ListControl.DataSource"/> property. The default is an empty string ("").</returns>
@@ -5027,6 +4873,180 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="T:Tools.Direction">
 	<summary>Neighbourhood directions</summary>
 	<version version="1.5.3">This enumeration is new in version 1.5.3</version>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.InternalSyncObject">
+	<summary>
+Thread safe lock object used by this class.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.ResourceManager">
+	<summary>
+Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.Culture">
+	<summary>
+Overrides the current thread's CurrentUICulture property for all
+resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.About0">
+	<summary>
+Looks up a localized string similar to 'About {0}'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.InnerException">
+	<summary>
+Looks up a localized string similar to 'Inner exception: '.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.NoEncodingSelected">
+	<summary>
+Looks up a localized string similar to 'No encoding selected'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.OKClicked_d">
+	<summary>
+Looks up a localized string similar to 'Raised after user clicks OK and dialogs allows him to select encoding'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.Preselected_d">
+	<summary>
+Looks up a localized string similar to 'Specifies code page of encoding that will be preselected when dialog is shown (if available). Set to negative value in order to preselect no encoding'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.PreviewBytes_d">
+	<summary>
+Looks up a localized string similar to 'Text to decode using selected encoding and show as preview'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.PreviewString_d">
+	<summary>
+Looks up a localized string similar to 'Text to encode using selected encoding and inform user if all characters can be encoded'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.PropertyChanged_d">
+	<summary>
+Looks up a localized string similar to 'Occurs when a property value changes.'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.RequireCorrect_d">
+	<summary>
+Looks up a localized string similar to 'Defines if user can select encoding that can be used only with problems on given PreviewString on PreviewBytes'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.SelectEncodingPlease">
+	<summary>
+Looks up a localized string similar to 'Select encoding please.'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.ShowHelp_d">
+	<summary>
+Looks up a localized string similar to 'Determines if help button will be shown'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.Text_d">
+	<summary>
+Looks up a localized string similar to 'Text displayed in title of window'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.Text_dv">
+	<summary>
+Looks up a localized string similar to 'Select encoding'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.TextAlignmentOfPrompt">
+	<summary>
+Looks up a localized string similar to 'Text alignment of prompt'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.ValueIndicatingBidirectionlFlowDirection">
+	<summary>
+Looks up a localized string similar to 'Value indicating bidirectionl flow direction'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.Dialogs.WindowChanged_d">
+	<summary>
+Looks up a localized string similar to 'Raised when value of the Window property changes'.
+</summary>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.About0Format(System.Object)">
+	<summary>
+Formats a localized string similar to 'About {0}'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.InnerExceptionFormat">
+	<summary>
+The stub formatting method returning the InnerException property value.
+</summary>
+	<returns>The InnerException property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.NoEncodingSelectedFormat">
+	<summary>
+The stub formatting method returning the NoEncodingSelected property value.
+</summary>
+	<returns>The NoEncodingSelected property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.OKClicked_dFormat">
+	<summary>
+The stub formatting method returning the OKClicked_d property value.
+</summary>
+	<returns>The OKClicked_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.Preselected_dFormat">
+	<summary>
+The stub formatting method returning the Preselected_d property value.
+</summary>
+	<returns>The Preselected_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.PreviewBytes_dFormat">
+	<summary>
+The stub formatting method returning the PreviewBytes_d property value.
+</summary>
+	<returns>The PreviewBytes_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.PreviewString_dFormat">
+	<summary>
+The stub formatting method returning the PreviewString_d property value.
+</summary>
+	<returns>The PreviewString_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.PropertyChanged_dFormat">
+	<summary>
+The stub formatting method returning the PropertyChanged_d property value.
+</summary>
+	<returns>The PropertyChanged_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.RequireCorrect_dFormat">
+	<summary>
+The stub formatting method returning the RequireCorrect_d property value.
+</summary>
+	<returns>The RequireCorrect_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.SelectEncodingPleaseFormat">
+	<summary>
+The stub formatting method returning the SelectEncodingPlease property value.
+</summary>
+	<returns>The SelectEncodingPlease property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.ShowHelp_dFormat">
+	<summary>
+The stub formatting method returning the ShowHelp_d property value.
+</summary>
+	<returns>The ShowHelp_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.Text_dFormat">
+	<summary>
+The stub formatting method returning the Text_d property value.
+</summary>
+	<returns>The Text_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.Text_dvFormat">
+	<summary>
+The stub formatting method returning the Text_dv property value.
+</summary>
+	<returns>The Text_dv property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.TextAlignmentOfPromptFormat">
+	<summary>
+The stub formatting method returning the TextAlignmentOfPrompt property value.
+</summary>
+	<returns>The TextAlignmentOfPrompt property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.ValueIndicatingBidirectionlFlowDirectionFormat">
+	<summary>
+The stub formatting method returning the ValueIndicatingBidirectionlFlowDirection property value.
+</summary>
+	<returns>The ValueIndicatingBidirectionlFlowDirection property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.Dialogs.WindowChanged_dFormat">
+	<summary>
+The stub formatting method returning the WindowChanged_d property value.
+</summary>
+	<returns>The WindowChanged_d property value.</returns>
+</member><member name="T:Tools.WindowsT.FormsT.Dialogs">
+	<summary>
+A strongly-typed resource class, for looking up localized strings, formatting them, etc.
+</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow.progressMonitor">
+	<summary>A <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor"/> displayed by this window</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow.#ctor(Tools.WindowsT.WPF.DialogsT.ProgressMonitor)">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow"/> class</summary>
+	<param name="progressMonitor">A <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor"/> to be shown by this window</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="progressMonitor"/> is null</exception>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow.allowClose">
+	<summary>When true window can be closed without check if <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand"/> can be executed</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow.ForceClose">
+	<summary>Closes the window without check if <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand"/> can be executed</summary>
+</member><member name="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow">
+	<summary>Implements window which shows <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor"/></summary>
 </member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.#ctor">
 	<summary>Default CTor</summary>
 	<remarks>Value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker"/> property is populated with new instance of <see cref="T:System.ComponentModel.BackgroundWorker"/></remarks>
@@ -5043,14 +5063,20 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Text">Title text of window (see <see cref="P:System.Windows.Forms.Form.Text"/>)</param>
 	<param name="Prompt">Prompt text (see <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Prompt"/>)</param>
 	<filterpriority>2</filterpriority>
-</member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.Show(System.ComponentModel.BackgroundWorker,System.String,System.String,System.Windows.Forms.IWin32Window,System.Object)">
+</member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.Show(System.ComponentModel.BackgroundWorker,System.String,System.String,System.Object,System.Object)">
 	<summary>Shows progress form and runs worker</summary>
 	<param name="bgw">Worker to run</param>
 	<param name="Text">Title text of window (see <see cref="P:System.Windows.Forms.Form.Text"/>)</param>
 	<param name="Prompt">Text prompt (see <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Prompt"/>)</param>
-	<param name="Owner">Any object that implements <see cref="T:System.Windows.Forms.IWin32Window"/> that represents the top-level window that will own the modal dialog box.</param>
+	<param name="Owner">Any object that implements <see cref="T:System.Windows.Forms.IWin32Window"/> or <see cref="T:System.Windows.Interop.IWin32Window"/>, or <see cref="T:System.Windows.Window"/> that represents the top-level window that will own the modal dialog box.</param>
 	<param name="WorkerArgument">Optional parameter for background worker</param>
 	<returns>Result of work of <paramref name="bgw"/></returns>
+	<version version="1.5.3">Type of parameter <paramref name="Owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support WPF owners.</version>
+</member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.IProgressMonitorUI_ShowDialog(System.Object)">
+	<summary>Shows window modally</summary>
+	<param name="owner">Owner object of dialog. It can be either <see cref="T:System.Windows.Forms.IWin32Window"/> (e.g. <see cref="T:System.Windows.Forms.Form"/>), <see cref="T:System.Windows.Interop.IWin32Window"/> or <see cref="T:System.Windows.Window"/>. When owner is not of recognized type (or is null), it's ignored.</param>
+	<returns>True when dialog was closed normally, false if it was closed because of user has cancelled the operation</returns>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.OnShown(System.EventArgs)">
 	<summary>Raises the <see cref="E:System.Windows.Forms.Form.Shown"/> event.</summary>
 	<param name="e">A <see cref="T:System.EventArgs"/> that contains the event data. </param>
@@ -5062,6 +5088,10 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="P:Tools.WindowsT.FormsT.ProgressMonitor.ProgressBarStyle">
 	<summary>Gets or sets style of <see cref="T:System.Windows.Forms.ProgressBar"/> that indicates progress of process</summary>
 	<seelaso cref="P:System.Windows.Forms.ProgressBar.Style"/>
+</member><member name="P:Tools.WindowsT.FormsT.ProgressMonitor.IProgressMonitorUI_ProgressBarShowsProgress">
+	<summary>Gets or sets current style of progress bar</summary>
+	<value>True to show progressbar which indicates percentage progress of operation, false to show progressbar which only indicates that something is going on but does not indicate actual progress</value>
+	<version version="1.5.3">This property is new in version 1.5.3</version>
 </member><member name="P:Tools.WindowsT.FormsT.ProgressMonitor.Progress">
 	<summary>Gets or sets current value of <see cref="T:System.Windows.Forms.ProgressBar"/> that reports progress</summary>
 	<exception cref="T:System.ArgumentException">Value being set is smaller than 0 or greater than 100.</exception>
@@ -5123,9 +5153,15 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerArgument"/> property</summary>
 </member><member name="P:Tools.WindowsT.FormsT.ProgressMonitor.WorkerArgument">
 	<summary>Gets or sets value of argument passed to <see cref="E:System.ComponentModel.BackgroundWorker.DoWork"/> when <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.DoWorkOnShow"/> is true</summary>
+</member><member name="P:Tools.WindowsT.FormsT.ProgressMonitor.IProgressMonitorUI_Title">
+	<summary>Implements <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.Title"/></summary>
+	<value>Title of window showing the progress. Default value is localized word "Progress"</value>
+	<returns>Current title of window showing progress</returns>
+	<version version="1.5.3">This property is new in version 1.5.3</version>
 </member><member name="T:Tools.WindowsT.FormsT.ProgressMonitor">
 	<summary>This <see cref="T:System.Windows.Forms.Form"/> serves as predefined progress monitor with <see cref="T:System.Windows.Forms.ProgressBar"/> for <see cref="T:System.ComponentModel.BackgroundWorker"/></summary>
 	<remarks>See documentation of the <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)"/> method in order to see rich options for reporting progress.</remarks>
+	<version version="1.5.3">This class implements <see cref="T:Tools.WindowsT.IndependentT.IProgressMonitorUI"/> interface</version>
 </member><member name="F:Tools.WindowsT.FormsT.DataBoundToolStripLabel._context">
 	<summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.DataBoundToolStripLabel.BindingContext"/> property</summary>
 </member><member name="F:Tools.WindowsT.FormsT.DataBoundToolStripLabel._bindings">
@@ -5956,6 +5992,45 @@ The stub formatting method returning the WorkerArgument_d property value.
 	<summary>
 A strongly-typed resource class, for looking up localized strings, formatting them, etc.
 </summary>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker">
+	<summary>Gets <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker"/> this form repports progress of</summary>
+	<exception cref="T:System.ArgumentNullException">Value being set is null</exception>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.ProgressBarShowsProgress">
+	<summary>Gets or sets current style of progress bar</summary>
+	<value>True to show progressbar which indicates percentage progress of operation, false to show progressbar which only indicates that something is going on but does not indicate actual progress</value>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.Progress">
+	<summary>Gets or sets current value of <see cref="T:System.Windows.Forms.ProgressBar"/> that reports progress</summary>
+	<exception cref="T:System.ArgumentException">Value being set is smaller than 0 or greater than 100.</exception>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.WorkerResult">
+	<summary>Gets or sets result of <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker"/> work</summary>
+	<returns>Null until <see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted"/> event occures. That returns its e parameter.</returns>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.Prompt">
+	<summary>Gets or sets prompt diaplyed in upper part of form</summary>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.Information">
+	<summary>Gets or sets informative text displayed below the progress bar</summary>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.CanCancel">
+	<summary>Gets or sets value indicationg if dialog supports cancelation</summary>
+	<value>Default value depends on <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker"/>.<see cref="P:System.ComponentModel.BackgroundWorker.WorkerSupportsCancellation">WorkerSupportsCancellation</see> in time when it is passed to CTor.</value>
+</member><member name="M:Tools.WindowsT.IndependentT.IProgressMonitorUI.Reset">
+	<summary>Resets the dialog</summary>
+	<remarks>In case you want to use the dialog from multiple runs of <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker"/>, you should call this method before each (excluding first, but you can to) runs of <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker"/>. Alternativly you can report new run using <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)"/> - see <see cref="!:OnProgressChanged"/>.</remarks>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.DoWorkOnShow">
+	<summary>Gets or sets value indicationg if form will call <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker"/>.<see cref="M:System.ComponentModel.BackgroundWorker.RunWorkerAsync">RunWorkerAsync</see> when <see cref="!:Shown"/> event occures.</summary>
+	<seelaso cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.WorkerArgument"/>
+	<value>Default value is true</value>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.WorkerArgument">
+	<summary>Gets or sets value of argument passed to <see cref="E:System.ComponentModel.BackgroundWorker.DoWork"/> when <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.DoWorkOnShow"/> is true</summary>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.Title">
+	<summary>Gets or sets dialog title</summary>
+	<value>Title of window showing the progress. Default value is implementation dependent (e.g. localized word "Progress")</value>
+	<returns>Current title of window showing progress</returns>
+</member><member name="M:Tools.WindowsT.IndependentT.IProgressMonitorUI.ShowDialog(System.Object)">
+	<summary>Shows window modally</summary>
+	<param name="owner">Owner object of dialog. Each implementation should support at least objects of type <see cref="T:System.Windows.Forms.IWin32Window"/> (e.g. <see cref="T:System.Windows.Forms.Form"/>), <see cref="T:System.Windows.Interop.IWin32Window"/> and <see cref="T:System.Windows.Window"/>. When owner is not of recognized type (or is null, it's ignored.</param>
+	<returns>True when dialog was closed normally, false if it was closed because of user has cancelled the operation</returns>
+</member><member name="T:Tools.WindowsT.IndependentT.IProgressMonitorUI">
+	<summary>Represents progress monitor dialog with progress description, progress bar and cancel button</summary>
+	<version version="1.5.3" stage="Nightly">This interface is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.FormsT.VisualStylesT.VisualStyleExtensions.IsDefined(System.Windows.Forms.VisualStyles.VisualStyleElement)">
 	<summary>Determines whether the specified visual style element is defined by the current visual style.</summary>
 	<param name="element">A <see cref="T:System.Windows.Forms.VisualStyles.VisualStyleElement"/> whose class and part combination will be verified.</param>
@@ -6582,6 +6657,187 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="T:Tools.WindowsT.WPF.DialogsT.MessageBoxWindow">
 	<summary>Window that impements WPF message box</summary>
 	<version version="1.5.3." stage="Nightly">Added ability to copy all text of message box using Ctrl+C</version>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.PART_MainInfo">
+	<summary>Identifies placeholder for main information text block</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.PART_ProgressBar">
+	<summary>Identifies placeholder for progress bar</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.PART_Info">
+	<summary>Identifies placeholder for secondary information text block</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.PART_Cancel">
+	<summary>Identifies placeholder for cancel button</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.#cctor">
+	<summary>Initializer</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand">
+	<summary>Gets command to be executed when button is clicked.</summary>
+	<returns>Command to be execued when button is clicked</returns>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl._CancelCommand">
+	<summary>Contains value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand"/> property</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.InitializeCommands">
+	<summary>Initializes comands</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CanCancel(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+	<summary>Called to determine wheather the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand"/> can be executed</summary>
+	<param name="sender">Source of event (<see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl"/>)</param>
+	<param name="e">Event arguments</param>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CanCancel(System.Windows.Input.CanExecuteRoutedEventArgs)">
+	<summary>Called to determine wheather the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand"/> can be executed</summary>
+	<param name="e">Event arguments</param>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.OnCancel(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+	<summary>Called when <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand"/> is invoked</summary>
+	<param name="sender">Source of event (<see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl"/>)</param>
+	<param name="e">Event arguments</param>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.OnCancel(System.Windows.Input.ExecutedRoutedEventArgs)">
+	<summary>Called when the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand"/> is executed; raises the <see cref="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Cancel"/> event</summary>
+	<param name="e">Event arguments.</param>
+</member><member name="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Cancel">
+	<summary>Raised when user requests operation to be cancelled</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelEvent">
+	<summary>Metadata of the <see cref="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Cancel"/> event</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressBarShowsProgress">
+	<summary>Gets or sets current style of progress bar</summary>
+	<value>True to show progressbar which indicates percentage progress of operation, false to show progressbar which only indicates that something is going on but does not indicate actual progress</value>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressBarShowsProgressProperty">
+	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressBarShowsProgress"/> property</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Progress">
+	<summary>Gets or sets current progress shown by progressbar</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressProperty">
+	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Progress"/> property</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CoerceProgressValue(System.Windows.DependencyObject,System.Object)">
+	<summary>Called whenever a value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Progress"/> dependency property is being re-evaluated, or coercion is specifically requested.</summary>
+	<param name="d">The object that the property exists on. When the callback is invoked, the property system passes this value.</param>
+	<param name="baseValue">The new value of the property, prior to any coercion attempt.</param>
+	<returns>The coerced value (with appropriate type).</returns>
+	<exception cref="T:Tools.TypeMismatchException"><paramref name="d"/> is not of type <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl"/> -or- <paramref name="baseValue"/> is not of type <see cref="T:System.Int32"/></exception>
+	<exception cref="T:System.ArgumentNullException"><paramref name="d"/> is null</exception>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CoerceProgressValue(System.Int32)">
+	<summary>Called whenever a value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Progress"/> dependency property is being re-evaluated, or coercion is specifically requested.</summary>
+	<param name="baseValue">The new value of the property, prior to any coercion attempt, but ensured to be of correct type.</param>
+	<returns>The coerced value (with appropriate type). 0 whan <paramref name="baseValue"/> is lower than 0; 100 when <paramref name="baseValue"/> is greater than 100; <paramref name="baseValue"/> otherwise.</returns>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Prompt">
+	<summary>Gets or sets prompt shown in window</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.PromptProperty">
+	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Prompt"/> property</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Information">
+	<summary>Gets or sets additional information shown in the window</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.InformationProperty">
+	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Information"/> property</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Title">
+	<summary>Gets or sets title of progress monitor window</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.TitleProperty">
+	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Title"/> property</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelEnabled">
+	<summary>Gets or sets value indicating if cancel button is enabled</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelEnabledProperty">
+	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelEnabled"/> property</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.#ctor">
+	<summary>Default CTor</summary>
+	<remarks>Value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> property is populated with new instance of <see cref="T:System.ComponentModel.BackgroundWorker"/></remarks>
+	<filterpriority>3</filterpriority>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.#ctor(System.ComponentModel.BackgroundWorker)">
+	<summary>CTor</summary>
+	<param name="bgw"><see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> this form will report progress for</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="bgw"/> is null</exception>
+	<filterpriority>1</filterpriority>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.#ctor(System.ComponentModel.BackgroundWorker,System.String,System.String)">
+	<summary>CTor with title text and prompt</summary>
+	<param name="bgw"><see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> this form will report progress for</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="bgw"/> is null</exception>
+	<param name="title">Title text of window (see <see cref="N:System.Text"/>)</param>
+	<param name="prompt">Prompt text (see <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Prompt"/>)</param>
+	<filterpriority>2</filterpriority>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Show(System.ComponentModel.BackgroundWorker,System.String,System.String,System.Object,System.Object)">
+	<summary>Shows progress form and runs worker</summary>
+	<param name="bgw">Worker to run</param>
+	<param name="Text">Title text of window (see <see cref="N:System.Text"/>)</param>
+	<param name="Prompt">Text prompt (see <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Prompt"/>)</param>
+	<param name="Owner">Any object that implements <see cref="T:System.Windows.Forms.IWin32Window"/> or <see cref="T:System.Windows.Interop.IWin32Window"/>, or <see cref="T:System.Windows.Window"/> that represents the top-level window that will own the modal dialog box.</param>
+	<param name="WorkerArgument">Optional parameter for background worker</param>
+	<returns>Result of work of <paramref name="bgw"/></returns>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.window">
+	<summary>Window being currently shown</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ShowDialog(System.Object)">
+	<summary>Shows window modally</summary>
+	<param name="owner">Owner object of dialog. It can be either <see cref="T:System.Windows.Forms.IWin32Window"/> (e.g. <see cref="T:System.Windows.Forms.Form"/>), <see cref="T:System.Windows.Interop.IWin32Window"/> or <see cref="T:System.Windows.Window"/>. When owner is not of recognized type (or is null), it's ignored.</param>
+	<returns>True when dialog was closed normally, false if it was closed because of user has cancelled the operation</returns>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker">
+	<summary>Gets <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> this form repports progress of</summary>
+	<exception cref="T:System.ArgumentNullException">Value being set is null</exception>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressBarShowsProgress">
+	<summary>Gets or sets current style of progress bar</summary>
+	<value>True to show progressbar which indicates percentage progress of operation, false to show progressbar which only indicates that something is going on but does not indicate actual progress</value>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Progress">
+	<summary>Gets or sets current value of <see cref="T:System.Windows.Controls.ProgressBar"/> that reports progress</summary>
+	<exception cref="T:System.ArgumentOutOfRangeException">Value being set is smaller than 0 or greater than 100.</exception>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitor._CloseOnFinish">
+	<summary>Contains value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CloseOnFinish"/> property</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CloseOnFinish">
+	<summary>Gets or sets value indicating if form automatically closes when <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>.<see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted">RunWorkerCompleted</see> event occures.</summary>
+	<value>New behavoir. Defalt value is true.</value>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitor._WorkerResult">
+	<summary>Contains value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WorkerResult"/> property</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WorkerResult">
+	<summary>Gets or sets result of <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> work</summary>
+	<returns>Null until <see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted"/> event occures. That returns its e parameter.</returns>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Prompt">
+	<summary>Gets or sets prompt diaplyed in upper part of form</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Information">
+	<summary>Gets or sets informative text displayed below the progress bar</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitor._CanCancel">
+	<summary>Contains value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CanCancel"/> property</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CanCancel">
+	<summary>Gets or sets value indicationg if dialog supports cancelation</summary>
+	<value>Default value depends on <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>.<see cref="P:System.ComponentModel.BackgroundWorker.WorkerSupportsCancellation">WorkerSupportsCancellation</see> in time when it is passed to CTor.</value>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitor._DoWorkOnShow">
+	<summary>Contains value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.DoWorkOnShow"/> property</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.DoWorkOnShow">
+	<summary>Gets or sets value indicationg if form will call <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>.<see cref="M:System.ComponentModel.BackgroundWorker.RunWorkerAsync">RunWorkerAsync</see> when <see cref="!:Shown"/> event occures.</summary>
+	<seelaso cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WorkerArgument"/>
+	<value>Default value is true</value>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitor._WorkerArgument">
+	<summary>Contains value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WorkerArgument"/> property</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WorkerArgument">
+	<summary>Gets or sets value of argument passed to <see cref="E:System.ComponentModel.BackgroundWorker.DoWork"/> when <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.DoWorkOnShow"/> is true</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Title">
+	<summary>Gets or sets dialog title</summary>
+	<value>Title of window showing the progress. Default value is localized word "Progress"</value>
+	<returns>Current title of window showing progress</returns>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CancelEnanled">
+	<summary>Gets value indicating if Cancle button is enabled</summary>
+	<returns>True when both - <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CanCancel"/> and <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CancelPending"/> are enabled</returns>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CancelPending">
+	<summary>Gets or sets value indicating if user has pressed the Cancel button and dialog is now waiting for process to cancel itself</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)">
+	<summary>Handles <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>.<see cref="E:System.ComponentModel.BackgroundWorker.ProgressChanged">ProgressChanged</see> event</summary>
+	<param name="sender"><see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/></param>
+	<param name="e">Event erguments</param>
+	<remarks>Default implementation works in following way:
+ <list type="bullet">
+			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than or equal to zero then sets this value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Progress"/> property. Values smaller than zero are ignored.</item>
+			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Windows.Forms.ProgressBarStyle"/> sets <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressBarShowsProgress"/> to true or false</item>
+			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.String"/> passes that value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Information"/> property.</item>
+			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Boolean"/> passes that value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CanCancel"/> property.</item>
+			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> (same instance) than <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Reset"/> method is called.</item>
+		</list>
+	</remarks>
+	<exception cref="T:System.ArgumentException"><paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than 100.</exception>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnRunWorkerCompleted(System.ComponentModel.BackgroundWorker,System.ComponentModel.RunWorkerCompletedEventArgs)">
+	<summary>Handles <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>.<see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted">RunWorkerCompleted</see> event.</summary>
+	<param name="sender"><see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/></param>
+	<param name="e">event arguments</param>
+	<remarks>This implementation sets <see cref="!:DialogResult"/> to <see cref="!:DialogResult.Cancel"/> when <paramref name="e"/>.<see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled">Cancelled</see> is true; to <see cref="!:DialogResult.Abort"/> when <paramref name="e"/>.<see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Error"/> isnot nothing and to <see cref="!:DialogResult.OK"/> in all other cases. Then sets <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WorkerResult"/>. If <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CloseOnFinish"/> is true, closes the form.</remarks>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Reset">
+	<summary>Resets the dialog</summary>
+	<remarks>In case you want to use the dialog from multiple runs of <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>, you should call this method before each (excluding first, but you can to) runs of <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>. Alternativly you can report new run using <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)"/> - see <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)"/>.</remarks>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+	<summary>Raises the <see cref="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.PropertyChanged"/> event</summary>
+	<param name="e">Event arguments</param>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnPropertyChanged(System.String)">
+	<summary>Raises the <see cref="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.PropertyChanged"/> event</summary>
+	<param name="propertyName">The name of the property that changed</param>
+</member><member name="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.PropertyChanged">
+	<summary>Occurs when a property value changes.</summary>
+</member><member name="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor">
+	<summary>This class provides predefined progress monitor with <see cref="T:System.Windows.Controls.ProgressBar"/> for <see cref="T:System.ComponentModel.BackgroundWorker"/></summary>
+	<remarks>See documentation of the <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)"/> method in order to see rich options for reporting progress.</remarks>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.#ctor">
 	<summary>Default CTor</summary>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.#ctor(Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions)">
@@ -6841,6 +7097,41 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Wraps <see cref="T:System.Windows.DependencyPropertyChangedEventArgs"/> as clas derived from <see cref="T:System.EventArgs"/></summary>
 	<author www="http://dzonny.cz">Đonny</author>
 	<version stage="Nightly" version="1.5.2">Class introduced</version>
+</member><member name="P:Tools.WindowsT.WPF.Dialogs.InternalSyncObject">
+	<summary>
+Thread safe lock object used by this class.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Dialogs.ResourceManager">
+	<summary>
+Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Dialogs.Culture">
+	<summary>
+Overrides the current thread's CurrentUICulture property for all
+resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Dialogs.Cancel">
+	<summary>
+Looks up a localized string similar to '_Cancel'.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Dialogs.Progress">
+	<summary>
+Looks up a localized string similar to 'Progress'.
+</summary>
+</member><member name="M:Tools.WindowsT.WPF.Dialogs.CancelFormat">
+	<summary>
+The stub formatting method returning the Cancel property value.
+</summary>
+	<returns>The Cancel property value.</returns>
+</member><member name="M:Tools.WindowsT.WPF.Dialogs.ProgressFormat">
+	<summary>
+The stub formatting method returning the Progress property value.
+</summary>
+	<returns>The Progress property value.</returns>
+</member><member name="T:Tools.WindowsT.WPF.Dialogs">
+	<summary>
+A strongly-typed resource class, for looking up localized strings, formatting them, etc.
+</summary>
 </member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.ToBitmapSource(System.Drawing.Bitmap)">
 	<summary>Converts <see cref="T:System.Drawing.Image"/> to WPF <see cref="T:System.Windows.Media.Imaging.BitmapSource"/></summary>
 	<param name="Image">An <see cref="T:System.Drawing.Image"/></param>
