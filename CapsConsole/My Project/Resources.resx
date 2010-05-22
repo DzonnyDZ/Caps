@@ -1897,4 +1897,25 @@ Note: If you cancel this dialog, you may have troubles seeing images.</value>
     <value>Migrates images stored in file system nad database</value>
     <comment>Manu item tool tip</comment>
   </data>
+  <data name="lbl_StorageImages" xml:space="preserve">
+    <value>Storage images ({0})</value>
+  </data>
+  <data name="lbl_PreparingDirectories" xml:space="preserve">
+    <value>Preparing directories</value>
+  </data>
+  <data name="lbl_CountingUnusedImages" xml:space="preserve">
+    <value>Counting unused images</value>
+  </data>
+  <data name="lbl_CountingFinished" xml:space="preserve">
+    <value>Counting finished</value>
+  </data>
+  <data name="lbl_DeletingImages" xml:space="preserve">
+    <value>Deleting images</value>
+  </data>
+  <data name="msg_CleanImagesCancel" xml:space="preserve">
+    <value>Cancelling - {0} images already deleted</value>
+  </data>
+  <data name="lbl_Finished" xml:space="preserve">
+    <value>Finished</value>
+  </data>
 </root>

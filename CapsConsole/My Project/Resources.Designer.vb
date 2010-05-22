@@ -1409,6 +1409,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Counting finished.
+        '''</summary>
+        Public ReadOnly Property lbl_CountingFinished() As String
+            Get
+                Return ResourceManager.GetString("lbl_CountingFinished", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Counting unused images.
+        '''</summary>
+        Public ReadOnly Property lbl_CountingUnusedImages() As String
+            Get
+                Return ResourceManager.GetString("lbl_CountingUnusedImages", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to _Country.
         '''</summary>
         Public ReadOnly Property lbl_Country() As String
@@ -1436,11 +1454,29 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Deleting images.
+        '''</summary>
+        Public ReadOnly Property lbl_DeletingImages() As String
+            Get
+                Return ResourceManager.GetString("lbl_DeletingImages", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to _Description.
         '''</summary>
         Public ReadOnly Property lbl_Description() As String
             Get
                 Return ResourceManager.GetString("lbl_Description", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Finished.
+        '''</summary>
+        Public ReadOnly Property lbl_Finished() As String
+            Get
+                Return ResourceManager.GetString("lbl_Finished", resourceCulture)
             End Get
         End Property
         
@@ -1733,6 +1769,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Preparing directories.
+        '''</summary>
+        Public ReadOnly Property lbl_PreparingDirectories() As String
+            Get
+                Return ResourceManager.GetString("lbl_PreparingDirectories", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Product.
         '''</summary>
         Public ReadOnly Property lbl_Product() As String
@@ -1855,6 +1900,15 @@ Namespace My.Resources
         Public ReadOnly Property lbl_Storage() As String
             Get
                 Return ResourceManager.GetString("lbl_Storage", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Storage images ({0}).
+        '''</summary>
+        Public ReadOnly Property lbl_StorageImages() As String
+            Get
+                Return ResourceManager.GetString("lbl_StorageImages", resourceCulture)
             End Get
         End Property
         
@@ -2251,6 +2305,15 @@ Namespace My.Resources
         Public ReadOnly Property msg_CapTypeNameMustBeEntered() As String
             Get
                 Return ResourceManager.GetString("msg_CapTypeNameMustBeEntered", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Cancelling - {0} images already deleted.
+        '''</summary>
+        Public ReadOnly Property msg_CleanImagesCancel() As String
+            Get
+                Return ResourceManager.GetString("msg_CleanImagesCancel", resourceCulture)
             End Get
         End Property
         

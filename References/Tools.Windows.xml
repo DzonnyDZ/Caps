@@ -6058,7 +6058,18 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker">
 	<summary>Gets <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker"/> this form repports progress of</summary>
 	<exception cref="T:System.ArgumentNullException">Value being set is null</exception>
-	<remarks></remarks>
+	<remarks>
+ Background worker can report status of background process in several ways. In most cases the <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)"/> method is used.
+ <list type="table"><listheader><term>UI change requested</term><description>Data to be passed</description></listheader>
+			<item><term>Report percentage progress</term><description>Pass number from range 0÷100 to first parameter of <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)"/>.</description></item>
+			<item><term>Make progress monitor UI ignore reported percentage progress</term><description>Pass number lower than zero to first parameter of <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)"/>.</description></item>
+			<item><term>Change style of progress bar</term><description>Pass value of type <see cref="T:Tools.WindowsT.IndependentT.ProgressBarStyle"/> to user data. <note>Some implementations of <see cref="T:Tools.WindowsT.IndependentT.IProgressMonitorUI"/> may also support values of type <see cref="T:System.Windows.Forms.ProgressBarStyle"/> or may support values which are not explicitly specified for either of these types.</note></description></item>
+			<item><term>Show textual description of current status to user (set the <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.Information"/> property)</term><description>Pass <see cref="T:System.String"/> to user state.</description></item>
+			<item><term>Allow or disallow process cancelllation (set the <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.CanCancel"/> property)</term><description>Pass <see cref="T:System.Boolean"/> to user state. <note>When passing <c>True</c>, <see cref="P:System.ComponentModel.BackgroundWorker.WorkerSupportsCancellation"/> must be <c>True</c> as well.</note></description></item>
+			<item><term>Call the <see cref="M:Tools.WindowsT.IndependentT.IProgressMonitorUI.Reset"/> method</term><see>Pass <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker"/> (same instance) to user data.</see></item>
+			<item><term>Show message box or perform another operation which shall be performed in UI thread.</term><description>Use the <see cref="M:Tools.ThreadingT.IInvoke.Invoke(System.Delegate,System.Object[])"/> function - or better, use one of generic type-safe extension overloads provided by the <see cref="T:Tools.ThreadingT.IInvokeExtensions"/> module.</description></item>
+		</list>
+	</remarks>
 </member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.ProgressBarStyle">
 	<summary>Gets or sets current style of progress bar</summary>
 	<remarks>When value of this property is not one of values defined in the <see cref="T:Tools.WindowsT.IndependentT.ProgressBarStyle"/> enumeration, it means the prograss bar reports current status in an implementation-specific way. When property is set to unrecognized value, implementation may corce it to one of recognized values.</remarks>
@@ -6098,6 +6109,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="T:Tools.WindowsT.IndependentT.IProgressMonitorUI">
 	<summary>Represents progress monitor dialog with progress description, progress bar and cancel button</summary>
 	<version version="1.5.3" stage="Nightly">This interface is new in version 1.5.3</version>
+	<remarks>For details how background process can report it's state see <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker"/> property</remarks>
 </member><member name="F:Tools.WindowsT.IndependentT.ProgressBarStyle.Indefinite">
 	<summary>Progressbar does not show actual progresss. It only indicates that something is going on.</summary>
 	<seelaso cref="F:System.Windows.Forms.ProgressBarStyle.Marquee"/>
@@ -6767,11 +6779,11 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="e">Event arguments.</param>
 </member><member name="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Cancel">
 	<summary>Raised when user requests operation to be cancelled</summary>
-</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressBarShowsProgress">
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressBarStyle">
 	<summary>Gets or sets current style of progress bar</summary>
 	<value>True to show progressbar which indicates percentage progress of operation, false to show progressbar which only indicates that something is going on but does not indicate actual progress</value>
-</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressBarShowsProgressProperty">
-	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressBarShowsProgress"/> property</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressBarStyleProperty">
+	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressBarStyle"/> property</summary>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Progress">
 	<summary>Gets or sets current progress shown by progressbar</summary>
 </member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressProperty">
@@ -6827,7 +6839,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Owner">Any object that implements <see cref="T:System.Windows.Forms.IWin32Window"/> or <see cref="T:System.Windows.Interop.IWin32Window"/>, or <see cref="T:System.Windows.Window"/> that represents the top-level window that will own the modal dialog box.</param>
 	<param name="WorkerArgument">Optional parameter for background worker</param>
 	<returns>Result of work of <paramref name="bgw"/></returns>
-</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.window">
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitor._window">
 	<summary>Window being currently shown</summary>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ShowDialog(System.Object)">
 	<summary>Shows window modally</summary>
@@ -6877,14 +6889,16 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Gets or sets dialog title</summary>
 	<value>Title of window showing the progress. Default value is localized word "Progress"</value>
 	<returns>Current title of window showing progress</returns>
-</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CancelEnanled">
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CancelEnabled">
 	<summary>Gets value indicating if Cancle button is enabled</summary>
 	<returns>True when both - <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CanCancel"/> and <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CancelPending"/> are enabled</returns>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CancelPending">
 	<summary>Gets or sets value indicating if user has pressed the Cancel button and dialog is now waiting for process to cancel itself</summary>
-</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.IProgressMonitorUI_OwnerObject">
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Window">
 	<summary>Gets an object that can be used as owner for modal windows</summary>
 	<returns>When progress monitor dialog is currently shown, returns a <see cref="T:System.Windows.Window"/> representing the dialog; otherwise null.</returns>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WorkerFinished">
+	<summary>Gets or sets value indicating if worker has finished it's work</summary>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)">
 	<summary>Handles <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>.<see cref="E:System.ComponentModel.BackgroundWorker.ProgressChanged">ProgressChanged</see> event</summary>
 	<param name="sender"><see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/></param>
@@ -6892,7 +6906,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<remarks>Default implementation works in following way:
  <list type="bullet">
 			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than or equal to zero then sets this value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Progress"/> property. Values smaller than zero are ignored.</item>
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Windows.Forms.ProgressBarStyle"/> sets <see cref="!:ProgressBarShowsProgress"/> to true or false</item>
+			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Windows.Forms.ProgressBarStyle"/> sets <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressBarStyle"/> to given value</item>
 			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.String"/> passes that value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Information"/> property.</item>
 			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Boolean"/> passes that value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CanCancel"/> property.</item>
 			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> (same instance) than <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Reset"/> method is called.</item>
