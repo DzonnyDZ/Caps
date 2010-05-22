@@ -852,4 +852,7 @@
   <data name="cc_ZM" xml:space="preserve">
     <value>Zambie</value>
   </data>
+  <data name="cc_ZW" xml:space="preserve">
+    <value>Zimbabwe</value>
+  </data>
 </root>

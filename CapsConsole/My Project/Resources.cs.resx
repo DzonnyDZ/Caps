@@ -119,766 +119,766 @@
   </resheader>
   <data name="txt_Caps" xml:space="preserve">
     <value>Víčka</value>
-  </data>
+  <comment>Main window title (localized application name)</comment></data>
   <data name="clr_Black" xml:space="preserve">
     <value>Černá</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Blue" xml:space="preserve">
     <value>Modrá</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Brown" xml:space="preserve">
     <value>Hnědá</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Gold" xml:space="preserve">
     <value>Zlatá</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Gray" xml:space="preserve">
     <value>Šedivá</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Green" xml:space="preserve">
     <value>Zelená</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_LightBlue" xml:space="preserve">
     <value>Světle modrá</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Lime" xml:space="preserve">
     <value>Světle zelená</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Magenta" xml:space="preserve">
     <value>Fialová</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Orange" xml:space="preserve">
     <value>Oranžová</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Pink" xml:space="preserve">
     <value>Růžová</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Red" xml:space="preserve">
     <value>Červená</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Silver" xml:space="preserve">
     <value>Stříbrná</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Transparent" xml:space="preserve">
     <value>Průhledná</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_White" xml:space="preserve">
     <value>Bílá</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="clr_Yellow" xml:space="preserve">
     <value>Žlutá</value>
-  </data>
+  <comment>Color name</comment></data>
   <data name="cmd_Cancel" xml:space="preserve">
     <value>_Strono</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="cmd_OK" xml:space="preserve">
     <value>OK</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="mni_Configuration" xml:space="preserve">
     <value>_Nastavení</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_EditLists" xml:space="preserve">
     <value>Upravovat _číselníky ...</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_Exit" xml:space="preserve">
     <value>_Konec</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_File" xml:space="preserve">
     <value>_Soubor</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_More" xml:space="preserve">
     <value>Více ...</value>
-  </data>
+  <comment>Clickable combo box item</comment></data>
   <data name="mni_NewCap" xml:space="preserve">
     <value>_Nové víčko</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_Settings" xml:space="preserve">
     <value>_Předvolby ...</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="tot_NoColor" xml:space="preserve">
     <value>Žádná barva nezvolena</value>
-  </data>
+  <comment>Combo box item</comment></data>
   <data name="txt_SelectDatabase" xml:space="preserve">
     <value>Výběr databáze</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="ex_UnsupportedDataType" xml:space="preserve">
     <value>Nepodporovaný datový typ {0}</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="ex_ConvertsOnlyToBool" xml:space="preserve">
     <value>{0} převádí jen na boolean.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="ex_CanConvertBackOnlyFromFalse" xml:space="preserve">
     <value>{0} může převést zpět jen z false.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="ex_CannotConvertBack" xml:space="preserve">
     <value>{0} namůže převádět zpět.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="cmd_Apply" xml:space="preserve">
     <value>Použít</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="coh_Company" xml:space="preserve">
     <value>Firma</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Description" xml:space="preserve">
     <value>Popis</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Height" xml:space="preserve">
     <value>Výška</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_ID" xml:space="preserve">
     <value>ID</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_MainType" xml:space="preserve">
     <value>Hlavní typ</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Material" xml:space="preserve">
     <value>Materiál</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Name" xml:space="preserve">
     <value>Název</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Number" xml:space="preserve">
     <value>Číslo</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_ProductType" xml:space="preserve">
     <value>Typ produktu</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Shape" xml:space="preserve">
     <value>Tvar</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Size1" xml:space="preserve">
     <value>Velikost 1</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Size1Name" xml:space="preserve">
     <value>Název velikosti 1</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Size2" xml:space="preserve">
     <value>Velikost 2</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Size2Name" xml:space="preserve">
     <value>Název velikosti 2</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Type" xml:space="preserve">
     <value>Typ</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="txt_Categories" xml:space="preserve">
     <value>Kategorie</value>
-  </data>
+  <comment>Tab page title / Group box text</comment></data>
   <data name="txt_Companies" xml:space="preserve">
     <value>Firmy</value>
-  </data>
+  <comment>Tab page title</comment></data>
   <data name="txt_ListEditors" xml:space="preserve">
     <value>Editor číselníků</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="txt_MainTypes" xml:space="preserve">
     <value>Hlavní typy</value>
-  </data>
+  <comment>Tab page title</comment></data>
   <data name="txt_Materials" xml:space="preserve">
     <value>Materiály</value>
-  </data>
+  <comment>Tab page title</comment></data>
   <data name="txt_Products" xml:space="preserve">
     <value>Produkty</value>
-  </data>
+  <comment>Tab page title</comment></data>
   <data name="txt_ProductTypes" xml:space="preserve">
     <value>Typy produktů</value>
-  </data>
+  <comment>Tab page title</comment></data>
   <data name="txt_Shapes" xml:space="preserve">
     <value>Tvary</value>
-  </data>
+  <comment>Tab page title</comment></data>
   <data name="txt_Storages" xml:space="preserve">
     <value>Úožiště</value>
-  </data>
+  <comment>Tab page title</comment></data>
   <data name="txt_StorageTypes" xml:space="preserve">
     <value>Typy úložišť</value>
-  </data>
+  <comment>Tab page title</comment></data>
   <data name="txt_Types" xml:space="preserve">
     <value>Typy</value>
-  </data>
+  <comment>Tab page title</comment></data>
   <data name="des_SelectImagesRootDirectory" xml:space="preserve">
     <value>Kořenová složka pro obrázky není nastavena. Vyberte, prosím, nějakou.</value>
-  </data>
+  <comment>Folder browse dialog sescription</comment></data>
   <data name="lbl_Description" xml:space="preserve">
     <value>_Popis</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Image" xml:space="preserve">
     <value>Obrá_zek</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Name" xml:space="preserve">
     <value>_Název</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="txt_NewMainType" xml:space="preserve">
     <value>Nový hlavní typ</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="msg_FileNotExists_ContinueWOImage" xml:space="preserve">
     <value>Soubor {0} neexistuje. Pokračovat bez obrázku?</value>
-  </data>
+  <comment>Message box text</comment></data>
   <data name="txt_MainTypeImage" xml:space="preserve">
     <value>Obrázek hlavního typu</value>
-  </data>
+  <comment>Message box title</comment></data>
   <data name="lbl_Size1Name" xml:space="preserve">
     <value>Název velikosti 1</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Size2Name" xml:space="preserve">
     <value>Název velikosti 2</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="txt_NewShape" xml:space="preserve">
     <value>Nový tvar</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="txt_ShapeImage" xml:space="preserve">
     <value>Obrázek tvaru</value>
-  </data>
+  <comment>Message box title</comment></data>
   <data name="txt_FileSystemError" xml:space="preserve">
     <value>Chyba souborového systému</value>
-  </data>
+  <comment>Message box title</comment></data>
   <data name="msg_CopyMainTypeImageError" xml:space="preserve">
     <value>Nepodařilo se ulložit obrázek hlavního typu. Hlavní typ byl vytvořen bez obrázku.</value>
-  </data>
+  <comment>Error message box text</comment></data>
   <data name="msg_CopyShapeImageError" xml:space="preserve">
     <value>Nepodařilo se uložit obrázek tvaru. Tvar byl vytvořen bez obrázku.</value>
-  </data>
+  <comment>Error message box text</comment></data>
   <data name="txt_NewObject" xml:space="preserve">
     <value>Nový objekt</value>
-  </data>
+  <comment>Window title (unused)</comment></data>
   <data name="txt_NewCategory" xml:space="preserve">
     <value>Nová kategorie</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="txt_NewCompany" xml:space="preserve">
     <value>Nová firmy</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="txt_NewMaterial" xml:space="preserve">
     <value>Nový materiál</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="txt_NewProductType" xml:space="preserve">
     <value>Nový typ produktu</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="txt_NewStorageType" xml:space="preserve">
     <value>Nový typ úložiště</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="err_UnknownSimpleObject" xml:space="preserve">
     <value>Neznámý jednoduchý objekt: {0}</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="cmd_New" xml:space="preserve">
     <value>Nový ...</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="lbl_ImageRoot" xml:space="preserve">
     <value>Kořen obrázků</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Number" xml:space="preserve">
     <value>Číso</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Type" xml:space="preserve">
     <value>Typ</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="txt_NewStorage" xml:space="preserve">
     <value>Nové úložiště</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="txt_Settings" xml:space="preserve">
     <value>Nastavení</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="txt_ImageRoot" xml:space="preserve">
     <value>Kořen obrázků</value>
-  </data>
+  <comment>Message box title</comment></data>
   <data name="msg_ImageRootPathError" xml:space="preserve">
     <value>Složka pro obrázky musí být nastavena na existující složku.</value>
-  </data>
+  <comment>Error message box text</comment></data>
   <data name="abb_Millimeters" xml:space="preserve">
     <value>mm</value>
-  </data>
+  <comment>Millimeters abbreviation</comment></data>
   <data name="cmd_Add" xml:space="preserve">
     <value>Přidat ...</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="cmd_CapsSearchSimilar" xml:space="preserve">
     <value>_Hledat podobná víčka ...</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="cmd_NewCategory" xml:space="preserve">
     <value>Nová kate_gorie ...</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="cmd_SaveCap" xml:space="preserve">
     <value>Uložit ví_čko</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="lbl_3D" xml:space="preserve">
     <value>_3D</value>
-  </data>
+  <comment>Check box text (surface/writing) (with accesschar)</comment></data>
   <data name="lbl_AnonymousProduct" xml:space="preserve">
     <value>Anonymn_í produkt</value>
-  </data>
+  <comment>Radio button text</comment></data>
   <data name="lbl_AnonymousType" xml:space="preserve">
     <value>Anonymn_í typ</value>
-  </data>
+  <comment>Radio button text</comment></data>
   <data name="lbl_Background" xml:space="preserve">
     <value>Poza_dí</value>
-  </data>
+  <comment>Label text (color)</comment></data>
   <data name="lbl_BottomText" xml:space="preserve">
     <value>Text ze_spoda</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Company" xml:space="preserve">
     <value>_Firma</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Country" xml:space="preserve">
     <value>_Stát</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Foreground" xml:space="preserve">
     <value>Popř_edí</value>
-  </data>
+  <comment>Label text (color)</comment></data>
   <data name="lbl_Glossy" xml:space="preserve">
     <value>_Lesklý</value>
-  </data>
+  <comment>Radio button text (surface)  (with accesschar)</comment></data>
   <data name="lbl_Height" xml:space="preserve">
     <value>Vý_ška (z)</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_ID" xml:space="preserve">
     <value>ID</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_MainPicture" xml:space="preserve">
     <value>Hlavní _obrázek</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_MainType" xml:space="preserve">
     <value>_Hlavní typ</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Material" xml:space="preserve">
     <value>Materi_ál</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Matting" xml:space="preserve">
     <value>_Matný</value>
-  </data>
+  <comment>Radio button text (surface) (with accesschar)</comment></data>
   <data name="lbl_NewProduct" xml:space="preserve">
     <value>Nov_ý produkt</value>
-  </data>
+  <comment>Radio button text</comment></data>
   <data name="lbl_NewType" xml:space="preserve">
     <value>Nov_ý typ</value>
-  </data>
+  <comment>Radio button text</comment></data>
   <data name="lbl_Note" xml:space="preserve">
     <value>P_oznámka</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_ProductType" xml:space="preserve">
     <value>Typ _produktu</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_SecondaryBackground" xml:space="preserve">
     <value>2_. pozadí</value>
-  </data>
+  <comment>Label text (color)</comment></data>
   <data name="lbl_SelectProduct" xml:space="preserve">
     <value>Vybra_t produkt</value>
-  </data>
+  <comment>Radio button text</comment></data>
   <data name="lbl_SelectType" xml:space="preserve">
     <value>_Vybrat typ</value>
-  </data>
+  <comment>Radio button text</comment></data>
   <data name="lbl_Shape" xml:space="preserve">
     <value>Tva_r</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_SideText" xml:space="preserve">
     <value>Text _zboku</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Storage" xml:space="preserve">
     <value>Úlo_žiště</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_SubtitleText" xml:space="preserve">
     <value>Podtit_ul</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_TitleText" xml:space="preserve">
     <value>T_itulní text</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_TopText" xml:space="preserve">
     <value>Te_xt zvrchu</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Year" xml:space="preserve">
     <value>Ro_k</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="tot_0NotSet" xml:space="preserve">
     <value>0 - nenastaveno</value>
-  </data>
+  <comment>Tool tip text</comment></data>
   <data name="txt_CapType" xml:space="preserve">
     <value>Typ víčka</value>
-  </data>
+  <comment>Frame title</comment></data>
   <data name="txt_CategoriesKeywords" xml:space="preserve">
     <value>Kate_gorie a klíčová slova</value>
-  </data>
+  <comment>Frame header</comment></data>
   <data name="txt_Colors" xml:space="preserve">
     <value>Barvy</value>
-  </data>
+  <comment>Frame title</comment></data>
   <data name="txt_CompanyProduct" xml:space="preserve">
     <value>Firma a produkt</value>
-  </data>
+  <comment>Frame header</comment></data>
   <data name="txt_Images" xml:space="preserve">
     <value>Obrázky</value>
-  </data>
+  <comment>Frame header</comment></data>
   <data name="txt_Miscellaneous" xml:space="preserve">
     <value>Různé</value>
-  </data>
+  <comment>Frame header</comment></data>
   <data name="txt_Naming" xml:space="preserve">
     <value>Pojmenování a popis</value>
-  </data>
+  <comment>Frame title</comment></data>
   <data name="txt_NewCap" xml:space="preserve">
     <value>Nové víčko</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="txt_ProductSelection" xml:space="preserve">
     <value>Výběr produktu</value>
-  </data>
+  <comment>Frame header</comment></data>
   <data name="txt_Texts" xml:space="preserve">
     <value>Texty</value>
-  </data>
+  <comment>Frame header</comment></data>
   <data name="txt_TypeInformation" xml:space="preserve">
     <value>Informace o typu</value>
-  </data>
+  <comment>Frame title</comment></data>
   <data name="txt_CapTypeImage" xml:space="preserve">
     <value>Obrázek typu víčka</value>
-  </data>
+  <comment>Message bo title</comment></data>
   <data name="err_IconHasAlreadyBeenEncoded" xml:space="preserve">
     <value>Ikona již byla zakódována.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="err_ValueCannotBeNull" xml:space="preserve">
     <value>{0} nesmí být null.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="err_ValueMustBeGreaterThanZero" xml:space="preserve">
     <value>{0} musí být větší než nula.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="msg_ErrorCopyingFile" xml:space="preserve">
     <value>Chyba při kopírování souboru {0} do složky obrázků ({1}).</value>
-  </data>
+  <comment>Error message</comment></data>
   <data name="txt_ImageCopyError" xml:space="preserve">
     <value>Chyba kopírování obrázku</value>
-  </data>
+  <comment>Error message box title</comment></data>
   <data name="msg_ErrorCreatingResizedFile" xml:space="preserve">
     <value>Chyba při vytváření obrázku se změněnou velikostí {0}px.</value>
-  </data>
+  <comment>Error message</comment></data>
   <data name="txt_ImageResizeError" xml:space="preserve">
     <value>Chyba změny velikosti obrázku</value>
-  </data>
+  <comment>Error message box title</comment></data>
   <data name="msg_CreatedFileWasNotDeleted" xml:space="preserve">
     <value>Dříve vytvořený soubor {0} se nepodařilo smazat. Ve složce obrázků zůstal osiřelý soubor.</value>
-  </data>
+  <comment>Error message</comment></data>
   <data name="txt_ErrorRemovingFile" xml:space="preserve">
     <value>Chyba při odstraňování souboru</value>
-  </data>
+  <comment>Error message box title</comment></data>
   <data name="err_UnknownImageExtension" xml:space="preserve">
     <value>Neznámá přípona souboru {0}.</value>
-  </data>
+  <comment>Error message</comment></data>
   <data name="CapKeywords" xml:space="preserve">
     <value>víčko,zátka</value>
-  </data>
+  <comment>Comma-separated (no space) list of keywords to write to IPTC metadata keywords for each image</comment></data>
   <data name="msg_IPTCError" xml:space="preserve">
     <value>Chyba při zápisu IPTC do metadat obrázku.</value>
-  </data>
+  <comment>Error message</comment></data>
   <data name="txt_IPTC" xml:space="preserve">
     <value>IPTC</value>
-  </data>
+  <comment>Message boxtitle</comment></data>
   <data name="msg_MainTypeMustBeSelected" xml:space="preserve">
     <value>Hlavní typ musí být vybrán.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="txt_IncompleteEntry" xml:space="preserve">
     <value>Nekompletní zadání</value>
-  </data>
+  <comment>Error message box title</comment></data>
   <data name="msg_ShapeMustBeSelected" xml:space="preserve">
     <value>Tvar musí bát vybrán.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="msg_MaterialMustBeSelected" xml:space="preserve">
     <value>Materiál musí být vybrán.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="msg_StorageMustBeSelected" xml:space="preserve">
     <value>Úložiště musí být vybráno.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="msg_CapNameMustBeEntered" xml:space="preserve">
     <value>Název víčka musí být zadán.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="msg_AtLeastOneImageMustBeSelected" xml:space="preserve">
     <value>Musí být zvolen alespoň jeden obrázek.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="msg_CapTypeNameMustBeEntered" xml:space="preserve">
     <value>Název typu víčka musí být zadán.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="msg_CapTypeAreadyExists" xml:space="preserve">
     <value>Typ víčka s tímto názvem již existuje.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="txt_DuplicateEntry" xml:space="preserve">
     <value>Duplicitní položka</value>
-  </data>
+  <comment>Error message box title</comment></data>
   <data name="msg_ProductNameMustBeEntered" xml:space="preserve">
     <value>Název produktu musí být zadán.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="msg_ProductWithAreadyExists" xml:space="preserve">
     <value>Produkt s tímto názvem již existuje.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="txt_InvalidInput" xml:space="preserve">
     <value>Neplatný vstup</value>
-  </data>
+  <comment>Error message box title</comment></data>
   <data name="msg_ErrorCommittingChangesToDatabase" xml:space="preserve">
     <value>Chyba při potvrzování změn do databáze.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="txt_DatabaseError" xml:space="preserve">
     <value>Chyba databáze</value>
-  </data>
+  <comment>Error message box title</comment></data>
   <data name="mni_About" xml:space="preserve">
     <value>_O ...</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_Help" xml:space="preserve">
     <value>_Nápověda</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="lbl_AnotherPictures" xml:space="preserve">
     <value>D_alší obrázky</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Foreground2" xml:space="preserve">
     <value>Popředí _2</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_HasBottom" xml:space="preserve">
     <value>_Má spodek</value>
-  </data>
+  <comment>CheckBox text</comment></data>
   <data name="lbl_HasSide" xml:space="preserve">
     <value>Má _bok</value>
-  </data>
+  <comment>CheckBox text</comment></data>
   <data name="lbl_PictureType" xml:space="preserve">
     <value>T_yp obrázku</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="msg_AnotherPictures_MainPicture" xml:space="preserve">
     <value>Když je zadán popis dalších obrázků, musí být uršen popis hlavního obrázku.</value>
-  </data>
+  <comment>Invalid user input message</comment></data>
   <data name="msg_BottomText_HasBottom" xml:space="preserve">
     <value>Když je zadán text spodku, má spodek musí být zaškrtnuto.</value>
-  </data>
+  <comment>Invalid user input message</comment></data>
   <data name="msg_MainPicture_PictureType" xml:space="preserve">
     <value>Když je zadán popis hlavního obrázku, musí být určen typ obrázku.</value>
-  </data>
+  <comment>Invalid user input message</comment></data>
   <data name="msg_SideText_HasSide" xml:space="preserve">
     <value>Když je zadán boční text, má bok musí být zaškrtnuto.</value>
-  </data>
+  <comment>Invalid user input message</comment></data>
   <data name="txt_ImageDrawing" xml:space="preserve">
     <value>Kresba</value>
-  </data>
+  <comment>ComboBox item</comment></data>
   <data name="txt_ImageGeometry" xml:space="preserve">
     <value>Geometrie</value>
-  </data>
+  <comment>ComboBox item</comment></data>
   <data name="txt_ImageLogo" xml:space="preserve">
     <value>Logo</value>
-  </data>
+  <comment>ComboBox item</comment></data>
   <data name="txt_ImageNo" xml:space="preserve">
     <value>&lt;bez obrázku&gt;</value>
-  </data>
+  <comment>ComboBox item</comment></data>
   <data name="txt_ImagePhoto" xml:space="preserve">
     <value>Fotka</value>
-  </data>
+  <comment>ComboBox item</comment></data>
   <data name="msg_ForeColor_ForeColor2" xml:space="preserve">
     <value>Když je zadána barva pozadí 2, musí být zadána i barva pozadí 1.</value>
-  </data>
+  <comment>Invalid user input message</comment></data>
   <data name="ex_CapImageConverterParameter" xml:space="preserve">
     <value>Parametr převodníku musí být null nebo integer.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="ex_ExpectedValueOfType1Or2" xml:space="preserve">
     <value>{0} očekává hodnoty typu {1} nebo {2}</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="ex_UnknownImageType" xml:space="preserve">
     <value>Neznámý typ obrázku {0}</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="ex_ImgTypeCodeEmpty" xml:space="preserve">
     <value>Kód typu obrázku nemůže být prázdný řetězec</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="lbl_CapType" xml:space="preserve">
     <value>Typ víčka</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="ex_ConvertOnlyFromNumericAndColors" xml:space="preserve">
     <value>{0} může převádět jen z numerických typů a typů reprezentujících barvy.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="ex_CamConvertBackOnlyFromColors" xml:space="preserve">
     <value>{0} může převádět zpět jen z {1} a {2}.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="lbl_3D2" xml:space="preserve">
     <value>3D</value>
-  </data>
+  <comment>Check box text (surface/writing) (w/o accesschar)</comment></data>
   <data name="lbl_DateCreated" xml:space="preserve">
     <value>Datum vytvoření</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_Glossy2" xml:space="preserve">
     <value>Lesklý</value>
-  </data>
+  <comment>Radio button text (surface) (w/o accesschar)</comment></data>
   <data name="lbl_Matting2" xml:space="preserve">
     <value>Matný</value>
-  </data>
+  <comment>Radio button text (surface) (w/o accesschar)</comment></data>
   <data name="lbl_Product" xml:space="preserve">
     <value>Produkt</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="txt_Keywords" xml:space="preserve">
     <value>Klíčová slova</value>
-  </data>
+  <comment>Gropup box text</comment></data>
   <data name="ex_ValueMustBeSetPriorCalling" xml:space="preserve">
     <value>Hodnota vlastnosti {0} musí být nastavena před voláním {1}</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_ConverterCanConvertOnlyFromTo" xml:space="preserve">
     <value>{0} může převádět jen z {1} do {2}.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="ex_ConverterCanConvertBackOnlyFromTo" xml:space="preserve">
     <value>{0} může převádět zpět jen z {1} do {2}.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="ex_ConverterCannotConvertValueBack" xml:space="preserve">
     <value>{0} nemůže převést zpět hodnotu {1}.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="txt_CapDetails" xml:space="preserve">
     <value>Detaily víčka</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="cmd_Delete" xml:space="preserve">
     <value>_Smazat</value>
-  </data>
+  <comment>Button text / menu item</comment></data>
   <data name="cmd_Edit" xml:space="preserve">
     <value>_Upravit</value>
-  </data>
+  <comment>Button text / menu item</comment></data>
   <data name="txt_CapDetailsFormat" xml:space="preserve">
     <value>Detaily víčka ({0})</value>
-  </data>
+  <comment>Window title with formatting</comment></data>
   <data name="msg_ErrorDeletingCaps" xml:space="preserve">
     <value>Chyba při mazání víček</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="msg_AllCapsDeletedClose" xml:space="preserve">
     <value>Všechna zobrazená víčka byla smazána, okno se nyní zavře.</value>
-  </data>
+  <comment>Message box text</comment></data>
   <data name="txt_DeleteCap" xml:space="preserve">
     <value>Smazat víčko</value>
-  </data>
+  <comment>Message box title</comment></data>
   <data name="msg_q_DelCap" xml:space="preserve">
     <value>Opravdu si přejete smazat vybarné víčko?</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="msg_NoCapTypeSelected" xml:space="preserve">
     <value>Zvolili jste výběr z existujících typů víček, ale žádný jste nevybrali.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="msg_NoProductSelected" xml:space="preserve">
     <value>Zvolili jste výběr z existujících produktů, ale žádný jste nevybrali.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="txt_SearchResults" xml:space="preserve">
     <value>Výsledky vyhledávání</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="cat_CapProperties" xml:space="preserve">
     <value>Vlastnosti víčka</value>
-  </data>
+  <comment>Property grid category</comment></data>
   <data name="ex_ValueOfPropertyMustBeNullOrXOrNullableOfX" xml:space="preserve">
     <value>Hodnota vlastnosti {0} musí být null, {1} nebo {2} {1}.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_ValueOfPropertyMustBeOneOfFollowingValues" xml:space="preserve">
     <value>Hodnota vlastnosti {0} musí být jedna z následujících hodnot: {1}</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_SetUnknownCapType" xml:space="preserve">
     <value>Pokus o nastavení typu víčka, který není v combo boxu.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_SetUnknownCapMainType" xml:space="preserve">
     <value>Pokus o nastavení hlavního typu víčka, který není v combo boxu.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_SetUnknownMaterial" xml:space="preserve">
     <value>Pokus o nastavení materiálu, který není v combo boxu.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_SetUnknownShape" xml:space="preserve">
     <value>Pokus o nastavení tvaru, který není v combo boxu.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_CountryCode3" xml:space="preserve">
     <value>Kód státu musí mít přesně 3 znaky,</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_SetUnknownCapCompany" xml:space="preserve">
     <value>Pokus o nastavení firmy, který není v combo boxu.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_SetUnknownCapProductType" xml:space="preserve">
     <value>Pokus o nastavení typu produktu, který není v combo boxu.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_SetUnknownProduct" xml:space="preserve">
     <value>Pokus o nastavení produktu, který není v combo boxu.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_SetUnknownStorage" xml:space="preserve">
     <value>Pokus o nastavení úložiště, který není v combo boxu.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="err_DeleteingOfSomeImagesFailed" xml:space="preserve">
     <value>Mazání některých obrázků selhalo:</value>
-  </data>
+  <comment>Error message</comment></data>
   <data name="msg_ThereAreImagesThatDoNotBelongToAnyCap" xml:space="preserve">
     <value>Existují obrázky, které nepatří k žádnému víčku!</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="txt_Error" xml:space="preserve">
     <value>Chyba</value>
-  </data>
+  <comment>Error message box title</comment></data>
   <data name="txt_OwervriteFile" xml:space="preserve">
     <value>Přepsat soubor</value>
-  </data>
+  <comment>Message box title</comment></data>
   <data name="err_CopyCapTypeImageFailed" xml:space="preserve">
     <value>Ukládání obrázku typu víčka selhalo. Nový typ víčka je bez obrázku!</value>
-  </data>
+  <comment>Error message</comment></data>
   <data name="txt_CopyFile" xml:space="preserve">
     <value>Kopírvat soubor</value>
-  </data>
+  <comment>Message box title</comment></data>
   <data name="txt_ErrorUpdatingCap" xml:space="preserve">
     <value>Chyba při aktualizaci víčka</value>
-  </data>
+  <comment>Message box title</comment></data>
   <data name="txt_InvalidSelection" xml:space="preserve">
     <value>Neplatný výběr</value>
-  </data>
+  <comment>Message box title</comment></data>
   <data name="err_SelectExactlyOneCap" xml:space="preserve">
     <value>Vyberte právě jedno víčko, prosím.</value>
-  </data>
+  <comment>Error message</comment></data>
   <data name="ex_IsNotAssignableFrom" xml:space="preserve">
     <value>{0} není přiřaditelné z {1}</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_IsAssignableFromNeither" xml:space="preserve">
     <value>{0} není přiřaditelné z {1} ani z {2}</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_FunctionForForwardConversionHaveNotBeenSet" xml:space="preserve">
     <value>Funkce pro dopředný převod nebyla nastavena.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_FunctionForBackwardConversionHasNotBeenSet" xml:space="preserve">
     <value>Fonkce pro zpětný převod nebyla nastavena.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_IsNull" xml:space="preserve">
     <value>{0} je null.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_CapIDNotFound" xml:space="preserve">
     <value>Víčko ID {0} nenalezeno</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_ServiceProviderDoesntProvide" xml:space="preserve">
     <value>Poskytovatel služeb neposkytl službu {0}</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_CannotBeAnEmptyString" xml:space="preserve">
     <value>{0} nemůže být prázdný řetězec.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_DoesNotContainMemberNamePart" xml:space="preserve">
     <value>{0} neobsahuje část se jménem člena.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="ex_MemberHasValueNull" xml:space="preserve">
     <value>Člen {0} má hodnotu null.</value>
-  </data>
+  <comment>Inner exception message</comment></data>
   <data name="cmd_UseWizard" xml:space="preserve">
     <value>Použít průvodce...</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="tot_ISO2" xml:space="preserve">
     <value>Kód ISO 3166-1 alpha-2</value>
-  </data>
+  <comment>Tool tip text</comment></data>
   <data name="ex_SetUnknownTarget" xml:space="preserve">
     <value>Pokus o nastavení cíle, který není v ComboBoxu.</value>
-  </data>
+  <comment>Internal error message</comment></data>
   <data name="lbl_CapState" xml:space="preserve">
     <value>Stav</value>
-  </data>
+  <comment>Label text (meaning how much the cap is damaged 1-OK; 5-destroyed)</comment></data>
   <data name="lbl_CountryOfOrigin" xml:space="preserve">
     <value>Zem_ě původu</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_IsDrink" xml:space="preserve">
     <value>Nápo_j</value>
-  </data>
+  <comment>Check box text</comment></data>
   <data name="lbl_IsAlcoholic" xml:space="preserve">
     <value>_Alkoholický</value>
-  </data>
+  <comment>Check box text</comment></data>
   <data name="lbl_Target" xml:space="preserve">
     <value>Obje_kt</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="tot_CapState" xml:space="preserve">
     <value>1 - OK, 5 - zničené</value>
-  </data>
+  <comment>Tool tip text</comment></data>
   <data name="txt_InvalidCountryCode" xml:space="preserve">
     <value>Neplatný kód státu. Vyplňte dvoupísmenný ISO 3166-1 alpha-2 kód, prosím.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="txt_InvalidCountryOfOriginCode" xml:space="preserve">
     <value>Neplatný kód země původu. Vyplňte dvoupísmenný ISO 3166-1 alpha-2 kód, prosím.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="txt_NewTarget" xml:space="preserve">
     <value>Nový objekt</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="coh_IsDrink" xml:space="preserve">
     <value>Nápoj</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_IsAlcoholic" xml:space="preserve">
     <value>Alkoholický</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="txt_Targets" xml:space="preserve">
     <value>Objekty</value>
-  </data>
+  <comment>Tab page header</comment></data>
   <data name="wiz_err_TestConnection" xml:space="preserve">
     <value>Chyba při testování spojení s databází:
 {0}
@@ -894,7 +894,7 @@ Prosím ověřtě připojovací řetězec a zkuste to znovu.</value>
   </data>
   <data name="lbl_State" xml:space="preserve">
     <value>Stav (kvalita_)</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="ex_CanConvertOnlyFromValuesImplementingAndHaving" xml:space="preserve">
     <value>{0} může konvertovat jen z hodnot implementujících {1} a {2} majících {2}.{3} {4}</value>
   </data>
@@ -903,34 +903,34 @@ Prosím ověřtě připojovací řetězec a zkuste to znovu.</value>
   </data>
   <data name="coh_Target" xml:space="preserve">
     <value>Objekt</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="lbl_CapsCount" xml:space="preserve">
     <value>Počet víček</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_NewestCap" xml:space="preserve">
     <value>Nejnovější</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_OldestCap" xml:space="preserve">
     <value>Nejstarší</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="txt_Newest" xml:space="preserve">
     <value>Nejnovější víčka</value>
-  </data>
+  <comment>Group box title</comment></data>
   <data name="txt_Random" xml:space="preserve">
     <value>Náhodná víčka</value>
-  </data>
+  <comment>Group box title</comment></data>
   <data name="txt_Statistic" xml:space="preserve">
     <value>Statistika</value>
-  </data>
+  <comment>Group box title</comment></data>
   <data name="mni_Refresh" xml:space="preserve">
     <value>_Obnovit</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_Tools" xml:space="preserve">
     <value>Nástroje</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="cmd_SaveNext" xml:space="preserve">
     <value>Uložit_ a další</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="msg_CapsSavedID" xml:space="preserve">
     <value>Víčko uloženo pod ID {0}.</value>
   </data>
@@ -942,23 +942,23 @@ Prosím ověřtě připojovací řetězec a zkuste to znovu.</value>
   </data>
   <data name="txt_UpgradeDatabase" xml:space="preserve">
     <value>Upgrade databáze</value>
-  </data>
+  <comment>Message box title</comment></data>
   <data name="msg_DatabaseChangedSuccessfully" xml:space="preserve">
     <value>Změny na databázi byly úspěšné</value>
   </data>
   <data name="tot_MainImage" xml:space="preserve">
     <value>Hlavní obrázek
 K jednomu víčku byste měli mít maximálně jeden hlavní obrázek</value>
-  </data>
+  <comment>Tool tip text</comment></data>
   <data name="tot_ThisIsMainImage" xml:space="preserve">
     <value>Toto je hlavní obrázek</value>
-  </data>
+  <comment>Tool tip text</comment></data>
   <data name="mni_ImagesClear" xml:space="preserve">
     <value>Smazat nepoužívané obrázky</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="tot_ImagesClear" xml:space="preserve">
     <value>Pokud je víčko, obrázek, tvar, typ víčka atp. smazán, obrázek, který se k němu váže, smazán není. Tento příkaz použijte k odstranění obrázků, které nejsou referencovány z databaáze.</value>
-  </data>
+  <comment>Menu item tool tip</comment></data>
   <data name="txt_ImageCleanup" xml:space="preserve">
     <value>Vyčištění obrázků</value>
   </data>
@@ -1000,29 +1000,29 @@ K jednomu víčku byste měli mít maximálně jeden hlavní obrázek</value>
   </data>
   <data name="lbl_Sign" xml:space="preserve">
     <value>Zna_čka</value>
-  </data>
+  <comment>Label</comment></data>
   <data name="msg_CopyCapSignImageError" xml:space="preserve">
     <value>Nepodařilo se ulložit obrázek značky víčka. Značka víčka byla vytvořena bez obrázku.</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="tot_FavoriteCharacters" xml:space="preserve">
     <value>Zde můžete vložit znaky, které často používáte v popiskách víček, ale nejsou na klávesnici. Pak je můžete kopírovat nebo přetahávat do příslušných políček.
 Dvakrát klikněte pro editaci.</value>
-  </data>
+  <comment>Tooltip</comment></data>
   <data name="txt_NewSign" xml:space="preserve">
     <value>Nová značka</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="txt_SignImage" xml:space="preserve">
     <value>Obrázek značky</value>
   </data>
   <data name="ex_SetUnknownSign" xml:space="preserve">
     <value>Pokus nastavit značku, která není v seznamu.</value>
-  </data>
+  <comment>Error message</comment></data>
   <data name="msg_NoMoreCaps" xml:space="preserve">
     <value>Žádná další víčka</value>
   </data>
   <data name="mni_Goto" xml:space="preserve">
     <value>Jít na víčko ...</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="err_CapIdNotFound" xml:space="preserve">
     <value>Víčko id {0} nenalezeno</value>
   </data>
@@ -1034,34 +1034,34 @@ Dvakrát klikněte pro editaci.</value>
   </data>
   <data name="txt_CapSigns" xml:space="preserve">
     <value>Značky víček</value>
-  </data>
+  <comment>Tab page header</comment></data>
   <data name="tot_Sign" xml:space="preserve">
     <value>Značka víčka je malá grafická nebo textová značka. Plastová víčka ji običejně mají zespodu a kovová (včetne korunkových) z boku.</value>
-  </data>
+  <comment>Tool tip</comment></data>
   <data name="lbl_Keywords" xml:space="preserve">
     <value>K_líčová slova</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="mni_NextNoSave" xml:space="preserve">
     <value>Další (_bez uložení!)</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_PreviousNoSave" xml:space="preserve">
     <value>_Zpět (bez uložení!)</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_Reset" xml:space="preserve">
     <value>_Resetovat</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_SaveNew" xml:space="preserve">
     <value>Uložit a _nové</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_SaveNext" xml:space="preserve">
     <value>Uložit a _další</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_SaveNextNoClean" xml:space="preserve">
     <value>Uložit a další (bez _vyčištění)</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="mni_SavePrevious" xml:space="preserve">
     <value>Uložit a _předchozí</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="err_NoPrevItem" xml:space="preserve">
     <value>Předchozí položka není k dispozici, Uložte nejprve víčko!</value>
   </data>
@@ -1091,55 +1091,55 @@ Dvakrát klikněte pro editaci.</value>
   </data>
   <data name="lbl_NoSuggestions" xml:space="preserve">
     <value>Žádné návrhy</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_SuggExTypes" xml:space="preserve">
     <value>Použít existující typ</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="lbl_SuggNewTypes" xml:space="preserve">
     <value>Vytvořit nový typ</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="txt_TypeSuggestor" xml:space="preserve">
     <value>Navrhovač typů</value>
-  </data>
+  <comment>Frame header</comment></data>
   <data name="err_ErrorData" xml:space="preserve">
     <value>Chyba při získávání dat</value>
-  </data>
+  <comment>Error label</comment></data>
   <data name="txt_SuggestedType" xml:space="preserve">
     <value>Navržený typ</value>
-  </data>
+  <comment>Internal name of anonymous cap type</comment></data>
   <data name="lbl_Height_Simple" xml:space="preserve">
     <value>Výška</value>
-  </data>
+  <comment>Label in tooltip</comment></data>
   <data name="mni_CreateType" xml:space="preserve">
     <value>Vytvořit typ ...</value>
-  </data>
+  <comment>Menu item</comment></data>
   <data name="lbl_Surface" xml:space="preserve">
     <value>Povrch</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="txt_CreateNewType" xml:space="preserve">
     <value>Vytvořit nový typ</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="tot_SetTypeToNew" xml:space="preserve">
     <value>Nastavit typ tohoto víčka na nově vytvářený typ</value>
-  </data>
+  <comment>Tool tip text</comment></data>
   <data name="txt_SelectedCapProperties" xml:space="preserve">
     <value>Vlastnosti vybraného víčka</value>
-  </data>
+  <comment>Group box header</comment></data>
   <data name="txt_NewTypeProperties" xml:space="preserve">
     <value>Vlastnosti vytvářenýho typu</value>
-  </data>
+  <comment>Group box title</comment></data>
   <data name="txt_EligibleCaps" xml:space="preserve">
     <value>Víčka pasující na nový typ</value>
-  </data>
+  <comment>Group box header</comment></data>
   <data name="mni_UseCapImageAsTypeImage" xml:space="preserve">
     <value>Použít obrázek víčka jako obrázek typu</value>
-  </data>
+  <comment>Menu item text</comment></data>
   <data name="cmd_CreateType" xml:space="preserve">
     <value>Vytvořit typ</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="msg_EnterTypeName" xml:space="preserve">
     <value>Zadejte název typu, prosím</value>
-  </data>
+  <comment>Message text</comment></data>
   <data name="err_TypeImageNotEnteredContinue" xml:space="preserve">
     <value>Nezadali jste obrázek typu. Chcete vytvořit typ víčka bez obrázku?</value>
   </data>
@@ -1154,13 +1154,13 @@ Dvakrát klikněte pro editaci.</value>
   </data>
   <data name="txt_UnsupportedImageType" xml:space="preserve">
     <value>Nepodporovaný typ obrázku</value>
-  </data>
+  <comment>Message box header</comment></data>
   <data name="msg_CopyCapTypeImageError" xml:space="preserve">
     <value>Nepodařilo se uložit obrázek typu víčka. Typ víčka vytvořen bez obrázku.</value>
   </data>
   <data name="lbl_CapsCounts" xml:space="preserve">
     <value>Celkový počet víček:</value>
-  </data>
+  <comment>Status bar label text</comment></data>
   <data name="err_CanConvertOnlyTo1And2" xml:space="preserve">
     <value>{0} může konvertovat jen na {1} a {2}</value>
   </data>
@@ -1175,7 +1175,7 @@ Dvakrát klikněte pro editaci.</value>
   </data>
   <data name="lbl_Language" xml:space="preserve">
     <value>Jazyk</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="DefaultLanguage" xml:space="preserve">
     <value>Výchozí</value>
   </data>
@@ -1196,13 +1196,13 @@ Dvakrát klikněte pro editaci.</value>
   </data>
   <data name="cmd_AddSign" xml:space="preserve">
     <value>Přidat značku</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="cmd_NewSign" xml:space="preserve">
     <value>Nová značka ...</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="txt_ToManyCapSigns" xml:space="preserve">
     <value>Jedna značka byla vybrána vícekrát. Každá značka může být vybrána maximálně jednou.</value>
-  </data>
+  <comment>Error message</comment></data>
   <data name="err_CanConvertOnlyFrom" xml:space="preserve">
     <value>{0} může konvertovat jen z {1}</value>
   </data>
@@ -1211,34 +1211,34 @@ Dvakrát klikněte pro editaci.</value>
   </data>
   <data name="coh_HasCaps" xml:space="preserve">
     <value>Má víčka</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Parent" xml:space="preserve">
     <value>Rodič</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="lbl_HasCaps" xml:space="preserve">
     <value>Má víčka</value>
-  </data>
+  <comment>Check box label</comment></data>
   <data name="lbl_Parent" xml:space="preserve">
     <value>Rodič</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="cmd_Test" xml:space="preserve">
     <value>Test</value>
-  </data>
+  <comment>Button text</comment></data>
   <data name="coh_Key" xml:space="preserve">
     <value>Klíč</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="coh_Value" xml:space="preserve">
     <value>Hodnota</value>
-  </data>
+  <comment>Column header</comment></data>
   <data name="tot_ImageRootLeaveEmpty" xml:space="preserve">
     <value>Ponechte prázdné, pokud jsou obrázky ukládány v databázi</value>
-  </data>
+  <comment>Tool tip</comment></data>
   <data name="tot_Test" xml:space="preserve">
     <value>Otestuje spojení s databází</value>
-  </data>
+  <comment>Button tooltip</comment></data>
   <data name="txt_DatabaseSettings" xml:space="preserve">
     <value>Nastavení databáze</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="msg_TestConnectionSucceeded" xml:space="preserve">
     <value>Spojení s databází úspěšné.</value>
   </data>
@@ -1250,130 +1250,130 @@ Dvakrát klikněte pro editaci.</value>
   </data>
   <data name="mni_DbSettings" xml:space="preserve">
     <value>Nastavení databáze...</value>
-  </data>
+  <comment>Menu item text</comment></data>
   <data name="wiz_cmd_Back" xml:space="preserve">
     <value>&lt; _Zpět</value>
-  </data>
+  <comment>Wizard button text</comment></data>
   <data name="wiz_cmd_Cancel" xml:space="preserve">
     <value>_Storno</value>
-  </data>
+  <comment>Wizard button text</comment></data>
   <data name="wiz_cmd_Finish" xml:space="preserve">
     <value>_Dokončit</value>
-  </data>
+  <comment>Wizard button text</comment></data>
   <data name="wiz_cmd_Next" xml:space="preserve">
     <value>_Další &gt;</value>
-  </data>
+  <comment>Wizard button text</comment></data>
   <data name="wiz_txt_AttachDatabase" xml:space="preserve">
     <value>Připojit databázový soubor k Microsoft SQL Serveru 2008</value>
-  </data>
+  <comment>Radio button text in wizard</comment></data>
   <data name="wiz_txt_CannotChangeImageStorage" xml:space="preserve">
     <value>Úložiště obrázků nemůže být změněno pro existující databázi. Pokračujte k dalšímu kroku.</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_CapImagesInDB" xml:space="preserve">
     <value>Ukládat obrázky víček v databázi.</value>
-  </data>
+  <comment>Check box text in wizard</comment></data>
   <data name="wiz_txt_ConnectToServer" xml:space="preserve">
     <value>Připojit k databázovému serveru Microsoft SQL Server 2008</value>
-  </data>
+  <comment>Radio button text in wizard</comment></data>
   <data name="wiz_txt_DatabaseAndFileInformation" xml:space="preserve">
     <value>Informace o databázi a souboru</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_DatabaseAndFileSelection" xml:space="preserve">
     <value>Výběr databáze a souboru</value>
-  </data>
+  <comment>Wizard window title</comment></data>
   <data name="wiz_txt_DatabaseName" xml:space="preserve">
     <value>Název datbáze:</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_DatabaseServer" xml:space="preserve">
     <value>Databázový server:</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_EmptyDatabase" xml:space="preserve">
     <value>Připojit se k prázdné databázi a připravit ji pro použití</value>
-  </data>
+  <comment>Radio button text in wizard</comment></data>
   <data name="wiz_txt_ExistingDatabase" xml:space="preserve">
     <value>Připojit se k existující databázi</value>
-  </data>
+  <comment>Radio button text in wizard</comment></data>
   <data name="wiz_txt_ExistingDatabaseFile" xml:space="preserve">
     <value>Použít existující databázový soubor</value>
-  </data>
+  <comment>Radio button text in wizard</comment></data>
   <data name="wiz_txt_FilePath" xml:space="preserve">
     <value>Adresa souboru:</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_ImageStorageSelection" xml:space="preserve">
     <value>Výběr úložiště obrázků</value>
-  </data>
+  <comment>Wizard window title</comment></data>
   <data name="wiz_txt_MoreDetailedImageConfig" xml:space="preserve">
     <value>Detailnější konfigurace může být provedena později v dialogu Nastavení databáze.</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_NewDatabase" xml:space="preserve">
     <value>Vytvořit novou databázi</value>
-  </data>
+  <comment>Radio button text in wizard</comment></data>
   <data name="wiz_txt_NewDatabaseFile" xml:space="preserve">
     <value>Vytvořit nový databázový soubor</value>
-  </data>
+  <comment>Radio button text in wizard</comment></data>
   <data name="wiz_txt_NewOrExisting" xml:space="preserve">
     <value>Nová nebo existující</value>
-  </data>
+  <comment>Wizard window title</comment></data>
   <data name="wiz_txt_NewOrExistingQ" xml:space="preserve">
     <value>Nová nebo existující?</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_OtherImagesInDB" xml:space="preserve">
     <value>Ukládat ostatní obrázky v datbázi</value>
-  </data>
+  <comment>Check box text in wizard</comment></data>
   <data name="wiz_txt_Password" xml:space="preserve">
     <value>Heslo:</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_SelectImageStorage" xml:space="preserve">
     <value>Vyberte, kde chcete ukládat obrázky</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_ServerOrFile" xml:space="preserve">
     <value>Server nebo soubor</value>
-  </data>
+  <comment>Wizard window title</comment></data>
   <data name="wiz_txt_ServerOrFileQ" xml:space="preserve">
     <value>Server nebo soubor?</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_SQLServerAuthentification" xml:space="preserve">
     <value>Použít autentifikaci na straně SQL Serveru</value>
-  </data>
+  <comment>Radio button text in wizard</comment></data>
   <data name="wiz_txt_UserInstance" xml:space="preserve">
     <value>Použít databázi v souboru s Microsoft SQL Server 2008 Express uživatelskými instancemi</value>
-  </data>
+  <comment>Radio button text in wizard</comment></data>
   <data name="wiz_txt_UserName" xml:space="preserve">
     <value>Uživatelské jméno:</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_Wellcome" xml:space="preserve">
     <value>Vítejte v průvodci databází. Tento průvodce vám pomůže vybrat existující nebo založit novou databázi pro vače víčka.</value>
-  </data>
+  <comment>Wizard wellcome text</comment></data>
   <data name="wiz_txt_WindowsAuthentification" xml:space="preserve">
     <value>Použít Windows autentifikaci</value>
-  </data>
+  <comment>Radio button text in wizard</comment></data>
   <data name="wiz_txt_ConnectionType" xml:space="preserve">
     <value>Typ připojení</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_DatabaseFile" xml:space="preserve">
     <value>Databázový soubor</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_DatabaseName2" xml:space="preserve">
     <value>Název databáze</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_DatabaseType" xml:space="preserve">
     <value>Typ databáze</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_ServerName" xml:space="preserve">
     <value>Název serveru</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_Summary" xml:space="preserve">
     <value>Shrnutí</value>
-  </data>
+  <comment>Label in wizard</comment></data>
   <data name="wiz_txt_SummaryTitle" xml:space="preserve">
     <value>Shrnutí průvodce databází</value>
-  </data>
+  <comment>Wizard window title</comment></data>
   <data name="wiz_msg_SelectImageRoot" xml:space="preserve">
     <value>Vyberte složku pro ukládání obrázků, prosím</value>
   </data>
   <data name="txt_DatabaseWizard" xml:space="preserve">
     <value>Průvodce databází</value>
-  </data>
+  <comment>Window title</comment></data>
   <data name="wiz_txt_AttachDatabaseToServer" xml:space="preserve">
     <value>Připojit databázový soubor k serveru.</value>
   </data>
@@ -1411,7 +1411,7 @@ Dvakrát klikněte pro editaci.</value>
     <value>Buďte opatrní❢
 Nastavení databáze jsou pokročilou možností konfigurace aplikace. Neplatná nodnoty konfiguračních klíčů mohou způsobit, že aplikace přestane fungovat, nebo že nebude možno pracovat s vaší databází!
 Nastavení databáze jsou platná pouze pro databázi, ke které jste zrovna připojeni.</value>
-  </data>
+  <comment>Warning in Database Setting dialog</comment></data>
   <data name="wiz_txt_SelectDbFile" xml:space="preserve">
     <value>Vyberte databázový soubor, prosím</value>
   </data>
@@ -1429,13 +1429,13 @@ Nastavení databáze jsou platná pouze pro databázi, ke které jste zrovna př
   </data>
   <data name="wiz_txt_NoInstances" xml:space="preserve">
     <value>Pokud nevidíte žádné instance, tak buďto služba SQL Server Browser neběží nebo není dostupný žádný SQL server.</value>
-  </data>
+  <comment>Text in dialog</comment></data>
   <data name="txt_PleaseWait" xml:space="preserve">
     <value>Prosím počkejte ...</value>
-  </data>
+  <comment>Label text</comment></data>
   <data name="wiz_txt_DataSourceEnumerator" xml:space="preserve">
     <value>Výčet datových zdrojů</value>
-  </data>
+  <comment>Dialog title</comment></data>
   <data name="wiz_msg_DeployErrorExistingDb" xml:space="preserve">
     <value>Došlo k chybě po nasazení databáze. Schéma bylo nasazeno do databáze {0}, ale databáze se nachází v nedefinovaném stavu (nejspíše selhala konfigurace nastavení databáze). Můžete se pokusit připojit k databázi a provést konfiguraci ručně v dialogu Nastavení databáze. Nejlépe však uděláte vyčistíte-li ručně databázi a provedete nasazení znovu.</value>
   </data>
@@ -1456,8 +1456,96 @@ Původní chyba:
 
 Chyba při odstraňování databáze:
 {2}</value>
-  </data>
+  <comment>Error message text</comment></data>
   <data name="wiz_txt_CreatingDatbase" xml:space="preserve">
     <value>Vytváření databáze (nezavírejte toto okno)</value>
+  </data>
+  <data name="err_SaveImageForId0" xml:space="preserve">
+    <value>Nmeohu uložit obrázek pro objekt s id 0</value>
+  </data>
+  <data name="err_FileExists" xml:space="preserve">
+    <value>Soubor {0} již existuje.</value>
+  </data>
+  <data name="err_FileNotFound" xml:space="preserve">
+    <value>Soubor nenalezen</value>
+  </data>
+  <data name="fil_BitmapImages" xml:space="preserve">
+    <comment>Supported bitmap image types</comment>
+    <value>Bitmapová obrázky (JPEG, PNG, BMP, GIF, TIFF)|*.jpg;*.jpeg;*.jfif;*.png;*.bmp;*.dib;*.gif;*.tif;*.tiff;*.exif|Obrázky JPEG (*.jpg, *.jpeg, *.jfif)|*.jpg;*.jpeg;*.jfif|Obrázky PNG (*.png)|*.png|Obrázky GIF (*.gif)|*.gif|Obrázky TIFFF (*.tiff, *.tif)|*.tiff;*.tif|Windows bitmapy (*.bmp, *.dib)|*.bmp;*.dib</value>
+  </data>
+  <data name="cmd_Browse" xml:space="preserve">
+    <comment>Browse button text</comment>
+    <value>...</value>
+  </data>
+  <data name="tot_Browse" xml:space="preserve">
+    <comment>Browse button tooltip</comment>
+    <value>Procházet</value>
+  </data>
+  <data name="cmd_More" xml:space="preserve">
+    <comment>Button text</comment>
+    <value>...</value>
+  </data>
+  <data name="txt_SelectAnotherImageQ" xml:space="preserve">
+    <value>Chcete zvolit jiný obrázek?</value>
+  </data>
+  <data name="msg_CopyStorageImageError" xml:space="preserve">
+    <comment>Error message box text</comment>
+    <value>Nepodařilo se uložit obrázek úložiště. Úložiště vytvořeno bez obrázku.</value>
+  </data>
+  <data name="txt_StorageImage" xml:space="preserve">
+    <comment>Message box title</comment>
+    <value>Obrázek úložiště</value>
+  </data>
+  <data name="err_OperationToCombineCannotBeNull" xml:space="preserve">
+    <value>Operace ke zkombinování nemůže být null</value>
+  </data>
+  <data name="err_CannotBeEmpty" xml:space="preserve">
+    <value>{0} nemůže být prázdná</value>
+  </data>
+  <data name="err_TypeIsNotSupported" xml:space="preserve">
+    <value>Typ {0} není podporován {1}</value>
+  </data>
+  <data name="err_TargetTypeNotSupported" xml:space="preserve">
+    <value>Cílový typ {0} není podporován</value>
+  </data>
+  <data name="cmd_DatabaseSettings" xml:space="preserve">
+    <comment>Button text</comment>
+    <value>Změnit vlastnosti databáze ...</value>
+  </data>
+  <data name="tot_DatabaseSettings" xml:space="preserve">
+    <comment>Button tooltip</comment>
+    <value>Umožňuje změnit databázová nastavení bez nutnosti otevírat ji do hlavního okna. Použijte, pokud jste udělali změny v nastavení databáze a od té doby se vám ji nedaří otevřít.</value>
+  </data>
+  <data name="txt_ImageRootRequired" xml:space="preserve">
+    <value>Změnili sjte databázové nastavení takovým způsobem, že nyní jsou některé obrázky ukládány v souborovém systému. Specifikujet, prosím, složku, kde mají být obrázky ukládány. Poznámka: Stornování tohoto dialogu může způsobit problémy se zobrazením obrázků.</value>
+  </data>
+  <data name="mni_SyncImages" xml:space="preserve">
+    <comment>Menu item text</comment>
+    <value>Migrovat obrázky ...</value>
+  </data>
+  <data name="tot_SyncImages" xml:space="preserve">
+    <comment>Manu item tool tip</comment>
+    <value>Kopírovat obrázky ze souborového systému do databáze</value>
+  </data>
+  <data name="lbl_StorageImages" xml:space="preserve">
+    <value>Obrázky úložišť ({0})</value>
+  </data>
+  <data name="lbl_PreparingDirectories" xml:space="preserve">
+    <value>Připravuji složky</value>
+  </data>
+  <data name="lbl_CountingUnusedImages" xml:space="preserve">
+    <value>Počítám nepoužité obrázky</value>
+  </data>
+  <data name="lbl_CountingFinished" xml:space="preserve">
+    <value>Počítání dokončeno</value>
+  </data>
+  <data name="lbl_DeletingImages" xml:space="preserve">
+    <value>Mažu obrázky</value>
+  </data>
+  <data name="msg_CleanImagesCancel" xml:space="preserve">
+    <value>Sornuji - {0} obrázků již bylo smazáno</value>
+  </data>
+  <data name="lbl_Finished" xml:space="preserve">
+    <value>Hotovo</value>
   </data>
 </root>

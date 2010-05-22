@@ -6815,6 +6815,10 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Gets or sets value indicating if cancel button is enabled</summary>
 </member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelEnabledProperty">
 	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelEnabled"/> property</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelPending">
+	<summary>Gets or sets value idicating if user clicked the cance button and we are waiting for background process to terminate</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelPendingProperty">
+	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelPending"/> property</summary>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.#ctor">
 	<summary>Default CTor</summary>
 	<remarks>Value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> property is populated with new instance of <see cref="T:System.ComponentModel.BackgroundWorker"/></remarks>
@@ -8017,6 +8021,10 @@ resource lookups using this strongly typed resource class.
 	<summary>
 Looks up a localized string similar to '_Cancel'.
 </summary>
+</member><member name="P:Tools.WindowsT.WPF.Dialogs.PleaseWait">
+	<summary>
+Looks up a localized string similar to 'Please wait ...'.
+</summary>
 </member><member name="P:Tools.WindowsT.WPF.Dialogs.Progress">
 	<summary>
 Looks up a localized string similar to 'Progress'.
@@ -8026,6 +8034,11 @@ Looks up a localized string similar to 'Progress'.
 The stub formatting method returning the Cancel property value.
 </summary>
 	<returns>The Cancel property value.</returns>
+</member><member name="M:Tools.WindowsT.WPF.Dialogs.PleaseWaitFormat">
+	<summary>
+The stub formatting method returning the PleaseWait property value.
+</summary>
+	<returns>The PleaseWait property value.</returns>
 </member><member name="M:Tools.WindowsT.WPF.Dialogs.ProgressFormat">
 	<summary>
 The stub formatting method returning the Progress property value.
