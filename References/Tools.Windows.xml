@@ -42,6 +42,55 @@ AddEventHandler
 	<summary>
 GeneratedInternalTypeHelper
 </summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.InternalSyncObject">
+	<summary>
+Thread safe lock object used by this class.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ResourceManager">
+	<summary>
+Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.Culture">
+	<summary>
+Overrides the current thread's CurrentUICulture property for all
+resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ex_CannotConvertBack">
+	<summary>
+Looks up a localized string similar to '{0} cannot convert back.'.
+</summary>
+</member><member name="M:Tools.WindowsT.WPF.Resources.ex_CannotConvertBackFormat(System.Object)">
+	<summary>
+Formats a localized string similar to '{0} cannot convert back.'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="T:Tools.WindowsT.WPF.Resources">
+	<summary>
+A strongly-typed resource class, for looking up localized strings, formatting them, etc.
+</summary>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CompareConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value.</summary>
+	<returns>A converted value. If <paramref name="value"/> is null or <paramref name="parameter"/> is null, returns null. Otherwise returns boolean value indicating if <paramref name="value"/> equals to <paramref name="parameter"/> using <see cref="M:System.Object.Equals(System.Object)"/>.</returns>
+	<param name="value">The value produced by the binding source. Thsi value will be compared for equality with <paramref name="parameter"/>.</param>
+	<param name="targetType">Ignored. Always returns null or <see cref="T:System.Boolean"/></param>
+	<param name="parameter">Value to compare <paramref name="value"/> with.</param>
+	<param name="culture">Ignored.</param>
+	<remarks>No type conversion is performed on <paramref name="value"/> and <paramref name="parameter"/> arguments.
+ Simply <c><paramref name="value"/>.<see cref="M:System.Object.Equals(System.Object)">Equals</see>(<paramref name="parameter"/>)</c> is called.</remarks>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CompareConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value.</summary>
+	<returns>If <paramref name="value"/> is true returns <paramref name="parameter"/>; otherwise throws an exception</returns>
+	<param name="value">Value to be converted</param>
+	<param name="targetType">ignored</param>
+	<param name="parameter">Value this converter compares values to</param>
+	<param name="culture">ignored</param>
+	<exception cref="T:System.NotSupportedException"><paramref name="value"/> is not true</exception>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.CompareConverter">
+	<summary>Converter that test if value being converter equals to parameter</summary>
+	<remarks>This converter is intended as is one-way. This converter used <see cref="M:System.Object.Equals(System.Object)"/>.</remarks>
+	<seelaso cref="M:System.Object.Equals(System.Object)"/>
+	<version version="1.5.3" stage="Nightly">This converter is new in version 1.5.3</version>
 </member><member name="F:Tools.WindowsT.FormsT.ThesaurusForm.For">
 	<summary><see cref="T:Tools.WindowsT.FormsT.KeyWordsEditor"/> this instance is for</summary>
 </member><member name="M:Tools.WindowsT.FormsT.ThesaurusForm.#ctor(Tools.WindowsT.FormsT.KeyWordsEditor)">
@@ -5045,6 +5094,8 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>When true window can be closed without check if <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand"/> can be executed</summary>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow.ForceClose">
 	<summary>Closes the window without check if <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand"/> can be executed</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow.ImplementationControl">
+	<summary>Gets control implementing progress monitor UI</summary>
 </member><member name="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow">
 	<summary>Implements window which shows <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor"/></summary>
 </member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.#ctor">
@@ -5087,10 +5138,11 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<exception cref="T:System.ArgumentNullException">Value being set is null</exception>
 </member><member name="P:Tools.WindowsT.FormsT.ProgressMonitor.ProgressBarStyle">
 	<summary>Gets or sets style of <see cref="T:System.Windows.Forms.ProgressBar"/> that indicates progress of process</summary>
+	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException">The value is not a member of the <see cref="T:System.Windows.Forms.ProgressBarStyle"/> enumeration.</exception>
 	<seelaso cref="P:System.Windows.Forms.ProgressBar.Style"/>
-</member><member name="P:Tools.WindowsT.FormsT.ProgressMonitor.IProgressMonitorUI_ProgressBarShowsProgress">
+</member><member name="P:Tools.WindowsT.FormsT.ProgressMonitor.IProgressMonitorUI_ProgressBarStyle">
 	<summary>Gets or sets current style of progress bar</summary>
-	<value>True to show progressbar which indicates percentage progress of operation, false to show progressbar which only indicates that something is going on but does not indicate actual progress</value>
+	<remarks>This implementation supports all values defined in the <see cref="T:System.Windows.Forms.ProgressBarStyle"/> enumeration. Other values are corced to <see cref="F:Tools.WindowsT.IndependentT.ProgressBarStyle.Definite"/>.</remarks>
 	<version version="1.5.3">This property is new in version 1.5.3</version>
 </member><member name="P:Tools.WindowsT.FormsT.ProgressMonitor.Progress">
 	<summary>Gets or sets current value of <see cref="T:System.Windows.Forms.ProgressBar"/> that reports progress</summary>
@@ -5158,6 +5210,17 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<value>Title of window showing the progress. Default value is localized word "Progress"</value>
 	<returns>Current title of window showing progress</returns>
 	<version version="1.5.3">This property is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.IInvoke_Invoke(System.Delegate,System.Object[])">
+	<summary>Synchronously invokes a delegate in UI thread</summary>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="params">Delegate parameters</param>
+	<returns>Result of delegate call</returns>
+	<remarks>This function invokes <paramref name="delegate"/> in UI thread when <see cref="P:System.Windows.Forms.Control.InvokeRequired"/> denotes it as necessary.</remarks>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+	<seelaso cref="M:System.Windows.Forms.Control.Invoke(System.Delegate)"/><seelaso cref="P:System.Windows.Forms.Control.InvokeRequired"/><seelaso cref="T:Tools.ThreadingT.IInvokeExtensions"/>
+</member><member name="P:Tools.WindowsT.FormsT.ProgressMonitor.IProgressMonitorUI_OwnerObject">
+	<summary>Gets an object that can be used as owner for modal windows</summary>
+	<returns>This instance of <see cref="T:Tools.WindowsT.FormsT.ProgressMonitor"/></returns>
 </member><member name="T:Tools.WindowsT.FormsT.ProgressMonitor">
 	<summary>This <see cref="T:System.Windows.Forms.Form"/> serves as predefined progress monitor with <see cref="T:System.Windows.Forms.ProgressBar"/> for <see cref="T:System.ComponentModel.BackgroundWorker"/></summary>
 	<remarks>See documentation of the <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)"/> method in order to see rich options for reporting progress.</remarks>
@@ -5995,9 +6058,10 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker">
 	<summary>Gets <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker"/> this form repports progress of</summary>
 	<exception cref="T:System.ArgumentNullException">Value being set is null</exception>
-</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.ProgressBarShowsProgress">
+	<remarks></remarks>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.ProgressBarStyle">
 	<summary>Gets or sets current style of progress bar</summary>
-	<value>True to show progressbar which indicates percentage progress of operation, false to show progressbar which only indicates that something is going on but does not indicate actual progress</value>
+	<remarks>When value of this property is not one of values defined in the <see cref="T:Tools.WindowsT.IndependentT.ProgressBarStyle"/> enumeration, it means the prograss bar reports current status in an implementation-specific way. When property is set to unrecognized value, implementation may corce it to one of recognized values.</remarks>
 </member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.Progress">
 	<summary>Gets or sets current value of <see cref="T:System.Windows.Forms.ProgressBar"/> that reports progress</summary>
 	<exception cref="T:System.ArgumentException">Value being set is smaller than 0 or greater than 100.</exception>
@@ -6028,9 +6092,22 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Shows window modally</summary>
 	<param name="owner">Owner object of dialog. Each implementation should support at least objects of type <see cref="T:System.Windows.Forms.IWin32Window"/> (e.g. <see cref="T:System.Windows.Forms.Form"/>), <see cref="T:System.Windows.Interop.IWin32Window"/> and <see cref="T:System.Windows.Window"/>. When owner is not of recognized type (or is null, it's ignored.</param>
 	<returns>True when dialog was closed normally, false if it was closed because of user has cancelled the operation</returns>
+</member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.OwnerObject">
+	<summary>Gets an object that can be used as owner for modal windows</summary>
+	<returns>Depending on implementation this method returns either <see cref="T:System.Windows.Forms.IWin32Window"/>, <see cref="T:System.Windows.Interop.IWin32Window"/> or <see cref="T:System.Windows.Window"/>. Null when owner object was not created yet or if it was already closed or destroyed.</returns>
 </member><member name="T:Tools.WindowsT.IndependentT.IProgressMonitorUI">
 	<summary>Represents progress monitor dialog with progress description, progress bar and cancel button</summary>
 	<version version="1.5.3" stage="Nightly">This interface is new in version 1.5.3</version>
+</member><member name="F:Tools.WindowsT.IndependentT.ProgressBarStyle.Indefinite">
+	<summary>Progressbar does not show actual progresss. It only indicates that something is going on.</summary>
+	<seelaso cref="F:System.Windows.Forms.ProgressBarStyle.Marquee"/>
+</member><member name="F:Tools.WindowsT.IndependentT.ProgressBarStyle.Definite">
+	<summary>Progressbar indicates actual progress in form of bar or otherwise</summary>
+	<seelaso cref="F:System.Windows.Forms.ProgressBarStyle.Blocks"/>
+</member><member name="T:Tools.WindowsT.IndependentT.ProgressBarStyle">
+	<summary>Defines different progressbar styles</summary>
+	<seelaso cref="T:System.Windows.Forms.ProgressBarStyle"/>
+	<remarks>Any value different from <see cref="F:Tools.WindowsT.IndependentT.ProgressBarStyle.Indefinite"/> means that progressbar indicates actual progress. When value differes from <see cref="F:Tools.WindowsT.IndependentT.ProgressBarStyle.Definite"/> the style is implementation dependent.</remarks>
 </member><member name="M:Tools.WindowsT.FormsT.VisualStylesT.VisualStyleExtensions.IsDefined(System.Windows.Forms.VisualStyles.VisualStyleElement)">
 	<summary>Determines whether the specified visual style element is defined by the current visual style.</summary>
 	<param name="element">A <see cref="T:System.Windows.Forms.VisualStyles.VisualStyleElement"/> whose class and part combination will be verified.</param>
@@ -6690,8 +6767,6 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="e">Event arguments.</param>
 </member><member name="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Cancel">
 	<summary>Raised when user requests operation to be cancelled</summary>
-</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelEvent">
-	<summary>Metadata of the <see cref="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Cancel"/> event</summary>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressBarShowsProgress">
 	<summary>Gets or sets current style of progress bar</summary>
 	<value>True to show progressbar which indicates percentage progress of operation, false to show progressbar which only indicates that something is going on but does not indicate actual progress</value>
@@ -6758,12 +6833,14 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Shows window modally</summary>
 	<param name="owner">Owner object of dialog. It can be either <see cref="T:System.Windows.Forms.IWin32Window"/> (e.g. <see cref="T:System.Windows.Forms.Form"/>), <see cref="T:System.Windows.Interop.IWin32Window"/> or <see cref="T:System.Windows.Window"/>. When owner is not of recognized type (or is null), it's ignored.</param>
 	<returns>True when dialog was closed normally, false if it was closed because of user has cancelled the operation</returns>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.bgw">
+	<summary>A background worker which does the work</summary>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker">
 	<summary>Gets <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> this form repports progress of</summary>
 	<exception cref="T:System.ArgumentNullException">Value being set is null</exception>
-</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressBarShowsProgress">
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressBarStyle">
 	<summary>Gets or sets current style of progress bar</summary>
-	<value>True to show progressbar which indicates percentage progress of operation, false to show progressbar which only indicates that something is going on but does not indicate actual progress</value>
+	<remarks>When value of this property is not one of values defined in the <see cref="T:Tools.WindowsT.IndependentT.ProgressBarStyle"/> enumeration, it means the prograss bar reports current status in an implementation-specific way. When property is set to unrecognized value this implementation does not corce it and treats it as <see cref="F:Tools.WindowsT.IndependentT.ProgressBarStyle.Definite"/>. Custom control style can take benefit of such value.</remarks>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Progress">
 	<summary>Gets or sets current value of <see cref="T:System.Windows.Controls.ProgressBar"/> that reports progress</summary>
 	<exception cref="T:System.ArgumentOutOfRangeException">Value being set is smaller than 0 or greater than 100.</exception>
@@ -6805,6 +6882,9 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<returns>True when both - <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CanCancel"/> and <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CancelPending"/> are enabled</returns>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CancelPending">
 	<summary>Gets or sets value indicating if user has pressed the Cancel button and dialog is now waiting for process to cancel itself</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.IProgressMonitorUI_OwnerObject">
+	<summary>Gets an object that can be used as owner for modal windows</summary>
+	<returns>When progress monitor dialog is currently shown, returns a <see cref="T:System.Windows.Window"/> representing the dialog; otherwise null.</returns>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)">
 	<summary>Handles <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>.<see cref="E:System.ComponentModel.BackgroundWorker.ProgressChanged">ProgressChanged</see> event</summary>
 	<param name="sender"><see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/></param>
@@ -6812,7 +6892,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<remarks>Default implementation works in following way:
  <list type="bullet">
 			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than or equal to zero then sets this value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Progress"/> property. Values smaller than zero are ignored.</item>
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Windows.Forms.ProgressBarStyle"/> sets <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressBarShowsProgress"/> to true or false</item>
+			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Windows.Forms.ProgressBarStyle"/> sets <see cref="!:ProgressBarShowsProgress"/> to true or false</item>
 			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.String"/> passes that value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Information"/> property.</item>
 			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Boolean"/> passes that value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CanCancel"/> property.</item>
 			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> (same instance) than <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Reset"/> method is called.</item>
@@ -6823,7 +6903,6 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Handles <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>.<see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted">RunWorkerCompleted</see> event.</summary>
 	<param name="sender"><see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/></param>
 	<param name="e">event arguments</param>
-	<remarks>This implementation sets <see cref="!:DialogResult"/> to <see cref="!:DialogResult.Cancel"/> when <paramref name="e"/>.<see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled">Cancelled</see> is true; to <see cref="!:DialogResult.Abort"/> when <paramref name="e"/>.<see cref="P:System.ComponentModel.AsyncCompletedEventArgs.Error"/> isnot nothing and to <see cref="!:DialogResult.OK"/> in all other cases. Then sets <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WorkerResult"/>. If <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CloseOnFinish"/> is true, closes the form.</remarks>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Reset">
 	<summary>Resets the dialog</summary>
 	<remarks>In case you want to use the dialog from multiple runs of <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>, you should call this method before each (excluding first, but you can to) runs of <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>. Alternativly you can report new run using <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)"/> - see <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)"/>.</remarks>
@@ -6835,9 +6914,819 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="propertyName">The name of the property that changed</param>
 </member><member name="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.PropertyChanged">
 	<summary>Occurs when a property value changes.</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.IInvoke_Invoke(System.Delegate,System.Object[])">
+	<summary>Synchronously invokes a delegate in UI thread. Implements <see cref="M:Tools.ThreadingT.IInvoke.Invoke(System.Delegate,System.Object[])"/>.</summary>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="params">Delegate parameters</param>
+	<returns>Result of delegate call</returns>
+	<remarks>Delegate is invoked in UI thtread only in case UI is shown (window had been shown and has not been closed yet), otherwise (or when <see cref="P:System.Windows.Threading.DispatcherObject.Dispatcher"/> does not require it) delegate is invoked in current thread.
+ <para>This function is named <c>IInvoke_Invoke</c> to make extension functions in <see cref="T:Tools.ThreadingT.IInvokeExtensions"/> to be always called instead of this function whan used with <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor"/>.</para></remarks>
 </member><member name="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor">
 	<summary>This class provides predefined progress monitor with <see cref="T:System.Windows.Controls.ProgressBar"/> for <see cref="T:System.ComponentModel.BackgroundWorker"/></summary>
 	<remarks>See documentation of the <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)"/> method in order to see rich options for reporting progress.</remarks>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``1(System.Windows.Threading.Dispatcher,System.Func{``0})">
+	<summary>Calls parameter-less function in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``2(System.Windows.Threading.Dispatcher,System.Func{``0,``1},``0)">
+	<summary>Calls a function with 1 parameter in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T">Type of 1st parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``3(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2},``0,``1)">
+	<summary>Calls a function with 2 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``4(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3},``0,``1,``2)">
+	<summary>Calls a function with 3 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``5(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4},``0,``1,``2,``3)">
+	<summary>Calls a function with 4 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``6(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5},``0,``1,``2,``3,``4)">
+	<summary>Calls a function with 5 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``7(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5,``6},``0,``1,``2,``3,``4,``5)">
+	<summary>Calls a function with 6 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``8(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5,``6,``7},``0,``1,``2,``3,``4,``5,``6)">
+	<summary>Calls a function with 7 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``9(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},``0,``1,``2,``3,``4,``5,``6,``7)">
+	<summary>Calls a function with 8 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``10(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},``0,``1,``2,``3,``4,``5,``6,``7,``8)">
+	<summary>Calls a function with 9 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``11(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9)">
+	<summary>Calls a function with 10 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``12(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10)">
+	<summary>Calls a function with 11 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``13(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11)">
+	<summary>Calls a function with 12 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``14(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12)">
+	<summary>Calls a function with 13 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``15(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13)">
+	<summary>Calls a function with 14 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``16(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14)">
+	<summary>Calls a function with 15 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<param name="param15">15th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<typeparam name="T15">Type of 15th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``17(System.Windows.Threading.Dispatcher,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15)">
+	<summary>Calls a function with 16 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<param name="param15">15th parameter</param>
+	<param name="param16">16th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<typeparam name="T15">Type of 15th parameter</typeparam>
+	<typeparam name="T16">Type of 16th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke(System.Windows.Threading.Dispatcher,System.Action)">
+	<summary>Calls parameter-less method in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``1(System.Windows.Threading.Dispatcher,System.Action{``0},``0)">
+	<summary>Calls a method with 1 parameter in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<typeparam name="T">Type of 1st parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``2(System.Windows.Threading.Dispatcher,System.Action{``0,``1},``0,``1)">
+	<summary>Calls a method with 2 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``3(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2},``0,``1,``2)">
+	<summary>Calls a method with 3 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``4(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3},``0,``1,``2,``3)">
+	<summary>Calls a method with 4 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``5(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4},``0,``1,``2,``3,``4)">
+	<summary>Calls a method with 5 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``6(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4,``5},``0,``1,``2,``3,``4,``5)">
+	<summary>Calls a method with 6 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``7(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4,``5,``6},``0,``1,``2,``3,``4,``5,``6)">
+	<summary>Calls a method with 7 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``8(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4,``5,``6,``7},``0,``1,``2,``3,``4,``5,``6,``7)">
+	<summary>Calls a method with 8 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``9(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8},``0,``1,``2,``3,``4,``5,``6,``7,``8)">
+	<summary>Calls a method with 9 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``10(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9)">
+	<summary>Calls a method with 10 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``11(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10)">
+	<summary>Calls a method with 11 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``12(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11)">
+	<summary>Calls a method with 12 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``13(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12)">
+	<summary>Calls a method with 13 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``14(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13)">
+	<summary>Calls a method with 14 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``15(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14)">
+	<summary>Calls a method with 15 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<param name="param15">15th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<typeparam name="T15">Type of 15th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``16(System.Windows.Threading.Dispatcher,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15)">
+	<summary>Calls a method with 16 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in thread associated with</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<param name="param15">15th parameter</param>
+	<param name="param16">16th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<typeparam name="T15">Type of 15th parameter</typeparam>
+	<typeparam name="T16">Type of 16th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="T:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions">
+	<summary>Provides extension methods for the <see cref="T:System.Windows.Threading.Dispatcher"/> class</summary>
+	<seealso cref="T:System.Windows.Threading.Dispatcher"/><seealso cref="T:Tools.ThreadingT.IInvokeExtensions"/>
+	<version version="1.5.3">This module is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.#ctor">
 	<summary>Default CTor</summary>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBoxOptionsEditor.#ctor(Tools.WindowsT.IndependentT.MessageBox.MessageBoxOptions)">

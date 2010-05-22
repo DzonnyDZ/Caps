@@ -6,7 +6,821 @@ Tools
 </name>
 </assembly>
 <members>
-<member name="M:Tools.ComponentModelT.SettingsInheritDescriptionAttribute.#ctor(System.Type,System.String,System.String)">
+<member name="M:Tools.ThreadingT.IInvoke.Invoke(System.Delegate,System.Object[])">
+	<summary>Synchronously invokes a delegate in UI thread</summary>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="params">Delegate parameters</param>
+	<returns>Result of delegate call</returns>
+	<remarks><see cref="T:Tools.ThreadingT.IInvokeExtensions"/> module provides type safe overloaded generic extension methods to this method</remarks>
+</member><member name="T:Tools.ThreadingT.IInvoke">
+	<summary>Represents an object which is tied to a thread and can invoke methods in context of that thread</summary>
+	<remarks>Main purpose of this interface is to provide type-safe call of <see cref="M:Tools.ThreadingT.IInvoke.Invoke(System.Delegate,System.Object[])"/> methods using <see cref="T:Tools.ThreadingT.IInvokeExtensions"/>.</remarks>
+	<seelaso cref="T:Tools.ThreadingT.IInvokeExtensions"/>
+	<version version="1.5.3">This interface is new in version 1.5.3</version>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``1(Tools.ThreadingT.IInvoke,System.Func{``0})">
+	<summary>Calls parameter-less function in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``2(Tools.ThreadingT.IInvoke,System.Func{``0,``1},``0)">
+	<summary>Calls a function with 1 parameter in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T">Type of 1st parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``3(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2},``0,``1)">
+	<summary>Calls a function with 2 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``4(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3},``0,``1,``2)">
+	<summary>Calls a function with 3 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``5(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4},``0,``1,``2,``3)">
+	<summary>Calls a function with 4 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``6(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5},``0,``1,``2,``3,``4)">
+	<summary>Calls a function with 5 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``7(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5,``6},``0,``1,``2,``3,``4,``5)">
+	<summary>Calls a function with 6 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``8(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5,``6,``7},``0,``1,``2,``3,``4,``5,``6)">
+	<summary>Calls a function with 7 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``9(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8},``0,``1,``2,``3,``4,``5,``6,``7)">
+	<summary>Calls a function with 8 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``10(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},``0,``1,``2,``3,``4,``5,``6,``7,``8)">
+	<summary>Calls a function with 9 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``11(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9)">
+	<summary>Calls a function with 10 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``12(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10)">
+	<summary>Calls a function with 11 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``13(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11)">
+	<summary>Calls a function with 12 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``14(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12)">
+	<summary>Calls a function with 13 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``15(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13)">
+	<summary>Calls a function with 14 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``16(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14)">
+	<summary>Calls a function with 15 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<param name="param15">15th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<typeparam name="T15">Type of 15th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``17(Tools.ThreadingT.IInvoke,System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15,``16},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15)">
+	<summary>Calls a function with 16 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<param name="param15">15th parameter</param>
+	<param name="param16">16th parameter</param>
+	<typeparam name="TResult">Return type of <paramref name="delegate"/></typeparam>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<typeparam name="T15">Type of 15th parameter</typeparam>
+	<typeparam name="T16">Type of 16th parameter</typeparam>
+	<returns>Result of call to <paramref name="delegate"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke(Tools.ThreadingT.IInvoke,System.Action)">
+	<summary>Calls parameter-less method in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``1(Tools.ThreadingT.IInvoke,System.Action{``0},``0)">
+	<summary>Calls a method with 1 parameter in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<typeparam name="T">Type of 1st parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``2(Tools.ThreadingT.IInvoke,System.Action{``0,``1},``0,``1)">
+	<summary>Calls a method with 2 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``3(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2},``0,``1,``2)">
+	<summary>Calls a method with 3 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``4(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3},``0,``1,``2,``3)">
+	<summary>Calls a method with 4 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``5(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4},``0,``1,``2,``3,``4)">
+	<summary>Calls a method with 5 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``6(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4,``5},``0,``1,``2,``3,``4,``5)">
+	<summary>Calls a method with 6 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``7(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4,``5,``6},``0,``1,``2,``3,``4,``5,``6)">
+	<summary>Calls a method with 7 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``8(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4,``5,``6,``7},``0,``1,``2,``3,``4,``5,``6,``7)">
+	<summary>Calls a method with 8 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``9(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8},``0,``1,``2,``3,``4,``5,``6,``7,``8)">
+	<summary>Calls a method with 9 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``10(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9)">
+	<summary>Calls a method with 10 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``11(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10)">
+	<summary>Calls a method with 11 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``12(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11)">
+	<summary>Calls a method with 12 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``13(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12)">
+	<summary>Calls a method with 13 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``14(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13)">
+	<summary>Calls a method with 14 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``15(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14)">
+	<summary>Calls a method with 15 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<param name="param15">15th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<typeparam name="T15">Type of 15th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="M:Tools.ThreadingT.IInvokeExtensions.Invoke``16(Tools.ThreadingT.IInvoke,System.Action{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15},``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10,``11,``12,``13,``14,``15)">
+	<summary>Calls a method with 16 parameters in UI thread</summary>
+	<param name="object">An object to invoke delegate in UI thread of</param>
+	<param name="delegate">A delegate to be invoked</param>
+	<param name="param1">1st parameter</param>
+	<param name="param2">2nd parameter</param>
+	<param name="param3">3rd parameter</param>
+	<param name="param4">4th parameter</param>
+	<param name="param5">5th parameter</param>
+	<param name="param6">6th parameter</param>
+	<param name="param7">7th parameter</param>
+	<param name="param8">8th parameter</param>
+	<param name="param9">9th parameter</param>
+	<param name="param10">10th parameter</param>
+	<param name="param11">11th parameter</param>
+	<param name="param12">12th parameter</param>
+	<param name="param13">13th parameter</param>
+	<param name="param14">14th parameter</param>
+	<param name="param15">15th parameter</param>
+	<param name="param16">16th parameter</param>
+	<typeparam name="T1">Type of 1st parameter</typeparam>
+	<typeparam name="T2">Type of 2nd parameter</typeparam>
+	<typeparam name="T3">Type of 3rd parameter</typeparam>
+	<typeparam name="T4">Type of 4th parameter</typeparam>
+	<typeparam name="T5">Type of 5th parameter</typeparam>
+	<typeparam name="T6">Type of 6th parameter</typeparam>
+	<typeparam name="T7">Type of 7th parameter</typeparam>
+	<typeparam name="T8">Type of 8th parameter</typeparam>
+	<typeparam name="T9">Type of 9th parameter</typeparam>
+	<typeparam name="T10">Type of 10th parameter</typeparam>
+	<typeparam name="T11">Type of 11th parameter</typeparam>
+	<typeparam name="T12">Type of 12th parameter</typeparam>
+	<typeparam name="T13">Type of 13th parameter</typeparam>
+	<typeparam name="T14">Type of 14th parameter</typeparam>
+	<typeparam name="T15">Type of 15th parameter</typeparam>
+	<typeparam name="T16">Type of 16th parameter</typeparam>
+	<s>Result of call to <paramref name="delegate"/></s>
+	<exception cref="T:System.ArgumentNullException"><paramref name="object"/> or <paramref name="delegate"/> is null</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">Exception was thrown while invoking the <paramref name="delegate"/>. See <see cref="P:System.Exception.InnerException"/> for details.</exception>
+</member><member name="T:Tools.ThreadingT.IInvokeExtensions">
+	<summary>Provides extension methods for <see cref="T:Tools.ThreadingT.IInvoke"/> interface</summary>
+	<seealso cref="T:Tools.ThreadingT.IInvoke"/><seealso cref="T:Tools.WindowsT.ThreadingT.DispatcherExtensions"/>
+	<version version="1.5.3">This module is new in version 1.5.3</version>
+</member><member name="M:Tools.ComponentModelT.SettingsInheritDescriptionAttribute.#ctor(System.Type,System.String,System.String)">
 	<summary>CTor</summary>
 	<param name="Settings">The data type that contains property with name specified in <paramref name="Property"/></param>
 	<param name="Property">Name of the property which's <see cref="T:System.Configuration.SettingsDescriptionAttribute"/> initializes this attribute</param>

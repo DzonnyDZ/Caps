@@ -14,7 +14,7 @@
         <my:IntColorConverter x:Key="IntColorConverter"/>
         <my:IntColorNameConverter x:Key="IntColorNameConverter"/>
         <my:BooleanToCharConverter x:Key="BooleanToCharConverter"/>
-        <my:CompareConverter x:Key="CompareConverter"/>
+        <convertersT:CompareConverter x:Key="CompareConverter"/>
         <my:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
         <my:NestedConverter x:Key="G-VisibleConverter" Outer="{StaticResource BooleanVisibilityConverter}" InnerParam="G" Inner="{StaticResource CompareConverter}"/>
         <my:NestedConverter x:Key="M-VisibleConverter" Outer="{StaticResource BooleanVisibilityConverter}" InnerParam="M" Inner="{StaticResource CompareConverter}"/>

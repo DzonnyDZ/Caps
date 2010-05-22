@@ -261,10 +261,9 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
                 Dim delCapSign = If(IO.Directory.Exists(pCapSign), From file In IO.Directory.GetFiles(pCapSign) Where String.Compare(IO.Path.GetExtension(file), ".png", StringComparison.InvariantCultureIgnoreCase) <> 0 OrElse (From sg In Me.Context.CapSigns.AsEnumerable Where sg.CapSignID = IO.Path.GetFileNameWithoutExtension(file)).Count = 0, {})
 
                 If delSizes.IsEmpty AndAlso delOriginal.IsEmpty AndAlso delCapType.IsEmpty AndAlso delMainType.IsEmpty AndAlso delShape.IsEmpty Then
-                    mBox.MsgBox(My.Resources.msg_NoFilesToDelete, MsgBoxStyle.Information, My.Resources.txt_ImageCleanup, Me)
+                    mon.Invoke(Sub() mBox.MsgBox(My.Resources.msg_NoFilesToDelete, MsgBoxStyle.Information, My.Resources.txt_ImageCleanup, Me))
                 Else
-                    Dim msg = mBox.GetDefault()
-                    msg.Prompt = My.Resources.msg_ImagesToDelete
+                    Dim todel As IEnumerable(Of String) = New String() {}
                     Dim chkOriginal = New mBox.MessageBoxCheckBox(My.Resources.lbl_CapImagesOriginal.f(delOriginal.Count), If(delOriginal.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delOriginal.IsEmpty}
                     Dim chkSizes = From item In delSizes
                                    Select New mBox.MessageBoxCheckBox(My.Resources.lbl_CapImageThumbnails.f(item.size, item.files.Count),
@@ -275,25 +274,32 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
                     Dim chkMainType = New mBox.MessageBoxCheckBox(My.Resources.lbl_MainTypeImages.f(delMainType.Count), If(delMainType.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delMainType.IsEmpty}
                     Dim chkShape = New mBox.MessageBoxCheckBox(My.Resources.lbl_ShapeImages.f(delShape.Count), If(delShape.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delShape.IsEmpty}
                     Dim chkCapSign = New mBox.MessageBoxCheckBox(My.Resources.lbl_SignImages.f(delCapSign.Count), If(delCapSign.IsEmpty, Forms.CheckState.Unchecked, Forms.CheckState.Checked)) With {.Enabled = Not delCapSign.IsEmpty}
-                    msg.CheckBoxes.Add(chkOriginal)
-                    msg.CheckBoxes.AddRange(chkSizes)
-                    msg.CheckBoxes.AddRange({chkCapType, chkMainType, chkShape, chkCapSign})
-                    msg.MidControl = New TextBlock() With {.Text = My.Resources.txt_ClearImagesNote, .TextWrapping = TextWrapping.Wrap, .HorizontalAlignment = Windows.HorizontalAlignment.Stretch, .TextAlignment = TextAlignment.Left}
-                    msg.SetButtons(mBox.MessageBoxButton.Buttons.OK Or mBox.MessageBoxButton.Buttons.Cancel)
-                    msg.Title = My.Resources.txt_ImageCleanup
-                    Dim showmsg = Function() msg.ShowDialog(Me)
-                    If mon.Invoke(Function() msg.ShowDialog(Me)) = Forms.DialogResult.OK Then
-                        Dim todel As IEnumerable(Of String) = New String() {}
-                        If chkOriginal.State = Forms.CheckState.Checked Then todel = todel.Union(delOriginal)
-                        Dim i As Integer = 0
-                        For Each chk In chkSizes
-                            If chk.State = Forms.CheckState.Checked Then todel.Union(delSizes(i).files)
-                            i += 1
-                        Next
-                        If chkCapType.State = Forms.CheckState.Checked Then todel = todel.Union(delCapType)
-                        If chkMainType.State = Forms.CheckState.Checked Then todel = todel.Union(delMainType)
-                        If chkShape.State = Forms.CheckState.Checked Then todel = todel.Union(delShape)
-                        If chkCapSign.State = Forms.CheckState.Checked Then todel = todel.Union(delCapSign)
+                    Dim showMsg =
+                        Function()
+                            Dim msg = mBox.GetDefault()
+                            msg.Prompt = My.Resources.msg_ImagesToDelete
+                            msg.CheckBoxes.Add(chkOriginal)
+                            msg.CheckBoxes.AddRange(chkSizes)
+                            msg.CheckBoxes.AddRange({chkCapType, chkMainType, chkShape, chkCapSign})
+                            msg.MidControl = New TextBlock() With {.Text = My.Resources.txt_ClearImagesNote, .TextWrapping = TextWrapping.Wrap, .HorizontalAlignment = Windows.HorizontalAlignment.Stretch, .TextAlignment = TextAlignment.Left}
+                            msg.SetButtons(mBox.MessageBoxButton.Buttons.OK Or mBox.MessageBoxButton.Buttons.Cancel)
+                            msg.Title = My.Resources.txt_ImageCleanup
+                            If msg.ShowDialog(Me) = Forms.DialogResult.OK Then
+                                If chkOriginal.State = Forms.CheckState.Checked Then todel = todel.Union(delOriginal)
+                                Dim i As Integer = 0
+                                For Each chk In chkSizes
+                                    If chk.State = Forms.CheckState.Checked Then todel.Union(delSizes(i).files)
+                                    i += 1
+                                Next
+                                If chkCapType.State = Forms.CheckState.Checked Then todel = todel.Union(delCapType)
+                                If chkMainType.State = Forms.CheckState.Checked Then todel = todel.Union(delMainType)
+                                If chkShape.State = Forms.CheckState.Checked Then todel = todel.Union(delShape)
+                                If chkCapSign.State = Forms.CheckState.Checked Then todel = todel.Union(delCapSign)
+                                Return True
+                            End If
+                            Return False
+                        End Function
+                    If mon.Invoke(showMsg) Then
                         Dim ErrNo% = 0
                         For Each file In todel
                             Try

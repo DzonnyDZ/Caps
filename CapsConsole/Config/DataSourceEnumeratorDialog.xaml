@@ -4,11 +4,12 @@
     xmlns:res="clr-namespace:Caps.Console.My.Resources"
     xmlns:my="clr-namespace:Caps.Console"
     xmlns:glb="clr-namespace:System.Globalization;assembly=mscorlib"
+    xmlns:convertersT="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
     Title="{x:Static res:Resources.wiz_txt_DataSourceEnumerator}" Height="300" Width="500"
     Name="DataSourceEnumeratorDialog" ShowInTaskbar="False" Icon="/CapsConsole;component/Resources/Database.ico"
 >
     <Window.Resources>
-        <my:CompareConverter x:Key="CompareConverterEx"/>    
+        <convertersT:CompareConverter x:Key="CompareConverterEx"/>    
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

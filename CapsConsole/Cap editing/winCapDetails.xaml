@@ -16,7 +16,7 @@
         <my:ObjectImageConverter x:Key="ObjectImageConverter"/>
         <my:PictureTypeConverter x:Key="PictureTypeConverter"/>
         <my:IntColorConverter x:Key="IntColorConverter"/>
-        <my:CompareConverter x:Key="CompareConverter"/>
+        <t.c:CompareConverter x:Key="CompareConverter"/>
         <sys:Int32 x:Key="iOne">1</sys:Int32>
         <my:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
         <my:CountryCodeFlagConverter x:Key="CountryCodeFlagConverter"/>
