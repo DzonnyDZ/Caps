@@ -2896,6 +2896,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Clear images.
+        '''</summary>
+        Public ReadOnly Property txt_ClearImages() As String
+            Get
+                Return ResourceManager.GetString("txt_ClearImages", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Numbers above contain any possible non-image files in image directories. Sub directories are ignored..
         '''</summary>
         Public ReadOnly Property txt_ClearImagesNote() As String

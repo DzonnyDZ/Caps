@@ -203,7 +203,7 @@ DeleteFolder:               Try
                         If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
                     End If
                     Try
-                        StoreImageToDb(item)
+                        StoreImageToDb(item, context)
                         totalCount += 1
                     Catch ex As Exception
                         If ShowError(ex) <> Forms.DialogResult.Ignore Then _
@@ -229,7 +229,7 @@ DeleteFolder:               Try
                         If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
                     End If
                     Try
-                        StoreImageToDb(item)
+                        StoreImageToDb(item, context)
                         totalCount += 1
                     Catch ex As Exception
                         If ShowError(ex) <> Forms.DialogResult.Ignore Then _
@@ -255,7 +255,7 @@ DeleteFolder:               Try
                         If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
                     End If
                     Try
-                        StoreImageToDb(item)
+                        StoreImageToDb(item, context)
                         totalCount += 1
                     Catch ex As Exception
                         If ShowError(ex) <> Forms.DialogResult.Ignore Then _
@@ -280,7 +280,7 @@ DeleteFolder:               Try
                         If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
                     End If
                     Try
-                        StoreImageToDb(item)
+                        StoreImageToDb(item, context)
                         totalCount += 1
                     Catch ex As Exception
                         If ShowError(ex) <> Forms.DialogResult.Ignore Then _
@@ -305,7 +305,7 @@ DeleteFolder:               Try
                         If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
                     End If
                     Try
-                        StoreImageToDb(item)
+                        StoreImageToDb(item, context)
                         totalCount += 1
                     Catch ex As Exception
                         If ShowError(ex) <> Forms.DialogResult.Ignore Then _
@@ -403,12 +403,12 @@ DeleteFolder:               Try
             monitor.Invoke(Sub() mBox.Error_XPTIBWO(ex, "Error while saving changes to database. No images were migrated.", "Migrate images", , , monitor.Window))
             Return
         End Try
-        monitor.Invoke(Sub() mBox.ModalF_PTBIa("{0} images saved to database.", "Migrate images", mBox.MessageBoxButton.Buttons.OK, mBox.MessageBoxIcons.OK, totalCount))
+        monitor.Invoke(Sub() mBox.ModalF_PTWBIa("{0} images saved to database.", "Migrate images", monitor.Window, mBox.MessageBoxButton.Buttons.OK, mBox.MessageBoxIcons.OK, totalCount))
     End Sub
     ''' <summary>Stores image of given item to database</summary>
     ''' <param name="item">Item to store image of</param>
     ''' <exception cref="ArgumentNullException"><paramref name="item"/> is null</exception>
-    Private Sub StoreImageToDb(ByVal item As IObjectWithImage)
+    Private Sub StoreImageToDb(ByVal item As IObjectWithImage, ByVal context As CapsDataContext)
         If item Is Nothing Then Throw New ArgumentNullException("item")
         Using bitmap As New System.Drawing.Bitmap(IO.Path.Combine(My.Settings.ImageRoot, item.ImageStorageFolderName, item.FileSystemStorageFileName)),
                                               ms As New IO.MemoryStream
@@ -421,6 +421,7 @@ DeleteFolder:               Try
                           .Size = ms.Length,
                           .Data = ms.GetBuffer
                          }
+            context.AddObject(si)
             item.AssociateImage(si)
         End Using
     End Sub

@@ -189,7 +189,9 @@ Public Class pgSummary
     ''' <seelaso cref="VerifyDatabaseVersionWithUpgrade"/><seelaso cref="SqlConnection.Open"/>
     Private Sub VerifyDatabase(ByVal connectionString$)
         If connectionString Is Nothing Then Throw New ArgumentNullException("connectionString")
-        Using Connection As SqlConnection = New SqlConnection(connectionString) 'Test connection to file
+        Dim csb As New SqlConnectionStringBuilder(connectionString)
+        csb.MultipleActiveResultSets = False
+        Using Connection As SqlConnection = New SqlConnection(csb.ToString) 'Test connection to file
             Connection.Open()
             VerifyDatabaseVersionWithUpgrade(Connection, Me.FindAncestor(Of Window))
         End Using

@@ -33,6 +33,7 @@ Class winMain
         If Args.ContainsKey(ConnectionString) AndAlso Args(ConnectionString).Count > 0 AndAlso Args(ConnectionString)(0) <> "" Then
             Try
                 Main.SqlConnection = New System.Data.SqlClient.SqlConnection(Args(ConnectionString)(0))
+                Main.ConnectionString = Args(ConnectionString)(0)
             Catch ex As Exception
                 mBox.Error_XPTIBWO(ex, String.Format(My.Resources.err_InvalidCommandLineConnectionString, Args(ConnectionString)(0)), "Invalid connection string", mBox.MessageBoxIcons.Error, , Me)
             End Try
@@ -49,15 +50,21 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
             win.Owner = Me
             If win.ShowDialog Then
                 Main.SqlConnection = New System.Data.SqlClient.SqlConnection(win.ConnectionString.ToString)
+                Main.ConnectionString = win.ConnectionString.ToString
                 ImageRoot = win.ImageRoot
             Else
                 Environment.Exit(1)
             End If
         End If
         Try
+            Dim NonMarsCSB As New System.Data.SqlClient.SqlConnectionStringBuilder(Main.ConnectionString)
+            NonMarsCSB.MultipleActiveResultSets = False
+            Using NonMarsConn As New System.Data.SqlClient.SqlConnection(NonMarsCSB.ToString)
+                NonMarsConn.Open()
+                VerifyDatabaseVersionWithUpgrade(NonMarsConn, Me)
+            End Using
             Main.EntityConnection = New System.Data.EntityClient.EntityConnection(CapsDataContext.DefaultMetadataWorkspace, Main.SqlConnection)
             EntityConnection.Open()
-            VerifyDatabaseVersionWithUpgrade(SqlConnection, Me)
         Catch ex As Exception
             Try : EntityConnection.Close() : Catch : End Try
             If mBox.Error_XBWI(ex, mBox.MessageBoxButton.Buttons.Retry Or mBox.MessageBoxButton.Buttons.Abort, Me) = Forms.DialogResult.Retry Then
@@ -234,9 +241,9 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
     End Sub
 
 
-#Region "Clear images"
+#Region "Clear Images"
     Private Sub mniImagesClear_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniImagesClear.Click
-        Dim mon As New Tools.WindowsT.WPF.DialogsT.ProgressMonitor With {.DoWorkOnShow = True, .CloseOnFinish = True, .Title = "Clear images", .Prompt = "Clear images", .CanCancel = True}
+        Dim mon As New Tools.WindowsT.WPF.DialogsT.ProgressMonitor With {.DoWorkOnShow = True, .CloseOnFinish = True, .Title = My.Resources.txt_ClearImages, .Prompt = My.Resources.txt_ClearImages, .CanCancel = True}
         AddHandler mon.BackgroundWorker.DoWork,
             Sub(wk As ComponentModel.BackgroundWorker, wke As ComponentModel.DoWorkEventArgs)
                 wk.ReportProgress(-1, WindowsT.IndependentT.ProgressBarStyle.Indefinite)
@@ -354,6 +361,7 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
         mon.ShowDialog(Me)
     End Sub
 #End Region
+
     Private Sub mniGoto_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles mniGoto.Click
         Dim msg = mBox.GetDefault
         msg.Prompt = My.Resources.lbl_TypeCapID

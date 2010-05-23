@@ -8,6 +8,7 @@ Friend Module Main
     Public SqlConnection As System.Data.SqlClient.SqlConnection
     ''' <summary>Current connection used by entity framework</summary>
     Public EntityConnection As EntityClient.EntityConnection
+    Public ConnectionString As String
 
     ''' <summary>Gets change script to alter database represent by connection to newer one</summary>
     ''' <param name="Connection">Connection to database to alter</param>

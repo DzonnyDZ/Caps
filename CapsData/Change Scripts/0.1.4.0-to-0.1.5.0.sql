@@ -243,7 +243,14 @@ GO
 
 ------------------------------------------------- Constraints   ----------------------------------------------------------------
 PRINT 'Constraints';
+GO
 ALTER TABLE dbo.Storage ADD CONSTRAINT CHK_Storage_NoSelfParent CHECK (StorageID <> ParentStorageID);
+GO
+ALTER TABLE dbo.StoredImage DROP CONSTRAINT [CHK_StoredImage_OneReference];
+GO
+ALTER TABLE [dbo].[StoredImage]
+    ADD CONSTRAINT [CHK_StoredImage_OneReference] CHECK ((((((case when [ImageID] IS NULL then (0) else (1) end+case when [CapSignID] IS NULL then (0) else (1) end)+case when [CapTypeID] IS NULL then (0) else (1) end)+case when [MainTypeID] IS NULL then (0) else (1) end)+case when [ShapeID] IS NULL then (0) else (1) end)+case when [StorageID] IS NULL then (0) else (1) end)=(1));
+GO
 --==============================================================================================================================
 GO
 COMMIT;

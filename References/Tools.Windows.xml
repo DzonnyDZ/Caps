@@ -2919,6 +2919,16 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Icon">Icon that will be shown on messagebox. Default preffered size is 64×64 px (can be changed in derived class). <paramref name="Icon"/> can be null.</param>
 	<returns>Indicates button clicked by user</returns>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support both - <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
+</member><member name="M:Tools.WindowsT.IndependentT.MessageBox.ModalF_PTWBIa(System.String,System.String,System.Object,Tools.WindowsT.IndependentT.MessageBox.MessageBoxButton.Buttons,Tools.WindowsT.IndependentT.MessageBox.MessageBoxIcons,System.Object[])">
+	<summary>Display modal message box with formated promt, given title, owner, buttons, one of predefined icons</summary>
+	<param name="prompt">Format string for promt to be shown to user</param>
+	<param name="title">Message box title</param>
+	<param name="owner">The window message box window will be modal to (can be null). Typical values are <see cref="T:System.Windows.Forms.IWin32Window"/> and <see cref="T:System.Windows.Window"/> If implementation does not recognize type of owner it ignores it.</param>
+	<param name="buttons">Defines which buttons will be available to user</param>
+	<param name="arguments">Formating arguments for prompt. Arguments are placed in place of placeholders in <paramref name="Prompt"/> using the <see cref="T:System.String"/> function.</param>
+	<param name="icon">Icon that will be shown on messagebox.</param>
+	<returns>Indicates button clicked by user</returns>
+	<version version="1.5.3" stage="Beta">This overload is new in bersion 1.5.3</version>
 </member><member name="M:Tools.WindowsT.IndependentT.MessageBox.ModalF_PTWa(System.String,System.String,System.Object,System.Object[])">
 	<summary>Dsiplays modal message box with formated prompt, given title and owner</summary>
 	<param name="Prompt">Format string for promt to be shown to user</param>

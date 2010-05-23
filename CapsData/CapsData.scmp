@@ -9,7 +9,7 @@
   </SourceModelProvider>
   <TargetModelProvider>
     <ConnectionBasedModelProvider>
-      <ConnectionString>Data Source=.\SQLEXPRESS2008;Initial Catalog=D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF;Integrated Security=True;Password=;User Instance=True</ConnectionString>
+      <ConnectionString>Data Source=.\SQLEXPRESS2008;Initial Catalog=D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF;Integrated Security=True;Password=</ConnectionString>
       <DatabaseName>D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF</DatabaseName>
       <DspFamilyName>sql</DspFamilyName>
       <Name>[BIGGERBOOK\SQLEXPRESS2008.D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF]</Name>
@@ -293,7 +293,7 @@
       </PropertyElementName>
       <PropertyElementName>
         <Name>TargetConnectionString</Name>
-        <Value>Data Source=.\SQLEXPRESS2008;Initial Catalog=D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF;Integrated Security=True;Pooling=False;User Instance=True</Value>
+        <Value>Data Source=.\SQLEXPRESS2008;Initial Catalog=D:\USERS\HONZA\DOCUMENTS\PROGRAMY\CAPS\CAPSDATA.MDF;Integrated Security=True;Pooling=False</Value>
       </PropertyElementName>
       <PropertyElementName>
         <Name>VerifyDeployment</Name>
