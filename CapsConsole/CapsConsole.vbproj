@@ -854,6 +854,9 @@
   <ItemGroup>
     <Resource Include="Resources\Database.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\CapImage.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetDir)Tools*" "$(SolutionDir)References\"</PostBuildEvent>

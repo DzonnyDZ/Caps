@@ -42,55 +42,6 @@ AddEventHandler
 	<summary>
 GeneratedInternalTypeHelper
 </summary>
-</member><member name="P:Tools.WindowsT.WPF.Resources.InternalSyncObject">
-	<summary>
-Thread safe lock object used by this class.
-</summary>
-</member><member name="P:Tools.WindowsT.WPF.Resources.ResourceManager">
-	<summary>
-Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:Tools.WindowsT.WPF.Resources.Culture">
-	<summary>
-Overrides the current thread's CurrentUICulture property for all
-resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="P:Tools.WindowsT.WPF.Resources.ex_CannotConvertBack">
-	<summary>
-Looks up a localized string similar to '{0} cannot convert back.'.
-</summary>
-</member><member name="M:Tools.WindowsT.WPF.Resources.ex_CannotConvertBackFormat(System.Object)">
-	<summary>
-Formats a localized string similar to '{0} cannot convert back.'.
-</summary>
-	<param name="arg0">An object (0) to format.</param>
-	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
-</member><member name="T:Tools.WindowsT.WPF.Resources">
-	<summary>
-A strongly-typed resource class, for looking up localized strings, formatting them, etc.
-</summary>
-</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CompareConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-	<summary>Converts a value.</summary>
-	<returns>A converted value. If <paramref name="value"/> is null or <paramref name="parameter"/> is null, returns null. Otherwise returns boolean value indicating if <paramref name="value"/> equals to <paramref name="parameter"/> using <see cref="M:System.Object.Equals(System.Object)"/>.</returns>
-	<param name="value">The value produced by the binding source. Thsi value will be compared for equality with <paramref name="parameter"/>.</param>
-	<param name="targetType">Ignored. Always returns null or <see cref="T:System.Boolean"/></param>
-	<param name="parameter">Value to compare <paramref name="value"/> with.</param>
-	<param name="culture">Ignored.</param>
-	<remarks>No type conversion is performed on <paramref name="value"/> and <paramref name="parameter"/> arguments.
- Simply <c><paramref name="value"/>.<see cref="M:System.Object.Equals(System.Object)">Equals</see>(<paramref name="parameter"/>)</c> is called.</remarks>
-</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CompareConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-	<summary>Converts a value.</summary>
-	<returns>If <paramref name="value"/> is true returns <paramref name="parameter"/>; otherwise throws an exception</returns>
-	<param name="value">Value to be converted</param>
-	<param name="targetType">ignored</param>
-	<param name="parameter">Value this converter compares values to</param>
-	<param name="culture">ignored</param>
-	<exception cref="T:System.NotSupportedException"><paramref name="value"/> is not true</exception>
-</member><member name="T:Tools.WindowsT.WPF.ConvertersT.CompareConverter">
-	<summary>Converter that test if value being converter equals to parameter</summary>
-	<remarks>This converter is intended as is one-way. This converter used <see cref="M:System.Object.Equals(System.Object)"/>.</remarks>
-	<seelaso cref="M:System.Object.Equals(System.Object)"/>
-	<version version="1.5.3" stage="Nightly">This converter is new in version 1.5.3</version>
 </member><member name="F:Tools.WindowsT.FormsT.ThesaurusForm.For">
 	<summary><see cref="T:Tools.WindowsT.FormsT.KeyWordsEditor"/> this instance is for</summary>
 </member><member name="M:Tools.WindowsT.FormsT.ThesaurusForm.#ctor(Tools.WindowsT.FormsT.KeyWordsEditor)">
@@ -724,6 +675,33 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<remarks>This control is 100% transaprent and cannot have any other than transparent <see cref="P:Tools.WindowsT.FormsT.TransparentTextBox.BackColor"/>. To make it semi-transparent, put it onto semitransparent panel.</remarks>
 	<author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Beta"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
+</member><member name="P:Tools.WindowsT.WPF.Resources.InternalSyncObject">
+	<summary>
+Thread safe lock object used by this class.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ResourceManager">
+	<summary>
+Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.Culture">
+	<summary>
+Overrides the current thread's CurrentUICulture property for all
+resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ex_CannotConvertBack">
+	<summary>
+Looks up a localized string similar to '{0} cannot convert back.'.
+</summary>
+</member><member name="M:Tools.WindowsT.WPF.Resources.ex_CannotConvertBackFormat(System.Object)">
+	<summary>
+Formats a localized string similar to '{0} cannot convert back.'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="T:Tools.WindowsT.WPF.Resources">
+	<summary>
+A strongly-typed resource class, for looking up localized strings, formatting them, etc.
+</summary>
 </member><member name="P:Tools.WindowsT.FormsT.DataBoundToolStripComboBox.DisplayMember">
 	<summary>Gets or sets the property to display for <see cref="P:System.Windows.Forms.ToolStripComboBox.ComboBox"/>.</summary>
 	<returns>A <see cref="T:System.String"/> specifying the name of an object property that is contained in the collection specified by the <see cref="P:System.Windows.Forms.ListControl.DataSource"/> property. The default is an empty string ("").</returns>
@@ -5098,6 +5076,28 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Gets control implementing progress monitor UI</summary>
 </member><member name="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitorWindow">
 	<summary>Implements window which shows <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor"/></summary>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CompareConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value.</summary>
+	<returns>A converted value. If <paramref name="value"/> is null or <paramref name="parameter"/> is null, returns null. Otherwise returns boolean value indicating if <paramref name="value"/> equals to <paramref name="parameter"/> using <see cref="M:System.Object.Equals(System.Object)"/>.</returns>
+	<param name="value">The value produced by the binding source. Thsi value will be compared for equality with <paramref name="parameter"/>.</param>
+	<param name="targetType">Ignored. Always returns null or <see cref="T:System.Boolean"/></param>
+	<param name="parameter">Value to compare <paramref name="value"/> with.</param>
+	<param name="culture">Ignored.</param>
+	<remarks>No type conversion is performed on <paramref name="value"/> and <paramref name="parameter"/> arguments.
+ Simply <c><paramref name="value"/>.<see cref="M:System.Object.Equals(System.Object)">Equals</see>(<paramref name="parameter"/>)</c> is called.</remarks>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CompareConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value.</summary>
+	<returns>If <paramref name="value"/> is true returns <paramref name="parameter"/>; otherwise throws an exception</returns>
+	<param name="value">Value to be converted</param>
+	<param name="targetType">ignored</param>
+	<param name="parameter">Value this converter compares values to</param>
+	<param name="culture">ignored</param>
+	<exception cref="T:System.NotSupportedException"><paramref name="value"/> is not true</exception>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.CompareConverter">
+	<summary>Converter that test if value being converter equals to parameter</summary>
+	<remarks>This converter is intended as is one-way. This converter used <see cref="M:System.Object.Equals(System.Object)"/>.</remarks>
+	<seelaso cref="M:System.Object.Equals(System.Object)"/>
+	<version version="1.5.3" stage="Nightly">This converter is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.#ctor">
 	<summary>Default CTor</summary>
 	<remarks>Value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker"/> property is populated with new instance of <see cref="T:System.ComponentModel.BackgroundWorker"/></remarks>

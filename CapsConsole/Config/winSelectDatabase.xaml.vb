@@ -37,6 +37,11 @@ Partial Public Class winSelectDatabase
             mBox.MsgBoxFW(My.Resources.msg_DirectoryDoesNotExist, MsgBoxStyle.Exclamation, My.Resources.txt_ImageRoot, Me, ImageRoot)
             Return
         End If
+        If Not ConnectionString.MultipleActiveResultSets Then
+            If mBox.Modal_PTWBIO(My.Resources.msg_MultipleActiveResultsetsFalse & vbCrLf & My.Resources.lbl_ClickCancelToChangeConnectionString, My.Resources.txt_MultipleActiveResultsets, Me, mBox.MessageBoxButton.Buttons.Ignore Or mBox.MessageBoxButton.Buttons.Cancel, mBox.GetIcon(mBox.MessageBoxIcons.Warning)) <> Forms.DialogResult.Ignore Then
+                Return
+            End If
+        End If
         Me.DialogResult = True
         Me.Close()
     End Sub

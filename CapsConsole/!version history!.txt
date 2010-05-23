@@ -109,6 +109,8 @@
     * Tooltips for browse (...) buttons
     * "Change database settings" button in "Select database dialog"
     * File, folder and color dialogs should be fully modal now.
+    * Added progress bar for Remove unused images functionality.
+    * Added check if connection allows multiple active resultsets (required by image migration functionality)
     
 Pending issues:
 ===============

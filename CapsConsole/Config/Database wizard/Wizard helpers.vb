@@ -504,6 +504,7 @@ Public Class WizardData
                     b.InitialCatalog = FilePath
             End Select
         End With
+        b.MultipleActiveResultSets = True
         Return b
     End Function
 End Class

@@ -1918,4 +1918,13 @@ Note: If you cancel this dialog, you may have troubles seeing images.</value>
   <data name="lbl_Finished" xml:space="preserve">
     <value>Finished</value>
   </data>
+  <data name="msg_MultipleActiveResultsetsFalse" xml:space="preserve">
+    <value>The connection is not configured to allow multiple result sets to be active (MultipleActiveResultSets is false). Some functionality of this application require multiple active resultsest. Affected functionality may not work or application may crash.</value>
+  </data>
+  <data name="lbl_ClickCancelToChangeConnectionString" xml:space="preserve">
+    <value>Click Cancel to change your connection string.</value>
+  </data>
+  <data name="txt_MultipleActiveResultsets" xml:space="preserve">
+    <value>Multiple active resultsets</value>
+  </data>
 </root>

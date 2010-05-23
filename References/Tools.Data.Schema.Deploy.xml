@@ -14,25 +14,25 @@ Tools.Data.Schema.Deploy
 	<param name="connectionString">Connection string to Microsft SQL Server</param>
 	<param name="databaseName">Name of target database to deploy to</param>
 	<param name="manifestPath">Path to database deployment manifest (*.deploymanifest) file</param>
-	<exception cref="T:System.ArgumentNullException"><paramref name="connectionString"/>, <paramref name="databaseName"/> or <paramref name="manifestPath"/> is null</exception>
-	<exception cref="T:System.ArgumentException"><paramref name="connectionString"/>, <paramref name="databaseName"/> or <paramref name="manifestPath"/> is an empty string</exception>
+	<exception cref="!:ArgumentNullException"><paramref name="connectionString"/>, <paramref name="databaseName"/> or <paramref name="manifestPath"/> is null</exception>
+	<exception cref="!:ArgumentException"><paramref name="connectionString"/>, <paramref name="databaseName"/> or <paramref name="manifestPath"/> is an empty string</exception>
 	<remarks>The folder deployment manifets is located in must contain all other files required by deployment process.</remarks>
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.#ctor(System.String,System.String,System.String)">
 	<summary>CTor - creates a new instance of the <see cref="T:Tools.DataT.SchemaT.DeployT.DatabaseDeployment"/> class</summary>
 	<param name="connectionString">Connection string to Microsft SQL Server</param>
 	<param name="databaseName">Name of target database to deploy to</param>
 	<param name="manifestPath">Path to database deployment manifest (*.deploymanifest) file</param>
-	<exception cref="T:System.ArgumentNullException"><paramref name="connectionString"/>, <paramref name="databaseName"/> or <paramref name="manifestPath"/> is null</exception>
-	<exception cref="T:System.ArgumentException"><paramref name="connectionString"/>, <paramref name="databaseName"/> or <paramref name="manifestPath"/> is an empty string</exception>
+	<exception cref="!:ArgumentNullException"><paramref name="connectionString"/>, <paramref name="databaseName"/> or <paramref name="manifestPath"/> is null</exception>
+	<exception cref="!:ArgumentException"><paramref name="connectionString"/>, <paramref name="databaseName"/> or <paramref name="manifestPath"/> is an empty string</exception>
 	<remarks>The folder deployment manifets is located in must contain all other files required by deployment process.</remarks>
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.#ctor(System.String,System.String)">
 	<summary>CTor - creates a new instance of the <see cref="T:Tools.DataT.SchemaT.DeployT.DatabaseDeployment"/> class. Name of target database if inferred from connection string.</summary>
 	<param name="connectionString">Connection string to Microsoft SQL Server. Property <c>Initial Catalog</c> must contain name of database to deploy schema to</param>
 	<param name="manifestPath">Path to database deployment manifest (*.deploymanifest) file</param>
-	<exception cref="T:System.ArgumentNullException"><paramref name="connectionString"/> or <paramref name="manifestPath"/> is null</exception>
-	<exception cref="T:System.ArgumentException"><paramref name="connectionString"/> or <paramref name="manifestPath"/> is an empty string -or- <paramref name="connectionString"/> is an invalid connection string. -or- Initial Catalog not not cpecified in <paramref name="connectionString"/>.</exception>
-	<exception cref="T:System.Collections.Generic.KeyNotFoundException"><paramref name="connectionString"/> contains unrecognized option</exception>
-	<exception cref="T:System.FormatException"><paramref name="connectionString"/> contains an invalid value (specifically when numeric or boolean value is expected but not specified)</exception>
+	<exception cref="!:ArgumentNullException"><paramref name="connectionString"/> or <paramref name="manifestPath"/> is null</exception>
+	<exception cref="!:ArgumentException"><paramref name="connectionString"/> or <paramref name="manifestPath"/> is an empty string -or- <paramref name="connectionString"/> is an invalid connection string. -or- Initial Catalog not not cpecified in <paramref name="connectionString"/>.</exception>
+	<exception cref="!:KeyNotFoundException"><paramref name="connectionString"/> contains unrecognized option</exception>
+	<exception cref="!:FormatException"><paramref name="connectionString"/> contains an invalid value (specifically when numeric or boolean value is expected but not specified)</exception>
 	<remarks>The folder deployment manifets is located in must contain all other files required by deployment process.</remarks>
 	<seelaso cref="P:System.Data.SqlClient.SqlConnectionStringBuilder.InitialCatalog"/>
 </member><member name="P:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.ConnectionString">
@@ -48,14 +48,14 @@ Tools.Data.Schema.Deploy
 	<value>True to deploy model to database, false to generate deployment script file only</value>
 </member><member name="P:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.DeployScriptPath">
 	<summary>Gets or sets path to save deploy script to</summary>
-	<exception cref="T:System.ObjectDisposedException"><see cref="P:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Deployed"/> is true (this instance has already been used to deploy a database).</exception>
+	<exception cref="!:ObjectDisposedException"><see cref="P:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Deployed"/> is true (this instance has already been used to deploy a database).</exception>
 	<remarks>When not set before the <see cref="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Deploy"/> method is called, script is stored to a temporary directory and deleted when object is disposed.</remarks>
 </member><member name="P:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Deployed">
 	<summary>Contains value indicating deployment was already attempted or not</summary>
 	<remarks>One instance of <see cref="T:Tools.DataT.SchemaT.DeployT.DatabaseDeployment"/> class can be used only to one attempt to deploy a database</remarks>
 </member><member name="P:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Errors">
 	<summary>Once deployment has started gets all collected errors, warnings and messages of deploy engine</summary>
-	<exception cref="T:System.ObjectDisposedException">This instance has been already disposed</exception>
+	<exception cref="!:ObjectDisposedException">This instance has been already disposed</exception>
 </member><member name="E:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.ErrorOccured">
 	<summary>Raised when an eror occurs or a message is generated by deployment engine</summary>
 	<remarks>
@@ -68,19 +68,19 @@ Tools.Data.Schema.Deploy
 	<param name="e">Event argument</param>
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Deploy">
 	<summary>Deploys database schema to target database</summary>
-	<exception cref="T:System.InvalidOperationException">This instance has already been used to attempt to deploy a database shcema -or-
+	<exception cref="!:InvalidOperationException">This instance has already been used to attempt to deploy a database shcema -or-
  <paramref name="ManifestPath"/> does not exist -or-
  A property from the <see cref="P:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Properties"/> dictionary was not recognized</exception>
 	<exception cref="T:Microsoft.Data.Schema.Build.DeploymentFailedException">An error ocuured while deploying schema to database</exception>
 	<remarks>The <see cref="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Deploy"/> method can be called only once for each instance of the <see cref="T:Tools.DataT.SchemaT.DeployT.DatabaseDeployment"/> class</remarks>
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.LoadExtensionManagerFromDBSchema(System.IO.FileInfo)">
 	<summary>Loads an extension managed from a database schema</summary>
-	<param name="input"><see cref="T:System.IO.FileInfo"/> representing file containing the database schema</param>
+	<param name="input"><see cref="!:IO.FileInfo"/> representing file containing the database schema</param>
 	<returns>An <see cref="T:Microsoft.Data.Schema.Extensibility.ExtensionManager"/> containing extensions loaded from the schema</returns>
 	<exception cref="T:Microsoft.Data.Schema.Build.DeploymentFailedException">Model cannot be loaded or exceptions cannot be loaded from the model -or- Database scjema provider foes not support current version of schema</exception>
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.LoadManifest(System.IO.FileInfo)">
 	<summary>Loads a deployment manifest from file</summary>
-	<param name="manifestFile">A <see cref="T:System.IO.FileInfo"/> representing file to load manifest from</param>
+	<param name="manifestFile">A <see cref="!:IO.FileInfo"/> representing file to load manifest from</param>
 	<returns>Manifest loaded as MSBuild project</returns>
 	<exception cref="T:Microsoft.Data.Schema.Build.DeploymentFailedException">Failed to load a manifest</exception>
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.GetCmdServices(Microsoft.Data.Schema.Extensibility.ExtensionManager,System.String)">
@@ -100,11 +100,11 @@ Tools.Data.Schema.Deploy
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.GetErrorLog">
 	<summary>Gets error log as string</summary>
 	<returns>Combined error messages form the <see cref="P:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Errors"/> collection formatted using <see cref="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.FormatDataSchemaError(Microsoft.Data.Schema.DataSchemaError)"/>.</returns>
-	<exception cref="T:System.ObjectDisposedException">This instance has been already disposed</exception>
+	<exception cref="!:ObjectDisposedException">This instance has been already disposed</exception>
 </member><member name="F:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.disposedValue">
 	<summary>To detect redundant calls</summary>
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Dispose(System.Boolean)">
-	<summary>Implements <see cref="M:System.IDisposable.Dispose"/></summary>
+	<summary>Implements <see cref="!:IDisposable.Dispose"/></summary>
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Finalize">
 	<summary>Allows an <see cref="T:System.Object"/> to attempt to free resources and perform other cleanup operations before the <see cref="T:System.Object"/> is reclaimed by garbage collection.</summary>
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DatabaseDeployment.Dispose">
@@ -115,7 +115,7 @@ Tools.Data.Schema.Deploy
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DataSchemaErrorEventArgs.#ctor(Microsoft.Data.Schema.DataSchemaError)">
 	<summary>CTor</summary>
 	<param name="error">An arrot ahich has occured</param>
-	<exception cref="T:System.ArgumentNullException"><paramref name="error"/> is null</exception>
+	<exception cref="!:ArgumentNullException"><paramref name="error"/> is null</exception>
 </member><member name="P:Tools.DataT.SchemaT.DeployT.DataSchemaErrorEventArgs.Error">
 	<summary>Gets error which has occured</summary>
 </member><member name="M:Tools.DataT.SchemaT.DeployT.DataSchemaErrorEventArgs.op_Implicit(Microsoft.Data.Schema.DataSchemaError)~Tools.DataT.SchemaT.DeployT.DataSchemaErrorEventArgs">

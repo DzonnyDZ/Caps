@@ -1,9 +1,15 @@
 ﻿Imports Caps.Data, Tools.WindowsT.InteropT.InteropExtensions
 Imports Tools.DataT.ObjectsT.EntityFrameworkExtensions
 Imports Tools.LinqT, Tools.DataT.ObjectsT, Tools.DrawingT
+Imports System.ComponentModel
+Imports Tools.WindowsT.WPF.DialogsT, Tools.ThreadingT.IInvokeExtensions
+Imports Tools.WindowsT.IndependentT
 
 ''' <summary>Window used to migrate images between database and file system</summary>
 Public Class winSyncImages
+
+    Private WithEvents worker As New BackgroundWorker With {.WorkerReportsProgress = True, .WorkerSupportsCancellation = True}
+    Private monitor As ProgressMonitor
 
     Private Sub btnChangeImageRoot_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnChangeImageRoot.Click
         Dim dlg As New Forms.FolderBrowserDialog
@@ -11,8 +17,8 @@ Public Class winSyncImages
             dlg.SelectedPath = My.Settings.ImageRoot
         Catch : End Try
         If dlg.ShowDialog(Me) Then
-            lblImageRoot.Content = dlg.SelectedPath
             My.Settings.ImageRoot = dlg.SelectedPath
+            lblImageRoot.Content = dlg.SelectedPath
             My.Settings.Save()
         End If
     End Sub
@@ -20,6 +26,7 @@ Public Class winSyncImages
     Private Sub winSyncImages_Loaded(ByVal sender As Window, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
         icImagesInDb.ItemsSource = Settings.Images.CapsInDatabase
         icImagesInFS.ItemsSource = Settings.Images.CapsInFileSystem
+        lblImageRoot.Content = My.Settings.ImageRoot
     End Sub
 
     Private Sub btnAdd_Click(ByVal sender As Button, ByVal e As System.Windows.RoutedEventArgs) Handles btnAddDb.Click, btnAddFS.Click
@@ -160,11 +167,15 @@ DeleteFolder:               Try
             Exit Sub
         End If
 
-        'Migration
+        monitor = New ProgressMonitor(worker)
+        monitor.ShowDialog(Me)
+        monitor = Nothing
+    End Sub
+    Private Sub worker_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles worker.DoWork
         Using context As New CapsDataContext(Main.EntityConnection)
-            If optMigrateFS2Db.IsChecked Then
+            If monitor.Invoke(Function() optMigrateFS2Db.IsChecked) Then
                 MigateFs2Db(context)
-            ElseIf optMigrateDb2FS.IsChecked Then
+            ElseIf monitor.Invoke(Function() optMigrateDb2FS.IsChecked) Then
                 MigrateDb2Fs(context)
             End If
         End Using
@@ -174,98 +185,150 @@ DeleteFolder:               Try
     ''' <exception cref="ArgumentNullException"><paramref name="context"/> is null</exception>
     Private Sub MigateFs2Db(ByVal context As CapsDataContext)
         If context Is Nothing Then Throw New ArgumentNullException("context")
-        If chkCapSigns.IsChecked Then
+        Dim replace = monitor.Invoke(Function() chkReplace.IsChecked)
+        Dim ShowError = Function(ex As Exception) _
+            monitor.Invoke(Function() _
+                mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, monitor.Window))
+
+        Dim totalCount% = 0
+        If monitor.Invoke(Function() chkCapSigns.IsChecked) Then
             'CapSigns
+            worker.ReportProgress(0, "Cap Signs")
+            Dim count = context.CapSigns.Count
+            Dim i% = 0
             For Each item In context.CapSigns
                 Dim itemImages = item.GetImages(ImageSources.FileSystem)
                 If Not itemImages.IsEmpty Then
                     If item.StoredImages.Count > 0 Then
-                        If chkReplace.IsChecked Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
                     End If
                     Try
                         StoreImageToDb(item)
+                        totalCount += 1
                     Catch ex As Exception
-                        If mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
+                        If ShowError(ex) <> Forms.DialogResult.Ignore Then _
                           Exit Sub
                     End Try
                 End If
+                If worker.CancellationPending Then Return
+                i += 1
+                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
             Next
+            worker.ReportProgress(100)
         End If
-        If chkCapTypes.IsChecked Then
+        If monitor.Invoke(Function() chkCapTypes.IsChecked) Then
             'CapTypes
+            worker.ReportProgress(0, "Cap Types")
+            Dim count = context.CapTypes.Count
+            Dim i% = 0
+
             For Each item In context.CapTypes
                 Dim itemImages = item.GetImages(ImageSources.FileSystem)
                 If Not itemImages.IsEmpty Then
                     If item.StoredImages.Count > 0 Then
-                        If chkReplace.IsChecked Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
                     End If
                     Try
                         StoreImageToDb(item)
+                        totalCount += 1
                     Catch ex As Exception
-                        If mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
+                        If ShowError(ex) <> Forms.DialogResult.Ignore Then _
                           Exit Sub
                     End Try
                 End If
+                If worker.CancellationPending Then Return
+                i += 1
+                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
             Next
+            worker.ReportProgress(100)
         End If
-        If chkMainTypes.IsChecked Then
+        If monitor.Invoke(Function() chkMainTypes.IsChecked) Then
             'MainTypes
+            worker.ReportProgress(0, "Main Types")
+            Dim count = context.MainTypes.Count
+            Dim i% = 0
+
             For Each item In context.MainTypes
                 Dim itemImages = item.GetImages(ImageSources.FileSystem)
                 If Not itemImages.IsEmpty Then
                     If item.StoredImages.Count > 0 Then
-                        If chkReplace.IsChecked Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
                     End If
                     Try
                         StoreImageToDb(item)
+                        totalCount += 1
                     Catch ex As Exception
-                        If mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
+                        If ShowError(ex) <> Forms.DialogResult.Ignore Then _
                           Exit Sub
                     End Try
                 End If
+                If worker.CancellationPending Then Return
+                i += 1
+                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
             Next
+            worker.ReportProgress(100)
         End If
-        If chkShapes.IsChecked Then
+        If monitor.Invoke(Function() chkShapes.IsChecked) Then
             'Shapes
+            worker.ReportProgress(0, "Shapes")
+            Dim count = context.Shapes.Count
+            Dim i% = 0
             For Each item In context.Shapes
                 Dim itemImages = item.GetImages(ImageSources.FileSystem)
                 If Not itemImages.IsEmpty Then
                     If item.StoredImages.Count > 0 Then
-                        If chkReplace.IsChecked Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
                     End If
                     Try
                         StoreImageToDb(item)
+                        totalCount += 1
                     Catch ex As Exception
-                        If mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
+                        If ShowError(ex) <> Forms.DialogResult.Ignore Then _
                           Exit Sub
                     End Try
                 End If
+                If worker.CancellationPending Then Return
+                i += 1
+                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
             Next
-            If chkStorages.IsChecked Then
-                'Storages
-                For Each item In context.Storages
-                    Dim itemImages = item.GetImages(ImageSources.FileSystem)
-                    If Not itemImages.IsEmpty Then
-                        If item.StoredImages.Count > 0 Then
-                            If chkReplace.IsChecked Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
-                        End If
-                        Try
-                            StoreImageToDb(item)
-                        Catch ex As Exception
-                            If mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
-                              Exit Sub
-                        End Try
-                    End If
-                Next
-            End If
+            worker.ReportProgress(100)
         End If
-        If chkCaps.IsChecked Then
+        If monitor.Invoke(Function() chkStorages.IsChecked) Then
+            'Storages
+            worker.ReportProgress(0, "Storages")
+            Dim count = context.Storages.Count
+            Dim i% = 0
+            For Each item In context.Storages
+                Dim itemImages = item.GetImages(ImageSources.FileSystem)
+                If Not itemImages.IsEmpty Then
+                    If item.StoredImages.Count > 0 Then
+                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                    End If
+                    Try
+                        StoreImageToDb(item)
+                        totalCount += 1
+                    Catch ex As Exception
+                        If ShowError(ex) <> Forms.DialogResult.Ignore Then _
+                          Exit Sub
+                    End Try
+                End If
+                If worker.CancellationPending Then Return
+                i += 1
+                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+            Next
+            worker.ReportProgress(100)
+        End If
+        If monitor.Invoke(Function() chkCaps.IsChecked) Then
             'Caps
+            worker.ReportProgress(0, "Caps")
+            Dim count = context.Images.Count
+            Dim i% = 0
             Dim sizeFolders = From folder In IO.Directory.EnumerateDirectories(My.Settings.ImageRoot)
                               Let match = CapsDataExtensions.imageFolderNameRegExp.Match(IO.Path.GetFileName(folder))
                               Where match.Success
                               Select Path = folder, Size = Integer.Parse(match.Groups!Size.Value, System.Globalization.CultureInfo.InvariantCulture)
             For Each Image In context.Images
+                If worker.CancellationPending Then Return
                 Try
                     Dim img = Image
                     Dim biggestImage = New With {Key .Path = "", Key .Size = 0I} : biggestImage = Nothing
@@ -282,9 +345,10 @@ DeleteFolder:               Try
                                         ).FirstOrDefault
                     End If
                     If biggestImage IsNot Nothing Then
-                        Dim maxDbSize As Integer = (From size In DirectCast(icImagesInDb.ItemsSource, Integer())).Max
+                        Dim maxDbSize As Integer = (From size In DirectCast(monitor.Invoke(Function() icImagesInDb.ItemsSource), Integer())).Max
                         Using fsImage As New System.Drawing.Bitmap(biggestImage.Path)
-                            For Each dbSize In DirectCast(icImagesInDb.ItemsSource, Integer())
+                            For Each dbSize In DirectCast(monitor.Invoke(Function() icImagesInDb.ItemsSource), Integer())
+                                If worker.CancellationPending Then Return
                                 Dim Data As New IO.MemoryStream
                                 Dim saveWidth%, saveHeight%
                                 If biggestImage.Size = 0 AndAlso dbSize = 0 OrElse
@@ -303,7 +367,7 @@ DeleteFolder:               Try
                                     Continue For
                                 End If
                                 Dim exisiting = (From isi In Image.StoredImages Where Width = saveWidth AndAlso Height = saveHeight).FirstOrDefault
-                                If exisiting IsNot Nothing AndAlso chkReplace.IsChecked Then
+                                If exisiting IsNot Nothing AndAlso replace Then
                                     context.DeleteObject(exisiting)
                                 ElseIf exisiting IsNot Nothing Then
                                     Continue For
@@ -315,21 +379,31 @@ DeleteFolder:               Try
                                                                 .MIME = CapsDataExtensions.GetImageMimeType(IO.Path.GetExtension(biggestImage.Path))
                                                                }
                                 Image.StoredImages.Add(si)
+                                totalCount += 1
                             Next
                         End Using
                     End If
                 Catch ex As Exception
-                    If mBox.Error_XPTIBWO(ex, "Failed to copy image:", ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
-                            Exit Sub
+                    If ShowError(ex) <> Forms.DialogResult.Ignore Then _
+                             Exit Sub
                 End Try
+                i += 1
+                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
             Next
+            worker.ReportProgress(100)
         End If
 
+        If worker.CancellationPending Then Return
+        worker.ReportProgress(-1, ProgressBarStyle.Indefinite)
+        worker.ReportProgress(-1, False)
+        worker.ReportProgress(-1, "Saving changes to database")
         Try
             context.SaveChanges()
         Catch ex As Exception
-            mBox.Error_XPTIBWO(ex, "Error while saving changes to database. No images were migrated.", "Migrate images", , , Me)
+            monitor.Invoke(Sub() mBox.Error_XPTIBWO(ex, "Error while saving changes to database. No images were migrated.", "Migrate images", , , monitor.Window))
+            Return
         End Try
+        monitor.Invoke(Sub() mBox.ModalF_PTBIa("{0} images saved to database.", "Migrate images", mBox.MessageBoxButton.Buttons.OK, mBox.MessageBoxIcons.OK, totalCount))
     End Sub
     ''' <summary>Stores image of given item to database</summary>
     ''' <param name="item">Item to store image of</param>
@@ -355,81 +429,135 @@ DeleteFolder:               Try
     ''' <exception cref="ArgumentNullException"><paramref name="context"/> is null</exception>
     Private Sub MigrateDb2Fs(ByVal context As CapsDataContext)
         If context Is Nothing Then Throw New ArgumentNullException("context")
-        If chkCapSigns.IsChecked Then
-            'CapSigns
-            For Each storedImage In From si In context.StoredImages Where si.CapSignID IsNot Nothing
-                If Not StoreImageToFS(storedImage, CapSign.ImageStorageFolderName, storedImage.CapSignID) Then Exit Sub
-            Next
-        End If
-        If chkCapTypes.IsChecked Then
-            'CapTypes
-            For Each storedImage In From si In context.StoredImages Where si.CapTypeID IsNot Nothing
-                If Not StoreImageToFS(storedImage, CapType.ImageStorageFolderName, storedImage.CapTypeID) Then Exit Sub
-            Next
-        End If
-        If chkMainTypes.IsChecked Then
-            'MainTypes
-            For Each storedImage In From si In context.StoredImages Where si.MainType IsNot Nothing
-                If Not StoreImageToFS(storedImage, MainType.ImageStorageFolderName, storedImage.MainTypeID) Then Exit Sub
-            Next
-        End If
-        If chkShapes.IsChecked Then
-            'Shapes
-            For Each storedImage In From si In context.StoredImages Where si.ShapeID IsNot Nothing
-                If Not StoreImageToFS(storedImage, Shape.ImageStorageFolderName, storedImage.ShapeID) Then Exit Sub
-            Next
-        End If
-        If chkStorages.IsChecked Then
-            'Storages
-            For Each storedImage In From si In context.StoredImages Where si.StorageID IsNot Nothing
-                If Not StoreImageToFS(storedImage, Storage.ImageStorageFolderName, storedImage.StorageID) Then Exit Sub
-            Next
-        End If
-        If chkCaps.IsChecked Then
-            'Caps
-            For Each image In context.Images
-                Dim biggestImage = (From si In image.StoredImages Order By Math.Max(si.Width, si.Height) Descending).FirstOrDefault
-                If biggestImage Is Nothing Then Continue For
-                For Each fsSize In DirectCast(icImagesInFS.ItemsSource, Integer())
-                    If fsSize <> 0 AndAlso fsSize > Math.Max(biggestImage.Width, biggestImage.Height) Then Continue For
-                    Dim folder = IO.Path.Combine(My.Settings.ImageRoot, If(fsSize = 0, Caps.Data.Image.OriginalSizeImageStorageFolderName, String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}_{0}", fsSize)))
-                    Dim deleted = False
-                    Try
-                        If Not IO.Directory.Exists(folder) Then IO.Directory.CreateDirectory(folder)
-                        Dim file = IO.Path.Combine(folder, image.RelativePath)
-                        If IO.File.Exists(file) Then
-                            If Not chkReplace.IsChecked Then Continue For
-                            IO.File.Delete(file)
-                            deleted = True
-                        End If
-                        If fsSize = 0 Then
-                            My.Computer.FileSystem.WriteAllBytes(file, biggestImage.Data, False)
-                        Else
-                            Using originalMS As New IO.MemoryStream(biggestImage.Data),
-                                  bigImage As New System.Drawing.Bitmap(originalMS),
-                                  smallIamge = bigImage.GetThumbnail(New System.Drawing.Size(fsSize, fsSize))
-                                smallIamge.Save(file, bigImage.RawFormat)
-                            End Using
-                        End If
-                    Catch ex As Exception
-                        If mBox.Error_XPTIBWO(ex, "Failed to save image." + If(deleted, vbCrLf & "Warning: Original image was already deleted!", ""), ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
-                            Return
-                    End Try
+        Dim totalCount% = 0
+        Try
+            If monitor.Invoke(Function() chkCapSigns.IsChecked) Then
+                'CapSigns
+                Dim count = (From si In context.StoredImages Where si.CapSignID IsNot Nothing).Count
+                Dim i% = 0
+                worker.ReportProgress(0, "Cap Signs")
+                For Each storedImage In From si In context.StoredImages Where si.CapSignID IsNot Nothing
+                    If worker.CancellationPending Then Throw New OperationCanceledException
+                    totalCount += StoreImageToFS(storedImage, CapSign.ImageStorageFolderName, storedImage.CapSignID)
+                    i += 1
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
                 Next
-            Next
-        End If
+                worker.ReportProgress(100)
+            End If
+            If monitor.Invoke(Function() chkCapTypes.IsChecked) Then
+                'CapTypes
+                Dim count = (From si In context.StoredImages Where si.CapTypeID IsNot Nothing).Count
+                Dim i% = 0
+                worker.ReportProgress(0, "Cap Types")
+                For Each storedImage In From si In context.StoredImages Where si.CapTypeID IsNot Nothing
+                    If worker.CancellationPending Then Throw New OperationCanceledException
+                    totalCount += StoreImageToFS(storedImage, CapType.ImageStorageFolderName, storedImage.CapTypeID)
+                    i += 1
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                Next
+                worker.ReportProgress(100)
+            End If
+            If monitor.Invoke(Function() chkMainTypes.IsChecked) Then
+                'MainTypes
+                Dim count = (From si In context.StoredImages Where si.MainType IsNot Nothing).Count
+                Dim i% = 0
+                worker.ReportProgress(0, "Main Types")
+                For Each storedImage In From si In context.StoredImages Where si.MainType IsNot Nothing
+                    If worker.CancellationPending Then Throw New OperationCanceledException
+                    totalCount += StoreImageToFS(storedImage, MainType.ImageStorageFolderName, storedImage.MainTypeID)
+                    i += 1
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                Next
+                worker.ReportProgress(100)
+            End If
+            If monitor.Invoke(Function() chkShapes.IsChecked) Then
+                'Shapes
+                Dim count = (From si In context.StoredImages Where si.ShapeID IsNot Nothing).Count
+                Dim i% = 0
+                worker.ReportProgress(0, "Shapes")
+                For Each storedImage In From si In context.StoredImages Where si.ShapeID IsNot Nothing
+                    If worker.CancellationPending Then Throw New OperationCanceledException
+                    totalCount += StoreImageToFS(storedImage, Shape.ImageStorageFolderName, storedImage.ShapeID)
+                    i += 1
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                Next
+                worker.ReportProgress(100)
+            End If
+            If monitor.Invoke(Function() chkStorages.IsChecked) Then
+                'Storages
+                Dim count = (From si In context.StoredImages Where si.StorageID IsNot Nothing).Count
+                Dim i% = 0
+                worker.ReportProgress(0, "Storages")
+                For Each storedImage In From si In context.StoredImages Where si.StorageID IsNot Nothing
+                    If worker.CancellationPending Then Throw New OperationCanceledException
+                    totalCount += StoreImageToFS(storedImage, Storage.ImageStorageFolderName, storedImage.StorageID)
+                    i += 1
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                Next
+                worker.ReportProgress(100)
+            End If
+            If monitor.Invoke(Function() chkCaps.IsChecked) Then
+                'Caps
+                Dim count = (context.Images).Count
+                Dim i% = 0
+                worker.ReportProgress(0, "Caps")
+                For Each image In context.Images
+                    If worker.CancellationPending Then Throw New OperationCanceledException
+                    Dim biggestImage = (From si In image.StoredImages Order By Math.Max(si.Width, si.Height) Descending).FirstOrDefault
+                    If biggestImage Is Nothing Then Continue For
+                    For Each fsSize In DirectCast(monitor.Invoke(Function() icImagesInFS.ItemsSource), Integer())
+                        If worker.CancellationPending Then Throw New OperationCanceledException
+                        If fsSize <> 0 AndAlso fsSize > Math.Max(biggestImage.Width, biggestImage.Height) Then Continue For
+                        Dim folder = IO.Path.Combine(My.Settings.ImageRoot, If(fsSize = 0, Caps.Data.Image.OriginalSizeImageStorageFolderName, String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}_{0}", fsSize)))
+                        Dim deleted = False
+                        Try
+                            If Not IO.Directory.Exists(folder) Then IO.Directory.CreateDirectory(folder)
+                            Dim file = IO.Path.Combine(folder, image.RelativePath)
+                            If IO.File.Exists(file) Then
+                                If Not chkReplace.IsChecked Then Continue For
+                                IO.File.Delete(file)
+                                deleted = True
+                            End If
+                            If fsSize = 0 Then
+                                My.Computer.FileSystem.WriteAllBytes(file, biggestImage.Data, False)
+                                totalCount += 1
+                            Else
+                                Using originalMS As New IO.MemoryStream(biggestImage.Data),
+                                      bigImage As New System.Drawing.Bitmap(originalMS),
+                                      smallIamge = bigImage.GetThumbnail(New System.Drawing.Size(fsSize, fsSize))
+                                    smallIamge.Save(file, bigImage.RawFormat)
+                                End Using
+                                totalCount += 1
+                            End If
+                        Catch ex As Exception
+                            If monitor.Invoke(Function() _
+                                                  mBox.Error_XPTIBWO(ex, "Failed to save image." + If(deleted, vbCrLf & "Warning: Original image was already deleted!", ""), ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, monitor.Window)) _
+                                    <> Forms.DialogResult.Ignore Then _
+                                Return
+                        End Try
+                    Next
+                    i += 1
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                Next
+                worker.ReportProgress(100)
+            End If
+            monitor.Invoke(Sub() mBox.ModalF_PTBIa("{0} images saved to file system.", "Migrate images", mBox.MessageBoxButton.Buttons.OK, mBox.MessageBoxIcons.OK, totalCount))
+        Catch ex As OperationCanceledException
+            monitor.Invoke(Sub() mBox.ModalF_PTBIa("Operation cancelled. {0} images already saved to file system.", "Migrate images", mBox.MessageBoxButton.Buttons.OK, mBox.MessageBoxIcons.Information, totalCount))
+        End Try
     End Sub
     ''' <summary>Stores database image of simple object to file system</summary>
     ''' <param name="imageToBeStored">A <see cref="StoredImage"/> to be stored in file system</param>
     ''' <param name="imageFolderName">Folder to store image in</param>
     ''' <param name="objectID">ID of object image is related to</param>
-    ''' <returns>True if process should continue with next image, false if it should be interrupted</returns>
-    Private Function StoreImageToFS(ByVal imageToBeStored As StoredImage, ByVal imageFolderName As String, ByVal objectID%) As Boolean
+    ''' <returns>Number of images saved to file system (1 or 0)</returns>
+    ''' <exception cref="OperationCanceledException">Use cancelled the operation as response to error message</exception>
+    Private Function StoreImageToFS(ByVal imageToBeStored As StoredImage, ByVal imageFolderName As String, ByVal objectID%) As Integer
         Dim imagePath = IO.Path.Combine(My.Settings.ImageRoot, imageFolderName, String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}.png", objectID))
         Dim deleted = False
         Try
             If IO.File.Exists(imagePath) Then
-                If Not chkReplace.IsChecked Then Return True
+                If Not monitor.Invoke(Function() chkReplace.IsChecked) Then Return True
                 IO.File.Delete(imagePath)
                 deleted = True
             End If
@@ -437,10 +565,13 @@ DeleteFolder:               Try
                   bmp As New System.Drawing.Bitmap(ms)
                 bmp.Save(imagePath, System.Drawing.Imaging.ImageFormat.Png)
             End Using
+            Return 1
         Catch ex As Exception
-            If mBox.Error_XPTIBWO(ex, "Failed to save image." + If(deleted, vbCrLf & "Warning: Original image was already deleted!", ""), ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, Me) <> Forms.DialogResult.Ignore Then _
-                     Return False
+            If monitor.Invoke(Function() _
+                        mBox.Error_XPTIBWO(ex, "Failed to save image." + If(deleted, vbCrLf & "Warning: Original image was already deleted!", ""), ex.GetType.Name, mBox.MessageBoxIcons.Exclamation, mBox.MessageBoxButton.Buttons.Abort Or mBox.MessageBoxButton.Buttons.Ignore, monitor.Window)
+                    ) <> Forms.DialogResult.Ignore Then _
+                Throw New OperationCanceledException
         End Try
-        Return True
+        Return 0
     End Function
 End Class

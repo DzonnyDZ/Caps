@@ -1400,6 +1400,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Click Cancel to change your connection string..
+        '''</summary>
+        Public ReadOnly Property lbl_ClickCancelToChangeConnectionString() As String
+            Get
+                Return ResourceManager.GetString("lbl_ClickCancelToChangeConnectionString", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Co_mpany.
         '''</summary>
         Public ReadOnly Property lbl_Company() As String
@@ -2525,6 +2534,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to The connection is not configured to allow multiple result sets to be active (MultipleActiveResultSets is false). Some functionality of this application require multiple active resultsest. Affected functionality may not work or application may crash..
+        '''</summary>
+        Public ReadOnly Property msg_MultipleActiveResultsetsFalse() As String
+            Get
+                Return ResourceManager.GetString("msg_MultipleActiveResultsetsFalse", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to You have chosen to select one of existing cap types but you have selected none..
         '''</summary>
         Public ReadOnly Property msg_NoCapTypeSelected() As String
@@ -3291,6 +3309,15 @@ Namespace My.Resources
         Public ReadOnly Property txt_Miscellaneous() As String
             Get
                 Return ResourceManager.GetString("txt_Miscellaneous", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Multiple active resultsets.
+        '''</summary>
+        Public ReadOnly Property txt_MultipleActiveResultsets() As String
+            Get
+                Return ResourceManager.GetString("txt_MultipleActiveResultsets", resourceCulture)
             End Get
         End Property
         
