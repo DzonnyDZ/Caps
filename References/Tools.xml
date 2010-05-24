@@ -16367,6 +16367,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="objects">Entities to be deleted</param>
 	<typeparam name="TEntity">Type of entities</typeparam>
 	<exception cref="T:System.ArgumentNullException"><paramref name="objectSet"/> is null</exception>
+	<exception cref="T:System.InvalidOperationException">Removing member object of <paramref name="objects"/> from <paramref name="objectSet"/> reszlted in change in the <paramref name="objects"/> collection. Especially it's invalid to make call like <c>context.Orders.DeleteObjects(customer.Orders)</c> - use somethink like <c>context.Orders.DeleteObjects(customer.Orders.<see cref="M:System.Linq.Enumerable.ToArray``1(System.Collections.Generic.IEnumerable{``0})">ToArray</see>)</c> (<see cref="M:System.Linq.Enumerable.AsEnumerable``1(System.Collections.Generic.IEnumerable{``0})">AsEnumerable</see> may not be enough).</exception>
 </member><member name="M:Tools.DataT.ObjectsT.EntityFrameworkExtensions.AddObjects``1(System.Data.Objects.IObjectSet{``0},System.Collections.Generic.IEnumerable{``0})">
 	<summary>Notifies set than objects representing new entities must be added to the set</summary>
 	<param name="objectSet">&gt;An <see cref="T:System.Data.Objects.IObjectSet`1"/> to notify</param>

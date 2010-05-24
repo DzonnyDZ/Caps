@@ -111,6 +111,7 @@
     * File, folder and color dialogs should be fully modal now.
     * Added progress bar for Remove unused images functionality.
     * Added check if connection allows multiple active resultsets (required by image migration functionality)
+    * Fix: Crash when changing language to default
     
 Pending issues:
 ===============

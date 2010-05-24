@@ -55,7 +55,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Doc", "Doc\", "{FEA28EBA-35
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "8963"
+		VWDPort = "1732"
 		DefaultWebSiteLanguage = "Visual Basic"
 	EndProjectSection
 EndProject

@@ -121,7 +121,9 @@ Connect: If Main.SqlConnection Is Nothing OrElse Redo Then
             My.Settings.Save()
             If My.Settings.Language <> originalLanguage Then
                 Try
-                    System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(My.Settings.Language)
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = If(My.Settings.Language Is Nothing,
+                                                                                System.Globalization.CultureInfo.InstalledUICulture,
+                                                                                System.Globalization.CultureInfo.GetCultureInfo(My.Settings.Language))
                 Catch : End Try
                 Select Case mBox.MsgBox(My.Resources.msg_LanguageChangedRestart, MsgBoxStyle.YesNo Or MsgBoxStyle.Question, My.Resources.txt_LanguageChange, Me)
                     Case MsgBoxResult.Yes

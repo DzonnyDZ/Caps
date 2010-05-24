@@ -200,7 +200,7 @@ DeleteFolder:               Try
                 Dim itemImages = item.GetImages(ImageSources.FileSystem)
                 If Not itemImages.IsEmpty Then
                     If item.StoredImages.Count > 0 Then
-                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages.ToArray) Else Continue For
                     End If
                     Try
                         StoreImageToDb(item, context)
@@ -226,7 +226,7 @@ DeleteFolder:               Try
                 Dim itemImages = item.GetImages(ImageSources.FileSystem)
                 If Not itemImages.IsEmpty Then
                     If item.StoredImages.Count > 0 Then
-                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages.ToArray) Else Continue For
                     End If
                     Try
                         StoreImageToDb(item, context)
@@ -252,7 +252,7 @@ DeleteFolder:               Try
                 Dim itemImages = item.GetImages(ImageSources.FileSystem)
                 If Not itemImages.IsEmpty Then
                     If item.StoredImages.Count > 0 Then
-                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages.ToArray) Else Continue For
                     End If
                     Try
                         StoreImageToDb(item, context)
@@ -277,7 +277,7 @@ DeleteFolder:               Try
                 Dim itemImages = item.GetImages(ImageSources.FileSystem)
                 If Not itemImages.IsEmpty Then
                     If item.StoredImages.Count > 0 Then
-                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages.ToArray) Else Continue For
                     End If
                     Try
                         StoreImageToDb(item, context)
@@ -302,7 +302,7 @@ DeleteFolder:               Try
                 Dim itemImages = item.GetImages(ImageSources.FileSystem)
                 If Not itemImages.IsEmpty Then
                     If item.StoredImages.Count > 0 Then
-                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages) Else Continue For
+                        If replace Then context.StoredImages.DeleteObjects(item.StoredImages.ToArray) Else Continue For
                     End If
                     Try
                         StoreImageToDb(item, context)

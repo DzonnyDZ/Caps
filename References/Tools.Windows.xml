@@ -6845,7 +6845,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="title">Title text of window (see <see cref="N:System.Text"/>)</param>
 	<param name="prompt">Prompt text (see <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Prompt"/>)</param>
 	<filterpriority>2</filterpriority>
-</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Show(System.ComponentModel.BackgroundWorker,System.String,System.String,System.Object,System.Object)">
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ShowDialog(System.ComponentModel.BackgroundWorker,System.String,System.String,System.Object,System.Object)">
 	<summary>Shows progress form and runs worker</summary>
 	<param name="bgw">Worker to run</param>
 	<param name="Text">Title text of window (see <see cref="N:System.Text"/>)</param>
