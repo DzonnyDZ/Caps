@@ -4322,7 +4322,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<remarks>If <paramref name="Position"/>
 		<see cref="P:System.Drawing.Rectangle.IsEmpty">is empty</see>, neither window position nor size is set, but off-screen prevention alghoritm is run for window current position.</remarks>
 </member><member name="M:Tools.WindowsT.WPF.WpfExtensions.GetWindowPosition(System.Windows.Window)">
-	<summary>Gtes size and location of the <see cref="T:System.Windows.Window"/></summary>
+	<summary>Gets size and location of the <see cref="T:System.Windows.Window"/></summary>
 	<param name="Window">A <see cref="T:System.Windows.Window"/> to get size and location of</param>
 	<returns>Rectangle of <paramref name="Window"/> in window coordinates</returns>
 	<exception cref="T:System.ArgumentNullException"><paramref name="Window"/> is null</exception>

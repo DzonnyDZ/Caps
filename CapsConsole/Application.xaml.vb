@@ -11,6 +11,7 @@
     Private Sub Application_Startup(ByVal sender As Object, ByVal e As System.Windows.StartupEventArgs) Handles Me.Startup
         System.Windows.Forms.Application.EnableVisualStyles()
         Tools.WindowsT.IndependentT.MessageBox.DefaultImplementation = GetType(Tools.WindowsT.WPF.DialogsT.MessageBox)
+        Tools.WindowsT.WPF.NativeExtensions.GloballyHideNullIconsOfWindows = True
         If My.Settings.Language <> "" Then
             Try
                 System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo(My.Settings.Language)

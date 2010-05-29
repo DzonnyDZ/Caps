@@ -6,7 +6,33 @@ Tools.Win
 </name>
 </assembly>
 <members>
-<member name="M:Tools.API.GUI.GetSystemMenu(System.IntPtr,Tools.API.Common.APIBool)">
+<member name="M:Tools.WindowsT.WPF.NativeExtensions.HideIcon(System.Windows.Window)">
+	<summary>Hides icon of window, so it's no longed displayed</summary>
+	<remarks>This method should be called from <see cref="M:System.Windows.Window.OnSourceInitialized(System.EventArgs)"/></remarks>
+	<seelaso cref="M:Tools.WindowsT.NativeT.Win32Window.HideIcon"/>
+</member><member name="F:Tools.WindowsT.WPF.NativeExtensions.globallyHideNullIconsOfWindowsRegistered">
+	<summary>Indicates if class handler was registered for <see cref="T:System.Windows.Window">Window</see>.<see cref="F:System.Windows.FrameworkElement.LoadedEvent">LoadedEvent</see></summary>
+</member><member name="P:Tools.WindowsT.WPF.NativeExtensions.GloballyHideNullIconsOfWindows">
+	<summary>Gets or sets value indicating if icons of all WPF windows in this application with <see cref="P:System.Windows.Window.Icon"/> null will be hidden</summary>
+</member><member name="M:Tools.WindowsT.WPF.NativeExtensions.OnWindowLoaded(System.Object,System.Windows.RoutedEventArgs)">
+	<summary>When <see cref="P:Tools.WindowsT.WPF.NativeExtensions.GloballyHideNullIconsOfWindows"/> is true executed whenever window is loaded</summary>
+	<param name="sender">A <see cref="T:System.Windows.Window"/>.</param>
+	<param name="e">Event arguments</param>
+</member><member name="F:Tools.WindowsT.WPF.NativeExtensions.windows">
+	<summary>Keeps list of windows handlers were addded to</summary>
+</member><member name="M:Tools.WindowsT.WPF.NativeExtensions.OnWindowClosed(System.Object,System.EventArgs)">
+	<summary>Called whenever window <see cref="M:Tools.WindowsT.WPF.NativeExtensions.OnWindowLoaded(System.Object,System.Windows.RoutedEventArgs)"/> added handlers to is closed</summary>
+	<param name="sender">A <see cref="T:System.Windows.Window"/></param>
+	<param name="e">Event arguments</param>
+</member><member name="M:Tools.WindowsT.WPF.NativeExtensions.OnIconChanged(System.Object,System.EventArgs)">
+	<summary>Called whenever icon of window changes</summary>
+	<param name="sender">A <see cref="T:System.Windows.Window"/></param>
+	<param name="e">Event arguments</param>
+</member><member name="T:Tools.WindowsT.WPF.NativeExtensions">
+	<summary>Provides extension methods for Windows Presentation Foundation which provide functionality based on native Win 32 API</summary>
+	<seealso cref="T:Tools.WindowsT.NativeT.Win32Window"/>
+	<version version="1.5.3" stage="Nightly">This module is new in version 1.5.3</version>
+</member><member name="M:Tools.API.GUI.GetSystemMenu(System.IntPtr,Tools.API.Common.APIBool)">
 	<summary>The <see cref="M:Tools.API.GUI.GetSystemMenu(System.IntPtr,Tools.API.Common.APIBool)"/> function allows the application to access the window menu (also known as the System menu or the Control menu) for copying and modifying.</summary>
 	<param name="hwnd">Identifies the window that will own a copy of the window menu.</param>
 	<param name="revert">
@@ -173,6 +199,65 @@ Tools.Win
 	<param name="lParam">[in] Specifies additional message-specific information. The contents of this parameter depend on the value of the <paramref name="Msg"/> parameter. </param>
 	<param name="wParam">[in] Specifies additional message-specific information. The contents of this parameter depend on the value of the <paramref name="Msg"/> parameter. </param>
 	<returns>The return value specifies the result of the message processing and depends on the message sent. </returns>
+</member><member name="M:Tools.API.GUI.SetWindowPos(System.IntPtr,System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,Tools.API.GUI.SetWindowPosFlags)">
+	<summary>Changes the size, position, and Z order of a child, pop-up, or top-level window. These windows are ordered according to their appearance on the screen. The topmost window receives the highest rank and is the first window in the Z order</summary>
+	<param name="hWnd">A handle to the window.</param>
+	<param name="hWndInsertAfter">A handle to the window to precede the positioned window in the Z order. This parameter must be a window handle or one of the <see cref="T:Tools.API.GUI.SpecialWindowHandles"/> values.</param>
+	<param name="X">The new position of the left side of the window, in client coordinates. </param>
+	<param name="Y">The new position of the top of the window, in client coordinates. </param>
+	<param name="cx">The new width of the window, in pixels. </param>
+	<param name="cy">The new height of the window, in pixels. </param>
+	<param name="uFlags">    The window sizing and positioning flags.</param>
+	<returns>If the function succeeds, the return value is nonzero. If the function fails, the return value is zero.</returns>
+	<version version="1.5.3">This DLL-imported function is new in version 1.5.3</version>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_ASYNCWINDOWPOS">
+	<summary>If the calling thread and the thread that owns the window are attached to different input queues, the system posts the request to the thread that owns the window. This prevents the calling thread from blocking its execution while other threads process the request.</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_DEFERERASE">
+	<summary>Prevents generation of the <see cref="F:Tools.API.Messages.WindowMessages.WM_SYNCPAINT"/> message.</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_DRAWFRAME">
+	<summary>Draws a frame (defined in the window's class description) around the window.</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_FRAMECHANGED">
+	<summary>Applies new frame styles set using the <see cref="M:Tools.API.GUI.SetWindowLong(System.IntPtr,Tools.API.GUI.WindowLongs,System.Int32)"/> function. Sends a <see cref="F:Tools.API.Messages.WindowMessages.WM_NCCALCSIZE"/> message to the window, even if the window's size is not being changed. If this flag is not specified, <see cref="F:Tools.API.Messages.WindowMessages.WM_NCCALCSIZE"/> is sent only when the window's size is being changed.</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_HIDEWINDOW">
+	<summary>Hides the window.</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_NOACTIVATE">
+	<summary>Does not activate the window. If this flag is not set, the window is activated and moved to the top of either the topmost or non-topmost group (depending on the setting of the <paramref name="hWndInsertAfter"/> parameter).</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_NOCOPYBITS">
+	<summary>Discards the entire contents of the client area. If this flag is not specified, the valid contents of the client area are saved and copied back into the client area after the window is sized or repositioned.</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_NOMOVE">
+	<summary>Retains the current position (ignores X and Y parameters).</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_NOOWNERZORDER">
+	<summary>Does not change the owner window's position in the Z order.</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_NOREDRAW">
+	<summary>Does not redraw changes. If this flag is set, no repainting of any kind occurs. This applies to the client area, the nonclient area (including the title bar and scroll bars), and any part of the parent window uncovered as a result of the window being moved. When this flag is set, the application must explicitly invalidate or redraw any parts of the window and parent window that need redrawing.</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_NOREPOSITION">
+	<summary>Same as the <see cref="F:Tools.API.GUI.SetWindowPosFlags.SWP_NOOWNERZORDER"/> flag.</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_NOSENDCHANGING">
+	<summary>Prevents the window from receiving the <see cref="F:Tools.API.Messages.WindowMessages.WM_WINDOWPOSCHANGING"/> message.</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_NOSIZE">
+	<summary>Retains the current size (ignores the cx and cy parameters).</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_NOZORDER">
+	<summary>Retains the current Z order (ignores the hWndInsertAfter parameter).</summary>
+</member><member name="F:Tools.API.GUI.SetWindowPosFlags.SWP_SHOWWINDOW">
+	<summary>Displays the window.</summary>
+</member><member name="T:Tools.API.GUI.SetWindowPosFlags">
+	<summary>Possible values for <see cref="M:Tools.API.GUI.SetWindowPos(System.IntPtr,System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,Tools.API.GUI.SetWindowPosFlags)"/>
+		<paramref name="uFlags"/> parameter</summary>
+	<version version="1.5.3">This enumeration is new in version 1.5.3</version>
+</member><member name="F:Tools.API.GUI.SpecialWindowHandles.HWND_BROADCAST">
+	<summary>Special handle meaning broadcast to all windows</summary>
+</member><member name="F:Tools.API.GUI.SpecialWindowHandles.HWND_TOP">
+	<summary>Places the window at the top of the Z order.</summary>
+</member><member name="F:Tools.API.GUI.SpecialWindowHandles.HWND_BOTTOM">
+	<summary>Places the window at the bottom of the Z order. If the hWnd parameter identifies a topmost window, the window loses its topmost status and is placed at the bottom of all other windows.</summary>
+</member><member name="F:Tools.API.GUI.SpecialWindowHandles.HWND_TOPMOST">
+	<summary>Places the window above all non-topmost windows. The window maintains its topmost position even when it is deactivated.</summary>
+</member><member name="F:Tools.API.GUI.SpecialWindowHandles.HWND_NOTOPMOST">
+	<summary>Places the window above all non-topmost windows (that is, behind all topmost windows). This flag has no effect if the window is already a non-topmost window.</summary>
+</member><member name="T:Tools.API.GUI.SpecialWindowHandles">
+	<summary>Defines various values that can be passed where windows handle is expected</summary>
+	<remarks>Value of this enumeration should be cased to <see cref="T:System.IntPtr"/> before used as special values for window handles.</remarks>
+	<version version="1.5.3">This enumeration is new in version 1.5.3</version>
 </member><member name="F:Tools.API.GUI.WindowLongs.GWL_EXSTYLE">
 	<summary>Retrieves the extended window styles. For more information, see CreateWindowEx.</summary>
 </member><member name="F:Tools.API.GUI.WindowLongs.GWL_STYLE">
@@ -196,6 +281,67 @@ Tools.Win
 </member><member name="T:Tools.API.GUI.WindowLongs">
 	<summary>Predefined window longs for <see cref="M:Tools.API.GUI.GetWindowLong(System.IntPtr,Tools.API.GUI.WindowLongs)"/> and <see cref="M:Tools.API.GUI.SetWindowLong(System.IntPtr,Tools.API.GUI.WindowLongs,System.Int32)"/></summary>
 	<remarks>Publicly visible alternative of this enumeration is <see cref="T:Tools.API.Public.WindowLongs"/></remarks>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_ACCEPTFILES">
+	<summary>The windo accepts drag &amp; drop files</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_APPWINDOW">
+	<summary>Forces a top-level window onto the taskbar when the window is visible.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_CLIENTEDGE">
+	<summary>The window has a border with a sunken edge.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_COMPOSITED">
+	<summary>Paints all descendants of a window in bottom-to-top painting order using double-buffering. This cannot be used if the window has a class style of either CS_OWNDC or CS_CLASSDC.</summary>
+	<remarks>Windows 2000:  This flag is not supported.</remarks>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_CONTEXTHELP">
+	<summary>The title bar of the window includes a question mark. When the user clicks the question mark, the cursor changes to a question mark with a pointer. If the user then clicks a child window, the child receives a <see cref="F:Tools.API.Messages.WindowMessages.WM_HELP"/> message. The child window should pass the message to the parent window procedure, which should call the WinHelp function using the HELP_WM_HELP command. The Help application displays a pop-up window that typically contains help for the child window.</summary>
+	<remarks><see cref="F:Tools.API.GUI.ExStyles.WS_EX_CONTEXTHELP"/> cannot be used with the WS_MAXIMIZEBOX or WS_MINIMIZEBOX styles.</remarks>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_CONTROLPARENT">
+	<summary>The window itself contains child windows that should take part in dialog box navigation. If this style is specified, the dialog manager recurses into children of this window when performing navigation operations such as handling the TAB key, an arrow key, or a keyboard mnemonic.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_DLGMODALFRAME">
+	<summary>The window has a double border; the window can, optionally, be created with a title bar by specifying the WS_CAPTION style in the dwStyle parameter.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_LAYERED">
+	<summary>The window is a layered window. Note that this cannot be used for child windows. Also, this cannot be used if the window has a class style of either CS_OWNDC or CS_CLASSDC.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_LAYOUTRTL">
+	<summary>If the shell language is Hebrew, Arabic, or another language that supports reading order alignment, the horizontal origin of the window is on the right edge. Increasing horizontal values advance to the left.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_LEFT">
+	<summary>The window has generic left-aligned properties. This is the default.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_LEFTSCROLLBAR">
+	<summary>If the shell language is Hebrew, Arabic, or another language that supports reading order alignment, the vertical scroll bar (if present) is to the left of the client area. For other languages, the style is ignored.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_LTRREADING">
+	<summary>The window text is displayed using left-to-right reading-order properties. This is the default.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_MDICHILD">
+	<summary>The window is a MDI child window.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_NOACTIVATE">
+	<summary>A top-level window created with this style does not become the foreground window when the user clicks it. The system does not bring this window to the foreground when the user minimizes or closes the foreground window.</summary>
+	<remarks>To activate the window, use the SetActiveWindow or SetForegroundWindow function. The window does not appear on the taskbar by default. To force the window to appear on the taskbar, use the <see cref="F:Tools.API.GUI.ExStyles.WS_EX_APPWINDOW"/> style.</remarks>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_NOINHERITLAYOUT">
+	<summary>The window does not pass its window layout to its child windows.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_NOPARENTNOTIFY">
+	<summary>The child window created with this style does not send the <see cref="F:Tools.API.Messages.WindowMessages.WM_PARENTNOTIFY"/> message to its parent window when it is created or destroyed.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_OVERLAPPEDWINDOW">
+	<summary>The window is an overlapped window.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_PALETTEWINDOW">
+	<summary>TBD</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_RIGHT">
+	<summary>The window has generic "right-aligned" properties. This depends on the window class. This style has an effect only if the shell language is Hebrew, Arabic, or another language that supports reading-order alignment; otherwise, the style is ignored.</summary>
+	<remarks>Using the <see cref="F:Tools.API.GUI.ExStyles.WS_EX_RIGHT"/> style for static or edit controls has the same effect as using the SS_RIGHT or ES_RIGHT style, respectively. Using this style with button controls has the same effect as using BS_RIGHT and BS_RIGHTBUTTON styles.</remarks>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_RIGHTSCROLLBAR">
+	<summary>The vertical scroll bar (if present) is to the right of the client area. This is the default.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_RTLREADING">
+	<summary>If the shell language is Hebrew, Arabic, or another language that supports reading-order alignment, the window text is displayed using right-to-left reading-order properties. For other languages, the style is ignored.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_STATICEDGE">
+	<summary>The window has a three-dimensional border style intended to be used for items that do not accept user input.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_TOOLWINDOW">
+	<summary>The window is intended to be used as a floating toolbar. A tool window has a title bar that is shorter than a normal title bar, and the window title is drawn using a smaller font. A tool window does not appear in the taskbar or in the dialog that appears when the user presses ALT+TAB. If a tool window has a system menu, its icon is not displayed on the title bar. However, you can display the system menu by right-clicking or by typing ALT+SPACE.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_TOPMOST">
+	<summary>The window should be placed above all non-topmost windows and should stay above them, even when the window is deactivated. To add or remove this style, use the SetWindowPos function.</summary>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_TRANSPARENT">
+	<summary>The window should not be painted until siblings beneath the window (that were created by the same thread) have been painted. The window appears transparent because the bits of underlying sibling windows have already been painted.</summary>
+	<remarks>To achieve transparency without these restrictions, use the SetWindowRgn function.</remarks>
+</member><member name="F:Tools.API.GUI.ExStyles.WS_EX_WINDOWEDGE">
+	<summary>The window has a border with a raised edge.</summary>
+</member><member name="T:Tools.API.GUI.ExStyles">
+	<summary>Defines window extended styles</summary>
+	<seelaso cref="T:Tools.API.Public.WindowExtendedStyles"/>
+	<version version="1.5.3">This enumeration is new in version 1.5.3</version>
 </member><member name="F:Tools.API.GUI.WindowProcs.GWL_WNDPROC">
 	<summary>Retrieves the address of the window procedure, or a handle representing the address of the window procedure. You must use the CallWindowProc function to call the window procedure.</summary>
 </member><member name="F:Tools.API.GUI.WindowProcs.DWL_DLGPROC">
@@ -1065,6 +1211,63 @@ Tools.Win
 	<remarks>DWL_USER</remarks>
 </member><member name="T:Tools.API.Public.WindowLongs">
 	<summary>Predefined window longs for <see cref="P:Tools.WindowsT.NativeT.Win32Window.WindowLong(Tools.API.Public.WindowLongs)"/></summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.AcceptsFiles">
+	<summary>The windo accepts drag &amp; drop files</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.AppWindow">
+	<summary>Forces a top-level window onto the taskbar when the window is visible.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.ClientEdge">
+	<summary>The window has a border with a sunken edge.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.Composited">
+	<summary>Paints all descendants of a window in bottom-to-top painting order using double-buffering. This cannot be used if the window has a class style of either CS_OWNDC or CS_CLASSDC.</summary>
+	<remarks>Windows 2000: This flag is not supported.</remarks>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.ContextHelp">
+	<summary>The title bar of the window includes a question mark. When the user clicks the question mark, the cursor changes to a question mark with a pointer. If the user then clicks a child window, the child receives a <see cref="F:Tools.API.Messages.WindowMessages.WM_HELP"/> message.</summary>
+	<remarks><see cref="F:Tools.API.Public.WindowExtendedStyles.ContextHelp"/> cannot be used with the WS_MAXIMIZEBOX or WS_MINIMIZEBOX styles.</remarks>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.ControlParent">
+	<summary>The window itself contains child windows that should take part in dialog box navigation. If this style is specified, the dialog manager recurses into children of this window when performing navigation operations such as handling the TAB key, an arrow key, or a keyboard mnemonic.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.DialogModalFrame">
+	<summary>The window has a double border; the window can, optionally, be created with a title bar by specifying the WS_CAPTION style in the dwStyle parameter.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.Layered">
+	<summary>The window is a layered window. Note that this cannot be used for child windows. Also, this cannot be used if the window has a class style of either CS_OWNDC or CS_CLASSDC.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.LayoutRtl">
+	<summary>If the shell language is Hebrew, Arabic, or another language that supports reading order alignment, the horizontal origin of the window is on the right edge. Increasing horizontal values advance to the left.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.Left">
+	<summary>The window has generic left-aligned properties. This is the default.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.LeftScrollBar">
+	<summary>If the shell language is Hebrew, Arabic, or another language that supports reading order alignment, the vertical scroll bar (if present) is to the left of the client area. For other languages, the style is ignored.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.LtrReading">
+	<summary>The window text is displayed using left-to-right reading-order properties. This is the default.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.MdiChild">
+	<summary>The window is a MDI child window.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.NoActive">
+	<summary>A top-level window created with this style does not become the foreground window when the user clicks it. The system does not bring this window to the foreground when the user minimizes or closes the foreground window.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.NoInheritLayout">
+	<summary>The window does not pass its window layout to its child windows.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.NoParentNotify">
+	<summary>The child window created with this style does not send the <see cref="F:Tools.API.Messages.WindowMessages.WM_PARENTNOTIFY"/> message to its parent window when it is created or destroyed.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.OverlappedWindow">
+	<summary>The window is an overlapped window.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.PaletteWindow">
+	<summary>TBD</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.Right">
+	<summary>The window has generic "right-aligned" properties. This depends on the window class. This style has an effect only if the shell language is Hebrew, Arabic, or another language that supports reading-order alignment; otherwise, the style is ignored.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.RightScrollBar">
+	<summary>The vertical scroll bar (if present) is to the right of the client area. This is the default.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.RtlReading">
+	<summary>If the shell language is Hebrew, Arabic, or another language that supports reading-order alignment, the window text is displayed using right-to-left reading-order properties. For other languages, the style is ignored.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.StaticEdge">
+	<summary>The window has a three-dimensional border style intended to be used for items that do not accept user input.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.ToolWindow">
+	<summary>The window is intended to be used as a floating toolbar. A tool window has a title bar that is shorter than a normal title bar, and the window title is drawn using a smaller font. A tool window does not appear in the taskbar or in the dialog that appears when the user presses ALT+TAB. If a tool window has a system menu, its icon is not displayed on the title bar. However, you can display the system menu by right-clicking or by typing ALT+SPACE.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.TopMost">
+	<summary>The window should be placed above all non-topmost windows and should stay above them, even when the window is deactivated. To add or remove this style, use the SetWindowPos function.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.Transparent">
+	<summary>The window should not be painted until siblings beneath the window (that were created by the same thread) have been painted. The window appears transparent because the bits of underlying sibling windows have already been painted.</summary>
+</member><member name="F:Tools.API.Public.WindowExtendedStyles.WindowEdge">
+	<summary>The window has a border with a raised edge.</summary>
+</member><member name="T:Tools.API.Public.WindowExtendedStyles">
+	<summary>Defines window extended styles</summary>
+	<version version="1.5.3">This enumeration is new in version 1.5.3</version>
 </member><member name="M:Tools.DevicesT.Mouse.#ctor">
 	<summary>There is no CTor</summary>
 </member><member name="F:Tools.DevicesT.Mouse.WheelStep">
@@ -1763,6 +1966,16 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="P:Tools.WindowsT.NativeT.Win32Window.DefWndProc">
 	<summary>Gets default window procedure implementation that responds to all messages in defaut way. This implementation is provided by the OS.</summary>
 	<returns>Delegate to <see cref="M:Tools.API.GUI.DefWindowProc(System.IntPtr,Tools.API.Messages.WindowMessages,System.Int32,System.Int32)"/> (internal, PInvoke function)</returns>
+</member><member name="P:Tools.WindowsT.NativeT.Win32Window.ExtendedStyle">
+	<summary>Gets or sest window extended style</summary>
+	<returns>Current value of <see cref="F:Tools.API.Public.WindowLongs.ExStyle"/> window long</returns>
+	<value>A new value for window long <see cref="T:Tools.API.Public.WindowExtendedStyles"/></value>
+	<seelaso cref="P:Tools.WindowsT.NativeT.Win32Window.WindowLong(Tools.API.Public.WindowLongs)"/><seelaso cref="F:Tools.API.Public.WindowLongs.ExStyle"/>
+	<version version="1.5.3">This property is new in version 1.5.3</version>
+	<exception cref="T:Tools.API.Win32APIException">Getting or setting of value failed (i.e. <see cref="P:Tools.WindowsT.NativeT.Win32Window.Handle"/> is invalid)</exception>
+</member><member name="M:Tools.WindowsT.NativeT.Win32Window.HideIcon">
+	<summary>Hides an icon of window</summary>
+	<remarks>This method sets window <see cref="P:Tools.WindowsT.NativeT.Win32Window.ExtendedStyle"/> flag <see cref="F:Tools.API.Public.WindowExtendedStyles.DialogModalFrame"/> and updates windo non-client area</remarks>
 </member><member name="M:Tools.WindowsT.NativeT.Win32Window.Equals(System.Object)">
 	<summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
 	<returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
@@ -12131,9 +12344,50 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Gets high-order word of <see cref="P:Tools.API.Messages.WindowMessage.wParam"/></summary>
 	<returns>High-orded word of <see cref="P:Tools.API.Messages.WindowMessage.wParam"/></returns>
 	<seelaso cref="M:Tools.ExtensionsT.Numbers.High(System.UInt16)"/><seelaso cref="P:Tools.API.Messages.WindowMessage.wParam"/>
+</member><member name="M:Tools.API.Messages.WindowMessage.Send(System.IntPtr)">
+	<summary>Sends the message to specified window identified by handle</summary>
+	<param name="hWnd">Hande of window to send message to</param>
+	<returns>Result of message</returns>
+	<remarks>This method sets <see cref="P:Tools.API.Messages.WindowMessage.ReturnValue"/> to result of message</remarks>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.API.Messages.WindowMessage.Broadcast">
+	<summary>Broadcasts message to all top-level windows</summary>
+	<returns>Result of message</returns>
+	<remarks>This method sets <see cref="P:Tools.API.Messages.WindowMessage.ReturnValue"/> to result of message</remarks>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.API.Messages.WindowMessage.Send(System.Windows.Forms.IWin32Window)">
+	<summary>Sends the message to specified window</summary>
+	<param name="window">A window to send message to</param>
+	<returns>Result of message</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="window"/> is null</exception>
+	<remarks>This method sets <see cref="P:Tools.API.Messages.WindowMessage.ReturnValue"/> to result of message</remarks>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.API.Messages.WindowMessage.Send(System.Windows.Forms.IWin32Window,Tools.API.Messages.WindowMessages,System.Int32,System.Int32)">
+	<summary>Sends a message to given window</summary>
+	<param name="window">A window to send message to</param>
+	<param name="message">A message to be sent</param>
+	<param name="wParam">Message wParam parameter</param>
+	<param name="lParam">Message lParam parameter</param>
+	<returns>Message call result</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="window"/> is null</exception>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.API.Messages.WindowMessage.Send(System.IntPtr,Tools.API.Messages.WindowMessages,System.Int32,System.Int32)">
+	<summary>Sends a message to given window</summary>
+	<param name="hWnd">Hande of window to send message to</param>
+	<param name="message">A message to be sent</param>
+	<param name="wParam">Message wParam parameter</param>
+	<param name="lParam">Message lParam parameter</param>
+	<returns>Message call result</returns>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.API.Messages.WindowMessage.Send">
+	<summary>Sends the message to window specified in the <see cref="P:Tools.API.Messages.WindowMessage.hWnd"/> property</summary>
+	<returns>Result of message</returns>
+	<remarks>This method sets <see cref="P:Tools.API.Messages.WindowMessage.ReturnValue"/> to result of message</remarks>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="T:Tools.API.Messages.WindowMessage">
 	<summary>Implements windows message as reference type</summary>
 	<seelaso cref="T:System.Windows.Forms.Message"/>
+	<version version="1.5.3">Methods for sending messages</version>
 </member><member name="T:Tools.API.Messages.WndProcEventArgs">
 	<summary>Delegate of procedure that serves as event handler for <see cref="E:Tools.API.Messages.IWindowsMessagesProviderRef.WndProc"/></summary>
 	<param name="sender">Source of the event</param>
@@ -12143,6 +12397,16 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="sender">Source of the event</param>
 	<param name="Message">Windows mesage</param>
 	<typeparam name="T">Type of message</typeparam>
+</member><member name="M:Tools.API.Messages.Messages.SendMessage(System.IntPtr,Tools.API.Messages.WindowMessages,System.Int32,System.Int32)">
+	<summary>Sends the specified message to a window or windows. The <see cref="M:Tools.API.Messages.Messages.SendMessage(System.IntPtr,Tools.API.Messages.WindowMessages,System.Int32,System.Int32)"/>  function calls the window procedure for the specified window and does not return until the window procedure has processed the message.</summary>
+	<param name="hWnd">A handle to the window whose window procedure will receive the message. If this parameter is <see cref="F:Tools.API.GUI.SpecialWindowHandles.HWND_BROADCAST"/>, the message is sent to all top-level windows in the system, including disabled or invisible unowned windows, overlapped windows, and pop-up windows; but the message is not sent to child windows.</param>
+	<param name="msg">The message to be sent.</param>
+	<param name="wParam">Additional message-specific information.</param>
+	<param name="lParam">Additional message-specific information.</param>
+	<returns>The return value specifies the result of the message processing; it depends on the message sent.</returns>
+</member><member name="T:Tools.API.Messages.Messages">
+	<summary>Defines API functions to worki with windows messages</summary>
+	<version version="1.5.3">This module is new in version 1.5.3</version>
 </member><member name="M:Tools.IOt.SharedFolders.GetSharedFolders(System.String)">
 	<summary>Gets list of names of shared folders of given server</summary>
 	<param name="server">Name of server (or IP address; excluding leading \\)</param>
