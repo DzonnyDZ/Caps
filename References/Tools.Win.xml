@@ -6,33 +6,7 @@ Tools.Win
 </name>
 </assembly>
 <members>
-<member name="M:Tools.WindowsT.WPF.NativeExtensions.HideIcon(System.Windows.Window)">
-	<summary>Hides icon of window, so it's no longed displayed</summary>
-	<remarks>This method should be called from <see cref="M:System.Windows.Window.OnSourceInitialized(System.EventArgs)"/></remarks>
-	<seelaso cref="M:Tools.WindowsT.NativeT.Win32Window.HideIcon"/>
-</member><member name="F:Tools.WindowsT.WPF.NativeExtensions.globallyHideNullIconsOfWindowsRegistered">
-	<summary>Indicates if class handler was registered for <see cref="T:System.Windows.Window">Window</see>.<see cref="F:System.Windows.FrameworkElement.LoadedEvent">LoadedEvent</see></summary>
-</member><member name="P:Tools.WindowsT.WPF.NativeExtensions.GloballyHideNullIconsOfWindows">
-	<summary>Gets or sets value indicating if icons of all WPF windows in this application with <see cref="P:System.Windows.Window.Icon"/> null will be hidden</summary>
-</member><member name="M:Tools.WindowsT.WPF.NativeExtensions.OnWindowLoaded(System.Object,System.Windows.RoutedEventArgs)">
-	<summary>When <see cref="P:Tools.WindowsT.WPF.NativeExtensions.GloballyHideNullIconsOfWindows"/> is true executed whenever window is loaded</summary>
-	<param name="sender">A <see cref="T:System.Windows.Window"/>.</param>
-	<param name="e">Event arguments</param>
-</member><member name="F:Tools.WindowsT.WPF.NativeExtensions.windows">
-	<summary>Keeps list of windows handlers were addded to</summary>
-</member><member name="M:Tools.WindowsT.WPF.NativeExtensions.OnWindowClosed(System.Object,System.EventArgs)">
-	<summary>Called whenever window <see cref="M:Tools.WindowsT.WPF.NativeExtensions.OnWindowLoaded(System.Object,System.Windows.RoutedEventArgs)"/> added handlers to is closed</summary>
-	<param name="sender">A <see cref="T:System.Windows.Window"/></param>
-	<param name="e">Event arguments</param>
-</member><member name="M:Tools.WindowsT.WPF.NativeExtensions.OnIconChanged(System.Object,System.EventArgs)">
-	<summary>Called whenever icon of window changes</summary>
-	<param name="sender">A <see cref="T:System.Windows.Window"/></param>
-	<param name="e">Event arguments</param>
-</member><member name="T:Tools.WindowsT.WPF.NativeExtensions">
-	<summary>Provides extension methods for Windows Presentation Foundation which provide functionality based on native Win 32 API</summary>
-	<seealso cref="T:Tools.WindowsT.NativeT.Win32Window"/>
-	<version version="1.5.3" stage="Nightly">This module is new in version 1.5.3</version>
-</member><member name="M:Tools.API.GUI.GetSystemMenu(System.IntPtr,Tools.API.Common.APIBool)">
+<member name="M:Tools.API.GUI.GetSystemMenu(System.IntPtr,Tools.API.Common.APIBool)">
 	<summary>The <see cref="M:Tools.API.GUI.GetSystemMenu(System.IntPtr,Tools.API.Common.APIBool)"/> function allows the application to access the window menu (also known as the System menu or the Control menu) for copying and modifying.</summary>
 	<param name="hwnd">Identifies the window that will own a copy of the window menu.</param>
 	<param name="revert">
@@ -2552,6 +2526,33 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<returns><see cref="T:Tools.DevicesT.LowLevelKeyboardHook"/> class instance ready to fire low-level keyboard hook events in different thread than calling thread</returns>
 </member><member name="T:Tools.DevicesT.Keyboard">
 	<summary>Contains methods for working with keyboard</summary>
+</member><member name="M:Tools.WindowsT.WPF.NativeExtensions.HideIcon(System.Windows.Window)">
+	<summary>Hides icon of window, so it's no longed displayed</summary>
+	<remarks>This method should be called from <see cref="M:System.Windows.Window.OnSourceInitialized(System.EventArgs)"/></remarks>
+	<seelaso cref="M:Tools.WindowsT.NativeT.Win32Window.HideIcon"/>
+</member><member name="F:Tools.WindowsT.WPF.NativeExtensions.globallyHideNullIconsOfWindowsRegistered">
+	<summary>Indicates if class handler was registered for <see cref="T:System.Windows.Window">Window</see>.<see cref="F:System.Windows.FrameworkElement.LoadedEvent">LoadedEvent</see></summary>
+</member><member name="P:Tools.WindowsT.WPF.NativeExtensions.GloballyHideNullIconsOfWindows">
+	<summary>Gets or sets value indicating if icons of all WPF windows in this application with <see cref="P:System.Windows.Window.Icon"/> null will be hidden</summary>
+	<remarks>This property affacts all <see cref="T:System.Windows.Window">Windows</see> with <see cref="P:System.Windows.Window.Icon"/> = null in current application domain. This property should be set during application startup and then should not be changed. When changed it has effect only on newly opened windows.</remarks>
+</member><member name="M:Tools.WindowsT.WPF.NativeExtensions.OnWindowLoaded(System.Object,System.Windows.RoutedEventArgs)">
+	<summary>When <see cref="P:Tools.WindowsT.WPF.NativeExtensions.GloballyHideNullIconsOfWindows"/> is true executed whenever window is loaded</summary>
+	<param name="sender">A <see cref="T:System.Windows.Window"/>.</param>
+	<param name="e">Event arguments</param>
+</member><member name="F:Tools.WindowsT.WPF.NativeExtensions.windows">
+	<summary>Keeps list of windows handlers were addded to</summary>
+</member><member name="M:Tools.WindowsT.WPF.NativeExtensions.OnWindowClosed(System.Object,System.EventArgs)">
+	<summary>Called whenever window <see cref="M:Tools.WindowsT.WPF.NativeExtensions.OnWindowLoaded(System.Object,System.Windows.RoutedEventArgs)"/> added handlers to is closed</summary>
+	<param name="sender">A <see cref="T:System.Windows.Window"/></param>
+	<param name="e">Event arguments</param>
+</member><member name="M:Tools.WindowsT.WPF.NativeExtensions.OnIconChanged(System.Object,System.EventArgs)">
+	<summary>Called whenever icon of window changes</summary>
+	<param name="sender">A <see cref="T:System.Windows.Window"/></param>
+	<param name="e">Event arguments</param>
+</member><member name="T:Tools.WindowsT.WPF.NativeExtensions">
+	<summary>Provides extension methods for Windows Presentation Foundation which provide functionality based on native Win 32 API</summary>
+	<seealso cref="T:Tools.WindowsT.NativeT.Win32Window"/>
+	<version version="1.5.3" stage="Nightly">This module is new in version 1.5.3</version>
 </member><member name="M:Tools.DevicesT.LowLevelMouseHook.#ctor">
 	<summary>Default CTor</summary>
 </member><member name="M:Tools.DevicesT.LowLevelMouseHook.#ctor(System.Boolean)">

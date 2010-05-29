@@ -6757,13 +6757,20 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Window that impements WPF message box</summary>
 	<version version="1.5.3." stage="Nightly">Added ability to copy all text of message box using Ctrl+C</version>
 </member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.PART_MainInfo">
-	<summary>Identifies placeholder for main information text block</summary>
+	<summary>Identifies template part representing main information text block</summary>
+	<remarks>This template part is optional. If present must be of type <see cref="T:System.Windows.Controls.TextBlock"/> and <see cref="P:System.Windows.Controls.TextBlock.Text"/> should be bound to <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Prompt"/> property.</remarks>
 </member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.PART_ProgressBar">
-	<summary>Identifies placeholder for progress bar</summary>
+	<summary>Identifies template part representing progress bar</summary>
+	<remarks>This template part is optional. If present must be of type <see cref="T:System.Windows.Controls.ProgressBar"/> and <see cref="P:System.Windows.Controls.Primitives.RangeBase.Value"/> should be bound to <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Progress"/> property and <see cref="P:System.Windows.Controls.ProgressBar.IsIndeterminate"/> should be bound to <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressBarStyle"/>.</remarks>
 </member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.PART_Info">
-	<summary>Identifies placeholder for secondary information text block</summary>
+	<summary>Identifies template part representing secondary information text block</summary>
+	<remarks>This template part is optional. If present must be of type <see cref="T:System.Windows.Controls.TextBlock"/> and <see cref="P:System.Windows.Controls.TextBlock.Text"/> should be bound to <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.Information"/> property.</remarks>
 </member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.PART_Cancel">
-	<summary>Identifies placeholder for cancel button</summary>
+	<summary>Identifies template part representing cancel button</summary>
+	<remarks>This template part is optional. If present must be of type <see cref="T:System.Windows.Controls.Button"/> and should be bound to <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand"/>.</remarks>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.PART_ProgressInfo">
+	<summary>Identifies template part representing texttual information about current progress</summary>
+	<remarks>This template part is optional. If present must be of type <see cref="T:System.Windows.Controls.TextBlock"/> and <see cref="P:System.Windows.Controls.TextBlock.Text"/> should be bound to <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressInfo"/> property.</remarks>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.#cctor">
 	<summary>Initializer</summary>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelCommand">
@@ -6829,6 +6836,13 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Gets or sets value idicating if user clicked the cance button and we are waiting for background process to terminate</summary>
 </member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelPendingProperty">
 	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.CancelPending"/> property</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressInfo">
+	<summary>Gets or sets textual information about current progress</summary>
+</member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressInfoProperty">
+	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl.ProgressInfo"/> property</summary>
+</member><member name="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitorImplementationControl">
+	<summary>Implements user interface for <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor"/></summary>
+	<remarks>You shuld not use this class/control directly unless you are styling it.</remarks>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.#ctor">
 	<summary>Default CTor</summary>
 	<remarks>Value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> property is populated with new instance of <see cref="T:System.ComponentModel.BackgroundWorker"/></remarks>
@@ -6859,6 +6873,8 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Shows window modally</summary>
 	<param name="owner">Owner object of dialog. It can be either <see cref="T:System.Windows.Forms.IWin32Window"/> (e.g. <see cref="T:System.Windows.Forms.Form"/>), <see cref="T:System.Windows.Interop.IWin32Window"/> or <see cref="T:System.Windows.Window"/>. When owner is not of recognized type (or is null), it's ignored.</param>
 	<returns>True when dialog was closed normally, false if it was closed because of user has cancelled the operation</returns>
+</member><member name="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WindowLoaded">
+	<summary>Raised when window showing progress is shown</summary>
 </member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.bgw">
 	<summary>A background worker which does the work</summary>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker">
@@ -6908,11 +6924,25 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<returns>True when both - <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CanCancel"/> and <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CancelPending"/> are enabled</returns>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CancelPending">
 	<summary>Gets or sets value indicating if user has pressed the Cancel button and dialog is now waiting for process to cancel itself</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.IProgressMonitorUI_OwnerObject">
+	<summary>Gets an object that can be used as owner for modal windows</summary>
+	<returns>When progress monitor dialog is currently shown, returns a <see cref="T:System.Windows.Window"/> representing the dialog; otherwise null.</returns>
+	<seelaso cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Window"/>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Window">
 	<summary>Gets an object that can be used as owner for modal windows</summary>
 	<returns>When progress monitor dialog is currently shown, returns a <see cref="T:System.Windows.Window"/> representing the dialog; otherwise null.</returns>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WorkerFinished">
 	<summary>Gets or sets value indicating if worker has finished it's work</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressInfoAuto">
+	<summary>Indicates if value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressInfo"/> property is being changed automatically or manually</summary>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressInfo">
+	<summary>Gets or sets value describing current progress in textual form</summary>
+	<remarks>
+ By default value of this property changes automatically depending on <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Progress"/> and <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressBarStyle"/>.
+ Once you set value of this property manually this automatic behavior is suspended. It can be reset by changing <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressInfoAuto"/> property.
+ </remarks>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.SetProgressInfo(System.String)">
+	<summary>Sets value of the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressInfo"/> property without setting <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressInfoAuto"/> to false.</summary>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)">
 	<summary>Handles <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>.<see cref="E:System.ComponentModel.BackgroundWorker.ProgressChanged">ProgressChanged</see> event</summary>
 	<param name="sender"><see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/></param>
@@ -8935,7 +8965,8 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Control that implements WPF <see cref="T:Tools.WindowsT.WPF.DialogsT.MessageBox"/></summary>
 	<remarks>This control is not intended to be used separately, to be placed on yopur window. This control implements WPF <see cref="T:Tools.WindowsT.WPF.DialogsT.MessageBox"/> and can be styled/templated.
  Teplate parts are panels for additional controls that can be placed on message box and are optional. When not pressent additional control will not be visible! But use of additional controls is rare.
- <para>This control is disposable. When it disposes it should not be used. It disposes automatically wehn message box window closes.</para></remarks>
+ <para>This control is disposable. When it disposes it should not be used. It disposes automatically wehn message box window closes.</para>
+		<para>Due to WPF limitations message box always displays an ugly icon. If you want to hide the icon set <see cref="P:Tools.WindowsT.WPF.NativeExtensions.GloballyHideNullIconsOfWindows"/> to true.</para></remarks>
 	<version version="1.5.2" stage="Nightly">Class introduced</version>
 	<version version="1.5.3." stage="Beta">Added ability to copy all text of message box using Ctrl+C</version>
 </member><member name="F:Tools.WindowsT.WPF.DialogsT.MessageBox.TitleFormatWithTimer">

@@ -168,6 +168,7 @@ DeleteFolder:               Try
         End If
 
         monitor = New ProgressMonitor(worker)
+        monitor.Prompt = "Migrate images"
         monitor.ShowDialog(Me)
         monitor = Nothing
     End Sub
