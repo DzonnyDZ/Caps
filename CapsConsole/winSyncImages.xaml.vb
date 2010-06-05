@@ -4,6 +4,8 @@ Imports Tools.LinqT, Tools.DataT.ObjectsT, Tools.DrawingT
 Imports System.ComponentModel
 Imports Tools.WindowsT.WPF.DialogsT, Tools.ThreadingT.IInvokeExtensions
 Imports Tools.WindowsT.IndependentT
+Imports Tools.CollectionsT.GenericT
+Imports Tools.ComponentModelT
 
 ''' <summary>Window used to migrate images between database and file system</summary>
 Public Class winSyncImages
@@ -24,35 +26,31 @@ Public Class winSyncImages
     End Sub
 
     Private Sub winSyncImages_Loaded(ByVal sender As Window, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
-        icImagesInDb.ItemsSource = Settings.Images.CapsInDatabase
-        icImagesInFS.ItemsSource = Settings.Images.CapsInFileSystem
+        icImagesInDb.ItemsSource = (From item In Settings.Images.CapsInDatabase Select New ValueContainer(Of Integer)(item)).ToList
+        icImagesInFS.ItemsSource = (From item In Settings.Images.CapsInFileSystem Select New ValueContainer(Of Integer)(item)).ToList
         lblImageRoot.Content = My.Settings.ImageRoot
     End Sub
 
     Private Sub btnAdd_Click(ByVal sender As Button, ByVal e As System.Windows.RoutedEventArgs) Handles btnAddDb.Click, btnAddFS.Click
         Dim ic As ItemsControl
         If sender Is btnAddDb Then ic = icImagesInDb Else ic = icImagesInFS
-        Dim source As Integer() = ic.ItemsSource
-        ReDim Preserve source(source.Length)
-        ic.ItemsSource = source
+        DirectCast(ic.ItemsSource, IList(Of ValueContainer(Of Integer))).Add(Nothing)
     End Sub
 
     Private Sub btnSaveDb_Click(ByVal sender As Button, ByVal e As System.Windows.RoutedEventArgs) Handles btnSaveDb.Click
-        If (From size In DirectCast(icImagesInDb.ItemsSource, Integer()) Group By size Into cnt = Count() Select cnt).Max > 0 Then
+        If (From size In DirectCast(icImagesInDb.ItemsSource, IList(Of ValueContainer(Of Integer))) Group By size Into cnt = Count() Select cnt).Max > 0 Then
             mBox.MsgBox("Unique size must be specified.", MsgBoxStyle.Exclamation, "Save database settings", Me)
             Exit Sub
         End If
-        Settings.Images.CapsInDatabase = icImagesInDb.ItemsSource
-        icImagesInDb.ItemsSource = Settings.Images.CapsInDatabase
+        Settings.Images.CapsInDatabase = (From item In DirectCast(icImagesInDb.ItemsSource, IList(Of ValueContainer(Of Integer))) Select item.Value).ToArray
     End Sub
 
     Private Sub btnSaveFS_Click(ByVal sender As Button, ByVal e As System.Windows.RoutedEventArgs) Handles btnSaveFS.Click
-        If (From size In DirectCast(icImagesInFS.ItemsSource, Integer()) Group By size Into cnt = Count() Select cnt).Max > 0 Then
+        If (From size In DirectCast(icImagesInFS.ItemsSource, IList(Of ValueContainer(Of Integer))) Group By size.Value Into cnt = Count() Select cnt).Max > 0 Then
             mBox.MsgBox("Unique size must be specified.", MsgBoxStyle.Exclamation, "Save database settings", Me)
             Exit Sub
         End If
-        Settings.Images.CapsInDatabase = icImagesInFS.ItemsSource
-        icImagesInFS.ItemsSource = Settings.Images.CapsInDatabase
+        Settings.Images.CapsInDatabase = (From item In DirectCast(icImagesInFS.ItemsSource, IList(Of ValueContainer(Of Integer))) Select item.Value).ToArray
     End Sub
 
     Private Sub btnDelFS_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnDelFS.Click
@@ -67,7 +65,7 @@ Public Class winSyncImages
                     Dim match = CapsDataExtensions.imageFolderNameRegExp.Match(folderName)
                     If folderName.ToLowerInvariant = "original" OrElse match.Success Then
                         Dim size = If(folder.ToLowerInvariant = "original", 0, Integer.Parse(match.Groups!Size.Value, System.Globalization.CultureInfo.InvariantCulture))
-                        If Not DirectCast(icImagesInFS.ItemsSource, Integer()).Contains(size) Then
+                        If Not (From item In DirectCast(icImagesInFS.ItemsSource, IList(Of ValueContainer(Of Integer))) Select item.Value).Contains(size) Then
 DeleteFolder:               Try
                                 IO.Directory.Delete(folder, True)
                                 delcount += 1
@@ -97,8 +95,8 @@ DeleteFolder:               Try
             Dim cnt%
             Try
                 Using context As New CapsDataContext(Main.EntityConnection)
-                    Dim keepSizes As Integer() = icImagesInDb.ItemsSource
-                    If keepSizes.Length = 0 Then
+                    Dim keepSizes = From item In DirectCast(icImagesInDb.ItemsSource, List(Of ValueContainer(Of Integer))) Select item.Value
+                    If keepSizes.Count = 0 Then
                         Dim iToDel = From image In context.StoredImages Where image.ImageID IsNot Nothing
                         cnt = iToDel.Count
                         context.StoredImages.DeleteObjects(iToDel)
@@ -149,19 +147,19 @@ DeleteFolder:               Try
                 btnChangeImageRoot.Focus()
                 Return
             End If
-        ElseIf optMigrateFS2Db.IsChecked AndAlso chkCaps.IsChecked AndAlso DirectCast(icImagesInDb.ItemsSource, Integer()).Length = 0 Then
+        ElseIf optMigrateFS2Db.IsChecked AndAlso chkCaps.IsChecked AndAlso DirectCast(icImagesInDb.ItemsSource, IList(Of ValueContainer(Of Integer))).Count = 0 Then
             mBox.MsgBox("No image sizes to be stored in database are selected. Please select some or do not migrate cap images.", MsgBoxStyle.Information, "Migrate images", Me)
             icImagesInDb.Focus()
             Exit Sub
-        ElseIf optMigrateFS2Db.IsChecked AndAlso chkCaps.IsChecked AndAlso (From size In DirectCast(icImagesInDb.ItemsSource, Integer()) Group By size Into count = Count() Where count > 1).Exists Then
+        ElseIf optMigrateFS2Db.IsChecked AndAlso chkCaps.IsChecked AndAlso (From size In DirectCast(icImagesInDb.ItemsSource, IList(Of ValueContainer(Of Integer))) Group By size Into count = Count() Where count > 1).Exists Then
             mBox.MsgBox("Duplicate size of images is selected for database storage.", MsgBoxStyle.Information, "Migrate images", Me)
             icImagesInDb.Focus()
             Exit Sub
-        ElseIf optMigrateDb2FS.IsChecked AndAlso chkCaps.IsChecked AndAlso DirectCast(icImagesInFS.ItemsSource, Integer()).Length = 0 Then
+        ElseIf optMigrateDb2FS.IsChecked AndAlso chkCaps.IsChecked AndAlso DirectCast(icImagesInFS.ItemsSource, IList(Of ValueContainer(Of Integer))).Count = 0 Then
             mBox.MsgBox("No image sizes to be stored in file system are selected. Please select some or do not migrate cap images.", MsgBoxStyle.Information, "Migrate images", Me)
             icImagesInFS.Focus()
             Exit Sub
-        ElseIf optMigrateDb2FS.IsChecked AndAlso chkCaps.IsChecked AndAlso (From size In DirectCast(icImagesInFS.ItemsSource, Integer()) Group By size Into count = Count() Where count > 1).Exists Then
+        ElseIf optMigrateDb2FS.IsChecked AndAlso chkCaps.IsChecked AndAlso (From size In DirectCast(icImagesInFS.ItemsSource, IList(Of ValueContainer(Of Integer))) Group By size.Value Into count = Count() Where count > 1).Exists Then
             mBox.MsgBox("Duplicate size of images is selected for file system storage.", MsgBoxStyle.Information, "Migrate images", Me)
             icImagesInFS.Focus()
             Exit Sub
@@ -213,7 +211,7 @@ DeleteFolder:               Try
                 End If
                 If worker.CancellationPending Then Return
                 i += 1
-                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
             Next
             worker.ReportProgress(100)
         End If
@@ -239,7 +237,7 @@ DeleteFolder:               Try
                 End If
                 If worker.CancellationPending Then Return
                 i += 1
-                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
             Next
             worker.ReportProgress(100)
         End If
@@ -265,7 +263,7 @@ DeleteFolder:               Try
                 End If
                 If worker.CancellationPending Then Return
                 i += 1
-                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
             Next
             worker.ReportProgress(100)
         End If
@@ -290,7 +288,7 @@ DeleteFolder:               Try
                 End If
                 If worker.CancellationPending Then Return
                 i += 1
-                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
             Next
             worker.ReportProgress(100)
         End If
@@ -315,12 +313,26 @@ DeleteFolder:               Try
                 End If
                 If worker.CancellationPending Then Return
                 i += 1
-                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
             Next
             worker.ReportProgress(100)
         End If
+
+        If worker.CancellationPending Then Return
+        'Using trans As New Transactions.TransactionScope(Transactions.TransactionScopeOption.Required, TimeSpan.MaxValue)
+        worker.ReportProgress(-1, ProgressBarStyle.Indefinite)
+        worker.ReportProgress(-1, False)
+        worker.ReportProgress(-1, "Saving changes to database")
+        Try
+            context.SaveChanges()
+        Catch ex As Exception
+            monitor.Invoke(Sub() mBox.Error_XPTIBWO(ex, "Error while saving changes to database. No images were migrated.", "Migrate images", , , monitor.Window))
+            Return
+        End Try
+
         If monitor.Invoke(Function() chkCaps.IsChecked) Then
             'Caps
+            worker.ReportProgress(-1, ProgressBarStyle.Definite)
             worker.ReportProgress(0, "Caps")
             Dim count = context.Images.Count
             Dim i% = 0
@@ -346,9 +358,9 @@ DeleteFolder:               Try
                                         ).FirstOrDefault
                     End If
                     If biggestImage IsNot Nothing Then
-                        Dim maxDbSize As Integer = (From size In DirectCast(monitor.Invoke(Function() icImagesInDb.ItemsSource), Integer())).Max
+                        Dim maxDbSize As Integer = (From size In DirectCast(monitor.Invoke(Function() icImagesInDb.ItemsSource), IList(Of ValueContainer(Of Integer))) Select size.Value).Max
                         Using fsImage As New System.Drawing.Bitmap(biggestImage.Path)
-                            For Each dbSize In DirectCast(monitor.Invoke(Function() icImagesInDb.ItemsSource), Integer())
+                            For Each dbSize In From item In DirectCast(monitor.Invoke(Function() icImagesInDb.ItemsSource), IList(Of ValueContainer(Of Integer))) Select item.Value
                                 If worker.CancellationPending Then Return
                                 Dim Data As New IO.MemoryStream
                                 Dim saveWidth%, saveHeight%
@@ -388,22 +400,19 @@ DeleteFolder:               Try
                     If ShowError(ex) <> Forms.DialogResult.Ignore Then _
                              Exit Sub
                 End Try
+                Try
+                    context.SaveChanges()
+                Catch ex As Exception
+                    monitor.Invoke(Sub() mBox.Error_XPTIBWO(ex, "Error while saving changes to database. {0} Have been already saved.".f(totalCount), "Migrate images", , , monitor.Window))
+                    Return
+                End Try
                 i += 1
-                If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
             Next
             worker.ReportProgress(100)
         End If
-
-        If worker.CancellationPending Then Return
-        worker.ReportProgress(-1, ProgressBarStyle.Indefinite)
-        worker.ReportProgress(-1, False)
-        worker.ReportProgress(-1, "Saving changes to database")
-        Try
-            context.SaveChanges()
-        Catch ex As Exception
-            monitor.Invoke(Sub() mBox.Error_XPTIBWO(ex, "Error while saving changes to database. No images were migrated.", "Migrate images", , , monitor.Window))
-            Return
-        End Try
+        'trans.Complete()
+        'End Using
         monitor.Invoke(Sub() mBox.ModalF_PTWBIa("{0} images saved to database.", "Migrate images", monitor.Window, mBox.MessageBoxButton.Buttons.OK, mBox.MessageBoxIcons.OK, totalCount))
     End Sub
     ''' <summary>Stores image of given item to database</summary>
@@ -442,7 +451,7 @@ DeleteFolder:               Try
                     If worker.CancellationPending Then Throw New OperationCanceledException
                     totalCount += StoreImageToFS(storedImage, CapSign.ImageStorageFolderName, storedImage.CapSignID)
                     i += 1
-                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
                 Next
                 worker.ReportProgress(100)
             End If
@@ -455,7 +464,7 @@ DeleteFolder:               Try
                     If worker.CancellationPending Then Throw New OperationCanceledException
                     totalCount += StoreImageToFS(storedImage, CapType.ImageStorageFolderName, storedImage.CapTypeID)
                     i += 1
-                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
                 Next
                 worker.ReportProgress(100)
             End If
@@ -468,7 +477,7 @@ DeleteFolder:               Try
                     If worker.CancellationPending Then Throw New OperationCanceledException
                     totalCount += StoreImageToFS(storedImage, MainType.ImageStorageFolderName, storedImage.MainTypeID)
                     i += 1
-                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
                 Next
                 worker.ReportProgress(100)
             End If
@@ -481,7 +490,7 @@ DeleteFolder:               Try
                     If worker.CancellationPending Then Throw New OperationCanceledException
                     totalCount += StoreImageToFS(storedImage, Shape.ImageStorageFolderName, storedImage.ShapeID)
                     i += 1
-                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
                 Next
                 worker.ReportProgress(100)
             End If
@@ -494,7 +503,7 @@ DeleteFolder:               Try
                     If worker.CancellationPending Then Throw New OperationCanceledException
                     totalCount += StoreImageToFS(storedImage, Storage.ImageStorageFolderName, storedImage.StorageID)
                     i += 1
-                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
                 Next
                 worker.ReportProgress(100)
             End If
@@ -507,7 +516,7 @@ DeleteFolder:               Try
                     If worker.CancellationPending Then Throw New OperationCanceledException
                     Dim biggestImage = (From si In image.StoredImages Order By Math.Max(si.Width, si.Height) Descending).FirstOrDefault
                     If biggestImage Is Nothing Then Continue For
-                    For Each fsSize In DirectCast(monitor.Invoke(Function() icImagesInFS.ItemsSource), Integer())
+                    For Each fsSize In From item In DirectCast(monitor.Invoke(Function() icImagesInFS.ItemsSource), IList(Of ValueContainer(Of Integer))) Select item.Value
                         If worker.CancellationPending Then Throw New OperationCanceledException
                         If fsSize <> 0 AndAlso fsSize > Math.Max(biggestImage.Width, biggestImage.Height) Then Continue For
                         Dim folder = IO.Path.Combine(My.Settings.ImageRoot, If(fsSize = 0, Caps.Data.Image.OriginalSizeImageStorageFolderName, String.Format(System.Globalization.CultureInfo.InvariantCulture, "{0}_{0}", fsSize)))
@@ -539,7 +548,7 @@ DeleteFolder:               Try
                         End Try
                     Next
                     i += 1
-                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100)
+                    If i Mod 10 = 0 Then worker.ReportProgress(i / count * 100, New NumericsT.URational(i, count))
                 Next
                 worker.ReportProgress(100)
             End If

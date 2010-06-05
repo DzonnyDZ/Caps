@@ -112,6 +112,7 @@
     * Added progress bar for Remove unused images functionality.
     * Added check if connection allows multiple active resultsets (required by image migration functionality)
     * Fix: Crash when changing language to default
+    * Fix: Text box for image path when creating new Cap Type does not use full available width
     
 Pending issues:
 ===============

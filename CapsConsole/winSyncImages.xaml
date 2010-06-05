@@ -6,7 +6,7 @@
         Width="300" SizeToContent="Height" Icon="/CapsConsole;component/Resources/CapImage.ico">
     <Window.Resources>
         <DataTemplate x:Key="NudTemplate">
-            <tc:NumericUpDown ToolTip="0 means original size of image" Value="{Binding ., Mode=TwoWay}"/>
+            <tc:NumericUpDown ToolTip="0 means original size of image" Value="{Binding Value, Mode=TwoWay}"/>
         </DataTemplate>
     </Window.Resources>
 

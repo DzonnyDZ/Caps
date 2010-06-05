@@ -2023,6 +2023,331 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Implements type-safe <see cref="T:System.Collections.Generic.IEnumerator`1"/> for 1-dimensional array of any type</summary>
 	<typeparam name="T">Type of array element</typeparam>
 	<remarks>Supports arrays with non-zero lower bound.</remarks>
+</member><member name="F:Tools.NumericsT.URational._Numerator">
+	<summary>Contains value of the <see cref="P:Tools.NumericsT.URational.Numerator"/> property</summary>
+</member><member name="F:Tools.NumericsT.URational._Denominator">
+	<summary>Contains value of the <see cref="P:Tools.NumericsT.URational.Denominator"/> property</summary>
+</member><member name="M:Tools.NumericsT.URational.#ctor(System.UInt32,System.UInt32)">
+	<summary>CTor</summary>
+	<param name="Numerator">Numerator</param>
+	<param name="Denominator">Denominator</param>
+</member><member name="M:Tools.NumericsT.URational.Clone1">
+	<summary>Creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+</member><member name="M:Tools.NumericsT.URational.Swap">
+	<summary>Swaps values <see cref="P:Tools.NumericsT.URational.Numerator"/> and <see cref="P:Tools.NumericsT.URational.Denominator"/></summary>
+</member><member name="P:Tools.NumericsT.URational.Numerator">
+	<summary>Numerator (1 in 1/2)</summary>
+</member><member name="P:Tools.NumericsT.URational.Denominator">
+	<summary>Denominator (2 in 1/2)</summary>
+</member><member name="M:Tools.NumericsT.URational.Clone">
+	<summary>Creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+</member><member name="M:Tools.NumericsT.URational.Simplyfy">
+	<summary>Simplyfies <see cref="T:Tools.NumericsT.URational"/> to contain smallest possible <see cref="P:Tools.NumericsT.URational.Numerator"/> and <see cref="P:Tools.NumericsT.URational.Denominator"/></summary>
+</member><member name="M:Tools.NumericsT.URational.op_Addition(Tools.NumericsT.URational,Tools.NumericsT.URational)">
+	<summary>Adds two <see cref="T:Tools.NumericsT.URational"/>s</summary>
+	<param name="a">First number to add</param>
+	<param name="b">Second number to add</param>
+	<returns><paramref name="a"/> + <paramref name="b"/></returns>
+</member><member name="M:Tools.NumericsT.URational.op_Implicit(Tools.NumericsT.URational)~Tools.NumericsT.SRational">
+	<summary>Converts <see cref="T:Tools.NumericsT.URational"/> to <see cref="T:Tools.NumericsT.SRational"/></summary>
+	<param name="a">Number to be converted</param>
+	<returns>Signed representation of unsigned rational</returns>
+</member><member name="M:Tools.NumericsT.URational.op_Explicit(Tools.NumericsT.SRational)~Tools.NumericsT.URational">
+	<summary>Converts <see cref="T:Tools.NumericsT.SRational"/> to <see cref="T:Tools.NumericsT.URational"/></summary>
+	<param name="a">Number to be converted</param>
+	<returns>Unsigned representation of signed rational</returns>
+</member><member name="M:Tools.NumericsT.URational.op_Multiply(Tools.NumericsT.URational,Tools.NumericsT.URational)">
+	<summary>Multiplyes two <see cref="T:Tools.NumericsT.URational"/>s</summary>
+	<param name="a">First number to multiply</param>
+	<param name="b">Second number to multiply</param>
+	<returns><paramref name="a"/> * <paramref name="b"/></returns>
+</member><member name="M:Tools.NumericsT.URational.op_Division(Tools.NumericsT.URational,Tools.NumericsT.URational)">
+	<summary>Divides one number by other</summary>
+	<param name="a">Number to be divided</param>
+	<param name="b">Number to divide by</param>
+	<returns><paramref name="a"/> / <paramref name="b"/></returns>
+</member><member name="M:Tools.NumericsT.URational.op_Subtraction(Tools.NumericsT.URational,Tools.NumericsT.URational)">
+	<summary>Substracts two <see cref="T:Tools.NumericsT.URational"/>s</summary>
+	<param name="a">Number to substract from</param>
+	<param name="b">Number to be substracted</param>
+	<returns><paramref name="a"/> - <paramref name="b"/></returns>
+</member><member name="M:Tools.NumericsT.URational.op_UnaryNegation(Tools.NumericsT.URational)">
+	<summary>Negative value</summary>
+	<param name="a"><see cref="T:Tools.NumericsT.URational"/> to get negative value of</param>
+	<returns>Negative value of <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.URational.op_Explicit(System.Double)~Tools.NumericsT.URational">
+	<summary>Converts <see cref="T:System.Double"/> to <see cref="T:Tools.NumericsT.URational"/></summary>
+	<param name="a">Number to be converted</param>
+	<returns><see cref="T:Tools.NumericsT.URational"/> representation of <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.URational.op_Explicit(System.Single)~Tools.NumericsT.URational">
+	<summary>Converts <see cref="T:System.Single"/> to <see cref="T:Tools.NumericsT.URational"/></summary>
+	<param name="a">Number to be converted</param>
+	<returns><see cref="T:Tools.NumericsT.URational"/> representation of <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.URational.op_Implicit(Tools.NumericsT.URational)~System.Double">
+	<summary>Converts <see cref="T:Tools.NumericsT.URational"/> to <see cref="T:System.Double"/></summary>
+	<param name="a"><see cref="T:Tools.NumericsT.URational"/> to be converted</param>
+	<returns><see cref="T:System.Double"/> representation of <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.URational.op_Implicit(Tools.NumericsT.URational)~System.String">
+	<summary>Converts <see cref="T:Tools.NumericsT.URational"/> to <see cref="T:System.String"/></summary>
+	<param name="a"><see cref="T:Tools.NumericsT.URational"/> to be converted</param>
+	<returns><see cref="T:System.String"/> representation of <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.URational.ToString">
+	<summary>String representation</summary>
+</member><member name="M:Tools.NumericsT.URational.op_Explicit(System.String)~Tools.NumericsT.URational">
+	<summary>Converts <see cref="T:System.String"/> to <see cref="T:Tools.NumericsT.URational"/></summary>
+	<param name="a"><see cref="T:System.String"/> to converts</param>
+	<returns><see cref="T:Tools.NumericsT.URational"/> value represented by <paramref name="a"/></returns>
+	<remarks><paramref name="a"/> must be in format of <see cref="T:System.Double"/> or <see cref="T:System.UInt32"/>/<see cref="T:System.UInt32"/></remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="str"/> is null</exception>
+	<exception cref="T:System.FormatException"><paramref name="str"/> is not numeric value, or 2 numeric values separated by /.</exception>
+	<exception cref="T:System.OverflowException"><paramref name="str"/> represents value lower than <see cref="T:System.Double"/> or greater than <see cref="T:System.Double"/> (for single-part number) -or- <paramref name="str"/> represents value lower than <see cref="T:System.UInt32"/> or greater than <see cref="T:System.UInt32"/> (for double-part number)</exception>
+	<seelaso cref="M:Tools.NumericsT.URational.Parse(System.String,System.Globalization.NumberStyles,System.IFormatProvider)"/>
+	<version stage="Alpha" version="1.5.2">Operator behavior changed. Now it uses <see cref="M:Tools.NumericsT.URational.Parse(System.String,System.Globalization.NumberStyles,System.IFormatProvider)"/>.</version>
+</member><member name="M:Tools.NumericsT.URational.TryParseInternal(System.String,Tools.NumericsT.URational@,System.IFormatProvider,System.Globalization.NumberStyles)">
+	<summary>Converts the string representation of a number in a specified style and culture-specific format to its <see cref="T:Tools.NumericsT.URational"/> equivalent. A return value indicates whether the conversion succeeded or failed.</summary>
+	<param name="str">A string containing a number to convert.</param>
+	<param name="style">A bitwise combination of <see cref="T:System.Globalization.NumberStyles"/> values that indicates the permitted format of <paramref name="str"/></param>
+	<param name="Provider">An <see cref="T:System.IFormatProvider"/> objectthat supplies culture-specific formatting information about <paramref name="str"/>.</param>
+	<param name="Value"> When this method returns, contains the <see cref="T:Tools.NumericsT.URational"/> value equivalent to the number contained in <paramref name="str"/>, if the conversion succeeded.</param>
+	<returns>Null when conversion succeds, <see cref="T:Tools.TypeMismatchException"/> when parsing of /-delimited string failed; <see cref="T:System.InvalidCastException"/> when parsing of /-less string failed; other <see cref="T:System.Exception"/> when parsing failed from other reason.</returns>
+	<remarks>Returned <see cref="T:System.InvalidCastException"/> and <see cref="T:Tools.TypeMismatchException"/> should never be thrown.</remarks>
+	<exception cref="T:System.ArgumentException"><paramref name="style"/> is not a <see cref="T:System.Globalization.NumberStyles"/> value. -or- <paramref name="style"/> is not a combination of <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> and <see cref="F:System.Globalization.NumberStyles.HexNumber"/> values. -or- <paramref name="style"/> is the <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> value.</exception>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.URational.TryParse(System.String,System.Globalization.NumberStyles@,System.IFormatProvider,Tools.NumericsT.URational)">
+	<summary>Converts the string representation of a number in a specified style and culture-specific format to its <see cref="T:Tools.NumericsT.URational"/> equivalent. A return value indicates whether the conversion succeeded or failed.</summary>
+	<param name="str">A string containing a number to convert.</param>
+	<param name="style">A bitwise combination of <see cref="T:System.Globalization.NumberStyles"/> values that indicates the permitted format of <paramref name="str"/></param>
+	<param name="Provider">An <see cref="T:System.IFormatProvider"/> objectthat supplies culture-specific formatting information about <paramref name="str"/>.</param>
+	<param name="Value"> When this method returns, contains the <see cref="T:Tools.NumericsT.URational"/> value equivalent to the number contained in <paramref name="str"/>, if the conversion succeeded.</param>
+	<returns>true if s was converted successfully; otherwise, false.</returns>
+	<exception cref="T:System.ArgumentException"><paramref name="style"/> is not a <see cref="T:System.Globalization.NumberStyles"/> value. -or- <paramref name="style"/> is not a combination of <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> and <see cref="F:System.Globalization.NumberStyles.HexNumber"/> values. -or- <paramref name="style"/> is the <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> value.</exception>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.URational.TryParse(System.String,Tools.NumericsT.URational@)">
+	<summary>Converts the string representation of a number in a specified style and culture-specific format to its <see cref="T:Tools.NumericsT.URational"/> equivalent. A return value indicates whether the conversion succeeded or failed.</summary>
+	<param name="str">A string containing a number to convert.</param>
+	<param name="Value"> When this method returns, contains the <see cref="T:Tools.NumericsT.URational"/> value equivalent to the number contained in <paramref name="str"/>, if the conversion succeeded.</param>
+	<returns>true if s was converted successfully; otherwise, false.</returns>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.URational.Parse(System.String,System.Globalization.NumberStyles,System.IFormatProvider)">
+	<summary>Converts the string representation of a number in a specified style and culture-specific format to its <see cref="T:Tools.NumericsT.URational"/> equivalent. A return value indicates whether the conversion succeeded or failed.</summary>
+	<param name="str">A string containing a number to convert.</param>
+	<param name="style">A bitwise combination of <see cref="T:System.Globalization.NumberStyles"/> values that indicates the permitted format of <paramref name="str"/></param>
+	<param name="Provider">An <see cref="T:System.IFormatProvider"/> objectthat supplies culture-specific formatting information about <paramref name="str"/>.</param>
+	<returns>A <see cref="T:Tools.NumericsT.URational"/> number equivalent to the numeric value or symbol specified in <paramref name="str"/>.</returns>
+	<exception cref="T:System.ArgumentException"><paramref name="style"/> is not a <see cref="T:System.Globalization.NumberStyles"/> value. -or- <paramref name="style"/> is not a combination of <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> and <see cref="F:System.Globalization.NumberStyles.HexNumber"/> values. -or- <paramref name="style"/> is the <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> value.</exception>
+	<exception cref="T:System.ArgumentNullException"><paramref name="str"/> is null</exception>
+	<exception cref="T:System.FormatException"><paramref name="str"/> is not numeric value, or 2 numeric values separated by /.</exception>
+	<exception cref="T:System.OverflowException"><paramref name="str"/> represents value lower than <see cref="T:System.Double"/> or greater than <see cref="T:System.Double"/> (for single-part number) -or- <paramref name="str"/> represents value lower than <see cref="T:System.UInt32"/> or greater than <see cref="T:System.UInt32"/> (for double-part number)</exception>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.URational.Parse(System.String)">
+	<summary>Converts the string representation of a number in a specified style and culture-specific format to its <see cref="T:Tools.NumericsT.URational"/> equivalent. A return value indicates whether the conversion succeeded or failed.</summary>
+	<param name="str">A string containing a number to convert.</param>
+	<returns>A <see cref="T:Tools.NumericsT.URational"/> number equivalent to the numeric value or symbol specified in <paramref name="str"/>.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="str"/> is null</exception>
+	<exception cref="T:System.FormatException"><paramref name="str"/> is not numeric value, or 2 numeric values separated by /.</exception>
+	<exception cref="T:System.OverflowException"><paramref name="str"/> represents value lower than <see cref="T:System.Double"/> or greater than <see cref="T:System.Double"/> (for single-part number) -or- <paramref name="str"/> represents value lower than <see cref="T:System.UInt32"/> or greater than <see cref="T:System.UInt32"/> (for double-part number)</exception>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.URational.ToString(System.String,System.IFormatProvider)">
+	<summary>Formats the value of the current instance using the specified format.</summary>
+	<param name="format">The <see cref="T:System.String"/> specifying the format to use.-or- null to use the default format defined for the type of the <see cref="T:System.IFormattable"/> implementation.</param>
+	<param name="formatProvider">The <see cref="T:System.IFormatProvider"/> to use to format the value.-or- null to obtain the numeric format information from the current locale setting of the operating system.</param>
+	<returns>A <see cref="T:System.String"/> containing the value of the current instance in the specified format.</returns>
+	<remarks>
+ Use sigle format string to format value as <see cref="T:System.Double"/>. Use two /-separated format strings to format this value as two <see cref="T:System.UInt32"/> values separated by /.
+ Format(s) passed to <see cref="T:System.Double"/> or <see cref="T:System.UInt32"/> can be empty, predefined (one letter) or custom.
+ If two formats are specified, delimited by /, only first slash encountered is treatead as delimitter. Other slashes are passed to <see cref="T:System.UInt32"/>. In order to escape firts slahs, precede it with \.
+ If <paramref name="format"/> is null or <see cref="T:System.String"/> G/G is used. 
+ </remarks>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.URational.URationalConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)">
+	<summary>Performs conversion from type <see cref="T:System.String"/> to type <see cref="T:Tools.NumericsT.URational"/></summary>
+	<param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
+	<param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture.</param>
+	<param name="value">Value to be converted to type <see cref="T:Tools.NumericsT.URational"/></param>
+	<returns>Value of type <see cref="T:Tools.NumericsT.URational"/> initialized by <paramref name="value"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null</exception>
+	<exception cref="T:System.FormatException"><paramref name="str"/> is not numeric value, or 2 numeric values separated by /.</exception>
+	<exception cref="T:System.OverflowException"><paramref name="str"/> represents value lower than <see cref="T:System.Double"/> or greater than <see cref="T:System.Double"/> (for single-part number) -or- <paramref name="str"/> represents value lower than <see cref="T:System.UInt32"/> or greater than <see cref="T:System.UInt32"/> (for double-part number)</exception>
+</member><member name="M:Tools.NumericsT.URational.URationalConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,Tools.NumericsT.URational)">
+	<summary>Performs conversion from type <see cref="T:Tools.NumericsT.URational"/> to type <see cref="T:System.String"/></summary>
+	<param name="context"> An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
+	<param name="culture">A <see cref="T:System.Globalization.CultureInfo"/>. If null is passed, the current culture is assumed.</param>
+	<param name="value">Value to be converted</param>
+	<returns>Representation of <paramref name="value"/> in type <see cref="T:System.String"/></returns>
+</member><member name="T:Tools.NumericsT.URational.URationalConverter">
+	<summary>Implemenst <see cref="T:System.ComponentModel.TypeConverter"/> for <see cref="T:System.String"/> and <see cref="T:Tools.NumericsT.URational"/></summary>
+	<version stage="Alpha" version="1.5.2">Class introduced</version>
+</member><member name="T:Tools.NumericsT.URational">
+	<summary>Represents unsigned rational number with numerator and denominator</summary>
+	<author www="http://dzonny.cz">Đonny</author>
+	<version version="1.5.2" stage="Alpha"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
+	<version version="1.5.2">Added <see cref="M:Tools.NumericsT.URational.Parse(System.String,System.Globalization.NumberStyles,System.IFormatProvider)"/>, <see cref="M:Tools.NumericsT.URational.TryParse(System.String,System.Globalization.NumberStyles@,System.IFormatProvider,Tools.NumericsT.URational)"/> and <see cref="T:System.IFormattable"/> implementation.</version>
+	<version version="1.5.2"><see cref="T:System.ComponentModel.TypeConverterAttribute"/> added.</version>
+	<version version="1.5.2"><see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> added</version>
+	<version version="1.5.2">Structure updated to use <see cref="T:System.UInt32"/> instead of <see cref="T:System.UInt16"/>.</version>
+	<version version="1.5.3">Structure renamed from <c>Tools.MetadataT.ExifT.URational</c> to <see cref="T:Tools.NumericsT.URational"/>.</version>
+	<version version="1.5.3">Added <see cref="T:System.Runtime.InteropServices.StructLayoutAttribute"/> (<see cref="F:System.Runtime.InteropServices.LayoutKind.Sequential"/>)</version>
+</member><member name="F:Tools.NumericsT.SRational._Numerator">
+	<summary>Contains value of the <see cref="P:Tools.NumericsT.SRational.Numerator"/> property</summary>
+</member><member name="F:Tools.NumericsT.SRational._Denominator">
+	<summary>Contains value of the <see cref="P:Tools.NumericsT.SRational.Denominator"/> property</summary>
+</member><member name="M:Tools.NumericsT.SRational.#ctor(System.Int32,System.Int32)">
+	<summary>CTor</summary>
+	<param name="Numerator">Numerator</param>
+	<param name="Denominator">Denominator</param>
+</member><member name="M:Tools.NumericsT.SRational.Clone1">
+	<summary>Creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+</member><member name="M:Tools.NumericsT.SRational.Swap">
+	<summary>Swaps values <see cref="P:Tools.NumericsT.SRational.Numerator"/> and <see cref="P:Tools.NumericsT.SRational.Denominator"/></summary>
+</member><member name="P:Tools.NumericsT.SRational.Numerator">
+	<summary>Numerator (1 in 1/2)</summary>
+</member><member name="P:Tools.NumericsT.SRational.Denominator">
+	<summary>Denominator (2 in 1/2)</summary>
+</member><member name="M:Tools.NumericsT.SRational.Clone">
+	<summary>Creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+</member><member name="M:Tools.NumericsT.SRational.Simplyfy">
+	<summary>Simplyfies <see cref="T:Tools.NumericsT.SRational"/> to contain smallest possible <see cref="P:Tools.NumericsT.SRational.Numerator"/> and <see cref="P:Tools.NumericsT.SRational.Denominator"/></summary>
+</member><member name="M:Tools.NumericsT.SRational.op_Addition(Tools.NumericsT.SRational,Tools.NumericsT.SRational)">
+	<summary>Adds two <see cref="T:Tools.NumericsT.SRational"/>s</summary>
+	<param name="a">First number to add</param>
+	<param name="b">Second number to add</param>
+	<returns><paramref name="a"/> + <paramref name="b"/></returns>
+</member><member name="M:Tools.NumericsT.SRational.op_UnaryNegation(Tools.NumericsT.SRational)">
+	<summary>Creates negative value of given <see cref="T:Tools.NumericsT.SRational"/></summary>
+	<param name="a">Value to negativize</param>
+	<returns>- <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.SRational.op_Subtraction(Tools.NumericsT.SRational,Tools.NumericsT.SRational)">
+	<summary>Substracts two <see cref="T:Tools.NumericsT.SRational"/>s</summary>
+	<param name="a">Number to substract from</param>
+	<param name="b">Number to be substracted</param>
+	<returns><paramref name="a"/> - <paramref name="b"/></returns>
+</member><member name="M:Tools.NumericsT.SRational.op_Multiply(Tools.NumericsT.SRational,Tools.NumericsT.SRational)">
+	<summary>Multiplyes two <see cref="T:Tools.NumericsT.SRational"/>s</summary>
+	<param name="a">First number to multiply</param>
+	<param name="b">Second number to multiply</param>
+	<returns><paramref name="a"/> * <paramref name="b"/></returns>
+</member><member name="M:Tools.NumericsT.SRational.op_Division(Tools.NumericsT.SRational,Tools.NumericsT.SRational)">
+	<summary>Divides one number by other</summary>
+	<param name="a">Number to be divided</param>
+	<param name="b">Number to divide by</param>
+	<returns><paramref name="a"/> / <paramref name="b"/></returns>
+</member><member name="M:Tools.NumericsT.SRational.op_Explicit(System.Double)~Tools.NumericsT.SRational">
+	<summary>Converts <see cref="T:System.Double"/> to <see cref="T:Tools.NumericsT.SRational"/></summary>
+	<param name="a">Number to be converted</param>
+	<returns><see cref="T:Tools.NumericsT.URational"/> representation of <paramref name="a"/></returns>
+	<exception cref="T:System.ArgumentOutOfRangeException"><paramref name="a"/> is negative</exception>
+</member><member name="M:Tools.NumericsT.SRational.op_Explicit(System.Single)~Tools.NumericsT.SRational">
+	<summary>Converts <see cref="T:System.Single"/> to <see cref="T:Tools.NumericsT.URational"/></summary>
+	<param name="a">Number to be converted</param>
+	<returns><see cref="T:Tools.NumericsT.URational"/> representation of <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.SRational.op_Implicit(Tools.NumericsT.SRational)~System.Double">
+	<summary>Converts <see cref="T:Tools.NumericsT.URational"/> to <see cref="T:System.Double"/></summary>
+	<param name="a"><see cref="T:Tools.NumericsT.URational"/> to be converted</param>
+	<returns><see cref="T:System.Double"/> representation of <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.SRational.op_Implicit(Tools.NumericsT.SRational)~System.String">
+	<summary>Converts <see cref="T:Tools.NumericsT.URational"/> to <see cref="T:System.String"/></summary>
+	<param name="a"><see cref="T:Tools.NumericsT.URational"/> to be converted</param>
+	<returns><see cref="T:System.String"/> representation of <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.SRational.ToString">
+	<summary>String representation</summary>
+</member><member name="M:Tools.NumericsT.SRational.op_Explicit(System.String)~Tools.NumericsT.SRational">
+	<summary>Converts <see cref="T:System.String"/> to <see cref="T:Tools.NumericsT.SRational"/></summary>
+	<param name="a"><see cref="T:System.String"/> to converts</param>
+	<returns><see cref="T:Tools.NumericsT.SRational"/> value represented by <paramref name="a"/></returns>
+	<remarks><paramref name="a"/> must be in format of <see cref="T:System.Double"/> or <see cref="T:System.Int32"/>/<see cref="T:System.Int32"/></remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="str"/> is null</exception>
+	<exception cref="T:System.FormatException"><paramref name="str"/> is not numeric value, or 2 numeric values separated by /.</exception>
+	<exception cref="T:System.OverflowException"><paramref name="str"/> represents value lower than <see cref="T:System.Double"/> or greater than <see cref="T:System.Double"/> (for single-part number) -or- <paramref name="str"/> represents value lower than <see cref="T:System.Int32"/> or greater than <see cref="T:System.Int32"/> (for double-part number)</exception>
+	<seelaso cref="M:Tools.NumericsT.SRational.Parse(System.String,System.Globalization.NumberStyles,System.IFormatProvider)"/>
+	<version stage="Alpha" version="1.5.2">Operator behavior changed. Now it uses <see cref="M:Tools.NumericsT.SRational.Parse(System.String,System.Globalization.NumberStyles,System.IFormatProvider)"/>.</version>
+</member><member name="M:Tools.NumericsT.SRational.TryParseInternal(System.String,Tools.NumericsT.SRational@,System.IFormatProvider,System.Globalization.NumberStyles)">
+	<summary>Converts the string representation of a number in a specified style and culture-specific format to its <see cref="T:Tools.NumericsT.SRational"/> equivalent. A return value indicates whether the conversion succeeded or failed.</summary>
+	<param name="str">A string containing a number to convert.</param>
+	<param name="style">A bitwise combination of <see cref="T:System.Globalization.NumberStyles"/> values that indicates the permitted format of <paramref name="str"/></param>
+	<param name="Provider">An <see cref="T:System.IFormatProvider"/> objectthat supplies culture-specific formatting information about <paramref name="str"/>.</param>
+	<param name="Value"> When this method returns, contains the <see cref="T:Tools.NumericsT.SRational"/> value equivalent to the number contained in <paramref name="str"/>, if the conversion succeeded.</param>
+	<returns>Null when conversion succeds, <see cref="T:Tools.TypeMismatchException"/> when parsing of /-delimited string failed; <see cref="T:System.InvalidCastException"/> when parsing of /-less string failed; other <see cref="T:System.Exception"/> when parsing failed from other reason.</returns>
+	<remarks>Returned <see cref="T:System.InvalidCastException"/> and <see cref="T:Tools.TypeMismatchException"/> should never be thrown.</remarks>
+	<exception cref="T:System.ArgumentException"><paramref name="style"/> is not a <see cref="T:System.Globalization.NumberStyles"/> value. -or- <paramref name="style"/> is not a combination of <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> and <see cref="F:System.Globalization.NumberStyles.HexNumber"/> values. -or- <paramref name="style"/> is the <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> value.</exception>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.SRational.TryParse(System.String,System.Globalization.NumberStyles@,System.IFormatProvider,Tools.NumericsT.SRational)">
+	<summary>Converts the string representation of a number in a specified style and culture-specific format to its <see cref="T:Tools.NumericsT.SRational"/> equivalent. A return value indicates whether the conversion succeeded or failed.</summary>
+	<param name="str">A string containing a number to convert.</param>
+	<param name="style">A bitwise combination of <see cref="T:System.Globalization.NumberStyles"/> values that indicates the permitted format of <paramref name="str"/></param>
+	<param name="Provider">An <see cref="T:System.IFormatProvider"/> objectthat supplies culture-specific formatting information about <paramref name="str"/>.</param>
+	<param name="Value"> When this method returns, contains the <see cref="T:Tools.NumericsT.SRational"/> value equivalent to the number contained in <paramref name="str"/>, if the conversion succeeded.</param>
+	<returns>true if s was converted successfully; otherwise, false.</returns>
+	<exception cref="T:System.ArgumentException"><paramref name="style"/> is not a <see cref="T:System.Globalization.NumberStyles"/> value. -or- <paramref name="style"/> is not a combination of <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> and <see cref="F:System.Globalization.NumberStyles.HexNumber"/> values. -or- <paramref name="style"/> is the <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> value.</exception>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.SRational.TryParse(System.String,Tools.NumericsT.SRational@)">
+	<summary>Converts the string representation of a number in a specified style and culture-specific format to its <see cref="T:Tools.NumericsT.SRational"/> equivalent. A return value indicates whether the conversion succeeded or failed.</summary>
+	<param name="str">A string containing a number to convert.</param>
+	<param name="Value"> When this method returns, contains the <see cref="T:Tools.NumericsT.SRational"/> value equivalent to the number contained in <paramref name="str"/>, if the conversion succeeded.</param>
+	<returns>true if s was converted successfully; otherwise, false.</returns>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.SRational.Parse(System.String,System.Globalization.NumberStyles,System.IFormatProvider)">
+	<summary>Converts the string representation of a number in a specified style and culture-specific format to its <see cref="T:Tools.NumericsT.SRational"/> equivalent. A return value indicates whether the conversion succeeded or failed.</summary>
+	<param name="str">A string containing a number to convert.</param>
+	<param name="style">A bitwise combination of <see cref="T:System.Globalization.NumberStyles"/> values that indicates the permitted format of <paramref name="str"/></param>
+	<param name="Provider">An <see cref="T:System.IFormatProvider"/> objectthat supplies culture-specific formatting information about <paramref name="str"/>.</param>
+	<returns>A <see cref="T:Tools.NumericsT.SRational"/> number equivalent to the numeric value or symbol specified in <paramref name="str"/>.</returns>
+	<exception cref="T:System.ArgumentException"><paramref name="style"/> is not a <see cref="T:System.Globalization.NumberStyles"/> value. -or- <paramref name="style"/> is not a combination of <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> and <see cref="F:System.Globalization.NumberStyles.HexNumber"/> values. -or- <paramref name="style"/> is the <see cref="F:System.Globalization.NumberStyles.AllowHexSpecifier"/> value.</exception>
+	<exception cref="T:System.ArgumentNullException"><paramref name="str"/> is null</exception>
+	<exception cref="T:System.FormatException"><paramref name="str"/> is not numeric value, or 2 numeric values separated by /.</exception>
+	<exception cref="T:System.OverflowException"><paramref name="str"/> represents value lower than <see cref="T:System.Double"/> or greater than <see cref="T:System.Double"/> (for single-part number) -or- <paramref name="str"/> represents value lower than <see cref="T:System.Int32"/> or greater than <see cref="T:System.Int32"/> (for double-part number)</exception>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.SRational.Parse(System.String)">
+	<summary>Converts the string representation of a number in a specified style and culture-specific format to its <see cref="T:Tools.NumericsT.SRational"/> equivalent. A return value indicates whether the conversion succeeded or failed.</summary>
+	<param name="str">A string containing a number to convert.</param>
+	<returns>A <see cref="T:Tools.NumericsT.SRational"/> number equivalent to the numeric value or symbol specified in <paramref name="str"/>.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="str"/> is null</exception>
+	<exception cref="T:System.FormatException"><paramref name="str"/> is not numeric value, or 2 numeric values separated by /.</exception>
+	<exception cref="T:System.OverflowException"><paramref name="str"/> represents value lower than <see cref="T:System.Double"/> or greater than <see cref="T:System.Double"/> (for single-part number) -or- <paramref name="str"/> represents value lower than <see cref="T:System.Int32"/> or greater than <see cref="T:System.Int32"/> (for double-part number)</exception>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.SRational.ToString(System.String,System.IFormatProvider)">
+	<summary>Formats the value of the current instance using the specified format.</summary>
+	<param name="format">The <see cref="T:System.String"/> specifying the format to use.-or- null to use the default format defined for the type of the <see cref="T:System.IFormattable"/> implementation.</param>
+	<param name="formatProvider">The <see cref="T:System.IFormatProvider"/> to use to format the value.-or- null to obtain the numeric format information from the current locale setting of the operating system.</param>
+	<returns>A <see cref="T:System.String"/> containing the value of the current instance in the specified format.</returns>
+	<remarks>
+ Use sigle format string to format value as <see cref="T:System.Double"/>. Use two /-separated format strings to format this value as two <see cref="T:System.Int32"/> values separated by /.
+ Format(s) passed to <see cref="T:System.Double"/> or <see cref="T:System.Int32"/> can be empty, predefined (one letter) or custom.
+ If two formats are specified, delimited by /, only first slash encountered is treatead as delimitter. Other slashes are passed to <see cref="T:System.Int32"/>. In order to escape firts slahs, precede it with \.
+ If <paramref name="format"/> is null or <see cref="T:System.String"/> G/G is used. 
+ </remarks>
+	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.SRational.SRationalConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.String)">
+	<summary>Performs conversion from type <see cref="T:System.String"/> to type <see cref="T:Tools.NumericsT.SRational"/></summary>
+	<param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
+	<param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use as the current culture.</param>
+	<param name="value">Value to be converted to type <see cref="T:Tools.NumericsT.SRational"/></param>
+	<returns>Value of type <see cref="T:Tools.NumericsT.SRational"/> initialized by <paramref name="value"/></returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="value"/> is null</exception>
+	<exception cref="T:System.FormatException"><paramref name="str"/> is not numeric value, or 2 numeric values separated by /.</exception>
+	<exception cref="T:System.OverflowException"><paramref name="str"/> represents value lower than <see cref="T:System.Double"/> or greater than <see cref="T:System.Double"/> (for single-part number) -or- <paramref name="str"/> represents value lower than <see cref="T:System.Int32"/> or greater than <see cref="T:System.Int32"/> (for double-part number)</exception>
+</member><member name="M:Tools.NumericsT.SRational.SRationalConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,Tools.NumericsT.SRational)">
+	<summary>Performs conversion from type <see cref="T:Tools.NumericsT.SRational"/> to type <see cref="T:System.String"/></summary>
+	<param name="context"> An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
+	<param name="culture">A <see cref="T:System.Globalization.CultureInfo"/>. If null is passed, the current culture is assumed.</param>
+	<param name="value">Value to be converted</param>
+	<returns>Representation of <paramref name="value"/> in type <see cref="T:System.String"/></returns>
+</member><member name="T:Tools.NumericsT.SRational.SRationalConverter">
+	<summary>Implemenst <see cref="T:System.ComponentModel.TypeConverter"/> for <see cref="T:System.String"/> and <see cref="T:Tools.NumericsT.SRational"/></summary>
+	<version stage="Alpha" version="1.5.2">Class introduced</version>
+</member><member name="T:Tools.NumericsT.SRational">
+	<summary>Represents signed rational number with numerator and denominator</summary>
+	<author www="http://dzonny.cz">Đonny</author>
+	<version version="1.5.2" stage="Alpha"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
+	<version version="1.5.2" stage="Alpha">Added <see cref="M:Tools.NumericsT.SRational.Parse(System.String,System.Globalization.NumberStyles,System.IFormatProvider)"/>, <see cref="M:Tools.NumericsT.SRational.TryParse(System.String,System.Globalization.NumberStyles@,System.IFormatProvider,Tools.NumericsT.SRational)"/> and <see cref="T:System.IFormattable"/> implementation.</version>
+	<version stage="Alpha" version="1.5.2"><see cref="T:System.ComponentModel.TypeConverterAttribute"/> added.</version>
+	<version version="1.5.2"><see cref="T:System.Diagnostics.DebuggerDisplayAttribute"/> added</version>
+	<version version="1.5.2">Structure updated to use <see cref="T:System.Int32"/> instead of <see cref="T:System.Int16"/></version>
+	<version version="1.5.3">Structure renamed from <c>Tools.MetadataT.ExifT.SRational</c> to <see cref="T:Tools.NumericsT.SRational"/>.</version>
+	<version version="1.5.3">Added <see cref="T:System.Runtime.InteropServices.StructLayoutAttribute"/> (<see cref="F:System.Runtime.InteropServices.LayoutKind.Sequential"/>)</version>
 </member><member name="F:Tools.GlobalizationT.ISOLanguage.CodeTypes.Spoken">
 	<summary>Marks language as spoken (currently in use, not extinct)</summary>
 </member><member name="F:Tools.GlobalizationT.ISOLanguage.CodeTypes.Extinct">
@@ -3501,6 +3826,74 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Wraps type-unsafe <see cref="T:System.Collections.IList"/> as type-safe <see cref="T:System.Collections.Generic.IList`1"/></summary>
 	<author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Release"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.#ctor">
+	<summary>CTor - initalized a new instance of the <see cref="T:Tools.ComponentModelT.ValueContainer`1"/> class with default value of type <typeparamref name="T"/>.</summary>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.#ctor(`0)">
+	<summary>CTor - initializes a new instance of the <see cref="T:Tools.ComponentModelT.ValueContainer`1"/> class with given value</summary>
+	<param name="value">Value to be stored within new singleton container</param>
+</member><member name="P:Tools.ComponentModelT.ValueContainer`1.Value">
+	<summary>gets or sest value stored in this singleton container</summary>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+	<summary>Raises the <see cref="E:Tools.ComponentModelT.ValueContainer`1.PropertyChanged"/> event</summary>
+</member><member name="E:Tools.ComponentModelT.ValueContainer`1.PropertyChanged">
+	<summary>Occurs when a property value changes.</summary>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.IStructuralComparable_CompareTo(System.Object,System.Collections.IComparer)">
+	<summary>Determines whether the current collection object precedes, occurs in the same position as, or follows another object in the sort order.</summary>
+	<returns>An integer that indicates the relationship of the current collection object to <paramref name="other"/>, as shown in the following table.
+ <list type="table"><listheader><term>Return value</term><description>Description</description></listheader>
+			<item><term>-1</term><description>The current instance precedes <paramref name="other"/>.</description></item>
+			<item><term>0</term><description>The current instance and <paramref name="other"/> are equal.</description></item>
+			<item><term>1</term><description>The current instance follows <paramref name="other"/>.</description></item></list></returns>
+	<param name="other">The object to compare with the current instance.</param>
+	<param name="comparer">An object that compares members of the current collection object with the corresponding members of <paramref name="other"/>.</param>
+	<exception cref="T:Tools.TypeMismatchException"><paramref name="other"/> is neither of type <typeparamref name="T"/> nor <see cref="T:System.Tuple`1"/> nor <see cref="T:Tools.ComponentModelT.ValueContainer`1"/>.</exception>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.IStructuralEquatable_Equals(System.Object,System.Collections.IEqualityComparer)">
+	<summary>Determines whether an object is structurally equal to the current instance.</summary>
+	<returns>true if the two objects are equal; otherwise, false.</returns>
+	<param name="other">The object to compare with the current instance.</param>
+	<param name="comparer">An object that determines whether the current instance and <paramref name="other"/> are equal. </param>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.IStructuralEquatable_GetHashCode(System.Collections.IEqualityComparer)">
+	<summary>Returns a hash code for the current instance.</summary>
+	<returns>The hash code for the current instance.</returns>
+	<param name="comparer">An object that computes the hash code of the current object.</param>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.IComparable_CompareTo(System.Object)">
+	<summary>Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.</summary>
+	<returns>A value that indicates the relative order of the objects being compared. The return value has these meanings:
+ Value Meaning Less than zero This instance is less than <paramref name="obj"/>.
+ Zero This instance is equal to <paramref name="obj"/>.
+ Greater than zero This instance is greater than <paramref name="obj"/>. </returns>
+	<param name="obj">An object to compare with this instance. </param>
+	<exception cref="T:Tools.TypeMismatchException"><paramref name="other"/> is neither of type <typeparamref name="T"/> nor <see cref="T:System.Tuple`1"/> nor <see cref="T:Tools.ComponentModelT.ValueContainer`1"/>.</exception>
+	<filterpriority>2</filterpriority>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.Equals(System.Object)">
+	<summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+	<returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
+	<param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
+	<filterpriority>2</filterpriority>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.GetHashCode">
+	<summary>Serves as a hash function for a particular type. </summary>
+	<returns>A hash code for the current <see cref="T:System.Object"/>.</returns>
+	<filterpriority>2</filterpriority>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.op_Implicit(Tools.ComponentModelT.ValueContainer{`0})~`0">
+	<summary>Converts value of type <see cref="T:Tools.ComponentModelT.ValueContainer`1"/> to <typeparamref name="T"/></summary>
+	<param name="a">A value to be converted</param>
+	<returns><paramref name="a"/>.<see cref="P:Tools.ComponentModelT.ValueContainer`1.Value">Value</see>. Default value of type <typeparamref name="T"/> when <paramref name="a"/> is null.</returns>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.op_Implicit(Tools.ComponentModelT.ValueContainer{`0})~System.Tuple{`0}">
+	<summary>Converts value of type <see cref="T:Tools.ComponentModelT.ValueContainer`1"/> to type <see cref="T:System.Tuple`1"/></summary>
+	<param name="a">A value to be converted</param>
+	<returns>A new instance of <see cref="T:System.Tuple`1"/> initialized with <paramref name="a"/>.<see cref="P:Tools.ComponentModelT.ValueContainer`1.Value">Value</see>. Null when <paramref name="a"/> is null.</returns>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.op_Implicit(`0)~Tools.ComponentModelT.ValueContainer{`0}">
+	<summary>Converts value of type <typeparamref name="T"/> to <see cref="T:Tools.ComponentModelT.ValueContainer`1"/></summary>
+	<param name="a">A value to be converted</param>
+	<returns>A new instance of <see cref="T:Tools.ComponentModelT.ValueContainer`1"/> initialized with <paramref name="a"/></returns>
+</member><member name="M:Tools.ComponentModelT.ValueContainer`1.op_Implicit(System.Tuple{`0})~Tools.ComponentModelT.ValueContainer{`0}">
+	<summary>Converts value of type <see cref="T:System.Tuple`1"/> to <see cref="T:Tools.ComponentModelT.ValueContainer`1"/></summary>
+	<param name="a">A value to be converted</param>
+	<returns>A new instance of <see cref="T:Tools.ComponentModelT.ValueContainer`1"/> initialized with <paramref name="a"/>.<see cref="P:System.Tuple`1.Item1">Item1</see></returns>
+</member><member name="T:Tools.ComponentModelT.ValueContainer`1">
+	<summary>Implements changeable singleto with <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> support</summary>
+	<typeparam name="T">Type of value stored in singleton container</typeparam>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
 </member><member name="M:Tools.DrawingT.DesignT.NewEditor.GetEditStyle(System.ComponentModel.ITypeDescriptorContext)">
 	<summary>Gets the editor style used by the <see cref="M:System.Drawing.Design.UITypeEditor.EditValue(System.IServiceProvider,System.Object)"/> method.</summary>
 	<returns><see cref="F:System.Drawing.Design.UITypeEditorEditStyle.DropDown"/></returns>
@@ -4278,16 +4671,20 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<remarks>Note for tools developper: Use name of those constants for values of &lt;vesrsion stage=""/&gt; XML doc attribute.</remarks>
 </member><member name="M:Tools.TypeMismatchException.#ctor">
 	<summary>CTor</summary>
+	<filterpriority>0</filterpriority>
 </member><member name="M:Tools.TypeMismatchException.#ctor(System.String)">
 	<summary>Initializes a new instance of the <see cref="T:Tools.TypeMismatchException"/> class with a specified error message.</summary>   ''' <param name="message">The error message that explains the reason for the exception.</param>
+	<filterpriority>1</filterpriority>
 </member><member name="M:Tools.TypeMismatchException.#ctor(System.String,System.Object)">
 	<summary>Initializes new instance of the <see cref="T:Tools.TypeMismatchException"/> class with message and actual unacceptable value.</summary>
 	<param name="Message">The error message that explains the reason for the exception.</param>
 	<param name="ActualValue">Value of argument which caused the exception to be thrown</param>
+	<filterpriority>2</filterpriority>
 </member><member name="M:Tools.TypeMismatchException.#ctor(System.String,System.Exception)">
 	<summary>Initializes a new instance of the <see cref="T:Tools.TypeMismatchException"/> class with a specified error message and a reference to the inner exception that is the cause of this exception.</summary>
 	<param name="Message">The error message that explains the reason for the exception.</param>
 	<param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+	<filterpriority>3</filterpriority>
 </member><member name="M:Tools.TypeMismatchException.#ctor(System.String,System.Object,System.Type,System.String,System.Exception)">
 	<summary>Initializes a new instance of <see cref="T:Tools.TypeMismatchException"/> class with message, name of parameter, actual value, expected type and optionally reference to the inner exception that is cause of thios exception.</summary>
 	<param name="ParamName">Name of method argument that cased the exception to be thrown - that violated type constraint.</param>
@@ -4295,41 +4692,120 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="ExpectedType">Type which is acceptable</param>
 	<param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
 	<param name="Message">The error message that explains the reason for the exception.</param>
+	<filterpriority>4</filterpriority>
 </member><member name="M:Tools.TypeMismatchException.#ctor(System.String,System.Object,System.Type,System.Exception)">
 	<summary>Initializes a new instance of <see cref="T:Tools.TypeMismatchException"/> class with name of parameter, actual value, expected type and optionally reference to the inner exception that is cause of thios exception.</summary>
 	<param name="ParamName">Name of method argument that cased the exception to be thrown - that violated type constraint.</param>
 	<param name="ActualValue">Value of argument which caused the exception to be thrown</param>
 	<param name="ExpectedType">Type which is acceptable</param>
 	<param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+	<filterpriority>5</filterpriority>
 </member><member name="M:Tools.TypeMismatchException.#ctor(System.Object,System.Type,System.String,System.Exception)">
 	<summary>Initializes a new instance of <see cref="T:Tools.TypeMismatchException"/> class with message, name of parameter, actual value, expected type and optionally reference to the inner exception that is cause of thios exception.</summary>
 	<param name="ActualValue">Value of argument which caused the exception to be thrown</param>
 	<param name="ExpectedType">Type which is acceptable</param>
 	<param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
 	<param name="Message">The error message that explains the reason for the exception.</param>
+	<filterpriority>6</filterpriority>
 </member><member name="M:Tools.TypeMismatchException.#ctor(System.Object,System.Type,System.Exception)">
 	<summary>Initializes a new instance of <see cref="T:Tools.TypeMismatchException"/> class with name of parameter, actual value, expected type and optionally reference to the inner exception that is cause of thios exception.</summary>
 	<param name="ActualValue">Value of argument which caused the exception to be thrown</param>
 	<param name="ExpectedType">Type which is acceptable</param>
 	<param name="innerException">The exception that is the cause of the current exception. If the innerException parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+	<filterpriority>7</filterpriority>
+</member><member name="M:Tools.TypeMismatchException.#ctor(System.Object,System.String,System.String,System.Exception,System.Type[])">
+	<summary>Initializes a new instance of the <see cref="T:Tools.TypeMismatchException"/> class with actual parameter value, name of the parameter, exception message, inner exception and expected types</summary>
+	<param name="actualValue">Unacceptable value that caused exception to be thrown. Ignored when null.</param>
+	<param name="paramName">Name of parameter <paramref name="actualValue"/> was passed to. Ignored when null.</param>
+	<param name="message">Exception message</param>
+	<param name="innerException">Exception that caused this exception to be thrown</param>
+	<param name="expectedTypes">Types acceptable by <paramref name="paramName"/></param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="expectedTypes"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="expectedTypes"/> contains null value -or- <paramref name="expectedTypes"/> is empty</exception>
+	<version version="1.5.3">This contructor overload is new in 1.5.3</version>
+	<filterpriority>8</filterpriority>
+</member><member name="M:Tools.TypeMismatchException.#ctor(System.Object,System.String,System.Exception,System.Type[])">
+	<summary>Initializes a new instance of the <see cref="T:Tools.TypeMismatchException"/> class with actual parameter value, name of the parameter, inner exception and expected types</summary>
+	<param name="actualValue">Unacceptable value that caused exception to be thrown. Ignored when null.</param>
+	<param name="paramName">Name of parameter <paramref name="actualValue"/> was passed to. Ignored when null.</param>
+	<param name="innerException">Exception that caused this exception to be thrown</param>
+	<param name="expectedTypes">Types acceptable by <paramref name="paramName"/></param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="expectedTypes"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="expectedTypes"/> contains null value -or- <paramref name="expectedTypes"/> is empty</exception>
+	<version version="1.5.3">This contructor overload is new in 1.5.3</version>
+	<filterpriority>9</filterpriority>
+</member><member name="M:Tools.TypeMismatchException.#ctor(System.Object,System.Exception,System.Type[])">
+	<summary>Initializes a new instance of the <see cref="T:Tools.TypeMismatchException"/> class with actual parameter value, inner exception and expected types</summary>
+	<param name="actualValue">Unacceptable value that caused exception to be thrown. Ignored when null.</param>
+	<param name="innerException">Exception that caused this exception to be thrown</param>
+	<param name="expectedTypes">Acceptable types</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="expectedTypes"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="expectedTypes"/> contains null value -or- <paramref name="expectedTypes"/> is empty</exception>
+	<version version="1.5.3">This contructor overload is new in 1.5.3</version>
+	<filterpriority>10</filterpriority>
+</member><member name="M:Tools.TypeMismatchException.#ctor(System.Object,System.String,System.Type[])">
+	<summary>Initializes a new instance of the <see cref="T:Tools.TypeMismatchException"/> class with actual parameter value, name of the parameter and expected types</summary>
+	<param name="actualValue">Unacceptable value that caused exception to be thrown. Ignored when null.</param>
+	<param name="paramName">Name of parameter <paramref name="actualValue"/> was passed to. Ignored when null.</param>
+	<param name="expectedTypes">Types acceptable by <paramref name="paramName"/></param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="expectedTypes"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="expectedTypes"/> contains null value -or- <paramref name="expectedTypes"/> is empty</exception>
+	<version version="1.5.3">This contructor overload is new in 1.5.3</version>
+	<filterpriority>11</filterpriority>
+</member><member name="M:Tools.TypeMismatchException.#ctor(System.Object,System.Type[])">
+	<summary>Initializes a new instance of the <see cref="T:Tools.TypeMismatchException"/> class with actual parameter value and expected types</summary>
+	<param name="actualValue">Unacceptable value that caused exception to be thrown. Ignored when null.</param>
+	<param name="expectedTypes">Acceptable types</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="expectedTypes"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="expectedTypes"/> contains null value -or- <paramref name="expectedTypes"/> is empty</exception>
+	<version version="1.5.3">This contructor overload is new in 1.5.3</version>
+	<filterpriority>12</filterpriority>
+</member><member name="M:Tools.TypeMismatchException.#ctor(System.Type[])">
+	<summary>Initializes a new instance of the <see cref="T:Tools.TypeMismatchException"/> class with expected types</summary>
+	<param name="expectedTypes">Acceptable types</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="expectedTypes"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="expectedTypes"/> contains null value -or- <paramref name="expectedTypes"/> is empty</exception>
+	<version version="1.5.3">This contructor overload is new in 1.5.3</version>
+	<filterpriority>13</filterpriority>
+</member><member name="M:Tools.TypeMismatchException.#ctor(System.String,System.Exception,System.Type[])">
+	<summary>Initializes a new instance of the <see cref="T:Tools.TypeMismatchException"/> class with exception message, inner exception and expected types</summary>
+	<param name="message">Exception message</param>
+	<param name="innerException">Exception that caused this exception to be thrown</param>
+	<param name="expectedTypes">Acceptable types</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="expectedTypes"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="expectedTypes"/> contains null value -or- <paramref name="expectedTypes"/> is empty</exception>
+	<version version="1.5.3">This contructor overload is new in 1.5.3</version>
+	<filterpriority>14</filterpriority>
 </member><member name="M:Tools.TypeMismatchException.CreateMessage(System.Object,System.Type)">
 	<summary>Create exception message from actual argument value and expected type</summary>
 	<param name="ActualValue">Value of argument which caused the exception to be thrown</param>
 	<param name="ExpectedType">Type which is acceptable</param>
 	<returns>Exception message</returns>
 	<remarks>Either of both arguments can be null and appropriate message will be created</remarks>
+</member><member name="M:Tools.TypeMismatchException.CreateMessage(System.Object,System.Collections.Generic.IEnumerable{System.Type})">
+	<summary>Creates exception message from actual argument value and expected types</summary>
+	<param name="actualValue">Value of argument which caused the exception to be thrown</param>
+	<param name="expectedTypes">Types that are acceptable</param>
+	<remarks>When <paramref name="actualValue"/> is appropriate message is generated. When <paramref name="expectedTypes"/> has only one item appropriate message is generated.</remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="expectedTypes"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="expectedTypes"/> contains null value.</exception>
+	<version version="1.5.3">This overload is new in version 1.5.3</version>
 </member><member name="F:Tools.TypeMismatchException._ActualValue">
 	<summary>Contains value of the <see cref="P:Tools.TypeMismatchException.ActualValue"/> property</summary>
 </member><member name="P:Tools.TypeMismatchException.ActualValue">
 	<summary>Value that was passed</summary>
-</member><member name="F:Tools.TypeMismatchException._ExpectedType">
-	<summary>Contains value of the <see cref="P:Tools.TypeMismatchException.ExpectedType"/> property</summary>
 </member><member name="P:Tools.TypeMismatchException.ExpectedType">
-	<summary>Type of value being expected</summary>
+	<summary>Gets type of value being expected</summary>
+	<remarks>When exception is thrown for more than one expected type contains first of expected types</remarks>
+</member><member name="P:Tools.TypeMismatchException.ExpectedTypes">
+	<summary>Gets collection of types value was expected to be of</summary>
+	<version version="1.5.3">This property is new in version 1.5.3</version>
 </member><member name="T:Tools.TypeMismatchException">
 	<summary>Exception thrown when value of some type is passes where the type is not acceptable</summary>
 	<author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Nightly"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
+	<version version="1.5.3">Added <see cref="T:System.SerializableAttribute"/></version>
+	<version version="1.5.3">Added support for multiple expected types</version>
 </member><member name="M:Tools.MathT.Min``1(``0[])">
 	<summary>Finds the smallest of parameters</summary>
 	<typeparam name="T">The type of parameters that implements <see cref="T:System.IComparable`1"/></typeparam>
@@ -8841,6 +9317,10 @@ Looks up a localized string similar to 'Clearing was canceled in eventhendler'.
 	<summary>
 Looks up a localized string similar to 'Code is not valid ISO 639 language code'.
 </summary>
+</member><member name="P:Tools.ResourcesT.Exceptions.CollectionCannotContainNullValue">
+	<summary>
+Looks up a localized string similar to 'Collection cannot contain null value'.
+</summary>
 </member><member name="P:Tools.ResourcesT.Exceptions.CollectionIsReadOnly">
 	<summary>
 Looks up a localized string similar to 'Collection is read-only'.
@@ -9496,6 +9976,10 @@ Looks up a localized string similar to 'Only sounds of type SystemSoundPlayer an
 </member><member name="P:Tools.ResourcesT.Exceptions.OnlySoundsWithKnownLocationCanBeConverted">
 	<summary>
 Looks up a localized string similar to 'Only sounds with known location can be converted'.
+</summary>
+</member><member name="P:Tools.ResourcesT.Exceptions.OnlyValuesOfFollowingTypesAreAcceptable">
+	<summary>
+Looks up a localized string similar to 'Only values of following types are acceptable:'.
 </summary>
 </member><member name="P:Tools.ResourcesT.Exceptions.OnlyValuesOfType0AreAcceptable">
 	<summary>
@@ -10157,6 +10641,10 @@ Looks up a localized string similar to 'Value of type {0} is not acceptable.'.
 	<summary>
 Looks up a localized string similar to 'Value of unexpected type {0}. Expected {1}.'.
 </summary>
+</member><member name="P:Tools.ResourcesT.Exceptions.ValueOfUnexpectedType0ExpectedOneOfFollowingTypes">
+	<summary>
+Looks up a localized string similar to 'Value of unexpected type {0}, expected one of following types:'.
+</summary>
 </member><member name="P:Tools.ResourcesT.Exceptions.ValueWasNotFound">
 	<summary>
 Looks up a localized string similar to 'Value was not found'.
@@ -10642,6 +11130,11 @@ The stub formatting method returning the ClearingWasCanceledInEventhendler prope
 The stub formatting method returning the CodeIsNotValidISO639LanguageCode property value.
 </summary>
 	<returns>The CodeIsNotValidISO639LanguageCode property value.</returns>
+</member><member name="M:Tools.ResourcesT.Exceptions.CollectionCannotContainNullValueFormat">
+	<summary>
+The stub formatting method returning the CollectionCannotContainNullValue property value.
+</summary>
+	<returns>The CollectionCannotContainNullValue property value.</returns>
 </member><member name="M:Tools.ResourcesT.Exceptions.CollectionIsReadOnlyFormat">
 	<summary>
 The stub formatting method returning the CollectionIsReadOnly property value.
@@ -11560,6 +12053,11 @@ The stub formatting method returning the OnlySoundsOfTypeSystemSoundPlayerAndSou
 The stub formatting method returning the OnlySoundsWithKnownLocationCanBeConverted property value.
 </summary>
 	<returns>The OnlySoundsWithKnownLocationCanBeConverted property value.</returns>
+</member><member name="M:Tools.ResourcesT.Exceptions.OnlyValuesOfFollowingTypesAreAcceptableFormat">
+	<summary>
+The stub formatting method returning the OnlyValuesOfFollowingTypesAreAcceptable property value.
+</summary>
+	<returns>The OnlyValuesOfFollowingTypesAreAcceptable property value.</returns>
 </member><member name="M:Tools.ResourcesT.Exceptions.OnlyValuesOfType0AreAcceptableFormat(System.Object)">
 	<summary>
 Formats a localized string similar to 'Only values of type {0} are acceptable'.
@@ -12499,6 +12997,12 @@ Formats a localized string similar to 'Value of unexpected type {0}. Expected {1
 </summary>
 	<param name="arg0">An object (0) to format.</param>
 	<param name="arg1">An object (1) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.ResourcesT.Exceptions.ValueOfUnexpectedType0ExpectedOneOfFollowingTypesFormat(System.Object)">
+	<summary>
+Formats a localized string similar to 'Value of unexpected type {0}, expected one of following types:'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
 	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
 </member><member name="M:Tools.ResourcesT.Exceptions.ValueWasNotFoundFormat">
 	<summary>
@@ -31349,6 +31853,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Contains <see cref="T:System.Delegate"/>-related extension functions</summary>
 	<author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Nightly"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed. Accessibility changed to public.</version>
+	<seealso cref="N:Tools.SpecialT.DelegateTools"/>
 </member><member name="F:Tools.IOt.BinaryReader.ByteAlign.LittleEndian">
 	<summary>LittleEndian (Intel)</summary>
 	<remarks>Stores 0A0B0C0D as 0D0C0B0A</remarks>

@@ -171,7 +171,7 @@
                         <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AcceptsReturn="True" MinLines="2" TextWrapping="Wrap" Name="txtCapTypeDesc"
                                  IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Grid.ColumnSpan="2" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <Label Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right"  Width="auto" IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.lbl_Image}" Target="{Binding ElementName=txtCapTypeImagePath}"/>
-                        <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left"  Name="txtCapTypeImagePath"
+                        <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch" Name="txtCapTypeImagePath"
                                  IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Height="21.96" Width="204.267" my:AttachedProperties.SelectAllOnFocus="true"/>
                         <Button Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Name="btnBrowseForCapTypeImage" Padding="3,0"
                                 IsEnabled="{Binding ElementName=optCapTypeNew, Path=IsChecked, Mode=OneWay}" Content="{x:Static res:Resources.cmd_Browse}" ToolTip="{x:Static res:Resources.tot_Browse}"/>
