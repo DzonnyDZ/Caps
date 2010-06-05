@@ -6,7 +6,237 @@ Tools
 </name>
 </assembly>
 <members>
-<member name="M:Tools.ComponentModelT.SettingsInheritDescriptionAttribute.#ctor(System.Type,System.String,System.String)">
+<member name="F:Tools.TextT.EncodingT.ISO2022.xmlns">
+	<summary>XML namespace which contains XML-Schema definition of format for storing information about ISO-2022 encodings</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022.AsciiEscape">
+	<summary>represents ASCII Escape character often used with ISO-2022 encodings</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022._DefaultInstance">
+	<summary>Contains value of the <see cref="P:Tools.TextT.EncodingT.ISO2022.DefaultInstance"/> property</summary>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022.DefaultInstance">
+	<summary>Gets default instance of the <see cref="T:Tools.TextT.EncodingT.ISO2022"/> class initialized with default values.</summary>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022.#ctor">
+	<summary>Default constructor. Returns new instance which operates with built-in definition of ISO-2022 encodings.</summary>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022.#ctor(System.Xml.Linq.XDocument)">
+	<summary>Constructor which allows to load definitions of encodings from custom <see cref="T:System.Xml.Linq.XDocument"/></summary>
+	<param name="EncodingDefinitions">The <see cref="T:System.Xml.Linq.XDocument"/> containing encoding definitions</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="EncodingDefinitions"/> is null</exception>
+	<exception cref="T:System.Xml.XmlException">Given <paramref name="EncodingDefinitions"/> does not validate to XML-Schema</exception>
+	<exception cref="T:System.ArgumentException">Root element of <paramref name="EncodingDefinitions"/> is not http://codeplex.com/DTools/IS2022:encodings</exception>
+	<remarks>The XML-Schema for the http://codeplex.com/DTools/IS2022 namespace is specified in file Text/Encoding/IOS2022.xsd which is included in source code of the Tools project. Actual schema can be also obtained by reading embdeded resource Tools.TextT.EncodingT.ISO2022Schema from this assembly.</remarks>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022.Equals(System.Object)">
+	<summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+	<returns>True if <paramref name="obj"/> is <see cref="T:Tools.TextT.EncodingT.ISO2022"/> and was initialized with the same xml element.</returns>
+	<exception cref="T:System.NullReferenceException">The 
+ <paramref name="obj"/> parameter is null.</exception>
+	<filterpriority>2</filterpriority>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022.veh(System.Object,System.Xml.Schema.ValidationEventArgs)">
+	<summary><see cref="T:System.Xml.Schema.ValidationEventHandler"/> to handle and raise XML-Errors</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022.root">
+	<summary>Root element of encoding definitions in XML</summary>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022.GetEncodingTypes">
+	<summary>Gets all encoding types recognized by ISO-2022</summary>
+	<returns>Array of <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType"/> class instance. One for each of types defined in the <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes"/> enumeration.</returns>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022.GetEncodings">
+	<summary>Gets all encodings recognized by ISO-2022 and registered by IPSJ/ITSCJ</summary>
+	<remarks>Array of <see cref="T:Tools.TextT.EncodingT.ISO2022Encoding"/> to represent all the encodings</remarks>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022.DetectEncoding(System.IO.Stream,Tools.TextT.EncodingT.ISO2022.ISO20200Sets,System.Byte[]@)">
+	<summary>Attempts to detect ISO-2022 encoding of <see cref="T:System.IO.Stream"/></summary>
+	<param name="stream">Stream to detect encoding of. Current position of stream must be at place where the encoding escape sequence starts, where encoding should be detected.</param>
+	<param name="WorkingSet">Specifies current working set of stream - it defines which set of escape sequences will be used. If you are at the beginning of an unknown stream leave default value <see cref="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G0"/></param>
+	<param name="BytesRead">Optional output parameter which returns all the bytes that were read from <paramref name="stream"/> when attempting to detect encoding. This parameter may be useful when trying to detect encoding of stream where you cannot seek in case encoding is not detected.</param>
+	<returns>Detected encoding or null if encoding was not detected</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="stream"/> is null</exception>
+	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="WorkingSet"/> is not member of <see cref="T:Tools.TextT.EncodingT.ISO2022.ISO20200Sets"/>.</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="stream"/> does not support reading</exception>
+	<remarks>If return value is null the encoding was not detected. But actual position in <paramref name="stream"/> have been changed. If <paramref name="stream"/> represents ISO-2022 encoded string you want to decode you should seek back (if <paramref name="stream"/> supports seeking) and reinterpred bytes as characters in somehow determined default encoding.
+ <para>This method is intended to be used especially only at start of string or in special cases when encoding type information is stored as ISO-2022 escape sequnce apart from encoded string itself. It is because it is not efficient to call this method for each byte in stream in order to test if it represents start of escape sequnce. You should use some finite-state-automaton-based alghoritm instead (which is not provided by this class).</para></remarks>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022.DetectEncoding(System.Byte[],Tools.TextT.EncodingT.ISO2022.ISO20200Sets)">
+	<summary>Attempts to detect ISO-2022 encoding of array of bytes</summary>
+	<param name="bytes">Byte array to detect encoding of. This array should start with valid ISO-2022 escape sequence for some encoding in given <paramref name="WorkingSet"/>. Otherwise encoding is not bdetected.</param>
+	<param name="WorkingSet">Specifies current working set of stream - it defines which set of escape sequences will be used. If you are at the beginning of an unknown stream leave default value <see cref="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G0"/></param>
+	<returns>Detected encoding or null if encoding was not detected</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="stream"/> is null</exception>
+	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="WorkingSet"/> is not member of <see cref="T:Tools.TextT.EncodingT.ISO2022.ISO20200Sets"/>.</exception>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.C0">
+	<summary>C0 set (ASCII and derivatives)</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.C1">
+	<summary>C1 set (ISO 8859 and Unicode)</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G0">
+	<summary>G0 set</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G1">
+	<summary>G1 set</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G2">
+	<summary>G2 set</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G3">
+	<summary>G3 set</summary>
+</member><member name="T:Tools.TextT.EncodingT.ISO2022.ISO20200Sets">
+	<summary>Defines working sets used by IS-2022</summary>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022.ParseXmlEscapeSequence(System.String)">
+	<summary>Parses Escape sequence as stored in Xml to array of bytes</summary>
+	<param name="XmlEscapeSequence">String to be parsed</param>
+	<remarks>Byte array representation of <paramref name="XmlEscapeSequence"/></remarks>
+	<exception cref="T:System.FormatException"><paramref name="XmlEscapeSequence"/> contains invalid byte. Each byte is specified as either "ESC" string or two numbers from range 0÷127 separated by "/". Leading zeros are allowd. Bytes are separated, preceded and succeded by any number of whitespaces.</exception>
+</member><member name="T:Tools.TextT.EncodingT.ISO2022">
+	<summary>Provides runtime access to list of text encodings registered by ISO-IR 2022 (also known as ISO/IEC 2022 or ECMA-35)</summary>
+	<remarks>This class provides access to information about such encodings and possibly gives their names as registered by IANA and possibly gives instances of the <see cref="T:System.Text.Encoding"/> class to manipulate with text stored in this encoding. Not all ISO-2022 encodings are registered with IANA and not all ISO-2022 encodings are supported by .NET framework. This class does not provide more implementations of the <see cref="T:System.Text.Encoding"/> class to deal with all ISO-2022 registered encodings neither this class provides generic ISO-2022 reader/writer. The aim of this class is to provide possibility of identifiying ISO 2022 encoding by its escape sequence, not to deal with it.
+ <para>For further reference see <a href="http://www.itscj.ipsj.or.jp/ISO-IR/">International Register of Coded Character Sets To Be Used With Escape Sequences</a>.</para></remarks>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022Encoding.element">
+	<summary><see cref="T:System.Xml.Linq.XElement"/> encoding info is stored in</summary>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022Encoding.#ctor(System.Xml.Linq.XElement)">
+	<summary>Creates new instance of the <see cref="T:Tools.TextT.EncodingT.ISO2022Encoding"/> class from its definition in <see cref="T:System.Xml.Linq.XElement"/></summary>
+	<param name="encoding"><see cref="T:System.Xml.Linq.XElement"/> encoding is stored in</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="encoding"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="encoding"/> does not represent &lt;encoding&gt; element.</exception>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.Name">
+	<summary>Gets official encoding name under which it is registered by IPSJ/ITSCJ</summary>
+	<returns>Name of encoding in ISO-2022 encoding register.</returns>
+	<remarks>This property is never localized.</remarks>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.Number">
+	<summary>Gets number under which the encoding is registered by IPSJ/ITSCJ</summary>
+	<returns>Number of encoding in ISO-2022 encoding register.</returns>
+	<remarks>In case the encoding is not assigned single number but two numbers separated by hyphen, this property returns such number as decimal number.</remarks>
+	<seealso cref="P:Tools.TextT.EncodingT.ISO2022Encoding.NumberOriginal"/>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.NumberOriginal">
+	<summary>Gets number under which the encoding is registered by IPSJ/ITSCJ</summary>
+	<returns>Number as string in same form it was stored in xml element which initialized this instance. It means no assumptions about leading and trailing whitespaces can be done, as well as about leading zeros. Some numbers may contain hyphen.</returns>
+	<seealso cref="P:Tools.TextT.EncodingT.ISO2022Encoding.Number"/>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.Type">
+	<summary>Gets type of this encoding</summary>
+	<returns>If called repeatedly for the same instance returns the same instance of the <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType"/>, but it is not the same instance (in terms of <see cref="M:System.Object.ReferenceEquals(System.Object,System.Object)"/>) as one of those obtained by <see cref="M:Tools.TextT.EncodingT.ISO2022.GetEncodingTypes"/>.</returns>
+	<remarks>Type of this encoding assording to IPSJ/ITSCJ registr</remarks>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaName">
+	<summary>Gets name of encoding as registered by IANA (if exists).</summary>
+	<returns>Primary (preffered) name of encoding as registered by IANA. Or null if this encoding is not registered by IANA.</returns>
+	<remarks>IANA organisation maintains list of encoding names registered for use on the Internet. Such encoding names are used eg. in XML encoding specification or in HTTP headers. Also <see cref="P:System.Text.EncodingInfo.Name"/> and <see cref="P:System.Text.Encoding.WebName"/> uses IANA registred names. For more information see <a href="http://www.iana.org">www.iana.org</a> or <a href="http://www.iana.org/assignments/character-sets">character sets registry</a>.</remarks>
+	<seealso cref="P:System.Text.Encoding.WebName"/><seealso cref="P:System.Text.EncodingInfo.Name"/>
+	<seealso cref="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaAlias"/>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaAlias">
+	<summary>Return alternative name for encoding as registered by IANA in format "iso-ir-0" (if exists).</summary>
+	<returns>Alias name of encoding which starts with "iso-ir-" and then contains <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.NumberOriginal"/> without leading zeros. If such alias does not exist returns null.</returns>
+	<remarks>IANA registeres several aliases for each encoding. Most of ISO-2022 encoding registered with IANA have alias "iso-ir-0" where 0 is <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.NumberOriginal"/> (without leading zeros).</remarks>
+	<seealso cref="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaName"/>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022Encoding.GetEncoding">
+	<summary>Gets <see cref="T:System.Text.Encoding"/> which implements ISO-2022 encoding represented by this instance</summary>
+	<returns>Appropriate <see cref="T:System.Text.Encoding"/> or null if either <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaName"/> is null or it is not supported by the .NET framework (the <see cref="M:System.Text.Encoding.GetEncoding(System.String)">Encoding.GetEncoding</see> method.)</returns>
+	<remarks>Actual ability of .NET framework to support particular encoding depends on which encodings are supported by (installed in) operating system.</remarks>
+	<seealso cref="T:System.Text.Encoding"/><seeaslo cref="M:System.Text.Encoding.GetEncoding(System.String)"/><seealso cref="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaName"/>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.EscapeSequence(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)">
+	<summary>Gets escape sequence used to switch to encoding represented by this instance in given working set</summary>
+	<param name="WorkingSet">Working set to obtain escape sequence for</param>
+	<returns>Escape sequance as array of bytes. Null if escape sequence for given working set does not exist.</returns>
+	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="WorkingSet"/> is not member of <see cref="T:Tools.TextT.EncodingT.ISO2022.ISO20200Sets"/>.</exception>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.C0EscapeSequence">
+	<summary>Gets escape sequence used to switch to encoding represented by this instance in C0 working set.</summary>
+	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for C0 working set</remarks>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.C1EscapeSequence">
+	<summary>Gets escape sequence used to switch to encoding represented by this instance in C1 working set.</summary>
+	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for C1 working set</remarks>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.G0EscapeSequence">
+	<summary>Gets escape sequence used to switch to encoding represented by this instance in G0 working set.</summary>
+	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for G0 working set</remarks>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.G1EscapeSequence">
+	<summary>Gets escape sequence used to switch to encoding represented by this instance in G1 working set.</summary>
+	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for G1 working set</remarks>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.G2EscapeSequence">
+	<summary>Gets escape sequence used to switch to encoding represented by this instance in G2 working set.</summary>
+	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for G2 working set</remarks>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.G3EscapeSequence">
+	<summary>Gets escape sequence used to switch to encoding represented by this instance in G3 working set.</summary>
+	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for G3 working set</remarks>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.UsesCommonPrefix">
+	<summary>Gets value idicating if this <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.EscapeSequence(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/> for this encoding starts wit same prefix sa <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.EscapeSequence(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/> of all other encodings of same type that use common prefix too.</summary>
+	<returns>True if <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.EscapeSequence(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/> of this encoding starts with <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.Type"/>.<see cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)">EscapeSequencePrefix</see> for all working sets.</returns>
+	<remarks>This is only hint property and is not mentioned in the ISO-2022 standard.</remarks>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022Encoding.Equals(Tools.TextT.EncodingT.ISO2022Encoding)">
+	<summary>Indicates whether the current object is equal to another object of the same type.</summary>
+	<returns>true if <paramref name="other"/> was initialized with the same xml elemet as current instance</returns>
+	<param name="other">An object to compare with this object.</param>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022Encoding.Equals(System.Object)">
+	<summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>. </summary>
+	<returns>true if the specified <see cref="T:System.Object"/> is <see cref="T:Tools.TextT.EncodingT.ISO2022Encoding"/> and it was initialized by the same xml element.</returns>
+	<param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>.</param>
+	<exception cref="T:System.NullReferenceException">The <paramref name="obj"/> parameter is null.</exception>
+	<filterpriority>2</filterpriority>
+	<remarks>Use type-safe overload <see cref="M:Tools.TextT.EncodingT.ISO2022EncodingType.Equals(Tools.TextT.EncodingT.ISO2022EncodingType)"/> instead</remarks>
+</member><member name="T:Tools.TextT.EncodingT.ISO2022Encoding">
+	<summary>Represents single ISO-2022 encoding and provides infornmation about it.</summary>
+	<seealso cref="T:Tools.TextT.EncodingT.ISO2022"/>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022EncodingType.#ctor(System.Xml.Linq.XElement)">
+	<summary>Constructs a new instance from given <see cref="T:System.Xml.Linq.XElement"/></summary>
+	<param name="type"><see cref="T:System.Xml.Linq.XElement"/> &lt;type&gt; which represents ISO-20200 encoding type to be constructed.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="type"/> is null</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="type"/> dioes not represent element &lt;type&gt;</exception>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.element">
+	<summary>The <see cref="T:System.Xml.Linq.XElement"/> which stores information for this instance</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.C0">
+	<summary>The C0 type (C0-Control character sets)</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.t_94_1">
+	<summary>The 94/1 type (94-Character graphic character sets with one Intermediate byte)</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.S">
+	<summary>The S type (Single control functions)</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.C1">
+	<summary>The C1 type (C1 Control character sets)</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.M">
+	<summary>The M type (Multiple byte graphic character sets)</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.wSR">
+	<summary>The wSR type (Coding systems with Standard return)</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.woSR">
+	<summary>The w/oSR type (Coding Systems without Standard return)</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.t_96">
+	<summary>The 96 type (96-Character graphic character set)</summary>
+</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.t_94_2">
+	<summary>The 94-2 type (94-Character graphic character set with second Intermediate byte)</summary>
+</member><member name="T:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes">
+	<summary>Defines all encoding types recognized by ISO-2022</summary>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.Type">
+	<summary>Returns one of <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes"/> values which identifies type of encoding recognized by ISO-2022.</summary>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)">
+	<summary>Gets default escape sequence prefix used by encodings of type represented by current instance in given working set</summary>
+	<returns>Array of bytes used as prefix of escape sequence. Null if encodings of current type usualy does not use given working set.</returns>
+	<param name="WorkingSet">Working set to get escape sequence prefix for</param>
+	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="WorkingSet"/> is not member of <see cref="T:Tools.TextT.EncodingT.ISO2022.ISO20200Sets"/>.</exception>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.C0EscapeSequencePrefix">
+	<summary>Gets default prefix of escape sequence used by encodign of current type in working set C0.</summary>
+	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the C0 working set.</returns>
+	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.C1EscapeSequencePrefix">
+	<summary>Gets default prefix of escape sequence used by encodign of current type in working set C1.</summary>
+	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the C1 working set.</returns>
+	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.G0EscapeSequencePrefix">
+	<summary>Gets default prefix of escape sequence used by encodign of current type in working set G0.</summary>
+	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the G0 working set.</returns>
+	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.G1EscapeSequencePrefix">
+	<summary>Gets default prefix of escape sequence used by encodign of current type in working set G1.</summary>
+	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the G1 working set.</returns>
+	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.G2EscapeSequencePrefix">
+	<summary>Gets default prefix of escape sequence used by encodign of current type in working set G2.</summary>
+	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the G2 working set.</returns>
+	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
+</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.G3EscapeSequencePrefix">
+	<summary>Gets default prefix of escape sequence used by encodign of current type in working set G3.</summary>
+	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the G3 working set.</returns>
+	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022EncodingType.Equals(Tools.TextT.EncodingT.ISO2022EncodingType)">
+	<summary>Indicates whether the current object is equal to another object of the same type.</summary>
+	<returns>true if <paramref name="other"/> was initialized with the same xml elemet as current instance</returns>
+	<param name="other">An object to compare with this object.</param>
+</member><member name="M:Tools.TextT.EncodingT.ISO2022EncodingType.Equals(System.Object)">
+	<summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>. </summary>
+	<returns>true if the specified <see cref="T:System.Object"/> is <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType"/> and it was initialized by the same xml element.</returns>
+	<param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>.</param>
+	<exception cref="T:System.NullReferenceException">The <paramref name="obj"/> parameter is null.</exception>
+	<filterpriority>2</filterpriority>
+	<remarks>Use type-safe overload <see cref="M:Tools.TextT.EncodingT.ISO2022EncodingType.Equals(Tools.TextT.EncodingT.ISO2022EncodingType)"/> instead</remarks>
+</member><member name="T:Tools.TextT.EncodingT.ISO2022EncodingType">
+	<summary>Represents and provides information about one type of encoding as recognized by ISO-2022</summary>
+	<remarks>You can obtain all encoding type information by <see cref="M:Tools.TextT.EncodingT.ISO2022.GetEncodingTypes"/>. All existing encoding types are defined in the <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes"/> enumeration.
+ <para>This class has no public constructor.</para></remarks>
+	<seealso cref="M:Tools.TextT.EncodingT.ISO2022.GetEncodingTypes"/><seealso cref="T:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes"/>
+	<seealso cref="T:Tools.TextT.EncodingT.ISO2022"/>
+</member><member name="M:Tools.ComponentModelT.SettingsInheritDescriptionAttribute.#ctor(System.Type,System.String,System.String)">
 	<summary>CTor</summary>
 	<param name="Settings">The data type that contains property with name specified in <paramref name="Property"/></param>
 	<param name="Property">Name of the property which's <see cref="T:System.Configuration.SettingsDescriptionAttribute"/> initializes this attribute</param>
@@ -14085,236 +14315,6 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="M:Tools.GlobalizationT.ISOLanguage.GetAllCodes">
 	<summary>Returns list of all predefined ISO 639-2 and ISO 639-1 language codes</summary>
 	<remarks>Reserved code from range qaa÷qtz are not returned. Duplicate codes are returnet only in <see cref="P:Tools.GlobalizationT.ISOLanguage.Duplicate"/> property of other codes.</remarks>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022.xmlns">
-	<summary>XML namespace which contains XML-Schema definition of format for storing information about ISO-2022 encodings</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022.AsciiEscape">
-	<summary>represents ASCII Escape character often used with ISO-2022 encodings</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022._DefaultInstance">
-	<summary>Contains value of the <see cref="P:Tools.TextT.EncodingT.ISO2022.DefaultInstance"/> property</summary>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022.DefaultInstance">
-	<summary>Gets default instance of the <see cref="T:Tools.TextT.EncodingT.ISO2022"/> class initialized with default values.</summary>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022.#ctor">
-	<summary>Default constructor. Returns new instance which operates with built-in definition of ISO-2022 encodings.</summary>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022.#ctor(System.Xml.Linq.XDocument)">
-	<summary>Constructor which allows to load definitions of encodings from custom <see cref="T:System.Xml.Linq.XDocument"/></summary>
-	<param name="EncodingDefinitions">The <see cref="T:System.Xml.Linq.XDocument"/> containing encoding definitions</param>
-	<exception cref="T:System.ArgumentNullException"><paramref name="EncodingDefinitions"/> is null</exception>
-	<exception cref="T:System.Xml.XmlException">Given <paramref name="EncodingDefinitions"/> does not validate to XML-Schema</exception>
-	<exception cref="T:System.ArgumentException">Root element of <paramref name="EncodingDefinitions"/> is not http://codeplex.com/DTools/IS2022:encodings</exception>
-	<remarks>The XML-Schema for the http://codeplex.com/DTools/IS2022 namespace is specified in file Text/Encoding/IOS2022.xsd which is included in source code of the Tools project. Actual schema can be also obtained by reading embdeded resource Tools.TextT.EncodingT.ISO2022Schema from this assembly.</remarks>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022.Equals(System.Object)">
-	<summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
-	<returns>True if <paramref name="obj"/> is <see cref="T:Tools.TextT.EncodingT.ISO2022"/> and was initialized with the same xml element.</returns>
-	<exception cref="T:System.NullReferenceException">The 
- <paramref name="obj"/> parameter is null.</exception>
-	<filterpriority>2</filterpriority>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022.veh(System.Object,System.Xml.Schema.ValidationEventArgs)">
-	<summary><see cref="T:System.Xml.Schema.ValidationEventHandler"/> to handle and raise XML-Errors</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022.root">
-	<summary>Root element of encoding definitions in XML</summary>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022.GetEncodingTypes">
-	<summary>Gets all encoding types recognized by ISO-2022</summary>
-	<returns>Array of <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType"/> class instance. One for each of types defined in the <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes"/> enumeration.</returns>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022.GetEncodings">
-	<summary>Gets all encodings recognized by ISO-2022 and registered by IPSJ/ITSCJ</summary>
-	<remarks>Array of <see cref="T:Tools.TextT.EncodingT.ISO2022Encoding"/> to represent all the encodings</remarks>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022.DetectEncoding(System.IO.Stream,Tools.TextT.EncodingT.ISO2022.ISO20200Sets,System.Byte[]@)">
-	<summary>Attempts to detect ISO-2022 encoding of <see cref="T:System.IO.Stream"/></summary>
-	<param name="stream">Stream to detect encoding of. Current position of stream must be at place where the encoding escape sequence starts, where encoding should be detected.</param>
-	<param name="WorkingSet">Specifies current working set of stream - it defines which set of escape sequences will be used. If you are at the beginning of an unknown stream leave default value <see cref="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G0"/></param>
-	<param name="BytesRead">Optional output parameter which returns all the bytes that were read from <paramref name="stream"/> when attempting to detect encoding. This parameter may be useful when trying to detect encoding of stream where you cannot seek in case encoding is not detected.</param>
-	<returns>Detected encoding or null if encoding was not detected</returns>
-	<exception cref="T:System.ArgumentNullException"><paramref name="stream"/> is null</exception>
-	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="WorkingSet"/> is not member of <see cref="T:Tools.TextT.EncodingT.ISO2022.ISO20200Sets"/>.</exception>
-	<exception cref="T:System.ArgumentException"><paramref name="stream"/> does not support reading</exception>
-	<remarks>If return value is null the encoding was not detected. But actual position in <paramref name="stream"/> have been changed. If <paramref name="stream"/> represents ISO-2022 encoded string you want to decode you should seek back (if <paramref name="stream"/> supports seeking) and reinterpred bytes as characters in somehow determined default encoding.
- <para>This method is intended to be used especially only at start of string or in special cases when encoding type information is stored as ISO-2022 escape sequnce apart from encoded string itself. It is because it is not efficient to call this method for each byte in stream in order to test if it represents start of escape sequnce. You should use some finite-state-automaton-based alghoritm instead (which is not provided by this class).</para></remarks>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022.DetectEncoding(System.Byte[],Tools.TextT.EncodingT.ISO2022.ISO20200Sets)">
-	<summary>Attempts to detect ISO-2022 encoding of array of bytes</summary>
-	<param name="bytes">Byte array to detect encoding of. This array should start with valid ISO-2022 escape sequence for some encoding in given <paramref name="WorkingSet"/>. Otherwise encoding is not bdetected.</param>
-	<param name="WorkingSet">Specifies current working set of stream - it defines which set of escape sequences will be used. If you are at the beginning of an unknown stream leave default value <see cref="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G0"/></param>
-	<returns>Detected encoding or null if encoding was not detected</returns>
-	<exception cref="T:System.ArgumentNullException"><paramref name="stream"/> is null</exception>
-	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="WorkingSet"/> is not member of <see cref="T:Tools.TextT.EncodingT.ISO2022.ISO20200Sets"/>.</exception>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.C0">
-	<summary>C0 set (ASCII and derivatives)</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.C1">
-	<summary>C1 set (ISO 8859 and Unicode)</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G0">
-	<summary>G0 set</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G1">
-	<summary>G1 set</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G2">
-	<summary>G2 set</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022.ISO20200Sets.G3">
-	<summary>G3 set</summary>
-</member><member name="T:Tools.TextT.EncodingT.ISO2022.ISO20200Sets">
-	<summary>Defines working sets used by IS-2022</summary>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022.ParseXmlEscapeSequence(System.String)">
-	<summary>Parses Escape sequence as stored in Xml to array of bytes</summary>
-	<param name="XmlEscapeSequence">String to be parsed</param>
-	<remarks>Byte array representation of <paramref name="XmlEscapeSequence"/></remarks>
-	<exception cref="T:System.FormatException"><paramref name="XmlEscapeSequence"/> contains invalid byte. Each byte is specified as either "ESC" string or two numbers from range 0÷127 separated by "/". Leading zeros are allowd. Bytes are separated, preceded and succeded by any number of whitespaces.</exception>
-</member><member name="T:Tools.TextT.EncodingT.ISO2022">
-	<summary>Provides runtime access to list of text encodings registered by ISO-IR 2022 (also known as ISO/IEC 2022 or ECMA-35)</summary>
-	<remarks>This class provides access to information about such encodings and possibly gives their names as registered by IANA and possibly gives instances of the <see cref="T:System.Text.Encoding"/> class to manipulate with text stored in this encoding. Not all ISO-2022 encodings are registered with IANA and not all ISO-2022 encodings are supported by .NET framework. This class does not provide more implementations of the <see cref="T:System.Text.Encoding"/> class to deal with all ISO-2022 registered encodings neither this class provides generic ISO-2022 reader/writer. The aim of this class is to provide possibility of identifiying ISO 2022 encoding by its escape sequence, not to deal with it.
- <para>For further reference see <a href="http://www.itscj.ipsj.or.jp/ISO-IR/">International Register of Coded Character Sets To Be Used With Escape Sequences</a>.</para></remarks>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022Encoding.element">
-	<summary><see cref="T:System.Xml.Linq.XElement"/> encoding info is stored in</summary>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022Encoding.#ctor(System.Xml.Linq.XElement)">
-	<summary>Creates new instance of the <see cref="T:Tools.TextT.EncodingT.ISO2022Encoding"/> class from its definition in <see cref="T:System.Xml.Linq.XElement"/></summary>
-	<param name="encoding"><see cref="T:System.Xml.Linq.XElement"/> encoding is stored in</param>
-	<exception cref="T:System.ArgumentNullException"><paramref name="encoding"/> is null</exception>
-	<exception cref="T:System.ArgumentException"><paramref name="encoding"/> does not represent &lt;encoding&gt; element.</exception>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.Name">
-	<summary>Gets official encoding name under which it is registered by IPSJ/ITSCJ</summary>
-	<returns>Name of encoding in ISO-2022 encoding register.</returns>
-	<remarks>This property is never localized.</remarks>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.Number">
-	<summary>Gets number under which the encoding is registered by IPSJ/ITSCJ</summary>
-	<returns>Number of encoding in ISO-2022 encoding register.</returns>
-	<remarks>In case the encoding is not assigned single number but two numbers separated by hyphen, this property returns such number as decimal number.</remarks>
-	<seealso cref="P:Tools.TextT.EncodingT.ISO2022Encoding.NumberOriginal"/>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.NumberOriginal">
-	<summary>Gets number under which the encoding is registered by IPSJ/ITSCJ</summary>
-	<returns>Number as string in same form it was stored in xml element which initialized this instance. It means no assumptions about leading and trailing whitespaces can be done, as well as about leading zeros. Some numbers may contain hyphen.</returns>
-	<seealso cref="P:Tools.TextT.EncodingT.ISO2022Encoding.Number"/>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.Type">
-	<summary>Gets type of this encoding</summary>
-	<returns>If called repeatedly for the same instance returns the same instance of the <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType"/>, but it is not the same instance (in terms of <see cref="M:System.Object.ReferenceEquals(System.Object,System.Object)"/>) as one of those obtained by <see cref="M:Tools.TextT.EncodingT.ISO2022.GetEncodingTypes"/>.</returns>
-	<remarks>Type of this encoding assording to IPSJ/ITSCJ registr</remarks>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaName">
-	<summary>Gets name of encoding as registered by IANA (if exists).</summary>
-	<returns>Primary (preffered) name of encoding as registered by IANA. Or null if this encoding is not registered by IANA.</returns>
-	<remarks>IANA organisation maintains list of encoding names registered for use on the Internet. Such encoding names are used eg. in XML encoding specification or in HTTP headers. Also <see cref="P:System.Text.EncodingInfo.Name"/> and <see cref="P:System.Text.Encoding.WebName"/> uses IANA registred names. For more information see <a href="http://www.iana.org">www.iana.org</a> or <a href="http://www.iana.org/assignments/character-sets">character sets registry</a>.</remarks>
-	<seealso cref="P:System.Text.Encoding.WebName"/><seealso cref="P:System.Text.EncodingInfo.Name"/>
-	<seealso cref="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaAlias"/>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaAlias">
-	<summary>Return alternative name for encoding as registered by IANA in format "iso-ir-0" (if exists).</summary>
-	<returns>Alias name of encoding which starts with "iso-ir-" and then contains <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.NumberOriginal"/> without leading zeros. If such alias does not exist returns null.</returns>
-	<remarks>IANA registeres several aliases for each encoding. Most of ISO-2022 encoding registered with IANA have alias "iso-ir-0" where 0 is <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.NumberOriginal"/> (without leading zeros).</remarks>
-	<seealso cref="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaName"/>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022Encoding.GetEncoding">
-	<summary>Gets <see cref="T:System.Text.Encoding"/> which implements ISO-2022 encoding represented by this instance</summary>
-	<returns>Appropriate <see cref="T:System.Text.Encoding"/> or null if either <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaName"/> is null or it is not supported by the .NET framework (the <see cref="M:System.Text.Encoding.GetEncoding(System.String)">Encoding.GetEncoding</see> method.)</returns>
-	<remarks>Actual ability of .NET framework to support particular encoding depends on which encodings are supported by (installed in) operating system.</remarks>
-	<seealso cref="T:System.Text.Encoding"/><seeaslo cref="M:System.Text.Encoding.GetEncoding(System.String)"/><seealso cref="P:Tools.TextT.EncodingT.ISO2022Encoding.IanaName"/>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.EscapeSequence(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)">
-	<summary>Gets escape sequence used to switch to encoding represented by this instance in given working set</summary>
-	<param name="WorkingSet">Working set to obtain escape sequence for</param>
-	<returns>Escape sequance as array of bytes. Null if escape sequence for given working set does not exist.</returns>
-	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="WorkingSet"/> is not member of <see cref="T:Tools.TextT.EncodingT.ISO2022.ISO20200Sets"/>.</exception>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.C0EscapeSequence">
-	<summary>Gets escape sequence used to switch to encoding represented by this instance in C0 working set.</summary>
-	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for C0 working set</remarks>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.C1EscapeSequence">
-	<summary>Gets escape sequence used to switch to encoding represented by this instance in C1 working set.</summary>
-	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for C1 working set</remarks>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.G0EscapeSequence">
-	<summary>Gets escape sequence used to switch to encoding represented by this instance in G0 working set.</summary>
-	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for G0 working set</remarks>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.G1EscapeSequence">
-	<summary>Gets escape sequence used to switch to encoding represented by this instance in G1 working set.</summary>
-	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for G1 working set</remarks>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.G2EscapeSequence">
-	<summary>Gets escape sequence used to switch to encoding represented by this instance in G2 working set.</summary>
-	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for G2 working set</remarks>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.G3EscapeSequence">
-	<summary>Gets escape sequence used to switch to encoding represented by this instance in G3 working set.</summary>
-	<remarks>Escape sequence as array of bytes or null if the encoding has no escape sequence for G3 working set</remarks>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022Encoding.UsesCommonPrefix">
-	<summary>Gets value idicating if this <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.EscapeSequence(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/> for this encoding starts wit same prefix sa <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.EscapeSequence(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/> of all other encodings of same type that use common prefix too.</summary>
-	<returns>True if <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.EscapeSequence(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/> of this encoding starts with <see cref="P:Tools.TextT.EncodingT.ISO2022Encoding.Type"/>.<see cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)">EscapeSequencePrefix</see> for all working sets.</returns>
-	<remarks>This is only hint property and is not mentioned in the ISO-2022 standard.</remarks>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022Encoding.Equals(Tools.TextT.EncodingT.ISO2022Encoding)">
-	<summary>Indicates whether the current object is equal to another object of the same type.</summary>
-	<returns>true if <paramref name="other"/> was initialized with the same xml elemet as current instance</returns>
-	<param name="other">An object to compare with this object.</param>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022Encoding.Equals(System.Object)">
-	<summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>. </summary>
-	<returns>true if the specified <see cref="T:System.Object"/> is <see cref="T:Tools.TextT.EncodingT.ISO2022Encoding"/> and it was initialized by the same xml element.</returns>
-	<param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>.</param>
-	<exception cref="T:System.NullReferenceException">The <paramref name="obj"/> parameter is null.</exception>
-	<filterpriority>2</filterpriority>
-	<remarks>Use type-safe overload <see cref="M:Tools.TextT.EncodingT.ISO2022EncodingType.Equals(Tools.TextT.EncodingT.ISO2022EncodingType)"/> instead</remarks>
-</member><member name="T:Tools.TextT.EncodingT.ISO2022Encoding">
-	<summary>Represents single ISO-2022 encoding and provides infornmation about it.</summary>
-	<seealso cref="T:Tools.TextT.EncodingT.ISO2022"/>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022EncodingType.#ctor(System.Xml.Linq.XElement)">
-	<summary>Constructs a new instance from given <see cref="T:System.Xml.Linq.XElement"/></summary>
-	<param name="type"><see cref="T:System.Xml.Linq.XElement"/> &lt;type&gt; which represents ISO-20200 encoding type to be constructed.</param>
-	<exception cref="T:System.ArgumentNullException"><paramref name="type"/> is null</exception>
-	<exception cref="T:System.ArgumentException"><paramref name="type"/> dioes not represent element &lt;type&gt;</exception>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.element">
-	<summary>The <see cref="T:System.Xml.Linq.XElement"/> which stores information for this instance</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.C0">
-	<summary>The C0 type (C0-Control character sets)</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.t_94_1">
-	<summary>The 94/1 type (94-Character graphic character sets with one Intermediate byte)</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.S">
-	<summary>The S type (Single control functions)</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.C1">
-	<summary>The C1 type (C1 Control character sets)</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.M">
-	<summary>The M type (Multiple byte graphic character sets)</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.wSR">
-	<summary>The wSR type (Coding systems with Standard return)</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.woSR">
-	<summary>The w/oSR type (Coding Systems without Standard return)</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.t_96">
-	<summary>The 96 type (96-Character graphic character set)</summary>
-</member><member name="F:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes.t_94_2">
-	<summary>The 94-2 type (94-Character graphic character set with second Intermediate byte)</summary>
-</member><member name="T:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes">
-	<summary>Defines all encoding types recognized by ISO-2022</summary>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.Type">
-	<summary>Returns one of <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes"/> values which identifies type of encoding recognized by ISO-2022.</summary>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)">
-	<summary>Gets default escape sequence prefix used by encodings of type represented by current instance in given working set</summary>
-	<returns>Array of bytes used as prefix of escape sequence. Null if encodings of current type usualy does not use given working set.</returns>
-	<param name="WorkingSet">Working set to get escape sequence prefix for</param>
-	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="WorkingSet"/> is not member of <see cref="T:Tools.TextT.EncodingT.ISO2022.ISO20200Sets"/>.</exception>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.C0EscapeSequencePrefix">
-	<summary>Gets default prefix of escape sequence used by encodign of current type in working set C0.</summary>
-	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the C0 working set.</returns>
-	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.C1EscapeSequencePrefix">
-	<summary>Gets default prefix of escape sequence used by encodign of current type in working set C1.</summary>
-	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the C1 working set.</returns>
-	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.G0EscapeSequencePrefix">
-	<summary>Gets default prefix of escape sequence used by encodign of current type in working set G0.</summary>
-	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the G0 working set.</returns>
-	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.G1EscapeSequencePrefix">
-	<summary>Gets default prefix of escape sequence used by encodign of current type in working set G1.</summary>
-	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the G1 working set.</returns>
-	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.G2EscapeSequencePrefix">
-	<summary>Gets default prefix of escape sequence used by encodign of current type in working set G2.</summary>
-	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the G2 working set.</returns>
-	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
-</member><member name="P:Tools.TextT.EncodingT.ISO2022EncodingType.G3EscapeSequencePrefix">
-	<summary>Gets default prefix of escape sequence used by encodign of current type in working set G3.</summary>
-	<returns>Escape sequence as array of bytes or null if current encoding type does not usually have escape sequence in the G3 working set.</returns>
-	<seealso cref="P:Tools.TextT.EncodingT.ISO2022EncodingType.EscapeSequencePrefix(Tools.TextT.EncodingT.ISO2022.ISO20200Sets)"/>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022EncodingType.Equals(Tools.TextT.EncodingT.ISO2022EncodingType)">
-	<summary>Indicates whether the current object is equal to another object of the same type.</summary>
-	<returns>true if <paramref name="other"/> was initialized with the same xml elemet as current instance</returns>
-	<param name="other">An object to compare with this object.</param>
-</member><member name="M:Tools.TextT.EncodingT.ISO2022EncodingType.Equals(System.Object)">
-	<summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>. </summary>
-	<returns>true if the specified <see cref="T:System.Object"/> is <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType"/> and it was initialized by the same xml element.</returns>
-	<param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>.</param>
-	<exception cref="T:System.NullReferenceException">The <paramref name="obj"/> parameter is null.</exception>
-	<filterpriority>2</filterpriority>
-	<remarks>Use type-safe overload <see cref="M:Tools.TextT.EncodingT.ISO2022EncodingType.Equals(Tools.TextT.EncodingT.ISO2022EncodingType)"/> instead</remarks>
-</member><member name="T:Tools.TextT.EncodingT.ISO2022EncodingType">
-	<summary>Represents and provides information about one type of encoding as recognized by ISO-2022</summary>
-	<remarks>You can obtain all encoding type information by <see cref="M:Tools.TextT.EncodingT.ISO2022.GetEncodingTypes"/>. All existing encoding types are defined in the <see cref="T:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes"/> enumeration.
- <para>This class has no public constructor.</para></remarks>
-	<seealso cref="M:Tools.TextT.EncodingT.ISO2022.GetEncodingTypes"/><seealso cref="T:Tools.TextT.EncodingT.ISO2022EncodingType.EncodingTypes"/>
-	<seealso cref="T:Tools.TextT.EncodingT.ISO2022"/>
 </member><member name="P:Tools.CollectionsT.GenericT.IIndexable`2.Item(`1)">
 	<summary>Gets or sets value on specified index</summary>
 	<param name="index">Index to set or obtain value</param>

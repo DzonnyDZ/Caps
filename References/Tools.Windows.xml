@@ -622,7 +622,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="M:Tools.WindowsT.FormsT.Wizard`1.#ctor">
 	<summary>CTor</summary>
 </member><member name="T:Tools.WindowsT.FormsT.Wizard`1">
-	<summary>Implements <see cref="T:Tools.WindowsT.FormsT.Wizard`1"/> with specific first-step control</summary>
+	<summary>Implements <see cref="T:Tools.WindowsT.FormsT.Wizard"/> with specific first-step control</summary>
 	<typeparam name="T">Type of control of firts step</typeparam>
 	<version version="1.5.2" stage="Nightly">Class moved from experimental (namespace <see cref="N:Tools.Experimental.GUI"/>)</version>
 </member><member name="M:Tools.WindowsT.FormsT.TransparentTextBox.#ctor">
@@ -3834,7 +3834,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Asks wizard control for control that follows after it.</summary>
 	<remarks>Control returned by this function should implement <see cref="T:Tools.WindowsT.FormsT.IWizardControl"/>.</remarks>
 </member><member name="T:Tools.WindowsT.FormsT.IWizardControl">
-	<summary>Provides basic interface for wizard steps of <see cref="T:Tools.WindowsT.FormsT.Wizard`1"/>.</summary>
+	<summary>Provides basic interface for wizard steps of <see cref="T:Tools.WindowsT.FormsT.Wizard"/>.</summary>
 	<version version="1.5.2" stage="Nightly">Interface moved from experimental (namespace <see cref="N:Tools.Experimental.GUI"/>)</version>
 </member><member name="M:Tools.WindowsT.InteropT.SizeChangedInfoEventArgs.#ctor(System.Windows.SizeChangedInfo)">
 	<summary>CTor from <see cref="T:System.Windows.SizeChangedInfo"/></summary>
@@ -5166,16 +5166,28 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Handles <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker"/>.<see cref="E:System.ComponentModel.BackgroundWorker.ProgressChanged">ProgressChanged</see> event</summary>
 	<param name="sender"><see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker"/></param>
 	<param name="e">Event erguments</param>
-	<remarks>Default implementation works in following way:
- <list type="bullet">
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than or equal to zero then sets this value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Progress"/> property. Values smaller than zero are ignored.</item>
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Windows.Forms.ProgressBarStyle"/> passes that value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.ProgressBarStyle"/> property.</item>
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.String"/> passes that value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Information"/> property.</item>
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Boolean"/> passes that value to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel"/> property.</item>
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker"/> (same instance) than <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.Reset"/> method is called.</item>
-		</list>
-	</remarks>
+	<remarks>
+ This implementation takes value of <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> and if it is greater than or equal to zero passes it to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Progress"/> property.
+ For details how thios implementation deals with <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> see <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.ApplyUserState(System.Object)"/>.
+ </remarks>
 	<exception cref="T:System.ArgumentException"><paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than 100.</exception>
+	<version version="1.5.3">Major part of functionality of this method - user state application - extracted to a new method - <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.ApplyUserState(System.Object)"/>.</version>
+	<version version="1.5.3">Added support for <see cref="T:System.Int32"/>, <see cref="T:Tools.WindowsT.IndependentT.ProgressBarStyle"/> and <see cref="T:System.Array"/> in <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see>.</version>
+</member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.ApplyUserState(System.Object)">
+	<summary>Applies value passed to <see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState"/></summary>
+	<param name="userState">Value to apply</param>
+	<remarks>This implementation treats values of some types in a special way:
+ <list type="table">
+			<listheader><term>Type</term><description>Action taken</description></listheader>
+			<item><term><see cref="T:System.Windows.Forms.ProgressBarStyle"/> or <see cref="T:Tools.WindowsT.IndependentT.ProgressBarStyle"/></term><description>The value is passedto the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.ProgressBarStyle"/> property.</description></item>
+			<item><term><see cref="T:System.String"/></term><description>The value is passed to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Information"/> property.</description></item>
+			<item><term><see cref="T:System.Boolean"/></term><description>The value is passed to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.CanCancel"/> property.</description></item>
+			<item><term><see cref="T:System.ComponentModel.BackgroundWorker"/> (same instance as <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker"/>)</term><description>The <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.Reset"/> method is called.</description></item>
+			<item><term><see cref="T:System.Int32"/> (only when form range 0÷100)</term><description>The value is passed to the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.Progress"/> property (same as passing value greater than or equal to zero to <see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage"/>).</description></item>
+			<item><term><see cref="T:System.Array"/> (any type)</term><description>Individual items of the array are passed to the <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.ApplyUserState(System.Object)"/> method.</description></item>
+		</list>
+ Null values and values of unsupported types are ignored.</remarks>
+	<version version="1.5.3">This method is new in version 1.5.3 (it extracts user state application logic from <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)"/>.</version>
 </member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.OnRunWorkerCompleted(System.ComponentModel.BackgroundWorker,System.ComponentModel.RunWorkerCompletedEventArgs)">
 	<summary>Handles <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker"/>.<see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted">RunWorkerCompleted</see> event.</summary>
 	<param name="sender"><see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker"/></param>
@@ -5233,8 +5245,10 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<returns>This instance of <see cref="T:Tools.WindowsT.FormsT.ProgressMonitor"/></returns>
 </member><member name="T:Tools.WindowsT.FormsT.ProgressMonitor">
 	<summary>This <see cref="T:System.Windows.Forms.Form"/> serves as predefined progress monitor with <see cref="T:System.Windows.Forms.ProgressBar"/> for <see cref="T:System.ComponentModel.BackgroundWorker"/></summary>
-	<remarks>See documentation of the <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)"/> method in order to see rich options for reporting progress.</remarks>
+	<remarks>See documentation of the <see cref="M:Tools.WindowsT.FormsT.ProgressMonitor.ApplyUserState(System.Object)"/> method in order to see rich options for reporting progress.</remarks>
+	<seelaso cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor"/>
 	<version version="1.5.3">This class implements <see cref="T:Tools.WindowsT.IndependentT.IProgressMonitorUI"/> interface</version>
+	<version version="1.5.3">Added support fro <see cref="T:System.Int32"/>, <see cref="T:System.Array"/> and <see cref="T:Tools.WindowsT.IndependentT.ProgressBarStyle"/> passed in user state of background worker <see cref="E:System.ComponentModel.BackgroundWorker.ProgressChanged"/> event.</version>
 </member><member name="F:Tools.WindowsT.FormsT.DataBoundToolStripLabel._context">
 	<summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.DataBoundToolStripLabel.BindingContext"/> property</summary>
 </member><member name="F:Tools.WindowsT.FormsT.DataBoundToolStripLabel._bindings">
@@ -6071,15 +6085,17 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<remarks>
  Background worker can report status of background process in several ways. In most cases the <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)"/> method is used.
  <list type="table"><listheader><term>UI change requested</term><description>Data to be passed</description></listheader>
-			<item><term>Report percentage progress</term><description>Pass number from range 0÷100 to first parameter of <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)"/>.</description></item>
+			<item><term>Report percentage progress</term><description>Pass number from range 0÷100 to first parameter of <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)"/>. Or pass <see cref="T:System.Int32"/> from range 0÷100 to user state.</description></item>
 			<item><term>Make progress monitor UI ignore reported percentage progress</term><description>Pass number lower than zero to first parameter of <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)"/>.</description></item>
 			<item><term>Change style of progress bar</term><description>Pass value of type <see cref="T:Tools.WindowsT.IndependentT.ProgressBarStyle"/> to user data. <note>Some implementations of <see cref="T:Tools.WindowsT.IndependentT.IProgressMonitorUI"/> may also support values of type <see cref="T:System.Windows.Forms.ProgressBarStyle"/> or may support values which are not explicitly specified for either of these types.</note></description></item>
 			<item><term>Show textual description of current status to user (set the <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.Information"/> property)</term><description>Pass <see cref="T:System.String"/> to user state.</description></item>
 			<item><term>Allow or disallow process cancelllation (set the <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.CanCancel"/> property)</term><description>Pass <see cref="T:System.Boolean"/> to user state. <note>When passing <c>True</c>, <see cref="P:System.ComponentModel.BackgroundWorker.WorkerSupportsCancellation"/> must be <c>True</c> as well.</note></description></item>
 			<item><term>Call the <see cref="M:Tools.WindowsT.IndependentT.IProgressMonitorUI.Reset"/> method</term><see>Pass <see cref="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.BackgroundWorker"/> (same instance) to user data.</see></item>
 			<item><term>Show message box or perform another operation which shall be performed in UI thread.</term><description>Use the <see cref="M:Tools.ThreadingT.IInvoke.Invoke(System.Delegate,System.Object[])"/> function - or better, use one of generic type-safe extension overloads provided by the <see cref="T:Tools.ThreadingT.IInvokeExtensions"/> module.</description></item>
+			<item><term>Perform multiple actions</term><description>Pass <see cref="T:System.Array"/> to user state. Array items are evaluated according to rules stated above.</description></item>
 		</list>
- Actual implementation of <see cref="T:Tools.WindowsT.IndependentT.IProgressMonitorUI"/> may support additional types passed to <see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState"/> and shall ignore any types it does not support. See documentation of <see cref="T:Tools.WindowsT.IndependentT.IProgressMonitorUI"/> implementations such as <see cref="T:Tools.WindowsT.FormsT.ProgressMonitor"/> or <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor"/>.
+ Individual implementations of the <see cref="T:Tools.WindowsT.IndependentT.IProgressMonitorUI"/> interface may support additional types passed to <see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState"/> and shall ignore any types they does not support.
+ See documentation of <see cref="T:Tools.WindowsT.IndependentT.IProgressMonitorUI"/> implementations such as <see cref="T:Tools.WindowsT.FormsT.ProgressMonitor"/> or <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor"/>.
  </remarks>
 </member><member name="P:Tools.WindowsT.IndependentT.IProgressMonitorUI.ProgressBarStyle">
 	<summary>Gets or sets current style of progress bar</summary>
@@ -6875,8 +6891,12 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Shows window modally</summary>
 	<param name="owner">Owner object of dialog. It can be either <see cref="T:System.Windows.Forms.IWin32Window"/> (e.g. <see cref="T:System.Windows.Forms.Form"/>), <see cref="T:System.Windows.Interop.IWin32Window"/> or <see cref="T:System.Windows.Window"/>. When owner is not of recognized type (or is null), it's ignored.</param>
 	<returns>True when dialog was closed normally, false if it was closed because of user has cancelled the operation</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been dispose (<see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.IsDisposed"/> is true).</exception>
 </member><member name="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WindowLoaded">
-	<summary>Raised when window showing progress is shown</summary>
+	<summary>Raised when window showing progress is shown.</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnWindowLoaded(System.Windows.RoutedEventArgs)">
+	<summary>Raises the <see cref="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.WindowLoaded"/> event</summary>
+	<param name="e">Event arguments</param>
 </member><member name="F:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.bgw">
 	<summary>A background worker which does the work</summary>
 </member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker">
@@ -6949,17 +6969,25 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Handles <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>.<see cref="E:System.ComponentModel.BackgroundWorker.ProgressChanged">ProgressChanged</see> event</summary>
 	<param name="sender"><see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/></param>
 	<param name="e">Event erguments</param>
-	<remarks>Default implementation works in following way:
- <list type="bullet">
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than or equal to zero then sets this value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Progress"/> property. Values smaller than zero are ignored.</item>
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Windows.Forms.ProgressBarStyle"/> sets <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressBarStyle"/> to given value</item>
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.String"/> passes that value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Information"/> property.</item>
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:System.Boolean"/> passes that value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CanCancel"/> property.</item>
-			<item>If <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/> (same instance) than <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Reset"/> method is called.</item>
-			<item>if <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> is <see cref="T:Tools.NumericsT.SRational"/> or <see cref="T:Tools.NumericsT.URational"/> passes that value to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressInfo"/> property.</item>
-		</list>
-	</remarks>
+	<remarks>
+ When <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than or equal to zero its passed to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Progress"/> property. Values less than zero are ignored.
+ For information on how this implementation handles <paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState">UserState</see> see <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ApplyUserState(System.Object)"/>.</remarks>
 	<exception cref="T:System.ArgumentException"><paramref name="e"/>.<see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage">ProgressPercentage</see> is greater than 100.</exception>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ApplyUserState(System.Object)">
+	<summary>Applies user state passed to <see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState"/></summary>
+	<param name="userState">User state originally passed to <see cref="P:System.ComponentModel.ProgressChangedEventArgs.UserState"/>.</param>
+	<remarks>This impementation handles <paramref name="userState"/> following way depending on its type:
+ <list type="table">
+			<listheader><term>Type of <paramref name="userState"/></term><description>Action taken</description></listheader>
+			<item><term><see cref="T:System.Windows.Forms.ProgressBarStyle"/> or <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressBarStyle"/></term><description>Value is passsed to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressBarStyle"/> property.</description></item>
+			<item><term><see cref="T:System.String"/></term><description>Value is passed to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Information"/> property.</description></item>
+			<item><term><see cref="T:System.Int32"/> (from range 0÷100)</term><description>Value is passed to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Progress"/> property (same as passing the value to the <see cref="P:System.ComponentModel.ProgressChangedEventArgs.ProgressPercentage"/>)</description></item>
+			<item><term><see cref="T:System.Boolean"/></term><description>Value is passed to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.CanCancel"/> property.</description></item>
+			<item><term><see cref="T:System.ComponentModel.BackgroundWorker"/> (same instance as <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>)</term><description>The <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Reset"/> method is called.</description></item>
+			<item><term><see cref="T:Tools.NumericsT.SRational"/> or <see cref="T:Tools.NumericsT.URational"/></term><description>String representation of value is passed to the <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ProgressInfo"/> property and automatic percent showing based on <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Progress"/> is suspended.</description></item>
+			<item><term><see cref="T:System.Array"/> (any type)</term><description>Calls <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ApplyUserState(System.Object)"/> with individual items of the array.</description></item>
+			<item><term>Null or any other type</term><description>Ignored</description></item>
+		</list></remarks>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnRunWorkerCompleted(System.ComponentModel.BackgroundWorker,System.ComponentModel.RunWorkerCompletedEventArgs)">
 	<summary>Handles <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>.<see cref="E:System.ComponentModel.BackgroundWorker.RunWorkerCompleted">RunWorkerCompleted</see> event.</summary>
 	<param name="sender"><see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/></param>
@@ -6967,6 +6995,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Reset">
 	<summary>Resets the dialog</summary>
 	<remarks>In case you want to use the dialog from multiple runs of <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>, you should call this method before each (excluding first, but you can to) runs of <see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.BackgroundWorker"/>. Alternativly you can report new run using <see cref="M:System.ComponentModel.BackgroundWorker.ReportProgress(System.Int32)"/> - see <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)"/>.</remarks>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed (<see cref="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.IsDisposed"/> is true)</exception>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
 	<summary>Raises the <see cref="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.PropertyChanged"/> event</summary>
 	<param name="e">Event arguments</param>
@@ -6974,7 +7003,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Raises the <see cref="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.PropertyChanged"/> event</summary>
 	<param name="propertyName">The name of the property that changed</param>
 </member><member name="E:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.PropertyChanged">
-	<summary>Occurs when a property value changes.</summary>
+	<summary>Occurs when value of a property changes.</summary>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.IInvoke_Invoke(System.Delegate,System.Object[])">
 	<summary>Synchronously invokes a delegate in UI thread. Implements <see cref="M:Tools.ThreadingT.IInvoke.Invoke(System.Delegate,System.Object[])"/>.</summary>
 	<param name="delegate">A delegate to be invoked</param>
@@ -6982,9 +7011,18 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<returns>Result of delegate call</returns>
 	<remarks>Delegate is invoked in UI thtread only in case UI is shown (window had been shown and has not been closed yet), otherwise (or when <see cref="P:System.Windows.Threading.DispatcherObject.Dispatcher"/> does not require it) delegate is invoked in current thread.
  <para>This function is named <c>IInvoke_Invoke</c> to make extension functions in <see cref="T:Tools.ThreadingT.IInvokeExtensions"/> to be always called instead of this function whan used with <see cref="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor"/>.</para></remarks>
+</member><member name="P:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.IsDisposed">
+	<summary>Gest value indicating if this object has already been disposed</summary>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Dispose(System.Boolean)">
+	<summary>Implements <see cref="M:System.IDisposable.Dispose"/></summary>
+	<param name="disposing">True bif object is being disposed, falsse when object is being finalized</param>
+</member><member name="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Dispose">
+	<summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
+	<remarks><note type="inheritinfo">To override <see cref="T:System.IDisposable"/> behavior override <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.Dispose(System.Boolean)"/> overload instead.</note></remarks>
 </member><member name="T:Tools.WindowsT.WPF.DialogsT.ProgressMonitor">
 	<summary>This class provides predefined progress monitor with <see cref="T:System.Windows.Controls.ProgressBar"/> for <see cref="T:System.ComponentModel.BackgroundWorker"/></summary>
-	<remarks>See documentation of the <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.OnProgressChanged(System.ComponentModel.BackgroundWorker,System.ComponentModel.ProgressChangedEventArgs)"/> method in order to see rich options for reporting progress.</remarks>
+	<remarks>See documentation of the <see cref="M:Tools.WindowsT.WPF.DialogsT.ProgressMonitor.ApplyUserState(System.Object)"/> method in order to review rich options for reporting progress.</remarks>
+	<seelaso cref="T:Tools.WindowsT.FormsT.ProgressMonitor"/>
 </member><member name="M:Tools.WindowsT.WPF.ThreadingT.DispatcherExtensions.Invoke``1(System.Windows.Threading.Dispatcher,System.Func{``0})">
 	<summary>Calls parameter-less function in UI thread</summary>
 	<param name="object">An object to invoke delegate in thread associated with</param>

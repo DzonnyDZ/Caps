@@ -26,19 +26,19 @@ Public Class winSyncImages
     End Sub
 
     Private Sub winSyncImages_Loaded(ByVal sender As Window, ByVal e As System.Windows.RoutedEventArgs) Handles Me.Loaded
-        icImagesInDb.ItemsSource = (From item In Settings.Images.CapsInDatabase Select New ValueContainer(Of Integer)(item)).ToList
-        icImagesInFS.ItemsSource = (From item In Settings.Images.CapsInFileSystem Select New ValueContainer(Of Integer)(item)).ToList
+        icImagesInDb.ItemsSource = New ListWithEvents(Of ValueContainer(Of Integer))(From item In Settings.Images.CapsInDatabase Select New ValueContainer(Of Integer)(item))
+        icImagesInFS.ItemsSource = New ListWithEvents(Of ValueContainer(Of Integer))(From item In Settings.Images.CapsInFileSystem Select New ValueContainer(Of Integer)(item))
         lblImageRoot.Content = My.Settings.ImageRoot
     End Sub
 
     Private Sub btnAdd_Click(ByVal sender As Button, ByVal e As System.Windows.RoutedEventArgs) Handles btnAddDb.Click, btnAddFS.Click
         Dim ic As ItemsControl
         If sender Is btnAddDb Then ic = icImagesInDb Else ic = icImagesInFS
-        DirectCast(ic.ItemsSource, IList(Of ValueContainer(Of Integer))).Add(Nothing)
+        DirectCast(ic.ItemsSource, IList(Of ValueContainer(Of Integer))).Add(0I)
     End Sub
 
     Private Sub btnSaveDb_Click(ByVal sender As Button, ByVal e As System.Windows.RoutedEventArgs) Handles btnSaveDb.Click
-        If (From size In DirectCast(icImagesInDb.ItemsSource, IList(Of ValueContainer(Of Integer))) Group By size Into cnt = Count() Select cnt).Max > 0 Then
+        If DirectCast(icImagesInDb.ItemsSource, IList(Of ValueContainer(Of Integer))).Count > 0 AndAlso (From size In DirectCast(icImagesInDb.ItemsSource, IList(Of ValueContainer(Of Integer))) Group By size Into cnt = Count() Select cnt).Max > 0 Then
             mBox.MsgBox("Unique size must be specified.", MsgBoxStyle.Exclamation, "Save database settings", Me)
             Exit Sub
         End If
@@ -46,7 +46,7 @@ Public Class winSyncImages
     End Sub
 
     Private Sub btnSaveFS_Click(ByVal sender As Button, ByVal e As System.Windows.RoutedEventArgs) Handles btnSaveFS.Click
-        If (From size In DirectCast(icImagesInFS.ItemsSource, IList(Of ValueContainer(Of Integer))) Group By size.Value Into cnt = Count() Select cnt).Max > 0 Then
+        If DirectCast(icImagesInFS.ItemsSource, IList(Of ValueContainer(Of Integer))).Count > 0 AndAlso (From size In DirectCast(icImagesInFS.ItemsSource, IList(Of ValueContainer(Of Integer))) Group By size.Value Into cnt = Count() Select cnt).Max > 0 Then
             mBox.MsgBox("Unique size must be specified.", MsgBoxStyle.Exclamation, "Save database settings", Me)
             Exit Sub
         End If
@@ -122,7 +122,7 @@ DeleteFolder:               Try
         End If
     End Sub
 
-
+#Region "Migration"
     Private Sub btnMigrate_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnMigrate.Click
         'Validation
         If Not chkCapSigns.IsChecked AndAlso Not chkCapTypes.IsChecked AndAlso Not chkMainTypes.IsChecked AndAlso Not chkShapes.IsChecked AndAlso Not chkStorages.IsChecked AndAlso Not chkCaps.IsChecked Then
@@ -165,9 +165,11 @@ DeleteFolder:               Try
             Exit Sub
         End If
 
-        monitor = New ProgressMonitor(worker)
-        monitor.Prompt = "Migrate images"
-        monitor.ShowDialog(Me)
+        Using monitor = New ProgressMonitor(worker)
+            Me.monitor = monitor
+            monitor.Prompt = "Migrate images"
+            monitor.ShowDialog(Me)
+        End Using
         monitor = Nothing
     End Sub
     Private Sub worker_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles worker.DoWork
@@ -179,6 +181,7 @@ DeleteFolder:               Try
             End If
         End Using
     End Sub
+#Region "FS -> Db"
     ''' <summary>Performs migration of images from File System to Database</summary>
     ''' <param name="context">Data context</param>
     ''' <exception cref="ArgumentNullException"><paramref name="context"/> is null</exception>
@@ -331,16 +334,19 @@ DeleteFolder:               Try
         End Try
 
         If monitor.Invoke(Function() chkCaps.IsChecked) Then
+            worker.ReportProgress(-1, "Obtaining list of cap images from database")
             'Caps
+            Dim allImages = context.Images.ToArray
             worker.ReportProgress(-1, ProgressBarStyle.Definite)
             worker.ReportProgress(0, "Caps")
-            Dim count = context.Images.Count
+            worker.ReportProgress(-1, True)
+            Dim count = allImages.Length
             Dim i% = 0
             Dim sizeFolders = From folder In IO.Directory.EnumerateDirectories(My.Settings.ImageRoot)
                               Let match = CapsDataExtensions.imageFolderNameRegExp.Match(IO.Path.GetFileName(folder))
                               Where match.Success
                               Select Path = folder, Size = Integer.Parse(match.Groups!Size.Value, System.Globalization.CultureInfo.InvariantCulture)
-            For Each Image In context.Images
+            For Each Image In allImages
                 If worker.CancellationPending Then Return
                 Try
                     Dim img = Image
@@ -379,7 +385,7 @@ DeleteFolder:               Try
                                 Else 'Smaller to bigger
                                     Continue For
                                 End If
-                                Dim exisiting = (From isi In Image.StoredImages Where Width = saveWidth AndAlso Height = saveHeight).FirstOrDefault
+                                Dim exisiting = (From isi In Image.StoredImages Where isi.Width = saveWidth AndAlso isi.Height = saveHeight).FirstOrDefault
                                 If exisiting IsNot Nothing AndAlso replace Then
                                     context.DeleteObject(exisiting)
                                 ElseIf exisiting IsNot Nothing Then
@@ -435,6 +441,8 @@ DeleteFolder:               Try
             item.AssociateImage(si)
         End Using
     End Sub
+#End Region
+#Region "Db -> FS"
     ''' <summary>Performs migration of images from Database to File System</summary>
     ''' <param name="context">Data context</param>
     ''' <exception cref="ArgumentNullException"><paramref name="context"/> is null</exception>
@@ -585,4 +593,6 @@ DeleteFolder:               Try
         End Try
         Return 0
     End Function
+#End Region
+#End Region
 End Class
