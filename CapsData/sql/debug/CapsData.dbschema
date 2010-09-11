@@ -4273,18 +4273,15 @@ END]]></Value>
 						<Property Name="BodyScript">
 							<Value QuotedIdentifiers="True" AnsiNulls="True"><![CDATA[
 BEGIN
-	
-
-	return case when  @str = '' then null else @str end;
-
-END]]></Value>
+	RETURN CASE WHEN @str = '' THEN NULL ELSE @str END;
+END;]]></Value>
 						</Property>
 						<Annotation Type="SysCommentsObjectAnnotation">
-							<Property Name="CreateOffset" Value="2" />
-							<Property Name="Length" Value="216" />
+							<Property Name="CreateOffset" Value="229" />
+							<Property Name="Length" Value="379" />
 							<Property Name="StartLine" Value="1" />
 							<Property Name="StartColumn" Value="1" />
-							<Property Name="HeaderContents" Value="&#xD;&#xA;CREATE FUNCTION [dbo].[EmptyStrToNull] &#xD;&#xA;(&#xD;&#xA;&#x9;-- Add the parameters for the function here&#xD;&#xA;&#x9;@str nvarchar(MAX) &#xD;&#xA;)&#xD;&#xA;RETURNS nvarchar(MAX)&#xD;&#xA;AS" />
+							<Property Name="HeaderContents" Value="--- &lt;summary&gt;Converts an empty string to null value&lt;/summary&gt;&#xD;&#xA;--- &lt;param name=&quot;str&quot;&gt;A string value&lt;/param&gt;&#xD;&#xA;--- &lt;returns&gt;Null when &lt;paramref name=&quot;str&quot;/&gt; is an empty string; &lt;paramref name=&quot;str&quot;/&gt; unchanged otherwise&lt;/returns&gt;&#xD;&#xA;CREATE FUNCTION [dbo].[EmptyStrToNull](@str nvarchar(MAX)) RETURNS nvarchar(MAX) AS" />
 						</Annotation>
 					</Element>
 				</Entry>
@@ -5389,18 +5386,17 @@ END]]></Value>
 						<Property Name="BodyScript">
 							<Value QuotedIdentifiers="True" AnsiNulls="True"><![CDATA[
 BEGIN
-declare @dbGuid nvarchar(38) = '{DAFDAE3F-2F0A-4359-81D6-50BA394D72D9}';
-declare @dbVersion nvarchar(11) = '0.1.5.0';
-return @dbGuid + @dbversion;
-
+    DECLARE @dbGuid NVARCHAR(38) = '{DAFDAE3F-2F0A-4359-81D6-50BA394D72D9}';
+    DECLARE @dbVersion NVARCHAR(11) = '0.1.5.0';
+    RETURN @dbGuid + @dbversion;
 END;]]></Value>
 						</Property>
 						<Annotation Type="SysCommentsObjectAnnotation">
-							<Property Name="CreateOffset" Value="152" />
-							<Property Name="Length" Value="388" />
+							<Property Name="CreateOffset" Value="169" />
+							<Property Name="Length" Value="413" />
 							<Property Name="StartLine" Value="1" />
 							<Property Name="StartColumn" Value="1" />
-							<Property Name="HeaderContents" Value="&#xD;&#xA;--------------------------------------------------------------------------------------------------------------------------------&#xD;&#xA;--Increase version&#xD;&#xA;CREATE FUNCTION [dbo].[GetDatabaseVersion] ()&#xD;&#xA;RETURNS nvarchar(50)&#xD;&#xA;AS" />
+							<Property Name="HeaderContents" Value="--- &lt;summaray&gt;Gets current version number of database&lt;/summary&gt;&#xD;&#xA;--- &lt;returns&gt;A string containing a database GUID in braces ({}) followed by database version&lt;/returns&gt;&#xD;&#xA;CREATE FUNCTION [dbo].[GetDatabaseVersion] () RETURNS nvarchar(50) AS" />
 						</Annotation>
 					</Element>
 				</Entry>
@@ -6582,10 +6578,11 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="5363" />
+				<Property Name="CreateOffset" Value="4475" />
+				<Property Name="Length" Value="9838" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetSimilarCaps] &#xD;&#xA;&#x9;-- Add the parameters for the stored procedure here&#xD;&#xA;&#x9;@CapTypeID int = null, &#xD;&#xA;&#x9;@MainTypeID int = null,&#xD;&#xA;&#x9;@ShapeID int = null,&#xD;&#xA;&#x9;@CapName varchar(255) = null,&#xD;&#xA;&#x9;@MainText varchar(255) = null,&#xD;&#xA;&#x9;@SubTitle varchar(255) = null,&#xD;&#xA;&#x9;@BackColor1 int = null,&#xD;&#xA;&#x9;@BackColor2 int = null,&#xD;&#xA;&#x9;@ForeColor int = null,&#xD;&#xA;&#x9;@MainPicture varchar(255) = null,&#xD;&#xA;&#x9;@TopText varchar(max)=null,&#xD;&#xA;&#x9;@SideText varchar(max)=null,&#xD;&#xA;&#x9;@BottomText varchar(max)=null,&#xD;&#xA;&#x9;@MaterialID int =null,&#xD;&#xA;&#x9;@Surface char(1) =null,&#xD;&#xA;&#x9;@Size int = null,&#xD;&#xA;&#x9;@Size2 int = null,&#xD;&#xA;&#x9;@Height int = null,&#xD;&#xA;&#x9;@Is3D bit = null,&#xD;&#xA;&#x9;@Year int = null,&#xD;&#xA;&#x9;@CountryCode char(2)= null,&#xD;&#xA;&#x9;@Note varchar(max)= null,&#xD;&#xA;&#x9;@CompanyID int= null,&#xD;&#xA;&#x9;@ProductID int = null,&#xD;&#xA;&#x9;@ProductTypeID int = null,&#xD;&#xA;&#x9;@StorageID int = null,&#xD;&#xA;&#x9;@ForeColor2 int = null,&#xD;&#xA;&#x9;@PictureType char(1) = null,&#xD;&#xA;&#x9;@HasBottom bit =  null,&#xD;&#xA;&#x9;@HasSide bit = null,&#xD;&#xA;&#x9;@AnotherPictures varchar(max)= null,&#xD;&#xA;&#x9;@CategoryIDs dbo.IntTable readonly,&#xD;&#xA;&#x9;@Keywords dbo.VarCharTable readonly,&#xD;&#xA;&#x9;@CountryOfOrigin char(3) = null,&#xD;&#xA;&#x9;@IsDrink bit = null,&#xD;&#xA;&#x9;@State smallint = null,&#xD;&#xA;&#x9;@TargetID int = null,&#xD;&#xA;&#x9;@IsAlcoholic bit = null,&#xD;&#xA;&#x9;@CapSignIDs dbo.IntTable readonly&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="--- &lt;summary&gt;Searches for firts 100 caps similar to cap with given characteristics&lt;/summary&gt;&#xD;&#xA;--- &lt;param name=&quot;CapTypeID&quot;&gt;ID of cap type (&lt;see cref=&quot;Cap.CapTypeID&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;CapTypeID&quot;&gt;ID of main type (&lt;see cref=&quot;Cap.MainTypeID&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;CapTypeID&quot;&gt;ID of shape (&lt;see cref=&quot;Cap.ShapeID&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;CapName&quot;&gt;Name of cap (&lt;see cref=&quot;Cap.CapName&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;MainText&quot;&gt;Main text of cap (&lt;see cref=&quot;Cap.MainText&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;SubTitle&quot;&gt;Secondary text of cap (&lt;see cref=&quot;Cap.SubTitle&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;BackColor1&quot;&gt;Primary background color (RGB value, &lt;see cref=&quot;Cap.BackColor1&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;BackColor2&quot;&gt;secondary background color (RGB value, &lt;see cref=&quot;Cap.BackColor2&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;ForeColor&quot;&gt;Primary fore color (RGB value, &lt;see cref=&quot;Cap.ForeColor&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;MainPicture&quot;&gt;Description of cap primary picture (&lt;see cref=&quot;Cap.MainPicture&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;TopText&quot;&gt;Text of top side of cap (&lt;see cref=&quot;Cap.TopText&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;SideText&quot;&gt;Text of side of cap (&lt;see cref=&quot;Cap.SideText&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;BottomText&quot;&gt;text of bottom side of cap (&lt;see cref=&quot;Cap.BottomText&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;MaterialID&quot;&gt;ID of material cap is made from (&lt;see cref=&quot;Cap.MaterialID&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;Surface&quot;&gt;Type of cap surface - G for glossy, M for matting (&lt;see cref=&quot;Cap.Surface&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;Size&quot;&gt;Primary dimension of cap in millimeters (&lt;see cref=&quot;Cap.Size&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;Size2&quot;&gt;Secondary dimension of cap in millimeters (&lt;see cref=&quot;Cap.Size2&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;Height&quot;&gt;Height of cap in millimeters (Z-size, &lt;see cref=&quot;Cap.Heigh&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;Is3D&quot;&gt;Indicates if cap surface contains 3-dimensional drawing or writing (&lt;see cref=&quot;Cap.Is3D&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;MainText&quot;&gt;The yaer cap was found (&lt;see cref=&quot;Cap.Year&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;CountryCode&quot;&gt;ISO 3166 2-letters country code of country cap was found in (&lt;see cref=&quot;Cap.CountryCode&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;Note&quot;&gt;Additional textual note on cap (&lt;see cref=&quot;Cap.Note&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;CompanyID&quot;&gt;ID of company which's product was contained in object (bottle) closed by this cap (&lt;see cref=&quot;Cap.CompanyID&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;ProductID&quot;&gt;ID of product contained in object (bottle) closed by this cap (&lt;see cref=&quot;Cap.ProductID&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;ProductTypeID&quot;&gt;Type of product contained in object (bottle) closed by this cap (&lt;see cref=&quot;Cap.ProductTypeID&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;StorageID&quot;&gt;ID of storage cap is stored in (&lt;see cref=&quot;Cap.StorageID&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;ForeColor2&quot;&gt;Secondary foreground color (RGB value, &lt;see cref=&quot;Cap.ForeColor2&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;PictureType&quot;&gt;Indicates type of the most complicated image shown on ca - G for geometry, L for logo, D for drawing, P for photo (&lt;see cref=&quot;Cap.PictureType&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;HasBottom&quot;&gt;Indicates if there is something notable at cap bottom side (&lt;see cref=&quot;Cap.HasBottom&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;HasSide&quot;&gt;Indicates if there is something notable at cap side (&lt;see cref=&quot;Cap.HasSide&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;AnotherPictures&quot;&gt;Describes all but main pictures show on cap (&lt;see cref=&quot;Cap.AnotherPictures&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;CategoryIDs&quot;&gt;IDs of categories this cap is flagged with (&lt;see cref=&quot;Category.CategoryID&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;Keywords&quot;&gt;Keywords this cap is tagged with (&lt;see cref=&quot;Keyword.Keyword&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;CountryOfOrigin&quot;&gt;ISO 3166 2-letters code of country the cap originates from (&lt;see cref=&quot;Cap.CountryOfOrigin&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;IsDrink&quot;&gt;Indicates whete cap cosed object (bottle) with drink (&lt;see cref=&quot;Cap.IsDrink&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;State&quot;&gt;Indicates state of cap from 1 best to 5 worst (&lt;see cref=&quot;Cap.State&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;TargetID&quot;&gt;ID of object type (e.g. bottle) tha cap was used on (&lt;see cref=&quot;Cap.TargetID&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;IsAlcoholic&quot;&gt;When &lt;paramref name=&quot;IsDrink&quot;/&gt; is true indicate sif the tring was alcoholic (&lt;see cref=&quot;Cap.IsAlcoholic&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;CapSignIDs&quot;&gt;IDs of signs the cap is marked with (&lt;see cref=&quot;CapSign.CapSignID&quot;/&gt;)&lt;/param&gt;&#xD;&#xA;--- &lt;returns&gt;A resultset containing maximally 100 rows from the &lt;see cref=&quot;Cap&quot;/&gt; table most similar to cap described by procedure parameters&lt;/returns&gt;&#xD;&#xA;CREATE PROCEDURE [dbo].[GetSimilarCaps] &#xD;&#xA;&#x9;-- Add the parameters for the stored procedure here&#xD;&#xA;&#x9;@CapTypeID int = null, &#xD;&#xA;&#x9;@MainTypeID int = null,&#xD;&#xA;&#x9;@ShapeID int = null,&#xD;&#xA;&#x9;@CapName varchar(255) = null,&#xD;&#xA;&#x9;@MainText varchar(255) = null,&#xD;&#xA;&#x9;@SubTitle varchar(255) = null,&#xD;&#xA;&#x9;@BackColor1 int = null,&#xD;&#xA;&#x9;@BackColor2 int = null,&#xD;&#xA;&#x9;@ForeColor int = null,&#xD;&#xA;&#x9;@MainPicture varchar(255) = null,&#xD;&#xA;&#x9;@TopText varchar(max)=null,&#xD;&#xA;&#x9;@SideText varchar(max)=null,&#xD;&#xA;&#x9;@BottomText varchar(max)=null,&#xD;&#xA;&#x9;@MaterialID int =null,&#xD;&#xA;&#x9;@Surface char(1) =null,&#xD;&#xA;&#x9;@Size int = null,&#xD;&#xA;&#x9;@Size2 int = null,&#xD;&#xA;&#x9;@Height int = null,&#xD;&#xA;&#x9;@Is3D bit = null,&#xD;&#xA;&#x9;@Year int = null,&#xD;&#xA;&#x9;@CountryCode char(2)= null,&#xD;&#xA;&#x9;@Note varchar(max)= null,&#xD;&#xA;&#x9;@CompanyID int= null,&#xD;&#xA;&#x9;@ProductID int = null,&#xD;&#xA;&#x9;@ProductTypeID int = null,&#xD;&#xA;&#x9;@StorageID int = null,&#xD;&#xA;&#x9;@ForeColor2 int = null,&#xD;&#xA;&#x9;@PictureType char(1) = null,&#xD;&#xA;&#x9;@HasBottom bit =  null,&#xD;&#xA;&#x9;@HasSide bit = null,&#xD;&#xA;&#x9;@AnotherPictures varchar(max)= null,&#xD;&#xA;&#x9;@CategoryIDs dbo.IntTable readonly,&#xD;&#xA;&#x9;@Keywords dbo.VarCharTable readonly,&#xD;&#xA;&#x9;@CountryOfOrigin char(3) = null,&#xD;&#xA;&#x9;@IsDrink bit = null,&#xD;&#xA;&#x9;@State smallint = null,&#xD;&#xA;&#x9;@TargetID int = null,&#xD;&#xA;&#x9;@IsAlcoholic bit = null,&#xD;&#xA;&#x9;@CapSignIDs dbo.IntTable readonly&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="ISql90CheckConstraint" Name="[dbo].[CHK_Cap_AnotherPictures_MainPicture]">
@@ -7475,7 +7472,7 @@ END;]]></Value>
 		</Element>
 		<Element Type="ISql90CheckConstraint" Name="[dbo].[CHK_StoredImage_OneReference]">
 			<Property Name="CheckExpressionScript">
-				<Value><![CDATA[(((((case when [ImageID] IS NULL then (1) else (0) end+case when [CapSignID] IS NULL then (1) else (0) end)+case when [CapTypeID] IS NULL then (1) else (0) end)+case when [MainTypeID] IS NULL then (1) else (0) end)+case when [ShapeID] IS NULL then (1) else (0) end)+case when [StorageID] IS NULL then (1) else (0) end)=(1)]]></Value>
+				<Value><![CDATA[(((((case when [ImageID] IS NULL then (0) else (1) end+case when [CapSignID] IS NULL then (0) else (1) end)+case when [CapTypeID] IS NULL then (0) else (1) end)+case when [MainTypeID] IS NULL then (0) else (1) end)+case when [ShapeID] IS NULL then (0) else (1) end)+case when [StorageID] IS NULL then (0) else (1) end)=(1)]]></Value>
 			</Property>
 			<Relationship Name="CheckExpressionDependencies">
 				<Entry>
@@ -7788,14 +7785,14 @@ END;]]></Value>
 BEGIN
 	DECLARE @Cmd NVARCHAR(MAX) = 'SELECT COUNT(*) INTO @Count FROM dbo.CapEx c WHERE c.CapID = @CapID AND (' + @PseudoCategoryCondition + ')'
 	DECLARE @Count INT;
-	EXEC sp_executesql @Cmd, N'@CapID INT, @Count INT OUT', @CapID, @Count;
+	EXEC SYS.sp_executesql @Cmd, N'@CapID INT, @Count INT OUT', @CapID, @Count;
 	IF @Count > 0 RETURN 1;
 	RETURN 0;
 END]]></Value>
 						</Property>
 						<Annotation Type="SysCommentsObjectAnnotation">
 							<Property Name="CreateOffset" Value="443" />
-							<Property Name="Length" Value="853" />
+							<Property Name="Length" Value="857" />
 							<Property Name="StartLine" Value="1" />
 							<Property Name="StartColumn" Value="1" />
 							<Property Name="HeaderContents" Value="--- &lt;summary&gt;Tests if given Cap (represented by ID) belongs to given PseudoCategory (represented by condition)&lt;/summary&gt;&#xD;&#xA;--- &lt;param name=&quot;CapID&quot;&gt;ID of Cap (&lt;see cref=&quot;Cap.CapID&quot;/&gt;) to test&lt;/param&gt;&#xD;&#xA;--- &lt;param name=&quot;PseudoCategoryCondition&quot;&gt;PseudoCategory condition - valid SQL code for WHERE clause&lt;/param&gt;&#xD;&#xA;--- &lt;returns&gt;True when &lt;paramref name=&quot;PseudoCategoryCondition&quot;/&gt; is tru for Cap &lt;paramref name=&quot;CapID&quot;/&gt;; false otherwise&lt;/returns&gt;&#xD;&#xA;CREATE FUNCTION [dbo].[IsCapInPseudoCategory]&#xD;&#xA;(&#xD;&#xA;&#x9;@CapID INT,&#xD;&#xA;&#x9;@PseudoCategoryCondition NVARCHAR(1024)&#xD;&#xA;)&#xD;&#xA;RETURNS BIT&#xD;&#xA;AS" />
@@ -13859,10 +13856,11 @@ END;]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="1488" />
+				<Property Name="CreateOffset" Value="189" />
+				<Property Name="Length" Value="1677" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE usp_RethrowError AS" />
+				<Property Name="HeaderContents" Value="--- &lt;summary&gt;Rethrows the current error&lt;/summary&gt;&#xD;&#xA;--- &lt;remarks&gt;Call this procedure in &lt;c&gt;CATCH&lt;/c&gt; handler. It reconstructs current error caught by the handler and re-throws is&lt;/remarks&gt;&#xD;&#xA;CREATE PROCEDURE usp_RethrowError AS" />
 			</Annotation>
 		</Element>
 		<Element Type="ISql100TableType" Name="[dbo].[VarCharTable]">
