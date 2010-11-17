@@ -10,12 +10,13 @@
     xmlns:MyMy="clr-namespace:Caps.Console.My"
     xmlns:ToolsC="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
     xmlns:m="clr-namespace:Wpf.Controls;assembly=Wpf.SplitButton"
+    xmlns:convertersT="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
     FocusManager.FocusedElement="{Binding ElementName=txtCapName}"             
 >
     <UserControl.Resources>
-        <my:NullFalseConverter x:Key="NullFalseConverter"/>
+        <convertersT:NullFalseConverter x:Key="NullFalseConverter"/>
         <my:ObjectImageConverter x:Key="ObjectImageConverter"/>
-        <my:FileNameConverter x:Key="FileNameConverter"/>
+        <convertersT:FileNameConverter x:Key="FileNameConverter"/>
         <my:CountryCodeFlagConverter x:Key="CountryCodeFlagConverter"/>
         <sys:Int32 x:Key="i64">64</sys:Int32>
         <sys:Int32 x:Key="i256">256</sys:Int32>

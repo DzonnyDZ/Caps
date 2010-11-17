@@ -5,30 +5,31 @@
     xmlns:my="clr-namespace:Caps.Console"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:t.c="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
+    xmlns:convertersT="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
     Title="{x:Static res:Resources.txt_CapDetails}" Height="850" Width="1000"
-        DataContext="{Binding SelectedItem, ElementName=lstCaps, Mode=OneWay}"
-        Icon="/CapsConsole;component/Resources/Cap.ico"
-        >
+    DataContext="{Binding SelectedItem, ElementName=lstCaps, Mode=OneWay}"
+    Icon="/CapsConsole;component/Resources/Cap.ico"
+>
     <Window.Resources>
         <sys:Int32 x:Key="i64">64</sys:Int32>
         <sys:Int32 x:Key="i256">256</sys:Int32>
-        <my:NullFalseConverter x:Key="NullFalseConverter"/>
+        <convertersT:NullFalseConverter x:Key="NullFalseConverter"/>
         <my:ObjectImageConverter x:Key="ObjectImageConverter"/>
         <my:PictureTypeConverter x:Key="PictureTypeConverter"/>
-        <my:IntColorConverter x:Key="IntColorConverter"/>
+        <convertersT:IntColorConverter x:Key="IntColorConverter"/>
         <t.c:CompareConverter x:Key="CompareConverter"/>
         <sys:Int32 x:Key="iOne">1</sys:Int32>
-        <my:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
+        <convertersT:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
         <my:CountryCodeFlagConverter x:Key="CountryCodeFlagConverter"/>
-        <my:NestedConverter x:Key="Count1HiddenConverter"
+        <convertersT:NestedConverter x:Key="Count1HiddenConverter"
             Inner="{StaticResource CompareConverter}"
             Outer="{StaticResource BooleanVisibilityConverter}"
             InnerParam="{StaticResource iOne}"
             OuterParam="!"/>
         <!--<my:StringFormatConverter x:Key="StringFormatConverter"/>-->
-        <my:NotVisibilityConverter x:Key="NotVisibilityConverter"/>
+        <convertersT:NotVisibilityConverter x:Key="NotVisibilityConverter"/>
         <my:IntColorNameConverter x:Key="IntColorNameConverter"/>
-        <my:NotColorConverter x:Key="NotColorConverter"/>
+        <convertersT:NotColorConverter x:Key="NotColorConverter"/>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="ApplicationCommands.Open" x:Name="cmdEdit"/>

@@ -33,7 +33,7 @@
 
 
         <conv:NotBooleanValueConverter x:Key="NotBooleanValueConverter"/>
-        <my:HalfConverter x:Key="HalfConverter"/>
+        <convertersT:HalfConverter x:Key="HalfConverter"/>
 
         <ControlTemplate TargetType="{x:Type controlsT:NumericUpDown}" x:Key="NumericUpDownDefaultTemplate">
             <Grid Margin="0" Focusable="False" >

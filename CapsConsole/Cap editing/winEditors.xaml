@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:Caps.Console" 
         xmlns:res="clr-namespace:Caps.Console.My.Resources"
+        xmlns:convertersT="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
         Title="{x:Static res:Resources.txt_ListEditors}" Height="336" Width="813" ShowInTaskbar="False" Icon="/CapsConsole;component/Resources/Cap.ico">
     <Window.Resources>
         <Style TargetType="TextBox" x:Key="MultilineInGrid">
@@ -10,7 +11,7 @@
             <Setter Property="AcceptsReturn" Value="True"/>
             <Setter Property="MinLines" Value="2"/>
         </Style>
-        <my:SameTypeOrNullConverter x:Key="NullConverter"/>
+        <convertersT:SameTypeOrNullConverter x:Key="NullConverter"/>
     </Window.Resources>
     <Grid  >
         <Grid.RowDefinitions>

@@ -6,11 +6,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:res="clr-namespace:Caps.Console.My.Resources"
         xmlns:my="clr-namespace:Caps.Console"
+        xmlns:convertersT="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
         Title="{x:Static res:Resources.txt_NewShape}" Height="222" Width="373" SizeToContent="Height" MinWidth="300"
         ShowInTaskbar="False" Icon="{x:Null}"
         FocusManager.FocusedElement="{Binding ElementName=txtName}">
     <my:CreateNewObjectDialogBase.Resources>
-        <my:CachedImageConverter x:Key="CachedImageConverter"/>
+        <convertersT:CachedImageConverter x:Key="CachedImageConverter"/>
     </my:CreateNewObjectDialogBase.Resources>
     <Grid>
         <Grid.ColumnDefinitions >

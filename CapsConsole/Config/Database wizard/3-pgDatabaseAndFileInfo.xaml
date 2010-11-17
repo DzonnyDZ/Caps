@@ -4,13 +4,14 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib"        
     xmlns:res="clr-namespace:Caps.Console.My.Resources"
     xmlns:my="clr-namespace:Caps.Console"
+    xmlns:convertersT="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
     x:Class="pgCredentials"
     x:TypeArguments="sys:Boolean"
     KeepAlive="True"
     WindowTitle="{x:Static res:Resources.wiz_txt_DatabaseAndFileSelection}"
 >
     <FrameworkElement.Resources>
-        <my:CompareConverterEx x:Key="CompareConverterEx"/>
+        <convertersT:CompareConverterEx x:Key="CompareConverterEx"/>
     </FrameworkElement.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

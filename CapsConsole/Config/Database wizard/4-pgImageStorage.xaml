@@ -4,6 +4,7 @@
     xmlns:sys="clr-namespace:System;assembly=mscorlib" 
     xmlns:res="clr-namespace:Caps.Console.My.Resources"
     xmlns:tc="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
+    xmlns:convertersT="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
     x:Class="pgImageStorage"
     x:TypeArguments="sys:Boolean"
     xmlns:my="clr-namespace:Caps.Console"
@@ -13,8 +14,8 @@
     <FrameworkElement.Resources>
         <my:OrBooleanConverter x:Key="OrBooleanConverter"/>
         <my:AndBooleanConverter x:Key="AndBooleanConverter"/>
-        <my:EnumInConverter x:Key="EnumInConverter"/>
-        <my:NotVisibilityConverter x:Key="NotVisibilityConverter"/>
+        <convertersT:EnumInConverter x:Key="EnumInConverter"/>
+        <convertersT:NotVisibilityConverter x:Key="NotVisibilityConverter"/>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <tc:NotBooleanValueConverter x:Key="NotBooleanValueConverter"/>
       </FrameworkElement.Resources>

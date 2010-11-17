@@ -10,7 +10,7 @@
     <Window.Resources>
         <convertersT:NullInvisibleConverter x:Key="NullInvisibleConverter"/>
         <convertersT:IsNotNullConverter x:Key="IsNotNullConverter"/>
-        <my:CachedImageConverter x:Key="CachedImageConverter"/>
+        <convertersT:CachedImageConverter x:Key="CachedImageConverter"/>
     </Window.Resources>
     <DockPanel>
         <GroupBox Header="{x:Static res:Resources.txt_EligibleCaps}" DockPanel.Dock="Left">

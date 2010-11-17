@@ -380,7 +380,6 @@
     <Compile Include="Cap editing\CapEditor.xaml.vb">
       <DependentUpon>CapEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="XAML helpers\Converters.Copied.vb" />
     <Compile Include="XAML helpers\MarkupExtensions.vb" />
     <Compile Include="Misc.vb" />
     <Compile Include="Config\Settings.vb" />
@@ -417,7 +416,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="XAML helpers\Converters.vb" />
     <Compile Include="Cap editing\winEditors.xaml.vb">
       <DependentUpon>winEditors.xaml</DependentUpon>
     </Compile>

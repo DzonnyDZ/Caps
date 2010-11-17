@@ -11,20 +11,20 @@
              d:DesignHeight="900" d:DesignWidth="448">
     <UserControl.Resources>
         <my:PictureTypeConverter x:Key="PictureTypeConverter"/>
-        <my:IntColorConverter x:Key="IntColorConverter"/>
+        <convertersT:IntColorConverter x:Key="IntColorConverter"/>
         <my:IntColorNameConverter x:Key="IntColorNameConverter"/>
-        <my:BooleanToCharConverter x:Key="BooleanToCharConverter"/>
+        <convertersT:BooleanToCharConverter x:Key="BooleanToCharConverter"/>
         <convertersT:CompareConverter x:Key="CompareConverter"/>
-        <my:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
-        <my:NestedConverter x:Key="G-VisibleConverter" Outer="{StaticResource BooleanVisibilityConverter}" InnerParam="G" Inner="{StaticResource CompareConverter}"/>
-        <my:NestedConverter x:Key="M-VisibleConverter" Outer="{StaticResource BooleanVisibilityConverter}" InnerParam="M" Inner="{StaticResource CompareConverter}"/>
+        <convertersT:BooleanVisibilityConverter x:Key="BooleanVisibilityConverter"/>
+        <convertersT:NestedConverter x:Key="G-VisibleConverter" Outer="{StaticResource BooleanVisibilityConverter}" InnerParam="G" Inner="{StaticResource CompareConverter}"/>
+        <convertersT:NestedConverter x:Key="M-VisibleConverter" Outer="{StaticResource BooleanVisibilityConverter}" InnerParam="M" Inner="{StaticResource CompareConverter}"/>
         <my:ObjectImageConverter x:Key="ObjectImageConverter"/>
         <convertersT:NullInvisibleConverter x:Key="NullInvisibleConverter"/>
         <my:CountryCodeNameConverter x:Key="CountryCodeNameConverter"/>
         <my:CountryCodeFlagConverter x:Key="CountryCodeFlagConverter"/>
-        <my:ConcatConverter x:Key="ConcatConverter_CategoryName" PropertyName="CategoryName"/>
-        <my:ConcatConverter x:Key="ConcatConverter_KeywordName" PropertyName="KeywordName"/>
-        <my:NotColorConverter x:Key="NotColorConverter"/>
+        <convertersT:ConcatConverter x:Key="ConcatConverter_CategoryName" PropertyName="CategoryName"/>
+        <convertersT:ConcatConverter x:Key="ConcatConverter_KeywordName" PropertyName="KeywordName"/>
+        <convertersT:NotColorConverter x:Key="NotColorConverter"/>
         <sys:Int32 x:Key="i64">64</sys:Int32>
         <sys:Int32 x:Key="i128">128</sys:Int32>
     </UserControl.Resources>
