@@ -96,4 +96,61 @@ Partial Public Class winCapDetails
             End Try
         End If
     End Sub
+
+    Private Sub SeachForSimilar_Click(sender As System.Object, e As System.Windows.RoutedEventArgs)
+        If lstCaps.SelectedItems.Count <> 1 Then
+            mBox.MsgBox(My.Resources.err_SelectExactlyOneCap, MsgBoxStyle.Information, My.Resources.txt_CapsSearchSimilar, Me)
+            Return
+        End If
+
+        Dim cap = lstCaps.SelectedItems.OfType(Of Cap)().First
+        Using context = New CapsDataContext(Main.EntityConnection)
+            Dim caps = context.GetSimilarCaps(
+                CapTypeID:=cap.CapTypeID,
+                MainTypeID:=cap.MainTypeID,
+                ShapeID:=cap.ShapeID,
+                CapName:=cap.CapName,
+                MainText:=cap.MainText,
+                SubTitle:=cap.SubTitle,
+                BackColor1:=cap.BackColor1,
+                BackColor2:=cap.BackColor2,
+                ForeColor:=cap.ForeColor,
+                MainPicture:=cap.MainPicture,
+                TopText:=cap.TopText,
+                SideText:=cap.SideText,
+                BottomText:=cap.BottomText,
+                MaterialID:=cap.MaterialID,
+                Surface:=cap.Surface,
+                Size:=cap.Size,
+                Size2:=cap.Size2,
+                Height:=cap.Height,
+                Is3D:=cap.Is3D,
+                Year:=cap.Year,
+                CountryCode:=cap.CountryCode,
+                Note:=cap.Note,
+                CompanyID:=cap.CompanyID,
+                ProductID:=cap.ProductID,
+                ProductTypeID:=cap.ProductTypeID,
+                StorageID:=cap.StorageID,
+                ForeColor2:=cap.ForeColor2,
+                PictureType:=cap.PictureType,
+                HasBottom:=cap.HasBottom,
+                HasSide:=cap.HasSide,
+                AnotherPictures:=cap.AnotherPictures,
+                CategoryIDs:=(From cat In cap.Categories Select cat.CategoryID).ToArray,
+                Keywords:=(From keyword In cap.Keywords Select keyword.KeywordName).ToArray,
+                CountryOfOrigin:=cap.CountryOfOrigin,
+                IsDrink:=cap.IsDrink,
+                State:=cap.State,
+                TargetID:=cap.TargetID,
+                IsAlcoholic:=cap.IsAlcoholic,
+                CapSignIDs:=(From sign In cap.CapSigns Select sign.CapSignID).ToArray
+            )
+
+            Dim win As New winCapDetails(caps)
+            win.Owner = Me.FindAncestor(Of Window)()
+            win.Title = My.Resources.txt_SearchResults
+            win.ShowDialog()
+        End Using
+    End Sub
 End Class

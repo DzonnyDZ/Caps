@@ -1930,4 +1930,7 @@ Note: If you cancel this dialog, you may have troubles seeing images.</value>
   <data name="txt_ClearImages" xml:space="preserve">
     <value>Clear images</value>
   </data>
+  <data name="txt_CapsSearchSimilar" xml:space="preserve">
+    <value>Search for similar</value>
+  </data>
 </root>

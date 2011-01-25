@@ -875,6 +875,330 @@ Tools
 	<remarks>If you need convert list of values of inherited type to list of values of parent type use <see cref="T:Tools.CollectionsT.GenericT.ReadOnlyListAdapter`2"/></remarks>
 	<author www="http://dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Release"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
+</member><member name="F:Tools.LinqT.LoopState.Next">
+	<summary>Process value returned from the loop and continue with next iteration</summary>
+	<remarks>Resembles VB <c>Next</c></remarks>
+</member><member name="F:Tools.LinqT.LoopState.Continue">
+	<summary>Ignore value returned from the loop and continue with next iteration</summary>
+	<remarks>Resembles VB <c>Continue</c> / C# <c>continue</c></remarks>
+</member><member name="F:Tools.LinqT.LoopState.Exit">
+	<summary>Ignore value returned from the loop and terminate loop execution</summary>
+	<remarks>Resembles VB <c>Exit For</c> / C# <c>break</c></remarks>
+</member><member name="F:Tools.LinqT.LoopState.Return">
+	<summary>Process value returned from the loop and terminate loop execution</summary>
+</member><member name="T:Tools.LinqT.LoopState">
+	<summary>Identifies states of for loop iteration</summary>
+	<version version="1.5.3">This enumeration is new in version 1.5.3</version>
+</member><member name="T:Tools.LinqT.Increment`1">
+	<summary>Delegate of increment function for for loop</summary>
+	<typeparam name="TI">Type of for loop counter (<c>i</c>)</typeparam>
+	<param name="i">For loop variable to be incremented</param>
+	<version version="1.5.3">This delegate is new in version 1.5.3</version>
+</member><member name="T:Tools.LinqT.LoopBody`2">
+	<summary>Delegate for body of for loop</summary>
+	<typeparam name="TReturn">Type of values returned from loop</typeparam>
+	<typeparam name="TI">Type of loop conter varieble (<c>i</c>)</typeparam>
+	<param name="i">Current value of loop counter. Note: Loop body can alter the value. This value is automatically incremented (if increment function was provided) after each loop iteration.</param>
+	<param name="yield">Value returned as result of this iteration</param>
+	<returns>State value indicating wheather to process <paramref name="yield"/> and how continue after current iteration</returns>
+	<remarks>If you don't plan to use continue or breal -like behavior in your loop, you can use <see cref="T:Tools.LinqT.NonBreakingLoopBody`2"/> isntead</remarks>
+	<version version="1.5.3">This delegate is new in version 1.5.3</version>
+</member><member name="T:Tools.LinqT.NonBreakingLoopBody`2">
+	<summary>Delegate for body of for loop which does not use break and continue statements</summary>
+	<typeparam name="TReturn">Type of values returned from loop</typeparam>
+	<typeparam name="TI">Type of loop conter varieble (<c>i</c>)</typeparam>
+	<param name="i">Current value of loop counter. Note: Loop body can alter the value. This value is automatically incremented (if increment function was provided) after each loop iteration.</param>
+	<param name="yield">Value returned as result of this iteration</param>
+	<remarks>When this delegate is used <see cref="F:Tools.LinqT.LoopState.Next"/> is assomed for all iterations</remarks>
+	<version version="1.5.3">This delegate is new in version 1.5.3</version>
+</member><member name="T:Tools.LinqT.ForEachBody`2">
+	<summary>Delegate for body of for-each loop</summary>
+	<typeparam name="TReturn">Type of value returned from loop</typeparam>
+	<typeparam name="TItem">Type of for-each item</typeparam>
+	<param name="item">Current item of for-each processing</param>
+	<param name="yield">Value returned as result of this iteration</param>
+	<returns>State value indicating wheather to process <paramref name="yield"/> and how continue after current iteration</returns>
+	<remarks>If you don't plan to use continue or breal -like behavior in your loop, you can use <see cref="T:Tools.LinqT.NonBreakingForEachBody`2"/> isntead</remarks>
+	<version version="1.5.3">This delegate is new in version 1.5.3</version>
+</member><member name="T:Tools.LinqT.NonBreakingForEachBody`2">
+	<summary>Delegate for body of for-each loop which does not use break and continue statements</summary>
+	<typeparam name="TReturn">Type of value returned from loop</typeparam>
+	<typeparam name="TItem">Type of for-each item</typeparam>
+	<param name="item">Current item of for-each processing</param>
+	<param name="yield">Value returned as result of this iteration</param>
+	<remarks>If you don't plan to use continue or breal -like behavior in your loop, you can use <see cref="T:Tools.LinqT.NonBreakingForEachBody`2"/> isntead</remarks>
+	<version version="1.5.3">This delegate is new in version 1.5.3</version>
+</member><member name="F:Tools.LinqT.ForLoopCollection`2.initialize">
+	<summary>Function used to initialize for loop</summary>
+</member><member name="F:Tools.LinqT.ForLoopCollection`2.condition">
+	<summary>Function used as condition indicating wheather to continue with next iteration or not</summary>
+</member><member name="F:Tools.LinqT.ForLoopCollection`2.increment">
+	<summary>Function used to increment current value, ignored if null</summary>
+</member><member name="F:Tools.LinqT.ForLoopCollection`2.loop">
+	<summary>Function representing loop body</summary>
+</member><member name="F:Tools.LinqT.ForLoopCollection`2.started">
+	<summary>True indicates that iteration has started (<see cref="F:Tools.LinqT.ForLoopCollection`2.initialize"/> was executed)</summary>
+</member><member name="F:Tools.LinqT.ForLoopCollection`2.finished">
+	<summary>True indicatees that iteration has finished (<see cref="F:Tools.LinqT.ForLoopCollection`2.condition"/> returned false or <see cref="F:Tools.LinqT.ForLoopCollection`2.loop"/> returned <see cref="F:Tools.LinqT.LoopState.Exit"/> or <see cref="!:LoopState.Break"/>).</summary>
+</member><member name="F:Tools.LinqT.ForLoopCollection`2.currVal">
+	<summary>Current value obtained from loop</summary>
+</member><member name="F:Tools.LinqT.ForLoopCollection`2.i">
+	<summary>Current value of iterator</summary>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.#ctor(System.Func{`1},System.Func{`1,System.Boolean},Tools.LinqT.Increment{`1},Tools.LinqT.LoopBody{`0,`1})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`2"/> class. Increment passed by reference, loop can use break and continue</summary>
+	<param name="initialize">Function to be used to initialized iteration. It returns initial value of iterator. Called once before the iteration starts (and again if <see cref="M:Tools.LinqT.ForLoopCollection`2.Reset"/> was called).</param>
+	<param name="condition">Function to test wheather to continue in iteration or not. Called before each iteration including the first one. If it returns true iteration is entered, if it returns false iteration ends and <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/> returns false.</param>
+	<param name="increment">Function used to increment value. Called after each loop execution (unless termination was indicated). Value of iteration variable to this function is passed by reference and function should change it to a new value used in next loop iteration. This parameter is ignored if null. In such case incrementation logic should be in <see cref="F:Tools.LinqT.ForLoopCollection`2.condition"/> or <see cref="F:Tools.LinqT.ForLoopCollection`2.loop"/>.</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter. The function returns value indicating how to process value returned through the second parameter and wheather to continue the loop. When this function returns value that is not defined in the <see cref="T:Tools.LinqT.LoopState"/> enumeration a <see cref="T:System.ComponentModel.InvalidEnumArgumentException"/> is thrown by <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/>.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="initialize"/>, <paramref name="condition"/> or <paramref name="loop"/> is null.</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.#ctor(System.Func{`1},System.Func{`1,System.Boolean},Tools.LinqT.Increment{`1},Tools.LinqT.NonBreakingLoopBody{`0,`1})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`2"/> class. Increment passed by reference, loop cannot use break and continue</summary>
+	<param name="initialize">Function to be used to initialized iteration. It returns initial value of iterator. Called once before the iteration starts (and again if <see cref="M:Tools.LinqT.ForLoopCollection`2.Reset"/> was called).</param>
+	<param name="condition">Function to test wheather to continue in iteration or not. Called before each iteration including the first one. If it returns true iteration is entered, if it returns false iteration ends and <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/> returns false.</param>
+	<param name="increment">Function used to increment value. Called after each loop execution (unless termination was indicated). Value of iteration variable to this function is passed by reference and function should change it to a new value used in next loop iteration. This parameter is ignored if null. In such case incrementation logic should be in <see cref="F:Tools.LinqT.ForLoopCollection`2.condition"/> or <see cref="F:Tools.LinqT.ForLoopCollection`2.loop"/>.</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="initialize"/>, <paramref name="condition"/> or <paramref name="loop"/> is null.</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.#ctor(System.Func{`1},System.Func{`1,System.Boolean},System.Func{`1,`1},Tools.LinqT.LoopBody{`0,`1})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`2"/> class. Increment passed by value, loop can use break and continue</summary>
+	<param name="initialize">Function to be used to initialized iteration. It returns initial value of iterator. Called once before the iteration starts (and again if <see cref="M:Tools.LinqT.ForLoopCollection`2.Reset"/> was called).</param>
+	<param name="condition">Function to test wheather to continue in iteration or not. Called before each iteration including the first one. If it returns true iteration is entered, if it returns false iteration ends and <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/> returns false.</param>
+	<param name="increment">Function used to increment value. Called after each loop execution (unless termination was indicated). Old iteration variable value is passed here and the function should return new value used in next loop iteration. This parameter is ignored if null. In such case incrementation logic should be in <see cref="F:Tools.LinqT.ForLoopCollection`2.condition"/> or <see cref="F:Tools.LinqT.ForLoopCollection`2.loop"/>.</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter. The function returns value indicating how to process value returned through the second parameter and wheather to continue the loop. When this function returns value that is not defined in the <see cref="T:Tools.LinqT.LoopState"/> enumeration a <see cref="T:System.ComponentModel.InvalidEnumArgumentException"/> is thrown by <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/>.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="initialize"/>, <paramref name="condition"/> or <paramref name="loop"/> is null.</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.#ctor(System.Func{`1},System.Func{`1,System.Boolean},System.Func{`1,`1},Tools.LinqT.NonBreakingLoopBody{`0,`1})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`2"/> class. Increment passed by value, loop cannot use break and continue</summary>
+	<param name="initialize">Function to be used to initialized iteration. It returns initial value of iterator. Called once before the iteration starts (and again if <see cref="M:Tools.LinqT.ForLoopCollection`2.Reset"/> was called).</param>
+	<param name="condition">Function to test wheather to continue in iteration or not. Called before each iteration including the first one. If it returns true iteration is entered, if it returns false iteration ends and <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/> returns false.</param>
+	<param name="increment">Function used to increment value. Called after each loop execution (unless termination was indicated). Old iteration variable value is passed here and the function should return new value used in next loop iteration. This parameter is ignored if null. In such case incrementation logic should be in <see cref="F:Tools.LinqT.ForLoopCollection`2.condition"/> or <see cref="F:Tools.LinqT.ForLoopCollection`2.loop"/>.</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="initialize"/>, <paramref name="condition"/> or <paramref name="loop"/> is null.</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.#ctor(Tools.LinqT.ForLoopCollection{`0,`1})">
+	<summary>Copy CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`2"/> which is clone of another instance.</summary>
+	<param name="other">Instance to clone</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="other"/> is null</exception>
+	<exception cref="T:System.ObjectDisposedException"><paramref name="other"/> is disposed</exception>
+	<remarks>Used by <see cref="M:Tools.LinqT.ForLoopCollection`2.Clone"/>.</remarks>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.GetEnumerator">
+	<summary>Returns an enumerator that iterates through the collection.</summary>
+	<returns>A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<filterpriority>1</filterpriority>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.IEnumerable_GetEnumerator">
+	<summary>Returns an enumerator that iterates through a collection.</summary>
+	<returns>An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<filterpriority>2</filterpriority>
+</member><member name="P:Tools.LinqT.ForLoopCollection`2.Current">
+	<summary>Gets the element in the collection at the current position of the enumerator.</summary>
+	<returns>The element in the collection at the current position of the enumerator.</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+</member><member name="P:Tools.LinqT.ForLoopCollection`2.IEnumerator_Current">
+	<summary>Gets the current element in the collection.</summary>
+	<returns>The current element in the collection.</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<filterpriority>2</filterpriority>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.MoveNext">
+	<summary>Advances the enumerator to the next element of the collection.</summary>
+	<returns>true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException">The loop function returned value that is not defined in <see cref="T:Tools.LinqT.LoopState"/> enumeration.</exception>
+	<filterpriority>2</filterpriority>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.Reset">
+	<summary>Sets the enumerator to its initial position, which is before the first element in the collection.</summary>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<filterpriority>2</filterpriority>
+</member><member name="P:Tools.LinqT.ForLoopCollection`2.IsDisposed">
+	<summary>Gets value indicating if this class was disposed</summary>
+</member><member name="F:Tools.LinqT.ForLoopCollection`2.disposedValue">
+	<summary> To detect redundant calls</summary>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.Dispose(System.Boolean)">
+	<summary>Implements <see cref="M:System.IDisposable.Dispose"/></summary>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.ICloneable_Clone">
+	<summary>Creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance.</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<filterpriority>2</filterpriority>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.Clone">
+	<summary>Creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<remarks><note type="inheritinfo">To override this function, override <see cref="M:Tools.LinqT.ForLoopCollection`2.CloneInternal"/> instead.</note></remarks>
+</member><member name="M:Tools.LinqT.ForLoopCollection`2.CloneInternal">
+	<summary>Internally creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<remarks><note type="inheritinfo">Override this function if you want to override <see cref="M:Tools.ICloneable`1.Clone"/> functionality (the <see cref="M:Tools.LinqT.ForLoopCollection`2.Clone"/> function)</note></remarks>
+</member><member name="T:Tools.LinqT.ForLoopCollection`2">
+	<summary>This class allows to turn any C#/C++-style for loop to <see cref="T:System.Collections.Generic.IEnumerable`1"/>/<see cref="T:System.Collections.Generic.IEnumerator`1"/></summary>
+	<typeparam name="TReturn">Type of values being returned from the loop</typeparam>
+	<typeparam name="TI">Type of loop counter (<c>i</c>)</typeparam>
+	<remarks>Derived classes can work with VB-style for loops and for-each loops.</remarks>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.LinqT.ForLoopCollection`1.#ctor(System.Int32,System.Int32,Tools.LinqT.LoopBody{`0,System.Int32})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`1"/> class resembling loop with increment 1</summary>
+	<param name="from">Start position of the loop</param>
+	<param name="to">Maximum value of the loop</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter. The function returns value indicating how to process value returned through the second parameter and wheather to continue the loop. When this function returns value that is not defined in the <see cref="T:Tools.LinqT.LoopState"/> enumeration a <see cref="T:System.ComponentModel.InvalidEnumArgumentException"/> is thrown by <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/>.</param>
+	<remarks>This constructor creates VB-style loop <c>For i = [from] To [to]</c> or C#-style loop <c>for(int i = from; i &lt;= to; i++)</c></remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> is null</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollection`1.#ctor(System.Int32,System.Int32,System.Int32,Tools.LinqT.LoopBody{`0,System.Int32})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`1"/> class resembling loop with custom increment</summary>
+	<param name="from">Start position of the loop</param>
+	<param name="to">Maximum value of the loop</param>
+	<param name="step">Increment size</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter. The function returns value indicating how to process value returned through the second parameter and wheather to continue the loop. When this function returns value that is not defined in the <see cref="T:Tools.LinqT.LoopState"/> enumeration a <see cref="T:System.ComponentModel.InvalidEnumArgumentException"/> is thrown by <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/>.</param>
+	<remarks>This constructor creates VB-style loop <c>For i = [from] To [to] Step [step]</c> or C#-style loop <c>for(int i = from; i &lt;= to; i += step)</c></remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> is null</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollection`1.#ctor(System.Int32,System.Int32,Tools.LinqT.NonBreakingLoopBody{`0,System.Int32})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`1"/> class resembling loop with increment 1, loop cannot be prematurely terminated</summary>
+	<param name="from">Start position of the loop</param>
+	<param name="to">Maximum value of the loop</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter.</param>
+	<remarks>This constructor creates VB-style loop <c>For i = [from] To [to]</c> or C#-style loop <c>for(int i = from; i &lt;= to; i++)</c></remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> is null</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollection`1.#ctor(System.Int32,System.Int32,System.Int32,Tools.LinqT.NonBreakingLoopBody{`0,System.Int32})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`1"/> class resembling loop with custom increment, loop cannot be prematurely terminated</summary>
+	<param name="from">Start position of the loop</param>
+	<param name="to">Maximum value of the loop</param>
+	<param name="step">Increment size</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter.</param>
+	<remarks>This constructor creates VB-style loop <c>For i = [from] To [to] Step [step]</c> or C#-style loop <c>for(int i = from; i &lt;= to; i += step)</c></remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> is null</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollection`1.#ctor(Tools.LinqT.ForLoopCollection{`0})">
+	<summary>Copy CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`1"/> class which is clone of another given instance</summary>
+	<param name="other">Instance to clone</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="other"/> is null</exception>
+	<exception cref="T:System.ObjectDisposedException"><paramref name="other"/> is disposed</exception>
+	<remarks>Used by <see cref="M:Tools.LinqT.ForLoopCollection`1.Clone"/></remarks>
+</member><member name="M:Tools.LinqT.ForLoopCollection`1.CloneInternal">
+	<summary>Internally creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<remarks><note type="inheritinfo">Override this function if you want to override <see cref="M:Tools.ICloneable`1.Clone"/> functionality (the <see cref="M:Tools.LinqT.ForLoopCollection`1.Clone"/> function)</note></remarks>
+</member><member name="M:Tools.LinqT.ForLoopCollection`1.Clone">
+	<summary>Creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<remarks><note type="inheritinfo">To override this function, override <see cref="M:Tools.LinqT.ForLoopCollection`1.CloneInternal"/> instead.</note></remarks>
+</member><member name="T:Tools.LinqT.ForLoopCollection`1">
+	<summary>This class allows to turn any <see cref="T:System.Int32"/>-based VB-style for loop to <see cref="T:System.Collections.Generic.IEnumerable`1"/>/<see cref="T:System.Collections.Generic.IEnumerator`1"/></summary>
+	<typeparam name="T">Type of values being returned from the loop</typeparam>
+	<remarks><example>Shows a C# iterator code and how to simulate it in VB using <see cref="T:Tools.LinqT.ForLoopCollection`1"/>
+			<code lang="C#"><![CDATA[
+ public static IEnumerable<int> SplitToInts(string commaSeparated){
+     if(commaSeparated == null) throw new ArgumentNullException("commaSeparated");
+     var parts = commaSeparated.Split(',');
+     for(var i = 0; i < parts.Length; i++){
+         if(string.IsNullOrEmpty(parts[i])) continue;
+         yield return int.Parse(parts[i]);
+     }
+ }
+ ]]></code><code><![CDATA[
+ Public Shared Function SplitToInts(ByVal commaSeparated As String) As IEnumerable(Of Integer)
+     If commaSeparated Is Nothing Then Throw New ArgumentNullException("commaSeparated")
+     Dim parts = commaSeparated.Split(","c)
+     Return New ForLoopCollection(Of Integer)(0, parts.Length - 1,
+                                              Function(ByRef i, ByRef yield)
+                                                  If parts(i) = "" Then Return LoopState.Continue
+                                                  yield = Integer.Parse(parts(i))
+                                                  Return LoopState.Next
+                                              End Function
+                                             )
+ End Function
+ ]]></code><note>The VB sample behavior is actually better than of C# one:
+ The <see cref="T:System.ArgumentNullException"/> is potentially thrown by C# at first call to <see cref="M:System.Collections.IEnumerator.MoveNext"/> while VB throws the error immediatelly on <c>SplitToInts</c> call.</note></example></remarks>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.LinqT.ForLoopCollectionLong`1.#ctor(System.Int64,System.Int64,Tools.LinqT.LoopBody{`0,System.Int64})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`1"/> class resembling loop with increment 1</summary>
+	<param name="from">Start position of the loop</param>
+	<param name="to">Maximum value of the loop</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter. The function returns value indicating how to process value returned through the second parameter and wheather to continue the loop. When this function returns value that is not defined in the <see cref="T:Tools.LinqT.LoopState"/> enumeration a <see cref="T:System.ComponentModel.InvalidEnumArgumentException"/> is thrown by <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/>.</param>
+	<remarks>This constructor creates VB-style loop <c>For i = [from] To [to]</c> or C#-style loop <c>for(int i = from; i &lt;= to; i++)</c></remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> is null</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollectionLong`1.#ctor(System.Int64,System.Int64,System.Int64,Tools.LinqT.LoopBody{`0,System.Int64})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`1"/> class resembling loop with custom increment</summary>
+	<param name="from">Start position of the loop</param>
+	<param name="to">Maximum value of the loop</param>
+	<param name="step">Increment size</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter. The function returns value indicating how to process value returned through the second parameter and wheather to continue the loop. When this function returns value that is not defined in the <see cref="T:Tools.LinqT.LoopState"/> enumeration a <see cref="T:System.ComponentModel.InvalidEnumArgumentException"/> is thrown by <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/>.</param>
+	<remarks>This constructor creates VB-style loop <c>For i = [from] To [to] Step [step]</c> or C#-style loop <c>for(int i = from; i &lt;= to; i += step)</c></remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> is null</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollectionLong`1.#ctor(System.Int32,System.Int32,Tools.LinqT.NonBreakingLoopBody{`0,System.Int64})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`1"/> class resembling loop with increment 1, loop cannot be prematurely terminated</summary>
+	<param name="from">Start position of the loop</param>
+	<param name="to">Maximum value of the loop</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter.</param>
+	<remarks>This constructor creates VB-style loop <c>For i = [from] To [to]</c> or C#-style loop <c>for(int i = from; i &lt;= to; i++)</c></remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> is null</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollectionLong`1.#ctor(System.Int32,System.Int32,System.Int32,Tools.LinqT.NonBreakingLoopBody{`0,System.Int64})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`1"/> class resembling loop with custom increment, loop cannot be prematurely terminated</summary>
+	<param name="from">Start position of the loop</param>
+	<param name="to">Maximum value of the loop</param>
+	<param name="step">Increment size</param>
+	<param name="loop">Function called as loop body. It receives current value of iterator and can change it. Loop return value should be returned through the second parameter.</param>
+	<remarks>This constructor creates VB-style loop <c>For i = [from] To [to] Step [step]</c> or C#-style loop <c>for(int i = from; i &lt;= to; i += step)</c></remarks>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> is null</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollectionLong`1.#ctor(Tools.LinqT.ForLoopCollectionLong{`0})">
+	<summary>Copy CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForLoopCollection`1"/> class which is clone of another given instance</summary>
+	<param name="other">Instance to clone</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="other"/> is null</exception>
+	<remarks>Used by <see cref="M:Tools.LinqT.ForLoopCollectionLong`1.Clone"/></remarks>
+	<exception cref="T:System.ObjectDisposedException"><paramref name="other"/> is disposed</exception>
+</member><member name="M:Tools.LinqT.ForLoopCollectionLong`1.CloneInternal">
+	<summary>Internally creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<remarks><note type="inheritinfo">Override this function if you want to override <see cref="M:Tools.ICloneable`1.Clone"/> functionality (the <see cref="M:Tools.LinqT.ForLoopCollectionLong`1.Clone"/> function)</note></remarks>
+</member><member name="M:Tools.LinqT.ForLoopCollectionLong`1.Clone">
+	<summary>Creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<remarks><note type="inheritinfo">To override this function, override <see cref="M:Tools.LinqT.ForLoopCollectionLong`1.CloneInternal"/> instead.</note></remarks>
+</member><member name="T:Tools.LinqT.ForLoopCollectionLong`1">
+	<summary>This class allows to turn any <see cref="T:System.Int64"/>-based VB-style for loop to <see cref="T:System.Collections.Generic.IEnumerable`1"/>/<see cref="T:System.Collections.Generic.IEnumerator`1"/></summary>
+	<typeparam name="T">Type of values being returned from the loop</typeparam>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.LinqT.ForEachCollection`2.#ctor(System.Collections.Generic.IEnumerator{`1},Tools.LinqT.ForEachBody{`0,`1})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForEachBody`2"/> class from <see cref="T:System.Collections.Generic.IEnumerator`1"/></summary>
+	<param name="enumerator">Enumerator to be wrapped by this class</param>
+	<param name="loop">Function called as loop body. It receives current item form enumerator. Loop return value should be returned through the second parameter. The function returns value indicating how to process value returned through the second parameter and wheather to continue the loop. When this function returns value that is not defined in the <see cref="T:Tools.LinqT.LoopState"/> enumeration a <see cref="T:System.ComponentModel.InvalidEnumArgumentException"/> is thrown by <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/>.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> or <paramref name="enumerator"/> is null</exception>
+	<remarks>Whenever possible pass <see cref="T:System.Collections.Generic.IEnumerable`1"/> rather than <see cref="T:System.Collections.Generic.IEnumerator`1"/> to <see cref="T:Tools.LinqT.ForEachCollection`2"/> class constructor. Passing <see cref="T:System.Collections.Generic.IEnumerator`1"/> here cripples <see cref="T:Tools.ICloneable`1"/> and <see cref="T:System.Collections.Generic.IEnumerable`1"/> functionality of the class. It means that all oljects obtained from <see cref="M:Tools.LinqT.ForEachCollection`2.Clone"/> or <see cref="M:Tools.LinqT.ForLoopCollection`2.GetEnumerator"/> will always point to the same position (same <see cref="P:Tools.LinqT.ForLoopCollection`2.Current"/> value) inside the collection which may have unwanted side effects.</remarks>
+</member><member name="M:Tools.LinqT.ForEachCollection`2.#ctor(System.Collections.Generic.IEnumerable{`1},Tools.LinqT.ForEachBody{`0,`1})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForEachBody`2"/> class from <see cref="T:System.Collections.Generic.IEnumerable`1"/></summary>
+	<param name="collection">Colletion to be wrapped by this class</param>
+	<param name="loop">Function called as loop body. It receives current item form enumerator. Loop return value should be returned through the second parameter. The function returns value indicating how to process value returned through the second parameter and wheather to continue the loop. When this function returns value that is not defined in the <see cref="T:Tools.LinqT.LoopState"/> enumeration a <see cref="T:System.ComponentModel.InvalidEnumArgumentException"/> is thrown by <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/>.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> or <paramref name="collection"/> is null</exception>
+</member><member name="M:Tools.LinqT.ForEachCollection`2.#ctor(System.Collections.Generic.IEnumerator{`1},Tools.LinqT.NonBreakingForEachBody{`0,`1})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForEachBody`2"/> class from <see cref="T:System.Collections.Generic.IEnumerator`1"/>, loop iteration cannot be prematurely interrupted</summary>
+	<param name="enumerator">Enumerator to be wrapped by this class</param>
+	<param name="loop">Function called as loop body. It receives current item form enumerator. Loop return value should be returned through the second parameter.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> or <paramref name="enumerator"/> is null</exception>
+	<remarks>Whenever possible pass <see cref="T:System.Collections.Generic.IEnumerable`1"/> rather than <see cref="T:System.Collections.Generic.IEnumerator`1"/> to <see cref="T:Tools.LinqT.ForEachCollection`2"/> class constructor. Passing <see cref="T:System.Collections.Generic.IEnumerator`1"/> here cripples <see cref="T:Tools.ICloneable`1"/> and <see cref="T:System.Collections.Generic.IEnumerable`1"/> functionality of the class. It means that all oljects obtained from <see cref="M:Tools.LinqT.ForEachCollection`2.Clone"/> or <see cref="M:Tools.LinqT.ForLoopCollection`2.GetEnumerator"/> will always point to the same position (same <see cref="P:Tools.LinqT.ForLoopCollection`2.Current"/> value) inside the collection which may have unwanted side effects.</remarks>
+</member><member name="M:Tools.LinqT.ForEachCollection`2.#ctor(System.Collections.Generic.IEnumerable{`1},Tools.LinqT.NonBreakingForEachBody{`0,`1})">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForEachBody`2"/> class from <see cref="T:System.Collections.Generic.IEnumerable`1"/>, loop iteration cannot be prematurely interrupted</summary>
+	<param name="collection">Colletion to be wrapped by this class</param>
+	<param name="loop">Function called as loop body. It receives current item form enumerator. Loop return value should be returned through the second parameter. The function returns value indicating how to process value returned through the second parameter and wheather to continue the loop. When this function returns value that is not defined in the <see cref="T:Tools.LinqT.LoopState"/> enumeration a <see cref="T:System.ComponentModel.InvalidEnumArgumentException"/> is thrown by <see cref="M:Tools.LinqT.ForLoopCollection`2.MoveNext"/>.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="loop"/> or <paramref name="collection"/> is null</exception>
+</member><member name="M:Tools.LinqT.ForEachCollection`2.#ctor(Tools.LinqT.ForEachCollection{`0,`1})">
+	<summary>Copy CTor - creates a new instance of the <see cref="T:Tools.LinqT.ForEachCollection`2"/> class which is clone of another given instance</summary>
+	<param name="other">Instance to clone</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="other"/> is null</exception>
+	<remarks>Used by <see cref="M:Tools.LinqT.ForEachCollection`2.Clone"/></remarks>
+	<exception cref="T:System.ObjectDisposedException"><paramref name="other"/> is disposed</exception>
+</member><member name="M:Tools.LinqT.ForEachCollection`2.CloneInternal">
+	<summary>Internally creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<remarks><note type="inheritinfo">Override this function if you want to override <see cref="M:Tools.ICloneable`1.Clone"/> functionality (the <see cref="M:Tools.LinqT.ForEachCollection`2.Clone"/> function)</note></remarks>
+</member><member name="M:Tools.LinqT.ForEachCollection`2.Clone">
+	<summary>Creates a new object that is a copy of the current instance.</summary>
+	<returns>A new object that is a copy of this instance</returns>
+	<exception cref="T:System.ObjectDisposedException">This instance has already been disposed</exception>
+	<remarks><note type="inheritinfo">To override this function, override <see cref="M:Tools.LinqT.ForEachCollection`2.CloneInternal"/> instead.</note></remarks>
+</member><member name="T:Tools.LinqT.ForEachCollection`2">
+	<summary>This class allows to turn any for-each loop to <see cref="T:System.Collections.Generic.IEnumerable`1"/>/<see cref="T:System.Collections.Generic.IEnumerator`1"/></summary>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
 </member><member name="P:Tools.DataStructuresT.GenericT.IT1orT2`2.value1">
 	<summary>Gets or sets value of type <see cref="T1"/></summary>
 	<value>Non-null value to set value of type <see cref="T1"/> and delete value of type <see cref="T2"/> or nothing to delete value of type <see cref="T1"/></value>
@@ -1311,6 +1635,16 @@ Tools
 	<exception cref="T:System.ArgumentNullException">format or args is null.</exception>
 	<exception cref="T:System.FormatException"><paramref name="s"/> is invalid composite format string.-or- The number indicating an argument to format is less than zero, or greater than or equal to the length of the args array.</exception>
 	<seealso cref="M:System.String.Format(System.String,System.Object)"/><seealso cref="M:Tools.ExtensionsT.StringExtensions.f(System.String,System.Object[])"/>
+</member><member name="M:Tools.ExtensionsT.StringExtensions.Format(System.String,System.IFormatProvider,System.Object[])">
+	<summary>Replaces the format item in a specified <see cref="T:System.String"/> with the text equivalent of the value of a corresponding <see cref="T:System.Object"/> instance in a specified array. A specified parameter supplies culture-specific formatting information.</summary>
+	<param name="s">A composite format string.</param>
+	<param name="provider"> An object that supplies culture-specific formatting information.</param>
+	<param name="args">An <see cref="T:System.Object"/> array containing zero or more objects to format.</param>
+	<returns>A copy of format in which the format items have been replaced by the <see cref="T:System.String"/> equivalent of the corresponding instances of <see cref="T:System.Object"/> in args.</returns>
+	<exception cref="T:System.ArgumentNullException">format or args is null.</exception>
+	<exception cref="T:System.FormatException"><paramref name="s"/> is invalid composite format string.-or- The number indicating an argument to format is less than zero, or greater than or equal to the length of the args array.</exception>
+	<seealso cref="M:System.String.Format(System.String,System.Object)"/><seealso cref="M:Tools.ExtensionsT.StringExtensions.f(System.String,System.Object[])"/>
+	<version version="1.5.3">This overload is new in version 1.5.3</version>
 </member><member name="M:Tools.ExtensionsT.StringExtensions.f(System.String,System.Object[])">
 	<summary>Replaces the format item in a specified <see cref="T:System.String"/> with the text equivalent of the value of a corresponding <see cref="T:System.Object"/> instance in a specified array. A specified parameter supplies culture-specific formatting information.</summary>
 	<param name="s">A composite format string.</param>
@@ -1320,6 +1654,17 @@ Tools
 	<exception cref="T:System.FormatException"><paramref name="s"/> is invalid composite format string.-or- The number indicating an argument to format is less than zero, or greater than or equal to the length of the args array.</exception>
 	<seealso cref="M:System.String.Format(System.String,System.Object)"/><seealso cref="M:Tools.ExtensionsT.StringExtensions.Format(System.String,System.Object[])"/>
 	<remarks>This function is shortcut alias of <see cref="M:Tools.ExtensionsT.StringExtensions.Format(System.String,System.Object[])"/></remarks>
+</member><member name="M:Tools.ExtensionsT.StringExtensions.f(System.String,System.IFormatProvider,System.Object[])">
+	<summary>Replaces the format item in a specified <see cref="T:System.String"/> with the text equivalent of the value of a corresponding <see cref="T:System.Object"/> instance in a specified array. A specified parameter supplies culture-specific formatting information.</summary>
+	<param name="s">A composite format string.</param>
+	<param name="provider"> An object that supplies culture-specific formatting information.</param>
+	<param name="args">An <see cref="T:System.Object"/> array containing zero or more objects to format.</param>
+	<returns>A copy of format in which the format items have been replaced by the <see cref="T:System.String"/> equivalent of the corresponding instances of <see cref="T:System.Object"/> in args.</returns>
+	<exception cref="T:System.ArgumentNullException">format or args is null.</exception>
+	<exception cref="T:System.FormatException"><paramref name="s"/> is invalid composite format string.-or- The number indicating an argument to format is less than zero, or greater than or equal to the length of the args array.</exception>
+	<seealso cref="M:System.String.Format(System.String,System.Object)"/><seealso cref="M:Tools.ExtensionsT.StringExtensions.Format(System.String,System.Object[])"/>
+	<remarks>This function is shortcut alias of <see cref="M:Tools.ExtensionsT.StringExtensions.Format(System.String,System.Object[])"/></remarks>
+	<version version="1.5.3">This overload is new in version 1.5.3</version>
 </member><member name="M:Tools.ExtensionsT.StringExtensions.Join(System.String[],System.String)">
 	<summary>Concatenates a specified separator <see cref="T:System.String"/> between each element of a specified <see cref="T:System.String"/> array, yielding a single concatenated string.</summary>
 	<param name="separator">A <see cref="T:System.String"/> to separate items with.</param>
@@ -2406,6 +2751,17 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<exception cref="T:System.FormatException"><paramref name="str"/> is not numeric value, or 2 numeric values separated by /.</exception>
 	<exception cref="T:System.OverflowException"><paramref name="str"/> represents value lower than <see cref="T:System.Double"/> or greater than <see cref="T:System.Double"/> (for single-part number) -or- <paramref name="str"/> represents value lower than <see cref="T:System.UInt32"/> or greater than <see cref="T:System.UInt32"/> (for double-part number)</exception>
 	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.URational.ToString(System.String)">
+	<summary>Formats the value of the current instance using the specified format and current culture.</summary>
+	<param name="format">The <see cref="T:System.String"/> specifying the format to use.-or- null to use the default format defined for the type of the <see cref="T:System.IFormattable"/> implementation.</param>
+	<returns>A <see cref="T:System.String"/> containing the value of the current instance in the specified format.</returns>
+	<remarks>
+ Use sigle format string to format value as <see cref="T:System.Double"/>. Use two /-separated format strings to format this value as two <see cref="T:System.UInt32"/> values separated by /.
+ Format(s) passed to <see cref="T:System.Double"/> or <see cref="T:System.UInt32"/> can be empty, predefined (one letter) or custom.
+ If two formats are specified, delimited by /, only first slash encountered is treatead as delimitter. Other slashes are passed to <see cref="T:System.UInt32"/>. In order to escape firts slahs, precede it with \.
+ If <paramref name="format"/> is null or <see cref="T:System.String"/> G/G is used. 
+ </remarks>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="M:Tools.NumericsT.URational.ToString(System.String,System.IFormatProvider)">
 	<summary>Formats the value of the current instance using the specified format.</summary>
 	<param name="format">The <see cref="T:System.String"/> specifying the format to use.-or- null to use the default format defined for the type of the <see cref="T:System.IFormattable"/> implementation.</param>
@@ -2565,6 +2921,17 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<exception cref="T:System.FormatException"><paramref name="str"/> is not numeric value, or 2 numeric values separated by /.</exception>
 	<exception cref="T:System.OverflowException"><paramref name="str"/> represents value lower than <see cref="T:System.Double"/> or greater than <see cref="T:System.Double"/> (for single-part number) -or- <paramref name="str"/> represents value lower than <see cref="T:System.Int32"/> or greater than <see cref="T:System.Int32"/> (for double-part number)</exception>
 	<version stage="Alpha" version="1.5.2">Method introduced</version>
+</member><member name="M:Tools.NumericsT.SRational.ToString(System.String)">
+	<summary>Formats the value of the current instance using the specified format and current culture.</summary>
+	<param name="format">The <see cref="T:System.String"/> specifying the format to use.-or- null to use the default format defined for the type of the <see cref="T:System.IFormattable"/> implementation.</param>
+	<returns>A <see cref="T:System.String"/> containing the value of the current instance in the specified format.</returns>
+	<remarks>
+ Use sigle format string to format value as <see cref="T:System.Double"/>. Use two /-separated format strings to format this value as two <see cref="T:System.UInt32"/> values separated by /.
+ Format(s) passed to <see cref="T:System.Double"/> or <see cref="T:System.UInt32"/> can be empty, predefined (one letter) or custom.
+ If two formats are specified, delimited by /, only first slash encountered is treatead as delimitter. Other slashes are passed to <see cref="T:System.UInt32"/>. In order to escape firts slahs, precede it with \.
+ If <paramref name="format"/> is null or <see cref="T:System.String"/> G/G is used. 
+ </remarks>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="M:Tools.NumericsT.SRational.ToString(System.String,System.IFormatProvider)">
 	<summary>Formats the value of the current instance using the specified format.</summary>
 	<param name="format">The <see cref="T:System.String"/> specifying the format to use.-or- null to use the default format defined for the type of the <see cref="T:System.IFormattable"/> implementation.</param>
@@ -6881,6 +7248,24 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<version version="1.5.2" stage="Nightly"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
 	<version version="1.5.3">Added <see cref="T:System.SerializableAttribute"/></version>
 	<version version="1.5.3">Added support for multiple expected types</version>
+</member><member name="M:Tools.ComponentModelT.PropertyChangingEventArgsEx.#ctor(System.String,System.Object)">
+	<summary>Initializes a new instance of the <see cref="T:Tools.ComponentModelT.PropertyChangingEventArgsEx`1"/> class.</summary>
+	<param name="propertyName">The name of the property whose value is changing.</param>
+	<param name="proposedNewValue">Proposed new value of the property</param>
+</member><member name="P:Tools.ComponentModelT.PropertyChangingEventArgsEx.ProposedNewValue">
+	<summary>Gets proposed new value of the property</summary>
+</member><member name="T:Tools.ComponentModelT.PropertyChangingEventArgsEx">
+	<summary>Extends <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> by adding the <see cref="P:Tools.ComponentModelT.PropertyChangingEventArgsEx.ProposedNewValue"/> property</summary>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.ComponentModelT.PropertyChangingEventArgsEx`1.#ctor(System.String,`0)">
+	<summary>Initializes a new instance of the <see cref="T:Tools.ComponentModelT.PropertyChangingEventArgsEx`1"/> class.</summary>
+	<param name="propertyName">The name of the property whose value is changing.</param>
+	<param name="proposedNewValue">Proposed new value of the property</param>
+</member><member name="P:Tools.ComponentModelT.PropertyChangingEventArgsEx`1.ProposedNewValue">
+	<summary>Gets proposed new value of the property</summary>
+</member><member name="T:Tools.ComponentModelT.PropertyChangingEventArgsEx`1">
+	<summary>Type-safe version of the <see cref="T:Tools.ComponentModelT.PropertyChangingEventArgsEx`1"/> class</summary>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
 </member><member name="M:Tools.MathT.Min``1(``0[])">
 	<summary>Finds the smallest of parameters</summary>
 	<typeparam name="T">The type of parameters that implements <see cref="T:System.IComparable`1"/></typeparam>
@@ -7345,13 +7730,15 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="M:Tools.DrawingT.IconOrBitmap.op_Implicit(Tools.DrawingT.IconOrBitmap)~System.Drawing.Image">
 	<summary>Converts <see cref="T:Tools.DrawingT.IconOrBitmap"/> to <see cref="P:Tools.DrawingT.IconOrBitmap.Image"/></summary>
 	<param name="a">A <see cref="T:Tools.DrawingT.IconOrBitmap"/></param>
-	<returns><see cref="T:System.Drawing.Image"/> that represents by this instance. It is either <see cref="P:Tools.DrawingT.IconOrBitmap.Image"/> or <see cref="P:Tools.DrawingT.IconOrBitmap.Icon"/>.<see cref="M:System.Drawing.Icon.ToBitmap">ToBitmap</see></returns>
+	<returns><see cref="T:System.Drawing.Image"/> that represents by this instance. It is either <see cref="P:Tools.DrawingT.IconOrBitmap.Image"/> or <see cref="P:Tools.DrawingT.IconOrBitmap.Icon"/>.<see cref="M:System.Drawing.Icon.ToBitmap">ToBitmap</see>; null when <paramref name="a"/> is null.</returns>
 	<seelaso cref="P:Tools.DrawingT.IconOrBitmap.Image"/>
+	<version version="1.5.3">Fix: <see cref="T:System.NullReferenceException"/> when <paramref name="a"/> is null. Now returns null instead.</version>
 </member><member name="M:Tools.DrawingT.IconOrBitmap.op_Implicit(Tools.DrawingT.IconOrBitmap)~System.Drawing.Icon">
 	<summary>Converts <see cref="T:Tools.DrawingT.IconOrBitmap"/> to <see cref="P:Tools.DrawingT.IconOrBitmap.Image"/></summary>
 	<param name="a">A <see cref="T:Tools.DrawingT.IconOrBitmap"/></param>
-	<returns><see cref="T:System.Drawing.Image"/> that represents by this instance. It is either <see cref="P:Tools.DrawingT.IconOrBitmap.Image"/> or <see cref="P:Tools.DrawingT.IconOrBitmap.Icon"/>.<see cref="M:System.Drawing.Icon.ToBitmap">ToBitmap</see></returns>
+	<returns><see cref="T:System.Drawing.Image"/> that represents by this instance. It is either <see cref="P:Tools.DrawingT.IconOrBitmap.Image"/> or <see cref="P:Tools.DrawingT.IconOrBitmap.Icon"/>.<see cref="M:System.Drawing.Icon.ToBitmap">ToBitmap</see>; null when <paramref name="a"/> is null.</returns>
 	<seelaso cref="P:Tools.DrawingT.IconOrBitmap.Icon"/>
+	<version version="1.5.3">Fix: <see cref="T:System.NullReferenceException"/> when <paramref name="a"/> is null. Now returns null instead.</version>
 </member><member name="M:Tools.DrawingT.IconOrBitmap.op_Implicit(Tools.DataStructuresT.GenericT.T1orT2{System.Drawing.Bitmap,System.Drawing.Icon})~Tools.DrawingT.IconOrBitmap">
 	<summary>Converts <see cref="T:Tools.DataStructuresT.GenericT.T1orT2`2"/>[<see cref="T:System.Drawing.Bitmap"/>, <see cref="P:Tools.DrawingT.IconOrBitmap.Icon"/>] to <see cref="T:Tools.DrawingT.IconOrBitmap"/></summary>
 	<param name="a">Value to be converted</param>
@@ -11700,6 +12087,10 @@ Looks up a localized string similar to 'InternalObject must be either UxThemeObj
 	<summary>
 Looks up a localized string similar to 'Invalid bitmap. Number of bits in bitmap must be multiplication of 460'.
 </summary>
+</member><member name="P:Tools.ResourcesT.Exceptions.InvalidBooleanValue">
+	<summary>
+Looks up a localized string similar to 'Invalid boolean value {0}'.
+</summary>
 </member><member name="P:Tools.ResourcesT.Exceptions.InvalidCharacterNear01">
 	<summary>
 Looks up a localized string similar to 'Invalid character near "{0}{1}"'.
@@ -11748,6 +12139,10 @@ Looks up a localized string similar to 'Invalid Roman numeral sequence - invalid
 	<summary>
 Looks up a localized string similar to 'Invalid value for byte order test at Exif header '.
 </summary>
+</member><member name="P:Tools.ResourcesT.Exceptions.InvalidValueReturnedByLoopFunction">
+	<summary>
+Looks up a localized string similar to 'Invalid value {0} returned by loop function.'.
+</summary>
 </member><member name="P:Tools.ResourcesT.Exceptions.InvocationListOfDelegateMustHaveExactlyOneItem">
 	<summary>
 Looks up a localized string similar to 'Invocation list of delegate must have exactly one item.'.
@@ -11763,6 +12158,10 @@ Looks up a localized string similar to '{0} is greater than or equal to lenght o
 </member><member name="P:Tools.ResourcesT.Exceptions.IsMultidimensional">
 	<summary>
 Looks up a localized string similar to '{0} is multidimensional'.
+</summary>
+</member><member name="P:Tools.ResourcesT.Exceptions.IsNotAllowed">
+	<summary>
+Looks up a localized string similar to '{0} is not allowed'.
 </summary>
 </member><member name="P:Tools.ResourcesT.Exceptions.IsNotMemberOf1">
 	<summary>
@@ -12148,6 +12547,10 @@ Looks up a localized string similar to 'ParentIFD of subIFD being added/replaced
 	<summary>
 Looks up a localized string similar to 'Parent type of {0} must be {1}'.
 </summary>
+</member><member name="P:Tools.ResourcesT.Exceptions.Path">
+	<summary>
+Looks up a localized string similar to 'Path'.
+</summary>
 </member><member name="P:Tools.ResourcesT.Exceptions.Path0DoesNotExist">
 	<summary>
 Looks up a localized string similar to 'Path {0} does not exist.'.
@@ -12175,6 +12578,10 @@ Looks up a localized string similar to 'Property {0} has already been set and it
 </member><member name="P:Tools.ResourcesT.Exceptions.PropertyIsReadOnly">
 	<summary>
 Looks up a localized string similar to 'Property is read only'.
+</summary>
+</member><member name="P:Tools.ResourcesT.Exceptions.PropertyMustBeSet">
+	<summary>
+Looks up a localized string similar to '{0} must be set'.
 </summary>
 </member><member name="P:Tools.ResourcesT.Exceptions.ProviderDoesNotProviderService">
 	<summary>
@@ -12343,10 +12750,6 @@ Looks up a localized string similar to 'Syntax error in formast string. ']' expe
 </member><member name="P:Tools.ResourcesT.Exceptions.SyntaxErrorInFormatStringDMustBeFollowedWithAt0">
 	<summary>
 Looks up a localized string similar to 'Syntax error in format string. 'D' must be followed with '(' at {0}.'.
-</summary>
-</member><member name="P:Tools.ResourcesT.Exceptions.SyntaxErrorInFormatStringHMustBeFollowedWithAt0">
-	<summary>
-Looks up a localized string similar to 'Syntax error in format string. 'H' must be followed with '(' at {0}.'.
 </summary>
 </member><member name="P:Tools.ResourcesT.Exceptions.SyntaxErrorInFormatStringLMustBeFollowedWithAt0">
 	<summary>
@@ -13620,6 +14023,12 @@ The stub formatting method returning the InternalObjectMustBeEitherUxThemeObject
 The stub formatting method returning the InvalidBitmapNumberOfBitsInBitmapMustBeMultiplicationOf460 property value.
 </summary>
 	<returns>The InvalidBitmapNumberOfBitsInBitmapMustBeMultiplicationOf460 property value.</returns>
+</member><member name="M:Tools.ResourcesT.Exceptions.InvalidBooleanValueFormat(System.Object)">
+	<summary>
+Formats a localized string similar to 'Invalid boolean value {0}'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
 </member><member name="M:Tools.ResourcesT.Exceptions.InvalidCharacterNear01Format(System.Object,System.Object)">
 	<summary>
 Formats a localized string similar to 'Invalid character near "{0}{1}"'.
@@ -13674,6 +14083,12 @@ The stub formatting method returning the InvalidRomanNumeralSequenceInvalidSubtr
 The stub formatting method returning the InvalidValueForByteOrderTestAtExifHeader property value.
 </summary>
 	<returns>The InvalidValueForByteOrderTestAtExifHeader property value.</returns>
+</member><member name="M:Tools.ResourcesT.Exceptions.InvalidValueReturnedByLoopFunctionFormat(System.Object)">
+	<summary>
+Formats a localized string similar to 'Invalid value {0} returned by loop function.'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
 </member><member name="M:Tools.ResourcesT.Exceptions.InvocationListOfDelegateMustHaveExactlyOneItemFormat">
 	<summary>
 The stub formatting method returning the InvocationListOfDelegateMustHaveExactlyOneItem property value.
@@ -13693,6 +14108,12 @@ Formats a localized string similar to '{0} is greater than or equal to lenght of
 </member><member name="M:Tools.ResourcesT.Exceptions.IsMultidimensionalFormat(System.Object)">
 	<summary>
 Formats a localized string similar to '{0} is multidimensional'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.ResourcesT.Exceptions.IsNotAllowedFormat(System.Object)">
+	<summary>
+Formats a localized string similar to '{0} is not allowed'.
 </summary>
 	<param name="arg0">An object (0) to format.</param>
 	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
@@ -14266,6 +14687,11 @@ Formats a localized string similar to 'Parent type of {0} must be {1}'.
 	<param name="arg0">An object (0) to format.</param>
 	<param name="arg1">An object (1) to format.</param>
 	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.ResourcesT.Exceptions.PathFormat">
+	<summary>
+The stub formatting method returning the Path property value.
+</summary>
+	<returns>The Path property value.</returns>
 </member><member name="M:Tools.ResourcesT.Exceptions.Path0DoesNotExistFormat(System.Object)">
 	<summary>
 Formats a localized string similar to 'Path {0} does not exist.'.
@@ -14304,6 +14730,12 @@ Formats a localized string similar to 'Property {0} has already been set and it 
 The stub formatting method returning the PropertyIsReadOnly property value.
 </summary>
 	<returns>The PropertyIsReadOnly property value.</returns>
+</member><member name="M:Tools.ResourcesT.Exceptions.PropertyMustBeSetFormat(System.Object)">
+	<summary>
+Formats a localized string similar to '{0} must be set'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
 </member><member name="M:Tools.ResourcesT.Exceptions.ProviderDoesNotProviderServiceFormat(System.Object)">
 	<summary>
 Formats a localized string similar to 'Provider does not provider service {0}'.
@@ -14531,12 +14963,6 @@ Formats a localized string similar to 'Syntax error in formast string. ']' expec
 </member><member name="M:Tools.ResourcesT.Exceptions.SyntaxErrorInFormatStringDMustBeFollowedWithAt0Format(System.Object)">
 	<summary>
 Formats a localized string similar to 'Syntax error in format string. 'D' must be followed with '(' at {0}.'.
-</summary>
-	<param name="arg0">An object (0) to format.</param>
-	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
-</member><member name="M:Tools.ResourcesT.Exceptions.SyntaxErrorInFormatStringHMustBeFollowedWithAt0Format(System.Object)">
-	<summary>
-Formats a localized string similar to 'Syntax error in format string. 'H' must be followed with '(' at {0}.'.
 </summary>
 	<param name="arg0">An object (0) to format.</param>
 	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
@@ -16990,8 +17416,18 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<exception cref="T:System.Xml.XmlException">Value of attribute <paramref name="attr"/> is neither valied expanded name in format "<c>{namespace-uri}local-name</c>" neither valid local name</exception>
 	<exception cref="T:System.ArgumentException"><paramref name="attr"/> attribute has no parent element.</exception>
 	<remarks>When <paramref name="attr"/> is null, its value is null or its value is an empty string this method exits without doing anything.</remarks>
+</member><member name="M:Tools.XmlT.LinqT.Extensions.Validate(System.Xml.Linq.XDocument,System.Xml.Schema.XmlSchema,System.Xml.Schema.ValidationEventHandler,System.Boolean)">
+	<summary>Validates that an <see cref="T:System.Xml.Linq.XDocument"/> conforms to an XSD in an <see cref="T:System.Xml.Schema.XmlSchemaSet"/>, optionally populating the XML tree with the post-schema-validation infoset (PSVI).</summary>
+	<param name="document">The <see cref="T:System.Xml.Linq.XDocument"/> to validate.</param>
+	<param name="schema">A <see cref="T:System.Xml.Schema.XmlSchema"/> to validate against.</param>
+	<param name="validationEventHandler">A <see cref="T:System.Xml.Schema.ValidationEventHandler"/> for an event that occurs when the reader encounters validation errors. If null (default), throws an exception upon validation errors.</param>
+	<param name="addSchemaInfo">A <see cref="T:System.Boolean"/> indicating whether to populate the post-schema-validation infoset (PSVI).</param>
+	<exception cref="T:System.Xml.Schema.XmlSchemaValidationException">Thrown for XML Schema Definition Language (XSD) validation errors.</exception>
+	<exception cref="T:System.ArgumentNullException"><paramref name="document"/> or <paramref name="schema"/> is null.</exception>
+	<version version="1.5.3">This method is new in version 1.5.3</version>
 </member><member name="T:Tools.XmlT.LinqT.Extensions">
 	<summary>Provides extension methods related to <see cref="N:System.Xml.Linq"/></summary>
+	<version version="1.5.3" stage="Nightly">Module made public</version>
 </member><member name="F:Tools.TestsT.CLSComplianceChecker.CLSViolationEventArgs._Message">
 	<summary>Contains value of the <see cref="P:Tools.TestsT.CLSComplianceChecker.CLSViolationEventArgs.Message"/> property</summary>
 </member><member name="F:Tools.TestsT.CLSComplianceChecker.CLSViolationEventArgs._Rule">
@@ -18164,6 +18600,9 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 			<item><term>H()</term>
 				<description>Custom-formated fractional hours. Value of <see cref="P:Tools.TimeSpanFormattable.TotalHours"/> formated with format specified in braces. For more information about formats in braces see below.</description>
 			</item>
+			<item><term>H, HH, HHH, ...</term>
+				<description>Integral part of <see cref="P:Tools.TimeSpanFormattable.TotalHours"/>, minimum number of digits same as number of Hs. Note: When multiple Hs are followed by '(' it's not treated as custom formatter for preceding Hs (like in case of 'H(')</description>
+			</item>
 			<item><term>m</term>
 				<description>Short minutes. Value of <see cref="P:Tools.TimeSpanFormattable.Minutes"/> from range 0÷59 as 1 or 2 digits.</description>
 			</item>
@@ -18312,6 +18751,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	</remarks>
 	<exception cref="T:System.FormatException">Unknown predefined format -or- syntax error in format string</exception>
 	<exception cref="T:System.ArgumentOutOfRangeException">The 'T()' patter is used on negative <see cref="T:Tools.TimeSpanFormattable"/> or value of current <see cref="T:Tools.TimeSpanFormattable"/> added to <see cref="F:System.DateTime.MinValue"/> causes <see cref="F:System.DateTime.MaxValue"/> to be exceeded.</exception>
+	<version version="1.5.3">Added new formating options capital H without braces, HH, HHH, ...</version>
 </member><member name="M:Tools.TimeSpanFormattable.Format(System.TimeSpan,System.String,System.IFormatProvider)">
 	<summary>Formats given <see cref="T:Tools.TimeSpanFormattable"/> using given format string</summary>
 	<param name="TS">A <see cref="T:Tools.TimeSpanFormattable"/> to be formated</param>
@@ -18433,6 +18873,8 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>After hh(</summary>
 </member><member name="F:Tools.TimeSpanFormattable.FormatAutomatState.h2Formatb">
 	<summary>After hh(\</summary>
+</member><member name="F:Tools.TimeSpanFormattable.FormatAutomatState.H2_">
+	<summary>After HH</summary>
 </member><member name="F:Tools.TimeSpanFormattable.FormatAutomatState.m1">
 	<summary>After m</summary>
 </member><member name="F:Tools.TimeSpanFormattable.FormatAutomatState.M_">
@@ -19111,9 +19553,22 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="M:Tools.ExtensionsT.General.ThrowIfNull``1(``0,System.String)">
 	<summary>Throws an <see cref="T:System.ArgumentNullException"/> if given object is null</summary>
 	<param name="arg">Object to be tested</param>
-	<param name="ArgumentName">Optional. Name of argument for exception. If null "arg" is supplied.</param>
+	<param name="argumentName">Optional. Name of argument for exception. If null "arg" is supplied.</param>
 	<typeparam name="T">Type of object. Must be reference type.</typeparam>
-	<exception cref="T:System.ArgumentException"><paramref name="arg"/> is null</exception>
+	<exception cref="T:System.ArgumentNullException"><paramref name="arg"/> is null</exception>
+	<remarks>You should throw your exception yourself whenever possible because place where it was thrown from appears on call stack, however there ara some situations where it is not possible due to programming language limitations (chanied/base CTor call, field initializers, LINQ.</remarks>
+	<version version="1.5.3">Parameter <c>ArgumentName</c> renamed to <c>argumentName</c></version>
+	<version version="1.5.3">Documentation fix: Throws <see cref="T:System.ArgumentNullException"/> when <paramref name="arg"/> is null. Originally documentation stated tha <see cref="T:System.ArgumentException"/> is thrown, which was not accurate.</version>
+</member><member name="M:Tools.ExtensionsT.General.ThrowIfNull``2(``0,``1,System.String)">
+	<summary>Throws an <see cref="T:System.ArgumentNullException"/> if given objects is null, if it is not null returns another given object</summary>
+	<typeparam name="TTest">Type of value to be tested</typeparam>
+	<typeparam name="TReturn">Type of value to be returned when test succeds</typeparam>
+	<param name="valueToTest">Object to be tested</param>
+	<param name="valueToReturn">Value to be returned in case <paramref name="valueToTest"/> is not null</param>
+	<param name="argumentName">Optional. Name of argument for exception. If null "valueToTest" is supplied.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="valueToTest"/> is nulll</exception>
+	<remarks>You should throw your exception yourself whenever possible because place where it was thrown from appears on call stack, however there ara some situations where it is not possible due to programming language limitations (chanied/base CTor call, field initializers, LINQ.</remarks>
+	<version version="1.5.3">This overload is new in version 1.5.3</version>
 </member><member name="T:Tools.ExtensionsT.General">
 	<summary>General extension funcions</summary>
 </member><member name="F:Tools.IOt.Path._Path">
@@ -20557,12 +21012,13 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="M:Tools.CollectionsT.GenericT.ListWithEventsBase.IEnumerable_GetEnumerator">
 	<summary>When overriden in derived class returns an enumerator that iterates through a collection.</summary>
 	<returns>An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.</returns>
-</member><member name="M:Tools.CollectionsT.GenericT.ListWithEventsBase.Add(System.Object)">
+</member><member name="M:Tools.CollectionsT.GenericT.ListWithEventsBase.IList_Add(System.Object)">
 	<summary>When overriden in derived class adds an item to the <see cref="T:Tools.CollectionsT.GenericT.ListWithEvents`1"/>.</summary>
 	<param name="value">The object to add to the <see cref="T:Tools.CollectionsT.GenericT.ListWithEvents`1"/>.</param>
 	<exception cref="T:System.InvalidOperationException"><see cref="P:Tools.CollectionsT.GenericT.ListWithEventsBase.Locked"/> is True</exception>
 	<exception cref="T:System.OperationCanceledException">Operation is canceled in eventhandler and <see cref="P:Tools.CollectionsT.GenericT.ListWithEventsBase.CancelError"/> is true</exception>
 	<exception cref="T:System.Exception">Any <see cref="T:System.Exception"/> can be thrown by event handler of the <see cref="E:Tools.CollectionsT.GenericT.ListWithEvents`1.Adding"/> event -or- Any excption may be thrown by <see cref="M:Tools.CollectionsT.GenericT.ICollectionCancelItem.OnAdding(System.Collections.ICollection,System.Nullable{System.Int32},System.Boolean)"/> when <see cref="P:Tools.CollectionsT.GenericT.ListWithEventsBase.AllowItemCancel"/> is true.</exception>
+	<version version="1.5.3">Method renamed from <c>Add</c> to <c>IList_Add</c> to avoid compiler from selecting this method and complaining thet it is obsolete (on <see cref="T:Tools.CollectionsT.GenericT.ListWithEvents`1"/>) when <see cref="T:Tools.CollectionsT.GenericT.ListWithEvents`1"/>[<see cref="T:System.Object"/>] is used.</version>
 </member><member name="M:Tools.CollectionsT.GenericT.ListWithEventsBase.Clear">
 	<summary>When overriden in derived class removes all items from the <see cref="T:Tools.CollectionsT.GenericT.ListWithEvents`1"/>.</summary>
 	<exception cref="T:System.InvalidOperationException"><see cref="P:Tools.CollectionsT.GenericT.ListWithEventsBase.Locked"/> is True</exception>
@@ -21218,7 +21674,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Gets an object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/>.</summary>
 	<returns>An object that can be used to synchronize access to the <see cref="T:System.Collections.ICollection"/></returns>
 	<remarks>Provided for compatibility with <see cref="T:System.ComponentModel.Design.CollectionEditor"/></remarks>
-</member><member name="M:Tools.CollectionsT.GenericT.ListWithEvents`1.Add(System.Object)">
+</member><member name="M:Tools.CollectionsT.GenericT.ListWithEvents`1.IList_Add(System.Object)">
 	<summary>Adds an item to the <see cref="T:System.Collections.IList"/>.</summary>
 	<param name="value">The <see cref="T:System.Object"/> to add to the <see cref="T:System.Collections.IList"/>.</param>
 	<returns>The position into which the new element was inserted.</returns>
@@ -21226,6 +21682,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<exception cref="T:System.InvalidOperationException"><see cref="P:Tools.CollectionsT.GenericT.ListWithEvents`1.Locked"/> is True</exception>
 	<remarks>Provided for compatibility with <see cref="T:System.ComponentModel.Design.CollectionEditor"/></remarks>
 	<version version="1.5.2"><see cref="T:System.InvalidCastException"/> thrown replaced with <see cref="T:Tools.TypeMismatchException"/></version>
+	<version version="1.5.3">Renamed from <c>Add</c> to <c>IList_Add</c>. See comment on <see cref="M:Tools.CollectionsT.GenericT.ListWithEventsBase.IList_Add(System.Object)"/>.</version>
 </member><member name="M:Tools.CollectionsT.GenericT.ListWithEvents`1.Contains(System.Object)">
 	<summary>Determines whether the <see cref="T:System.Collections.IList"/> contains a specific value.</summary>
 	<param name="value">The <see cref="T:System.Object"/> to locate in the <see cref="T:System.Collections.IList"/>.</param>
@@ -25708,8 +26165,8 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Creates union of all given collections</summary>
 	<param name="collections">Collections to create union of</param>
 	<typeparam name="T">Type of items in collection(s)</typeparam>
-	<returns>Collection that contains all members of all collections in <paramref name="collections"/>. If <paramref name="collections"/> is null returns an emlty collection.</returns>
-	<remarks>Unification is done immediatelly.</remarks>
+	<returns>Collection that contains all members of all collections in <paramref name="collections"/>. If <paramref name="collections"/> is null returns an empty collection.</returns>
+	<remarks>Unification is done immediatelly causing all collections to be walked through on function call.</remarks>
 	<seelaso cref="M:Tools.LinqT.EnumerableT.FlatAllDeffered``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})"/>
 </member><member name="M:Tools.LinqT.EnumerableT.FlatAll``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})">
 	<summary>Creates union of all given collections</summary>
@@ -25762,6 +26219,27 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="collection">Collection to check non-emptyness of</param>
 	<returns>True if first element of collection can be enumerated using <paramref name="collection"/>.<see cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator">GetEnumerator</see>.<see cref="M:System.Collections.IEnumerator.MoveNext">MoveNext</see>.</returns>
 	<exception cref="T:System.ArgumentNullException"><paramref name="collection"/> is null</exception>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.LinqT.EnumerableT.Single(System.Collections.IEnumerable)">
+	<summary>Gets value indicating if collection contains exactly one element</summary>
+	<param name="collection">Collection to check</param>
+	<returns>True if collection contains exactly one element</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="collection"/> is null</exception>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.LinqT.EnumerableT.IndexOf(System.Collections.IEnumerable,System.Object)">
+	<summary>Gets index of first occurence of given item in given collection</summary>
+	<param name="collection">Collection to find item in</param>
+	<param name="item">Item to be found</param>
+	<returns>Index of first occurence of <paramref name="item"/> in <paramref name="collection"/> (compared using <see cref="M:System.Object.Equals(System.Object)"/>). -1 if <paramref name="item"/> is not found in <paramref name="collection"/>.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="collection"/> is null.</exception>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.LinqT.EnumerableT.IndexOf``1(System.Collections.Generic.IEnumerable{``0},``0)">
+	<summary>Gets index of first occurence of given item in given collection</summary>
+	<typeparam name="T">Type of items in collection</typeparam>
+	<param name="collection">Collection to find item in</param>
+	<param name="item">Item to be found</param>
+	<returns>Index of first occurence of <paramref name="item"/> in <paramref name="collection"/> (compared using <see cref="M:System.Object.Equals(System.Object)"/>). -1 if <paramref name="item"/> is not found in <paramref name="collection"/>.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="collection"/> is null.</exception>
 	<version version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="T:Tools.LinqT.EnumerableT">
 	<summary>Tools for working with <see cref="T:System.Collections.Generic.IEnumerable`1"/></summary>
@@ -28216,6 +28694,8 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Advances the enumerator to the next element of the collection.</summary>
 	<returns>true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.</returns>
 	<exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created. </exception>
+	<version version="1.5.3">Addes support for united enumerators to be null. Such enumerators are skipped</version>
+	<version version="1.5.3">Fix: <see cref="T:System.NullReferenceException"/> can occur at the end of enumeration.</version>
 </member><member name="M:Tools.CollectionsT.GenericT.UnionEnumerator`1.Reset">
 	<summary>Sets the enumerator to its initial position, which is before the first element in the collection.</summary>
 	<exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created. </exception>
@@ -28228,6 +28708,8 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="T:Tools.CollectionsT.GenericT.UnionEnumerator`1">
 	<summary>Implements <see cref="T:System.Collections.Generic.IEnumerator`1"/> tha unifies more <see cref="T:System.Collections.Generic.IEnumerator`1"/>s</summary>
 	<typeparam name="T">Type of item</typeparam>
+	<version version="1.5.3">Added support for united enumerators to be null. Such enumerators are skipped. Previously caused <see cref="T:System.NullReferenceException"/> in <see cref="M:Tools.CollectionsT.GenericT.UnionEnumerator`1.MoveNext"/></version>
+	<version version="1.5.3">Fix: <see cref="T:System.NullReferenceException"/> can occur at the end of enumeration in <see cref="M:Tools.CollectionsT.GenericT.UnionEnumerator`1.MoveNext"/>.</version>
 </member><member name="M:Tools.CollectionsT.SpecializedT.SpecializedWrapper.GetWrapper(System.Collections.BitArray)">
 	<summary>Gets type-sfafe wrapper for <see cref="T:System.Collections.BitArray"/></summary>
 	<param name="Collection">A <see cref="T:System.Boolean"/> to be wrapped</param>
@@ -34087,6 +34569,394 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary><see cref="T:System.ComponentModel.CancelEventArgs"/> with message witn reason for cancellation</summary>
 	<author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Beta"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
+</member><member name="F:Tools.NumericsT.LongUnion.byte7">
+	<summary>Most significant (high order) unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.byte6">
+	<summary>2nd-most significant unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.byte5">
+	<summary>3rd-most significant unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.byte4">
+	<summary>4rd-most significant unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.byte3">
+	<summary>4th-least significant unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.byte2">
+	<summary>3rd-least significant unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.byte1">
+	<summary>2nd-least significant unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.byte0">
+	<summary>Least significant (low order) byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.sbyte7">
+	<summary>Most significant (high order) signed byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.sbyte6">
+	<summary>2nd-most significant signed byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.sbyte5">
+	<summary>3rd-most significant signed byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.sbyte4">
+	<summary>4rd-most significant signed byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.sbyte3">
+	<summary>4th-least significant signed byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.sbyte2">
+	<summary>3rd-least significant signed byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.sbyte1">
+	<summary>2nd-least significant signed byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.sbyte0">
+	<summary>Least significant (low order) byte</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.short3">
+	<summary>Most significant (high order) signed word</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.short2">
+	<summary>2nd-most significant signed word</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.short1">
+	<summary>2nd-least significant signed word</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.short0">
+	<summary>Least significatnt (low order) signed word</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.ushort3">
+	<summary>Most significant (high order) unsigned word</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.ushort2">
+	<summary>2nd-most significant unsigned word</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.ushort1">
+	<summary>2nd-least significant unsigned word</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.ushort0">
+	<summary>Least significatnt (low order) unsigned word</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.integer1">
+	<summary>High order signed dword</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.integer0">
+	<summary>Low order signed dword</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.uinteger0">
+	<summary>Hight order unsigned dword</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.uinteger1">
+	<summary>Low order unsigned dword</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.long">
+	<summary>Qword signed value</summary>
+</member><member name="F:Tools.NumericsT.LongUnion.ulong">
+	<summary>Qword unsigned value</summary>
+</member><member name="M:Tools.NumericsT.LongUnion.#ctor(System.Int64)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.LongUnion"/> from 64-bit signed integer</summary>
+	<param name="long">A 64-bit signed integer</param>
+</member><member name="M:Tools.NumericsT.LongUnion.#ctor(System.UInt64)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.LongUnion"/> from 64-bit unsigned integer</summary>
+	<param name="ulong">A 64-bit unsigned integer</param>
+</member><member name="M:Tools.NumericsT.LongUnion.#ctor(System.Int32,System.Int32)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.LongUnion"/> from 32-bit signed integers</summary>
+	<param name="integer0">Low order value</param>
+	<param name="integer1">High order value</param>
+</member><member name="M:Tools.NumericsT.LongUnion.#ctor(System.UInt32,System.UInt32)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.LongUnion"/> from 32-bit unsigned integers</summary>
+	<param name="uinteger0">Low order value</param>
+	<param name="uinteger1">High order value</param>
+</member><member name="M:Tools.NumericsT.LongUnion.#ctor(System.Int16,System.Int16,System.Int16,System.Int16)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.LongUnion"/> from 16-bit signed integers</summary>
+	<param name="short0">Low order value</param>
+	<param name="short1">2nd low value</param>
+	<param name="short2">2nd high value</param>
+	<param name="short3">High order value</param>
+</member><member name="M:Tools.NumericsT.LongUnion.#ctor(System.UInt16,System.UInt16,System.UInt16,System.UInt16)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.LongUnion"/> from 16-bit unsigned integers</summary>
+	<param name="ushort0">Low order value</param>
+	<param name="ushort1">2nd low value</param>
+	<param name="ushort2">2nd high value</param>
+	<param name="ushort3">Low high value</param>
+</member><member name="M:Tools.NumericsT.LongUnion.#ctor(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.LongUnion"/> from 8-bit unsigned integers</summary>
+	<param name="byte0">Low order byte</param>
+	<param name="byte1">2nd byte</param>
+	<param name="byte2">3rd byte</param>
+	<param name="byte3">4th byte</param>
+	<param name="byte4">5th byte</param>
+	<param name="byte5">6th byte</param>
+	<param name="byte6">7th byte</param>
+	<param name="byte7">High order byte</param>
+</member><member name="M:Tools.NumericsT.LongUnion.#ctor(System.SByte,System.SByte,System.SByte,System.SByte,System.SByte,System.SByte,System.SByte,System.SByte)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.LongUnion"/> from 8-bit signed integers</summary>
+	<param name="sbyte0">Low order byte</param>
+	<param name="sbyte1">2nd byte</param>
+	<param name="sbyte2">3rd byte</param>
+	<param name="sbyte3">4th byte</param>
+	<param name="sbyte4">5th byte</param>
+	<param name="sbyte5">6th byte</param>
+	<param name="sbyte6">7th byte</param>
+	<param name="sbyte7">High order byte</param>
+</member><member name="M:Tools.NumericsT.LongUnion.op_Implicit(System.Int64)~Tools.NumericsT.LongUnion">
+	<summary>Converts <see cref="T:System.Int64"/> to <see cref="T:Tools.NumericsT.LongUnion"/></summary>
+	<param name="a">A <see cref="T:System.Int64"/></param>
+	<returns><see cref="T:Tools.NumericsT.LongUnion"/> initialized by <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.LongUnion.op_Implicit(System.UInt64)~Tools.NumericsT.LongUnion">
+	<summary>Converts <see cref="T:System.UInt64"/> to <see cref="T:Tools.NumericsT.LongUnion"/></summary>
+	<param name="a">A <see cref="T:System.UInt64"/></param>
+	<returns><see cref="T:Tools.NumericsT.LongUnion"/> initialized by <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.LongUnion.op_Implicit(Tools.NumericsT.LongUnion)~System.UInt64">
+	<summary>Converts <see cref="T:Tools.NumericsT.LongUnion"/> to <see cref="T:System.UInt64"/></summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.LongUnion"/></param>
+	<returns><paramref name="a"/>.<see cref="F:Tools.NumericsT.LongUnion.ulong">ulong</see></returns>
+</member><member name="M:Tools.NumericsT.LongUnion.op_Implicit(Tools.NumericsT.LongUnion)~System.Int64">
+	<summary>Converts <see cref="T:Tools.NumericsT.LongUnion"/> to <see cref="T:System.Int64"/></summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.LongUnion"/></param>
+	<returns><paramref name="a"/>.<see cref="F:Tools.NumericsT.LongUnion.long">ulong</see></returns>
+</member><member name="M:Tools.NumericsT.LongUnion.op_Equality(Tools.NumericsT.LongUnion,Tools.NumericsT.LongUnion)">
+	<summary>Compares two instances of <see cref="T:Tools.NumericsT.LongUnion"/> for equality</summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.LongUnion"/></param>
+	<param name="b">A <see cref="T:Tools.NumericsT.LongUnion"/></param>
+	<returns>True if values represented by <paramref name="a"/> and <paramref name="b"/> are same</returns>
+</member><member name="M:Tools.NumericsT.LongUnion.op_Inequality(Tools.NumericsT.LongUnion,Tools.NumericsT.LongUnion)">
+	<summary>Compares two instances of <see cref="T:Tools.NumericsT.LongUnion"/> for inequality</summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.LongUnion"/></param>
+	<param name="b">A <see cref="T:Tools.NumericsT.LongUnion"/></param>
+	<returns>True if values represented by <paramref name="a"/> and <paramref name="b"/> differ</returns>
+</member><member name="M:Tools.NumericsT.LongUnion.ToString">
+	<summary>Gets string representation of this instance</summary>
+	<returns>String representation of this instance showing signed and unsigned value in decimal and hexadecimal representation</returns>
+</member><member name="M:Tools.NumericsT.LongUnion.Equals(System.Object)">
+	<summary>Indicates whether this instance and a specified object are equal.</summary>
+	<returns>True if <paramref name="obj"/> is either <see cref="T:Tools.NumericsT.LongUnion"/>, <see cref="T:System.Int64"/> or <see cref="T:System.UInt64"/> and represents same value as current instance.</returns>
+	<param name="obj">Another object to compare to. </param>
+</member><member name="M:Tools.NumericsT.LongUnion.GetHashCode">
+	<summary>Returns the hash code for this instance.</summary>
+	<returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+</member><member name="M:Tools.NumericsT.LongUnion.BitwiseSame(System.UInt64)">
+	<summary>Bitwise converts value of type <see cref="T:System.UInt64"/> to <see cref="T:System.Int64"/></summary>
+	<param name="unsigned">An <see cref="T:System.Int64"/></param>
+	<returns>Signed value with same bitwise representation as <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.LongUnion.BitwiseSame(System.Int64)">
+	<summary>Bitwise converts value of type <see cref="T:System.Int64"/> to <see cref="T:System.UInt64"/></summary>
+	<param name="signed">A <see cref="T:System.UInt64"/></param>
+	<returns>Unsigned value with same bitwise representation as <paramref name="a"/></returns>
+</member><member name="T:Tools.NumericsT.LongUnion">
+	<summary>8-byte union of integral data types</summary>
+	<remarks>You can use this union for bitwise operations</remarks>
+	<version stage="Nightly" version="1.5.3">This structure is new in version 1.5.3</version>
+</member><member name="F:Tools.NumericsT.IntegerUnion.byte3">
+	<summary>Most significant (high order) unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.byte2">
+	<summary>2nd-most significant unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.byte1">
+	<summary>2nd-least significant unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.byte0">
+	<summary>Least significant (low order) unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.sbyte3">
+	<summary>Most significant (high order) signed byte</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.sbyte2">
+	<summary>2nd-most significant signed byte</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.sbyte1">
+	<summary>2nd-least significant signed byte</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.sbyte0">
+	<summary>Least significant (low order) signed byte</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.short1">
+	<summary>Most significatnt (high order) signed word</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.short0">
+	<summary>Least significatnt (low order) signed word</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.ushort1">
+	<summary>Most significatnt (high order) unsigned word</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.ushort0">
+	<summary>Least significatnt (low order) unsigned word</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.integer">
+	<summary>Signed integer value</summary>
+</member><member name="F:Tools.NumericsT.IntegerUnion.uinteger">
+	<summary>Unsigned integer value</summary>
+</member><member name="M:Tools.NumericsT.IntegerUnion.#ctor(System.Int32)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.IntegerUnion"/> from 32-bit signed integer</summary>
+	<param name="integer">A 32-bit signed integer</param>
+</member><member name="M:Tools.NumericsT.IntegerUnion.#ctor(System.UInt64)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.IntegerUnion"/> from 32-bit unsigned integer</summary>
+	<param name="uinteger">A 32-bit unsigned integer</param>
+</member><member name="M:Tools.NumericsT.IntegerUnion.#ctor(System.Int16,System.Int16)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.IntegerUnion"/> from 16-bit signed integers</summary>
+	<param name="short0">Low order value</param>
+	<param name="short1">high order value</param>
+</member><member name="M:Tools.NumericsT.IntegerUnion.#ctor(System.UInt16,System.UInt16)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.IntegerUnion"/> from 16-bit unsigned integers</summary>
+	<param name="ushort0">Low order value</param>
+	<param name="ushort1">high value</param>
+</member><member name="M:Tools.NumericsT.IntegerUnion.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.IntegerUnion"/> from 8-bit unsigned integers</summary>
+	<param name="byte0">Low order byte</param>
+	<param name="byte1">2nd byte</param>
+	<param name="byte2">3rd byte</param>
+	<param name="byte3">High order byte</param>
+</member><member name="M:Tools.NumericsT.IntegerUnion.#ctor(System.SByte,System.SByte,System.SByte,System.SByte)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.IntegerUnion"/> from 8-bit signed integers</summary>
+	<param name="sbyte0">Low order byte</param>
+	<param name="sbyte1">2nd byte</param>
+	<param name="sbyte2">3rd byte</param>
+	<param name="sbyte3">High order byte</param>
+</member><member name="M:Tools.NumericsT.IntegerUnion.op_Implicit(System.Int32)~Tools.NumericsT.IntegerUnion">
+	<summary>Converts <see cref="T:System.Int32"/> to <see cref="T:Tools.NumericsT.LongUnion"/></summary>
+	<param name="a">A <see cref="T:System.Int32"/></param>
+	<returns><see cref="T:Tools.NumericsT.LongUnion"/> initialized by <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.IntegerUnion.op_Implicit(System.UInt32)~Tools.NumericsT.IntegerUnion">
+	<summary>Converts <see cref="T:System.UInt32"/> to <see cref="T:Tools.NumericsT.IntegerUnion"/></summary>
+	<param name="a">A <see cref="T:System.UInt32"/></param>
+	<returns><see cref="T:Tools.NumericsT.LongUnion"/> initialized by <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.IntegerUnion.op_Implicit(Tools.NumericsT.IntegerUnion)~System.UInt32">
+	<summary>Converts <see cref="T:Tools.NumericsT.IntegerUnion"/> to <see cref="T:System.UInt32"/></summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.IntegerUnion"/></param>
+	<returns><paramref name="a"/>.<see cref="F:Tools.NumericsT.IntegerUnion.uinteger">ulong</see></returns>
+</member><member name="M:Tools.NumericsT.IntegerUnion.op_Implicit(Tools.NumericsT.IntegerUnion)~System.Int32">
+	<summary>Converts <see cref="T:Tools.NumericsT.IntegerUnion"/> to <see cref="T:System.Int32"/></summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.IntegerUnion"/></param>
+	<returns><paramref name="a"/>.<see cref="F:Tools.NumericsT.IntegerUnion.integer">ulong</see></returns>
+</member><member name="M:Tools.NumericsT.IntegerUnion.op_Equality(Tools.NumericsT.IntegerUnion,Tools.NumericsT.IntegerUnion)">
+	<summary>Compares two instances of <see cref="T:Tools.NumericsT.IntegerUnion"/> for equality</summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.IntegerUnion"/></param>
+	<param name="b">A <see cref="T:Tools.NumericsT.IntegerUnion"/></param>
+	<returns>True if values represented by <paramref name="a"/> and <paramref name="b"/> are same</returns>
+</member><member name="M:Tools.NumericsT.IntegerUnion.op_Inequality(Tools.NumericsT.IntegerUnion,Tools.NumericsT.IntegerUnion)">
+	<summary>Compares two instances of <see cref="T:Tools.NumericsT.IntegerUnion"/> for inequality</summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.IntegerUnion"/></param>
+	<param name="b">A <see cref="T:Tools.NumericsT.IntegerUnion"/></param>
+	<returns>True if values represented by <paramref name="a"/> and <paramref name="b"/> differ</returns>
+</member><member name="M:Tools.NumericsT.IntegerUnion.ToString">
+	<summary>Gets string representation of this instance</summary>
+	<returns>String representation of this instance showing signed and unsigned value in decimal and hexadecimal representation</returns>
+</member><member name="M:Tools.NumericsT.IntegerUnion.Equals(System.Object)">
+	<summary>Indicates whether this instance and a specified object are equal.</summary>
+	<returns>True if <paramref name="obj"/> is either <see cref="T:Tools.NumericsT.IntegerUnion"/>, <see cref="T:System.Int32"/> or <see cref="T:System.UInt32"/> and represents same value as current instance.</returns>
+	<param name="obj">Another object to compare to. </param>
+</member><member name="M:Tools.NumericsT.IntegerUnion.GetHashCode">
+	<summary>Returns the hash code for this instance.</summary>
+	<returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+</member><member name="M:Tools.NumericsT.IntegerUnion.BitwiseSame(System.UInt32)">
+	<summary>Bitwise converts value of type <see cref="T:System.UInt32"/> to <see cref="T:System.Int32"/></summary>
+	<param name="unsigned">An <see cref="T:System.Int32"/></param>
+	<returns>Signed value with same bitwise representation as <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.IntegerUnion.BitwiseSame(System.Int32)">
+	<summary>Bitwise converts value of type <see cref="T:System.Int32"/> to <see cref="T:System.UInt32"/></summary>
+	<param name="signed">A <see cref="T:System.UInt32"/></param>
+	<returns>Unsigned value with same bitwise representation as <paramref name="a"/></returns>
+</member><member name="T:Tools.NumericsT.IntegerUnion">
+	<summary>4-byte union of integral data types</summary>
+	<remarks>You can use this union for bitwise operations</remarks>
+	<version stage="Nightly" version="1.5.3">This structure is new in version 1.5.3</version>
+</member><member name="F:Tools.NumericsT.ShortUnion.byte1">
+	<summary>Most significant (high order) unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.ShortUnion.byte0">
+	<summary>Least significant (low order) unsigned byte</summary>
+</member><member name="F:Tools.NumericsT.ShortUnion.sbyte1">
+	<summary>Most significant (high order) signed byte</summary>
+</member><member name="F:Tools.NumericsT.ShortUnion.sbyte0">
+	<summary>Least significant (low order) signed byte</summary>
+</member><member name="F:Tools.NumericsT.ShortUnion.short">
+	<summary>Signed 16-bit value</summary>
+</member><member name="F:Tools.NumericsT.ShortUnion.ushort">
+	<summary>Unsigned 16-bit value</summary>
+</member><member name="M:Tools.NumericsT.ShortUnion.#ctor(System.Int16)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.ShortUnion"/> from 16-bit signed integer</summary>
+	<param name="short">A 16-bit signed integer</param>
+</member><member name="M:Tools.NumericsT.ShortUnion.#ctor(System.UInt16)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.ShortUnion"/> from 16-bit unsigned integer</summary>
+	<param name="ushort">A 16-bit unsigned integer</param>
+</member><member name="M:Tools.NumericsT.ShortUnion.#ctor(System.Byte,System.Byte)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.ShortUnion"/> from 8-bit unsigned integers</summary>
+	<param name="byte0">Low order byte</param>
+	<param name="byte1">High order byte</param>
+</member><member name="M:Tools.NumericsT.ShortUnion.#ctor(System.SByte,System.SByte)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.ShortUnion"/> from 8-bit signed integers</summary>
+	<param name="sbyte0">Low order byte</param>
+	<param name="sbyte1">High order byte</param>
+</member><member name="M:Tools.NumericsT.ShortUnion.op_Implicit(System.Int16)~Tools.NumericsT.ShortUnion">
+	<summary>Converts <see cref="T:System.Int16"/> to <see cref="T:Tools.NumericsT.LongUnion"/></summary>
+	<param name="a">A <see cref="T:System.Int16"/></param>
+	<returns><see cref="T:Tools.NumericsT.LongUnion"/> initialized by <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.ShortUnion.op_Implicit(System.UInt16)~Tools.NumericsT.ShortUnion">
+	<summary>Converts <see cref="T:System.UInt16"/> to <see cref="T:Tools.NumericsT.ShortUnion"/></summary>
+	<param name="a">A <see cref="T:System.UInt16"/></param>
+	<returns><see cref="T:Tools.NumericsT.LongUnion"/> initialized by <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.ShortUnion.op_Implicit(Tools.NumericsT.ShortUnion)~System.UInt16">
+	<summary>Converts <see cref="T:Tools.NumericsT.ShortUnion"/> to <see cref="T:System.UInt16"/></summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.ShortUnion"/></param>
+	<returns><paramref name="a"/>.<see cref="F:Tools.NumericsT.ShortUnion.ushort">ulong</see></returns>
+</member><member name="M:Tools.NumericsT.ShortUnion.op_Implicit(Tools.NumericsT.ShortUnion)~System.Int16">
+	<summary>Converts <see cref="T:Tools.NumericsT.ShortUnion"/> to <see cref="T:System.Int16"/></summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.ShortUnion"/></param>
+	<returns><paramref name="a"/>.<see cref="F:Tools.NumericsT.ShortUnion.short">ulong</see></returns>
+</member><member name="M:Tools.NumericsT.ShortUnion.op_Equality(Tools.NumericsT.ShortUnion,Tools.NumericsT.ShortUnion)">
+	<summary>Compares two instances of <see cref="T:Tools.NumericsT.ShortUnion"/> for equality</summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.ShortUnion"/></param>
+	<param name="b">A <see cref="T:Tools.NumericsT.ShortUnion"/></param>
+	<returns>True if values represented by <paramref name="a"/> and <paramref name="b"/> are same</returns>
+</member><member name="M:Tools.NumericsT.ShortUnion.op_Inequality(Tools.NumericsT.ShortUnion,Tools.NumericsT.ShortUnion)">
+	<summary>Compares two instances of <see cref="T:Tools.NumericsT.ShortUnion"/> for inequality</summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.ShortUnion"/></param>
+	<param name="b">A <see cref="T:Tools.NumericsT.ShortUnion"/></param>
+	<returns>True if values represented by <paramref name="a"/> and <paramref name="b"/> differ</returns>
+</member><member name="M:Tools.NumericsT.ShortUnion.ToString">
+	<summary>Gets string representation of this instance</summary>
+	<returns>String representation of this instance showing signed and unsigned value in decimal and hexadecimal representation</returns>
+</member><member name="M:Tools.NumericsT.ShortUnion.Equals(System.Object)">
+	<summary>Indicates whether this instance and a specified object are equal.</summary>
+	<returns>True if <paramref name="obj"/> is either <see cref="T:Tools.NumericsT.ShortUnion"/>, <see cref="T:System.Int16"/> or <see cref="T:System.UInt16"/> and represents same value as current instance.</returns>
+	<param name="obj">Another object to compare to. </param>
+</member><member name="M:Tools.NumericsT.ShortUnion.GetHashCode">
+	<summary>Returns the hash code for this instance.</summary>
+	<returns>A 32-bit signed Short that is the hash code for this instance.</returns>
+</member><member name="M:Tools.NumericsT.ShortUnion.BitwiseSame(System.UInt16)">
+	<summary>Bitwise converts value of type <see cref="T:System.UInt16"/> to <see cref="T:System.Int16"/></summary>
+	<param name="unsigned">An <see cref="T:System.Int16"/></param>
+	<returns>Signed value with same bitwise representation as <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.ShortUnion.BitwiseSame(System.Int16)">
+	<summary>Bitwise converts value of type <see cref="T:System.Int16"/> to <see cref="T:System.UInt16"/></summary>
+	<param name="signed">A <see cref="T:System.UInt16"/></param>
+	<returns>Unsigned value with same bitwise representation as <paramref name="a"/></returns>
+</member><member name="T:Tools.NumericsT.ShortUnion">
+	<summary>2-byte union of integral data types</summary>
+	<remarks>You can use this union for bitwise operations</remarks>
+	<version stage="Nightly" version="1.5.3">This structure is new in version 1.5.3</version>
+</member><member name="F:Tools.NumericsT.ByteUnion.byte">
+	<summary>Unsigned value</summary>
+</member><member name="F:Tools.NumericsT.ByteUnion.sbyte">
+	<summary>Signed value</summary>
+</member><member name="M:Tools.NumericsT.ByteUnion.#ctor(System.Byte)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.ByteUnion"/> from 8-bit unsigned integer</summary>
+	<param name="byte">A 8-bit unsigned integer</param>
+</member><member name="M:Tools.NumericsT.ByteUnion.#ctor(System.SByte)">
+	<summary>Initializes <see cref="T:Tools.NumericsT.ByteUnion"/> from 8-bitsigned integer</summary>
+	<param name="sbyte">A 8-bit signed integer</param>
+</member><member name="M:Tools.NumericsT.ByteUnion.op_Implicit(System.Byte)~Tools.NumericsT.ByteUnion">
+	<summary>Converts <see cref="T:System.Byte"/> to <see cref="T:Tools.NumericsT.LongUnion"/></summary>
+	<param name="a">A <see cref="T:System.Byte"/></param>
+	<returns><see cref="T:Tools.NumericsT.LongUnion"/> initialized by <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.ByteUnion.op_Implicit(System.SByte)~Tools.NumericsT.ByteUnion">
+	<summary>Converts <see cref="T:System.SByte"/> to <see cref="T:Tools.NumericsT.ByteUnion"/></summary>
+	<param name="a">A <see cref="T:System.SByte"/></param>
+	<returns><see cref="T:Tools.NumericsT.LongUnion"/> initialized by <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.ByteUnion.op_Implicit(Tools.NumericsT.ByteUnion)~System.SByte">
+	<summary>Converts <see cref="T:Tools.NumericsT.ByteUnion"/> to <see cref="T:System.SByte"/></summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.ByteUnion"/></param>
+	<returns><paramref name="a"/>.<see cref="F:Tools.NumericsT.ByteUnion.sbyte">ulong</see></returns>
+</member><member name="M:Tools.NumericsT.ByteUnion.op_Implicit(Tools.NumericsT.ByteUnion)~System.Byte">
+	<summary>Converts <see cref="T:Tools.NumericsT.ByteUnion"/> to <see cref="T:System.Byte"/></summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.ByteUnion"/></param>
+	<returns><paramref name="a"/>.<see cref="F:Tools.NumericsT.ByteUnion.byte">ulong</see></returns>
+</member><member name="M:Tools.NumericsT.ByteUnion.op_Equality(Tools.NumericsT.ByteUnion,Tools.NumericsT.ByteUnion)">
+	<summary>Compares two instances of <see cref="T:Tools.NumericsT.ByteUnion"/> for equality</summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.ByteUnion"/></param>
+	<param name="b">A <see cref="T:Tools.NumericsT.ByteUnion"/></param>
+	<returns>True if values represented by <paramref name="a"/> and <paramref name="b"/> are same</returns>
+</member><member name="M:Tools.NumericsT.ByteUnion.op_Inequality(Tools.NumericsT.ByteUnion,Tools.NumericsT.ByteUnion)">
+	<summary>Compares two instances of <see cref="T:Tools.NumericsT.ByteUnion"/> for inequality</summary>
+	<param name="a">A <see cref="T:Tools.NumericsT.ByteUnion"/></param>
+	<param name="b">A <see cref="T:Tools.NumericsT.ByteUnion"/></param>
+	<returns>True if values represented by <paramref name="a"/> and <paramref name="b"/> differ</returns>
+</member><member name="M:Tools.NumericsT.ByteUnion.ToString">
+	<summary>Gets string representation of this instance</summary>
+	<returns>String representation of this instance showing signed and unsigned value in decimal and hexadecimal representation</returns>
+</member><member name="M:Tools.NumericsT.ByteUnion.Equals(System.Object)">
+	<summary>Indicates whether this instance and a specified object are equal.</summary>
+	<returns>True if <paramref name="obj"/> is either <see cref="T:Tools.NumericsT.ByteUnion"/>, <see cref="T:System.Byte"/> or <see cref="T:System.SByte"/> and represents same value as current instance.</returns>
+	<param name="obj">Another object to compare to. </param>
+</member><member name="M:Tools.NumericsT.ByteUnion.GetHashCode">
+	<summary>Returns the hash code for this instance.</summary>
+	<returns>A 32-bit signed Byte that is the hash code for this instance.</returns>
+</member><member name="M:Tools.NumericsT.ByteUnion.BitwiseSame(System.Byte)">
+	<summary>Bitwise converts value of type <see cref="T:System.Byte"/> to <see cref="T:System.SByte"/></summary>
+	<param name="unsigned">An <see cref="T:System.SByte"/></param>
+	<returns>Signed value with same bitwise representation as <paramref name="a"/></returns>
+</member><member name="M:Tools.NumericsT.ByteUnion.BitwiseSame(System.SByte)">
+	<summary>Bitwise converts value of type <see cref="T:System.SByte"/> to <see cref="T:System.Byte"/></summary>
+	<param name="signed">A <see cref="T:System.Byte"/></param>
+	<returns>Unsigned value with same bitwise representation as <paramref name="a"/></returns>
+</member><member name="T:Tools.NumericsT.ByteUnion">
+	<summary>1-byte union of integral data types</summary>
+	<remarks>You can use this union for bitwise operations</remarks>
+	<version stage="Nightly" version="1.5.3">This structure is new in version 1.5.3</version>
 </member><member name="F:Tools.ComponentModelT.SuppresHandledEventArgs._Handled">
 	<summary>Contains value of the <see cref="P:Tools.ComponentModelT.SuppresHandledEventArgs.Handled"/> property</summary>
 </member><member name="P:Tools.ComponentModelT.SuppresHandledEventArgs.Handled">
@@ -34496,34 +35366,50 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Gets signed number with same hexadecimal value as given unsigned number</summary>
 	<param name="n">Number to convert</param>
 	<remarks>Number that has binary same value if <paramref name="n"/> but is signed</remarks>
+	<seelaso cref="M:Tools.NumericsT.ByteUnion.BitwiseSame(System.Byte)"/>
+	<version version="1.5.3">Implementation changed form arithmetic operation to use <see cref="T:Tools.NumericsT.ByteUnion"/>.</version>
 </member><member name="M:Tools.ExtensionsT.Numbers.BitwiseSame(System.UInt16)">
 	<summary>Gets signed number with same hexadecimal value as given unsigned number</summary>
 	<param name="n">Number to convert</param>
 	<remarks>Number that has binary same value if <paramref name="n"/> but is signed</remarks>
+	<seelaso cref="M:Tools.NumericsT.ShortUnion.BitwiseSame(System.UInt16)"/>
+	<version version="1.5.3">Implementation changed form arithmetic operation to use <see cref="T:Tools.NumericsT.ShortUnion"/>.</version>
 </member><member name="M:Tools.ExtensionsT.Numbers.BitwiseSame(System.UInt32)">
 	<summary>Gets signed number with same hexadecimal value as given unsigned number</summary>
 	<param name="n">Number to convert</param>
 	<remarks>Number that has binary same value if <paramref name="n"/> but is signed</remarks>
+	<seelaso cref="M:Tools.NumericsT.IntegerUnion.BitwiseSame(System.UInt32)"/>
+	<version version="1.5.3">Implementation changed form arithmetic operation to use <see cref="T:Tools.NumericsT.IntegerUnion"/>.</version>
 </member><member name="M:Tools.ExtensionsT.Numbers.BitwiseSame(System.UInt64)">
 	<summary>Gets signed number with same hexadecimal value as given unsigned number</summary>
 	<param name="n">Number to convert</param>
 	<remarks>Number that has binary same value if <paramref name="n"/> but is signed</remarks>
+	<seelaso cref="M:Tools.NumericsT.LongUnion.BitwiseSame(System.UInt64)"/>
+	<version version="1.5.3">Implementation changed form arithmetic operation to use <see cref="T:Tools.NumericsT.LongUnion"/>.</version>
 </member><member name="M:Tools.ExtensionsT.Numbers.BitwiseSame(System.SByte)">
 	<summary>Gets unsigned number with same hexadecimal value as given signed number</summary>
 	<param name="n">Number to convert</param>
 	<remarks>Number that has binary same value if <paramref name="n"/> but is unsigned</remarks>
+	<seelaso cref="M:Tools.NumericsT.ByteUnion.BitwiseSame(System.Byte)"/>
+	<version version="1.5.3">Implementation changed form arithmetic operation to use <see cref="T:Tools.NumericsT.ByteUnion"/>.</version>
 </member><member name="M:Tools.ExtensionsT.Numbers.BitwiseSame(System.Int16)">
 	<summary>Gets unsigned number with same hexadecimal value as given signed number</summary>
 	<param name="n">Number to convert</param>
 	<remarks>Number that has binary same value if <paramref name="n"/> but is unsigned</remarks>
+	<seelaso cref="M:Tools.NumericsT.ShortUnion.BitwiseSame(System.UInt16)"/>
+	<version version="1.5.3">Implementation changed form arithmetic operation to use <see cref="T:Tools.NumericsT.ShortUnion"/>.</version>
 </member><member name="M:Tools.ExtensionsT.Numbers.BitwiseSame(System.Int32)">
 	<summary>Gets unsigned number with same hexadecimal value as given signed number</summary>
 	<param name="n">Number to convert</param>
 	<remarks>Number that has binary same value if <paramref name="n"/> but is unsigned</remarks>
+	<seelaso cref="M:Tools.NumericsT.IntegerUnion.BitwiseSame(System.UInt32)"/>
+	<version version="1.5.3">Implementation changed form arithmetic operation to use <see cref="T:Tools.NumericsT.IntegerUnion"/>.</version>
 </member><member name="M:Tools.ExtensionsT.Numbers.BitwiseSame(System.Int64)">
 	<summary>Gets unsigned number with same hexadecimal value as given signed number</summary>
 	<param name="n">Number to convert</param>
 	<remarks>Number that has binary same value if <paramref name="n"/> but is unsigned</remarks>
+	<seelaso cref="M:Tools.NumericsT.LongUnion.BitwiseSame(System.UInt64)"/>
+	<version version="1.5.3">Implementation changed form arithmetic operation to use <see cref="T:Tools.NumericsT.LongUnion"/>.</version>
 </member><member name="M:Tools.ExtensionsT.Numbers.GetBit(System.Byte,System.Byte)">
 	<summary>Gets value of given bit of <see cref="T:System.Byte"/></summary>
 	<param name="n">Number to get bit of</param>

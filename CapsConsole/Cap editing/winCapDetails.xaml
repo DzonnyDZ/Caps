@@ -69,6 +69,11 @@
                                 <Image Source="/CapsConsole;component/Resources/DeleteHS.png"/>
                             </MenuItem.Icon>
                         </MenuItem>
+                        <MenuItem Header="{x:Static res:Resources.cmd_CapsSearchSimilar}" Click="SeachForSimilar_Click">
+                            <MenuItem.Icon>
+                                <Image Source="/CapsConsole;component/Resources/FindHS.png"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
                     </ContextMenu.Items>
                 </ContextMenu>
             </ListBox.ContextMenu>
@@ -286,6 +291,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="18*"/>
@@ -293,6 +299,7 @@
                 </Grid.ColumnDefinitions>
                 <Button Content="{x:Static res:Resources.cmd_Edit}" Command="ApplicationCommands.Open" />
                 <Button Content="{x:Static res:Resources.cmd_Delete}" Grid.Row="1" Command="ApplicationCommands.Delete"/>
+                <Button Content="{x:Static res:Resources.cmd_CapsSearchSimilar}" Click="SeachForSimilar_Click"/>
             </Grid>
             <!--Texts-->
             <GroupBox Grid.Row="1" Grid.Column="1" Header="{x:Static res:Resources.txt_Texts}" Grid.RowSpan="2" >

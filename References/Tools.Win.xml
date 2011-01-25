@@ -3981,6 +3981,26 @@ Tools.Win
 	<exception cref="T:System.UnauthorizedAccessException">Assecc to file or directory specified by <paramref name="Path"/> is denied</exception>
 	<exception cref="T:Tools.API.Win32APIException">Another Win32 error occured</exception>
 	<version version="1.5.2">Method added</version>
+</member><member name="M:Tools.IOt.FileSystemTools.OpenFile(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+	<summary>Creates or opens a file or I/O device. The most commonly used I/O devices are as follows: file, file stream, directory, physical disk, volume, console buffer, tape drive, communications resource, mailslot, and pipe.</summary>
+	<param name="path">The file to open.</param>
+	<param name="mode">A <see cref="T:System.IO.FileMode"/> value that specifies whether a file is created if one does not exist, and determines whether the contents of existing files are retained or overwritten.</param>
+	<param name="access">A <see cref="T:System.IO.FileAccess"/> value that specifies the operations that can be performed on the file.</param>
+	<param name="share">A <see cref="T:System.IO.FileShare"/> value specifying the type of access other threads have to the file.</param>
+	<returns>A <see cref="T:System.IO.FileStream"/> on the specified path, having the specified mode with read, write, or read/write access and the specified sharing option.</returns>
+	<exception cref="T:System.ArgumentException">path is a zero-length string.</exception>
+	<exception cref="T:System.ArgumentNullException">path is null.</exception>
+	<exception cref="T:System.IO.IOException">An I/O error occurred while opening the file.</exception>
+	<exception cref="T:System.UnauthorizedAccessException">path specified a file that is read-only and access is not Read.-or- path specified a directory.-or- The caller does not have the required permission. -or-mode is <see cref="F:System.IO.FileMode.Create"/> and the specified file is a hidden file.</exception>
+	<exception cref="T:System.ArgumentOutOfRangeException">mode, access, or share specified an invalid value.</exception>
+	<exception cref="T:System.NotSupportedException">path is in an invalid format.</exception>
+	<remarks>Use this method instead of <see cref="M:System.IO.File.Open(System.String,System.IO.FileMode)"/> when you need file-like access to something different than file (e.g. NTFS alternate stream or port)</remarks>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.IOt.FileSystemTools.TestFileExists(System.String)">
+	<summary>Tests if file, stream, device or something other file-like exists</summary>
+	<param name="path">Path to file, device etc. to test</param>
+	<returns>True if given device or file exists, false otherwise</returns>
+	<remarks>Use this instead of <see cref="M:System.IO.File.Exists(System.String)"/> when you are working with something different than file (e.g. NTFS alternate stream or port)</remarks>
 </member><member name="T:Tools.IOt.FileSystemTools">
 	<summary>Contains file system-related methods and extension methods</summary>
 	<version version="1.5.2">Renamed from FileTystemTools to FileSystemTools</version>
@@ -5413,6 +5433,10 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 		<para>Do not delete a drawing object (pen or brush) while it is still selected into a DC.</para>
 		<para>When a pattern brush is deleted, the bitmap associated with the brush is not deleted. The bitmap must be deleted independently.</para>
 	</remarks>
+</member><member name="M:Tools.API.Common.CloseHandle(System.IntPtr)">
+	<summary>Closes an open object handle.</summary>
+	<param name="hObject">A valid handle to an open object.</param>
+	<returns>If the function succeeds, the return value is true. If the function fails, the return value is false.</returns>
 </member><member name="T:Tools.API.Common">
 	<summary>Common Win32 API declarations</summary>
 </member><member name="F:Tools.WindowsT.NativeT.Win32Window._Handle">
@@ -5922,6 +5946,45 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Provides access to information about Windows GUI thread</summary>
 	<remarks>This class provides dynamic information (whenever you call property getter actual infromation is obtained from the thread) rather than static snapshot of thread state in time when instance of class was constructed.</remarks>
 	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.DiagnosticsT.ProcessExtensions.Suspend(System.Diagnostics.Process)">
+	<summary>Suspends a process by suspending all threads of the process</summary>
+	<param name="process">A process to be suspended</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="process"/> is null.</exception>
+	<exception cref="T:Tools.API.Win32APIException">Failed to suspend a thread. In this case an attempt is made to restore previous state of all threads which's suspension didn't failed.</exception>
+</member><member name="M:Tools.DiagnosticsT.ProcessExtensions.Resume(System.Diagnostics.Process)">
+	<summary>Resumes a process by resuming all threads of the process</summary>
+	<param name="process">A process to be resumed</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="process"/> is null.</exception>
+	<exception cref="T:Tools.API.Win32APIException">Failed to resume a thread. In this case an attempt is made to restore previous state of all threads which's resumal didn't failed.</exception>
+</member><member name="M:Tools.DiagnosticsT.ProcessExtensions.Suspend(System.Diagnostics.ProcessThread)">
+	<summary>Suspends the specified thread</summary>
+	<param name="thread">The thread to be suspended</param>
+	<returns>Actual thread's suspend count. Returns 1 when thread was suspended by this call, returns number &gt;1 if thread was already suspended.</returns>
+	<remarks>You can use pair of <see cref="M:Tools.DiagnosticsT.ProcessExtensions.Suspend(System.Diagnostics.Process)"/> and <see cref="M:Tools.DiagnosticsT.ProcessExtensions.Resume(System.Diagnostics.Process)"/> calls to ensure that thread is suspended (<see cref="M:Tools.DiagnosticsT.ProcessExtensions.Suspend(System.Diagnostics.Process)"/>) and resume thread to it's previous state (<see cref="M:Tools.DiagnosticsT.ProcessExtensions.Resume(System.Diagnostics.Process)"/>).</remarks>
+	<exception cref="T:Tools.API.Win32APIException">Failed to obtain access to given thread or to suspend the thread</exception>
+	<exception cref="T:System.ArgumentNullException"><paramref name="thread"/> is null.</exception>
+</member><member name="M:Tools.DiagnosticsT.ProcessExtensions.Resume(System.Diagnostics.ProcessThread)">
+	<summary>Decrements a thread's suspend count. When the suspend count is decremented to zero, the execution of the thread is resumed.</summary>
+	<param name="thread">The thread to be resumed.</param>
+	<returns>Actual thread's suspend count. Returns 0 when thread was actually resumed by this call, returns number &gt;0 if thread was not suspended by this call.</returns>
+	<remarks>You can use pair of <see cref="M:Tools.DiagnosticsT.ProcessExtensions.Suspend(System.Diagnostics.Process)"/> and <see cref="M:Tools.DiagnosticsT.ProcessExtensions.Resume(System.Diagnostics.Process)"/> calls to ensure that thread is suspended (<see cref="M:Tools.DiagnosticsT.ProcessExtensions.Suspend(System.Diagnostics.Process)"/>) and resume thread to it's previous state (<see cref="M:Tools.DiagnosticsT.ProcessExtensions.Resume(System.Diagnostics.Process)"/>).</remarks>
+	<exception cref="T:Tools.API.Win32APIException">Failed to obtain access to given thread or to resume the thread</exception>
+	<exception cref="T:System.ArgumentNullException"><paramref name="thread"/> is null.</exception>
+</member><member name="M:Tools.DiagnosticsT.ProcessExtensions.SuspendThread(System.Int32)">
+	<summary>Suspends a thread identified by thread ID</summary>
+	<param name="threadId">ID of the thread to be suspended.</param>
+	<returns>Actual thread's suspend count. Returns 1 when thread was suspended by this call, returns number &gt;1 if thread was already suspended.</returns>
+	<remarks>You can use pair of <see cref="M:Tools.DiagnosticsT.ProcessExtensions.SuspendThread(System.Int32)"/> and <see cref="M:Tools.DiagnosticsT.ProcessExtensions.ResumeThread(System.Int32)"/> calls to ensure that thread is suspended (<see cref="M:Tools.DiagnosticsT.ProcessExtensions.SuspendThread(System.Int32)"/>) and resume thread to it's previous state (<see cref="M:Tools.DiagnosticsT.ProcessExtensions.ResumeThread(System.Int32)"/>).</remarks>
+	<exception cref="T:Tools.API.Win32APIException">Failed to obtain access to given thread or to suspend the thread</exception>
+</member><member name="M:Tools.DiagnosticsT.ProcessExtensions.ResumeThread(System.Int32)">
+	<summary>Decrements a thread's suspend count of a thread identified by ID. When the suspend count is decremented to zero, the execution of the thread is resumed.</summary>
+	<param name="threadId">ID of the thread to be resumed.</param>
+	<returns>Actual thread's suspend count. Returns 0 when thread was actually resumed by this call, returns number &gt;0 if thread was not suspended by this call.</returns>
+	<remarks>You can use pair of <see cref="M:Tools.DiagnosticsT.ProcessExtensions.SuspendThread(System.Int32)"/> and <see cref="M:Tools.DiagnosticsT.ProcessExtensions.ResumeThread(System.Int32)"/> calls to ensure that thread is suspended (<see cref="M:Tools.DiagnosticsT.ProcessExtensions.SuspendThread(System.Int32)"/>) and resume thread to it's previous state (<see cref="M:Tools.DiagnosticsT.ProcessExtensions.ResumeThread(System.Int32)"/>).</remarks>
+	<exception cref="T:Tools.API.Win32APIException">Failed to obtain access to given thread or to resume the thread</exception>
+</member><member name="T:Tools.DiagnosticsT.ProcessExtensions">
+	<summary>Provides extension functions for working with processes</summary>
+	<version version="1.5.3">This module is new in version 1.5.3</version>
 </member><member name="F:Tools.API.Hid.HIDP_REPORT_TYPE.HidP_Input">
 	<summary>Indicates an input report.</summary>
 </member><member name="F:Tools.API.Hid.HIDP_REPORT_TYPE.HidP_Output">
@@ -6562,6 +6625,73 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Speifies SysKeyDown event (<see cref="F:Tools.API.Messages.WindowMessages.WM_SYSKEYDOWN"/>)</summary>
 </member><member name="T:Tools.DevicesT.LowLevelKeyboardEvent">
 	<summary>Keyboar event that may occure with <see cref="T:Tools.DevicesT.LowLevelKeyboardHook"/></summary>
+</member><member name="F:Tools.API.Threads.ThreadAccess.DELETE">
+	<summary>Required to delete the object.</summary>
+	<remarks>This is standard access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.READ_CONTROL">
+	<summary>Required to read information in the security descriptor for the object, not including the information in the SACL. To read or write the SACL, you must request the ACCESS_SYSTEM_SECURITY access right. For more information, see SACL Access Right.</summary>
+	<remarks>This is standard access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.WRITE_DAC">
+	<summary>Required to modify the DACL in the security descriptor for the object.</summary>
+	<remarks>This is standard access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.WRITE_OWNER">
+	<summary>Required to change the owner in the security descriptor for the object.</summary>
+	<remarks>This is standard access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.SYNCHRONIZE">
+	<summary>Enables the use of the thread handle in any of the wait functions.</summary>
+	<remarks>This both - standard and thread-specific access right. The standard access right is described as: The right to use the object for synchronization. This enables a thread to wait until the object is in the signaled state.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.THREAD_DIRECT_IMPERSONATION">
+	<summary>Required for a server thread that impersonates a client.</summary>
+	<remarks>This is thread-specific access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.THREAD_GET_CONTEXT">
+	<summary>Required to read the context of a thread using GetThreadContext.</summary>
+	<remarks>This is thread-specific access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.THREAD_IMPERSONATE">
+	<summary>Required to use a thread's security information directly without calling it by using a communication mechanism that provides impersonation services.</summary>
+	<remarks>This is thread-specific access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.THREAD_QUERY_INFORMATION">
+	<summary>Required to read certain information from the thread object, such as the exit code (see GetExitCodeThread).</summary>
+	<remarks>This is thread-specific access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.THREAD_QUERY_LIMITED_INFORMATION">
+	<summary>Required to read certain information from the thread objects (see GetProcessIdOfThread). A handle that has the <see cref="F:Tools.API.Threads.ThreadAccess.THREAD_QUERY_INFORMATION"/> access right is automatically granted <see cref="F:Tools.API.Threads.ThreadAccess.THREAD_QUERY_LIMITED_INFORMATION"/>.</summary>
+	<remarks>Windows Server 2003 and Windows XP/2000:  This access right is not supported.
+ <para>This is thread-specific access right.</para></remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.THREAD_SET_CONTEXT">
+	<summary>Required to write the context of a thread using SetThreadContext.</summary>
+	<remarks>This is thread-specific access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.THREAD_SET_INFORMATION">
+	<summary>Required to set certain information in the thread object.</summary>
+	<remarks>This is thread-specific access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.THREAD_SET_LIMITED_INFORMATION">
+	<summary>Required to set certain information in the thread object. A handle that has the <see cref="F:Tools.API.Threads.ThreadAccess.THREAD_SET_INFORMATION"/> access right is automatically granted <see cref="F:Tools.API.Threads.ThreadAccess.THREAD_SET_LIMITED_INFORMATION"/>.</summary>
+	<remarks>Windows Server 2003 and Windows XP/2000:  This access right is not supported.
+ <para>This is thread-specific access right.</para></remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.THREAD_SET_THREAD_TOKEN">
+	<summary>Required to set the impersonation token for a thread using SetThreadToken.</summary>
+	<remarks>This is thread-specific access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.THREAD_SUSPEND_RESUME">
+	<summary>Required to suspend or resume a thread (see <see cref="M:Tools.API.Threads.SuspendThread(System.IntPtr)"/> and <see cref="M:Tools.API.Threads.ResumeThread(System.IntPtr)"/>).</summary>
+	<remarks>This is thread-specific access right.</remarks>
+</member><member name="F:Tools.API.Threads.ThreadAccess.THREAD_TERMINATE">
+	<summary>Required to terminate a thread using TerminateThread.</summary>
+	<remarks>This is thread-specific access right.</remarks>
+</member><member name="M:Tools.API.Threads.OpenThread(Tools.API.Threads.ThreadAccess,System.Boolean,System.UInt32)">
+	<summary>Opens an existing thread object.</summary>
+	<param name="dwDesiredAccess">The access to the thread object. This access right is checked against the security descriptor for the thread. This parameter can be one or more of the thread access rights.
+ <para>If the caller has enabled the SeDebugPrivilege privilege, the requested access is granted regardless of the contents of the security descriptor.</para></param>
+	<param name="bInheritHandle">If this value is TRUE, processes created by this process will inherit the handle. Otherwise, the processes do not inherit this handle.</param>
+	<param name="dwThreadId">The identifier of the thread to be opened.</param>
+	<returns>If the function succeeds, the return value is an open handle to the specified thread. If the function fails, the return value is <see cref="F:System.IntPtr.Zero"/>.</returns>
+</member><member name="M:Tools.API.Threads.SuspendThread(System.IntPtr)">
+	<summary>Suspends the specified thread.</summary>
+	<param name="hThread">A handle to the thread that is to be suspended. </param>
+	<returns>If the function succeeds, the return value is the thread's previous suspend count; otherwise, it is -1. </returns>
+</member><member name="M:Tools.API.Threads.ResumeThread(System.IntPtr)">
+	<summary>Decrements a thread's suspend count. When the suspend count is decremented to zero, the execution of the thread is resumed.</summary>
+	<param name="hThread">A handle to the thread to be restarted.</param>
+	<returns>If the function succeeds, the return value is the thread's previous suspend count. If the function fails, the return value is -1</returns>
+</member><member name="T:Tools.API.Threads">
+	<summary>Contains Win32 API declarations related to threads</summary>
 </member><member name="F:Tools.API.FileSystem.SHFILEINFO.hIcon">
 	<summary>A handle to the icon that represents the file. You are responsible for destroying this handle with DestroyIcon when you no longer need it.</summary>
 </member><member name="F:Tools.API.FileSystem.SHFILEINFO.iIcon">
@@ -6821,6 +6951,13 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="totalentries">Pointer to a value that receives the total number of entries that could have been enumerated. Note that applications should consider this value only as a hint.</param>
 	<param name="resume_handle">Pointer to a value that contains a resume handle which is used to continue an existing share search. The handle should be zero on the first call and left unchanged for subsequent calls. If resume_handle is NULL, then no resume handle is stored.</param>
 	<returns>If the function succeeds, the return value is NERR_Success. If the function fails, the return value is a system error code.</returns>
+</member><member name="M:Tools.API.FileSystem.GetFileAttributes(System.String)">
+	<summary>Retrieves file system attributes for a specified file or directory.</summary>
+	<param name="lpFileName">The name of the file or directory.</param>
+	<returns>If the function succeeds, the return value contains the attributes of the specified file or directory. For a list of attribute values and their descriptions, see <see cref="T:Tools.API.FileSystem.FileAttributes"/>.
+ If the function fails, the return value is <see cref="F:Tools.API.FileSystem.INVALID_FILE_ATTRIBUTES"/>.</returns>
+</member><member name="F:Tools.API.FileSystem.INVALID_FILE_ATTRIBUTES">
+	<summary>Value returned by <see cref="M:Tools.API.FileSystem.GetFileAttributes(System.String)"/> in case of error</summary>
 </member><member name="F:Tools.API.FileSystem.FileInformationFlags.SHGFI_ADDOVERLAYS">
 	<summary>Version 5.0. Apply the appropriate overlays to the file's icon. The <see cref="F:Tools.API.FileSystem.FileInformationFlags.SHGFI_ICON"/> flag must also be set.</summary>
 </member><member name="F:Tools.API.FileSystem.FileInformationFlags.SHGFI_ATTR_SPECIFIED">
@@ -7111,6 +7248,9 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Gets handle of console window of console attached to surrent process</summary>
 	<returns><see cref="T:System.Windows.Forms.IWin32Window"/> carring console handle; null when no console is associated with current process</returns>
 	<version version="1.5.2">New more reliable inmplementation using GetConsoleWindow API. No exception thrown, can return null.</version>
+</member><member name="P:Tools.ConsoleT.IsConsoleAttached">
+	<summary>Gets value indicating wheather console is attached to current process</summary>
+	<version version="1.5.3">This property is new in version 1.5.3</version>
 </member><member name="P:Tools.ConsoleT.Icon">
 	<summary>Sets console icon</summary>
 	<value>Icon to be set</value>

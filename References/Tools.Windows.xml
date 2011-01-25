@@ -42,6 +42,61 @@ AddEventHandler
 	<summary>
 GeneratedInternalTypeHelper
 </summary>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CollectionCombiningConverter.Convert(System.Object[],System.String)">
+	<summary>Converts source values to a value for the binding target. The data binding engine calls this method when it propagates the values from source bindings to the binding target.</summary>
+	<param name="values">
+ The array of values that the source bindings in the <see cref="T:System.Windows.Data.MultiBinding"/> produces. The value <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> indicates that the source binding has no value to provide for conversion.
+ <para>Values are expected to be <see cref="T:System.Collections.IEnumerable"/>. Nulls, <see cref="T:System.DBNull">DBNulls</see> and <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> values are ignored. Non-<see cref="T:System.Collections.IEnumerable"/> values are wrapped to one-item arrays of corresponding type.</para>
+	</param>
+	<param name="parameter">The converter parameter to use. When null or empty string string "." is assumed. For details (synatx) see class documentation.</param>
+	<exception cref="T:System.FormatException"><paramref name="parameter"/> seems to contain number of preceding collections to be considered, but the number cannot be parsed using <see cref="M:System.Int32.Parse(System.String)"/> (in <see cref="P:System.Globalization.CultureInfo.InvariantCulture"/>).</exception>
+	<seelaso cref="T:Tools.SyntaxErrorException">Invalid character in expression.</seelaso>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CollectionCombiningConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts source values to a value for the binding target. The data binding engine calls this method when it propagates the values from source bindings to the binding target.</summary>
+	<param name="values">
+ The array of values that the source bindings in the <see cref="T:System.Windows.Data.MultiBinding"/> produces. The value <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> indicates that the source binding has no value to provide for conversion.
+ <para>Values are expected to be <see cref="T:System.Collections.IEnumerable"/>. Nulls, <see cref="T:System.DBNull">DBNulls</see> and <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> values are ignored. Non-<see cref="T:System.Collections.IEnumerable"/> values are wrapped to one-item arrays of corresponding type.</para>
+	</param>
+	<param name="targetType">The type of the binding target property. Ignored if null. Target type should <see cref="M:System.Type.IsAssignableFrom(System.Type)">assignable from</see>
+		<see cref="T:System.Collections.IEnumerable"/> otherwise <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> is used.</param>
+	<param name="parameter">The converter parameter to use. When null or empty string string "." is assumed. Type is expected to be <see cref="T:System.String"/> otherwise <see cref="M:System.Object.ToString"/> is used.
+ For details (syntax) see class documentation.</param>
+	<param name="culture">Ignored.</param>
+	<exception cref="T:System.InvalidCastException">Conversion must be performed for <paramref name="targetType"/> and it fails.</exception>
+	<exception cref="T:System.Reflection.AmbiguousMatchException">Conversion must be performed for target type, conversion operators are found but no one is most specific.</exception>
+	<exception cref="T:System.FormatException"><paramref name="parameter"/> seems to contain number of preceding collections to be considered, but the number cannot be parsed using <see cref="M:System.Int32.Parse(System.String)"/> (in <see cref="P:System.Globalization.CultureInfo.InvariantCulture"/>).</exception>
+	<seelaso cref="T:Tools.SyntaxErrorException">Invalid character in expression.</seelaso>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CollectionCombiningConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a binding target value to the source binding values.</summary>
+	<returns><paramref name="value"/> wrapped in <see cref="T:System.Object"/> array.</returns>
+	<param name="value">The value that the binding target produces.</param>
+	<param name="targetTypes">Ignored.</param>
+	<param name="parameter">Ignored.</param>
+	<param name="culture">Ignored.</param>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.CollectionCombiningConverter">
+	<summary>Converter which combines multiple collection to one <see cref="T:System.Windows.Data.CompositeCollection"/>. It's possible to decide which collections to be included and which not.</summary>
+	<remarks>
+ Converter parameter is list of whitespace-separated expressions. Each expression indicates how to process corresponding (by index) collection. Last expression applies to all remaining collections.
+ Syntax of expression is following:
+ <list type="table"><listheader><term>Indicator</term><description>Meaning</description></listheader>
+			<item><term><c>.</c></term><description>Include. Include the collection in result.</description></item>
+			<item><term><c>![x]</c></term><description>If not. Include only if none of preceding collections was included.</description></item>
+			<item><term><c>|[x]</c></term><description>If or. Include only if at least one preceding collections was included.</description></item>
+			<item><term>&amp;[x]</term><description>If and. Include only if all preceding collections was included.</description></item>
+			<item><term>^[x]</term><description>If xor. Include only if exactly one preceding collection was included.</description></item>
+			<item><term><c>-</c></term><description>Not include. The collection is never included (unconditionally, the <c>#</c> is ignored.)</description></item>
+			<item><term>Special prefix <c>#</c></term><description>Prepend to any expression to inlude the collection even if it is empty. When this prefix is used <c>.</c> is optional.</description></item>
+		</list>
+		<para><c>[x]</c> indicates optional number (integer &gt; 0, written without the []) meaning number of preceding collections to be considered. All preceding collections are considered when ommited.</para>
+		<para>
+ Null, <see cref="T:System.DBNull"/> and  <see cref="F:DependencyProperty.UnsetValue"/> are never included.
+ Empty collection is not included unless the <c>#</c> prefix is specified.
+ </para>
+		<para>If item is not collection it's wrappped to array of corresponding type.</para>
+		<para>If only one collection is filtered out, it's returned without being wrapped in <see cref="T:System.Windows.Data.CompositeCollection"/>.</para>
+		<para>This converter is one way. <see cref="M:System.Windows.Data.IMultiValueConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)"/> returns only the value passed to it wrapped in array.</para>
+	</remarks>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
 </member><member name="T:Tools.WindowsT.WPF.ConvertersT.Convert">
 	<summary>Delegate that represents <see cref="M:System.Windows.Data.IValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> and <see cref="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> functions</summary>
 	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
@@ -307,6 +362,47 @@ GeneratedInternalTypeHelper
 	<summary>Onew-way converter that can indicate if value is not null</summary>
 	<remarks>Converts null to false and non-null to true</remarks>
 	<version stage="Alpha" version="1.5.2">Class introduced</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.XmlBooleanConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value.</summary>
+	<param name="value">
+ The value produced by the binding source. It's expected to be <see cref="T:System.String"/> if it is not, <see cref="M:System.Object.ToString"/> is used.
+ Special support for <see cref="T:System.Windows.Visibility"/> is implemented: All values but <see cref="F:System.Windows.Visibility.Visible"/> are treated as "false".
+ Special support is alos implemented to following XML types: <see cref="T:System.Xml.XmlNode"/>, <see cref="T:System.Xml.Linq.XElement"/>, <see cref="T:System.Xml.Linq.XAttribute"/>, <see cref="T:System.Xml.Linq.XText"/>, <see cref="T:System.Xml.Linq.XCData"/>, <see cref="T:System.Xml.Linq.XProcessingInstruction"/>, <see cref="T:System.Xml.Linq.XComment"/>: Value of these node (<see cref="P:System.Xml.Linq.XProcessingInstruction.Data">Data</see> in case of <see cref="T:System.Xml.Linq.XProcessingInstruction"/>.)
+ Note: COnversion for these XML types is usually one way.
+ </param>
+	<param name="parameter">When ! or "Not" (case-insensitive) converter performs a Not operation. Otherwise ignored</param>
+	<param name="culture">ignored. Always uses invariant culture.</param>
+	<param name="targetType"> The type of the binding target property. Ignored if null (<see cref="T:System.Boolean"/> is returned). Special support for <see cref="T:System.Windows.Visibility"/>.</param>
+	<returns>A converted value. If the method returns null, the valid null value is used.
+ Returns true if string representation of <paramref name="value"/> is "true" or "1", false if string representation of <paramref name="value"/> is "false" or "0" (both case-insensitive).
+ Returns null if <paramref name="value"/> is nulll or an empty string</returns>
+	<exception cref="T:System.ArgumentException">String representation of <paramref name="value"/> is neither "true", "false" (case-insensitive), "0", "1", null nor an empty string.</exception>
+	<exception cref="T:System.InvalidCastException">Return <see cref="T:System.Boolean"/> value cannot be converted to <paramref name="targetType"/>.</exception>
+	<exception cref="T:System.Reflection.AmbiguousMatchException">Cast operators from <see cref="T:System.Boolean"/> to <paramref name="targetType"/> were found, but no one is most specific.</exception>
+	<exception cref="T:System.OverflowException">Conversion of return <see cref="T:System.Boolean"/> value to <paramref name="targetType"/> failed doe to overflow.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.XmlBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value.</summary>
+	<param name="value">
+ The value that is produced by the binding target.
+ It's ecxpected to be <see cref="T:System.Boolean"/>.
+ If it is <see cref="T:System.Windows.Visibility"/> all values but <see cref="F:System.Windows.Visibility.Visible"/> are treated as false.
+ If it is <see cref="T:System.IConvertible"/>
+		<see cref="M:System.IConvertible.ToBoolean(System.IFormatProvider)"/> is used with invariant culture.
+ Otherwise <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> to <see cref="T:System.Boolean"/> is used
+ </param>
+	<param name="parameter">When ! or "Not" (case-insensitive) converter performs a Not operation. Otherwise ignored</param>
+	<param name="culture">ignored. Always uses invariant culture.</param>
+	<param name="targetType">
+ The type to convert to. Ignored when null (<see cref="T:System.String"/> is returned).
+ Special support for <see cref="T:System.Windows.Visibility"/>, <see cref="T:System.Xml.Linq.XText"/>, <see cref="T:System.Xml.Linq.XCData"/> and <see cref="T:System.Xml.Linq.XComment"/>.
+ </param>
+	<returns>A converted value. If the method returns null, the valid null value is used. Returns "true" whan <paramref name="value"/> is true, "false" when <paramref name="value"/> is false, null when <paramref name="value"/> is null.</returns>
+	<exception cref="T:System.InvalidCastException"><paramref name="value"/> is not <see cref="T:System.IConvertible"/> and it cannot by converted to <see cref="T:System.Boolean"/> -or- Conversion of <see cref="T:System.String"/> to <paramref name="targetType"/> failed.</exception>
+	<exception cref="T:System.Reflection.AmbiguousMatchException">Cast operators were found, but no one is most specific. When converting <paramref name="value"/> which is not <see cref="T:System.IConvertible"/> to <see cref="T:System.Boolean"/>, or when converting <see cref="T:System.String"/> to <paramref name="targetType"/>.</exception>
+	<exception cref="T:System.OverflowException">Convertion from <paramref name="value"/> which is not <see cref="T:System.IConvertible"/> to <see cref="T:System.Boolean"/> failed doe to overflow. -or- Conversion of <see cref="T:System.String"/> to <paramref name="targetType"/> failed due to overflow.</exception>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.XmlBooleanConverter">
+	<summary>Type converter between <see cref="T:System.String"/> and <see cref="T:System.Boolean"/> which converts XML (XSD) string representation of bootlan to <see cref="T:System.Boolean"/> and vice-versa</summary>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
 </member><member name="P:Tools.WindowsT.FormsT.HTMLDialog.TextHtml">
 	<summary>HTML text shown to the user</summary>
 </member><member name="M:Tools.WindowsT.FormsT.HTMLDialog.#ctor">
@@ -979,16 +1075,95 @@ Returns the cached ResourceManager instance used by this class.
 Overrides the current thread's CurrentUICulture property for all
 resource lookups using this strongly typed resource class.
 </summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ex_CannotBeAnEmptyString">
+	<summary>
+Looks up a localized string similar to '{0} cannot be an empty string.'.
+</summary>
 </member><member name="P:Tools.WindowsT.WPF.Resources.ex_CannotConvertBack">
 	<summary>
 Looks up a localized string similar to '{0} cannot convert back.'.
 </summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ex_DoesNotContainMemberNamePart">
+	<summary>
+Looks up a localized string similar to '{0} does not contain member name part.'.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ex_IsNull">
+	<summary>
+Looks up a localized string similar to '{0} is null.'.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ex_MemberHasValueNull">
+	<summary>
+Looks up a localized string similar to 'Member {0} has value null.'.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ex_PropertyHasUnknownValue">
+	<summary>
+Looks up a localized string similar to 'Property {0} has unknown value {1}'.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ex_ServiceProviderDoesntProvide">
+	<summary>
+Looks up a localized string similar to 'Service provider doesn't provide {0}'.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ValueCannotBeNull">
+	<summary>
+Looks up a localized string similar to 'Value cannot be null'.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.Resources.ValueHasIncorrectFormat">
+	<summary>
+Looks up a localized string similar to 'Value has incorrect format'.
+</summary>
+</member><member name="M:Tools.WindowsT.WPF.Resources.ex_CannotBeAnEmptyStringFormat(System.Object)">
+	<summary>
+Formats a localized string similar to '{0} cannot be an empty string.'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
 </member><member name="M:Tools.WindowsT.WPF.Resources.ex_CannotConvertBackFormat(System.Object)">
 	<summary>
 Formats a localized string similar to '{0} cannot convert back.'.
 </summary>
 	<param name="arg0">An object (0) to format.</param>
 	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.WindowsT.WPF.Resources.ex_DoesNotContainMemberNamePartFormat(System.Object)">
+	<summary>
+Formats a localized string similar to '{0} does not contain member name part.'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.WindowsT.WPF.Resources.ex_IsNullFormat(System.Object)">
+	<summary>
+Formats a localized string similar to '{0} is null.'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.WindowsT.WPF.Resources.ex_MemberHasValueNullFormat(System.Object)">
+	<summary>
+Formats a localized string similar to 'Member {0} has value null.'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.WindowsT.WPF.Resources.ex_PropertyHasUnknownValueFormat(System.Object,System.Object)">
+	<summary>
+Formats a localized string similar to 'Property {0} has unknown value {1}'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<param name="arg1">An object (1) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.WindowsT.WPF.Resources.ex_ServiceProviderDoesntProvideFormat(System.Object)">
+	<summary>
+Formats a localized string similar to 'Service provider doesn't provide {0}'.
+</summary>
+	<param name="arg0">An object (0) to format.</param>
+	<returns>A copy of format string in which the format items have been replaced by the String equivalent of the corresponding instances of Object in arguments.</returns>
+</member><member name="M:Tools.WindowsT.WPF.Resources.ValueCannotBeNullFormat">
+	<summary>
+The stub formatting method returning the ValueCannotBeNull property value.
+</summary>
+	<returns>The ValueCannotBeNull property value.</returns>
+</member><member name="M:Tools.WindowsT.WPF.Resources.ValueHasIncorrectFormatFormat">
+	<summary>
+The stub formatting method returning the ValueHasIncorrectFormat property value.
+</summary>
+	<returns>The ValueHasIncorrectFormat property value.</returns>
 </member><member name="T:Tools.WindowsT.WPF.Resources">
 	<summary>
 A strongly-typed resource class, for looking up localized strings, formatting them, etc.
@@ -1139,6 +1314,58 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.BooleanOperationConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts source values to a value for the binding target. The data binding engine calls this method when it propagates the values from source bindings to the binding target.</summary>
+	<returns>A converted value. This converter always produces a <see cref="T:System.Boolean"/> value which is then converted to <paramref name="targetType"/>.</returns>
+	<param name="values">
+ The array of values that the source bindings in the <see cref="T:System.Windows.Data.MultiBinding"/> produces. The value <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> indicates that the source binding has no value to provide for conversion (it's ignored).
+ Each value in this array should be either <see cref="T:System.Boolean"/> (preffere), null or <see cref="T:System.DBNull"/> (treated as false), <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> (ignored - does not participa in a boolean operation), <see cref="T:System.Windows.Visibility"/> (<see cref="F:System.Windows.Visibility.Visible"/> is treated as true all other values as false), <see cref="T:System.IConvertible"/> (<see cref="M:System.IConvertible.ToBoolean(System.IFormatProvider)"/> is used) or any other type (<see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> is used).
+ </param>
+	<param name="targetType">The type of the binding target property. Ignored if null. Primary target type is <see cref="T:System.Boolean"/>. Specificly supported type is <see cref="T:System.Windows.Visibility"/> (true is converted to <see cref="F:System.Windows.Visibility.Visible"/>, false to <see cref="F:System.Windows.Visibility.Collapsed"/>). For other types <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> is used.</param>
+	<param name="parameter">The converter parameter to use. It should be either <see cref="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperation"/> or <see cref="T:System.String"/> (case-insensitive) or <see cref="T:System.Int32"/> representing a <see cref="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperation"/> value. For values of other types <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> to <see cref="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperation"/> is used.</param>
+	<param name="culture">The culture to use in the converter. It's used only when converting a value from <paramref name="values"/> which is <see cref="T:System.IConvertible"/> to boolean.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="parameter"/> is null.</exception>
+	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="parameter"/> represents invalid <see cref="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperation"/> value.</exception>
+	<exception cref="T:System.InvalidCastException"><paramref name="parameter"/> cannot be converted to <see cref="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperation"/> -or- value form <paramref name="values"/> cannot be converted to <see cref="T:System.Boolean"/> -or- return value cannot be converted to <paramref name="targetType"/>.</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="parameter"/> is <see cref="T:System.String"/> but it does not represent one of <see cref="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperation"/> values (case-insensitive)</exception>
+	<exception cref="T:System.OverflowException">Arithmetic overflow occured when converting <paramref name="parameter"/> to <see cref="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperation"/>, value from <paramref name="values"/> to <see cref="T:System.Boolean"/> or return value to <paramref name="targetType"/>.</exception>
+	<exception cref="T:System.Reflection.AmbiguousMatchException">Error performing <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)">dynamic casting</see> either from <paramref name="parameter"/> to <see cref="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperation"/> or from value in <paramref name="values"/> to <see cref="T:System.Boolean"/> or from return value to <paramref name="targetType"/>: Casting operators were found but noone is most specific.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.BooleanOperationConverter.Convert(Tools.WindowsT.WPF.ConvertersT.BooleanOperation,System.Boolean[])">
+	<summary>Performs the boolean operation</summary>
+	<param name="operation">An operation to be performed</param>
+	<param name="values">Boolean values to be processed by the operation</param>
+	<returns>Result of the operation. When <paramref name="values"/> is null or empty all operations but <see cref="F:Tools.WindowsT.WPF.ConvertersT.BooleanOperation.NAnd"/>, <see cref="F:Tools.WindowsT.WPF.ConvertersT.BooleanOperation.NOr"/> and <see cref="F:Tools.WindowsT.WPF.ConvertersT.BooleanOperation.True"/> returns false.</returns>
+	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="operation"/> is not one of <see cref="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperation"/> values.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.BooleanOperationConverter.IMultiValueConverter_ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+	<summary>Always throws <see cref="T:System.NotSupportedException"/> - this is one way converter.</summary>
+	<returns>Never returns - always throws <see cref="T:System.NotSupportedException"/>.</returns>
+	<param name="value">Ignored</param>
+	<param name="targetTypes">Ignored</param>
+	<param name="parameter">Ignored</param>
+	<param name="culture">Ignored</param>
+	<exception cref="T:System.NotSupportedException">Always. This converter is one-way.</exception>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperationConverter">
+	<summary>Multi-value converter that performs a boolean operation on values</summary>
+	<remarks>This converter is one-way</remarks>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.BooleanOperation.And">
+	<summary>Logical And</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.BooleanOperation.Or">
+	<summary>Logical Or</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.BooleanOperation.NAnd">
+	<summary>Logical And, result negated - Not(a And b And c ...)</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.BooleanOperation.NOr">
+	<summary>Logical Or, result negated - Not(a Or b Or c ...)</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.BooleanOperation.Xor">
+	<summary>Exclusive Or (returns true when exactly one value is true)</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.BooleanOperation.Xnor">
+	<summary>Exclusive negated or (returns true when exacly one value is false)</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.BooleanOperation.True">
+	<summary>Always returns true (tautology)</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.BooleanOperation.False">
+	<summary>Always returns false</summary>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperation">
+	<summary>Booelan operations supported by <see cref="T:Tools.WindowsT.WPF.ConvertersT.BooleanOperationConverter"/></summary>
 </member><member name="M:Tools.WindowsT.WPF.ConvertersT.CachedImageConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
 	<summary>Converts a value.</summary>
 	<returns>A converted value - <see cref="T:System.Windows.Media.Imaging.BitmapImage"/></returns>
@@ -4345,6 +4572,82 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Alpha"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
 	<version version="1.5.3">Reworked to support any target type and more source types. Also allows value and target type to be null.</version>
+</member><member name="M:Tools.WindowsT.WPF.RegularExpressionValidationRule.#ctor">
+	<summary>Parameterless constructor.</summary>
+</member><member name="M:Tools.WindowsT.WPF.RegularExpressionValidationRule.#ctor(System.String)">
+	<summary>Creates a RegexValidationRule with the specified regular expression.</summary>
+	<param name="regexText">The regular expression used by the new instance.</param>
+</member><member name="M:Tools.WindowsT.WPF.RegularExpressionValidationRule.#ctor(System.String,System.String)">
+	<summary>Creates a RegexValidationRule with the specified regular expression and error message.</summary>
+	<param name="regexText">The regular expression used by the new instance.</param>
+	<param name="errorMessage">The error message used when validation fails.</param>
+</member><member name="M:Tools.WindowsT.WPF.RegularExpressionValidationRule.#ctor(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+	<summary>Creates a RegexValidationRule with the specified regular expression, error message, and RegexOptions.</summary>
+	<param name="regexText">The regular expression used by the new instance.</param>
+	<param name="errorMessage">The error message used when validation fails.</param>
+	<param name="regexOptions">The RegexOptions used by the new instance.</param>
+</member><member name="P:Tools.WindowsT.WPF.RegularExpressionValidationRule.ErrorMessage">
+	<summary>Gets or sets the error message to be used when validation fails.</summary>
+</member><member name="P:Tools.WindowsT.WPF.RegularExpressionValidationRule.IgnoreEmptyString">
+	<summary>Gets or sets value indicating if empty string values are always considered valid</summary>
+</member><member name="P:Tools.WindowsT.WPF.RegularExpressionValidationRule.Options">
+	<summary>Gets or sets the RegexOptions to be used during validation. This property's default value is <see cref="F:System.Text.RegularExpressions.RegexOptions.Compiled"/>.</summary>
+</member><member name="P:Tools.WindowsT.WPF.RegularExpressionValidationRule.Pattern">
+	<summary>Gets or sets the regular expression used during validation.</summary>
+</member><member name="P:Tools.WindowsT.WPF.RegularExpressionValidationRule.RegularExpression">
+	<summary>Gets regular expression created from <see cref="P:Tools.WindowsT.WPF.RegularExpressionValidationRule.Pattern"/> used during validation</summary>
+	<remarks>Regular expression is re-created when value of the <see cref="P:Tools.WindowsT.WPF.RegularExpressionValidationRule.Pattern"/> or <see cref="P:Tools.WindowsT.WPF.RegularExpressionValidationRule.Options"/> property changes</remarks>
+</member><member name="M:Tools.WindowsT.WPF.RegularExpressionValidationRule.CreateRegularExpression(System.String,System.Text.RegularExpressions.RegexOptions)">
+	<summary>Generates regular expression</summary>
+	<param name="pattern">Pattern to generate regular expression from</param>
+	<param name="options">Regular expression options</param>
+	<returns>Regular exspression created form given <paramref name="pattern"/> and <paramref name="options"/>. Nulll when <paramref name="pattern"/> is null or an empty string.</returns>
+</member><member name="M:Tools.WindowsT.WPF.RegularExpressionValidationRule.Validate(System.Object,System.Globalization.CultureInfo)">
+	<summary>Validates the 'value' argument using the regular expression and RegexOptions associated with this object.</summary>
+</member><member name="T:Tools.WindowsT.WPF.RegularExpressionValidationRule">
+	<summary>A <see cref="T:System.Windows.Controls.ValidationRule"/>-derived class which supports the use of regular expressions for validation.</summary>
+	<remarks><a href="http://www.codeproject.com/KB/WPF/RegexValidationInWPF.aspx">http://www.codeproject.com/KB/WPF/RegexValidationInWPF.aspx</a></remarks>
+	<author www="http://www.codeproject.com/Members/Josh-Smith">Josh Smith</author>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value.</summary>
+	<param name="value">The value produced by the binding source.</param>
+	<param name="targetType">The type of the binding target property.</param>
+	<param name="parameter">The converter parameter to use.</param>
+	<param name="culture">The culture to use in the converter.</param>
+	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
+	<exception cref="T:System.ArgumentException">Value is not of type <typeparamref name="TSource"/> (or <see langword="null"/> when <typeparamref name="TSource"/> is not value type or is <see cref="T:System.Nullable`1"/>) -or- <paramref name="targetType"/> cannot be assigned by value of type <see cref="TTarget"/></exception>
+	<version version="1.5.2"><paramref name="value"/> can be <see langword="null"/> for <typeparamref name="TSource"/> not being value type or being <see cref="T:System.Nullable`1"/>.</version>
+	<version version="1.5.2"><paramref name="value"/> can be of underlying type of <typeparamref name="TSource"/> when <typeparamref name="TSource"/> is <see cref="T:System.Nullable`1"/>.</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.Convert(`0,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value.</summary>
+	<param name="value">The value produced by the binding source.</param>
+	<param name="parameter">The converter parameter to use.</param>
+	<param name="culture">The culture to use in the converter.</param>
+	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value.</summary>
+	<param name="value">The value that is produced by the binding target.</param>
+	<param name="targetType">The type to convert to.</param>
+	<param name="parameter">The converter parameter to use.</param>
+	<param name="culture">The culture to use in the converter.</param>
+	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
+	<exception cref="T:System.ArgumentException">Value is not of type <see cref="TTarget"/> (or <see langword="null"/> when <typeparamref name="TTarget"/> is not value type or is <see cref="T:System.Nullable`1"/>) -or- <paramref name="targetType"/> cannot be assigned by value of type <see cref="TSource"/></exception>
+	<version version="1.5.2"><paramref name="value"/> can be <see langword="null"/> for <typeparamref name="TTarget"/> not being vakue type or being <see cref="T:System.Nullable`1"/>.</version>
+	<version version="1.5.2"><paramref name="value"/> can be of underlying type of <typeparamref name="TTarget"/> when <typeparamref name="TTarget"/> is <see cref="T:System.Nullable`1"/>.</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.ConvertBack(`1,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value.</summary>
+	<param name="value">The value that is produced by the binding target.</param>
+	<param name="parameter">The converter parameter to use.</param>
+	<param name="culture">The culture to use in the converter.</param>
+	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2">
+	<summary>Common base for type-safe implementations of <see cref="T:System.Windows.Data.IValueConverter"/></summary>
+	<typeparam name="TSource">Type values are converted from</typeparam>
+	<typeparam name="TTarget">Type values are converted to</typeparam>
+	<author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
+	<version version="1.5.2" stage="Nightly"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
+	<version version="1.5.2"><see cref="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> and <see cref="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> now accepts <see langword="null"/> when <typeparamref name="TSource"/> or <typeparamref name="TTarget"/> respectivelly is not value type or is <see cref="T:System.Nullable`1"/></version>
 </member><member name="M:Tools.WindowsT.InteropT.IsWindowsFormsControlVisibilityConverter.Convert(System.Object,System.Object,System.Globalization.CultureInfo)">
 	<summary>Converts a value.</summary>
 	<param name="value">The value produced by the binding source.</param>
@@ -4360,6 +4663,27 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="T:Tools.WindowsT.InteropT.IsWindowsFormsControlVisibilityConverter">
 	<summary>Converter that converts any value of type <see cref="T:System.Windows.Forms.Control"/> to <see cref="F:System.Windows.Visibility.Visible"/> and any other to <see cref="F:System.Windows.Visibility.Hidden"/></summary>
 	<version version="1.5.2" stage="Nightly">Class introduced</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.StringFormatMultiConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts source values to a value for the binding target. This implementation passes given value to <see cref="T:System.String"/> with given formatting string.</summary>
+	<returns>A converted value. <see cref="T:System.String"/> by default. Resturn value is result of <see cref="T:System.String"/>(<paramref name="culture"/>, <paramref name="parameter"/>, <paramref name="values"/>) call.</returns>
+	<param name="values">The array of values that the source bindings in the <see cref="T:System.Windows.Data.MultiBinding"/> produces. The value <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> indicates that the source binding has no value to provide for conversion. When null an empty array is used isntead.</param>
+	<param name="targetType">The type of the binding target property. Ignored if null. If this type is not <see cref="M:System.Type.IsAssignableFrom(System.Type)">assignable from</see>
+		<see cref="T:System.String"/>
+		<see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> is used.</param>
+	<param name="parameter">The converter parameter to use. This must represent valid formatting string for <see cref="T:System.String"/>. If type of this argument is not <see cref="T:System.String"/>, <see cref="M:System.Object.ToString"/> is used. Null is treated as an empty string.</param>
+	<param name="culture">The culture to use in the converter.</param>
+	<exception cref="T:System.FormatException"><paramref name="parameter"/> represents an invalid format. -or- The index of a format item is less than zero, or greater than or equal to the length of the args array.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.StringFormatMultiConverter.IMultiValueConverter_ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+	<summary>Always throws <see cref="T:System.NotSupportedException"/> - this is one way converter.</summary>
+	<returns>Never returns - always throws <see cref="T:System.NotSupportedException"/>.</returns>
+	<param name="value">Ignored</param>
+	<param name="targetTypes">Ignored</param>
+	<param name="parameter">Ignored</param>
+	<param name="culture">Ignored</param>
+	<exception cref="T:System.NotSupportedException">Always. This converter is one-way.</exception>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.StringFormatMultiConverter">
+	<summary>Multivalue converter that converts passes given values to <see cref="T:System.String"/></summary>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.ConvertersT.BooleanVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
 	<summary>Converts a value.</summary>
 	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
@@ -4650,6 +4974,22 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="Owner">Owner <see cref="T:System.Windows.Window"/> or element in <see cref="T:System.Windows.Window"/> to show <paramref name="Window"/> modally against.</param>
 	<remarks>If <paramref name="Owner"/> is null or <paramref name="Owner"/> is not of type <see cref="T:System.Windows.Window"/> and function <see cref="M:Tools.WindowsT.WPF.WpfExtensions.GetParent(System.Windows.DependencyObject)"/> cannot find parent <see cref="T:System.Windows.Window"/> of <paramref name="Owner"/>, <paramref name="Owner"/> is ignored and original <see cref="P:System.Windows.Window.Owner"/> is kept.</remarks>
 	<version stage="Nightly" version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.FindVisualChildren(System.Windows.DependencyObject,System.Func{System.Windows.DependencyObject,System.Boolean},System.Boolean)">
+	<summary>Enumerates all the visual children of given <see cref="T:System.Windows.DependencyObject"/> which conform to given condition</summary>
+	<param name="parent">A <see cref="T:System.Windows.DependencyObject"/> to look for children in</param>
+	<param name="condition">Condition to be used to filer children objects</param>
+	<param name="onlyFirstLevel">True not to look inside objects fulfilling the condition, false to enumerate children of these objects recursivelly.</param>
+	<returns>Visual children of <paramref name="parent"/> fulfilling <paramref name="condition"/>. If <paramref name="onlyFirstLevel"/> is false search is done inside these objects as well and objects are returned in in-order order.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="parent"/> is null or <paramref name="condition"/> is null.</exception>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.FindVisualChildren``1(System.Windows.DependencyObject,System.Boolean)">
+	<summary>Enumerates all the visual children of given <see cref="T:System.Windows.DependencyObject"/> of given type</summary>
+	<typeparam name="T">Type (derived from <see cref="T:System.Windows.DependencyObject"/>) to to serach for children of</typeparam>
+	<param name="parent">A <see cref="T:System.Windows.DependencyObject"/> to look for children in</param>
+	<param name="onlyFirstLevel">True not to look inside objects of type <typeparamref name="T"/>, false to enumerate children of these objects recursivelly.</param>
+	<returns>Visual children of <paramref name="parent"/> of type <typeparamref name="T"/>. If <paramref name="onlyFirstLevel"/> is false search is done inside these objects as well and objects are returned in in-order order.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="parent"/> is null.</exception>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.WpfExtensions.FindVisualChild(System.Windows.DependencyObject,System.Func{System.Windows.DependencyObject,System.Boolean})">
 	<summary>Finds first visual child of given <see cref="T:System.Windows.DependencyObject"/> which conforms to given condition</summary>
 	<param name="parent">A <see cref="T:System.Windows.DependencyObject"/> to search for visual child of</param>
@@ -4711,6 +5051,20 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<exception cref="T:System.ComponentModel.InvalidEnumArgumentException"><paramref name="service"/> is not one of <see cref="T:Tools.WindowsT.WPF.XamlService"/> values. <note>This exception is thrown even when <paramref name="throwException"/> is false.</note></exception>
 	<exception cref="T:System.ArgumentNullException"><paramref name="throwException"/> is true and <paramref name="provider"/> is null.</exception>
 	<exception cref="T:System.InvalidOperationException"><paramref name="provider"/> does not provide service requested and <paramref name="throwException"/> is true.</exception>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.HasErrors(System.Windows.DependencyObject)">
+	<summary>Gets a value that indicates whether any binding on given lement or any of its logical children has a <see cref="T:System.Windows.Controls.ValidationError"/>.</summary>
+	<param name="parent">The element to check recursivelly for validation errors</param>
+	<returns>True if the <see cref="F:System.Windows.Controls.Validation.HasErrorProperty"/> attached property is true for <paramref name="parent"/> or any of its logical children</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="parent"/> is null</exception>
+	<seelaso cref="F:System.Windows.Controls.Validation.HasErrorProperty"/><seelaso cref="M:System.Windows.LogicalTreeHelper.GetChildren(System.Windows.DependencyObject)"/>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.GetErrors(System.Windows.DependencyObject)">
+	<summary>Recursivelly gets validation errors of given elemnent and all its logical children</summary>
+	<param name="parent">The element to check recursivelly for validation errors</param>
+	<returns>Collection of validation errors for <paramref name="parent"/> and all its logical children</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="parent"/> is null</exception>
+	<seelaso cref="F:System.Windows.Controls.Validation.ErrorsProperty"/><seelaso cref="M:System.Windows.LogicalTreeHelper.GetChildren(System.Windows.DependencyObject)"/>
 	<version version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="T:Tools.WindowsT.WPF.WpfExtensions">
 	<summary>Contains varios extenstion functions related to Windows Presentation Foundation</summary>
@@ -4824,6 +5178,70 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Converter that test if value being converted relates to parameter</summary>
 	<remarks>This converter is intended as one-way.</remarks>
 	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.ComapreConverterBase.Convert(System.Object,System.Object,System.Globalization.CultureInfo)">
+	<summary>Performs the comparison</summary>
+	<param name="value">The value produced by the binding source.</param>
+	<param name="parameter">The converter parameter to use.</param>
+	<param name="culture">The culture to use in the converter.</param>
+	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
+	<remarks>For Greater, Greater or equal, Less and Less or equal comparisons either <paramref name="value"/> or <paramref name="parameter"/> must be <see cref="!:IComparable"/>.</remarks>
+</member><member name="P:Tools.WindowsT.WPF.ConvertersT.ComapreConverterBase.Operation">
+	<summary>When overriden in derived class gets comparison implemented by derived class</summary>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.ComapreConverterBase">
+	<summary>Base class for comparison converters</summary>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.Equals">
+	<summary>True when instances are equal based on <see cref="M:System.Object.Equals(System.Object)"/>. null = null, null != non-null</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.IsSame">
+	<summary>True when instances are equal based on <see cref="M:System.Object.Equals(System.Object)"/> and are of same type. null = null, null != non-null</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.NotEquals">
+	<summary>True when instances are not equal based on <see cref="M:System.Object.Equals(System.Object)"/>. null = null, null != non-null</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.IsNotSame">
+	<summary>True when instances are not equal based on <see cref="M:System.Object.Equals(System.Object)"/> or are not of same type. null = null, null != non-null</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.Greater">
+	<summary>True when one instance is greater than the other  (any operand null =&gt; null)</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.Less">
+	<summary>True when one instance is less than the other  (any operand null =&gt; null)</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.GreaterOrEqual">
+	<summary>True when one instance is greater than or same as the other  (one operand null =&gt; null, null = null)</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.LessOrEqual">
+	<summary>True when one instance is less than or same as the other  (one operand null =&gt; null, null = null)</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.True">
+	<summary>Tautology - always returns true (any operand null =&gt; null)</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.False">
+	<summary>Always returns false</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.IsSameType">
+	<summary>True when two instance s are of same type. (null = null (true), null != non-null (false))</summary>
+</member><member name="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.IsNotSameType">
+	<summary>True if type of two instances is different (null = null (false), null != non-null (true))</summary>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation">
+	<summary>Comparison operations supported by <see cref="T:Tools.WindowsT.WPF.ConvertersT.ComapreConverterBase"/></summary>
+	<version version="1.5.3">This enumeration is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.AnyComparisonConverter.#ctor">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.WindowsT.WPF.ConvertersT.AnyComparisonConverter"/> initialized to <see cref="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.Equals"/> operation</summary>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.AnyComparisonConverter.#ctor(Tools.WindowsT.WPF.ConvertersT.ComparisonOperation)">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.WindowsT.WPF.ConvertersT.AnyComparisonConverter"/> and sets the operatopn</summary>
+	<param name="operation">Comparison operation to be performed by this converter</param>
+</member><member name="P:Tools.WindowsT.WPF.ConvertersT.AnyComparisonConverter.ActualOperation">
+	<summary>Gets or sets comparision operation performed by this converter</summary>
+</member><member name="P:Tools.WindowsT.WPF.ConvertersT.AnyComparisonConverter.Operation">
+	<summary>Gets comparison implemented by derived class</summary>
+	<remarks>To set value of this property use <see cref="P:Tools.WindowsT.WPF.ConvertersT.AnyComparisonConverter.ActualOperation"/></remarks>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.AnyComparisonConverter">
+	<summary>Generic comparison converter</summary>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
+</member><member name="P:Tools.WindowsT.WPF.ConvertersT.LessThanConverter.Operation">
+	<summary>When overriden in derived class gets comparison implemented by derived class</summary>
+	<returns><see cref="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.Less"/></returns>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.LessThanConverter">
+	<summary>Converter that can be used to detect wheather value is less than parameter</summary>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
+</member><member name="P:Tools.WindowsT.WPF.ConvertersT.GreaterThanConverter.Operation">
+	<summary>When overriden in derived class gets comparison implemented by derived class</summary>
+	<returns><see cref="F:Tools.WindowsT.WPF.ConvertersT.ComparisonOperation.Greater"/></returns>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.GreaterThanConverter">
+	<summary>Converter that can be used to detect wheather value is greater than parameter</summary>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.ConvertersT.StaticTryCastConverter`1.Convert(System.Object,System.Object,System.Globalization.CultureInfo)">
 	<summary>Converts a value.</summary>
 	<param name="value">The value produced by the binding source.</param>
@@ -4901,8 +5319,116 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>This markup extension provides instance of <see cref="T:System.Windows.Data.XmlNamespaceMappingCollection"/> object containing all or some of namespace prefixes registered at place where it is used.</summary>
 	<remarks>Because of bug in Visual Studio (see <a href="https://connect.microsoft.com/VisualStudio/feedback/details/614411">IXamlTypeResolver is not provided in design mode</a>) this markup extension may return null in design mode.</remarks>
 	<version stage="Nightly" version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.TryParseValidationRule.#ctor">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.WindowsT.WPF.TryParseValidationRule"/> class</summary>
+</member><member name="M:Tools.WindowsT.WPF.TryParseValidationRule.#ctor(Tools.WindowsT.WPF.TryParseValidationType)">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.WindowsT.WPF.TryParseValidationRule"/> and sets its validation type</summary>
+	<param name="validationType">Type of validation</param>
+</member><member name="M:Tools.WindowsT.WPF.TryParseValidationRule.#ctor(Tools.WindowsT.WPF.TryParseValidationType,System.Globalization.NumberStyles)">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.WindowsT.WPF.TryParseValidationRule"/> and sets its validation type and number style</summary>
+	<param name="validationType">Type of validation</param>
+	<param name="numberStyle">Numeric sytle for numeric types</param>
+</member><member name="P:Tools.WindowsT.WPF.TryParseValidationRule.DateFormat">
+	<summary>Gets or sets single date format used with date types and <c>TryParseExact</c> method</summary>
+	<value>By setting this property <see cref="P:Tools.WindowsT.WPF.TryParseValidationRule.DateFormats"/> property is erased and value being set becomes it's only member. If value being set is null the <see cref="P:Tools.WindowsT.WPF.TryParseValidationRule.DateFormats"/> collection bevomes empty.</value>
+	<returns>First member of <see cref="P:Tools.WindowsT.WPF.TryParseValidationRule.DateFormats"/> collection.</returns>
+	<seelaso cref="M:System.DateTime.TryParseExact(System.String,System.String,System.IFormatProvider,System.Globalization.DateTimeStyles,System.DateTime@)"/><seelaso cref="M:System.DateTimeOffset.TryParseExact(System.String,System.String,System.IFormatProvider,System.Globalization.DateTimeStyles,System.DateTimeOffset@)"/><seelaso cref="M:System.TimeSpan.TryParseExact(System.String,System.String,System.IFormatProvider,System.TimeSpan@)"/>
+</member><member name="P:Tools.WindowsT.WPF.TryParseValidationRule.DateFormats">
+	<summary>Gets collection fo date formats used with date-time data types <c>TryParseExact</c></summary>
+	<remarks>If this collection is empty <c>TryParse</c> is used isntead of <c>TryParseExact</c></remarks>
+	<seelaso cref="M:System.DateTime.TryParseExact(System.String,System.String,System.IFormatProvider,System.Globalization.DateTimeStyles,System.DateTime@)"/><seelaso cref="M:System.DateTimeOffset.TryParseExact(System.String,System.String,System.IFormatProvider,System.Globalization.DateTimeStyles,System.DateTimeOffset@)"/><seelaso cref="M:System.TimeSpan.TryParseExact(System.String,System.String,System.IFormatProvider,System.TimeSpan@)"/>
+</member><member name="P:Tools.WindowsT.WPF.TryParseValidationRule.EnumType">
+	<summary>If <see cref="P:Tools.WindowsT.WPF.TryParseValidationRule.ValidationType"/> is <see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Enum"/> this enum type is used.</summary>
+	<remarks>This property mus be set when <see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Enum"/> is used.</remarks>
+</member><member name="P:Tools.WindowsT.WPF.TryParseValidationRule.EnumIgnoreCase">
+	<summary>Gets or sets value indicating if enum parsing is case-sensitive</summary>
+	<value>True to make enum parsing case-insensitive, false to make it vcase-sensitive</value>
+</member><member name="P:Tools.WindowsT.WPF.TryParseValidationRule.ValidationType">
+	<summary>Gets or sets validation type</summary>
+</member><member name="P:Tools.WindowsT.WPF.TryParseValidationRule.NumberStyle">
+	<summary>Gets or sets number style used by numeric validation types</summary>
+</member><member name="P:Tools.WindowsT.WPF.TryParseValidationRule.DateTimeStyle">
+	<summary>gets or sets date-time style used by date-time types</summary>
+</member><member name="P:Tools.WindowsT.WPF.TryParseValidationRule.OverrideCulture">
+	<summary>Gets or sets culture. When set to non-null value this culture is used rather than culture passed to <see cref="M:Tools.WindowsT.WPF.TryParseValidationRule.Validate(System.Object,System.Globalization.CultureInfo)"/> function.</summary>
+</member><member name="P:Tools.WindowsT.WPF.TryParseValidationRule.AllowEmptyString">
+	<summary>Regardless of another settings, always allow empty string as valid input (also allows null)</summary>
+</member><member name="M:Tools.WindowsT.WPF.TryParseValidationRule.Validate(System.Object,System.Globalization.CultureInfo)">
+	<summary>Performs validation checks on a value.</summary>
+	<returns>A <see cref="T:System.Windows.Controls.ValidationResult"/> object.</returns>
+	<param name="value">The value from the binding target to check.</param>
+	<param name="cultureInfo">The culture to use in this rule.</param>
+</member><member name="T:Tools.WindowsT.WPF.TryParseValidationRule">
+	<summary>A <see cref="T:System.Windows.Controls.ValidationRule"/>-derived class for verifying if given <see cref="T:System.String"/> value represents valid values of certain type.</summary>
+	<remarks>With excpetion of few specific types validation is performed by appropriate <c>TryParse</c> method.</remarks>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Boolean">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Boolean"/>. Ignores culture.</summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Byte">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Byte"/></summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.DateTime">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.DateTime"/> Uses special options for date types.</summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.DBNull">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.DBNull"/>. Only null, empty string and <see cref="F:Tools.WindowsT.WPF.TryParseValidationType.DBNull"/> passes validation.</summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Decimal">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Decimal"/></summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Double">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Double"/></summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Empty">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Empty"/>. Only null and empty string passes validation.</summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Char">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Char"/>. Ignores culture.</summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Int16">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Int16"/></summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Int32">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Int32"/></summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Int64">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Int64"/></summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Object">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Object"/>. All values passes validation.</summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.SByte">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.SByte"/></summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Single">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Single"/></summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.String">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.String"/>All values but null passes validation.</summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.UInt16">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.UInt16"/></summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.UInt32">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.UInt32"/></summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.UInt64">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.UInt64"/></summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.TimeSpan">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.TimeSpan"/>. Uses special date-time options.</summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.DateTimeOffset">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.DateTimeOffset"/>. Uses special date-time options.</summary>
+</member><member name="F:Tools.WindowsT.WPF.TryParseValidationType.Enum">
+	<summary><see cref="F:Tools.WindowsT.WPF.TryParseValidationType.Enum"/>. Uses special options for enum. Ignores culture.</summary>
+</member><member name="T:Tools.WindowsT.WPF.TryParseValidationType">
+	<summary>Validation types supported by <see cref="T:Tools.WindowsT.WPF.TryParseValidationRule"/></summary>
+	<remarks>Values of this enumeration are based and extends <see cref="T:System.TypeCode"/>.</remarks>
+	<seelaso cref="T:System.TypeCode"/>
+	<version version="1.5.3" stage="Nightly">This enumeration is new in version 1.5.3</version>
 </member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.PART_EditableTextBox">
 	<summary>Name of text box part</summary>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.PART_ButtonUp">
+	<summary>Name of up button part</summary>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.PART_ButtonDown">
+	<summary>Name of down button part</summary>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DefaultMinValue">
+	<summary>Default value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.Minimum"/> property</summary>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DefaultValue">
+	<summary>Default value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.Value"/> property</summary>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DefaultMaxValue">
+	<summary>Default value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.Maximum"/> property</summary>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DefaultChange">
+	<summary>Default value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.Change"/> property</summary>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DefaultDecimalPlaces">
+	<summary>Default value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DecimalPlaces"/> property</summary>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.buttonDown">
+	<summary>The down button part</summary>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.buttonUp">
+	<summary>The up button part</summary>
 </member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.#cctor">
 	<summary>Initializer</summary>
 </member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.#ctor">
@@ -5041,6 +5567,11 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<version version="1.5.2"><see cref="T:Tools.ComponentModelT.KnownCategoryAttribute"/> applied</version>
 </member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.IsEditableProperty">
 	<summary>Identifies the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.IsEditable"/>dependency proeperty</summary>
+</member><member name="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.IsReadOnly">
+	<summary>Gets or sets value indicating if this <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/> is read-only (value cannot be changed)</summary>
+	<version version="1.5.3">This property is new in version 1.5.3</version>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.IsReadOnlyProperty">
+	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.IsReadOnly"/> property</summary>
 </member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.ValueChangedEvent">
 	<summary>
  Identifies the ValueChanged routed event.
@@ -5067,11 +5598,15 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Initializes comands</summary>
 </member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.OnIncreaseCommand(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
 	<summary>Handles the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.IncreaseCommand"/> command</summary>
-	<param name="sender">Event source. Must be <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/></param>
+	<param name="sender">Event source. Should be <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/> otherwise event is ignored.</param>
 	<param name="e">event arguments</param>
 </member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.OnDecreaseCommand(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
 	<summary>Handles the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DecreaseCommand"/> command</summary>
-	<param name="sender">Event source. Must be <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/></param>
+	<param name="sender">Event source. Should be <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/> otherwise event is ignored.</param>
+	<param name="e">event arguments</param>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.CanChangeValue(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+	<summary>Gets value indicating if increase or decrease command can be exceuted on given <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/></summary>
+	<param name="sender">Event source. SHould be <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/> otherwise event is ignored.</param>
 	<param name="e">event arguments</param>
 </member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.OnIncrease">
 	<summary>Handles increasing of value</summary>
@@ -5084,34 +5619,14 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.OnCreateAutomationPeer">
 	<summary>Returns class-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> implementations for the Windows Presentation Foundation (WPF) infrastructure.</summary>
 	<returns>The type-specific <see cref="T:System.Windows.Automation.Peers.AutomationPeer"/> implementation.</returns>
-</member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.OnMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
-	<summary>
- This is a class handler for MouseLeftButtonDown event.
- The purpose of this handle is to move input focus to NumericUpDown when user pressed
- mouse left button on any part of slider that is not focusable.
- </summary>
-	<param name="sender"></param>
-	<param name="e"></param>
-</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DefaultMinValue">
-	<summary>Default value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.Minimum"/> property</summary>
-</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DefaultValue">
-	<summary>Default value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.Value"/> property</summary>
-</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DefaultMaxValue">
-	<summary>Default value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.Maximum"/> property</summary>
-</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DefaultChange">
-	<summary>Default value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.Change"/> property</summary>
-</member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DefaultDecimalPlaces">
-	<summary>Default value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DecimalPlaces"/> property</summary>
 </member><member name="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.textBox">
-	<summary>Current <see cref="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.textBox"/> (if any)</summary>
+	<summary>Current <see cref="P:Tools.WindowsT.WPF.ControlsT.NumericUpDown.textBox"/> (if any)</summary>
 </member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.OnApplyTemplate">
 	<summary>Invoked whenever application code or internal processes call <see cref="M:System.Windows.FrameworkElement.ApplyTemplate"/>.</summary>
-</member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.AttachTextBoxEvents">
-	<summary>Hooks events of <see cref="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.textBox"/></summary>
-</member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.DetachTextBoxEvents">
-	<summary>Unhooks events of <see cref="F:Tools.WindowsT.WPF.ControlsT.NumericUpDown.textBox"/></summary>
 </member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.textBox_PreviewTextInput(System.Object,System.Windows.Input.TextCompositionEventArgs)">
 	<summary>Prevents non-number characters from being typed</summary>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.ApplyText">
+	<summary>Applies and coerces current text to value</summary>
 </member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.TextToValue(System.String,System.Decimal)">
 	<summary>Attempts to convert user-typed text to number</summary>
 	<param name="text">Text to converts</param>
@@ -5126,15 +5641,42 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="text">String to verify</param>
 	<returns>True if <paramref name="text"/> consists only of characters valid as part of number. Takes current culture and current constrainst in account.</returns>
 	<remarks>Returns true even for string which consists for valid character but is invalid number (i.e. "4.-..5" in invariant culture)</remarks>
+	<version version="1.5.3">This implementation changed - multiple <see cref="P:System.Globalization.NumberFormatInfo.PositiveSign"/>, <see cref="P:System.Globalization.NumberFormatInfo.NegativeSign"/> and <see cref="P:System.Globalization.NumberFormatInfo.NumberDecimalSeparator"/> characters are no longer allowed</version>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.OnMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+	<summary>
+ This is a class handler for <see cref="E:System.Windows.UIElement.MouseLeftButtonDown"/> event.
+ The purpose of this handle is to move input focus to <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/> when user pressed mouse left button on any part of slider that is not focusable.
+ </summary>
+	<param name="sender"></param>
+	<param name="e"></param>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.OnPreviewKeyDown(System.Windows.Input.KeyEventArgs)">
+	<summary>Invoked when an unhandled <see cref="E:System.Windows.Input.Keyboard.PreviewKeyDown"/> attached event reaches an element in its route that is derived from this class. Implement this method to add class handling for this event. </summary>
+	<param name="e">The <see cref="T:System.Windows.Input.KeyEventArgs"/> that contains the event data.</param>
+	<remarks>This implementation handles the <see cref="F:System.Windows.Input.Key.Up"/> and <see cref="F:System.Windows.Input.Key.Down"/> keys.</remarks>
+	<version version="1.5.3">This override is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDown.SelectAll">
+	<summary>Selects all text in editing text box</summary>
+	<version version="1.5.3">This method is new in version 1.5.3</version>
 </member><member name="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown">
 	<summary>Represents a Windows spin box (also known as an up-down control) that displays numeric values.</summary>
 	<remarks>
 		<para>This is companion class to <see cref="T:System.Windows.Forms.NumericUpDown"/>.</para>
 		<para>This class is bsed on http://msdn.microsoft.com/en-us/library/ms771573.aspx, converted by http://labs.developerfusion.co.uk/convert/csharp-to-vb.aspx</para>
+		<para>This control contains following template parts:
+ <list type="table"><listheader><term>Part</term><description>Description</description></listheader>
+				<item><term><c>PART_EditableTextBox</c></term><description>The text box user can enter text in. This part is not compulsory but it is strongly recomended and required for certain functionality.</description></item>
+				<item><term><c>PART_ButtonUp</c></term><description>Increment button. Optional.</description></item>
+				<item><term><c>PART_ButtonDown</c></term><description>Decrement button. Optional.</description></item>
+			</list></para>
 	</remarks>
 	<author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Nightly"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
 	<version version="1.5.2">Documentation improved</version>
+	<version version="1.5.3" stage="Beta">Default visual style changed so that <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/> has same height as regular <see cref="T:System.Windows.Controls.TextBox"/>.</version>
+	<version version="1.5.3">User can no longer enter following characters multiple times: <see cref="P:System.Globalization.NumberFormatInfo.PositiveSign"/>, <see cref="P:System.Globalization.NumberFormatInfo.NegativeSign"/> and <see cref="P:System.Globalization.NumberFormatInfo.NumberDecimalSeparator"/>.</version>
+	<version version="1.5.3">Fixed focus issues (focusable parent of textbox) and Up/Down arrow keys binding (not working)</version>
+	<version version="1.5.3">Added new template parts <c>PART_ButtonUp</c> and <c>PART_ButtonDown</c>.</version>
+	<version version="1.5.3">New behavior: Pressing Enter forces <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/> to process it's text, coerce the text, update value and possibly raise <see cref="E:Tools.WindowsT.WPF.ControlsT.NumericUpDown.ValueChanged"/> event.</version>
 </member><member name="M:Tools.WindowsT.WPF.ControlsT.NumericUpDownAutomationPeer.#ctor(Tools.WindowsT.WPF.ControlsT.NumericUpDown)">
 	<summary>CTor</summary>
 	<param name="control">Control to attach to</param>
@@ -5655,6 +6197,44 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Converter that converts <see cref="T:System.Collections.IEnumerable"/> to comma-seperated list (or another seperator can be chosen)</summary>
 	<remarks>This converter is designed as one-way, howver <see cref="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> is implemented.</remarks>
 	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="P:Tools.WindowsT.WPF.ConvertersT.XmlXPathConverter.Source">
+	<summary>Gets or sets XML object to execute XPath query againts</summary>
+	<remarks>Supported object types are <see cref="T:System.Xml.XPath.IXPathNavigable"/> and <see cref="T:System.Xml.Linq.XNode"/>.</remarks>
+	<exception cref="T:Tools.TypeMismatchException">Value is being set to value thet is neither null nor <see cref="T:System.Xml.XPath.IXPathNavigable"/> nor <see cref="T:System.Xml.Linq.XNode"/>.</exception>
+</member><member name="P:Tools.WindowsT.WPF.ConvertersT.XmlXPathConverter.XmlNamespaceManager">
+	<summary>Gets or sets <see cref="P:Tools.WindowsT.WPF.ConvertersT.XmlXPathConverter.XmlNamespaceManager"/> to be used for resolving namespaces</summary>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.XmlXPathConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value. (Executes XPtaht query agains <see cref="P:Tools.WindowsT.WPF.ConvertersT.XmlXPathConverter.Source"/> with <paramref name="value"/> as parameter.</summary>
+	<returns>
+ A converted value. If the method returns null, the valid null value is used. Returns value which's type depends on type of XPath result.
+ <para>
+ If XPtah results in empty enumeration, returns null.
+ If XPtah results in enumeration with juts one element, treates the element as result and processes it as described below.
+ </para>
+		<para>
+ If result is one of following objects returns value of that object rathter than object itself:
+ <see cref="T:System.Xml.XmlAttribute"/>, <see cref="T:System.Xml.Linq.XAttribute"/>, <see cref="T:System.Xml.XmlText"/>, <see cref="T:System.Xml.Linq.XText"/>, <see cref="T:System.Xml.XmlCDataSection"/>, <see cref="T:System.Xml.Linq.XCData"/>, <see cref="T:System.Xml.XmlComment"/>, <see cref="T:System.Xml.Linq.XComment"/>.
+ </para>
+	</returns>
+	<param name="value">The value produced by the binding source. Used as XPath parameter</param>
+	<param name="targetType">The type of the binding target property. Ignored.</param>
+	<param name="parameter">The converter parameter to use. Must be <see cref="T:System.String"/> - represents template of XPath query. Placeholder {0} is replaces with string representation of <paramref name="value"/> using <see cref="M:System.String.Format(System.String,System.Object)"/>.</param>
+	<param name="culture">The culture to use in the converter.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="parameter"/> is null.</exception>
+	<exception cref="T:Tools.TypeMismatchException"><paramref name="parameter"/> is not string.</exception>
+	<exception cref="T:System.Xml.XPath.XPathException"><paramref name="parameter"/> contains namespace prefix which is not resolved by <see cref="P:Tools.WindowsT.WPF.ConvertersT.XmlXPathConverter.XmlNamespaceManager"/>.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.XmlXPathConverter.IValueConverter_ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Throws a <see cref="T:System.NotSupportedException"/> - this converter is only one-way</summary>
+	<param name="value">ignored</param>
+	<param name="targetType">ignored</param>
+	<param name="parameter">ignored</param>
+	<param name="culture">ignored</param>
+	<returns>Never returns - always throws a <see cref="T:System.NotSupportedException"/></returns>
+	<exception cref="T:System.NotSupportedException">Always - this converter is one-way only.</exception>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.XmlXPathConverter">
+	<summary>Converter which gets value and uses it as parameter of XPath query. Then returns result of that query.</summary>
+	<remarks>This converter is one-way.</remarks>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.FormsT.ProgressMonitor.#ctor">
 	<summary>Default CTor</summary>
 	<remarks>Value of the <see cref="P:Tools.WindowsT.FormsT.ProgressMonitor.BackgroundWorker"/> property is populated with new instance of <see cref="T:System.ComponentModel.BackgroundWorker"/></remarks>
@@ -8481,6 +9061,188 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Provides extension methods for the <see cref="T:System.Windows.Threading.Dispatcher"/> class</summary>
 	<seealso cref="T:System.Windows.Threading.Dispatcher"/><seealso cref="T:Tools.ThreadingT.IInvokeExtensions"/>
 	<version version="1.5.3">This module is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.GenerateEditingElement(System.Windows.Controls.DataGridCell,System.Object)">
+	<summary>Gets an editing element that is bound to the column's <see cref="P:System.Windows.Controls.DataGridBoundColumn.Binding"/> property value.</summary>
+	<returns>A new editing element that is bound to the column's <see cref="P:System.Windows.Controls.DataGridBoundColumn.Binding"/> property value. (A <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/>)</returns>
+	<param name="cell">The cell that will contain the generated element.</param>
+	<param name="dataItem">The data item represented by the row that contains the intended cell.</param>
+</member><member name="E:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.GeneratingEditingElement">
+	<summary>Raised before eiditng element is generated. Allows you to cancle editing element generation.</summary>
+	<remarks>When this event is cancelled normal element (<see cref="T:System.Windows.Controls.TextBlock"/>) is used for that cell instead of <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/>.</remarks>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.OnGeneratingEditingElement(Tools.WindowsT.WPF.ControlsT.DataGridCellElementCreatingEventArgs)">
+	<summary>Raises the <see cref="E:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.GeneratingEditingElement"/> event</summary>
+	<param name="e">Event arguments</param>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.GenerateElement(System.Windows.Controls.DataGridCell,System.Object)">
+	<summary>When overridden in a derived class, gets a read-only element that is bound to the column's <see cref="P:System.Windows.Controls.DataGridBoundColumn.Binding"/> property value.</summary>
+	<returns>A new, read-only element that is bound to the column's <see cref="P:System.Windows.Controls.DataGridBoundColumn.Binding"/> property value. (A <see cref="T:System.Windows.Controls.TextBlock"/>)</returns>
+	<param name="cell">The cell that will contain the generated element.</param>
+	<param name="dataItem">The data item represented by the row that contains the intended cell.</param>
+</member><member name="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.HideZeroBinding">
+	<summary>Gets a binding used with <see cref="F:System.Windows.UIElement.VisibilityProperty"/> to set it invisible when value is zero and <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.HideZero"/> is true</summary>
+	<version version="1.5.3">This property is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.PrepareCellForEdit(System.Windows.FrameworkElement,System.Windows.RoutedEventArgs)">
+	<summary>Sets cell content as needed for editing.</summary>
+	<returns>Derived classes return the unedited cell value. This implementation returns null in all cases.</returns>
+	<param name="editingElement">The element that the column displays for a cell in editing mode.</param>
+	<param name="editingEventArgs">Information about the user gesture that is causing a cell to enter editing mode.</param>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.ApplyStyle(System.Boolean,System.Boolean,System.Windows.FrameworkElement)">
+	<summary>Applies a style to a <see cref="T:System.Windows.FrameworkElement"/></summary>
+	<param name="isEditing">True when the element is an editing element</param>
+	<param name="defaultToElementStyle">True to use <see cref="P:System.Windows.Controls.DataGridBoundColumn.ElementStyle"/> when <paramref name="isEditing"/> is true and <see cref="P:System.Windows.Controls.DataGridBoundColumn.EditingElementStyle"/> is null</param>
+	<param name="element">The element to apply style onto</param>
+	<remarks>Code of this method was obtained from Reflector on <see cref="M:System.Windows.Controls.DataGridBoundColumn.ApplyStyle"/></remarks>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.PickStyle(System.Boolean,System.Boolean)">
+	<summary>Gets style for an element</summary>
+	<param name="isEditing">True when the element is editing element</param>
+	<param name="defaultToElementStyle">True to use <see cref="P:System.Windows.Controls.DataGridBoundColumn.ElementStyle"/> when <paramref name="isEditing"/> is true and <see cref="P:System.Windows.Controls.DataGridBoundColumn.EditingElementStyle"/> is null</param>
+	<returns>Either <see cref="P:System.Windows.Controls.DataGridBoundColumn.ElementStyle"/> or <see cref="P:System.Windows.Controls.DataGridBoundColumn.EditingElementStyle"/>.</returns>
+	<remarks>Code of this method was obtained from Reflector on <see cref="M:System.Windows.Controls.DataGridBoundColumn.PickStyle"/></remarks>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.SyncColumnProperty(System.Windows.DependencyObject,System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Windows.DependencyProperty)">
+	<summary>Synchronizes column property with element</summary>
+	<param name="column">The column to synchronize value with</param>
+	<param name="content">A <see cref="T:System.Windows.DependencyObject"/> to synchronize value to</param>
+	<param name="contentProperty">Property to synchronize value to</param>
+	<param name="columnProperty">Property to snychronize value with</param>
+	<remarks>Code of this method was obtained from Reflector on <see cref="M:System.Windows.Controls.DataGridHelper.SyncColumnProperty"/></remarks>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.IsDefaultValue(System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+	<summary>Determines wheather property has it's default value</summary>
+	<param name="d">A <see cref="T:System.Windows.DependencyObject"/> to tell that for</param>
+	<param name="dp">A property to tell that for</param>
+	<returns>True if property's value is default</returns>
+	<remarks>Code of this method was obtained from Reflector on <see cref="M:System.Windows.Controls.DataGridHelper.IsDefaultValue"/></remarks>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.SyncProperties(System.Windows.FrameworkElement)">
+	<summary>Synchronizes properties of editing element and column</summary>
+</member><member name="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Minimum">
+	<summary>Gets or sets minimum allowed value.</summary>
+	<returns>Minimum allowed value.</returns>
+	<value>Minimum allowed value.</value>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.MinimumProperty">
+	<summary>Identifies the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Minimum"/> property</summary>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.OnMinimumChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+	<summary>Handles change of the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Minimum"/> property</summary>
+	<param name="element">Source of event</param>
+	<param name="args">Event arguments</param>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.CoerceMinimum(System.Windows.DependencyObject,System.Object)">
+	<summary>Coerces value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Minimum"/> property</summary>
+	<param name="element">Element to coerce value for. Must be <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/>.</param>
+	<param name="value">Value to be coerced. Must be <see cref="T:System.Decimal"/></param>
+</member><member name="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Maximum">
+	<summary>Gets or sets maximum allowed value.</summary>
+	<returns>Maximum allowed value</returns>
+	<value>Maximum allowed value</value>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.MaximumProperty">
+	<summary>Identifies the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Maximum"/> property</summary>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.CoerceMaximum(System.Windows.DependencyObject,System.Object)">
+	<summary>Coerces value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Maximum"/> property</summary>
+	<param name="element">Element to coerce value for. Must be <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/>.</param>
+	<param name="value">Value to be coerced. Must be <see cref="T:System.Decimal"/></param>
+</member><member name="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Change">
+	<summary>Gets or sets value indicating step value changes when user increnets/decrements the value</summary>
+	<returns>Value of incerement/decrement step</returns>
+	<value>Value of increment/decrement step</value>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.ChangeProperty">
+	<summary>Identifies the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Change"/> dependency property</summary>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.ValidateChange(System.Object)">
+	<summary>Valudates value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Change"/> property</summary>
+	<param name="value">New value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Change"/> property. Must be <see cref="T:System.Decimal"/></param>
+	<returns>True if <paramref name="value"/> is greater than zero; false otherwise</returns>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.CoerceChange(System.Windows.DependencyObject,System.Object)">
+	<summary>Corces value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Change"/> property</summary>
+	<param name="element">Element to corece value for. Must be <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/>.</param>
+	<param name="value">Proposed value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.Change"/> property</param>
+	<returns>Coerced value (<see cref="T:System.Decimal"/>)</returns>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.smallestForDecimalPlaces(System.Int32)">
+	<summary>Gets smallest  value by decimal places</summary>
+	<param name="decimalPlaces">Number of decimal places</param>
+	<returns>Smallest value for given <paramref name="decimalPlaces"/>.</returns>
+	<exception cref="T:System.ArgumentException"><paramref name="decimalPlaces"/> is less than zero</exception>
+</member><member name="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.DecimalPlaces">
+	<summary>Gets or sets value indication decimal place precision of number</summary>
+	<remarks>Drecimal-places pecision of number</remarks>
+	<value>Number of decimal places to be entered</value>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.DecimalPlacesProperty">
+	<summary>Identifies the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.DecimalPlaces"/> property</summary>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.OnDecimalPlacesChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+	<summary>Handles change of value of <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.DecimalPlaces"/> property</summary>
+	<param name="element">Element must be <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/>.</param>
+	<param name="args">Event arguments</param>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.ValidateDecimalPlaces(System.Object)">
+	<summary>Validates value of the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.DecimalPlaces"/> property</summary>
+	<param name="value">Number of decimapl places. Must be <see cref="T:System.Int32"/></param>
+	<returns>True when <paramref name="value"/> is greater than or equal to zero; false otherwise</returns>
+</member><member name="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.HideZero">
+	<summary>Gets or sets value idicating wheather not text is shown when value is zero</summary>
+	<version version="1.5.3">This property is new in version 1.5.3</version>
+</member><member name="F:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.HideZeroProperty">
+	<summary>Metadata of the <see cref="P:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn.HideZero"/> property</summary>
+</member><member name="T:Tools.WindowsT.WPF.ControlsT.DataGridNumericUpDownColumn">
+	<summary>A column for WPF <see cref="T:System.Windows.Controls.DataGrid"/> for entering numbers using <see cref="T:Tools.WindowsT.WPF.ControlsT.NumericUpDown"/>.</summary>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ControlsT.DataGridCellElementCreatingEventArgs.#ctor(System.Windows.Controls.DataGridColumn,System.Windows.Controls.DataGridCell,System.Object)">
+	<summary> - creates a new instance of the <see cref="T:Tools.WindowsT.WPF.ControlsT.DataGridCellElementCreatingEventArgs"/></summary>
+	<param name="column">Column cell belongs to</param>
+	<param name="cell">The cell</param>
+	<param name="dataItem">Data item cell is bound to</param>
+</member><member name="P:Tools.WindowsT.WPF.ControlsT.DataGridCellElementCreatingEventArgs.DataItem">
+	<summary>Gets a data item cell is bound to</summary>
+</member><member name="P:Tools.WindowsT.WPF.ControlsT.DataGridCellElementCreatingEventArgs.Cell">
+	<summary>Gets the cell object</summary>
+</member><member name="P:Tools.WindowsT.WPF.ControlsT.DataGridCellElementCreatingEventArgs.Column">
+	<summary>Gets a column cell belongs to</summary>
+</member><member name="T:Tools.WindowsT.WPF.ControlsT.DataGridCellElementCreatingEventArgs">
+	<summary>Event argumens of events related to creation of elemtnt in <see cref="T:System.Windows.Controls.DataGridColumn"/></summary>
+</member><member name="P:Tools.WindowsT.WPF.ConvertersT.ChoiceBooleanConverter.IgnoreTargetType">
+	<summary>Gets or sets value indicating if targe type is honored in conversion</summary>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.ChoiceBooleanConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value. </summary>
+	<returns>
+ A converted value. If the method returns null, the valid null value is used.
+ Returned value is one of string values passed to <paramref name="parameter"/>.
+ <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)">Dynamic convertsion</see> is attempted when target type does not accept <see cref="T:System.String"/>.
+ Returns null if <paramref name="value"/> is null.
+ </returns>
+	<param name="value">The value produced by the binding source.
+ Supported value types are <see cref="T:System.Boolean"/>,
+ <see cref="T:System.String"/> ("false", "0", an empty string and culture false string representation are considered false all other values are considered true),
+ <see cref="T:System.Windows.Visibility"/> (<see cref="F:System.Windows.Visibility.Visible"/> is considered true, all other values false),
+ <see cref="T:System.IConvertible"/> and any type that can be <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)">dynamically casted</see> to <see cref="T:System.Boolean"/>.</param>
+	<param name="targetType">The type of the binding target property. Ignored if null.</param>
+	<param name="parameter">The converter parameter to use.
+ Either <see cref="T:System.String"/> containing two pipe(|)-separated values (for true an false) or <see cref="T:System.String"/> containing two items (0-true, 1-false).
+ Culture values fro true and false are used when this parameter is null.</param>
+	<param name="culture">The culture to use in the converter.</param>
+	<exception cref="T:Tools.TypeMismatchException"><paramref name="parameter"/> is neither null, <see cref="T:System.String"/> nor <see cref="T:System.String"/></exception>
+	<exception cref="T:System.IndexOutOfRangeException"><paramref name="parameter"/> is <see cref="T:System.String"/> but it does not have elements 0 and 1.</exception>
+	<exception cref="T:System.InvalidCastException">Error (cannot convert) when converting <paramref name="value"/> to <see cref="T:System.Boolean"/> or return value to <paramref name="targetType"/>.</exception>
+	<exception cref="T:System.OverflowException">Error (overflow) when converting <paramref name="value"/> to <see cref="T:System.Boolean"/> or return value to <paramref name="targetType"/>.</exception>
+	<exception cref="T:System.Reflection.AmbiguousMatchException">Error (conversion operators found but no one is most specific) when converting <paramref name="value"/> to <see cref="T:System.Boolean"/> or return value to <paramref name="targetType"/>.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.ChoiceBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value. </summary>
+	<returns>A converted value. If the method returns null, the valid null value is used. Returns boolean value according to <paramref name="value"/>. <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)">Dynamically converted</see> to <paramref name="targetType"/> when necessary.</returns>
+	<param name="value">The value that is produced by the binding target. Any value is converted to <see cref="T:System.String"/> using <see cref="M:System.Object.ToString"/> or <see cref="M:System.IConvertible.ToString(System.IFormatProvider)"/>.</param>
+	<param name="targetType">The type to convert to. Ignored when null.</param>
+	<param name="parameter">The converter parameter to use. 
+ Either <see cref="T:System.String"/> containing two pipe(|)-separated values (for true an false) or <see cref="T:System.String"/> containing two items (0-true, 1-false).
+ Culture values fro true and false are used when this parameter is null.</param>
+	<param name="culture">The culture to use in the converter.</param>
+	<seelaso cref="M:Tools.WindowsT.WPF.ConvertersT.ChoiceBooleanConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/>
+	<exception cref="T:Tools.TypeMismatchException"><paramref name="parameter"/> is neither null, <see cref="T:System.String"/> nor <see cref="T:System.String"/></exception>
+	<exception cref="T:System.IndexOutOfRangeException"><paramref name="parameter"/> is <see cref="T:System.String"/> but it does not have elements 0 and 1.</exception>
+	<exception cref="T:System.InvalidCastException">Error (cannot convert) when converting return value (<see cref="T:System.Boolean"/>) to <paramref name="targetType"/>.</exception>
+	<exception cref="T:System.OverflowException">Error (overflow) when converting return (<see cref="T:System.Boolean"/>) value to <paramref name="targetType"/>.</exception>
+	<exception cref="T:System.Reflection.AmbiguousMatchException">Error (conversion operators found but no one is most specific) when converting return value (<see cref="T:System.Boolean"/>) to <paramref name="targetType"/>.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.ChoiceBooleanConverter.GetParts(System.Object,System.Globalization.CultureInfo,System.String@,System.String@)">
+	<summary>Gets trua ena false values from parameter</summary>
+	<param name="parameter">A parameter passed to converter</param>
+	<param name="culture">CUlture to be used</param>
+	<param name="trueCh">Output: Returns string for True</param>
+	<param name="falseCh">Output: Returns string for false</param>
+	<exception cref="T:Tools.TypeMismatchException"><paramref name="parameter"/> is neither null, <see cref="T:System.String"/> nor <see cref="T:System.String"/></exception>
+	<exception cref="T:System.IndexOutOfRangeException"><paramref name="parameter"/> is <see cref="T:System.String"/> but it does not have elements 0 and 1.</exception>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.ChoiceBooleanConverter">
+	<summary>Converter which converts a boolean value to one of given string values</summary>
+	<remarks>Values are passed to parameter as two pipe(|)-separated strings or as an array of strings with two elements.</remarks>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.ConvertersT.RelativePathConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
 	<summary>Converts a value.</summary>
 	<returns>A converted value. Absolute path made from relative path given in <paramref name="value"/>. Relative path root to make it absolute is either <paramref name="parameter"/> is specified or <see cref="P:System.Environment.CurrentDirectory"/>. If <paramref name="value"/>
@@ -8860,6 +9622,75 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>A markup extension that can create instance of any type which has default (parameter-less constructor)</summary>
 	<seelaso cref="M:System.Activator.CreateInstance(System.Type,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object[],System.Globalization.CultureInfo)"/>
 	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
+</member><member name="F:Tools.WindowsT.WPF.MarkupT.StaticExExtension._Member">
+	<summary>Contains value of the <see cref="P:Tools.WindowsT.WPF.MarkupT.StaticExExtension.Member"/> property</summary>
+</member><member name="M:Tools.WindowsT.WPF.MarkupT.StaticExExtension.#ctor">
+	<summary>Default contstructor</summary>
+	<remarks>This constructor is intended to be used by XAML only. Use parametrized constructor overload instead.</remarks>
+</member><member name="M:Tools.WindowsT.WPF.MarkupT.StaticExExtension.#ctor(System.String)">
+	<summary>CTor with member</summary>
+	<param name="Member">Name and path of member this extension provides value of. See <see cref="P:Tools.WindowsT.WPF.MarkupT.StaticExExtension.Member"/> for more information.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="Member"/> is null.</exception>
+</member><member name="M:Tools.WindowsT.WPF.MarkupT.StaticExExtension.#ctor(System.String,System.Reflection.BindingFlags)">
+	<summary>CTor with member and <see cref="T:System.Reflection.BindingFlags"/></summary>
+	<param name="Member">Name and path of member this extension provides value of. See <see cref="P:Tools.WindowsT.WPF.MarkupT.StaticExExtension.Member"/> for more information.</param>
+	<param name="bindingFlags">Binding flags used when looking for field or property</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="Member"/> is null.</exception>
+</member><member name="P:Tools.WindowsT.WPF.MarkupT.StaticExExtension.Member">
+	<summary>Gets or sets name and path of member this extension provides value of</summary>
+	<value>Name and path of member this extension provides value of</value>
+	<remarks>
+ This property shall be set to string containg several (at least 2) dot(.)-separated substring. (No leading and terminating dots!)
+ First part is interpreted as name of type and is resolved via <see cref="M:System.Windows.Markup.IXamlTypeResolver.Resolve(System.String)"/> (so it can contain XML namestace prefix).
+ Second part must me name of public static property or field of type specified in first part.
+ Thirt and all subsequent parts must be names of public instance fields of type returned by field or property from preceding part (type descriptors are not utilized).
+ If any member is not found or (with exceptio of last) returns null, an exception is thrown.
+ </remarks>
+</member><member name="P:Tools.WindowsT.WPF.MarkupT.StaticExExtension.BindingFlags">
+	<summary>Gets or sets binding flags used when looking for field or property</summary>
+	<value>A <see cref="T:System.Reflection.BindingFlags"/> value indicating which members are considered when looking for field or property to get value of. Default value is <see cref="F:System.Reflection.BindingFlags.Public"/>.</value>
+	<remarks>Use only binding flags related to member visibility. <see cref="F:System.Reflection.BindingFlags.Instance"/> and <see cref="F:System.Reflection.BindingFlags.Static"/> are ignored by setter and used as needed depending on context</remarks>
+</member><member name="M:Tools.WindowsT.WPF.MarkupT.StaticExExtension.ProvideValue(System.IServiceProvider)">
+	<summary>Returns an object that is set as the value of the target property for this markup extension.</summary>
+	<returns>The object value to set on the property where the extension is applied.
+ If <paramref name="serviceProvider"/> provides <see cref="T:System.Windows.Markup.IProvideValueTarget"/> service and its <see cref="P:System.Windows.Markup.IProvideValueTarget.TargetProperty"/> is 
+     <see cref="T:System.Reflection.PropertyInfo"/> with non-null <see cref="P:System.Reflection.PropertyInfo.PropertyType"/> or <see cref="T:System.Windows.DependencyProperty"/> with non-null <see cref="P:System.Windows.DependencyProperty.PropertyType"/>
+		<see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)">dynamic cast</see> or result of properties/fields evaluation is attempted.</returns>
+	<param name="serviceProvider">Object that can provide services for the markup extension.</param>
+	<exception cref="T:System.InvalidOperationException"><see cref="P:Tools.WindowsT.WPF.MarkupT.StaticExExtension.Member"/> is null, an empty string or contains fewer than 2 dot-separated parts.</exception>
+	<exception cref="T:System.ArgumentNullException"><paramref name="serviceProvider"/> is null.</exception>
+	<exception cref="T:System.ArgumentException"><paramref name="serviceProvider"/> does not provide service of type <see cref="T:System.Windows.Markup.IXamlTypeResolver"/>.</exception>
+	<exception cref="T:System.NullReferenceException">Value returned by any field or property but the last is null.</exception>
+	<exception cref="T:System.MissingMemberException">Neither public static property nor public static field of type from 1st segment and with name from 2nd segment was not found. -or- Neither public instance property nor public instance field with name specified in 3rd or any subsequent segment was not found on type returned by field or property of preceding segment.</exception>
+	<exception cref="T:System.Reflection.AmbiguousMatchException">More that one public static (2nd level) or public instance (3rd+) level property with same name found. -or- <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)">Dynamic cast</see> wa attempted (see return value documentation for conditions when it is attempted): Cast operators were found, but no one is most specific.</exception>
+	<exception cref="T:System.MemberAccessException">Property being accessed has no getter. (<see cref="M:System.Reflection.PropertyInfo.GetValue(System.Object,System.Object[])"/> throws an <see cref="T:System.ArgumentException"/>.) -or- <see cref="M:System.Reflection.FieldInfo.GetValue(System.Object)"/> throws an <see cref="T:System.ArgumentException"/>.</exception>
+	<exception cref="T:System.Reflection.TargetParameterCountException">Property being accessed is indexed</exception>
+	<exception cref="T:System.MethodAccessException">There was an illegal attempt to access a private or protected method inside a class. I.e. property is public but getter is not public.</exception>
+	<exception cref="T:System.Reflection.TargetInvocationException">An error occurred while retrieving the property value. For example, an index value specified for an indexed property is out of range. The <see cref="P:System.Exception.InnerException"/> property indicates the reason for the error.</exception>
+	<exception cref="T:System.NotSupportedException">A field being accessed is marked literal, but the field does not have one of the accepted literal types.</exception>
+	<exception cref="T:System.FieldAccessException">The caller does not have permission to access a field.</exception>
+	<exception cref="T:System.InvalidCastException"><see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)">Dynamic cast</see> wa attempted (see return value documentation for conditions when it is attempted): No casting method from type of obj to Type was found -or- build in conversion from System.String to numeric type failed.</exception>
+	<exception cref="T:System.FormatException"><see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)">Dynamic cast</see> wa attempted (see return value documentation for conditions when it is attempted): Conversion of <see cref="T:System.String"/> to <see cref="T:System.TimeSpan"/> failed because string has bad format. -or- Operator being caled has thrown this exception.</exception>
+</member><member name="M:Tools.WindowsT.WPF.MarkupT.StaticExExtension.StaticExTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+	<summary>Returns whether this converter can convert the object to the specified type, using the specified context.</summary>
+	<returns>true if this converter can perform the conversion; otherwise, false. This implementation returns true if <paramref name="destinationType"/> is <see cref="T:System.ComponentModel.Design.Serialization.InstanceDescriptor"/>; otherwise calls <see cref="M:System.ComponentModel.TypeConverter.CanConvertTo(System.Type)"/>.</returns>
+	<param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
+	<param name="destinationType">A <see cref="T:System.Type"/> that represents the type you want to convert to.</param>
+</member><member name="M:Tools.WindowsT.WPF.MarkupT.StaticExExtension.StaticExTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+	<summary>Converts the given value object to the specified type, using the specified context and culture information.</summary>
+	<returns>An <see cref="T:System.Object"/> that represents the converted value. If <paramref name="destinationType"/> is <see cref="T:System.ComponentModel.Design.Serialization.InstanceDescriptor"/> and <paramref name="value"/> is <see cref="T:Tools.WindowsT.WPF.MarkupT.StaticExExtension"/> this implementation returns <see cref="T:System.ComponentModel.Design.Serialization.InstanceDescriptor"/>.</returns>
+	<param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context.</param>
+	<param name="culture">A <see cref="T:System.Globalization.CultureInfo"/>. If null is passed, the current culture is assumed.</param>
+	<param name="value">The <see cref="T:System.Object"/> to convert.</param>
+	<param name="destinationType">The <see cref="T:System.Type"/> to convert the <paramref name="value"/> parameter to.</param>
+	<exception cref="T:System.ArgumentNullException">The <paramref name="destinationType"/> parameter is null.</exception>
+	<exception cref="T:System.NotSupportedException">The conversion cannot be performed.</exception>
+	<remarks>This implementation performs conversion from <see cref="T:Tools.WindowsT.WPF.MarkupT.StaticExExtension"/> to <see cref="T:System.ComponentModel.Design.Serialization.InstanceDescriptor"/>; otherwise calls <see cref="M:System.ComponentModel.TypeConverter.ConvertTo(System.Object,System.Type)"/>.</remarks>
+</member><member name="T:Tools.WindowsT.WPF.MarkupT.StaticExExtension.StaticExTypeConverter">
+	<summary>Converter for type <see cref="T:System.Windows.Markup.MarkupExtension"/> and <see cref="T:System.ComponentModel.Design.Serialization.InstanceDescriptor"/></summary>
+</member><member name="T:Tools.WindowsT.WPF.MarkupT.StaticExExtension">
+	<summary>Implements markup extension to acces static properties and fields and their members</summary>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.InteropT.InteropExtensions.ToBitmapSource(System.Drawing.Bitmap)">
 	<summary>Converts <see cref="T:System.Drawing.Image"/> to WPF <see cref="T:System.Windows.Media.Imaging.BitmapSource"/></summary>
 	<param name="Image">An <see cref="T:System.Drawing.Image"/></param>
@@ -9022,45 +9853,6 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Contains extension methods for WPF - WinForms interoperability</summary>
 	<seealso cref="T:Tools.Tools.WindowsT.InteropT.NativeInteropExtensions"/>
 	<version version="1.5.3." stage="Alpha">Introduced new overloads to <see cref="M:Tools.WindowsT.InteropT.InteropExtensions.Show(System.Windows.Forms.Form,System.Windows.Window)"/> and <see cref="M:Tools.WindowsT.InteropT.InteropExtensions.ShowDialog(System.Windows.Forms.Form,System.Windows.Window)"/> methods to support <see cref="T:System.Windows.Interop.IWin32Window"/>.</version>
-</member><member name="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-	<summary>Converts a value.</summary>
-	<param name="value">The value produced by the binding source.</param>
-	<param name="targetType">The type of the binding target property.</param>
-	<param name="parameter">The converter parameter to use.</param>
-	<param name="culture">The culture to use in the converter.</param>
-	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
-	<exception cref="T:System.ArgumentException">Value is not of type <typeparamref name="TSource"/> (or <see langword="null"/> when <typeparamref name="TSource"/> is not value type or is <see cref="T:System.Nullable`1"/>) -or- <paramref name="targetType"/> cannot be assigned by value of type <see cref="TTarget"/></exception>
-	<version version="1.5.2"><paramref name="value"/> can be <see langword="null"/> for <typeparamref name="TSource"/> not being value type or being <see cref="T:System.Nullable`1"/>.</version>
-	<version version="1.5.2"><paramref name="value"/> can be of underlying type of <typeparamref name="TSource"/> when <typeparamref name="TSource"/> is <see cref="T:System.Nullable`1"/>.</version>
-</member><member name="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.Convert(`0,System.Object,System.Globalization.CultureInfo)">
-	<summary>Converts a value.</summary>
-	<param name="value">The value produced by the binding source.</param>
-	<param name="parameter">The converter parameter to use.</param>
-	<param name="culture">The culture to use in the converter.</param>
-	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
-</member><member name="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
-	<summary>Converts a value.</summary>
-	<param name="value">The value that is produced by the binding target.</param>
-	<param name="targetType">The type to convert to.</param>
-	<param name="parameter">The converter parameter to use.</param>
-	<param name="culture">The culture to use in the converter.</param>
-	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
-	<exception cref="T:System.ArgumentException">Value is not of type <see cref="TTarget"/> (or <see langword="null"/> when <typeparamref name="TTarget"/> is not value type or is <see cref="T:System.Nullable`1"/>) -or- <paramref name="targetType"/> cannot be assigned by value of type <see cref="TSource"/></exception>
-	<version version="1.5.2"><paramref name="value"/> can be <see langword="null"/> for <typeparamref name="TTarget"/> not being vakue type or being <see cref="T:System.Nullable`1"/>.</version>
-	<version version="1.5.2"><paramref name="value"/> can be of underlying type of <typeparamref name="TTarget"/> when <typeparamref name="TTarget"/> is <see cref="T:System.Nullable`1"/>.</version>
-</member><member name="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.ConvertBack(`1,System.Object,System.Globalization.CultureInfo)">
-	<summary>Converts a value.</summary>
-	<param name="value">The value that is produced by the binding target.</param>
-	<param name="parameter">The converter parameter to use.</param>
-	<param name="culture">The culture to use in the converter.</param>
-	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
-</member><member name="T:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2">
-	<summary>Common base for type-safe implementations of <see cref="T:System.Windows.Data.IValueConverter"/></summary>
-	<typeparam name="TSource">Type values are converted from</typeparam>
-	<typeparam name="TTarget">Type values are converted to</typeparam>
-	<author web="http://dzonny.cz" mail="dzonny@dzonny.cz">Đonny</author>
-	<version version="1.5.2" stage="Nightly"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
-	<version version="1.5.2"><see cref="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> and <see cref="M:Tools.WindowsT.WPF.ConvertersT.StronglyTypedConverter`2.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> now accepts <see langword="null"/> when <typeparamref name="TSource"/> or <typeparamref name="TTarget"/> respectivelly is not value type or is <see cref="T:System.Nullable`1"/></version>
 </member><member name="F:Tools.WindowsT.FormsT.ObjectBrowser.Assemblies">
 	<summary>Contains value of the <see cref="P:Tools.WindowsT.FormsT.ObjectBrowser.Objects"/> property</summary>
 	<remarks>Can be any object</remarks>
@@ -9429,6 +10221,57 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<version version="1.5.2" stage="Release"><list type="bullet">
 			<item><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</item>
 			<item>Relocated to assembly Tools.Windows</item></list></version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.OneWayBooleanConverterBase.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value. </summary>
+	<returns>A converted value. If the method returns null, the valid null value is used. By default returns <see cref="T:System.Boolean"/> Different return type can be required by <paramref name="targetType"/>.</returns>
+	<param name="value">The value produced by the binding source.</param>
+	<param name="targetType">The type of the binding target property. Ignored if null.
+ Preffered types are <see cref="T:System.Boolean"/> and <see cref="T:System.Nullable`1"/>[<see cref="T:System.Boolean"/>].
+ Specially supported types are <see cref="T:System.Windows.Visibility"/> and <see cref="T:System.Nullable`1"/>[<see cref="T:System.Windows.Visibility"/>].
+ If target type is not one ow types mentioned above <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> is used.
+ If <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> throws <see cref="T:System.InvalidCastException"/> or <see cref="T:System.Reflection.AmbiguousMatchException"/> unconverted return value is returned instead.
+ </param>
+	<param name="parameter">The converter parameter to use.</param>
+	<param name="culture">The culture to use in the converter.</param>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.OneWayBooleanConverterBase.ProcessReturnValueInternal(System.Nullable{System.Boolean},System.Type)">
+	<summary>Converts <see cref="T:System.Boolean"/> return value to given target type</summary>
+	<param name="ret">Value produced by converter</param>
+	<param name="targetType">The type of the binding target property. Ignored if null.
+ Preffered types are <see cref="T:System.Boolean"/> and <see cref="T:System.Nullable`1"/>[<see cref="T:System.Boolean"/>].
+ Specially supported types are <see cref="T:System.Windows.Visibility"/> and <see cref="T:System.Nullable`1"/>[<see cref="T:System.Windows.Visibility"/>].
+ If target type is not one ow types mentioned above <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> is used.
+ If <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> throws <see cref="T:System.InvalidCastException"/> or <see cref="T:System.Reflection.AmbiguousMatchException"/> unconverted return value is returned instead.
+ </param>
+	<returns><paramref name="ret"/> converted to <paramref name="targetType"/>.</returns>
+	<remarks>This implementation uses <see cref="M:Tools.WindowsT.WPF.ConvertersT.OneWayBooleanConverterBase.ProcessReturnValue(System.Nullable{System.Boolean},System.Type)"/></remarks>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.OneWayBooleanConverterBase.ProcessReturnValue(System.Nullable{System.Boolean},System.Type)">
+	<summary>Converts <see cref="T:System.Boolean"/> return value to given target type</summary>
+	<param name="ret">Value produced by converter</param>
+	<param name="targetType">The type of the binding target property. Ignored if null.
+ Preffered types are <see cref="T:System.Boolean"/> and <see cref="T:System.Nullable`1"/>[<see cref="T:System.Boolean"/>].
+ Specially supported types are <see cref="T:System.Windows.Visibility"/> and <see cref="T:System.Nullable`1"/>[<see cref="T:System.Windows.Visibility"/>].
+ If target type is not one ow types mentioned above <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> is used.
+ If <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> throws <see cref="T:System.InvalidCastException"/> or <see cref="T:System.Reflection.AmbiguousMatchException"/> unconverted return value is returned instead.
+ </param>
+	<returns><paramref name="ret"/> converted to <paramref name="targetType"/>.</returns>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.OneWayBooleanConverterBase.Convert(System.Object,System.Object,System.Globalization.CultureInfo)">
+	<summary>When implemented in derived class converts a value to <see cref="T:System.Boolean"/> value</summary>
+	<param name="value">The value produced by the binding source.</param>
+	<param name="parameter">The converter parameter to use.</param>
+	<param name="culture">The culture to use in the converter.</param>
+	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.OneWayBooleanConverterBase.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>If implemented in derived class converts a value back.</summary>
+	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
+	<param name="value">The value that is produced by the binding target.</param>
+	<param name="targetType">The type to convert to.</param>
+	<param name="parameter">The converter parameter to use.</param>
+	<param name="culture">The culture to use in the converter.</param>
+	<exception cref="T:System.NotSupportedException">This implementation always throws <see cref="T:System.NotSupportedException"/>.</exception>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.OneWayBooleanConverterBase">
+	<summary>Commmon abstract base class for value one-way converters converting something to boolean</summary>
+	<remarks>This class takes care about return value conversions</remarks>
+	<version version="1.5.3">This abstract class is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.ConvertersT.XPathConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
 	<summary>Converts a value. </summary>
 	<returns>A converted value. If the method returns null, the valid null value is used. Returns result of XPath query callend on <paramref name="value"/>. Nulll when <paramref name="value"/> is null.</returns>
@@ -9484,6 +10327,152 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="T:Tools.WindowsT.WPF.ConvertersT.XPathConverterExtension">
 	<summary>Markup extension provides an instnce of the <see cref="T:Tools.WindowsT.WPF.ConvertersT.XPathConverter"/> value converter. Resulting converter is aware of all XML namespace registrations in context.</summary>
 	<version stage="Nightly" version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.BaseRoundingConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value. </summary>
+	<param name="value">
+ The value produced by the binding source.
+ Supported types are: <see cref="T:System.Single"/>, <see cref="T:System.Double"/>, <see cref="T:System.Decimal"/>.
+ <see cref="T:System.String"/> is converted to <see cref="T:System.Double"/> using <see cref="M:System.Double.Parse(System.String)"/>.
+ <see cref="T:System.IConvertible"/> is converted to <see cref="T:System.Double"/> using <see cref="M:System.IConvertible.ToDouble(System.IFormatProvider)"/>.
+ Values of other type are <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)">dynamically casted</see> to <see cref="T:System.Double"/>.
+ </param>
+	<param name="targetType">The type of the binding target property. Ignored if null. If <paramref name="targetType"/> is not same as type of <paramref name="value"/> (after conversion), <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> is used to convert return value to <paramref name="targetType"/>.</param>
+	<param name="parameter">
+ The converter parameter to use. See documentation of derived class if it uses parameter.
+ Parameter should be of type <see cref="T:System.Int32"/>. Null defaults to 0. <see cref="T:System.String"/> is converted using <see cref="M:System.Int32.Parse(System.String)"/> (with <see cref="P:System.Globalization.CultureInfo.InvariantCulture"/>). <see cref="T:System.IConvertible"/> is converted using <see cref="M:System.IConvertible.ToInt32(System.IFormatProvider)"/> (with <see cref="P:System.Globalization.CultureInfo.InvariantCulture"/>). Values of other types are converted using <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/>.
+ If derived class supports parameter the meaning of the parameter is number of decimal places.
+ </param>
+	<param name="culture">The culture to use in the converter. Used only when <paramref name="value"/> is <see cref="T:System.String"/> or another <see cref="T:System.IConvertible"/>.</param>
+	<returns>A converted value. Null if <paramref name="value"/> is null. If <paramref name="value"/> is one of directly supported types (<see cref="T:System.Single"/>, <see cref="T:System.Double"/>, <see cref="T:System.Decimal"/>) default return type is same as type of <paramref name="value"/>. Otherwise default return type is <see cref="T:System.Double"/>. If <paramref name="targetType"/> is specified return value is converted to that type using <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/>.</returns>
+	<exception cref="T:System.InvalidCastException">A dynamic conversion failed. See <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/>.</exception>
+	<exception cref="T:System.Diagnostics.OverflowAction">Numeric falue conversion failed</exception>
+	<exception cref="M:Tools.ExtensionsT.StringExtensions.Format(System.String,System.Object[])">Attempt to convert string to number failed.</exception>
+	<seelaso cref="T:System.Reflection.AmbiguousMatchException">Conversion operators were found but no one is most spcecific.</seelaso>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.BaseRoundingConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a value back.</summary>
+	<returns>A converted value. If the method returns null, the valid null value is used. This impleementation returns <paramref name="value"/>. When <paramref name="targetType"/> is specified <paramref name="value"/> is converted to <paramref name="targetType"/> using <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/>.</returns>
+	<param name="value">The value that is produced by the binding target.</param>
+	<param name="targetType">The type to convert to.</param>
+	<param name="parameter">Ignored.</param>
+	<param name="culture">Ignored.</param>
+	<exception cref="T:System.InvalidCastException"><see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> failed.</exception>
+	<exception cref="T:System.OverflowException">Overflow when converting numeric values.</exception>
+	<exception cref="T:System.FormatException">Error during conversion</exception>
+	<seelaso cref="T:System.Reflection.AmbiguousMatchException">Conversion operators were found but no one is most spcecific.</seelaso>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.BaseRoundingConverter.Convert(System.Single,System.Int32)">
+	<summary>When overriden in derived class converts a value of type <see cref="T:System.Single"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Conversion parameter. Number of decimal places if derived class supports the parameter; ignored otherwise.</param>
+	<remarks>A converted value</remarks>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.BaseRoundingConverter.Convert(System.Double,System.Int32)">
+	<summary>When overriden in derived class converts a value of type <see cref="T:System.Double"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Conversion parameter. Number of decimal places if derived class supports the parameter; ignored otherwise.</param>
+	<remarks>A converted value</remarks>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.BaseRoundingConverter.Convert(System.Decimal,System.Int32)">
+	<summary>When overriden in derived class converts a value of type <see cref="T:System.Decimal"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Conversion parameter. Number of decimal places if derived class supports the parameter; ignored otherwise.</param>
+	<remarks>A converted value</remarks>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.BaseRoundingConverter">
+	<summary>Base class for rounding converters</summary>
+	<remarks>
+ See documentation of the <see cref="M:Tools.WindowsT.WPF.ConvertersT.BaseRoundingConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> function and documentation of derived classes.
+ <para>This converter is intended to be one-way, however when <see cref="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)"/> is called it returns the same value as passed to onversion method.</para>
+	</remarks>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.FloorConverter.Convert(System.Decimal,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Single"/> using <see cref="M:System.Math.Floor(System.Decimal)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Ignored (not supported).</param>
+	<remarks>A converted value - integral part of <paramref name="value"/>.</remarks>
+	<seelaso cref="M:System.Math.Floor(System.Decimal)"/>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.FloorConverter.Convert(System.Double,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Double"/> using <see cref="M:System.Math.Floor(System.Decimal)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Ignored (not supported).</param>
+	<remarks>A converted value - integral part of <paramref name="value"/>.</remarks>
+	<seelaso cref="M:System.Math.Floor(System.Decimal)"/>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.FloorConverter.Convert(System.Single,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Decimal"/> using <see cref="M:System.Math.Floor(System.Decimal)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Ignored (not supported).</param>
+	<remarks>A converted value - integral part of <paramref name="value"/>.</remarks>
+	<seelaso cref="M:System.Math.Floor(System.Decimal)"/>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.FloorConverter">
+	<summary>Converter which performs the <see cref="M:System.Math.Floor(System.Decimal)"/> operation (gets integral part of number)</summary>
+	<remarks>This <see cref="T:Tools.WindowsT.WPF.ConvertersT.BaseRoundingConverter"/>-derived class does not support parameter.</remarks>
+	<seelaso cref="M:System.Math.Floor(System.Decimal)"/>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CeilingConverter.Convert(System.Decimal,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Single"/> using <see cref="M:System.Math.Ceiling(System.Decimal)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Ignored (not supported).</param>
+	<remarks>A converted value - lowest inegral number greater than or equal to <paramref name="value"/>.</remarks>
+	<seelaso cref="M:System.Math.Ceiling(System.Decimal)"/>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CeilingConverter.Convert(System.Double,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Double"/> using <see cref="M:System.Math.Ceiling(System.Decimal)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Ignored (not supported).</param>
+	<remarks>A converted value - lowest inegral number greater than or equal to <paramref name="value"/>.</remarks>
+	<seelaso cref="M:System.Math.Ceiling(System.Decimal)"/>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.CeilingConverter.Convert(System.Single,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Decimal"/> using <see cref="M:System.Math.Ceiling(System.Decimal)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Ignored (not supported).</param>
+	<remarks>A converted value - lowest inegral number greater than or equal to <paramref name="value"/>.</remarks>
+	<seelaso cref="M:System.Math.Ceiling(System.Decimal)"/>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.CeilingConverter">
+	<summary>Converter which performs the <see cref="M:System.Math.Ceiling(System.Decimal)"/> operation (gets smallest integer value greater or equal to given value)</summary>
+	<remarks>This <see cref="T:Tools.WindowsT.WPF.ConvertersT.BaseRoundingConverter"/>-derived class does not support parameter.</remarks>
+	<seelaso cref="M:System.Math.Ceiling(System.Decimal)"/>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.RoundToEvenConverter.Convert(System.Decimal,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Decimal"/> using <see cref="M:System.Math.Round(System.Double)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Number of decimal places</param>
+	<remarks>A converted value - <paramref name="value"/> rounded to given number of decimal places. Midpoint rounds to even.</remarks>
+	<seelaso cref="M:System.Math.Round(System.Double)"/><seelaso cref="F:System.MidpointRounding.ToEven"/>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.RoundToEvenConverter.Convert(System.Double,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Double"/> using <see cref="M:System.Math.Round(System.Double)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Number of decimal places</param>
+	<remarks>A converted value - <paramref name="value"/> rounded to given number of decimal places. Midpoint rounds to even.</remarks>
+	<seelaso cref="M:System.Math.Round(System.Double)"/><seelaso cref="F:System.MidpointRounding.ToEven"/>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.RoundToEvenConverter.Convert(System.Single,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Single"/> using <see cref="M:System.Math.Round(System.Double)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Number of decimal places</param>
+	<remarks>A converted value - <paramref name="value"/> rounded to given number of decimal places. Midpoint rounds to even.</remarks>
+	<seelaso cref="M:System.Math.Round(System.Double)"/><seelaso cref="F:System.MidpointRounding.ToEven"/>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.RoundToEvenConverter">
+	<summary>Converter which performs the <see cref="M:System.Math.Round(System.Double)"/> operation - rounding midpoint numbers to even</summary>
+	<remarks>This <see cref="T:Tools.WindowsT.WPF.ConvertersT.BaseRoundingConverter"/>-derived class supports parameter (number of decimal places).</remarks>
+	<seelaso cref="M:System.Math.Round(System.Double)"/><seelaso cref="F:System.MidpointRounding.ToEven"/>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.RoundAwayFromZeroConverter.Convert(System.Decimal,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Decimal"/> using <see cref="M:System.Math.Round(System.Double)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Number of decimal places</param>
+	<remarks>A converted value - <paramref name="value"/> rounded to given number of decimal places. Midpoint rounds away from zero.</remarks>
+	<seelaso cref="M:System.Math.Round(System.Double)"/><seelaso cref="F:System.MidpointRounding.AwayFromZero"/>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.RoundAwayFromZeroConverter.Convert(System.Double,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Double"/> using <see cref="M:System.Math.Round(System.Double)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Number of decimal places</param>
+	<remarks>A converted value - <paramref name="value"/> rounded to given number of decimal places. Midpoint rounds away from zero.</remarks>
+	<seelaso cref="M:System.Math.Round(System.Double)"/><seelaso cref="F:System.MidpointRounding.AwayFromZero"/>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.RoundAwayFromZeroConverter.Convert(System.Single,System.Int32)">
+	<summary>Converts a value of type <see cref="T:System.Single"/> using <see cref="M:System.Math.Round(System.Double)"/>.</summary>
+	<param name="value">Value to be converted</param>
+	<param name="parameter">Number of decimal places</param>
+	<remarks>A converted value - <paramref name="value"/> rounded to given number of decimal places. Midpoint rounds away from zero.</remarks>
+	<seelaso cref="M:System.Math.Round(System.Double)"/><seelaso cref="F:System.MidpointRounding.AwayFromZero"/>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.RoundAwayFromZeroConverter">
+	<summary>Converter which performs the <see cref="M:System.Math.Round(System.Double)"/> operation - rounding midpoint numbers away from zero</summary>
+	<remarks>This <see cref="T:Tools.WindowsT.WPF.ConvertersT.BaseRoundingConverter"/>-derived class supports parameter (number of decimal places).</remarks>
+	<seelaso cref="M:System.Math.Round(System.Double)"/><seelaso cref="F:System.MidpointRounding.AwayFromZero"/>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.ConvertersT.NullFalseConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
 	<summary>Converts a value.</summary>
 	<returns>
@@ -9908,6 +10897,8 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<exception cref="T:System.InvalidOperationException"><see cref="P:Tools.WindowsT.IndependentT.MessageBox.State"/> is not <see cref="F:Tools.WindowsT.IndependentT.MessageBox.States.Created"/>. Overriding method shall check this condition and thrown an exception if condition is vialoted.</exception>
 	<version version="1.5.3" stage="Beta">Type of parameter <paramref name="owner"/> changed from <see cref="T:System.Windows.Forms.IWin32Window"/> to <see cref="T:System.Object"/> to support <see cref="T:System.Windows.Forms.IWin32Window"/>, <see cref="T:System.Windows.Interop.IWin32Window"/> and <see cref="T:System.Windows.Window"/>.</version>
 	<version version="1.5.3" stage="Beta">The <paramref name="Owner"/> parameter acceps <see cref="T:System.Windows.DependencyObject"/> for which <see cref="M:System.Windows.Window.GetWindow(System.Windows.DependencyObject)"/> returns non-null value.</version>
+	<version version="1.5.3">Parameters renamed: <c>Modal</c> to <c>modal</c>; <c>Owner</c> to <c>owner</c></version>
+	<version version="1.5.3">Changed so that message box is now centered to it's parent (as long as the parent is <see cref="T:System.Windows.Forms.Control"/>, <see cref="T:System.Windows.Window"/> (or <see cref="T:System.Windows.DependencyObject"/> from a <see cref="P:Tools.WindowsT.WPF.DialogsT.MessageBox.Window"/>) or <see cref="T:System.Windows.Forms.IWin32Window"/> or <see cref="T:System.Windows.Interop.IWin32Window"/> representing <see cref="T:System.Windows.Forms.Control"/>). See class documentation for details.</version>
 </member><member name="M:Tools.WindowsT.WPF.DialogsT.MessageBox.OnChanged(System.EventArgs)">
 	<summary>Raises the <see cref="E:Tools.WindowsT.IndependentT.MessageBox.Changed"/> event</summary>
 	<param name="e">Event parameters</param>
@@ -9981,6 +10972,15 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<version version="1.5.2" stage="Nightly">Class introduced</version>
 	<version version="1.5.3" stage="Beta">Added support for <see cref="T:System.Windows.Window"/> as message box owner required by changes in <see cref="T:Tools.WindowsT.IndependentT.MessageBox"/></version>
 	<version version="1.5.3" stage="Beta">Owner of dialog now can be any <see cref="T:System.Windows.DependencyObject"/> hosted in <see cref="T:System.Windows.Window"/>.</version>
+	<version version="1.5.3">Messages are now centered to thair owner (if some conditions are met).
+ The conditions are: Owner is specified and - Owner is <see cref="T:System.Windows.Window"/> or it's <see cref="T:System.Windows.DependencyObject"/> for which a <see cref="T:System.Windows.Window"/> can be determined using <see cref="M:System.Windows.Window.GetWindow(System.Windows.DependencyObject)"/> -or- 
+ Owner is <see cref="T:System.Windows.Forms.Control"/> -or-
+ Owner is either <see cref="T:System.Windows.Forms.IWin32Window"/> or <see cref="T:System.Windows.Interop.IWin32Window"/> and it's handle represents <see cref="N:System.Windows.Controls"/> -or-
+ <para>
+ If owner is <see cref="T:System.Windows.Forms.Control"/> dialog is centered to control's parent <see cref="T:System.Windows.Forms.Form"/> (if it can be determined using <see cref="M:System.Windows.Forms.Control.FindForm"/>). If <see cref="T:System.Windows.Forms.Form"/> cannot be determined the dialog is centered to control itself.
+ If owner is <see cref="T:System.Windows.DependencyObject"/> dialog is centered to parent <see cref="T:System.Windows.Window"/> of the <see cref="T:System.Windows.DependencyObject"/>. If parent <see cref="T:System.Windows.Window"/> cannot be found (using <see cref="M:System.Windows.Window.GetWindow(System.Windows.DependencyObject)"/>) the dialog is not centered at all.
+ </para>
+		<para>If owner is either <see cref="T:System.Windows.Forms.IWin32Window"/> or <see cref="T:System.Windows.Interop.IWin32Window"/> and no corresponding <see cref="T:System.Windows.Forms.Control"/> can be found (using <see cref="M:System.Windows.Forms.Control.FromHandle(System.IntPtr)"/>) the dialog is not centered. (This is considered a limitation which may be fixed in one of next versions.)</para></version>
 </member><member name="F:Tools.WindowsT.WPF.MarkupT.GenericExtension._typeArguments">
 	<summary>Contains value of the <see cref="P:Tools.WindowsT.WPF.MarkupT.GenericExtension.TypeArguments"/> proeprty</summary>
 </member><member name="P:Tools.WindowsT.WPF.MarkupT.GenericExtension.TypeArguments">
@@ -10125,6 +11125,10 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>
   Looks up a localized string similar to {0} is null..
 </summary>
+</member><member name="P:Tools.WindowsT.WPF.ConvertersT.ConverterResources.ex_ParamMustHaveMinOneChar">
+	<summary>
+  Looks up a localized string similar to Parameter must contain at least one character.
+</summary>
 </member><member name="P:Tools.WindowsT.WPF.ConvertersT.ConverterResources.ex_UncheckedEmpty">
 	<summary>
   Looks up a localized string similar to Converter parameter for unchecked value is empty..
@@ -10136,6 +11140,10 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 </member><member name="P:Tools.WindowsT.WPF.ConvertersT.ConverterResources.ex_UnsupportedDataType">
 	<summary>
   Looks up a localized string similar to Unsupported data type {0}.
+</summary>
+</member><member name="P:Tools.WindowsT.WPF.ConvertersT.ConverterResources.ex_UnsupportedOperation">
+	<summary>
+  Looks up a localized string similar to Unsupported operation {0}.
 </summary>
 </member><member name="P:Tools.WindowsT.WPF.ConvertersT.ConverterResources.ex_ValueMustBeSetPriorCalling">
 	<summary>
@@ -10149,6 +11157,97 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.FirstNonEmptyConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts source values to a value for the binding target. The data binding engine calls this method when it propagates the values from source bindings to the binding target. This implementation obtains first non-null, non-empty value form <paramref name="values"/>.</summary>
+	<returns>
+ First non-null non-empty item from <paramref name="values"/>.
+ All items from <paramref name="values"/> which are null, <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> or represent empty array, <see cref="T:System.Collections.ICollection"/> or <see cref="T:System.Collections.IEnumerable"/> are ignored.
+ First non-ignored value is returned.
+ If there is non non-ignored value in the collection, <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> is returned.
+ </returns>
+	<param name="values">The array of values that the source bindings in the <see cref="T:System.Windows.Data.MultiBinding"/> produces. The value <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> indicates that the source binding has no value to provide for conversion.</param>
+	<param name="targetType">Ignored</param>
+	<param name="parameter">Ignored</param>
+	<param name="culture">Ignored</param>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.FirstNonEmptyConverter.IMultiValueConverter_ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+	<summary>Returns given value as only item in object array</summary>
+	<returns>Array containing one item - <paramref name="value"/>. If <paramref name="value"/> is null an ampty array is returned. The arrry is of type <see cref="T:System.Object"/>[].</returns>
+	<param name="value">Value to be encapsulated in array</param>
+	<param name="targetTypes">Ignored</param>
+	<param name="parameter">Ignored</param>
+	<param name="culture">Ignored</param>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.FirstNonEmptyConverter">
+	<summary>Multi value converter that gets first non-null non-empty itemm from collection</summary>
+	<remarks>This converter is primarily intended to seleft first non-null non-empty collection form list of collections.
+ <para>This converter is one-way</para></remarks>
+	<version version="1.5.3" stage="Nightly">This class is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.MathOperationMultiConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts source values to a value for the binding target. The data binding engine calls this method when it propagates the values from source bindings to the binding target. <para>Performs an arithmetic operation on given values.</para></summary>
+	<param name="values">Operands. First value is used as base for the operation (left operand). Other values are used as right operands of operation chain. Null and <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> values are ignored.</param>
+	<param name="targetType">The type of the binding target property. Ignored if null. <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> is used.</param>
+	<param name="parameter">Indicates arithmetic operation - supported operations are +, -, *, /, ^, \, &amp;, ,  Should be of type <see cref="T:System.Char"/> or <see cref="T:System.String"/>, otherwise <see cref="M:System.Object.ToString"/> is used.
+ <para>
+ Special processing applies when this argument is <see cref="T:System.Array"/>: The array must have 2 or 3 items and 2nd item must be <see cref="T:System.Windows.Data.IValueConverter"/> otherwise it's not treated specially.
+ 1st item is used as if it was <paramref name="parameter"/>.
+ 2nd item is used as converter for value otherwise returned by this converter.
+ 3rd item is used (if present) as parameter for that converter.
+ </para></param>
+	<param name="culture">The culture to use in the converter. Ignored (but may be passed to output converter)</param>
+	<returns>Result of an arithmetic operation. <see cref="F:System.Windows.Data.Binding.DoNothing"/> if all values in <paramref name="values"/> are ignored (or there are none). Null if <paramref name="values"/> is null.</returns>
+	<remarks>Operations supported are:
+ <list type="table"><listheader><term>Operation</term><description>Definition</description></listheader>
+			<item><term>+</term><description>Plus (addition). Can perform string concatenation under certain circumstances (VB late-binding rules)</description></item>
+			<item><term>-</term><description>Minus (subtraction)</description></item>
+			<item><term>*</term><description>Multiplication</description></item>
+			<item><term>/</term><description>Division (uses decimal places)</description></item>
+			<item><term>^</term><description>Power</description></item>
+			<item><term>\</term><description>Division (integral)</description></item>
+			<item><term>&amp;</term><description>String concatenation</description></item>
+			<item><term>%</term><description>Modulo (integral division remainder)</description></item>
+			<item><term>,</term><description>Always returns 1st value</description></item>
+		</list>
+ All operations use Visual Basic late binding</remarks>
+	<exception cref="T:System.ArgumentException"><paramref name="parameter"/> does not represent supported arithmetic operation</exception>
+	<exception cref="T:System.ArgumentNullException"><paramref name="parameter"/> is null</exception>
+	<exception cref="T:System.InvalidCastException">Value cannot be casted for arithmetic operation or to <paramref name="targetType"/>.</exception>
+	<exception cref="T:System.OverflowException">Can occure during cast or during arithmetic operation</exception>
+	<exception cref="T:System.Reflection.AmbiguousMatchException">When converting return value to <paramref name="targetType"/>: Conversion operands fouind but no one is most specific.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.MathOperationMultiConverter.IMultiValueConverter_ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+	<summary>Throws <see cref="T:System.NotSupportedException"/></summary>
+	<param name="value">ignored</param>
+	<param name="targetTypes">ignored</param>
+	<param name="parameter">ignored</param>
+	<param name="culture">ignored</param>
+	<returns>Never returns, always throws <see cref="T:System.NotSupportedException"/></returns>
+	<exception cref="T:System.NotSupportedException">Always - this convertor is one-way</exception>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.MathOperationMultiConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Converts a single value</summary>
+	<param name="value">Value to be converter. SHould be numeric value. Null and <see cref="F:System.Windows.DependencyProperty.UnsetValue"/> are ignored.</param>
+	<param name="targetType">The type of the binding target property. Ignored if null. <see cref="M:Tools.TypeTools.DynamicCast``1(System.Object)"/> is used.</param>
+	<param name="parameter"><list type="bullet">
+			<item>Either <see cref="T:System.Array"/> containign operator at index 0 and optionally other operands at indexes 1+</item>
+			<item>Or <see cref="T:System.String"/> where 1st character is operator and rest is either <see cref="T:System.Int32"/> or <see cref="T:System.Double"/> number. It it can be parsed naither as <see cref="T:System.Int32"/> nor as <see cref="T:System.Double"/> it's passed to the operation as string.</item>
+		</list></param>
+	<param name="culture">Culture - used in string-number parsing</param>
+	<returns>Converted value</returns>
+	<remarks>See overloaded method <see cref="M:Tools.WindowsT.WPF.ConvertersT.MathOperationMultiConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)"/> for details.</remarks>
+	<exception cref="T:System.ArgumentException"><paramref name="parameter"/> does not supply supported arithmetic operation</exception>
+	<exception cref="T:System.ArgumentNullException"><paramref name="parameter"/> is null</exception>
+	<exception cref="T:System.InvalidCastException">Value cannot be casted for arithmetic operation or to <paramref name="targetType"/>.</exception>
+	<exception cref="T:System.OverflowException">Can occure during cast or during arithmetic operation</exception>
+	<exception cref="T:System.Reflection.AmbiguousMatchException">When converting return value to <paramref name="targetType"/>: Conversion operands fouind but no one is most specific.</exception>
+</member><member name="M:Tools.WindowsT.WPF.ConvertersT.MathOperationMultiConverter.IValueConverter_ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+	<summary>Throws <see cref="T:System.NotSupportedException"/></summary>
+	<param name="value">ignored</param>
+	<param name="targetType">ignored</param>
+	<param name="parameter">ignored</param>
+	<param name="culture">ignored</param>
+	<returns>Never returns, always throws <see cref="T:System.NotSupportedException"/></returns>
+	<exception cref="T:System.NotSupportedException">Always - this convertor is one-way</exception>
+</member><member name="T:Tools.WindowsT.WPF.ConvertersT.MathOperationMultiConverter">
+	<summary>Converter performing given arithmetical operation on collection members</summary>
+	<remarks>This converter is one-way. This converter can behave both - as multivalue converter and as single value converter.</remarks>
+	<version version="1.5.3" stage="Nightly">This clas sis new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.ConvertersT.EnumInConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
 	<summary>Converts a value. </summary>
 	<returns>A converted value. True when <paramref name="value"/> is one of values given in <paramref name="parameter"/>; false otherwise. When <paramref name="targetType"/> is <see cref="T:System.Windows.Visibility"/> returns either <see cref="F:System.Windows.Visibility.Visible"/> or <see cref="F:System.Windows.Visibility.Hidden"/>.</returns>

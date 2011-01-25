@@ -380,7 +380,6 @@
     <Compile Include="Cap editing\CapEditor.xaml.vb">
       <DependentUpon>CapEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="XAML helpers\MarkupExtensions.vb" />
     <Compile Include="Misc.vb" />
     <Compile Include="Config\Settings.vb" />
     <Compile Include="Cap editing\winCapDetails.xaml.vb">
@@ -854,6 +853,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\CapImage.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\FindHS.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <PropertyGroup>
