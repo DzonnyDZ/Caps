@@ -193,7 +193,7 @@ Public Class pgSummary
         csb.MultipleActiveResultSets = False
         Using Connection As SqlConnection = New SqlConnection(csb.ToString) 'Test connection to file
             Connection.Open()
-            VerifyDatabaseVersionWithUpgrade(Connection, Me.FindAncestor(Of Window))
+            VerifyDatabaseVersionWithUpgrade(Connection, Me.FindLogicalAncestor(Of Window))
         End Using
     End Sub
 

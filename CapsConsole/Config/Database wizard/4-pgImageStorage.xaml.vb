@@ -54,7 +54,7 @@ Public Class pgImageStorage
         Try
             dlg.SelectedPath = txtImageRoot.Text
         Catch : End Try
-        If dlg.ShowDialog(Me.FindAncestor(Of Window)) Then
+        If dlg.ShowDialog(Me.FindLogicalAncestor(Of Window)) Then
             WizardData.ImageRoot = dlg.SelectedPath
         End If
     End Sub

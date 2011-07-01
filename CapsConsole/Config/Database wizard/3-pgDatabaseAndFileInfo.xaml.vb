@@ -34,15 +34,15 @@ Public Class pgCredentials
     Private Sub nextButton_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles nextButton.Click
         If (wizardData.DatabaseType = DatabaseType.AttachFile OrElse wizardData.DatabaseType = DatabaseType.UserInstance) AndAlso (txtDatabaseFile.Text = "" OrElse (wizardData.FileConnectionType = FileConnectionType.Existing AndAlso Not IO.File.Exists(txtDatabaseFile.Text))) Then
             mBox.MsgBox(If(wizardData.FileConnectionType = FileConnectionType.Existing, My.Resources.wiz_txt_SelectExistingDbFile, My.Resources.wiz_txt_SelectDbFile),
-                        MsgBoxStyle.Information, My.Resources.wiz_txt_DatabaseFile, Me.FindAncestor(Of Window))
+                        MsgBoxStyle.Information, My.Resources.wiz_txt_DatabaseFile, Me.FindLogicalAncestor(Of Window))
             Return
         End If
         If wizardData.DatabaseType = DatabaseType.ServerDatabase AndAlso txtDatabaseName.Text = "" Then
-            mBox.MsgBox(My.Resources.wiz_txt_EnterDbName, MsgBoxStyle.Information, My.Resources.wiz_txt_DatabaseName2, Me.FindAncestor(Of Window))
+            mBox.MsgBox(My.Resources.wiz_txt_EnterDbName, MsgBoxStyle.Information, My.Resources.wiz_txt_DatabaseName2, Me.FindLogicalAncestor(Of Window))
             Return
         End If
         If optSQLAuth.IsChecked AndAlso (txtUserName.Text = "" OrElse txtPassword.Password = "") Then
-            mBox.MsgBox(My.Resources.wiz_txt_EnterUserNameAndPassword, MsgBoxStyle.Information, My.Resources.wiz_txt_SQLServerAuthentification2, Me.FindAncestor(Of Window))
+            mBox.MsgBox(My.Resources.wiz_txt_EnterUserNameAndPassword, MsgBoxStyle.Information, My.Resources.wiz_txt_SQLServerAuthentification2, Me.FindLogicalAncestor(Of Window))
             Return
         End If
         Dim nextPage = New pgImageStorage(wizardData)
@@ -64,7 +64,7 @@ Public Class pgCredentials
         Try
             dlg.FileName = txtDatabaseFile.Text
         Catch : End Try
-        If dlg.ShowDialog(Me.FindAncestor(Of Window)) Then
+        If dlg.ShowDialog(Me.FindLogicalAncestor(Of Window)) Then
             wizardData.FilePath = dlg.FileName
         End If
     End Sub
@@ -74,7 +74,7 @@ Public Class pgCredentials
     End Sub
 
     Private Sub btnDbServerBrowse_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnDbServerBrowse.Click
-        Dim dlg As New DataSourceEnumeratorDialog With {.Owner = Me.FindAncestor(Of Window)(), .SelectedServer = wizardData.ServerName}
+        Dim dlg As New DataSourceEnumeratorDialog With {.Owner = Me.FindLogicalAncestor(Of Window)(), .SelectedServer = wizardData.ServerName}
         If dlg.ShowDialog Then wizardData.ServerName = dlg.SelectedServer
     End Sub
 
@@ -84,7 +84,7 @@ Public Class pgCredentials
             b.UserID = wizardData.UserName
             b.Password = wizardData.Password
         End If
-        Dim dlg As New SelectDatabaseDialog(b.ToString) With {.Owner = Me.FindAncestor(Of Window)(), .DatabaseName = wizardData.DatabaseName}
+        Dim dlg As New SelectDatabaseDialog(b.ToString) With {.Owner = Me.FindLogicalAncestor(Of Window)(), .DatabaseName = wizardData.DatabaseName}
         If dlg.ShowDialog Then wizardData.DatabaseName = dlg.DatabaseName
     End Sub
 End Class

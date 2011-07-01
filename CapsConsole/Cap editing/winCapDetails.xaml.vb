@@ -148,7 +148,7 @@ Partial Public Class winCapDetails
             )
 
             Dim win As New winCapDetails(caps)
-            win.Owner = Me.FindAncestor(Of Window)()
+            win.Owner = Me.FindLogicalAncestor(Of Window)()
             win.Title = My.Resources.txt_SearchResults
             win.ShowDialog()
         End Using

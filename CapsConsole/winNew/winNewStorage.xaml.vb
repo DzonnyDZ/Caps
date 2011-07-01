@@ -90,7 +90,7 @@ SaveImage:  Try
     End Sub
 
     Private Sub cmdNewParent_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmdNewParent.Click
-        Using win As New winNewStorage(CheckBoxState.Visible Or CheckBoxState.Enabled) With {.Owner = Me.FindAncestor(Of Window)()}
+        Using win As New winNewStorage(CheckBoxState.Visible Or CheckBoxState.Enabled) With {.Owner = Me.FindLogicalAncestor(Of Window)()}
             Dim result = win.ShowDialog
             Dim newObjects = win.GetNewObjects(Context)
             DirectCast(cmbParent.ItemsSource, ListWithEvents(Of Storage)).AddRange(newObjects)

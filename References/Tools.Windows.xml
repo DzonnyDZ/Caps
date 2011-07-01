@@ -777,6 +777,26 @@ Looks up a localized string similar to 'Gets or sets the property to display for
 	<summary>
 Looks up a localized string similar to 'Stores value for the Link.Enabled of Link that represents this LinkItem'.
 </summary>
+</member><member name="P:Tools.WindowsT.FormsT.DerivedControls.Help_c">
+	<summary>
+Looks up a localized string similar to 'Help'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.DerivedControls.HelpKeyword_d">
+	<summary>
+Looks up a localized string similar to 'The Help keyword for the control.'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.DerivedControls.HelpNamespace_d">
+	<summary>
+Looks up a localized string similar to 'A value specifying the name of the Help file associated with this System.Windows.Forms.HelpProvider object.'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.DerivedControls.HelpNavigator_d">
+	<summary>
+Looks up a localized string similar to 'The current System.Windows.Forms.HelpNavigator setting for the control.'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.DerivedControls.HelpString_d">
+	<summary>
+Looks up a localized string similar to 'Contents of the pop-up Help window for the specified control.'.
+</summary>
 </member><member name="P:Tools.WindowsT.FormsT.DerivedControls.KeyPreview_d">
 	<summary>
 Looks up a localized string similar to 'Gets or sets a value indicating whether the form will receive key events before the event is passed to the control that has focus.'.
@@ -804,6 +824,10 @@ Looks up a localized string similar to 'List of all items in label'.
 </member><member name="P:Tools.WindowsT.FormsT.DerivedControls.Name_d">
 	<summary>
 Looks up a localized string similar to 'Stores value for the Link.Name of Link that represents this LinkItem'.
+</summary>
+</member><member name="P:Tools.WindowsT.FormsT.DerivedControls.ShowHelp_d">
+	<summary>
+Looks up a localized string similar to 'Inicates whether the specified control's Help should be displayed.'.
 </summary>
 </member><member name="P:Tools.WindowsT.FormsT.DerivedControls.Tag_d">
 	<summary>
@@ -884,6 +908,31 @@ The stub formatting method returning the DisplayMember_d property value.
 The stub formatting method returning the Enabled_d property value.
 </summary>
 	<returns>The Enabled_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.DerivedControls.Help_cFormat">
+	<summary>
+The stub formatting method returning the Help_c property value.
+</summary>
+	<returns>The Help_c property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.DerivedControls.HelpKeyword_dFormat">
+	<summary>
+The stub formatting method returning the HelpKeyword_d property value.
+</summary>
+	<returns>The HelpKeyword_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.DerivedControls.HelpNamespace_dFormat">
+	<summary>
+The stub formatting method returning the HelpNamespace_d property value.
+</summary>
+	<returns>The HelpNamespace_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.DerivedControls.HelpNavigator_dFormat">
+	<summary>
+The stub formatting method returning the HelpNavigator_d property value.
+</summary>
+	<returns>The HelpNavigator_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.DerivedControls.HelpString_dFormat">
+	<summary>
+The stub formatting method returning the HelpString_d property value.
+</summary>
+	<returns>The HelpString_d property value.</returns>
 </member><member name="M:Tools.WindowsT.FormsT.DerivedControls.KeyPreview_dFormat">
 	<summary>
 The stub formatting method returning the KeyPreview_d property value.
@@ -919,6 +968,11 @@ The stub formatting method returning the ListOfAllItemsInLabel property value.
 The stub formatting method returning the Name_d property value.
 </summary>
 	<returns>The Name_d property value.</returns>
+</member><member name="M:Tools.WindowsT.FormsT.DerivedControls.ShowHelp_dFormat">
+	<summary>
+The stub formatting method returning the ShowHelp_d property value.
+</summary>
+	<returns>The ShowHelp_d property value.</returns>
 </member><member name="M:Tools.WindowsT.FormsT.DerivedControls.Tag_dFormat">
 	<summary>
 The stub formatting method returning the Tag_d property value.
@@ -1314,6 +1368,50 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.
 </summary>
+</member><member name="F:Tools.WindowsT.FormsT.PropertyGridEditor`1.hlpHelp">
+	<summary>Help provider</summary>
+</member><member name="M:Tools.WindowsT.FormsT.PropertyGridEditor`1.#ctor">
+	<summary>Default CTor - creates a new instance of the <see cref="T:Tools.WindowsT.FormsT.PropertyGridEditor`1"/> class</summary>
+</member><member name="M:Tools.WindowsT.FormsT.PropertyGridEditor`1.#ctor(`0)">
+	<summary>CTor - creates a new instance of the <see cref="T:Tools.WindowsT.FormsT.PropertyGridEditor`1"/> class and sets object to be edited</summary>
+	<param name="SelectedObject">And object to be edited by newly created instance</param>
+</member><member name="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.SelectedObject">
+	<summary>Gets or sets the object for which the grid displays properties.</summary>
+	<returns>The first object in the object list. If there is no currently selected object the return is null.</returns>
+</member><member name="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.SelectedObjects">
+	<summary>Gets or sets the currently selected objects.</summary>
+	<returns>An array of type System.Object. The default is an empty array.</returns>
+	<exception cref="T:System.ArgumentException">One of the items in the array of objects had a null value</exception>
+</member><member name="M:Tools.WindowsT.FormsT.PropertyGridEditor`1.SetHelp(System.String,System.String)">
+	<summary>Sets <see cref="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.HelpNamespace"/> and <see cref="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.HelpKeyword"/> at once</summary>
+	<param name="helpNamespace">New value of the <see cref="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.HelpNamespace"/> property</param>
+	<param name="helpKeyword">New value of the <see cref="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.HelpKeyword"/> property</param>
+	<remarks>This method sets <see cref="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.ShowHelp"/> to true and <see cref="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.HelpNavigator"/> to <see cref="F:System.Windows.Forms.HelpNavigator.Topic"/></remarks>
+</member><member name="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.HelpNamespace">
+	<summary>Gets or sets a value specifying the name of the Help file associated with this <see cref="T:System.Windows.Forms.HelpProvider"/> object.</summary>
+	<returns>The name of the Help file. This can be of the form C:\path\sample.chm or /folder/file.htm.</returns>
+</member><member name="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.HelpKeyword">
+	<summary>The Help keyword for the control.</summary>
+	<returns>The Help keyword associated with this control, or null if the <see cref="T:System.Windows.Forms.HelpProvider"/> is currently configured to display the entire Help file or is configured to provide a Help string.</returns>
+	<value>The Help keyword to associate with the control.</value>
+</member><member name="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.HelpNavigator">
+	<summary>The current <see cref="T:System.Windows.Forms.HelpNavigator"/> setting for the control.</summary>
+	<returns>The <see cref="T:System.Windows.Forms.HelpNavigator"/> setting for the specified control. The default is <see cref="F:System.Windows.Forms.HelpNavigator.AssociateIndex"/>.</returns>
+	<value>One of the <see cref="T:System.Windows.Forms.HelpNavigator"/> values.</value>
+</member><member name="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.HelpString">
+	<summary>Contents of the pop-up Help window for the specified control.</summary>
+	<returns>The Help string associated with this control. The default is null.</returns>
+	<value>The Help string associated with the control.</value>
+</member><member name="P:Tools.WindowsT.FormsT.PropertyGridEditor`1.ShowHelp">
+	<summary>Inicates whether the specified control's Help should be displayed.</summary>
+	<returns>true if Help will be displayed for the control; otherwise, false.</returns>
+	<value>true if Help displays for the control; otherwise, false.</value>
+</member><member name="M:Tools.WindowsT.FormsT.PropertyGridEditor`1.InitializeComponent">
+	<summary>Initializes the control's component</summary>
+</member><member name="T:Tools.WindowsT.FormsT.PropertyGridEditor`1">
+	<summary>Strongly-typed <see cref="T:System.Windows.Forms.PropertyGrid"/></summary>
+	<typeparam name="T">Type of object being edited</typeparam>
+	<version version="1.5.3">This class is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.ConvertersT.BooleanOperationConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
 	<summary>Converts source values to a value for the binding target. The data binding engine calls this method when it propagates the values from source bindings to the binding target.</summary>
 	<returns>A converted value. This converter always produces a <see cref="T:System.Boolean"/> value which is then converted to <paramref name="targetType"/>.</returns>
@@ -4950,19 +5048,19 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Control taht allows user to chose from available encoding</summary>
 	<author www="http://dzonny.cz">Đonny</author>
 	<version version="1.5.2" stage="Beta"><see cref="T:Tools.InternalT.VersionAttribute"/> and <see cref="T:Tools.InternalT.AuthorAttribute"/> removed</version>
-</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.GetParent(System.Windows.DependencyObject)">
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.GetVisualParent(System.Windows.DependencyObject)">
 	<summary>Gets parent (in visual tree) of given <see cref="T:System.Windows.DependencyObject"/></summary>
 	<param name="obj"><see cref="T:System.Windows.DependencyObject"/> to get parent of</param>
 	<returns>Parent of given dependency object; null when <paramref name="obj"/> is null or no parent can be found</returns>
 	<remarks>Parent is obtained either via <see cref="M:System.Windows.ContentOperations.GetParent(System.Windows.ContentElement)"/> for <see cref="T:System.Windows.ContentElement">ContentElement</see> or via <see cref="M:System.Windows.Media.VisualTreeHelper.GetParent(System.Windows.DependencyObject)"/>.</remarks>
 	<author www="http://code.logos.com/blog/2008/02/finding_ancestor_elements_in_w.html">Ed Ball</author>
-</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.GetParent``1(System.Windows.DependencyObject)">
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.GetVisualAncestor``1(System.Windows.DependencyObject)">
 	<summary>Looks for visual tree ancestor of given <see cref="T:System.Windows.DependencyObject"/> of given type</summary>
 	<param name="obj">A <see cref="T:System.Windows.DependencyObject"/> to get ancestor of</param>
 	<typeparam name="TParent">Type of ancestor to get</typeparam>
 	<returns>Nearest ancestor of <paramref name="obj"/> which of type <typeparamref name="TParent"/>; null when such ancestor cannot be found.</returns>
-	<remarks>This function uses <see cref="M:Tools.WindowsT.WPF.WpfExtensions.GetParent(System.Windows.DependencyObject)"/> to get parents of investigated <see cref="T:System.Windows.DependencyObject">DependencyObjects</see>.</remarks>
-	<seelaso cref="M:Tools.WindowsT.WPF.WpfExtensions.GetParent(System.Windows.DependencyObject)"/>
+	<remarks>This function uses <see cref="M:Tools.WindowsT.WPF.WpfExtensions.GetVisualParent(System.Windows.DependencyObject)"/> to get parents of investigated <see cref="T:System.Windows.DependencyObject">DependencyObjects</see>.</remarks>
+	<seelaso cref="M:Tools.WindowsT.WPF.WpfExtensions.GetVisualParent(System.Windows.DependencyObject)"/>
 	<version stage="Nightly" version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.WpfExtensions.ShowDialog(System.Windows.Window,System.Windows.UIElement)">
 	<summary>Sets window owner and opens it and returns only when the newly opened window is closed.</summary>
@@ -4972,7 +5070,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<exception cref="T:System.ArgumentNullException"><paramref name="Window"/> is null</exception>
 	<param name="Window">Window to be shown</param>
 	<param name="Owner">Owner <see cref="T:System.Windows.Window"/> or element in <see cref="T:System.Windows.Window"/> to show <paramref name="Window"/> modally against.</param>
-	<remarks>If <paramref name="Owner"/> is null or <paramref name="Owner"/> is not of type <see cref="T:System.Windows.Window"/> and function <see cref="M:Tools.WindowsT.WPF.WpfExtensions.GetParent(System.Windows.DependencyObject)"/> cannot find parent <see cref="T:System.Windows.Window"/> of <paramref name="Owner"/>, <paramref name="Owner"/> is ignored and original <see cref="P:System.Windows.Window.Owner"/> is kept.</remarks>
+	<remarks>If <paramref name="Owner"/> is null or <paramref name="Owner"/> is not of type <see cref="T:System.Windows.Window"/> and function <see cref="M:Tools.WindowsT.WPF.WpfExtensions.GetVisualParent(System.Windows.DependencyObject)"/> cannot find parent <see cref="T:System.Windows.Window"/> of <paramref name="Owner"/>, <paramref name="Owner"/> is ignored and original <see cref="P:System.Windows.Window.Owner"/> is kept.</remarks>
 	<version stage="Nightly" version="1.5.3">This function is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.WpfExtensions.FindVisualChildren(System.Windows.DependencyObject,System.Func{System.Windows.DependencyObject,System.Boolean},System.Boolean)">
 	<summary>Enumerates all the visual children of given <see cref="T:System.Windows.DependencyObject"/> which conform to given condition</summary>
@@ -5012,7 +5110,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<returns>First visual child of <paramref name="parent"/> which is of type <typeparamref name="T"/> and which conforms to <paramref name="condition"/>; null when no such child can be found</returns>
 	<exception cref="T:System.ArgumentNullException"><paramref name="parent"/> is null -or- <paramref name="condition"/> is null</exception>
 	<version version="1.3.5" stage="Nightly">This function is new in version 1.3.5</version>
-</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.FindAncestor``1(System.Windows.DependencyObject)">
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.FindLogicalAncestor``1(System.Windows.DependencyObject)">
 	<summary>Searches for ancestor of given WPF object of given type in logical tree</summary>
 	<param name="obj">Object to find ancestor of</param>
 	<typeparam name="TAncestor">Type of ancestor to find. This type must be or derive from <see cref="T:System.Windows.DependencyObject"/>.</typeparam>
@@ -5023,6 +5121,34 @@ A strongly-typed resource class, for looking up localized strings, formatting th
  <para>If <typeparamref name="TAncestor"/> is <see cref="T:System.Windows.Window"/> (not type derived from <see cref="T:System.Windows.Window"/>) <see cref="M:System.Windows.Window.GetWindow(System.Windows.DependencyObject)"/> is used instead.</para>
 	</remarks>
 	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.LogicalParent(System.Windows.DependencyObject)">
+	<summary>Returns the parent object of the specified object by processing the logical tree.</summary>
+	<param name="obj">The object to find the parent object for. This is expected to be either a <see cref="T:System.Windows.FrameworkElement"/> or a <see cref="T:System.Windows.FrameworkContentElement"/>.</param>
+	<returns>The requested parent object.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="obj"/> is null</exception>
+	<seelaso cref="M:System.Windows.LogicalTreeHelper.GetParent(System.Windows.DependencyObject)"/>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.LogicalChildren(System.Windows.DependencyObject)">
+	<summary>Returns the collection of immediate child objects of the specified object, by processing the logical tree.</summary>
+	<param name="obj">The object from which to start processing the logical tree. This is expected to be either a <see cref="T:System.Windows.FrameworkElement"/> or <see cref="T:System.Windows.FrameworkContentElement"/>.</param>
+	<returns>The enumerable collection of immediate child objects from the logical tree of the specified object.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="obj"/> is null</exception>
+	<seelaso cref="M:System.Windows.LogicalTreeHelper.GetChildren(System.Windows.DependencyObject)"/>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.FindLogicalNode(System.Windows.DependencyObject,System.String)">
+	<summary>Attempts to find and return an object that has the specified name. The search starts from the specified object and continues into subnodes of the logical tree.</summary>
+	<param name="logicalTreeNode">The object to start searching from. This object must be either a <see cref="T:System.Windows.FrameworkElement"/> or a <see cref="T:System.Windows.FrameworkContentElement"/>.</param>
+	<param name="elementName">The name of the object to find.</param>
+	<returns>The object with the matching name, if one is found; returns null if no matching name was found in the logical tree.</returns>
+	<exception cref="T:System.ArgumentNullException"><paramref name="logicalTreeNode"/> is null</exception>
+	<seelaso cref="M:System.Windows.LogicalTreeHelper.FindLogicalNode(System.Windows.DependencyObject,System.String)"/>
+	<version version="1.5.3">This function is new in version 1.5.3</version>
+</member><member name="M:Tools.WindowsT.WPF.WpfExtensions.BringIntoView(System.Windows.DependencyObject)">
+	<summary>Attempts to bring the requested UI element into view and raises the <see cref="E:System.Windows.FrameworkElement.RequestBringIntoView"/> event on the target in order to report the results.</summary>
+	<param name="obj">The UI element to bring into view.</param>
+	<exception cref="T:System.ArgumentNullException"><paramref name="obj"/> is null</exception>
+	<seelaso cref="M:System.Windows.LogicalTreeHelper.BringIntoView(System.Windows.DependencyObject)"/>
+	<version version="1.5.3">This method is new in version 1.5.3</version>
 </member><member name="M:Tools.WindowsT.WPF.WpfExtensions.SetWindowPosition(System.Windows.Window,System.Drawing.Rectangle)">
 	<summary>Sets windows position and size. Prevents window from leaking out of screen.</summary>
 	<param name="Window">Window to set position of</param>
@@ -5184,7 +5310,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<param name="parameter">The converter parameter to use.</param>
 	<param name="culture">The culture to use in the converter.</param>
 	<returns>A converted value. If the method returns null, the valid null value is used.</returns>
-	<remarks>For Greater, Greater or equal, Less and Less or equal comparisons either <paramref name="value"/> or <paramref name="parameter"/> must be <see cref="!:IComparable"/>.</remarks>
+	<remarks>For Greater, Greater or equal, Less and Less or equal comparisons either <paramref name="value"/> or <paramref name="parameter"/> must be <see cref="T:System.IComparable`1"/>.</remarks>
 </member><member name="P:Tools.WindowsT.WPF.ConvertersT.ComapreConverterBase.Operation">
 	<summary>When overriden in derived class gets comparison implemented by derived class</summary>
 </member><member name="T:Tools.WindowsT.WPF.ConvertersT.ComapreConverterBase">
@@ -5353,6 +5479,7 @@ A strongly-typed resource class, for looking up localized strings, formatting th
 	<summary>Gets or sets culture. When set to non-null value this culture is used rather than culture passed to <see cref="M:Tools.WindowsT.WPF.TryParseValidationRule.Validate(System.Object,System.Globalization.CultureInfo)"/> function.</summary>
 </member><member name="P:Tools.WindowsT.WPF.TryParseValidationRule.AllowEmptyString">
 	<summary>Regardless of another settings, always allow empty string as valid input (also allows null)</summary>
+	<version version="1.5.4">Fix: Property type changed from <see cref="T:System.Object"/> to <see cref="T:System.Boolean"/>.</version>
 </member><member name="M:Tools.WindowsT.WPF.TryParseValidationRule.Validate(System.Object,System.Globalization.CultureInfo)">
 	<summary>Performs validation checks on a value.</summary>
 	<returns>A <see cref="T:System.Windows.Controls.ValidationResult"/> object.</returns>

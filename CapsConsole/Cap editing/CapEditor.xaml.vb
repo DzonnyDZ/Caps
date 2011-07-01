@@ -217,7 +217,7 @@ Partial Public Class CapEditor
 
 #Region "New..."
     Private Sub btnNewMainType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMainType.Click
-        Using win As New winNewMainType() With {.Owner = Me.FindAncestor(Of Window)()}
+        Using win As New winNewMainType() With {.Owner = Me.FindLogicalAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As MainType = win.GetNewObject(Context)
                 DirectCast(cmbMainType.ItemsSource, ListWithEvents(Of MainType)).Add(newObject)
@@ -228,7 +228,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub cmbNewShape_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles cmdNewShape.Click
-        Using win As New winNewShape() With {.Owner = Me.FindAncestor(Of Window)()}
+        Using win As New winNewShape() With {.Owner = Me.FindLogicalAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As Shape = win.GetNewObject(Context)
                 DirectCast(cmbShape.ItemsSource, ListWithEvents(Of Shape)).Add(newObject)
@@ -239,7 +239,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewMaterial_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewMaterial.Click
-        Using win As New winNewSimple(Of Material) With {.Owner = Me.FindAncestor(Of Window)()}
+        Using win As New winNewSimple(Of Material) With {.Owner = Me.FindLogicalAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As Material = win.GetNewObject(Context)
                 Context.Attach(newObject)
@@ -251,7 +251,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewStorage_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewStorage.Click
-        Using win As New winNewStorage(CheckBoxState.Checked Or CheckBoxState.Visible) With {.Owner = Me.FindAncestor(Of Window)()}
+        Using win As New winNewStorage(CheckBoxState.Checked Or CheckBoxState.Visible) With {.Owner = Me.FindLogicalAncestor(Of Window)()}
             Dim result = win.ShowDialog
             Dim newObjects = win.GetNewObjects(Context)
             DirectCast(cmbStorage.ItemsSource, ListWithEvents(Of Storage)).AddRange(From item In newObjects Where item.HasCaps)
@@ -263,7 +263,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewProductType_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewProductType.Click
-        Using win As New winNewSimple(Of ProductType) With {.Owner = Me.FindAncestor(Of Window)()}
+        Using win As New winNewSimple(Of ProductType) With {.Owner = Me.FindLogicalAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As ProductType = win.GetNewObject(Context)
                 DirectCast(cmbProductType.ItemsSource, ListWithEvents(Of ProductType)).Add(newObject)
@@ -274,7 +274,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewCompany_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCompany.Click
-        Using win As New winNewSimple(Of Company) With {.Owner = Me.FindAncestor(Of Window)()}
+        Using win As New winNewSimple(Of Company) With {.Owner = Me.FindLogicalAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As Company = win.GetNewObject(Context)
                 DirectCast(cmbCompany.ItemsSource, ListWithEvents(Of Company)).Add(newObject)
@@ -285,7 +285,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewCategory_Click(ByVal sender As System.Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewCategory.Click
-        Using win As New winNewSimple(Of Category) With {.Owner = Me.FindAncestor(Of Window)()}
+        Using win As New winNewSimple(Of Category) With {.Owner = Me.FindLogicalAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As Category = win.GetNewObject(Context)
                 DirectCast(lstCategories.ItemsSource, ListWithEvents(Of CategoryProxy)).Add(New CategoryProxy(newObject, True))
@@ -296,7 +296,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewSign_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewSign.Click
-        Using win As New winNewSign() With {.Owner = Me.FindAncestor(Of Window)()}
+        Using win As New winNewSign() With {.Owner = Me.FindLogicalAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As CapSign = win.GetNewObject(Context)
                 AllCapSigns.Add(newObject)
@@ -317,7 +317,7 @@ Partial Public Class CapEditor
     End Sub
 
     Private Sub btnNewTarget_Click(ByVal sender As Object, ByVal e As System.Windows.RoutedEventArgs) Handles btnNewTarget.Click
-        Using win As New winNewSimple(Of Target) With {.Owner = Me.FindAncestor(Of Window)()}
+        Using win As New winNewSimple(Of Target) With {.Owner = Me.FindLogicalAncestor(Of Window)()}
             If win.ShowDialog Then
                 Dim newObject As Target = win.GetNewObject(Context)
                 DirectCast(cmbTarget.ItemsSource, ListWithEvents(Of Target)).Add(newObject)
@@ -2778,7 +2778,7 @@ SaveImage: Try
                         dlg.InitialDirectory = IO.Path.GetDirectoryName(imagePath)
                     End If
                 Catch : End Try
-                If dlg.ShowDialog(Me.FindAncestor(Of Window)) Then
+                If dlg.ShowDialog(Me.FindLogicalAncestor(Of Window)) Then
                     imagePath = dlg.FileName
                     GoTo SaveImage
                 End If
@@ -3312,7 +3312,7 @@ SaveImage: Try
 
 
         Dim win As New winCapDetails(caps)
-        win.Owner = Me.FindAncestor(Of Window)()
+        win.Owner = Me.FindLogicalAncestor(Of Window)()
         win.Title = My.Resources.txt_SearchResults
         win.ShowDialog()
     End Sub
