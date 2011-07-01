@@ -142,3 +142,7 @@ Pending issues:
 * Save & next (w/o clearing) clears signs
 * Signs not loaded when editing existing cap
 * Search for similar to existing
+* Editor English localization (there are CZ texts on a few places)
+* Ask to search before saving new
+* Posibility to select action (new, previous, etc.) in messagebox with ID
+* Preconfigured colors in DB
