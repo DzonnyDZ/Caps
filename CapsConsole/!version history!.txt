@@ -114,6 +114,12 @@
     * Fix: Crash when changing language to default
     * Fix: Text box for image path when creating new Cap Type does not use full available width
     * Serach for similar caps form cap details window
+
+System Requirements:
+====================
+* Microsft .NET Framework 4 or compatible
+* Microsft SQL server 2008 or compatible
+* KB2464222 (http://archive.msdn.microsoft.com/KB2464222/)
     
 Pending issues:
 ===============

@@ -5,12 +5,15 @@
     xmlns:my="clr-namespace:Caps.Console"
     xmlns:controlsT="clr-namespace:Tools.WindowsT.WPF.ControlsT;assembly=Tools.Windows"    
     xmlns:convertersT="clr-namespace:Tools.WindowsT.WPF.ConvertersT;assembly=Tools.Windows"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     Title="{x:Static res:Resources.txt_CreateNewType}"
     Height="400"  SizeToContent="Width">
     <Window.Resources>
         <convertersT:NullInvisibleConverter x:Key="NullInvisibleConverter"/>
         <convertersT:IsNotNullConverter x:Key="IsNotNullConverter"/>
         <convertersT:CachedImageConverter x:Key="CachedImageConverter"/>
+        <my:ObjectImageConverter x:Key="ObjectImageConverter"/>
+        <sys:Int32 x:Key="i64">64</sys:Int32>
     </Window.Resources>
     <DockPanel>
         <GroupBox Header="{x:Static res:Resources.txt_EligibleCaps}" DockPanel.Dock="Left">
@@ -24,9 +27,9 @@
                                         <MenuItem.ItemTemplate>
                                             <DataTemplate>
                                                 <MenuItem Click="mniImage_Click">
-                                                    <MenuItem.Icon>
-                                                        <Image MaxWidth="64" MaxHeight="64" Source="{Binding ., Mode=OneWay, Converter={StaticResource ObjectImageConverter}, ConverterParameter={StaticResource i64}}"/>
-                                                    </MenuItem.Icon>
+                                                    <Image MaxWidth="64" MaxHeight="64"
+                                                        Source="{Binding Path=., Converter={StaticResource ObjectImageConverter}, Mode=OneWay, ConverterParameter={StaticResource i64}}"
+                                                    />
                                                 </MenuItem>
                                             </DataTemplate>
                                         </MenuItem.ItemTemplate>

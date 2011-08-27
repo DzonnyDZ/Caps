@@ -1,6 +1,7 @@
 ﻿Imports Tools.DrawingT.ImageTools, Caps.Data
 ''' <summary>Allows to create new cap type based on suggestion</summary>
-Public Class winCreateNewType : Implements IDisposable
+Public Class winCreateNewType
+    Implements IDisposable
     ''' <summary>CTor</summary>
     ''' <param name="Context">Data contetx</param>
     ''' <exception cref="ArgumentNullException"><paramref name="Context"/> is null</exception>
