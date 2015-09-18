@@ -1,4 +1,5 @@
 ![Převor 10%](https://download-codeplex.sec.s-msft.com/Download?ProjectName=caps&DownloadId=82319&Build=21031)
+
 **Welcome to the Caps project!**
 I'm collecting various caps from bottles - mainly from drinks. My collection currently contains about 2000 caps and is growing. I store the caps in boxes. When a new cap arrives it's very hard to determine if I already have the cap in collection or not.
 * First goal is to *help organize collection of caps* by allowing search using various criteria. (Of curse, I must first fill the database.)
@@ -19,14 +20,24 @@ This CodePlex project is set up to provide the code and later binary of applicat
 Application code is written in Visual Basic 9 and I'll switch 10 VB 10 as soon as there will be some more stable release (maybe Beta 2).
 
 ![main](http://download-codeplex.sec.s-msft.com/Download?ProjectName=Caps&DownloadId=87872)
+
 Main screen
+
 ![edit](http://download-codeplex.sec.s-msft.com/Download?ProjectName=Caps&DownloadId=87870)
+
 Cap editor
+
 ![db](http://download-codeplex.sec.s-msft.com/Download?ProjectName=Caps&DownloadId=87869)
+
 Database setup
+
 ![search](http://download-codeplex.sec.s-msft.com/Download?ProjectName=Caps&DownloadId=87873)
+
 Search results / cap details view
-[lists](http://download-codeplex.sec.s-msft.com/Download?ProjectName=Caps&DownloadId=87871)
+
+![lists](http://download-codeplex.sec.s-msft.com/Download?ProjectName=Caps&DownloadId=87871)
+
 Edit various lists
 
-[caps](http://download-codeplex.sec.s-msft.com/Download?ProjectName=Caps&DownloadId=82318)
+
+![caps](http://download-codeplex.sec.s-msft.com/Download?ProjectName=Caps&DownloadId=82318)
